@@ -2,33 +2,19 @@
 <mdb-tabset [buttonClass]="'pills-indigo white mb-2'" [contentClass]="'card'">
     <!--Panel 1-->
     <mdb-tab heading="Daily">
-      <div class="row">
-        <div class="col-12">
-        <app-chart1></app-chart1>
-        </div>
-      </div>
+        <app-stats-card></app-stats-card>
     </mdb-tab>
     <!--Panel 2-->
     <mdb-tab heading="Weekly">
-      <div class="row">
-        <div class="col-12">
-            <app-chart2></app-chart2>
-        </div>
-      </div>
+      <!-- <app-stats-card></app-stats-card> -->
+      Weekly works
     </mdb-tab>
     <!--Panel 3-->
     <mdb-tab heading="Monthly">
-      <div class="row">
-        <div class="col-12">
-            <app-chart3></app-chart3>
-        </div>
-      </div>
+            <app-chart1></app-chart1>
     </mdb-tab>
     <mdb-tab heading="Yearly">
-      <div class="row">
-        <div class="col-12">
-<app-cards></app-cards>
-        </div>
-      </div>
+        <!-- <app-stats-card></app-stats-card> -->
+        Yearly works
     </mdb-tab>
   </mdb-tabset>
