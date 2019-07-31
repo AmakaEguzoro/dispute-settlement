@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{
+    background-color: #E5E5E5;
+}
+
+.outlet-container{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 72px;
+}
+// login page
+.login-title {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.1em;
+    color: #333333;
+  }
+  
+.nav-head{
+    position: absolute;
+    width: 61px;
+    height: 25.98px;
+    left: 20px;
+    top: 14.85px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;  
+    color: #FFFFFF;
+}
+
+.card.card-cascade .view.gradient-card-header {
+    padding: 1rem 1rem;
+    text-align: center;
+}
+
+.card.card-cascade h3, 
+.card.card-cascade h4, 
+{
+margin-bottom: 0px;
+}
+.blue-gradient {
+    background: -webkit-linear-gradient(50deg, #45cafc, #303f9f);
+    background: linear-gradient(40deg, #45cafc, #4285f4);
+}
+
+.datepickers .md-form, .inputs .md-form {
+    margin-top: 0 !important;
+}
+
+.modal-full-height.modal-bottom > .modal-content {
+    position: absolute !important;
+    bottom: 0;
+}

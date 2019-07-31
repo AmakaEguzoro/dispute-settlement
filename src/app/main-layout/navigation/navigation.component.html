@@ -1,0 +1,56 @@
+<div *ngIf="loggedIn()" class="container">
+    <header>
+        <!-- Sidebar navigation -->
+        
+        <!--/. Sidebar navigation -->
+      
+        <!-- Navbar -->
+        <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav indigo"
+                    [containerInside]="false">
+      
+          <navlinks class="navbar-container">
+    
+          </navlinks>
+      
+          <mdb-navbar-brand>
+            <!-- Breadcrumb-->
+            <div class="navbar-brand nav-head">
+              <!-- <p class="nav-head">VAS</p> -->
+              VAS
+            </div>
+            <!--/. Breadcrumb-->
+          </mdb-navbar-brand>
+      
+          <navlinks>
+            <ul class="navbar-nav mr-auto" >
+                <li class="nav-item" routerLinkActive="active" >
+                    <a class="nav-link nav-body" [routerLink]="['/admin-dashboard']" mdbWavesEffect>Dashboard</a>
+                  </li>
+                  <!-- <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link waves-light " [routerLink]="['/alerts']" mdbWavesEffect>Genesis</a>
+                  </li> -->
+                  <!-- <li class="nav-item">
+                    <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+                  </li> -->
+            </ul>
+            
+            <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav">
+                
+              <li class="nav-item dropdown btn-group" dropdown>
+                <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown" mdbWavesEffect>
+                  Hi
+                </a>
+                <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+                  <a class="dropdown-item" href="#">Create User</a>
+                  <a (click)="logout()" class="dropdown-item" >Log Out</a>
+                </div>
+              </li>
+            </ul>
+          </navlinks>
+        </mdb-navbar>
+        <!--/. Navbar -->
+      
+      </header>
+</div>
+
+

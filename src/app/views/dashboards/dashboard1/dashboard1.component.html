@@ -1,0 +1,122 @@
+
+<app-stats-card2 class="mb-4"></app-stats-card2>
+<section class="my-5">
+
+    <!--Card-->
+    <div class="card card-cascade narrower">
+
+        <!--Section: Chart-->
+        <section>
+
+            <!--Grid row-->
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-xl-5 col-lg-12 mr-0">
+
+                    <!--Card image-->
+                    <div class="view view-cascade gradient-card-header blue-gradient">
+                        <h2 class="h2-responsive mb-0">Sales</h2>
+                    </div>
+                    <!--/Card image-->
+
+                    <!--Card content-->
+                    <div class="card-body card-body-cascade pb-0">
+
+                        <!--Panel data-->
+                        <div class="row card-body pt-3">
+
+                            <!--First column-->
+                            <div class="col-md-6">
+
+                                <!--Date select-->
+                                <p class="lead"><span class="badge info-color p-2">Data range</span></p>
+                                <mdb-select [options]="dateOptionsSelect" placeholder="Choose time period"></mdb-select>
+
+                                <!--Date pickers-->
+                                <p class="lead mt-5"><span class="badge info-color p-2">Custom date</span></p>
+                                <br>
+                                <div class="md-form">
+                                    <mdb-date-picker name="mydate" [placeholder]="'Selected date'"  required></mdb-date-picker>
+                                    <label class="active">From</label>
+                                </div>
+                                <div class="md-form">
+                                    <mdb-date-picker name="mydate" [placeholder]="'Selected date'"  required></mdb-date-picker>
+                                    <label class="active">To</label>
+                                </div>
+
+                            </div>
+                            <!--/First column-->
+
+                            <!--Second column-->
+                            <div class="col-md-6 text-center">
+
+                                <!--Summary-->
+                                <table class="table no-header">
+                                    <tbody>
+                                        <tr>
+                                            <td><img src="assets/img/flags/us.png" class="flag mr-2"> United States</td>
+                                            <td>307</td>
+                                            <td>307</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="assets/img/flags/in.png" class="flag mr-2"> India</td>
+                                            <td>504</td>
+                                            <td>307</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="assets/img/flags/cn.png" class="flag mr-2"> China</td>
+                                            <td>613</td>
+                                            <td>307</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="assets/img/flags/pl.png" class="flag mr-2"> Poland</td>
+                                            <td>208</td>
+                                            <td>307</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="assets/img/flags/it.png" class="flag mr-2"> Italy</td>
+                                            <td>314</td>
+                                            <td>307</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--/Second column-->
+
+                        </div>
+                        <!--/Panel data-->
+
+                    </div>
+                    <!--/.Card content-->
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-xl-7 col-lg-12 my-5">
+
+                    <!--Card image-->
+                    <div class="view view-cascade  gradient-card-header white">
+                        <iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
+
+                        <!-- Chart -->
+                        <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chart1Labels" [options]="chartOptions" [legend]="true">
+                        </canvas>
+
+                    </div>
+                    <!--/Card image-->
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+        </section>
+        <!--Section: Chart-->
+
+    </div>
+    <!--/.Card-->
+
+</section>
