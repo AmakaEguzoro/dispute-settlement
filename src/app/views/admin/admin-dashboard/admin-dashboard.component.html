@@ -1,20 +1,22 @@
 <!-- Nav tabs -->
 <mdb-tabset [buttonClass]="'pills-indigo white mb-2'" [contentClass]="'card'">
-    <!--Panel 1-->
-    <mdb-tab heading="Daily">
-        <app-stats-card></app-stats-card>
-    </mdb-tab>
-    <!--Panel 2-->
-    <mdb-tab heading="Weekly">
-      <!-- <app-stats-card></app-stats-card> -->
-      Weekly works
-    </mdb-tab>
-    <!--Panel 3-->
-    <mdb-tab heading="Monthly">
-            <app-chart1></app-chart1>
-    </mdb-tab>
-    <mdb-tab heading="Yearly">
-        <!-- <app-stats-card></app-stats-card> -->
-        Yearly works
-    </mdb-tab>
-  </mdb-tabset>
+  <!--Panel 1-->
+  <mdb-tab heading="Daily">
+    <app-today-card></app-today-card>
+    <app-yesterday-card></app-yesterday-card>>
+  </mdb-tab>
+  <!--Panel 2-->
+  <mdb-tab heading="Weekly">
+    <app-this-week-card></app-this-week-card>
+    <app-last-week-card></app-last-week-card>
+  </mdb-tab>
+  <!--Panel 3-->
+  <mdb-tab heading="Monthly">
+    <app-this-month-card></app-this-month-card>
+    <app-last-month-card></app-last-month-card>
+  </mdb-tab>
+  <mdb-tab heading="Yearly">
+    <app-this-year-card></app-this-year-card>
+    <app-last-year-card></app-last-year-card>
+  </mdb-tab>
+</mdb-tabset>

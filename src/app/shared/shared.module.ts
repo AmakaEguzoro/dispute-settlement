@@ -9,6 +9,14 @@ import { OverlayCardComponent } from './components/overlay-card/overlay-card.com
 import { PanelComponent } from './components/panel/panel.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationService } from './components/notification/notification.service';
+import { TodayCardComponent } from './dashboard-cards/daily-cards/today-card/today-card.component';
+import { YesterdayCardComponent } from './dashboard-cards/daily-cards/yesterday-card/yesterday-card.component';
+import { ThisMonthCardComponent } from './dashboard-cards/monthly-cards/this-month-card/this-month-card.component';
+import { LastMonthCardComponent } from './dashboard-cards/monthly-cards/last-month-card/last-month-card.component';
+import { LastWeekCardComponent } from './dashboard-cards/weekly-cards/last-week-card/last-week-card.component';
+import { ThisWeekCardComponent } from './dashboard-cards/weekly-cards/this-week-card/this-week-card.component';
+import { ThisYearCardComponent } from './dashboard-cards/yearly-cards/this-year-card/this-year-card.component';
+import { LastYearCardComponent } from './dashboard-cards/yearly-cards/last-year-card/last-year-card.component';
 
 @NgModule({
   imports: [
@@ -23,6 +31,15 @@ import { NotificationService } from './components/notification/notification.serv
     PanelComponent,
     ModalComponent,
     NotificationComponent,
+    // Itex Copmponent
+    TodayCardComponent,
+    YesterdayCardComponent,
+    ThisMonthCardComponent,
+    LastMonthCardComponent,
+    LastWeekCardComponent,
+    ThisWeekCardComponent,
+    ThisYearCardComponent,
+    LastYearCardComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -32,6 +49,16 @@ import { NotificationService } from './components/notification/notification.serv
     PanelComponent,
     ModalComponent,
     NotificationComponent,
+    AlertComponent,
+    // Itex Copmponent
+    TodayCardComponent,
+    YesterdayCardComponent,
+    ThisMonthCardComponent,
+    LastMonthCardComponent,
+    LastWeekCardComponent,
+    ThisWeekCardComponent,
+    ThisYearCardComponent,
+    LastYearCardComponent,
   ],
   providers: [
     NotificationService
