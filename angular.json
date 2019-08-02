@@ -56,7 +56,11 @@
               },
               {
                 "input": "node_modules/crypto-js/crypto-js.js"
+              },
+              {
+                "input": "node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"
               }
+ 
             ]
           },
           "configurations": {
