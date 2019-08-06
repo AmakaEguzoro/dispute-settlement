@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'app/_auth/auth.service';
 import { User } from 'app/_models/user';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-login',
@@ -75,11 +76,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private toastService: ToastService) { }
 
 
   ngOnInit() {
-     this.userLoginForm();
+    this.userLoginForm();
   }
   userLoginForm() {
     this.loginForm = this.fb.group({
@@ -92,17 +94,17 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.user = Object.assign({}, this.loginForm.value);
       this.authService.login(this.user).subscribe(() => {
-        this.router.navigate(['/navigation']);
-        console.log('logged in');
+        this.router.navigate(['/home']);
+        this.toastService.success('Logged In')
       }, error => {
-        this.error = error;
+        this.toastService.error(error.error.error);
         console.log(error);
       })
     }
   }
 
   loggedIn() {
-     return this.authService.loggedIn()
+    return this.authService.loggedIn()
   }
 
 }

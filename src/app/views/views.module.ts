@@ -92,6 +92,9 @@ import { MinutesManagementComponent } from './minutes/minutes-management/minutes
 import { ElectionsManagementComponent } from './elections/elections-management/elections-management.component';
 import { ElectionsDashboardComponent } from './elections/elections-dashboard/elections-dashboard.component';
 import { ExcosComponent } from './members/excos/excos.component';
+// MDB Angular Pro
+import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
+import { FilterComponent } from './filter/filter.component'
 // import { ErrordialogComponent } from '../views/errordialog/errordialog.component';
 
 @NgModule({
@@ -109,6 +112,7 @@ import { ExcosComponent } from './members/excos/excos.component';
     }),
     CalendarModule.forRoot(),
     CKEditorModule,
+    MDBBootstrapModulesPro.forRoot()
     // ErrordialogComponent
   ],
   declarations: [
@@ -192,6 +196,7 @@ import { ExcosComponent } from './members/excos/excos.component';
     CreateFinanceComponent,
     CreateElectionsComponent,
     MembersManagementComponent,
+    FilterComponent,
     // ErrordialogComponent,
   ],
   exports: [

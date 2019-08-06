@@ -17,6 +17,7 @@ import { LastWeekCardComponent } from './dashboard-cards/weekly-cards/last-week-
 import { ThisWeekCardComponent } from './dashboard-cards/weekly-cards/this-week-card/this-week-card.component';
 import { ThisYearCardComponent } from './dashboard-cards/yearly-cards/this-year-card/this-year-card.component';
 import { LastYearCardComponent } from './dashboard-cards/yearly-cards/last-year-card/last-year-card.component';
+import { SummaryService } from 'app/service/summary.service';
 
 @NgModule({
   imports: [
@@ -61,7 +62,9 @@ import { LastYearCardComponent } from './dashboard-cards/yearly-cards/last-year-
     LastYearCardComponent,
   ],
   providers: [
-    NotificationService
+    // NotificationService,
+    // itex
+    SummaryService
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })

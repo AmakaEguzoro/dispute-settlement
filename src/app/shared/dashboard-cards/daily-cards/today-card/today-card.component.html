@@ -1,61 +1,46 @@
 <div class="row">
-
-    <!-- first card -->
-    <div class="col-sm-4 mb-3 mb-md-0">
-            <div class="card classic-admin-card">
-                    <div class="card-body">
-                            <div class="pull-right successful">
-                                   <!-- {{data.percentage}} -->
-                                    +34%
-                                   </div>
-                                   <p class="white-texts">Today</p> <br>
-                                   <h4>
-                                        <div class="pull-right">
-                                                &#x20A6;100k  </div>
-                                       <p> 33k <br>Transactions</p>
-                                       
-                                   </h4>
-                    </div>
+        <!-- first card -->
+        <div class="col-sm-4 mb-3 mb-md-0">
+                <div class="card classic-admin-card">
+                        <div class="card-body">
+                                <div class="pull-right successful">+20%</div>
+                                <p class="card-text">Today</p> <br>
+                                <h4>
+                                        <div class="pull-right">&#x20A6;{{todayTotal.total_amount}}</div>
+                                        <p class="card-text"> {{todayTotal.total_count}}<br>Transactions</p>
+                                </h4>
+                        </div>
                 </div>
-    </div>
-    <!-- first card -->
+        </div>
+        <!-- first card -->
 
-
-    <!-- second card -->
-    <div class="col-sm-4">
-            <div class="card classic-admin-card">
-                    <div class="card-body">
-                            <div class="pull-right successful">
-                                    +34%
-                                   </div>
-                                   <p class="white-texts">Total Successful</p> <br>
-                                   <h4>
-                                        <div class="pull-right">
-                                                &#x20A6;100k  </div>
-                                       <p> 33k <br>Transactions</p>
-                                       
-                                   </h4>
-                    </div>
+        <!-- second card -->
+        <div class="col-sm-4">
+                <div class="card classic-admin-card">
+                        <div class="card-body">
+                                <div class="pull-right successful">{{todaySuccess.percent_success}} </div>
+                                <p class="card-text">Total Successful</p> <br>
+                                <h4>
+                                        <div class="pull-right">&#x20A6;{{todaySuccess.total_amount}}</div>
+                                        <p  class="card-text">{{todaySuccess.success_total_count}}<br>Transactions</p>
+                                </h4>
+                        </div>
                 </div>
-    </div>
-    <!-- second card -->
+        </div>
+        <!-- second card -->
 
-    <!-- third card -->
-    <div class="col-sm-4">
-            <div class="card classic-admin-card">
-                    <div class="card-body">
-                            <div class="pull-right failed">
-                                    -34%
-                                   </div>
-                                   <p class="white-texts">Total Failed</p> <br>
-                                   <h4>
-                                        <div class="pull-right">
-                                                &#x20A6;100k  </div>
-                                       <p> 33k <br>Transactions</p>
-                                       
-                                   </h4>
-                    </div>
+        <!-- third card -->
+        <div class="col-sm-4">
+                <div class="card classic-admin-card">
+                        <div class="card-body">
+                                <div class="pull-right failed">{{todayFailed.percent_failed}}</div>
+                                <p class="card-text">Total Failed</p> <br>
+                                <h4>
+                                        <div class="pull-right"> &#x20A6;{{todayFailed.fail_total_amount}}</div>
+                                        <p  class="card-text">{{todayFailed.failed_total_count}}<br>Transactions</p>
+                                </h4>
+                        </div>
                 </div>
-          </div>
-    <!-- third card -->
-  </div>
+        </div>
+        <!-- third card -->
+</div>
