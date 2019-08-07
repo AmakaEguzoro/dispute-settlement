@@ -7,8 +7,8 @@
                                 <p class="card-text">This Week</p> <br>
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{thisWeekTotal.data.amount}}</div>
-                                        <p class="card-text"> {{thisWeekTotal.data.count}}<br>Transactions</p>
+                                        <div class="pull-right">&#x20A6;{{thisWeekTotal.data.amount | thousandSuff : 2}}</div>
+                                        <p class="card-text"> {{thisWeekTotal.data.count | thousandSuff : 2}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -23,8 +23,8 @@
                                 <p class="card-text">Total Successful</p> <br>
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{thisWeekSuccess.data.amount | number}}</div>
-                                        <p class="card-text">{{thisWeekSuccess.data.count}}<br>Transactions</p>
+                                        <div class="pull-right">&#x20A6;{{thisWeekSuccess.data.amount | thousandSuff : 2}}</div>
+                                        <p class="card-text">{{thisWeekSuccess.data.count | thousandSuff : 2}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -40,8 +40,8 @@
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                                
-                                        <div class="pull-right"> &#x20A6;{{thisWeekFailed.data.amount}}</div>
-                                        <p class="card-text">{{thisWeekFailed.data.count}}<br>Transactions</p>
+                                        <div class="pull-right"> &#x20A6;{{thisWeekFailed.data.amount | thousandSuff : 2}}</div>
+                                        <p class="card-text">{{thisWeekFailed.data.count | thousandSuff : 2}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>

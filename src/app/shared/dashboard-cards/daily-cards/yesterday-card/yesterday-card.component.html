@@ -8,8 +8,8 @@
                                 <h4>
                                                 <mdb-spinner *ngIf="'data' == undefined" spinnerColor="blue"></mdb-spinner>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{yesterdayTotal.data.amount}}</div>
-                                        <p class="card-text"> {{yesterdayTotal.data.count}}<br>Transactions</p>
+                                        <div class="pull-right">&#x20A6;{{yesterdayTotal.data.amount | thousandSuff : 2}}</div>
+                                        <p class="card-text"> {{yesterdayTotal.data.count | thousandSuff : 2}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -24,8 +24,8 @@
                                 <p class="card-text">Total Successful</p> <br>
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{yesterdaySuccess.data.amount | number}}</div>
-                                        <p class="card-text">{{yesterdaySuccess.data.count}}<br>Transactions</p>
+                                        <div class="pull-right">&#x20A6;{{yesterdaySuccess.data.amount | thousandSuff : 2}}</div>
+                                        <p class="card-text">{{yesterdaySuccess.data.count | thousandSuff : 2}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -41,8 +41,8 @@
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                                
-                                        <div class="pull-right"> &#x20A6;{{yesterdayFailed.data.amount}}</div>
-                                        <p class="card-text">{{yesterdayFailed.data.count}}<br>Transactions</p>
+                                        <div class="pull-right"> &#x20A6;{{yesterdayFailed.data.amount | thousandSuff : 2}}</div>
+                                        <p class="card-text">{{yesterdayFailed.data.count | thousandSuff : 2}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>

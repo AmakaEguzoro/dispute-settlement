@@ -7,8 +7,8 @@
                                 <p class="card-text">This Month</p> <br>
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{thisMonthTotal.data.amount}}</div>
-                                        <p class="card-text"> {{thisMonthTotal.data.count}}<br>Transactions</p>
+                                        <div class="pull-right">&#x20A6;{{thisMonthTotal.data.amount | thousandSuff : 2}}</div>
+                                        <p class="card-text"> {{thisMonthTotal.data.count | thousandSuff : 2}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -23,8 +23,8 @@
                                 <p class="card-text">Total Successful</p> <br>
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{thisMonthSuccess.data.amount | number}}</div>
-                                        <p class="card-text">{{thisMonthSuccess.data.count}}<br>Transactions</p>
+                                        <div class="pull-right">&#x20A6;{{thisMonthSuccess.data.amount | thousandSuff : 2}}</div>
+                                        <p class="card-text">{{thisMonthSuccess.data.count | thousandSuff : 2}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -40,8 +40,8 @@
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                                
-                                        <div class="pull-right"> &#x20A6;{{thisMonthFailed.data.amount}}</div>
-                                        <p class="card-text">{{thisMonthFailed.data.count}}<br>Transactions</p>
+                                        <div class="pull-right"> &#x20A6;{{thisMonthFailed.data.amount | thousandSuff : 2}}</div>
+                                        <p class="card-text">{{thisMonthFailed.data.count | thousandSuff : 2}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>

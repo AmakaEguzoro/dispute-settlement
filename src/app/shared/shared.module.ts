@@ -18,6 +18,7 @@ import { ThisWeekCardComponent } from './dashboard-cards/weekly-cards/this-week-
 import { ThisYearCardComponent } from './dashboard-cards/yearly-cards/this-year-card/this-year-card.component';
 import { LastYearCardComponent } from './dashboard-cards/yearly-cards/last-year-card/last-year-card.component';
 import { SummaryService } from 'app/service/summary.service';
+import { ThousandSuffixesPipe } from 'app/service/ThousandSuffixesPipe';
 
 @NgModule({
   imports: [
@@ -41,6 +42,8 @@ import { SummaryService } from 'app/service/summary.service';
     ThisWeekCardComponent,
     ThisYearCardComponent,
     LastYearCardComponent,
+
+    ThousandSuffixesPipe
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -60,11 +63,13 @@ import { SummaryService } from 'app/service/summary.service';
     ThisWeekCardComponent,
     ThisYearCardComponent,
     LastYearCardComponent,
+
+    ThousandSuffixesPipe
   ],
   providers: [
     // NotificationService,
     // itex
-    SummaryService
+    SummaryService,
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
