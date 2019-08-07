@@ -24,7 +24,6 @@ export class TodayCardComponent implements OnInit {
   getTodayTotal() {
     this.summaryService.getTodayTotal().subscribe((todayTotal: TodayTotal) => {
       this.todayTotal = todayTotal;
-      console.log( 'ca get todayTotal', todayTotal);
     }, error => {
       console.log(error, 'cannot get todayTotal');
     })
@@ -33,7 +32,6 @@ export class TodayCardComponent implements OnInit {
   getTodaySuccessfull() {
     this.summaryService.getTodaySuccess().subscribe((todaySuccess: TodaySuccess) => {
       this.todaySuccess = todaySuccess;
-      console.log( 'ca get todaysuce', todaySuccess);
     }, error => {
       console.log(error, 'cannot get todaySuccess');
     })
@@ -42,7 +40,6 @@ export class TodayCardComponent implements OnInit {
   getTodayFailed() {
     this.summaryService.getTodayFailed().subscribe((todayFailed: TodayFailed) => {
       this.todayFailed = todayFailed;
-      console.log( 'ca get todayfail', todayFailed);
     }, error => {
       console.log(error, 'cannot get todayFailed');
     })
