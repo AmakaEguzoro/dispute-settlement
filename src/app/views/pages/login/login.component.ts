@@ -72,7 +72,7 @@ import { ToastService } from 'ng-uikit-pro-standard';
 export class LoginComponent implements OnInit {
   user: User;
   loginForm: FormGroup;
-  error = '';
+  loading = false;
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -91,14 +91,17 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loading = true;
     if (this.loginForm.valid) {
       this.user = Object.assign({}, this.loginForm.value);
       this.authService.login(this.user).subscribe(() => {
+        this.loading = false;
         this.router.navigate(['/home']);
         this.toastService.success('Logged In')
       }, error => {
         this.toastService.error(error.error.error);
         console.log(error);
+        this.loading = false;
       })
     }
   }

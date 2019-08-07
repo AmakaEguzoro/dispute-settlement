@@ -6,6 +6,8 @@
                                 <div class="pull-right successful">+20%</div>
                                 <p class="card-text">Yesterday</p> <br>
                                 <h4>
+                                                <mdb-spinner *ngIf="'data' == undefined" spinnerColor="blue"></mdb-spinner>
+                                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                         <div class="pull-right">&#x20A6;{{yesterdayTotal.data.amount}}</div>
                                         <p class="card-text"> {{yesterdayTotal.data.count}}<br>Transactions</p>
                                 </h4>
@@ -21,7 +23,8 @@
                                 <div class="pull-right successful">-2% </div>
                                 <p class="card-text">Total Successful</p> <br>
                                 <h4>
-                                        <div class="pull-right">&#x20A6;{{yesterdaySuccess.data.amount}}</div>
+                                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
+                                        <div class="pull-right">&#x20A6;{{yesterdaySuccess.data.amount | number}}</div>
                                         <p class="card-text">{{yesterdaySuccess.data.count}}<br>Transactions</p>
                                 </h4>
                         </div>
@@ -36,6 +39,8 @@
                                 <div class="pull-right failed">33%</div>
                                 <p class="card-text">Total Failed</p> <br>
                                 <h4>
+                                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
+                                               
                                         <div class="pull-right"> &#x20A6;{{yesterdayFailed.data.amount}}</div>
                                         <p class="card-text">{{yesterdayFailed.data.count}}<br>Transactions</p>
                                 </h4>

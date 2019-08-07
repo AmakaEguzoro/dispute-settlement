@@ -63,7 +63,7 @@ import { HttpInterceptorProvider } from './_auth/errorInterceptor';
   ],
   providers: [
     MDBSpinningPreloader,
-    // AsdevApiService,
+    AsdevApiService,
     // AngularFirestore,
     // AngularFireStorage,
     // EncrDecrService,

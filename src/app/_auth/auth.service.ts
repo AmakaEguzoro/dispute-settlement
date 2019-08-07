@@ -11,6 +11,8 @@ import { StorageService } from '../service/storage.service';
 import { environment } from 'environments/environment';
 import { User } from 'app/_models/user';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { ToastService } from 'ng-uikit-pro-standard';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -74,7 +76,8 @@ export class AuthService {
   decodedToken : any;
   
   // user: User;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,  private router: Router,
+    private toastService: ToastService) { }
 
   login(user: User) {
     return this.http.post(this.baseUrl + 'login', user)
@@ -93,5 +96,17 @@ export class AuthService {
   loggedIn() {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token)
+  }
+  checkSession(err) {
+    if (err.status == 401 || err.status == 403) {
+      this.logout();
+      return true
+    }
+    return false;
+  }
+  logout() {
+    localStorage.removeItem('token')
+    this.router.navigate(['/login']),
+    this.toastService.success('Logged Out')
   }
 }
