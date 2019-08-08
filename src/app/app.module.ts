@@ -35,6 +35,8 @@ import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,9 +64,9 @@ import { HttpInterceptorProvider } from './_auth/errorInterceptor';
   providers: [
     MDBSpinningPreloader,
     AsdevApiService,
-    AngularFirestore,
-    AngularFireStorage,
-    EncrDecrService,
+    // AngularFirestore,
+    // AngularFireStorage,
+    // EncrDecrService,
     ErrordialogComponent,
     // { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptorService, multi: true }
     HttpInterceptorProvider,

@@ -46,7 +46,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mdbSpinningPreloader.stop();
+    // this.mdbSpinningPreloader.stop();
+    
   }
 
   goBack(): void {

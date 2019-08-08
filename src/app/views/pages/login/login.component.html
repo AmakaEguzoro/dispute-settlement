@@ -54,14 +54,13 @@
 </header> -->
 
 <div *ngIf="!loggedIn()" class="container-fluid">
-	<div class="row">
+	
 	  <div class="col-md-4 offset-md-4 middle">
 		<div class="jumbotron w-100 h-100" id="jumbotron">
-		  <div class="container-fluid mb-5">
+		  <div class="container-fluid">
 			<img src="../../../../assets/ItexLogo.png" alt="logo" class="img-fluid mx-auto d-block ">
 			<p class="text-center mb-5" class="login-title" style="margin-left: 4rem;">Login to access Dashboard</p>
 		  </div>
-		  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
 		  <div class="container-fluid">
 			<form [formGroup]="loginForm">
 			  <div class="form-group mb-1">
@@ -82,8 +81,9 @@
 			  </div>
   
 			  <button [disabled]="!loginForm.valid" class="btn btn-primary btn-block mt-4 mb-3"
-				(click)="login()">Sign-in</button>
-  
+				(click)="login()">Sign-in
+				<i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+			</button>
 			  <span class="login-title" style=" line-height: 23px;"><input type="checkbox"> Remember me</span>
 			  <span class="float-right login-title"><a href="#">Forgot password?</a></span>
 			</form>
@@ -92,6 +92,6 @@
 	  </div>
   
   
-	</div>
+	
   
   </div>

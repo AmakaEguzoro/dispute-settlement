@@ -80,6 +80,7 @@ import { EventCalendarComponent } from './views/event-calendar/event-calendar.co
 import { MembersManagementComponent } from './views/members/members-management/members-management.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { NavigationComponent } from './main-layout/navigation/navigation.component';
+import { TodayCardComponent } from './shared/dashboard-cards/daily-cards/today-card/today-card.component';
 
 
 const routes: Route[] = [
@@ -91,11 +92,9 @@ const routes: Route[] = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'navigation', component: NavigationComponent },
+      { path: 'home', component: NavigationComponent },
       { path: 'admin-dashboard', component: AdminDashboardComponent },
-      { path: 'alerts', component: AlertComponent}
-      // { path: 'service-status', component: ServiceStatusComponent },
-      // { path: 'side-nav', component: SideNavComponent, },
+      // { path: 'today', component: TodayCardComponent}
     ]
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }

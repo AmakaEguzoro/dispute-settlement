@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from 'app/_auth/auth.service';
 import { Router } from '@angular/router';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 
 
@@ -14,7 +15,8 @@ export class NavigationComponent implements OnInit {
 
   clicked: boolean;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router,
+    private toastService: ToastService) {
     this.clicked = this.clicked === undefined ? false : true;
   }
 
@@ -26,7 +28,8 @@ export class NavigationComponent implements OnInit {
   }
   logout() {
     localStorage.removeItem('token')
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']),
+    this.toastService.success('Logged Out')
   }
   loggedIn() {
     return this.authService.loggedIn()

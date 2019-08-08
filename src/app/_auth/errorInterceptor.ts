@@ -1,48 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, tap, map } from 'rxjs/operators';
+import { User } from 'app/_models/user';
+import { Constants } from 'common/constants';
+import { StorageService } from 'app/service/storage.service';
 
 @Injectable()
-export class httpInterceptor implements HttpInterceptor {
-    intercept(
-        request: HttpRequest<any>,
-        next: HttpHandler
-    ): Observable<HttpEvent<any>> {
-        return next.handle(request).pipe(
-            catchError(error => {
-                if (error instanceof HttpErrorResponse) {
-                    if(error.status === 401){
-                        return throwError(error.statusText);
-                    }
-                    const applicationError = error.headers.get('Application-Error');
-                    if (applicationError) {
-                        // console.error(applicationError );
-                        return throwError(applicationError);
-                    }
-                    const serverError = error.error;
-                    let modalStateError = '';
-                    if (serverError && typeof serverError === 'object') {
-                        for (const key in serverError) {
-                            if (serverError[key]) {
-                                modalStateError += serverError[key] + '\n'
-                            }
-                        }
-                    }
-                    return throwError(modalStateError || serverError || 'Server Error')
-                }
-            })
-        );
-    }
-}
-
-export const HttpInterceptorProvider = {
-    provide: HTTP_INTERCEPTORS,
-    useClass: httpInterceptor,
-    multi: true
-}
-
-	// intercept request and add token
+// export class httpInterceptor implements HttpInterceptor {
+//    	// intercept request and add token
 // 	intercept(
 // 		request: HttpRequest<any>,
 // 		next: HttpHandler
@@ -61,3 +27,54 @@ export const HttpInterceptorProvider = {
 // 			)
 // 		);
 // 	}
+// }
+
+
+@Injectable()
+export class httpInterceptor implements HttpInterceptor {
+
+    isRefreshingToken: boolean = false;
+    tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+    loaderToShow: any;
+    constructor(
+        private storageService: StorageService,) {
+    }
+
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+        let token: User = this.storageService.get<User>(Constants.STORAGE_VARIABLES.TOKEN);
+
+        if (token) {
+            request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
+        }
+
+
+
+        if (!request.headers.has('Content-Type')) {
+            request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
+        }
+
+        request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
+        return next.handle(request).pipe(
+            map((event: HttpEvent<any>) => {
+                if (event instanceof HttpResponse) {
+                }
+                return event;
+            }),
+            catchError((error: HttpErrorResponse) => {
+                console.log(error);
+                let data = {};
+                data = {
+                    reason: error && error.error && error.error.reason ? error.error.reason : '',
+                    status: error.status
+                };
+                return throwError(error);
+            }));
+    }
+}
+
+export const HttpInterceptorProvider = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: httpInterceptor,
+    multi: true
+}
