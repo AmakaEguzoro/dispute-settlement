@@ -7,8 +7,8 @@
                                 <p class="card-text">This Year</p> <br>
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{thisYearTotal.data.amount | thousandSuff : 2}}</div>
-                                        <p class="card-text"> {{thisYearTotal.data.count | thousandSuff : 2}}<br>Transactions</p>
+                                        <div class="pull-right">&#x20A6;{{thisYearTotal.data.amount/100 | thousandSuff : 2}}</div>
+                                        <p class="card-text"> {{thisYearTotal.data.count | thousandSuff}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -23,8 +23,8 @@
                                 <p class="card-text">Total Successful</p> <br>
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{thisYearSuccess.data.amount | thousandSuff : 2}}</div>
-                                        <p class="card-text">{{thisYearSuccess.data.count | thousandSuff : 2}}<br>Transactions</p>
+                                        <div class="pull-right">&#x20A6;{{thisYearSuccess.data.amount/100 | thousandSuff : 2}}</div>
+                                        <p class="card-text">{{thisYearSuccess.data.count | thousandSuff}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -40,8 +40,8 @@
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                                
-                                        <div class="pull-right"> &#x20A6;{{thisYearFailed.data.amount | thousandSuff : 2}}</div>
-                                        <p class="card-text">{{thisYearFailed.data.count | thousandSuff : 2}}<br>Transactions</p>
+                                        <div class="pull-right"> &#x20A6;{{thisYearFailed.data.amount/100 | thousandSuff : 2}}</div>
+                                        <p class="card-text">{{thisYearFailed.data.count | thousandSuff}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>

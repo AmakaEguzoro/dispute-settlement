@@ -7,8 +7,8 @@
                                 <p class="card-text">Last Month</p> <br>
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{lastMonthTotal.data.amount | thousandSuff : 2}}</div>
-                                        <p class="card-text"> {{lastMonthTotal.data.count | thousandSuff : 2}}<br>Transactions</p>
+                                        <div class="pull-right">&#x20A6;{{lastMonthTotal.data.amount/100 | thousandSuff : 2}}</div>
+                                        <p class="card-text"> {{lastMonthTotal.data.count | thousandSuff}}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -23,8 +23,8 @@
                                 <p class="card-text">Total Successful</p> <br>
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{lastMonthSuccess.data.amount | thousandSuff : 2}}</div>
-                                        <p class="card-text">{{lastMonthSuccess.data.count | thousandSuff : 2}}<br>Transactions</p>
+                                        <div class="pull-right">&#x20A6;{{lastMonthSuccess.data.amount/100 | thousandSuff : 2}}</div>
+                                        <p class="card-text">{{lastMonthSuccess.data.count | thousandSuff }}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -40,8 +40,8 @@
                                 <h4>
                                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                                
-                                        <div class="pull-right"> &#x20A6;{{lastMonthFailed.data.amount | thousandSuff : 2}}</div>
-                                        <p class="card-text">{{lastMonthFailed.data.count | thousandSuff : 2}}<br>Transactions</p>
+                                        <div class="pull-right"> &#x20A6;{{lastMonthFailed.data.amount/100 | thousandSuff : 2}}</div>
+                                        <p class="card-text">{{lastMonthFailed.data.co | thousandSuff }}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
