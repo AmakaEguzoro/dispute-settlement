@@ -40,7 +40,7 @@ export class SummaryService {
     }
     // this week
     getThisWeekTotal(): Observable<ThisWeekTotal> {
-        return this.httpClient.get<ThisWeekTotal>(this.baseUrl + `yesterday/total`);
+        return this.httpClient.get<ThisWeekTotal>(this.baseUrl + `weekly/total`);
     }
 
     getThisWeekSuccess(): Observable<ThisWeekSuccess> {
@@ -52,7 +52,7 @@ export class SummaryService {
     }
     // last week
     getLastWeekTotal(): Observable<LastWeekTotal> {
-        return this.httpClient.get<LastWeekTotal>(this.baseUrl + `yesterday/total`);
+        return this.httpClient.get<LastWeekTotal>(this.baseUrl + `last/weekly_total`);
     }
 
     getLastWeekSuccess(): Observable<LastWeekSuccess> {

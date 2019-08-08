@@ -1,50 +1,47 @@
 <div class="row">
-        <!-- first card -->
-        <div class="col-sm-4 mb-3 mb-md-0">
-                <div class="card classic-admin-card">
-                        <div class="card-body">
-                                <div class="pull-right successful">+20%</div>
-                                <p class="card-text">This Month</p> <br>
-                                <h4>
-                                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{thisMonthTotal.data.amount/100 | thousandSuff : 2}}</div>
-                                        <p class="card-text"> {{thisMonthTotal.data.count | thousandSuff }}<br>Transactions</p>
-                                </h4>
+                <!-- first card -->
+                <div class="col-sm-4 mb-3 mb-md-0">
+                        <div class="card classic-admin-card">
+                                <div class="card-body">
+                                        <!-- <div class="pull-right successful"></div> -->
+                                        <p class="card-text">This Month</p> <br>
+                                        <h4>
+                                                <div class="pull-right">&#x20A6;{{thisMonthTotal.data.amount | thousandSuff : 2}}</div>
+                                                <p class="card-text"> {{thisMonthTotal.data.count | thousandSuff  }}<br>Transactions</p>
+                                        </h4>
+                                </div>
                         </div>
                 </div>
-        </div>
-        <!-- first card -->
-
-        <!-- second card -->
-        <div class="col-sm-4">
-                <div class="card classic-admin-card">
-                        <div class="card-body">
-                                <div class="pull-right successful">-2% </div>
-                                <p class="card-text">Total Successful</p> <br>
-                                <h4>
-                                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                        <div class="pull-right">&#x20A6;{{thisMonthSuccess.data.amount/100 | thousandSuff : 2}}</div>
-                                        <p class="card-text">{{thisMonthSuccess.data.count | thousandSuff }}<br>Transactions</p>
-                                </h4>
+                <!-- first card -->
+        
+                <!-- second card -->
+                <div class="col-sm-4">
+                        <div class="card classic-admin-card">
+                                <div class="card-body">
+                                        <div class="pull-right successful">{{thisMonthSuccess.data.count / thisMonthTotal.data.count | percent:'2.1-2'}} </div>
+                                        <p class="card-text">Total Successful</p> <br>
+                                        <h4>
+                                                <div class="pull-right">&#x20A6;{{thisMonthSuccess.data.amount | thousandSuff : 2}}</div>
+                                                <p  class="card-text">{{thisMonthSuccess.data.count | thousandSuff }}<br>Transactions</p>
+                                        </h4>
+                                </div>
                         </div>
                 </div>
-        </div>
-        <!-- second card -->
-
-        <!-- third card -->
-        <div class="col-sm-4">
-                <div class="card classic-admin-card">
-                        <div class="card-body">
-                                <div class="pull-right failed">33%</div>
-                                <p class="card-text">Total Failed</p> <br>
-                                <h4>
-                                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                               
-                                        <div class="pull-right"> &#x20A6;{{thisMonthFailed.data.amount/100 | thousandSuff : 2}}</div>
-                                        <p class="card-text">{{thisMonthFailed.data.count | thousandSuff }}<br>Transactions</p>
-                                </h4>
+                <!-- second card -->
+        
+                <!-- third card -->
+                <div class="col-sm-4">
+                        <div class="card classic-admin-card">
+                                <div class="card-body">
+                                        <div class="pull-right failed">{{thisMonthFailed.data.count / thisMonthTotal.data.count | percent:'1.1-2'}}</div>
+                                        <p class="card-text">Total Failed</p> <br>
+                                        <h4>
+                                                <div class="pull-right"> &#x20A6;{{thisMonthFailed.data.amount | thousandSuff : 2 }}</div>
+                                                <p  class="card-text">{{thisMonthFailed.data.count | thousandSuff }}<br>Transactions</p>
+                                        </h4>
+                                </div>
+        
                         </div>
                 </div>
+                <!-- third card -->
         </div>
-        <!-- third card -->
-</div>
