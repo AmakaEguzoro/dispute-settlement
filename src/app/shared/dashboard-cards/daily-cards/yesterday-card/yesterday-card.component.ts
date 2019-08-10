@@ -12,15 +12,13 @@ export class YesterdayCardComponent implements OnInit {
   yesterdayFailed: YesterdayFailed;
   yesterdayTotal: YesterdayTotal;
   loading = false;
-
-  constructor(private summaryService: SummaryService) { 
-    this.getYesterdayTotal();
-    this.getYesterdaySuccessfull();
-    this.getYesterdayFailed();
-  }
+isData: any;
+  constructor(private summaryService: SummaryService) {  }
 
   ngOnInit() {
-   
+    this.getYesterdayTotal();
+  this.getYesterdaySuccessfull();
+ this.getYesterdayFailed();
   }
 
   getYesterdayTotal() {
@@ -35,17 +33,23 @@ export class YesterdayCardComponent implements OnInit {
   }
 
   getYesterdaySuccessfull() {
+    this.loading = true;
     this.summaryService.getYesterdaySuccess().subscribe((yesterdaySuccess: YesterdaySuccess) => {
+      this.loading = false;
       this.yesterdaySuccess = yesterdaySuccess;
     }, error => {
+      this.loading = false;
       console.log(error, 'cannot get yesterdaySuccess');
     })
   }
 
   getYesterdayFailed() {
+    this.loading = false;
     this.summaryService.getYesterdayFailed().subscribe((yesterdayFailed: YesterdayFailed) => {
+      this.loading = false;
       this.yesterdayFailed = yesterdayFailed;
     }, error => {
+      this.loading = false;
       console.log(error, 'cannot get yesterdayFailed');
     })
   }
