@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartService } from 'app/service/chart.service';
 
 @Component({
   selector: 'app-chart1',
@@ -10,13 +11,10 @@ export class Chart1Component implements OnInit {
   public chart3Type:string = 'bar';
 // tslint:disable-next-line:max-line-length
 // Note that below data are duplicated, it shouldn't be used that way. Purpose of following is keep data clearly binded to each chart separetaly.
-public chart3Datasets:Array<any> = [
-  {data: [65, 59, 80, 81, 56, 55, 40], label: 'My Second dataset'},
-  // {data: [28, 48, 40, 19, 86, 27, 90], label: 'My Second dataset'}
-];
+public chart3Datasets:Array<any> = [];
 
-public chart3Labels:Array<any> = ['A', 'B', 'C', 'D', 'E'];
-
+public chart3Labels:Array<any> = [];
+records : {};
 
 
 public chart3Colors:Array<any> = [
@@ -37,9 +35,20 @@ public chartOptions:any = {
   responsive: true
 };
 
-  constructor() { }
+  constructor(private chartService: ChartService) { }
 
   ngOnInit() {
+    this.chartService.getLastWeekChart().subscribe(data=>{
+      console.log('Chart1Component data', data.data);
+      if(data){
+        let newData =  Object.keys(data.data);
+        let newDataset = {data:Object.values(data.data)};
+        this.chart3Datasets.push(newDataset);
+      this.chart3Labels = newData;
+      console.log('eeeee',this.chart3Datasets )
+      this.records = data.data
+      }
+    })
   }
 
   elements: any = [
