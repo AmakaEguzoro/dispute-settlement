@@ -13,7 +13,8 @@ export class ThisMonthCardComponent implements OnInit {
   thisMonthTotal: ThisMonthTotal;
   loading = false;
   lastm:any;
-
+  percentage : any;
+kk:any;
   constructor(private summaryService: SummaryService) { 
     this.getThisMonthTotal();
     this.getThisMonthSuccessfull();
@@ -23,7 +24,9 @@ export class ThisMonthCardComponent implements OnInit {
   ngOnInit() {
     this.summaryService.getLastMonthSuccess().subscribe(data =>{
       this.lastm = data;
-      console.log(this.lastm, 'jjj')
+      // this.percentage   = Math.floor(this.lastm.data.count + this.thisMonthSuccess.data.count);
+      // this.kk = Math.chain(this.lastm.data.count).add(this.lastm.data.count);
+      console.log(this.kk , 'jj')
     })
    
   }

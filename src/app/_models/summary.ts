@@ -130,7 +130,7 @@ export class ThisMonthSuccess {
     http_code: number;
     message: string;
     data: {
-        count: string;
+        count: number;
         amount: string
     }
 }
@@ -161,7 +161,7 @@ export class LastMonthSuccess {
     http_code: number;
     message: string;
     data: {
-        count: string;
+        count: number;
         amount: string
     }
 }
