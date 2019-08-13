@@ -5,9 +5,10 @@
                                 <div class="card-body">
                                         <!-- <div class="pull-right successful"></div> -->
                                         <p class="card-text">This Month</p> <br>
+                                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
                                         <h4>
-                                                <div class="pull-right">&#x20A6;{{thisMonthTotal.data.amount | thousandSuff : 2}}</div>
-                                                <p class="card-text"> {{thisMonthTotal.data.count | thousandSuff  }}<br>Transactions</p>
+                                                <div class="pull-right">&#x20A6;{{thisMonthTotal?.data.amount | thousandSuff : 2}}</div>
+                                                <p class="card-text"> {{thisMonthTotal?.data.count | thousandSuff  }}<br>Transactions</p>
                                         </h4>
                                 </div>
                         </div>
@@ -18,11 +19,12 @@
                 <div class="col-sm-4">
                         <div class="card classic-admin-card">
                                 <div class="card-body">
-                                        <div class="pull-right successful">{{thisMonthSuccess.data.count / thisMonthTotal.data.count | percent:'2.1-2'}} </div>
+                                        <div class="pull-right successful">{{thisMonthSuccess?.data.count/lastm?.data.count+thisMonthSuccess?.data.count * 100 | percent:'2.1-2' }} </div>
                                         <p class="card-text">Total Successful</p> <br>
+                                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
                                         <h4>
-                                                <div class="pull-right">&#x20A6;{{thisMonthSuccess.data.amount | thousandSuff : 2}}</div>
-                                                <p  class="card-text">{{thisMonthSuccess.data.count | thousandSuff }}<br>Transactions</p>
+                                                <div class="pull-right">&#x20A6;{{thisMonthSuccess?.data.amount | thousandSuff : 2}}</div>
+                                                <p  class="card-text">{{thisMonthSuccess?.data.count| thousandSuff }}<br>Transactions</p>
                                         </h4>
                                 </div>
                         </div>
@@ -33,11 +35,12 @@
                 <div class="col-sm-4">
                         <div class="card classic-admin-card">
                                 <div class="card-body">
-                                        <div class="pull-right failed">{{thisMonthFailed.data.count / thisMonthTotal.data.count | percent:'1.1-2'}}</div>
+                                        <div class="pull-right failed">{{thisMonthFailed?.data.count / thisMonthTotal?.data.count | percent:'1.1-2'}}</div>
                                         <p class="card-text">Total Failed</p> <br>
+                                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
                                         <h4>
-                                                <div class="pull-right"> &#x20A6;{{thisMonthFailed.data.amount | thousandSuff : 2 }}</div>
-                                                <p  class="card-text">{{thisMonthFailed.data.count | thousandSuff }}<br>Transactions</p>
+                                                <div class="pull-right"> &#x20A6;{{thisMonthFailed?.data.amount | thousandSuff : 2 }}</div>
+                                                <p  class="card-text">{{thisMonthFailed?.data.count | thousandSuff }}<br>Transactions</p>
                                         </h4>
                                 </div>
         

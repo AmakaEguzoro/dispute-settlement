@@ -12,6 +12,7 @@ export class ThisMonthCardComponent implements OnInit {
   thisMonthFailed: ThisMonthFailed;
   thisMonthTotal: ThisMonthTotal;
   loading = false;
+  lastm:any;
 
   constructor(private summaryService: SummaryService) { 
     this.getThisMonthTotal();
@@ -20,6 +21,10 @@ export class ThisMonthCardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.summaryService.getLastMonthSuccess().subscribe(data =>{
+      this.lastm = data;
+      console.log(this.lastm, 'jjj')
+    })
    
   }
 

@@ -5,11 +5,12 @@
                         <div class="card-body">
                                 <!-- <div class="pull-right successful">{{lastWeekSuccess.data.count/lastWeekSuccess.data.count + thisWeekSuccess.data.count * 100}}</div> -->
                                 <p class="card-text">Last Week</p> <br>
+                                <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
                                 <h4>
-                                        <div class="pull-right">&#x20A6;{{lastWeekTotal.data.amount | thousandSuff : 2}}
+                                        <div class="pull-right">&#x20A6;{{lastWeekTotal?.data.amount | thousandSuff : 2}}
                                         </div>
                                         <p class="card-text">
-                                                {{lastWeekTotal.data.count | thousandSuff  }}<br>Transactions</p>
+                                                {{lastWeekTotal?.data.count | thousandSuff  }}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -21,14 +22,15 @@
                 <div class="card classic-admin-card">
                         <div class="card-body">
                                 <div class="pull-right successful">
-                                        {{lastWeekSuccess.data.count / lastWeekTotal.data.count | percent:'2.1-2'}}
+                                        {{lastWeekSuccess?.data.count / lastWeekTotal?.data.count | percent:'2.1-2'}}
                                 </div>
                                 <p class="card-text">Total Successful</p> <br>
+                                <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
                                 <h4>
                                         <div class="pull-right">
-                                                &#x20A6;{{lastWeekSuccess.data.amount | thousandSuff : 2}}</div>
+                                                &#x20A6;{{lastWeekSuccess?.data.amount | thousandSuff : 2}}</div>
                                         <p class="card-text">
-                                                {{lastWeekSuccess.data.count | thousandSuff }}<br>Transactions</p>
+                                                {{lastWeekSuccess?.data.count | thousandSuff }}<br>Transactions</p>
                                 </h4>
                         </div>
                 </div>
@@ -40,13 +42,14 @@
                 <div class="card classic-admin-card">
                         <div class="card-body">
                                 <div class="pull-right failed">
-                                        {{lastWeekFailed.data.count / lastWeekTotal.data.count | percent:'1.1-2'}}</div>
+                                        {{lastWeekFailed?.data.count / lastWeekTotal?.data.count | percent:'1.1-2'}}</div>
                                 <p class="card-text">Total Failed</p> <br>
+                                <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
                                 <h4>
                                         <div class="pull-right">
-                                                &#x20A6;{{lastWeekFailed.data.amount | thousandSuff : 2 }}</div>
+                                                &#x20A6;{{lastWeekFailed?.data.amount | thousandSuff : 2 }}</div>
                                         <p class="card-text">
-                                                {{lastWeekFailed.data.count | thousandSuff }}<br>Transactions</p>
+                                                {{lastWeekFailed?.data.count | thousandSuff }}<br>Transactions</p>
                                 </h4>
                         </div>
 

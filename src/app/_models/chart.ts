@@ -1,7 +1,7 @@
-export interface LastWeekChart {
-    status: boolean,
-    http_code: number,
-    message: string,
+export class LastWeekChart {
+    status: boolean;
+    http_code: number;
+    message: string;
     data: {
         POS_COUNT: number,
         POS_AMOUNT: number,
