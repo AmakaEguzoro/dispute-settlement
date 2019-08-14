@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LastWeekTotal, LastWeekFailed, LastWeekSuccess } from 'app/_models/summary';
+import { LastWeekTotal, LastWeekFailed, LastWeekSuccess, ThisWeekSuccess } from 'app/_models/summary';
 import { SummaryService } from 'app/service/summary.service';
 
 @Component({
@@ -20,7 +20,6 @@ export class LastWeekCardComponent implements OnInit {
   }
 
   ngOnInit() {
-   
   }
 
   getLastWeekTotal() {

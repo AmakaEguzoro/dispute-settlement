@@ -19,6 +19,7 @@ import { ThisYearCardComponent } from './dashboard-cards/yearly-cards/this-year-
 import { LastYearCardComponent } from './dashboard-cards/yearly-cards/last-year-card/last-year-card.component';
 import { SummaryService } from 'app/service/summary.service';
 import { ThousandSuffixesPipe } from 'app/service/ThousandSuffixesPipe';
+import { ChartService } from 'app/service/chart.service';
 
 @NgModule({
   imports: [
@@ -70,6 +71,7 @@ import { ThousandSuffixesPipe } from 'app/service/ThousandSuffixesPipe';
     // NotificationService,
     // itex
     SummaryService,
+    ChartService
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })

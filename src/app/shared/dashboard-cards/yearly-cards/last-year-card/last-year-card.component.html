@@ -5,9 +5,10 @@
                                 <div class="card-body">
                                         <!-- <div class="pull-right successful"></div> -->
                                         <p class="card-text">Last Year</p> <br>
+                                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
                                         <h4>
-                                                <div class="pull-right">&#x20A6;{{lastYearTotal.data.amount | thousandSuff : 2}}</div>
-                                                <p class="card-text"> {{lastYearTotal.data.count | thousandSuff  }}<br>Transactions</p>
+                                                <div class="pull-right">&#x20A6;{{lastYearTotal?.data.amount | thousandSuff : 2}}</div>
+                                                <p class="card-text"> {{lastYearTotal?.data.count | thousandSuff  }}<br>Transactions</p>
                                         </h4>
                                 </div>
                         </div>
@@ -18,11 +19,12 @@
                 <div class="col-sm-4">
                         <div class="card classic-admin-card">
                                 <div class="card-body">
-                                        <div class="pull-right successful">{{lastYearSuccess.data.count / lastYearTotal.data.count | percent:'2.1-2'}} </div>
+                                        <div class="pull-right successful">{{lastYearSuccess?.data.count / lastYearTotal?.data.count | percent:'2.1-2'}} </div>
                                         <p class="card-text">Total Successful</p> <br>
+                                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
                                         <h4>
-                                                <div class="pull-right">&#x20A6;{{lastYearSuccess.data.amount | thousandSuff : 2}}</div>
-                                                <p  class="card-text">{{lastYearSuccess.data.count | thousandSuff }}<br>Transactions</p>
+                                                <div class="pull-right">&#x20A6;{{lastYearSuccess?.data.amount | thousandSuff : 2}}</div>
+                                                <p  class="card-text">{{lastYearSuccess?.data.count | thousandSuff }}<br>Transactions</p>
                                         </h4>
                                 </div>
                         </div>
@@ -33,11 +35,12 @@
                 <div class="col-sm-4">
                         <div class="card classic-admin-card">
                                 <div class="card-body">
-                                        <div class="pull-right failed">{{lastYearFailed.data.count / lastYearTotal.data.count | percent:'1.1-2'}}</div>
+                                        <div class="pull-right failed">{{lastYearFailed?.data.count / lastYearTotal?.data.count | percent:'1.1-2'}}</div>
                                         <p class="card-text">Total Failed</p> <br>
+                                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
                                         <h4>
-                                                <div class="pull-right"> &#x20A6;{{lastYearFailed.data.amount | thousandSuff : 2 }}</div>
-                                                <p  class="card-text">{{lastYearFailed.data.count | thousandSuff }}<br>Transactions</p>
+                                                <div class="pull-right"> &#x20A6;{{lastYearFailed?.data.amount | thousandSuff : 2 }}</div>
+                                                <p  class="card-text">{{lastYearFailed?.data.count | thousandSuff }}<br>Transactions</p>
                                         </h4>
                                 </div>
         

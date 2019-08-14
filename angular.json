@@ -59,6 +59,9 @@
               },
               {
                 "input": "node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"
+              },
+              {
+                "input":   "node_modules/automapper-ts/dist/automapper.min.js"
               }
  
             ]

@@ -13,25 +13,28 @@
   </div> -->
 
 <!-- Nav tabs -->
-<mdb-tabset [buttonClass]="'pills-indigo'" [contentClass]="'mdb-tabse'">
-  <!--Panel 1-->
-  <mdb-tab heading="Daily">
-        <app-today-card></app-today-card>
-        <app-yesterday-card></app-yesterday-card>
-        <app-chart1></app-chart1> 
-  </mdb-tab>
-  <!--Panel 2-->
-  <mdb-tab heading="Weekly">
-    <app-this-week-card></app-this-week-card>
-    <app-last-week-card></app-last-week-card>
-  </mdb-tab>
-  <!--Panel 3-->
-  <mdb-tab heading="Monthly">
-    <app-this-month-card></app-this-month-card>
-    <app-last-month-card></app-last-month-card>
-  </mdb-tab>
-  <mdb-tab heading="Yearly">
-    <app-this-year-card></app-this-year-card>
-    <app-last-year-card></app-last-year-card>
-  </mdb-tab>
-</mdb-tabset>
+<div>
+  <mdb-tabset [buttonClass]="'pills-indigo'" [contentClass]="'mdb-tabse'">
+    <!--Panel 1-->
+    <mdb-tab heading="Daily">
+          <app-today-card></app-today-card>
+          <app-yesterday-card></app-yesterday-card>
+          <!-- <app-chart1></app-chart1>  -->
+    </mdb-tab>
+    <!--Panel 2-->
+    <mdb-tab heading="Weekly">
+      <app-this-week-card></app-this-week-card>
+      <app-last-week-card></app-last-week-card>
+    </mdb-tab>
+    <!--Panel 3-->
+    <mdb-tab heading="Monthly">
+      <app-this-month-card></app-this-month-card>
+      <app-last-month-card></app-last-month-card>
+    </mdb-tab>
+    <mdb-tab heading="Yearly">
+      <app-this-year-card></app-this-year-card>
+      <app-last-year-card></app-last-year-card>
+    </mdb-tab>
+  </mdb-tabset>
+</div>
+

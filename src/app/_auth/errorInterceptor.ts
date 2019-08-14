@@ -23,8 +23,10 @@ import { StorageService } from 'app/service/storage.service';
 // 				error => {
 // 					console.error(error.status);
 // 					console.error(error.message);
-// 				}
-// 			)
+
+//	}
+// 			
+//)
 // 		);
 // 	}
 // }
@@ -35,7 +37,6 @@ export class httpInterceptor implements HttpInterceptor {
 
     isRefreshingToken: boolean = false;
     tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-    loaderToShow: any;
     constructor(
         private storageService: StorageService,) {
     }

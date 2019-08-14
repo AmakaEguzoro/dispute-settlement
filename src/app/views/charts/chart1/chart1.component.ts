@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartService } from 'app/service/chart.service';
 
 @Component({
   selector: 'app-chart1',
@@ -6,17 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chart1.component.scss']
 })
 export class Chart1Component implements OnInit {
-
+  loading = false;
   public chart3Type:string = 'bar';
-// tslint:disable-next-line:max-line-length
-// Note that below data are duplicated, it shouldn't be used that way. Purpose of following is keep data clearly binded to each chart separetaly.
-public chart3Datasets:Array<any> = [
-  {data: [65, 59, 80, 81, 56, 55, 40], label: 'My Second dataset'},
-  // {data: [28, 48, 40, 19, 86, 27, 90], label: 'My Second dataset'}
-];
+public chart3Datasets:Array<any> = [];
 
-public chart3Labels:Array<any> = ['A', 'B', 'C', 'D', 'E'];
-
+public chart3Labels:Array<any> = [];
+records : {};
 
 
 public chart3Colors:Array<any> = [
@@ -37,9 +33,24 @@ public chartOptions:any = {
   responsive: true
 };
 
-  constructor() { }
+  constructor(private chartService: ChartService) { }
 
   ngOnInit() {
+    this.loading = true;
+    this.chartService.getLastWeekChart().subscribe(data=>{
+      this.loading = false;
+      // console.log('Chart1Component data', data.data);
+      if(data){
+        let newData =  Object.keys(data.data);
+        let newDataset = {data:Object.values(data.data)};
+        this.chart3Datasets.push(newDataset);
+      this.chart3Labels = newData;
+      this.records = data.data
+      }
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    })
   }
 
   elements: any = [
@@ -50,6 +61,6 @@ public chartOptions:any = {
     { product: 'Product E', amount: '10k', percent: '1%'},
   ];
 
-  // headElements = ['First', 'Last', 'Handle'];
+  headElements = ['Product', 'Amount', 'Percent'];
 
 }

@@ -5,6 +5,9 @@
             <mdb-card-body >
               <mdb-card-title>
                   <div class="chart-row">
+                    <div class="text-center">
+                        <mdb-spinner *ngIf="loading == true" spinnerType="big" spinnerColor="blue"></mdb-spinner>
+                    </div>
                       <canvas mdbChart 
                           [chartType]="chart3Type"
                           [datasets]="chart3Datasets" 
@@ -21,10 +24,30 @@
                    borderless="true"
                     small="true">
                       <tbody>
-                        <tr mdbTableCol *ngFor="let el of elements">
-                          <th scope="row">{{el.product}}</th>
-                          <td>{{el.amount}}</td>
-                          <td>{{el.percent}}</td>
+                        <tr mdbTableCol>
+                          <th scope="row">A - POS</th>
+                          <td>{{records?.POS_AMOUNT | thousandSuff : 2}}</td>
+                          <td>22%</td>
+                        </tr>
+                        <tr mdbTableCol>
+                          <th scope="row">B - WEB</th>
+                          <td>{{records?.WEB_AMOUNT | thousandSuff : 2}}</td>
+                          <td>22%</td>
+                        </tr>
+                        <tr mdbTableCol>
+                          <th scope="row">C - ANDROID</th>
+                          <td>{{records?.ANDROID_AMOUNT | thousandSuff : 2}}</td>
+                          <td>22%</td>
+                        </tr>
+                        <tr mdbTableCol>
+                          <th scope="row">D - DEFAULT</th>
+                          <td>{{records?.DEFAULT_AMOUNT | thousandSuff : 2}}</td>
+                          <td>22%</td>
+                        </tr>
+                        <tr mdbTableCol>
+                          <th scope="row">A - ANDROID-POS</th>
+                          <td>{{records?.ANDROIDPOS_AMOUNT | thousandSuff : 2}}</td>
+                          <td>22%</td>
                         </tr>
                       </tbody>
                     </table>
@@ -40,6 +63,9 @@
             <mdb-card-body >
               <mdb-card-title>
                   <div class="chart-row">
+                      <div class="text-center">
+                          <mdb-spinner *ngIf="loading == true" spinnerType="big" spinnerColor="blue"></mdb-spinner>
+                      </div>
                       <canvas mdbChart 
                           [chartType]="chart3Type"
                           [datasets]="chart3Datasets" 
@@ -72,6 +98,9 @@
             <mdb-card-body >
               <mdb-card-title>
                   <div class="chart-row">
+                      <div class="text-center">
+                          <mdb-spinner *ngIf="loading == true" spinnerType="big" spinnerColor="blue"></mdb-spinner>
+                      </div>
                       <canvas mdbChart 
                           [chartType]="chart3Type"
                           [datasets]="chart3Datasets" 
