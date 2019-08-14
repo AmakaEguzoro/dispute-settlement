@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-
+  date: string;
   constructor() { }
 
   ngOnInit() {
+    this.date = formatDate(new Date(), 'yyyy', 'en');
   }
 
 }

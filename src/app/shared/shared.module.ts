@@ -20,6 +20,9 @@ import { LastYearCardComponent } from './dashboard-cards/yearly-cards/last-year-
 import { SummaryService } from 'app/service/summary.service';
 import { ThousandSuffixesPipe } from 'app/service/ThousandSuffixesPipe';
 import { ChartService } from 'app/service/chart.service';
+import { ChannelsComponent } from './top-5/channels/channels.component';
+import { AgentsComponent } from './top-5/agents/agents.component';
+import { ProductsComponent } from './top-5/products/products.component';
 
 @NgModule({
   imports: [
@@ -44,7 +47,11 @@ import { ChartService } from 'app/service/chart.service';
     ThisYearCardComponent,
     LastYearCardComponent,
 
-    ThousandSuffixesPipe
+    ThousandSuffixesPipe,
+
+    ChannelsComponent,
+    AgentsComponent,
+    ProductsComponent
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -65,7 +72,10 @@ import { ChartService } from 'app/service/chart.service';
     ThisYearCardComponent,
     LastYearCardComponent,
 
-    ThousandSuffixesPipe
+    ThousandSuffixesPipe,
+    ChannelsComponent,
+    AgentsComponent,
+    ProductsComponent
   ],
   providers: [
     // NotificationService,
