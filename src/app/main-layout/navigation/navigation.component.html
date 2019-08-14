@@ -1,42 +1,38 @@
 <div *ngIf="loggedIn()">
-    <mdb-navbar SideClass="navbar  fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark indigo ie-nav" [containerInside]="false">
-   
-  
+    <mdb-navbar SideClass="navbar  fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark white ie-nav"
+        [containerInside]="false">
+
+
         <mdb-navbar-brand>
-            <a class="logo navbar-brand nav-head">VAS</a>
+            <img src="../../../assets/ItexLogo.png" style="width: 78px; height: 30px; padding-left: 16px;">
         </mdb-navbar-brand>
-        <links class="container">
+        <links>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item waves-light" mdbWavesEffect>
                     <a class="nav-link"></a>
                 </li>
-                <li class="nav-item waves-light" mdbWavesEffect>
-                    <a class="nav-link"></a>
-                </li>
                 <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
-                    <a class="nav-link"  [routerLink]="['/admin-dashboard']">Dashboard</a>
+                    <a class="nav-link" [routerLink]="['/admin-dashboard']">Dashboard</a>
                 </li>
                 <li class="nav-item waves-light nav-body" mdbWavesEffect>
                     <a class="nav-link">Genesis</a>
                 </li>
             </ul>
-  
+
             <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item dropdown btn-group nav-body" dropdown>
-                    <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown" mdbWavesEffect>
-                      Hi
-                      <!-- Hi {{authService.decodedToken.name}} -->
+                <li class="nav-item dropdown btn-group nav-body" style="padding-right: 22px;" dropdown>
+                    <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown"
+                        mdbWavesEffect>
+                        Hi
+                        <!-- Hi {{authService.decodedToken.name}} -->
                     </a>
                     <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
-                      <a class="dropdown-item" href="#">Create User</a>
-                      <a (click)="logout()" class="dropdown-item" >Log Out</a>
+                        <a class="dropdown-item" href="#">Create User</a>
+                        <!-- <button>hi</button> -->
+                        <a (click)="logout()" class="dropdown-item">Log Out</a>
                     </div>
-                  </li>
+                </li>
             </ul>
         </links>
     </mdb-navbar>
-  </div>
-  
-  
-  
-  
+</div>

@@ -15,15 +15,15 @@ export class SummaryService {
 
     // Today Summary
     getTodayTotal(): Observable<TodayTotal> {
-        return this.httpClient.get<TodayTotal>(this.baseUrl + `today/total`);
+        return this.httpClient.get<TodayTotal>(this.baseUrl + `day/total`);
     }
 
     getTodaySuccess(): Observable<TodaySuccess> {
-        return this.httpClient.get<TodaySuccess>(this.baseUrl + `today/successful`);
+        return this.httpClient.get<TodaySuccess>(this.baseUrl + `day/successful`);
     }
 
     getTodayFailed(): Observable<TodayFailed> {
-        return this.httpClient.get<TodayFailed>(this.baseUrl + `today/failed`);
+        return this.httpClient.get<TodayFailed>(this.baseUrl + `day/failed`);
     }
 
     // Yesterday Summary
