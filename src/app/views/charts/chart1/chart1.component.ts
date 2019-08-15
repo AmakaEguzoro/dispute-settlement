@@ -36,21 +36,21 @@ public chartOptions:any = {
   constructor(private chartService: ChartService) { }
 
   ngOnInit() {
-    this.loading = true;
-    this.chartService.getLastWeekChart().subscribe(data=>{
-      this.loading = false;
-      // console.log('Chart1Component data', data.data);
-      if(data){
-        let newData =  Object.keys(data.data);
-        let newDataset = {data:Object.values(data.data)};
-        this.chart3Datasets.push(newDataset);
-      this.chart3Labels = newData;
-      this.records = data.data
-      }
-    }, error => {
-      this.loading = false;
-      console.log(error);
-    })
+    // this.loading = true;
+    // this.chartService.getLastWeekChart().subscribe(data=>{
+    //   this.loading = false;
+    //   // console.log('Chart1Component data', data.data);
+    //   if(data){
+    //     let newData =  Object.keys(data.data);
+    //     let newDataset = {data:Object.values(data.data)};
+    //     this.chart3Datasets.push(newDataset);
+    //   this.chart3Labels = newData;
+    //   this.records = data.data
+    //   }
+    // }, error => {
+    //   this.loading = false;
+    //   console.log(error);
+    // })
   }
 
   elements: any = [

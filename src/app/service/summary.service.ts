@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
-import { TodaySuccess, TodayTotal, TodayFailed, YesterdayTotal, YesterdaySuccess, YesterdayFailed, ThisWeekTotal, ThisWeekSuccess, ThisWeekFailed, LastWeekTotal, LastWeekSuccess, LastWeekFailed, ThisMonthTotal, ThisMonthSuccess, ThisMonthFailed, LastMonthTotal, LastMonthSuccess, LastMonthFailed, ThisYearTotal, ThisYearSuccess, ThisYearFailed, LastYearTotal, LastYearFailed, LastYearSuccess } from 'app/_models/summary';
+import { YesterdayTotal, YesterdaySuccess, YesterdayFailed, ThisWeekTotal, ThisWeekSuccess, ThisWeekFailed, LastWeekTotal, LastWeekSuccess, LastWeekFailed, ThisMonthTotal, ThisMonthSuccess, ThisMonthFailed, LastMonthTotal, LastMonthSuccess, LastMonthFailed, ThisYearTotal, ThisYearSuccess, ThisYearFailed, LastYearTotal, LastYearFailed, LastYearSuccess, Today } from 'app/_models/summary';
+import { forkJoin } from 'rxjs'; 
 
 @Injectable({
     providedIn: 'root'
@@ -13,31 +14,20 @@ export class SummaryService {
 
     constructor(private httpClient: HttpClient) { }
 
-    // Today Summary
-    getTodayTotal(): Observable<TodayTotal> {
-        return this.httpClient.get<TodayTotal>(this.baseUrl + `day/total`);
-    }
+     getToday(): Observable<any[]> {
+        let getTodaySuccess = this.httpClient.get(this.baseUrl + `day/successful`);
+        let getTodayFailed = this.httpClient.get(this.baseUrl + `day/failed`);
+        return forkJoin([getTodaySuccess, getTodayFailed]);
+      }
 
-    getTodaySuccess(): Observable<TodaySuccess> {
-        return this.httpClient.get<TodaySuccess>(this.baseUrl + `day/successful`);
-    }
+       // Yesterday Summary
+      getYesterday(): Observable<any[]> {
+        let getYesterdaySuccess = this.httpClient.get(this.baseUrl + `yesterday/successful`);
+        let getYesterdayFailed = this.httpClient.get(this.baseUrl + `yesterday/failed`);
+        return forkJoin([ getYesterdaySuccess, getYesterdayFailed ]);
+      }
 
-    getTodayFailed(): Observable<TodayFailed> {
-        return this.httpClient.get<TodayFailed>(this.baseUrl + `day/failed`);
-    }
-
-    // Yesterday Summary
-    getYesterdayTotal(): Observable<YesterdayTotal> {
-        return this.httpClient.get<YesterdayTotal>(this.baseUrl + `yesterday/total`);
-    }
-
-    getYesterdaySuccess(): Observable<YesterdaySuccess> {
-        return this.httpClient.get<YesterdaySuccess>(this.baseUrl + `yesterday/successful`);
-    }
-
-    getYesterdayFailed(): Observable<YesterdayFailed> {
-        return this.httpClient.get<YesterdayFailed>(this.baseUrl + `yesterday/failed`);
-    }
+   
     // this week
     getThisWeekTotal(): Observable<ThisWeekTotal> {
         return this.httpClient.get<ThisWeekTotal>(this.baseUrl + `weekly/total`);
@@ -68,11 +58,11 @@ export class SummaryService {
     }
 
     getThisMonthSuccess(): Observable<ThisMonthSuccess> {
-        return this.httpClient.get<ThisMonthSuccess>(this.baseUrl + `monthly/successful`);
+        return this.httpClient.get<ThisMonthSuccess>(this.baseUrl + `month/successful`);
     }
 
     getThisMonthFailed(): Observable<ThisMonthFailed> {
-        return this.httpClient.get<ThisMonthFailed>(this.baseUrl + `monthly/failed`);
+        return this.httpClient.get<ThisMonthFailed>(this.baseUrl + `month/failed`);
     }
     // last month
     getLastMonthTotal(): Observable<LastMonthTotal> {
@@ -80,11 +70,11 @@ export class SummaryService {
     }
 
     getLastMonthSuccess(): Observable<LastMonthSuccess> {
-        return this.httpClient.get<LastMonthSuccess>(this.baseUrl + `last-month/successful`);
+        return this.httpClient.get<LastMonthSuccess>(this.baseUrl + `last_month/successful`);
     }
 
     getLastMonthFailed(): Observable<LastMonthFailed> {
-        return this.httpClient.get<LastMonthFailed>(this.baseUrl + `last-month/failed`);
+        return this.httpClient.get<LastMonthFailed>(this.baseUrl + `last_month/failed`);
     }
     // this year
     getThisYearTotal(): Observable<ThisYearTotal> {
