@@ -1,6 +1,5 @@
-<div class="row">
+
                 <!-- first card -->
-                <div class="col-sm-4 mb-3 mb-md-0">
                         <div class="card classic-admin-card">
                                 <div class="card-body">
                                         <!-- <div class="pull-right successful"></div> -->
@@ -12,11 +11,11 @@
                                         </h4>
                                 </div>
                         </div>
-                </div>
                 <!-- first card -->
         
+<div class="row">
+        <div class="col-md-6">                
                 <!-- second card -->
-                <div class="col-sm-4">
                         <div class="card classic-admin-card">
                                 <div class="card-body">
                                         <div class="pull-right successful">{{thisWeekSuccess?.data.count / thisWeekTotal?.data.count | percent:'2.1-2'}} </div>
@@ -27,11 +26,10 @@
                                         </h4>
                                 </div>
                         </div>
-                </div>
                 <!-- second card -->
-        
+        </div>
+        <div class="col-md-6">
                 <!-- third card -->
-                <div class="col-sm-4">
                         <div class="card classic-admin-card">
                                 <div class="card-body">
                                         <div class="pull-right failed">{{thisWeekFailed?.data.count / thisWeekTotal?.data.count | percent:'1.1-2'}}</div>
@@ -44,6 +42,6 @@
                                 </div>
         
                         </div>
-                </div>
-                <!-- third card -->
         </div>
+                <!-- third card -->
+</div>

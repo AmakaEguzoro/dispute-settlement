@@ -1,50 +1,46 @@
-<div class="row mt-2">
-                <!-- first card -->
-                <div class="col-sm-4 mb-3 mb-md-0">
-                        <div class="card classic-admin-card">
-                                <div class="card-body">
-                                        <!-- <div class="pull-right successful"></div> -->
-                                        <p class="card-text">Yesterday</p> <br>
-                                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
-                                        <h4>
-                                                <div class="pull-right">&#x20A6;{{yesterdayTotal?.data.amount | thousandSuff : 2}}</div>
-                                                <p class="card-text"> {{yesterdayTotal?.data.count | thousandSuff  }}<br>Transactions</p>
-                                        </h4>
-                                </div>
-                        </div>
-                </div>
-                <!-- first card -->
+<!-- first card -->
+<div class="card classic-admin-card">
+  <div class="card-body">
+    <p class="card-text">Yesterday</p> <br>
+      <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
+        <h4>
+          <div class="pull-right">&#x20A6;{{yesterdayTotal?.data.amount | thousandSuff : 2}}</div>
+          <p class="card-text"> {{yesterdayTotal?.data.count | thousandSuff  }}<br>Transactions</p>
+        </h4>
+  </div>
+</div>
+<!-- first card -->
         
-                <!-- second card -->
-                <div class="col-sm-4">
-                        <div class="card classic-admin-card">
-                                <div class="card-body">
-                                        <div class="pull-right successful">{{yesterdaySuccess?.data.count / yesterdayTotal?.data.count | percent:'2.1-2'}} </div>
-                                        <p class="card-text">Total Successful</p> <br>
-                                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
-                                        <h4>
-                                                <div class="pull-right">&#x20A6;{{yesterdaySuccess?.data.amount | thousandSuff : 2}}</div>
-                                                <p  class="card-text">{{yesterdaySuccess?.data.count | thousandSuff }}<br>Transactions</p>
-                                        </h4>
-                                </div>
-                        </div>
-                </div>
-                <!-- second card -->
+<div class="row">
+  <div class="col-md-6">
+  <!-- second card -->
+    <div class="card classic-admin-card">
+      <div class="card-body">
+        <div class="pull-right successful">{{yesterdaySuccess?.data.count / yesterdayTotal?.data.count | percent:'2.1-2'}} </div>
+        <p class="card-text">Total Successful</p> <br>
+        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
+        <h4>
+          <div class="pull-right">&#x20A6;{{yesterdaySuccess?.data.amount | thousandSuff : 2}}</div>
+          <p  class="card-text">{{yesterdaySuccess?.data.count | thousandSuff }}<br>Transactions</p>
+        </h4>
+    </div>
+  </div>
+<!-- second card -->
+</div>
         
-                <!-- third card -->
-                <div class="col-sm-4">
-                        <div class="card classic-admin-card">
-                                <div class="card-body">
-                                        <div class="pull-right failed">{{yesterdayFailed?.data.count / yesterdayTotal?.data.count | percent:'1.1-2'}}</div>
-                                        <p class="card-text">Total Failed</p> <br>
-                                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
-                                        <h4>
-                                                <div class="pull-right"> &#x20A6;{{yesterdayFailed?.data.amount | thousandSuff : 2 }}</div>
-                                                <p  class="card-text">{{yesterdayFailed?.data.count | thousandSuff }}<br>Transactions</p>
-                                        </h4>
-                                </div>
-        
-                        </div>
-                </div>
-                <!-- third card -->
-        </div>
+<div class="col-md-6">
+<!-- third card -->
+<div class="card classic-admin-card">
+  <div class="card-body">
+    <div class="pull-right failed">{{yesterdayFailed?.data.count / yesterdayTotal?.data.count | percent:'1.1-2'}}</div>
+    <p class="card-text">Total Failed</p> <br>
+    <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
+    <h4>
+        <div class="pull-right"> &#x20A6;{{yesterdayFailed?.data.amount | thousandSuff : 2 }}</div>
+        <p  class="card-text">{{yesterdayFailed?.data.count | thousandSuff }}<br>Transactions</p>
+    </h4>
+  </div>                       
+</div>
+<!-- third card -->
+  </div>
+</div>
