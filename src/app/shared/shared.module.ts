@@ -23,6 +23,7 @@ import { ChartService } from 'app/service/chart.service';
 import { ChannelsComponent } from './top-5/channels/channels.component';
 import { AgentsComponent } from './top-5/agents/agents.component';
 import { ProductsComponent } from './top-5/products/products.component';
+import { ToNumberPipe } from 'app/service/ToNumberPipe';
 
 @NgModule({
   imports: [
@@ -48,7 +49,7 @@ import { ProductsComponent } from './top-5/products/products.component';
     LastYearCardComponent,
 
     ThousandSuffixesPipe,
-
+    ToNumberPipe,
     ChannelsComponent,
     AgentsComponent,
     ProductsComponent
@@ -73,6 +74,7 @@ import { ProductsComponent } from './top-5/products/products.component';
     LastYearCardComponent,
 
     ThousandSuffixesPipe,
+    ToNumberPipe,
     ChannelsComponent,
     AgentsComponent,
     ProductsComponent

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
-import { YesterdayTotal, YesterdaySuccess, YesterdayFailed, ThisWeekTotal, ThisWeekSuccess, ThisWeekFailed, LastWeekTotal, LastWeekSuccess, LastWeekFailed, ThisMonthTotal, ThisMonthSuccess, ThisMonthFailed, LastMonthTotal, LastMonthSuccess, LastMonthFailed, ThisYearTotal, ThisYearSuccess, ThisYearFailed, LastYearTotal, LastYearFailed, LastYearSuccess, Today } from 'app/_models/summary';
+import { ThisWeekTotal, ThisWeekSuccess, ThisWeekFailed, LastWeekTotal, LastWeekSuccess, LastWeekFailed, ThisMonthTotal, ThisMonthSuccess, ThisMonthFailed, LastMonthTotal, LastMonthSuccess, LastMonthFailed, ThisYearTotal, ThisYearSuccess, ThisYearFailed, LastYearTotal, LastYearFailed, LastYearSuccess } from 'app/_models/summary';
 import { forkJoin } from 'rxjs'; 
 
 @Injectable({

@@ -1,44 +1,7 @@
 import { BaseModel } from "./base-model";
 
-// Today Summary
-export class Today extends BaseModel {
-    data: {
-        count: string;
-        amount: string
-    }
-}
-
-// Yesterday Summary
-export class YesterdaySuccess extends BaseModel {
-    data: {
-        count: string;
-        amount: string
-    }
-}
-
-export class YesterdayFailed {
-    status: boolean;
-    http_code: number;
-    message: string;
-    data: {
-        count: string;
-        amount: string
-    }
-}
-
-export class YesterdayTotal {
-    status: boolean;
-    http_code: number;
-    message: string;
-    data: {
-        count: string;
-        amount: string
-        distinctUser: string
-    }
-}
-
 // this week
-export class ThisWeekSuccess {
+export class ThisWeekSuccess extends BaseModel {
     status: boolean;
     http_code: number;
     message: string;

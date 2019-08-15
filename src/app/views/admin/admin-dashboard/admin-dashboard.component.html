@@ -17,8 +17,26 @@
   <mdb-tabset [buttonClass]="'pills-indigo'" [contentClass]="'mdb-tabse'">
     <!--Panel 1-->
     <mdb-tab heading="Daily">
-          <app-today-card></app-today-card>
-          <app-yesterday-card></app-yesterday-card>
+      <div class="row">
+        <div class="col-6">
+            <app-today-card></app-today-card>
+        </div>
+        <div class="col-6">
+            <app-yesterday-card></app-yesterday-card>
+        </div>
+      </div>
+       
+      <div class="row">
+          <div class="col-4">
+              <!-- <app-today-card></app-today-card> -->
+          </div>
+          <div class="col-4">
+              <!-- <app-yesterday-card></app-yesterday-card> -->
+          </div>
+          <div class="col-4">
+              <!-- <app-yesterday-card></app-yesterday-card> -->
+          </div>
+        </div>
           <!-- <app-chart1></app-chart1>  -->
     </mdb-tab>
     <!--Panel 2-->

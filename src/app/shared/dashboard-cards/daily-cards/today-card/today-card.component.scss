@@ -52,26 +52,32 @@
     padding: 0.9rem;
   }
   .successful{
-    background: #27AE60;
-    border-radius: 2px;
+    background: #72C294;
+    border-radius: 25px;
     color: #ffff !important;
-    height: 25PX;
-    width: 43px;
+    height: 37PX;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+    width: 41px;
     text-align: center;
-    font-size: 12px;
-    line-height: 27px;
-    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.25);
+    line-height: 36px;
   }
   .failed{
-    background: #F06D6D;
-    border-radius: 2px;
+    background: #F49696;
+    border-radius: 25px;
     color: #ffff !important;
-    height: 25PX;
-    width: 43px;
+    height: 37PX;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+    width: 41px;
     text-align: center;
-    font-size: 12px;
-    line-height: 27px;
-  box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.25);
+    line-height: 36px;
   }
   .classic-admin-card .card-body p {
     font-size: 13px;
@@ -88,11 +94,20 @@
     opacity: 0.5;
   }
   .card-text{
-    font-family: "Roboto", sans-serif;
+    font-family: Ubuntu;
 font-style: normal;
-font-weight: normal;
-font-size: 12px;
-line-height: 14px;
+font-size: 14px;
+line-height: 16px;
 letter-spacing: 0.05em;
-color: #4F4F4F;
+color: #828282;
+font-weight: 500;
   }
+  .total-trans{
+    font-family: Ubuntu !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 24px !important;
+    line-height: 28px !important;
+    letter-spacing: 0.05em !important;
+    color: #002035 !important;
+}
