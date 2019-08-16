@@ -1,7 +1,6 @@
 <div *ngIf="loggedIn()">
-    <mdb-navbar SideClass="navbar  fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark white ie-nav"
+    <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark bg-secondary white ie-nav"
         [containerInside]="false">
-
 
         <mdb-navbar-brand>
             <img src="../../../assets/ItexLogo.png" style="width: 78px; height: 30px; padding-left: 16px;">
@@ -16,6 +15,9 @@
                 </li>
                 <li class="nav-item waves-light nav-body" mdbWavesEffect>
                     <a class="nav-link">Genesis</a>
+                </li>
+                <li class="nav-item waves-light nav-body" mdbWavesEffect>
+                    <a class="nav-link" [routerLink]="['/service-status']">Services Status</a>
                 </li>
             </ul>
 
