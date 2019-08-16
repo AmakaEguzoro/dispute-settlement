@@ -15,8 +15,6 @@ import { ThisMonthCardComponent } from './dashboard-cards/monthly-cards/this-mon
 import { LastMonthCardComponent } from './dashboard-cards/monthly-cards/last-month-card/last-month-card.component';
 import { LastWeekCardComponent } from './dashboard-cards/weekly-cards/last-week-card/last-week-card.component';
 import { ThisWeekCardComponent } from './dashboard-cards/weekly-cards/this-week-card/this-week-card.component';
-import { ThisYearCardComponent } from './dashboard-cards/yearly-cards/this-year-card/this-year-card.component';
-import { LastYearCardComponent } from './dashboard-cards/yearly-cards/last-year-card/last-year-card.component';
 import { SummaryService } from 'app/service/summary.service';
 import { ThousandSuffixesPipe } from 'app/service/ThousandSuffixesPipe';
 import { ChartService } from 'app/service/chart.service';
@@ -24,6 +22,7 @@ import { ChannelsComponent } from './top-5/channels/channels.component';
 import { AgentsComponent } from './top-5/agents/agents.component';
 import { ProductsComponent } from './top-5/products/products.component';
 import { ToNumberPipe } from 'app/service/ToNumberPipe';
+import { RoundPipe } from 'app/service/toRound';
 
 @NgModule({
   imports: [
@@ -45,11 +44,10 @@ import { ToNumberPipe } from 'app/service/ToNumberPipe';
     LastMonthCardComponent,
     LastWeekCardComponent,
     ThisWeekCardComponent,
-    ThisYearCardComponent,
-    LastYearCardComponent,
 
     ThousandSuffixesPipe,
     ToNumberPipe,
+    RoundPipe,
     ChannelsComponent,
     AgentsComponent,
     ProductsComponent
@@ -70,11 +68,10 @@ import { ToNumberPipe } from 'app/service/ToNumberPipe';
     LastMonthCardComponent,
     LastWeekCardComponent,
     ThisWeekCardComponent,
-    ThisYearCardComponent,
-    LastYearCardComponent,
 
     ThousandSuffixesPipe,
     ToNumberPipe,
+    RoundPipe,
     ChannelsComponent,
     AgentsComponent,
     ProductsComponent

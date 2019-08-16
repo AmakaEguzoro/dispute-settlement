@@ -1,3 +1,52 @@
-<p>
-  agents works!
-</p>
+<div class="row mt-4">
+  <div class="container">
+      <label class="total-trans">Top 5 Agents</label>
+      <mdb-card>
+          <mdb-card-body>
+            <mdb-card-text>
+                <table mdbTable striped="true" responsive="true">
+                    <thead>
+                      <tr>
+                        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr mdbTableCol>
+                          <th class="id" scope="row">POS</th>
+                          <td class="success">90.7K</td>
+                          <td class="fail">2K</td>
+                          <td class="total">100.66K</td>
+                        </tr>
+                        <tr mdbTableCol >
+                          <th class="id" scope="row">WEB</th>
+                          <td class="success">300.6K</td>
+                          <td class="fail">40.66K</td>
+                          <td class="total">200.54B</td>
+                        </tr>
+                        <tr mdbTableCol>
+                          <th class="id" scope="row">ANDROID</th>
+                          <td class="success">100K</td>
+                          <td class="fail">100.66M</td>
+                          <td class="total">110.3K</td>
+                        </tr>
+                        <tr mdbTableCol>
+                          <th class="id" scope="row">DEFAULT</th>
+                          <td class="success">33.70K</td>
+                          <td class="fail">40.66K</td>
+                          <td class="total">300.6K</td>
+                        </tr>
+                        <tr mdbTableCol>
+                          <th class="id" scope="row">ANDROID-POS</th>
+                          <td class="success">100K</td>
+                          <td class="fail">90.7K</td>
+                          <td class="total">110.3K</td>
+                        </tr>
+                      </tbody>
+                  </table>
+            </mdb-card-text>
+      
+          </mdb-card-body>
+        </mdb-card>
+  </div>
+  
+  </div>

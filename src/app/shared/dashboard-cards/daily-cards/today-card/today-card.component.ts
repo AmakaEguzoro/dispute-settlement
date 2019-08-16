@@ -52,7 +52,8 @@ export class TodayCardComponent implements OnInit, OnDestroy {
           let yesterdaySuccess = responseList[0];
           let yesterdayFailed = responseList[1];
           let yesterdayTotalCount = math.add(yesterdaySuccess.data.count, yesterdayFailed.data.count);
-          this.totalPercent = math.chain(this.totalCount).subtract(yesterdayTotalCount).divide(this.totalCount).multiply(100);
+          let totalSubtract = math.chain(this.totalCount).subtract(yesterdayTotalCount);
+          this.totalPercent = math.chain(totalSubtract).divide(yesterdayTotalCount).multiply(100);
         })
       );
 

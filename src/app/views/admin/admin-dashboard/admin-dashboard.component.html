@@ -1,58 +1,73 @@
-<!-- Asvanced search -->
-<!-- <div class="row">
-    <div class="col-4">
-      col-8
-    </div>
-    <div class="col-4">
-        <mdb-select [options]="optionsSelect" placeholder="Choose your option"></mdb-select>
-        
-    </div>
-    <div class="col-4">
-        <label>Advanced Search</label>
-      </div>
-  </div> -->
-
 <!-- Nav tabs -->
-<div>
+
   <mdb-tabset [buttonClass]="'pills-indigo'" [contentClass]="'mdb-tabse'">
     <!--Panel 1-->
     <mdb-tab heading="Daily">
-      <div class="row">
+      <div class="row mt-1">
         <div class="col-6">
-            <app-today-card></app-today-card>
+          <app-today-card></app-today-card>
         </div>
-        <div class="col-6">
-            <app-yesterday-card></app-yesterday-card>
+        <div class="col-6" style="padding-left: 3px">
+          <app-yesterday-card></app-yesterday-card>
         </div>
       </div>
-       
+
       <div class="row">
-          <div class="col-4">
-              <!-- <app-today-card></app-today-card> -->
-          </div>
-          <div class="col-4">
-              <!-- <app-yesterday-card></app-yesterday-card> -->
-          </div>
-          <div class="col-4">
-              <!-- <app-yesterday-card></app-yesterday-card> -->
-          </div>
+        <div class="col-4">
+          <app-channels></app-channels>
         </div>
-          <!-- <app-chart1></app-chart1>  -->
+        <div class="col-4">
+          <app-products></app-products>
+        </div>
+        <div class="col-4">
+          <app-agents></app-agents>
+        </div>
+      </div>
     </mdb-tab>
     <!--Panel 2-->
     <mdb-tab heading="Weekly">
-      <!-- <app-this-week-card></app-this-week-card>
-      <app-last-week-card></app-last-week-card> -->
+      <div class="row mt-1">
+          <div class="col-6">
+              <app-this-week-card></app-this-week-card>
+          </div>
+          <div class="col-6" style="padding-left: 3px">
+              <app-last-week-card></app-last-week-card>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-4">
+            <app-channels></app-channels>
+          </div>
+          <div class="col-4">
+            <app-products></app-products>
+          </div>
+          <div class="col-4">
+            <app-agents></app-agents>
+          </div>
+        </div>
     </mdb-tab>
     <!--Panel 3-->
     <mdb-tab heading="Monthly">
-      <!-- <app-this-month-card></app-this-month-card>
-      <app-last-month-card></app-last-month-card> -->
-    </mdb-tab>
-    <mdb-tab heading="Yearly">
-      <!-- <app-this-year-card></app-this-year-card>
-      <app-last-year-card></app-last-year-card> -->
+      <div class="row mt-1">
+          <div class="col-6">
+              <app-this-month-card></app-this-month-card>
+          </div>
+          <div class="col-6" style="padding-left: 3px">
+              <app-last-month-card></app-last-month-card>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-4">
+            <app-channels></app-channels>
+          </div>
+          <div class="col-4">
+            <app-products></app-products>
+          </div>
+          <div class="col-4">
+            <app-agents></app-agents>
+          </div>
+        </div>
     </mdb-tab>
   </mdb-tabset>
-</div>
-

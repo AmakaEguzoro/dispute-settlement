@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ThisMonthFailed, ThisMonthSuccess, ThisMonthTotal } from 'app/_models/summary';
 import { SummaryService } from 'app/service/summary.service';
+import { SubSink } from 'subsink/dist/subsink';
+import * as math from 'mathjs';
 
 @Component({
   selector: 'app-this-month-card',
@@ -8,61 +9,56 @@ import { SummaryService } from 'app/service/summary.service';
   styleUrls: ['./this-month-card.component.scss']
 })
 export class ThisMonthCardComponent implements OnInit {
-  thisMonthSuccess: ThisMonthSuccess;
-  thisMonthFailed: ThisMonthFailed;
-  thisMonthTotal: ThisMonthTotal;
+  totalAmount: any;
+  successCount: any;
+  failedCount: any;
+  successAmount: any;
+  failedAmount: any;
   loading = false;
-  lastm:any;
-  percentage : any;
-kk:any;
-  constructor(private summaryService: SummaryService) { 
-    this.getThisMonthTotal();
-    this.getThisMonthSuccessfull();
-    this.getThisMonthFailed();
+  totalCount: any;
+  thisMonthSuccess: any;
+  thisMonthFailed: any;
+  successPercent: any;
+  failedPercent: any;
+  totalPercent: any;
+  private subs = new SubSink();
+
+  constructor(private summaryService: SummaryService) { }
+
+  async ngOnInit() {
+    this.loading = true,
+      this.subs.add(
+        await this.summaryService.getThisMonth().subscribe(responseList => {
+          this.loading = false;
+          this.thisMonthSuccess = responseList[0];
+          this.successCount = this.thisMonthSuccess.data.count;
+          this.successAmount = this.thisMonthSuccess.data.amount;
+
+          this.thisMonthFailed = responseList[1];
+          this.failedCount = this.thisMonthFailed.data.count;
+          this.failedAmount = this.thisMonthFailed.data.amount;
+
+          this.totalCount = math.add(this.successCount, this.failedCount);
+          this.totalAmount = math.add(this.successAmount, this.failedAmount);
+
+          this.successPercent = math.chain(this.successCount).divide(this.totalCount).multiply(100);
+          this.failedPercent = math.chain(this.failedCount).divide(this.totalCount).multiply(100);
+        }, error => {
+          this.loading = false;
+          console.log('cant get thisMonth response', error);
+        }),
+        this.summaryService.getLastMonth().subscribe(responseList => {
+          let lastMonthSuccess = responseList[0];
+          let lastMonthFailed = responseList[1];
+          let lastMonthTotalCount = math.add(lastMonthSuccess.data.count, lastMonthFailed.data.count);
+          let totalSubtract = math.chain(this.totalCount).subtract(lastMonthTotalCount);
+          this.totalPercent = math.chain(totalSubtract).divide(lastMonthTotalCount).multiply(100);
+        })
+      );
+
   }
 
-  ngOnInit() {
-    this.summaryService.getLastMonthSuccess().subscribe(data =>{
-      this.lastm = data;
-      // this.percentage   = Math.floor(this.lastm.data.count + this.thisMonthSuccess.data.count);
-      // this.kk = Math.chain(this.lastm.data.count).add(this.lastm.data.count);
-      console.log(this.kk , 'jj')
-    })
-   
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
-
-  getThisMonthTotal() {
-    this.loading = true;
-    this.summaryService.getThisMonthTotal().subscribe((thisMonthTotal: ThisMonthTotal) => {
-      this.loading = false;
-      this.thisMonthTotal = thisMonthTotal;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get thisMonthTotal');
-    })
-  }
-
-  getThisMonthSuccessfull() {
-     this.loading = true;
-    this.summaryService.getThisMonthSuccess().subscribe((thisMonthSuccess: ThisMonthSuccess) => {
-      this.loading = false;
-      this.thisMonthSuccess = thisMonthSuccess;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get thisMonthSuccess');
-    })
-  }
-
-  getThisMonthFailed() {
-    this.loading = true;
-    this.summaryService.getThisMonthFailed().subscribe((thisMonthFailed: ThisMonthFailed) => {
-      this.loading = false;
-      this.thisMonthFailed = thisMonthFailed;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get thisMonthFailed');
-    })
-  }
-
-
 }
