@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartService } from 'app/service/chart.service';
 
 @Component({
   selector: 'app-chart1',
@@ -33,7 +32,7 @@ public chartOptions:any = {
   responsive: true
 };
 
-  constructor(private chartService: ChartService) { }
+  constructor() { }
 
   ngOnInit() {
     // this.loading = true;

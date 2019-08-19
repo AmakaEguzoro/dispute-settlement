@@ -38,7 +38,6 @@ import { Dashboard5Component } from './dashboards/dashboard5/dashboard5.componen
 import { GridComponent } from './css/grid/grid.component';
 import { MediaObjectComponent } from './css/media-object/media-object.component';
 import { UtilitiesComponent } from './css/utilities/utilities.component';
-import { ImagesComponent } from './css/images/images.component';
 import { ColorsComponent } from './css/colors/colors.component';
 import { ShadowComponent } from './css/shadow/shadow.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
@@ -68,12 +67,8 @@ import { HelpComponent } from './help/help.component';
 import { Settings2Component } from './settings/settings2/settings2.component';
 import { Settings3Component } from './settings/settings3/settings3.component';
 import { TestComponent } from './test/test/test.component';
-import { PaymentsDashboardComponent } from './payments/payments-dashboard/payments-dashboard.component';
-import { PaymentsOnlineComponent } from './payments/payments-online/payments-online.component';
-import { PaymentsOfflineComponent } from './payments/payments-offline/payments-offline.component';
 import { BlogsDashboardComponent } from './blogs/blogs-dashboard/blogs-dashboard.component';
 import { CreateBlogsComponent } from './blogs/create-blogs/create-blogs.component';
-import { FeedsDashboardComponent } from './feeds/feeds-dashboard/feeds-dashboard.component';
 import { CreateFeedsComponent } from './feeds/create-feeds/create-feeds.component';
 import { CreateMembersComponent } from './members/create-members/create-members.component';
 
@@ -85,16 +80,9 @@ import { MembersManagementComponent } from './members/members-management/members
 import { MembersDashboardComponent } from './members/members-dashboard/members-dashboard.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { RoleManagementComponent } from './admin/role-management/role-management.component';
-import { FinanceManagementComponent } from './finance/finance-management/finance-management.component';
-import { FinanceDashboardComponent } from './finance/finance-dashboard/finance-dashboard.component';
-import { MinutesDashboardComponent } from './minutes/minutes-dashboard/minutes-dashboard.component';
-import { MinutesManagementComponent } from './minutes/minutes-management/minutes-management.component';
-import { ElectionsManagementComponent } from './elections/elections-management/elections-management.component';
-import { ElectionsDashboardComponent } from './elections/elections-dashboard/elections-dashboard.component';
 import { ExcosComponent } from './members/excos/excos.component';
 // MDB Angular Pro
 import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
-import { FilterComponent } from './filter/filter.component'
 // import { ErrordialogComponent } from '../views/errordialog/errordialog.component';
 
 @NgModule({
@@ -143,7 +131,6 @@ import { FilterComponent } from './filter/filter.component'
     GridComponent,
     MediaObjectComponent,
     UtilitiesComponent,
-    ImagesComponent,
     ColorsComponent,
     ShadowComponent,
     ButtonsComponent,
@@ -173,30 +160,18 @@ import { FilterComponent } from './filter/filter.component'
     Settings2Component,
     Settings3Component,
     TestComponent,
-    PaymentsDashboardComponent,
-    PaymentsOnlineComponent,
-    PaymentsOfflineComponent,
     BlogsDashboardComponent,
     CreateBlogsComponent,
-    FeedsDashboardComponent,
     CreateFeedsComponent,
     CreateMembersComponent,
     MembersDashboardComponent,
     AdminDashboardComponent,
     RoleManagementComponent,
-    FinanceManagementComponent,
-    FinanceDashboardComponent,
-    MinutesDashboardComponent,
-    MinutesManagementComponent,
-    ElectionsManagementComponent,
-    ElectionsDashboardComponent,
     ExcosComponent,
-    ElectionsManagementComponent,
     CreateMinutesComponent,
     CreateFinanceComponent,
     CreateElectionsComponent,
     MembersManagementComponent,
-    FilterComponent,
     // ErrordialogComponent,
   ],
   exports: [
@@ -228,7 +203,6 @@ import { FilterComponent } from './filter/filter.component'
     GridComponent,
     MediaObjectComponent,
     UtilitiesComponent,
-    ImagesComponent,
     ColorsComponent,
     ShadowComponent,
     ButtonsComponent,

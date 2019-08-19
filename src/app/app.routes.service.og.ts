@@ -20,7 +20,6 @@ import { CardsComponent } from './views/components/cards/cards.component';
 import { ButtonsComponent } from './views/components/buttons/buttons.component';
 import { ShadowComponent } from './views/css/shadow/shadow.component';
 import { ColorsComponent } from './views/css/colors/colors.component';
-import { ImagesComponent } from './views/css/images/images.component';
 import { UtilitiesComponent } from './views/css/utilities/utilities.component';
 import { MediaObjectComponent } from './views/css/media-object/media-object.component';
 import { GridComponent } from './views/css/grid/grid.component';
@@ -138,7 +137,6 @@ const routes: Route[] = [
       { path: 'media', component: MediaObjectComponent},
       { path: 'utilities', component: UtilitiesComponent},
       { path: 'icons', component: IconsComponent},
-      { path: 'images', component: ImagesComponent},
       { path: 'typography', component: TypographyComponent},
       { path: 'colors', component: ColorsComponent},
       { path: 'shadow', component: ShadowComponent},
