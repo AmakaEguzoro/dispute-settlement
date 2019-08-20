@@ -84,7 +84,7 @@ const routes: Route[] = [
     ]
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', component: NotFoundComponent },
+  // { path: 'not', component: NotFoundComponent },
   // { path: 'login', component: LoginComponent},
   // // { path: '', pathMatch: 'full', redirectTo: 'dashboards/v1' },
   // { path: ' ', pathMatch: 'full', redirectTo: 'login' },
