@@ -33,6 +33,7 @@ import { MatDialogModule } from '@angular/material';
 import { ErrordialogComponent } from './views/errordialog/errordialog.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 @NgModule({
@@ -55,6 +56,8 @@ import { HttpInterceptorProvider } from './_auth/errorInterceptor';
     ToastModule.forRoot(),
     ReactiveFormsModule,
     // AngularFireModule.initializeApp(environment.firebase),
+    // Itex
+    OrderModule
   ],
   entryComponents: [
     ErrordialogComponent,

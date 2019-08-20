@@ -44,9 +44,11 @@ color: #000000;
     font-weight: 500;
     font-size: 14px;
 }
-.hh{
-    background: #F2F2F2;
-border: 1px solid #E0E0E0;
-box-sizing: border-box;
-border-radius: 2px;
+.noData{
+    font-family: Ubuntu;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+    background: #fff;
 }

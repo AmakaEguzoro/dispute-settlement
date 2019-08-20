@@ -18,15 +18,21 @@ import { ThisWeekCardComponent } from './dashboard-cards/weekly-cards/this-week-
 import { SummaryService } from 'app/service/summary.service';
 import { ThousandSuffixesPipe } from 'app/service/ThousandSuffixesPipe';
 import { ChannelsComponent } from './top-5/channels/channels.component';
-import { AgentsComponent } from './top-5/agents/agents.component';
 import { ProductsComponent } from './top-5/products/products.component';
 import { ToNumberPipe } from 'app/service/ToNumberPipe';
 import { RoundPipe } from 'app/service/toRound';
+import { ChannelService } from 'app/service/channels.service';
+import { PaymentMethodComponent } from './top-5/payment-method/payment-method.component';
+import { ProductsService } from 'app/service/products.service';
+import { OrderModule } from 'ngx-order-pipe';
+import { PaymentMethodService } from 'app/service/payment-method.service';
 
 @NgModule({
   imports: [
     CommonModule,
     MDBBootstrapModulesPro.forRoot(),
+    // itex
+    OrderModule
   ],
   declarations: [
     AlertComponent,
@@ -48,7 +54,7 @@ import { RoundPipe } from 'app/service/toRound';
     ToNumberPipe,
     RoundPipe,
     ChannelsComponent,
-    AgentsComponent,
+    PaymentMethodComponent,
     ProductsComponent
   ],
   exports: [
@@ -72,13 +78,16 @@ import { RoundPipe } from 'app/service/toRound';
     ToNumberPipe,
     RoundPipe,
     ChannelsComponent,
-    AgentsComponent,
+    PaymentMethodComponent,
     ProductsComponent
   ],
   providers: [
     // NotificationService,
     // itex
     SummaryService,
+    ChannelService,
+    ProductsService,
+    PaymentMethodService
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })

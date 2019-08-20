@@ -24,10 +24,12 @@ export class YesterdayCardComponent implements OnInit {
   failedPercent: any;
   totalPercent: any;
   private subs = new SubSink();
+  isData: boolean;
 
   constructor(private summaryService: SummaryService) { }
 
   async ngOnInit() {
+    this.isData = true;
     this.loading = true,
       this.subs.add(
         await this.summaryService.getYesterday().subscribe(responseList => {
@@ -46,14 +48,15 @@ export class YesterdayCardComponent implements OnInit {
           this.successPercent = math.chain(this.successCount).divide(this.totalCount).multiply(100);
           this.failedPercent = math.chain(this.failedCount).divide(this.totalCount).multiply(100);
         }, error => {
+          this.isData = false;
           this.loading = false;
           console.log('cant get yesterday response', error)
         }),
-        this.summaryService.getToday().subscribe(responseList => {
+        await  this.summaryService.getToday().subscribe(responseList => {
           let todaySuccess = responseList[0];
           let todayFailed = responseList[1];
-          let todayTotalCount = math.add(todaySuccess.data.count, todayFailed.data.count);
-          this.totalPercent = math.chain(this.totalCount).subtract(todayTotalCount).divide(this.totalCount).multiply(100);
+          let todayTotalAmount = math.add(todaySuccess.data.amount, todayFailed.data.amount);
+         this.totalPercent = math.chain(this.totalAmount).subtract(todayTotalAmount).divide(this.totalAmount).multiply(100);
         })
       );
 

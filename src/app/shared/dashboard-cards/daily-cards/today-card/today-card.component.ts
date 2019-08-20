@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SummaryService } from 'app/service/summary.service';
 import * as math from 'mathjs';
-import { chain } from 'mathjs';
 import { SubSink } from 'subsink/dist/subsink';
 
 @Component({
@@ -23,10 +22,12 @@ export class TodayCardComponent implements OnInit, OnDestroy {
   failedPercent: any;
   totalPercent: any;
   private subs = new SubSink();
+  isData: boolean;
 
   constructor(private summaryService: SummaryService) { }
 
   async ngOnInit() {
+    this.isData = true;
     this.loading = true,
       this.subs.add(
         await this.summaryService.getToday().subscribe(responseList => {
@@ -45,15 +46,16 @@ export class TodayCardComponent implements OnInit, OnDestroy {
           this.successPercent = math.chain(this.successCount).divide(this.totalCount).multiply(100);
           this.failedPercent = math.chain(this.failedCount).divide(this.totalCount).multiply(100);
         }, error => {
+          this.isData = false
           this.loading = false;
           console.log('cant get today response', error);
         }),
         this.summaryService.getYesterday().subscribe(responseList => {
           let yesterdaySuccess = responseList[0];
           let yesterdayFailed = responseList[1];
-          let yesterdayTotalCount = math.add(yesterdaySuccess.data.count, yesterdayFailed.data.count);
-          let totalSubtract = math.chain(this.totalCount).subtract(yesterdayTotalCount);
-          this.totalPercent = math.chain(totalSubtract).divide(yesterdayTotalCount).multiply(100);
+          let yesterdayTotalAmount = math.add(yesterdaySuccess.data.amount, yesterdayFailed.data.amount);
+          let totalSubtract = math.chain(this.totalAmount).subtract(yesterdayTotalAmount);
+          this.totalPercent = math.chain(totalSubtract).divide(yesterdayTotalAmount).multiply(100);
         })
       );
 
@@ -62,4 +64,5 @@ export class TodayCardComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
+
 }

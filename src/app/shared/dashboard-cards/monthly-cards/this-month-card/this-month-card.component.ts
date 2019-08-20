@@ -22,10 +22,12 @@ export class ThisMonthCardComponent implements OnInit {
   failedPercent: any;
   totalPercent: any;
   private subs = new SubSink();
+  isData: boolean;
 
   constructor(private summaryService: SummaryService) { }
 
   async ngOnInit() {
+    this.isData = true;
     this.loading = true,
       this.subs.add(
         await this.summaryService.getThisMonth().subscribe(responseList => {
@@ -44,15 +46,16 @@ export class ThisMonthCardComponent implements OnInit {
           this.successPercent = math.chain(this.successCount).divide(this.totalCount).multiply(100);
           this.failedPercent = math.chain(this.failedCount).divide(this.totalCount).multiply(100);
         }, error => {
+          this.isData = false;
           this.loading = false;
           console.log('cant get thisMonth response', error);
         }),
         this.summaryService.getLastMonth().subscribe(responseList => {
           let lastMonthSuccess = responseList[0];
           let lastMonthFailed = responseList[1];
-          let lastMonthTotalCount = math.add(lastMonthSuccess.data.count, lastMonthFailed.data.count);
-          let totalSubtract = math.chain(this.totalCount).subtract(lastMonthTotalCount);
-          this.totalPercent = math.chain(totalSubtract).divide(lastMonthTotalCount).multiply(100);
+          let lastMonthTotalAmount = math.add(lastMonthSuccess.data.amount, lastMonthFailed.data.amount);
+          let totalSubtract = math.chain(this.totalAmount).subtract(lastMonthTotalAmount);
+          this.totalPercent = math.chain(totalSubtract).divide(lastMonthTotalAmount).multiply(100);
         })
       );
 
