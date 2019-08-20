@@ -23,7 +23,6 @@ import { ColorsComponent } from './views/css/colors/colors.component';
 import { UtilitiesComponent } from './views/css/utilities/utilities.component';
 import { MediaObjectComponent } from './views/css/media-object/media-object.component';
 import { GridComponent } from './views/css/grid/grid.component';
-import { AlertComponent } from './shared/alerts/alert/alert.component';
 import { Form2Component } from './views/forms/form2/form2.component';
 import { Form1Component } from './views/forms/form1/form1.component';
 import { Map2Component } from './views/maps/map2/map2.component';
@@ -41,7 +40,6 @@ import { Profile2Component } from './views/profile/profile2/profile2.component';
 import { Profile3Component } from './views/profile/profile3/profile3.component';
 import { RouterModule, Route } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-import { NotFoundComponent } from './views/errors/not-found/not-found.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { LockComponent } from './views/pages/lock/lock.component';
@@ -149,13 +147,10 @@ const routes: Route[] = [
       { path: 'form3', component: Form3Component},
     ]
   },
-  { path: 'alerts', component: AlertComponent},
   { path: 'modals', component: ModalsComponent},
   { path: 'calendar', component: EventCalendarComponent},
   { path: 'help', component: HelpComponent },
-  {path: 'test', component: TestComponent},
-  { path: '**', component: NotFoundComponent },
-  
+  {path: 'test', component: TestComponent},  
 
 ];
 

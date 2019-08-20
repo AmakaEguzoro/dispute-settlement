@@ -83,6 +83,7 @@ import { RoleManagementComponent } from './admin/role-management/role-management
 import { ExcosComponent } from './members/excos/excos.component';
 // MDB Angular Pro
 import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
+import { NotFoundComponent } from './not-found/not-found.component';
 // import { ErrordialogComponent } from '../views/errordialog/errordialog.component';
 
 @NgModule({
@@ -115,7 +116,6 @@ import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
     IconsComponent,
     Map1Component,
     Map2Component,
-    LoginComponent,
     RegisterComponent,
     LockComponent,
     PricingComponent,
@@ -165,7 +165,6 @@ import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
     CreateFeedsComponent,
     CreateMembersComponent,
     MembersDashboardComponent,
-    AdminDashboardComponent,
     RoleManagementComponent,
     ExcosComponent,
     CreateMinutesComponent,
@@ -173,6 +172,10 @@ import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
     CreateElectionsComponent,
     MembersManagementComponent,
     // ErrordialogComponent,
+    //  Itex
+    NotFoundComponent,
+    LoginComponent,
+    AdminDashboardComponent,
   ],
   exports: [
     FooterComponent,
@@ -223,6 +226,10 @@ import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
     PostListingComponent,
     Form3Component,
     // ErrordialogComponent
+   // Itex
+   NotFoundComponent,
+   LoginComponent,
+   AdminDashboardComponent,
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

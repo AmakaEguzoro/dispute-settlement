@@ -18,7 +18,6 @@ import { ViewsModule } from './views/views.module';
 import { SharedModule } from './shared/shared.module';
 import { MDBSpinningPreloader } from 'ng-uikit-pro-standard';
 
-import { ErrorModule } from './views/errors/error.module';
 
 // main layout
 import { NavigationModule } from './main-layout/navigation/navigation.module';
@@ -52,7 +51,6 @@ import { OrderModule } from 'ngx-order-pipe';
     FormsModule,
     SharedModule,
     ViewsModule,
-    ErrorModule,
     ToastModule.forRoot(),
     ReactiveFormsModule,
     // AngularFireModule.initializeApp(environment.firebase),
