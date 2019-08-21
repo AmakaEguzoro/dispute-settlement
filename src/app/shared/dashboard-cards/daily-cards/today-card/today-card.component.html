@@ -10,13 +10,13 @@
                                      }">{{ totalPercent | toNumber | number:'1.0-0'}}%</div>
                                 <p class="card-text total-trans">Total Transactions</p> <br>
                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                <strong class="noData" *ngIf="isData == false">No Data Available</strong>
                                 <h4 *ngIf="loading == false">
                                         <div *ngIf="isData == true" class="pull-right">
                                                 &#x20A6;{{totalAmount | thousandSuff : 2}}</div>
                                         <p *ngIf="isData == true" class="card-text"> {{ totalCount | thousandSuff }}
                                                 &nbsp; Transactions</p>
                                 </h4>
+                                <strong class="noData" *ngIf="isData == false">No Data Available</strong>
                         </div>
                 </div>
 
@@ -32,13 +32,13 @@
                                 </div>
                                 <p class="card-text">Successful Transactions</p> <br>
                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                <strong class="noData" *ngIf="isData == false">No Data Available</strong>
                                 <h4 *ngIf="loading == false">
                                         <div *ngIf="isData == true" class="pull-right">
                                                 &#x20A6;{{successAmount | thousandSuff : 2}}</div>
                                         <p *ngIf="isData == true" class="card-text">{{successCount | thousandSuff }}
                                                 &nbsp;Transactions</p>
                                 </h4>
+                                <strong class="noData" *ngIf="isData == false">No Data Available</strong>
                         </div>
                 </div>
         </div>
@@ -50,13 +50,13 @@
                                 </div>
                                 <p class="card-text">Failed Transactions</p> <br>
                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
-                                <strong class="noData" *ngIf="isData == false">No Data Available</strong>
                                 <h4 *ngIf="loading == false">
                                         <div *ngIf="isData == true" class="pull-right">
                                                 &#x20A6;{{failedAmount | thousandSuff : 2 }}</div>
                                         <p *ngIf="isData == true" class="card-text">{{failedCount | thousandSuff }}
                                                 &nbsp;Transactions</p>
                                 </h4>
+                                <strong class="noData" *ngIf="isData == false">No Data Available</strong>
                         </div>
 
                 </div>

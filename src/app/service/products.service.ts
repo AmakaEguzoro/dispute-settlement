@@ -9,9 +9,31 @@ import { Observable, forkJoin } from 'rxjs';
 export class ProductsService {
     baseUrl = 'http://197.253.19.76:6200/api/v1/';
 
+    payload = [];
+    product: any;
     constructor(private httpClient: HttpClient) { }
 
     // today Products
+
+    // getProduct(){
+    //     this.product = ["WITHDRAWAL", "etisalatvtu", "RCN_FUND_TRANSFER", "MTNVTU", "MTNPIN",
+        
+    //     "MTNDATA", "GLOVTU", "GLOPIN","GLODATA", "AIRTELVTU", "AIRTELPIN", "OTHERS", "Multichoice", "IKEDC",
+        
+    //     "EEDC", 'PHEDC', 'TRANSFER', "EKEDC", 'kedco', 'STARTIMES', 'IBEDC', 'AEDC',
+    //     ];
+
+    //     let  arr = [];  // creates a new array .. much preferred method too.
+    //     for (var i = 0; i < this.product.length; i++) {
+    //         arr[i] = this.httpClient.get(`${this.baseUrl} products/day/${this.product}/successful`);;
+    //     }
+        
+    //      console.log(arr);
+    //     return forkJoin(arr);
+
+    // }
+        
+        
     getTodayProducts(): Observable<any[]> {
         let getMTNVTUSuccess = this.httpClient.get(this.baseUrl + `products/day/MTNVTU/successful`);
         let getMTNVTUFailed = this.httpClient.get(this.baseUrl + `products/day/MTNVTU/failed`);
@@ -40,12 +62,38 @@ export class ProductsService {
         let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/day/OTHERS/successful`);
         let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/day/OTHERS/failed`);
 
+        // let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/day/WITHDRAWAL/successful`);
+        // let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/day/WITHDRAWAL/failed`);
+
+        // let getWebSuccess = this.httpClient.get(this.baseUrl + `channels/day/WEB/successful`);
+        // let getWebFailed = this.httpClient.get(this.baseUrl + `channels/day/WEB/failed`);
+
+        // let getAndroidSuccess = this.httpClient.get(this.baseUrl + `channels/day/ANDROID/successful`);
+        // let getAndroidFailed = this.httpClient.get(this.baseUrl + `channels/day/ANDROID/failed`);
+
+        // let getAndroidWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/day/ANDROIDWITHDRAWAL/successful`);
+        // let getAndroidWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/day/ANDROIDWITHDRAWAL/failed`);
+
+        // let getAtmSuccess = this.httpClient.get(this.baseUrl + `channels/day/ATM/successful`);
+        // let getAtmFailed = this.httpClient.get(this.baseUrl + `channels/day/ATM/failed`);
+
+        // let getDefaultSuccess = this.httpClient.get(this.baseUrl + `channels/day/DEFAULT/successful`);
+        // let getDefaultFailed = this.httpClient.get(this.baseUrl + `channels/day/DEFAULT/failed`);
+
+        // let getOthersSuccess = this.httpClient.get(this.baseUrl + `channels/day/OTHERS/successful`);
+        // let getOthersFailed = this.httpClient.get(this.baseUrl + `channels/day/OTHERS/failed`);
+
+
         return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
             getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLOPINSuccess, getGLOPINFailed, getGLODATASuccess,
-            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed]);
+            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed,
+            // getWITHDRAWALSuccess, getWITHDRAWALFailed, getWebSuccess, getWebFailed, getAndroidSuccess,
+            // getAndroidFailed, getAndroidWITHDRAWALSuccess, getAndroidWITHDRAWALFailed, getAtmSuccess, getAtmFailed, getDefaultSuccess,
+            // getDefaultFailed, getOthersSuccess, getOthersFailed
+        ]);
     }
 
-    
+
     // THIS WWEEK Products
     getThisWeekProducts(): Observable<any[]> {
         let getMTNVTUSuccess = this.httpClient.get(this.baseUrl + `products/week/MTNVTU/successful`);
@@ -75,42 +123,88 @@ export class ProductsService {
         let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/week/OTHERS/successful`);
         let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/week/OTHERS/failed`);
 
+        let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/week/WITHDRAWAL/successful`);
+        let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/week/WITHDRAWAL/failed`);
+
+        let getWebSuccess = this.httpClient.get(this.baseUrl + `channels/week/WEB/successful`);
+        let getWebFailed = this.httpClient.get(this.baseUrl + `channels/week/WEB/failed`);
+
+        let getAndroidSuccess = this.httpClient.get(this.baseUrl + `channels/week/ANDROID/successful`);
+        let getAndroidFailed = this.httpClient.get(this.baseUrl + `channels/week/ANDROID/failed`);
+
+        let getAndroidWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/week/ANDROIDWITHDRAWAL/successful`);
+        let getAndroidWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/week/ANDROIDWITHDRAWAL/failed`);
+
+        let getAtmSuccess = this.httpClient.get(this.baseUrl + `channels/week/ATM/successful`);
+        let getAtmFailed = this.httpClient.get(this.baseUrl + `channels/week/ATM/failed`);
+
+        let getDefaultSuccess = this.httpClient.get(this.baseUrl + `channels/week/DEFAULT/successful`);
+        let getDefaultFailed = this.httpClient.get(this.baseUrl + `channels/week/DEFAULT/failed`);
+
+        let getOthersSuccess = this.httpClient.get(this.baseUrl + `channels/week/OTHERS/successful`);
+        let getOthersFailed = this.httpClient.get(this.baseUrl + `channels/week/OTHERS/failed`);
+
         return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
             getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLOPINSuccess, getGLOPINFailed, getGLODATASuccess,
-            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed]);
+            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed,getWITHDRAWALSuccess, getWITHDRAWALFailed, getWebSuccess, getWebFailed, getAndroidSuccess,
+            getAndroidFailed, getAndroidWITHDRAWALSuccess, getAndroidWITHDRAWALFailed, getAtmSuccess, getAtmFailed, getDefaultSuccess,
+            getDefaultFailed, getOthersSuccess, getOthersFailed]);
     }
 
-        // THIS month Products
-        getThisMonthProducts(): Observable<any[]> {
-            let getMTNVTUSuccess = this.httpClient.get(this.baseUrl + `products/month/MTNVTU/successful`);
-            let getMTNVTUFailed = this.httpClient.get(this.baseUrl + `products/month/MTNVTU/failed`);
-    
-            let getMTNPINSuccess = this.httpClient.get(this.baseUrl + `products/month/MTNPIN/successful`);
-            let getMTNPINFailed = this.httpClient.get(this.baseUrl + `products/month/MTNPIN/failed`);
-    
-            let getMTNDATASuccess = this.httpClient.get(this.baseUrl + `products/month/MTNDATA/successful`);
-            let getMTNDATAFailed = this.httpClient.get(this.baseUrl + `products/month/MTNDATA/failed`);
-    
-            let getGLOVTUSuccess = this.httpClient.get(this.baseUrl + `products/month/GLOVTU/successful`);
-            let getGLOVTUFailed = this.httpClient.get(this.baseUrl + `products/month/GLOVTU/failed`);
-    
-            let getGLOPINSuccess = this.httpClient.get(this.baseUrl + `products/month/GLOPIN/successful`);
-            let getGLOPINFailed = this.httpClient.get(this.baseUrl + `products/month/GLOPIN/failed`);
-    
-            let getGLODATASuccess = this.httpClient.get(this.baseUrl + `products/month/GLODATA/successful`);
-            let getGLODATAFailed = this.httpClient.get(this.baseUrl + `products/month/GLODATA/failed`);
-    
-            let getAIRTELVTUSuccess = this.httpClient.get(this.baseUrl + `products/month/AIRTELVTU/successful`);
-            let getAIRTELVTUFailed = this.httpClient.get(this.baseUrl + `products/month/AIRTELVTU/failed`);
-    
-            let getAIRTELPINSuccess = this.httpClient.get(this.baseUrl + `products/month/AIRTELPIN/successful`);
-            let getAIRTELPINFailed = this.httpClient.get(this.baseUrl + `products/month/AIRTELPIN/failed`);
-    
-            let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/month/OTHERS/successful`);
-            let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/month/OTHERS/failed`);
-    
-            return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
-                getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLOPINSuccess, getGLOPINFailed, getGLODATASuccess,
-                getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed]);
-        }
+    // THIS month Products
+    getThisMonthProducts(): Observable<any[]> {
+        let getMTNVTUSuccess = this.httpClient.get(this.baseUrl + `products/month/MTNVTU/successful`);
+        let getMTNVTUFailed = this.httpClient.get(this.baseUrl + `products/month/MTNVTU/failed`);
+
+        let getMTNPINSuccess = this.httpClient.get(this.baseUrl + `products/month/MTNPIN/successful`);
+        let getMTNPINFailed = this.httpClient.get(this.baseUrl + `products/month/MTNPIN/failed`);
+
+        let getMTNDATASuccess = this.httpClient.get(this.baseUrl + `products/month/MTNDATA/successful`);
+        let getMTNDATAFailed = this.httpClient.get(this.baseUrl + `products/month/MTNDATA/failed`);
+
+        let getGLOVTUSuccess = this.httpClient.get(this.baseUrl + `products/month/GLOVTU/successful`);
+        let getGLOVTUFailed = this.httpClient.get(this.baseUrl + `products/month/GLOVTU/failed`);
+
+        let getGLOPINSuccess = this.httpClient.get(this.baseUrl + `products/month/GLOPIN/successful`);
+        let getGLOPINFailed = this.httpClient.get(this.baseUrl + `products/month/GLOPIN/failed`);
+
+        let getGLODATASuccess = this.httpClient.get(this.baseUrl + `products/month/GLODATA/successful`);
+        let getGLODATAFailed = this.httpClient.get(this.baseUrl + `products/month/GLODATA/failed`);
+
+        let getAIRTELVTUSuccess = this.httpClient.get(this.baseUrl + `products/month/AIRTELVTU/successful`);
+        let getAIRTELVTUFailed = this.httpClient.get(this.baseUrl + `products/month/AIRTELVTU/failed`);
+
+        let getAIRTELPINSuccess = this.httpClient.get(this.baseUrl + `products/month/AIRTELPIN/successful`);
+        let getAIRTELPINFailed = this.httpClient.get(this.baseUrl + `products/month/AIRTELPIN/failed`);
+
+        let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/month/OTHERS/successful`);
+        let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/month/OTHERS/failed`);
+
+        let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/month/WITHDRAWAL/successful`);
+        let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/month/WITHDRAWAL/failed`);
+
+        let getWebSuccess = this.httpClient.get(this.baseUrl + `channels/month/WEB/successful`);
+        let getWebFailed = this.httpClient.get(this.baseUrl + `channels/month/WEB/failed`);
+
+        let getAndroidSuccess = this.httpClient.get(this.baseUrl + `channels/month/ANDROID/successful`);
+        let getAndroidFailed = this.httpClient.get(this.baseUrl + `channels/month/ANDROID/failed`);
+
+        let getAndroidWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/month/ANDROIDWITHDRAWAL/successful`);
+        let getAndroidWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/month/ANDROIDWITHDRAWAL/failed`);
+
+        let getAtmSuccess = this.httpClient.get(this.baseUrl + `channels/month/ATM/successful`);
+        let getAtmFailed = this.httpClient.get(this.baseUrl + `channels/month/ATM/failed`);
+
+        let getDefaultSuccess = this.httpClient.get(this.baseUrl + `channels/month/DEFAULT/successful`);
+        let getDefaultFailed = this.httpClient.get(this.baseUrl + `channels/month/DEFAULT/failed`);
+
+        let getOthersSuccess = this.httpClient.get(this.baseUrl + `channels/month/OTHERS/successful`);
+        let getOthersFailed = this.httpClient.get(this.baseUrl + `channels/month/OTHERS/failed`);
+
+        return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
+            getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLOPINSuccess, getGLOPINFailed, getGLODATASuccess,
+            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed,getWITHDRAWALSuccess, getWITHDRAWALFailed, getWebSuccess, getWebFailed, getAndroidSuccess,
+            getAndroidFailed, getAndroidWITHDRAWALSuccess, getAndroidWITHDRAWALFailed, getAtmSuccess, getAtmFailed, getDefaultSuccess,
+            getDefaultFailed, getOthersSuccess, getOthersFailed]);
+    }
 }

@@ -4,11 +4,11 @@ import { SubSink } from 'subsink/dist/subsink';
 import { PaymentMethodService } from 'app/service/payment-method.service';
 
 @Component({
-  selector: 'app-payment-method',
-  templateUrl: './payment-method.component.html',
-  styleUrls: ['./payment-method.component.scss']
+  selector: 'app-today-payment-method',
+  templateUrl: './today-payment-method.component.html',
+  styleUrls: ['./today-payment-method.component.scss']
 })
-export class PaymentMethodComponent implements OnInit,OnDestroy {
+export class TodayPaymentMethodComponent implements OnInit,OnDestroy {
 
   private subs = new SubSink();
   loading = false;

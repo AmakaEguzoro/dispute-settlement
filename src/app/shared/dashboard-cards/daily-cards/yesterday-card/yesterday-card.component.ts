@@ -19,10 +19,8 @@ export class YesterdayCardComponent implements OnInit {
   totalCount: any;
   yesterdaySuccess: any;
   yesterdayFailed: any;
-
   successPercent: any;
   failedPercent: any;
-  totalPercent: any;
   private subs = new SubSink();
   isData: boolean;
 
@@ -52,12 +50,6 @@ export class YesterdayCardComponent implements OnInit {
           this.loading = false;
           console.log('cant get yesterday response', error)
         }),
-        await  this.summaryService.getToday().subscribe(responseList => {
-          let todaySuccess = responseList[0];
-          let todayFailed = responseList[1];
-          let todayTotalAmount = math.add(todaySuccess.data.amount, todayFailed.data.amount);
-         this.totalPercent = math.chain(this.totalAmount).subtract(todayTotalAmount).divide(this.totalAmount).multiply(100);
-        })
       );
 
   }

@@ -16,15 +16,21 @@ import { LastWeekCardComponent } from './dashboard-cards/weekly-cards/last-week-
 import { ThisWeekCardComponent } from './dashboard-cards/weekly-cards/this-week-card/this-week-card.component';
 import { SummaryService } from 'app/service/summary.service';
 import { ThousandSuffixesPipe } from 'app/service/ThousandSuffixesPipe';
-import { ChannelsComponent } from './top-5/channels/channels.component';
-import { ProductsComponent } from './top-5/products/products.component';
 import { ToNumberPipe } from 'app/service/ToNumberPipe';
 import { RoundPipe } from 'app/service/toRound';
 import { ChannelService } from 'app/service/channels.service';
-import { PaymentMethodComponent } from './top-5/payment-method/payment-method.component';
 import { ProductsService } from 'app/service/products.service';
 import { OrderModule } from 'ngx-order-pipe';
 import { PaymentMethodService } from 'app/service/payment-method.service';
+import { TodayChannelsComponent } from './top-5/channel/today-channels/today-channels.component';
+import { ThisWeekChannelsComponent } from './top-5/channel/this-week-channels/this-week-channels.component';
+import { ThisMonthChannelsComponent } from './top-5/channel/this-month-channels/this-month-channels.component';
+import { ThisMonthPaymentMethodComponent } from './top-5/payment-methods/this-month-payment-method/this-month-payment-method.component';
+import { TodayPaymentMethodComponent } from './top-5/payment-methods/today-payment-method/today-payment-method.component';
+import { ThisMonthProductComponent } from './top-5/product/this-month-product/this-month-product.component';
+import { ThisWeekProductComponent } from './top-5/product/this-week-product/this-week-product.component';
+import { TodayProductComponent } from './top-5/product/today-product/today-product.component';
+import { ThisWeekPaymentMethodComponent } from './top-5/payment-methods/this-week-payment-method/this-week-payment-method.component';
 
 @NgModule({
   imports: [
@@ -51,9 +57,16 @@ import { PaymentMethodService } from 'app/service/payment-method.service';
     ThousandSuffixesPipe,
     ToNumberPipe,
     RoundPipe,
-    ChannelsComponent,
-    PaymentMethodComponent,
-    ProductsComponent
+
+    TodayChannelsComponent,
+    ThisWeekChannelsComponent,
+    ThisMonthChannelsComponent,
+    TodayProductComponent,
+    ThisWeekProductComponent,
+    ThisMonthProductComponent,
+    TodayPaymentMethodComponent,
+    ThisWeekPaymentMethodComponent,
+    ThisMonthPaymentMethodComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -74,9 +87,15 @@ import { PaymentMethodService } from 'app/service/payment-method.service';
     ThousandSuffixesPipe,
     ToNumberPipe,
     RoundPipe,
-    ChannelsComponent,
-    PaymentMethodComponent,
-    ProductsComponent
+    TodayChannelsComponent,
+    ThisWeekChannelsComponent,
+    ThisMonthChannelsComponent,
+    TodayProductComponent,
+    ThisWeekProductComponent,
+    ThisMonthProductComponent,
+    TodayPaymentMethodComponent,
+    ThisWeekPaymentMethodComponent,
+    ThisMonthPaymentMethodComponent,
   ],
   providers: [
     // NotificationService,

@@ -4,11 +4,11 @@ import { SubSink } from 'subsink/dist/subsink';
 import { ProductsService } from 'app/service/products.service';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  selector: 'app-today-product',
+  templateUrl: './today-product.component.html',
+  styleUrls: ['./today-product.component.scss']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class TodayProductComponent implements OnInit, OnDestroy {
 
   private subs = new SubSink();
   loading = false;
@@ -27,6 +27,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(private productsService: ProductsService) { }
 
   async ngOnInit() {
+    // this.test()
     this.isData = true;
     this.loading = true,
       this.subs.add(
@@ -108,9 +109,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
       );
   }
 
+  // async test(){
+  //   await this.productsService.getProduct().subscribe(responseList => {
+  //     console.log(responseList)
+  //   },error=>{
+  //     console.log('error running the code')
+  //   });
+  // }
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
 
   headElements = ['', 'Success', 'Fail', 'Total'];
 }
+

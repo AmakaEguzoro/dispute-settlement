@@ -4,11 +4,11 @@ import * as math from 'mathjs';
 import { SubSink } from 'subsink/dist/subsink';
 
 @Component({
-  selector: 'app-channels',
-  templateUrl: './channels.component.html',
-  styleUrls: ['./channels.component.scss']
+  selector: 'app-today-channels',
+  templateUrl: './today-channels.component.html',
+  styleUrls: ['./today-channels.component.scss']
 })
-export class ChannelsComponent implements OnInit, OnDestroy {
+export class TodayChannelsComponent implements OnInit, OnDestroy {
 
   private subs = new SubSink();
   loading = false;

@@ -21,7 +21,6 @@ export class LastWeekCardComponent implements OnInit {
 
   successPercent: any;
   failedPercent: any;
-  totalPercent: any;
   private subs = new SubSink();
   isData: boolean;
 
@@ -51,12 +50,6 @@ export class LastWeekCardComponent implements OnInit {
           this.loading = false;
           console.log('cant get lastWeek response', error)
         }),
-        this.summaryService.getThisWeek().subscribe(responseList => {
-          let thisWeekSuccess = responseList[0];
-          let thisWeekFailed = responseList[1];
-          let thisWeekTotalAmount = math.add(thisWeekSuccess.data.amount, thisWeekFailed.data.amount);
-          this.totalPercent = math.chain(this.totalAmount).subtract(thisWeekTotalAmount).divide(this.totalAmount).multiply(100);
-        })
       );
 
   }

@@ -22,7 +22,6 @@ export class LastMonthCardComponent implements OnInit {
 
   successPercent: any;
   failedPercent: any;
-  totalPercent: any;
   private subs = new SubSink();
   isData: boolean;
 
@@ -52,12 +51,6 @@ export class LastMonthCardComponent implements OnInit {
           this.loading = false;
           console.log('cant get lastMonth response', error)
         }),
-        this.summaryService.getThisMonth().subscribe(responseList => {
-          let thisMonthSuccess = responseList[0];
-          let thisMonthFailed = responseList[1];
-          let thisMonthTotalAmount = math.add(thisMonthSuccess.data.amount, thisMonthFailed.data.amount);
-          this.totalPercent = math.chain(this.totalAmount).subtract(thisMonthTotalAmount).divide(this.totalAmount).multiply(100);
-        })
       );
 
   }
