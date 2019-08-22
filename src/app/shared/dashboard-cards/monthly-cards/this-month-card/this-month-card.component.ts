@@ -50,7 +50,7 @@ export class ThisMonthCardComponent implements OnInit {
           this.loading = false;
           console.log('cant get thisMonth response', error);
         }),
-        this.summaryService.getLastMonth().subscribe(responseList => {
+       await this.summaryService.getLastMonth().subscribe(responseList => {
           let lastMonthSuccess = responseList[0];
           let lastMonthFailed = responseList[1];
           let lastMonthTotalAmount = math.add(lastMonthSuccess.data.amount, lastMonthFailed.data.amount);

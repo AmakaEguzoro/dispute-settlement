@@ -50,7 +50,7 @@ export class ThisWeekCardComponent implements OnInit {
           this.loading = false;
           console.log('cant get thisWeek response', error);
         }),
-        this.summaryService.getLastWeek().subscribe(responseList => {
+      await  this.summaryService.getLastWeek().subscribe(responseList => {
           let lastWeekSuccess = responseList[0];
           let lastWeekFailed = responseList[1];
           let lastWeekTotalAmount = math.add(lastWeekSuccess.data.amount, lastWeekFailed.data.amount);

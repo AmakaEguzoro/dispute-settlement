@@ -79,7 +79,7 @@ const routes: Route[] = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'home', component: NavigationComponent },
+      // { path: 'home', component: NavigationComponent },
       { path: 'admin-dashboard', component: AdminDashboardComponent },
     ]
   },

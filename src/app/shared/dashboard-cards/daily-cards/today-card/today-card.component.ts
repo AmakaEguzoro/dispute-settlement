@@ -50,7 +50,7 @@ export class TodayCardComponent implements OnInit, OnDestroy {
           this.loading = false;
           console.log('cant get today response', error);
         }),
-        this.summaryService.getYesterday().subscribe(responseList => {
+        await this.summaryService.getYesterday().subscribe(responseList => {
           let yesterdaySuccess = responseList[0];
           let yesterdayFailed = responseList[1];
           let yesterdayTotalAmount = math.add(yesterdaySuccess.data.amount, yesterdayFailed.data.amount);

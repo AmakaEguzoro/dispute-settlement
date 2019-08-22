@@ -1,21 +1,21 @@
 <div class="row mt-5">
   <div class="container">
-    <label class="total-trans">Top 5 Channels</label>
-
+    <label class="summary-total-trans">Top 5 Channels</label>
     <mdb-card>
-      <mdb-card-body>
+      <mdb-card-body [style.height.em]="'24'">
         <mdb-card-text>
-          <table mdbTable striped="true" responsive="true">
+          <table mdbTable striped="true" responsive="true" style="display: table;">
             <thead>
               <tr>
-                <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                <th class="channel-head" *ngFor="let head of headElements" scope="col">{{head}} </th>
               </tr>
             </thead>
+          <tbody>
             <tr *ngFor="let item of elements | orderBy: 'total':true ">
-              <th class="id" scope="row">{{item.title}}</th>
-              <td class="success">{{item.success | thousandSuff : 2}}</td>
-              <td class="fail">{{item.fail | thousandSuff : 2 }}</td>
-              <td class="total">{{item.total | thousandSuff : 2}}</td>
+              <th class="channel-id" scope="row">{{item.title}}</th>
+              <td class="channel-success">{{item.success | thousandSuff : 2}}</td>
+              <td class="channel-fail">{{item.fail | thousandSuff : 2 }}</td>
+              <td class="channel-total">{{item.total | thousandSuff : 2}}</td>
             </tr>
             </tbody>
             <tbody *ngIf="loading">
@@ -27,7 +27,7 @@
             </tbody>
             <tbody *ngIf="isData == false">
               <tr>
-                <td class="noData">
+                <td class="summary-noData" style=" background: #fff;">
                   <strong>No Data Available</strong>
                 </td>
               </tr>
@@ -37,6 +37,6 @@
 
       </mdb-card-body>
     </mdb-card>
-  </div>
+</div>
 
 </div>

@@ -33,6 +33,7 @@ import { ErrordialogComponent } from './views/errordialog/errordialog.component'
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 import { OrderModule } from 'ngx-order-pipe';
+import { CustomHttpInterceptorService } from './_auth/Http-inter';
 
 
 @NgModule({
@@ -67,7 +68,7 @@ import { OrderModule } from 'ngx-order-pipe';
     // AngularFireStorage,
     // EncrDecrService,
     ErrordialogComponent,
-    HttpInterceptorProvider,
+     HttpInterceptorProvider,
     AuthGuard
   ],
   bootstrap: [AppComponent],

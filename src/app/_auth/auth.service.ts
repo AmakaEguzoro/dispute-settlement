@@ -97,13 +97,7 @@ export class AuthService {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token)
   }
-  checkSession(err) {
-    if (err.status == 401 || err.status == 403) {
-      this.logout();
-      return true
-    }
-    return false;
-  }
+
   logout() {
     localStorage.removeItem('token')
     this.router.navigate(['/login']),

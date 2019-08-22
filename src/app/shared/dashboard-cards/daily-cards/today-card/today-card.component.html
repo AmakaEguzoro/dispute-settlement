@@ -1,22 +1,24 @@
 <div class="row">
         <div class="col-12">
                 <!-- first card -->
-                <label class="total-trans">Today</label>
+                <label class="summary-total-trans">Today</label>
                 <div class="card classic-admin-card">
                         <div class="card-body">
-                                <div class="pull-right "  [ngClass]="{
-                                        'successful' : totalPercent > 0,
-                                        'failed' : totalPercent < 0
-                                     }">{{ totalPercent | toNumber | number:'1.0-0'}}%</div>
-                                <p class="card-text total-trans">Total Transactions</p> <br>
+                                <div class="pull-right" [ngClass]="{
+                                          'positive' : totalPercent > 0,
+                                           'negative' : totalPercent < 0
+                                         }">{{ totalPercent | toNumber | number:'1.0-0'}}%</div>
+                                <div class="total-percent mt-3">Previous Day</div>
+                                <p class="summary-total-trans">Total Transactions</p> <br>
                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                 <h4 *ngIf="loading == false">
-                                        <div *ngIf="isData == true" class="pull-right">
+                                        <div *ngIf="isData == true" class="summary-amount">
                                                 &#x20A6;{{totalAmount | thousandSuff : 2}}</div>
-                                        <p *ngIf="isData == true" class="card-text"> {{ totalCount | thousandSuff }}
+                                        <p *ngIf="isData == true" class="summary-card-text" >
+                                              {{ totalCount | thousandSuff }}
                                                 &nbsp; Transactions</p>
                                 </h4>
-                                <strong class="noData" *ngIf="isData == false">No Data Available</strong>
+                                <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                         </div>
                 </div>
 
@@ -28,17 +30,19 @@
         <div class="col-6">
                 <div class="card classic-admin-card">
                         <div class="card-body">
-                                <div class="pull-right successful">{{successPercent | toNumber | number:'1.0-0'}}%
+                                <div class="pull-right summary-successful">
+                                        {{successPercent | toNumber | number:'1.0-0'}}%
                                 </div>
-                                <p class="card-text">Successful Transactions</p> <br>
+                                <p class="summary-card-text">Successful Transactions</p> <br>
                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                 <h4 *ngIf="loading == false">
-                                        <div *ngIf="isData == true" class="pull-right">
+                                        <div *ngIf="isData == true" class="summary-amount">
                                                 &#x20A6;{{successAmount | thousandSuff : 2}}</div>
-                                        <p *ngIf="isData == true" class="card-text">{{successCount | thousandSuff }}
+                                        <p *ngIf="isData == true" class="summary-card-text">
+                                                {{successCount | thousandSuff }}
                                                 &nbsp;Transactions</p>
                                 </h4>
-                                <strong class="noData" *ngIf="isData == false">No Data Available</strong>
+                                <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                         </div>
                 </div>
         </div>
@@ -46,17 +50,18 @@
         <div class="col-6" style="padding-left: 0px;">
                 <div class="card classic-admin-card">
                         <div class="card-body">
-                                <div class="pull-right failed">{{failedPercent | toNumber | number:'1.0-0'}}%
+                                <div class="pull-right summary-failed">{{failedPercent | toNumber | number:'1.0-0'}}%
                                 </div>
-                                <p class="card-text">Failed Transactions</p> <br>
+                                <p class="summary-card-text">Failed Transactions</p> <br>
                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                 <h4 *ngIf="loading == false">
-                                        <div *ngIf="isData == true" class="pull-right">
+                                        <div *ngIf="isData == true" class="summary-amount">
                                                 &#x20A6;{{failedAmount | thousandSuff : 2 }}</div>
-                                        <p *ngIf="isData == true" class="card-text">{{failedCount | thousandSuff }}
+                                        <p *ngIf="isData == true" class="summary-card-text">
+                                                {{failedCount | thousandSuff }}
                                                 &nbsp;Transactions</p>
                                 </h4>
-                                <strong class="noData" *ngIf="isData == false">No Data Available</strong>
+                                <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                         </div>
 
                 </div>
