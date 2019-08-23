@@ -86,7 +86,7 @@ import { TodayCardComponent } from './shared/dashboard-cards/daily-cards/today-c
 
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
-  { path: 'service-status', component: ServiceStatusComponent},
+  { path: 'service-status', component: ServiceStatusComponent },
   {
     path: '',
     runGuardsAndResolvers: 'always',
