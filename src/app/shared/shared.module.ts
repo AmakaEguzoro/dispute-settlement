@@ -23,6 +23,7 @@ import { ChartService } from 'app/service/chart.service';
 import { ChannelsComponent } from './top-5/channels/channels.component';
 import { AgentsComponent } from './top-5/agents/agents.component';
 import { ProductsComponent } from './top-5/products/products.component';
+import { ServiceStatusComponent } from './components/service-status/service-status.component';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import { ProductsComponent } from './top-5/products/products.component';
 
     ChannelsComponent,
     AgentsComponent,
-    ProductsComponent
+    ProductsComponent,
+    ServiceStatusComponent
   ],
   exports: [
     MDBBootstrapModulesPro,
