@@ -169,10 +169,12 @@ export class TodayProductComponent implements OnInit, OnDestroy {
           this.totalSTARTIMESAmount = math.add(STARTIMESSuccessAmount, STARTIMESFailedAmount);
 
           let IBEDCSuccess = responseList[36];
+          console.log(IBEDCSuccess, 'IBedc success')
           let IBEDCFailed = responseList[37];
           let IBEDCSuccessAmount = IBEDCSuccess.data.amount;
           let IBEDCFailedAmount = IBEDCFailed.data.amount;
           this.totalIBEDCAmount = math.add(IBEDCSuccessAmount, IBEDCFailedAmount);
+        
 
           let AEDCSuccess = responseList[38];
           let AEDCFailed = responseList[39];
@@ -193,7 +195,7 @@ export class TodayProductComponent implements OnInit, OnDestroy {
               { 'title': 'MTN-PIN', 'success': MTNPINSuccessAmount, 'fail': MTNPINFailedAmount, 'total': this.totalMTNPINAmount },
 
               { 'title': 'WITHDRAWAL', 'success': WITHDRAWALSuccessAmount, 'fail': WITHDRAWALFailedAmount, 'total': this.totalWITHDRAWALAmount },
-              { 'title': 'RCN_FUND_TRANSFER', 'success': RCN_FUND_TRANSFERSuccessAmount, 'fail': RCN_FUND_TRANSFERFailedAmount, 'total': this.totalRCN_FUND_TRANSFERAmount },
+              { 'title': 'RCN_FUND', 'success': RCN_FUND_TRANSFERSuccessAmount, 'fail': RCN_FUND_TRANSFERFailedAmount, 'total': this.totalRCN_FUND_TRANSFERAmount },
               { 'title': 'ETISALAT-VTU', 'success': ETISALATVTUSuccessAmount, 'fail': ETISALATVTUFailedAmount, 'total': this.totalETISALATVTUAmount },
               { 'title': 'MULTICHOICE', 'success': MultichoiceSuccessAmount, 'fail': MultichoiceFailedAmount, 'total': this.totalMultichoiceAmount },
               { 'title': 'IKEDC', 'success': IKEDCSuccessAmount, 'fail': IKEDCFailedAmount, 'total': this.totalIKEDCAmount },

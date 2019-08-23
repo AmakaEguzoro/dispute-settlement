@@ -62,44 +62,44 @@ export class ProductsService {
         let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/day/OTHERS/successful`);
         let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/day/OTHERS/failed`);
 
-        let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/day/WITHDRAWAL/successful`);
-        let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/day/WITHDRAWAL/failed`);
+        let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `products/day/WITHDRAWAL/successful`);
+        let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `products/day/WITHDRAWAL/failed`);
 
-        let getETISALATVTUSuccess = this.httpClient.get(this.baseUrl + `channels/day/ETISALATVTU/successful`);
-        let getETISALATVTUFailed = this.httpClient.get(this.baseUrl + `channels/day/ETISALATVTU/failed`);
+        let getETISALATVTUSuccess = this.httpClient.get(this.baseUrl + `products/day/ETISALATVTU/successful`);
+        let getETISALATVTUFailed = this.httpClient.get(this.baseUrl + `products/day/ETISALATVTU/failed`);
 
-        let getRCN_FUND_TRANSFERSuccess = this.httpClient.get(this.baseUrl + `channels/day/RCN_FUND_TRANSFER/successful`);
-        let getRCN_FUND_TRANSFERFailed = this.httpClient.get(this.baseUrl + `channels/day/RCN_FUND_TRANSFER/failed`);
+        let getRCN_FUND_TRANSFERSuccess = this.httpClient.get(this.baseUrl + `products/day/RCN_FUND_TRANSFER/successful`);
+        let getRCN_FUND_TRANSFERFailed = this.httpClient.get(this.baseUrl + `products/day/RCN_FUND_TRANSFER/failed`);
 
-        let getMultichoiceSuccess = this.httpClient.get(this.baseUrl + `channels/day/Multichoice/successful`);
-        let getMultichoiceFailed = this.httpClient.get(this.baseUrl + `channels/day/Multichoice/failed`);
+        let getMultichoiceSuccess = this.httpClient.get(this.baseUrl + `products/day/Multichoice/successful`);
+        let getMultichoiceFailed = this.httpClient.get(this.baseUrl + `products/day/Multichoice/failed`);
 
-        let getIKEDCSuccess = this.httpClient.get(this.baseUrl + `channels/day/IKEDC/successful`);
-        let getIKEDCFailed = this.httpClient.get(this.baseUrl + `channels/day/IKEDC/failed`);
+        let getIKEDCSuccess = this.httpClient.get(this.baseUrl + `products/day/IKEDC/successful`);
+        let getIKEDCFailed = this.httpClient.get(this.baseUrl + `products/day/IKEDC/failed`);
 
-        let getEEDCSuccess = this.httpClient.get(this.baseUrl + `channels/day/EEDC/successful`);
-        let getEEDCFailed = this.httpClient.get(this.baseUrl + `channels/day/EEDC/failed`);
+        let getEEDCSuccess = this.httpClient.get(this.baseUrl + `products/day/EEDC/successful`);
+        let getEEDCFailed = this.httpClient.get(this.baseUrl + `products/day/EEDC/failed`);
 
-        let getPHEDCSuccess = this.httpClient.get(this.baseUrl + `payments/day/PHEDC/successful`);
-        let getPHEDCFailed = this.httpClient.get(this.baseUrl + `payments/day/PHEDC/failed`);
+        let getPHEDCSuccess = this.httpClient.get(this.baseUrl + `products/day/PHEDC/successful`);
+        let getPHEDCFailed = this.httpClient.get(this.baseUrl + `products/day/PHEDC/failed`);
 
-        let getTRANSFERSuccess = this.httpClient.get(this.baseUrl + `payments/day/TRANSFER/successful`);
-        let getTRANSFERFailed = this.httpClient.get(this.baseUrl + `payments/day/TRANSFER/failed`);
+        let getTRANSFERSuccess = this.httpClient.get(this.baseUrl + `products/day/TRANSFER/successful`);
+        let getTRANSFERFailed = this.httpClient.get(this.baseUrl + `products/day/TRANSFER/failed`);
 
-        let getEKEDCSuccess = this.httpClient.get(this.baseUrl + `payments/day/EKEDC/successful`);
-        let getEKEDCFailed = this.httpClient.get(this.baseUrl + `payments/day/EKEDC/failed`);
+        let getEKEDCSuccess = this.httpClient.get(this.baseUrl + `products/day/EKEDC/successful`);
+        let getEKEDCFailed = this.httpClient.get(this.baseUrl + `products/day/EKEDC/failed`);
 
-        let getkedcoSuccess = this.httpClient.get(this.baseUrl + `channels/day/kedco/successful`);
-        let getkedcoFailed = this.httpClient.get(this.baseUrl + `channels/day/kedco/failed`);
+        let getkedcoSuccess = this.httpClient.get(this.baseUrl + `products/day/kedco/successful`);
+        let getkedcoFailed = this.httpClient.get(this.baseUrl + `products/day/kedco/failed`);
 
-        let getSTARTIMESSuccess = this.httpClient.get(this.baseUrl + `channels/day/STARTIMES/successful`);
-        let getSTARTIMESFailed = this.httpClient.get(this.baseUrl + `channels/day/STARTIMES/failed`);
+        let getSTARTIMESSuccess = this.httpClient.get(this.baseUrl + `products/day/STARTIMES/successful`);
+        let getSTARTIMESFailed = this.httpClient.get(this.baseUrl + `products/day/STARTIMES/failed`);
 
-        let getIBEDCSuccess = this.httpClient.get(this.baseUrl + `channels/day/IBEDC/successful`);
-        let getIBEDCFailed = this.httpClient.get(this.baseUrl + `channels/day/IBEDC/failed`);
+        let getIBEDCSuccess = this.httpClient.get(this.baseUrl + `products/day/IBEDC/successful`);
+        let getIBEDCFailed = this.httpClient.get(this.baseUrl + `products/day/IBEDC/failed`);
 
-        let getAEDCSuccess = this.httpClient.get(this.baseUrl + `channels/day/AEDC/successful`);
-        let getAEDCFailed = this.httpClient.get(this.baseUrl + `channels/day/AEDC/failed`);
+        let getAEDCSuccess = this.httpClient.get(this.baseUrl + `products/day/AEDC/successful`);
+        let getAEDCFailed = this.httpClient.get(this.baseUrl + `products/day/AEDC/failed`);
 
 
         return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
@@ -143,44 +143,44 @@ export class ProductsService {
         let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/week/OTHERS/successful`);
         let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/week/OTHERS/failed`);
 
-        let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/week/WITHDRAWAL/successful`);
-        let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/week/WITHDRAWAL/failed`);
+        let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `products/week/WITHDRAWAL/successful`);
+        let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `products/week/WITHDRAWAL/failed`);
 
-        let getETISALATVTUSuccess = this.httpClient.get(this.baseUrl + `channels/week/ETISALATVTU/successful`);
-        let getETISALATVTUFailed = this.httpClient.get(this.baseUrl + `channels/week/ETISALATVTU/failed`);
+        let getETISALATVTUSuccess = this.httpClient.get(this.baseUrl + `products/week/ETISALATVTU/successful`);
+        let getETISALATVTUFailed = this.httpClient.get(this.baseUrl + `products/week/ETISALATVTU/failed`);
 
-        let getRCN_FUND_TRANSFERSuccess = this.httpClient.get(this.baseUrl + `channels/week/RCN_FUND_TRANSFER/successful`);
-        let getRCN_FUND_TRANSFERFailed = this.httpClient.get(this.baseUrl + `channels/week/RCN_FUND_TRANSFER/failed`);
+        let getRCN_FUND_TRANSFERSuccess = this.httpClient.get(this.baseUrl + `products/week/RCN_FUND_TRANSFER/successful`);
+        let getRCN_FUND_TRANSFERFailed = this.httpClient.get(this.baseUrl + `products/week/RCN_FUND_TRANSFER/failed`);
 
-        let getMultichoiceSuccess = this.httpClient.get(this.baseUrl + `channels/week/Multichoice/successful`);
-        let getMultichoiceFailed = this.httpClient.get(this.baseUrl + `channels/week/Multichoice/failed`);
+        let getMultichoiceSuccess = this.httpClient.get(this.baseUrl + `products/week/Multichoice/successful`);
+        let getMultichoiceFailed = this.httpClient.get(this.baseUrl + `products/week/Multichoice/failed`);
 
-        let getIKEDCSuccess = this.httpClient.get(this.baseUrl + `channels/week/IKEDC/successful`);
-        let getIKEDCFailed = this.httpClient.get(this.baseUrl + `channels/week/IKEDC/failed`);
+        let getIKEDCSuccess = this.httpClient.get(this.baseUrl + `products/week/IKEDC/successful`);
+        let getIKEDCFailed = this.httpClient.get(this.baseUrl + `products/week/IKEDC/failed`);
 
-        let getEEDCSuccess = this.httpClient.get(this.baseUrl + `channels/week/EEDC/successful`);
-        let getEEDCFailed = this.httpClient.get(this.baseUrl + `channels/week/EEDC/failed`);
+        let getEEDCSuccess = this.httpClient.get(this.baseUrl + `products/week/EEDC/successful`);
+        let getEEDCFailed = this.httpClient.get(this.baseUrl + `products/week/EEDC/failed`);
 
-        let getPHEDCSuccess = this.httpClient.get(this.baseUrl + `payments/week/PHEDC/successful`);
-        let getPHEDCFailed = this.httpClient.get(this.baseUrl + `payments/week/PHEDC/failed`);
+        let getPHEDCSuccess = this.httpClient.get(this.baseUrl + `products/week/PHEDC/successful`);
+        let getPHEDCFailed = this.httpClient.get(this.baseUrl + `products/week/PHEDC/failed`);
 
-        let getTRANSFERSuccess = this.httpClient.get(this.baseUrl + `payments/week/TRANSFER/successful`);
-        let getTRANSFERFailed = this.httpClient.get(this.baseUrl + `payments/week/TRANSFER/failed`);
+        let getTRANSFERSuccess = this.httpClient.get(this.baseUrl + `products/week/TRANSFER/successful`);
+        let getTRANSFERFailed = this.httpClient.get(this.baseUrl + `products/week/TRANSFER/failed`);
 
-        let getEKEDCSuccess = this.httpClient.get(this.baseUrl + `payments/week/EKEDC/successful`);
-        let getEKEDCFailed = this.httpClient.get(this.baseUrl + `payments/week/EKEDC/failed`);
+        let getEKEDCSuccess = this.httpClient.get(this.baseUrl + `products/week/EKEDC/successful`);
+        let getEKEDCFailed = this.httpClient.get(this.baseUrl + `products/week/EKEDC/failed`);
 
-        let getkedcoSuccess = this.httpClient.get(this.baseUrl + `channels/week/kedco/successful`);
-        let getkedcoFailed = this.httpClient.get(this.baseUrl + `channels/week/kedco/failed`);
+        let getkedcoSuccess = this.httpClient.get(this.baseUrl + `products/week/kedco/successful`);
+        let getkedcoFailed = this.httpClient.get(this.baseUrl + `products/week/kedco/failed`);
 
-        let getSTARTIMESSuccess = this.httpClient.get(this.baseUrl + `channels/week/STARTIMES/successful`);
-        let getSTARTIMESFailed = this.httpClient.get(this.baseUrl + `channels/week/STARTIMES/failed`);
+        let getSTARTIMESSuccess = this.httpClient.get(this.baseUrl + `products/week/STARTIMES/successful`);
+        let getSTARTIMESFailed = this.httpClient.get(this.baseUrl + `products/week/STARTIMES/failed`);
 
-        let getIBEDCSuccess = this.httpClient.get(this.baseUrl + `channels/week/IBEDC/successful`);
-        let getIBEDCFailed = this.httpClient.get(this.baseUrl + `channels/week/IBEDC/failed`);
+        let getIBEDCSuccess = this.httpClient.get(this.baseUrl + `products/week/IBEDC/successful`);
+        let getIBEDCFailed = this.httpClient.get(this.baseUrl + `products/week/IBEDC/failed`);
 
-        let getAEDCSuccess = this.httpClient.get(this.baseUrl + `channels/week/AEDC/successful`);
-        let getAEDCFailed = this.httpClient.get(this.baseUrl + `channels/week/AEDC/failed`);
+        let getAEDCSuccess = this.httpClient.get(this.baseUrl + `products/week/AEDC/successful`);
+        let getAEDCFailed = this.httpClient.get(this.baseUrl + `products/week/AEDC/failed`);
 
 
         return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
@@ -221,44 +221,44 @@ export class ProductsService {
         let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/month/OTHERS/successful`);
         let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/month/OTHERS/failed`);
 
-        let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/month/WITHDRAWAL/successful`);
-        let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/month/WITHDRAWAL/failed`);
+        let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `products/month/WITHDRAWAL/successful`);
+        let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `products/month/WITHDRAWAL/failed`);
 
-        let getETISALATVTUSuccess = this.httpClient.get(this.baseUrl + `channels/month/ETISALATVTU/successful`);
-        let getETISALATVTUFailed = this.httpClient.get(this.baseUrl + `channels/month/ETISALATVTU/failed`);
+        let getETISALATVTUSuccess = this.httpClient.get(this.baseUrl + `products/month/ETISALATVTU/successful`);
+        let getETISALATVTUFailed = this.httpClient.get(this.baseUrl + `products/month/ETISALATVTU/failed`);
 
-        let getRCN_FUND_TRANSFERSuccess = this.httpClient.get(this.baseUrl + `channels/month/RCN_FUND_TRANSFER/successful`);
-        let getRCN_FUND_TRANSFERFailed = this.httpClient.get(this.baseUrl + `channels/month/RCN_FUND_TRANSFER/failed`);
+        let getRCN_FUND_TRANSFERSuccess = this.httpClient.get(this.baseUrl + `products/month/RCN_FUND_TRANSFER/successful`);
+        let getRCN_FUND_TRANSFERFailed = this.httpClient.get(this.baseUrl + `products/month/RCN_FUND_TRANSFER/failed`);
 
-        let getMultichoiceSuccess = this.httpClient.get(this.baseUrl + `channels/month/Multichoice/successful`);
-        let getMultichoiceFailed = this.httpClient.get(this.baseUrl + `channels/month/Multichoice/failed`);
+        let getMultichoiceSuccess = this.httpClient.get(this.baseUrl + `products/month/Multichoice/successful`);
+        let getMultichoiceFailed = this.httpClient.get(this.baseUrl + `products/month/Multichoice/failed`);
 
-        let getIKEDCSuccess = this.httpClient.get(this.baseUrl + `channels/month/IKEDC/successful`);
-        let getIKEDCFailed = this.httpClient.get(this.baseUrl + `channels/month/IKEDC/failed`);
+        let getIKEDCSuccess = this.httpClient.get(this.baseUrl + `products/month/IKEDC/successful`);
+        let getIKEDCFailed = this.httpClient.get(this.baseUrl + `products/month/IKEDC/failed`);
 
-        let getEEDCSuccess = this.httpClient.get(this.baseUrl + `channels/month/EEDC/successful`);
-        let getEEDCFailed = this.httpClient.get(this.baseUrl + `channels/month/EEDC/failed`);
+        let getEEDCSuccess = this.httpClient.get(this.baseUrl + `products/month/EEDC/successful`);
+        let getEEDCFailed = this.httpClient.get(this.baseUrl + `products/month/EEDC/failed`);
 
-        let getPHEDCSuccess = this.httpClient.get(this.baseUrl + `payments/month/PHEDC/successful`);
-        let getPHEDCFailed = this.httpClient.get(this.baseUrl + `payments/month/PHEDC/failed`);
+        let getPHEDCSuccess = this.httpClient.get(this.baseUrl + `products/month/PHEDC/successful`);
+        let getPHEDCFailed = this.httpClient.get(this.baseUrl + `products/month/PHEDC/failed`);
 
-        let getTRANSFERSuccess = this.httpClient.get(this.baseUrl + `payments/month/TRANSFER/successful`);
-        let getTRANSFERFailed = this.httpClient.get(this.baseUrl + `payments/month/TRANSFER/failed`);
+        let getTRANSFERSuccess = this.httpClient.get(this.baseUrl + `products/month/TRANSFER/successful`);
+        let getTRANSFERFailed = this.httpClient.get(this.baseUrl + `products/month/TRANSFER/failed`);
 
-        let getEKEDCSuccess = this.httpClient.get(this.baseUrl + `payments/month/EKEDC/successful`);
-        let getEKEDCFailed = this.httpClient.get(this.baseUrl + `payments/month/EKEDC/failed`);
+        let getEKEDCSuccess = this.httpClient.get(this.baseUrl + `products/month/EKEDC/successful`);
+        let getEKEDCFailed = this.httpClient.get(this.baseUrl + `products/month/EKEDC/failed`);
 
-        let getkedcoSuccess = this.httpClient.get(this.baseUrl + `channels/month/kedco/successful`);
-        let getkedcoFailed = this.httpClient.get(this.baseUrl + `channels/month/kedco/failed`);
+        let getkedcoSuccess = this.httpClient.get(this.baseUrl + `products/month/kedco/successful`);
+        let getkedcoFailed = this.httpClient.get(this.baseUrl + `products/month/kedco/failed`);
 
-        let getSTARTIMESSuccess = this.httpClient.get(this.baseUrl + `channels/month/STARTIMES/successful`);
-        let getSTARTIMESFailed = this.httpClient.get(this.baseUrl + `channels/month/STARTIMES/failed`);
+        let getSTARTIMESSuccess = this.httpClient.get(this.baseUrl + `products/month/STARTIMES/successful`);
+        let getSTARTIMESFailed = this.httpClient.get(this.baseUrl + `products/month/STARTIMES/failed`);
 
-        let getIBEDCSuccess = this.httpClient.get(this.baseUrl + `channels/month/IBEDC/successful`);
-        let getIBEDCFailed = this.httpClient.get(this.baseUrl + `channels/month/IBEDC/failed`);
+        let getIBEDCSuccess = this.httpClient.get(this.baseUrl + `products/month/IBEDC/successful`);
+        let getIBEDCFailed = this.httpClient.get(this.baseUrl + `products/month/IBEDC/failed`);
 
-        let getAEDCSuccess = this.httpClient.get(this.baseUrl + `channels/month/AEDC/successful`);
-        let getAEDCFailed = this.httpClient.get(this.baseUrl + `channels/month/AEDC/failed`);
+        let getAEDCSuccess = this.httpClient.get(this.baseUrl + `products/month/AEDC/successful`);
+        let getAEDCFailed = this.httpClient.get(this.baseUrl + `products/month/AEDC/failed`);
 
 
 
