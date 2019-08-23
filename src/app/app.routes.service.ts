@@ -1,24 +1,9 @@
 import { PaymentsDashboardComponent } from './views/payments/payments-dashboard/payments-dashboard.component';
 import { PaymentsOnlineComponent } from './views/payments/payments-online/payments-online.component';
 import { PaymentsOfflineComponent } from './views/payments/payments-offline/payments-offline.component';
-import { BlogsDashboardComponent } from './views/blogs/blogs-dashboard/blogs-dashboard.component';
-import { CreateBlogsComponent } from './views/blogs/create-blogs/create-blogs.component';
-import { FeedsDashboardComponent } from './views/feeds/feeds-dashboard/feeds-dashboard.component';
-import { CreateFeedsComponent } from './views/feeds/create-feeds/create-feeds.component';
-import { CreateMembersComponent } from './views/members/create-members/create-members.component';
-import { MembersDashboardComponent } from './views/members/members-dashboard/members-dashboard.component';
 import { AdminDashboardComponent } from './views/admin/admin-dashboard/admin-dashboard.component';
 import { RoleManagementComponent } from './views/admin/role-management/role-management.component';
-import { FinanceManagementComponent } from './views/finance/finance-management/finance-management.component';
-import { FinanceDashboardComponent } from './views/finance/finance-dashboard/finance-dashboard.component';
-import { MinutesDashboardComponent } from './views/minutes/minutes-dashboard/minutes-dashboard.component';
-import { MinutesManagementComponent } from './views/minutes/minutes-management/minutes-management.component';
-import { ElectionsManagementComponent } from './views/elections/elections-management/elections-management.component';
-import { ElectionsDashboardComponent } from './views/elections/elections-dashboard/elections-dashboard.component';
-import { ExcosComponent } from './views/members/excos/excos.component';
-import { CreateMinutesComponent } from './views/minutes/create-minutes/create-minutes.component';
-import { CreateFinanceComponent } from './views/finance/create-finance/create-finance.component';
-import { CreateElectionsComponent } from './views/elections/create-elections/create-elections.component';
+
 
 import { HelpComponent } from './views/help/help.component';
 import { Settings1Component } from './views/settings/settings1/settings1.component';
@@ -65,7 +50,6 @@ import { RouterModule, Route } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { NotFoundComponent } from './views/errors/not-found/not-found.component';
 import { LoginComponent } from './views/pages/login/login.component';
-import { RegisterComponent } from './views/pages/register/register.component';
 import { LockComponent } from './views/pages/lock/lock.component';
 import { PricingComponent } from './views/pages/pricing/pricing.component';
 import { SinglePostComponent } from './views/pages/single-post/single-post.component';
@@ -77,7 +61,6 @@ import { Dashboard3Component } from './views/dashboards/dashboard3/dashboard3.co
 import { Dashboard4Component } from './views/dashboards/dashboard4/dashboard4.component';
 import { Dashboard5Component } from './views/dashboards/dashboard5/dashboard5.component';
 import { EventCalendarComponent } from './views/event-calendar/event-calendar.component';
-import { MembersManagementComponent } from './views/members/members-management/members-management.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { NavigationComponent } from './main-layout/navigation/navigation.component';
 import { ServiceStatusComponent } from './shared/components/service-status/service-status.component';

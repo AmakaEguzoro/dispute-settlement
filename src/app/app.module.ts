@@ -30,7 +30,6 @@ import { EncrDecrService } from 'app/service/encr-decr.service';
 import { RequestInterceptorService } from './service/requset-interceptor.service';
 
 import { MatDialogModule } from '@angular/material';
-import { ErrordialogComponent } from './views/errordialog/errordialog.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 
@@ -40,7 +39,6 @@ import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    ErrordialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +57,6 @@ import { HttpInterceptorProvider } from './_auth/errorInterceptor';
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   entryComponents: [
-    ErrordialogComponent,
   ],
   providers: [
     MDBSpinningPreloader,
@@ -67,7 +64,6 @@ import { HttpInterceptorProvider } from './_auth/errorInterceptor';
     // AngularFirestore,
     // AngularFireStorage,
     // EncrDecrService,
-    ErrordialogComponent,
     // { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptorService, multi: true }
     HttpInterceptorProvider,
     AuthGuard

@@ -23,7 +23,6 @@ import { IconsComponent } from './css/icons/icons.component';
 import { Map1Component } from './maps/map1/map1.component';
 import { Map2Component } from './maps/map2/map2.component';
 import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
 import { LockComponent } from './pages/lock/lock.component';
 import { PricingComponent } from './pages/pricing/pricing.component';
 import { Form1Component } from './forms/form1/form1.component';
@@ -71,27 +70,10 @@ import { TestComponent } from './test/test/test.component';
 import { PaymentsDashboardComponent } from './payments/payments-dashboard/payments-dashboard.component';
 import { PaymentsOnlineComponent } from './payments/payments-online/payments-online.component';
 import { PaymentsOfflineComponent } from './payments/payments-offline/payments-offline.component';
-import { BlogsDashboardComponent } from './blogs/blogs-dashboard/blogs-dashboard.component';
-import { CreateBlogsComponent } from './blogs/create-blogs/create-blogs.component';
-import { FeedsDashboardComponent } from './feeds/feeds-dashboard/feeds-dashboard.component';
-import { CreateFeedsComponent } from './feeds/create-feeds/create-feeds.component';
-import { CreateMembersComponent } from './members/create-members/create-members.component';
 
-import { CreateMinutesComponent } from './minutes/create-minutes/create-minutes.component';
-import { CreateFinanceComponent } from './finance/create-finance/create-finance.component';
-import { CreateElectionsComponent } from './elections/create-elections/create-elections.component';
-import { MembersManagementComponent } from './members/members-management/members-management.component';
-
-import { MembersDashboardComponent } from './members/members-dashboard/members-dashboard.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { RoleManagementComponent } from './admin/role-management/role-management.component';
-import { FinanceManagementComponent } from './finance/finance-management/finance-management.component';
-import { FinanceDashboardComponent } from './finance/finance-dashboard/finance-dashboard.component';
-import { MinutesDashboardComponent } from './minutes/minutes-dashboard/minutes-dashboard.component';
-import { MinutesManagementComponent } from './minutes/minutes-management/minutes-management.component';
-import { ElectionsManagementComponent } from './elections/elections-management/elections-management.component';
-import { ElectionsDashboardComponent } from './elections/elections-dashboard/elections-dashboard.component';
-import { ExcosComponent } from './members/excos/excos.component';
+
 // MDB Angular Pro
 import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
 import { FilterComponent } from './filter/filter.component'
@@ -128,7 +110,6 @@ import { FilterComponent } from './filter/filter.component'
     Map1Component,
     Map2Component,
     LoginComponent,
-    RegisterComponent,
     LockComponent,
     PricingComponent,
     Form1Component,
@@ -176,26 +157,8 @@ import { FilterComponent } from './filter/filter.component'
     PaymentsDashboardComponent,
     PaymentsOnlineComponent,
     PaymentsOfflineComponent,
-    BlogsDashboardComponent,
-    CreateBlogsComponent,
-    FeedsDashboardComponent,
-    CreateFeedsComponent,
-    CreateMembersComponent,
-    MembersDashboardComponent,
     AdminDashboardComponent,
     RoleManagementComponent,
-    FinanceManagementComponent,
-    FinanceDashboardComponent,
-    MinutesDashboardComponent,
-    MinutesManagementComponent,
-    ElectionsManagementComponent,
-    ElectionsDashboardComponent,
-    ExcosComponent,
-    ElectionsManagementComponent,
-    CreateMinutesComponent,
-    CreateFinanceComponent,
-    CreateElectionsComponent,
-    MembersManagementComponent,
     FilterComponent,
     // ErrordialogComponent,
   ],
@@ -213,7 +176,6 @@ import { FilterComponent } from './filter/filter.component'
     Map2Component,
     Map3Component,
     LoginComponent,
-    RegisterComponent,
     LockComponent,
     PricingComponent,
     Form1Component,

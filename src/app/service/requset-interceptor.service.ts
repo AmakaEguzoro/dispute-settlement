@@ -18,7 +18,6 @@ import { EncrDecrService } from "./encr-decr.service";
 import { Constants } from "common/constants";
 import { LoginResponseModel } from "model/response/auth.model";
 import { StorageService } from "./storage.service";
-import { ErrordialofService } from '../service/errordialof.service'
 
 @Injectable()
 export class RequestInterceptorService implements HttpInterceptor {
@@ -26,7 +25,7 @@ export class RequestInterceptorService implements HttpInterceptor {
     isRefreshingToken: boolean = false;
     tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-    constructor(private storageService: StorageService, public errorDialogService: ErrordialofService) {
+    constructor(private storageService: StorageService) {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -60,7 +59,7 @@ export class RequestInterceptorService implements HttpInterceptor {
                     reason: error && error.error && error.error.reason ? error.error.reason : '',
                     status: error.status
                 };
-                this.errorDialogService.openDialog(data);
+                //this.errorDialogService.openDialog(data);
                 return throwError(error);
             }));
     }
