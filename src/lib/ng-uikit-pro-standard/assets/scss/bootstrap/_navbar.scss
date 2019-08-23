@@ -109,7 +109,7 @@
   padding: $navbar-toggler-padding-y $navbar-toggler-padding-x;
   font-size: $navbar-toggler-font-size;
   line-height: 1;
-  background-color: transparent; // remove default button style
+  // background: linear-gradient(0deg, #2D9CDB, #2D9CDB), #FFFFFF !important;// remove default button style
   border: $border-width solid transparent; // remove default button style
   @include border-radius($navbar-toggler-border-radius);
 
@@ -183,6 +183,7 @@
 
         .navbar-toggler {
           display: none;
+          background-color: linear-gradient(0deg, #2D9CDB, #2D9CDB), #FFFFFF !important;
         }
       }
     }

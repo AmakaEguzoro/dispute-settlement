@@ -15,7 +15,7 @@ import { AuthService } from 'app/_auth/auth.service';
     
 //     const currentUser = this.authService.isAuthenticated();
 //     if(currentUser){
-//       return true;
+//       return true;z
 //     }
 //     this.router.navigate(['/login']);
 //     return false;

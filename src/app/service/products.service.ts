@@ -62,34 +62,54 @@ export class ProductsService {
         let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/day/OTHERS/successful`);
         let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/day/OTHERS/failed`);
 
-        // let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/day/WITHDRAWAL/successful`);
-        // let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/day/WITHDRAWAL/failed`);
+        let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/day/WITHDRAWAL/successful`);
+        let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/day/WITHDRAWAL/failed`);
 
-        // let getWebSuccess = this.httpClient.get(this.baseUrl + `channels/day/WEB/successful`);
-        // let getWebFailed = this.httpClient.get(this.baseUrl + `channels/day/WEB/failed`);
+        let getETISALATVTUSuccess = this.httpClient.get(this.baseUrl + `channels/day/ETISALATVTU/successful`);
+        let getETISALATVTUFailed = this.httpClient.get(this.baseUrl + `channels/day/ETISALATVTU/failed`);
 
-        // let getAndroidSuccess = this.httpClient.get(this.baseUrl + `channels/day/ANDROID/successful`);
-        // let getAndroidFailed = this.httpClient.get(this.baseUrl + `channels/day/ANDROID/failed`);
+        let getRCN_FUND_TRANSFERSuccess = this.httpClient.get(this.baseUrl + `channels/day/RCN_FUND_TRANSFER/successful`);
+        let getRCN_FUND_TRANSFERFailed = this.httpClient.get(this.baseUrl + `channels/day/RCN_FUND_TRANSFER/failed`);
 
-        // let getAndroidWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/day/ANDROIDWITHDRAWAL/successful`);
-        // let getAndroidWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/day/ANDROIDWITHDRAWAL/failed`);
+        let getMultichoiceSuccess = this.httpClient.get(this.baseUrl + `channels/day/Multichoice/successful`);
+        let getMultichoiceFailed = this.httpClient.get(this.baseUrl + `channels/day/Multichoice/failed`);
 
-        // let getAtmSuccess = this.httpClient.get(this.baseUrl + `channels/day/ATM/successful`);
-        // let getAtmFailed = this.httpClient.get(this.baseUrl + `channels/day/ATM/failed`);
+        let getIKEDCSuccess = this.httpClient.get(this.baseUrl + `channels/day/IKEDC/successful`);
+        let getIKEDCFailed = this.httpClient.get(this.baseUrl + `channels/day/IKEDC/failed`);
 
-        // let getDefaultSuccess = this.httpClient.get(this.baseUrl + `channels/day/DEFAULT/successful`);
-        // let getDefaultFailed = this.httpClient.get(this.baseUrl + `channels/day/DEFAULT/failed`);
+        let getEEDCSuccess = this.httpClient.get(this.baseUrl + `channels/day/EEDC/successful`);
+        let getEEDCFailed = this.httpClient.get(this.baseUrl + `channels/day/EEDC/failed`);
 
-        // let getOthersSuccess = this.httpClient.get(this.baseUrl + `channels/day/OTHERS/successful`);
-        // let getOthersFailed = this.httpClient.get(this.baseUrl + `channels/day/OTHERS/failed`);
+        let getPHEDCSuccess = this.httpClient.get(this.baseUrl + `payments/day/PHEDC/successful`);
+        let getPHEDCFailed = this.httpClient.get(this.baseUrl + `payments/day/PHEDC/failed`);
+
+        let getTRANSFERSuccess = this.httpClient.get(this.baseUrl + `payments/day/TRANSFER/successful`);
+        let getTRANSFERFailed = this.httpClient.get(this.baseUrl + `payments/day/TRANSFER/failed`);
+
+        let getEKEDCSuccess = this.httpClient.get(this.baseUrl + `payments/day/EKEDC/successful`);
+        let getEKEDCFailed = this.httpClient.get(this.baseUrl + `payments/day/EKEDC/failed`);
+
+        let getkedcoSuccess = this.httpClient.get(this.baseUrl + `channels/day/kedco/successful`);
+        let getkedcoFailed = this.httpClient.get(this.baseUrl + `channels/day/kedco/failed`);
+
+        let getSTARTIMESSuccess = this.httpClient.get(this.baseUrl + `channels/day/STARTIMES/successful`);
+        let getSTARTIMESFailed = this.httpClient.get(this.baseUrl + `channels/day/STARTIMES/failed`);
+
+        let getIBEDCSuccess = this.httpClient.get(this.baseUrl + `channels/day/IBEDC/successful`);
+        let getIBEDCFailed = this.httpClient.get(this.baseUrl + `channels/day/IBEDC/failed`);
+
+        let getAEDCSuccess = this.httpClient.get(this.baseUrl + `channels/day/AEDC/successful`);
+        let getAEDCFailed = this.httpClient.get(this.baseUrl + `channels/day/AEDC/failed`);
 
 
         return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
             getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLOPINSuccess, getGLOPINFailed, getGLODATASuccess,
             getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed,
-            // getWITHDRAWALSuccess, getWITHDRAWALFailed, getWebSuccess, getWebFailed, getAndroidSuccess,
-            // getAndroidFailed, getAndroidWITHDRAWALSuccess, getAndroidWITHDRAWALFailed, getAtmSuccess, getAtmFailed, getDefaultSuccess,
-            // getDefaultFailed, getOthersSuccess, getOthersFailed
+            getWITHDRAWALSuccess, getWITHDRAWALFailed, getETISALATVTUSuccess, getETISALATVTUFailed, getRCN_FUND_TRANSFERSuccess,
+            getRCN_FUND_TRANSFERFailed, getMultichoiceSuccess, getMultichoiceFailed, getIKEDCSuccess, getIKEDCFailed, getEEDCSuccess,
+            getEEDCFailed, getPHEDCSuccess, getPHEDCFailed, getTRANSFERSuccess, getTRANSFERFailed, getEKEDCSuccess,
+            getEKEDCFailed, getkedcoSuccess, getkedcoFailed, getSTARTIMESSuccess, getSTARTIMESFailed, getIBEDCSuccess,
+            getIBEDCFailed, getAEDCSuccess, getAEDCFailed
         ]);
     }
 
@@ -126,29 +146,50 @@ export class ProductsService {
         let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/week/WITHDRAWAL/successful`);
         let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/week/WITHDRAWAL/failed`);
 
-        let getWebSuccess = this.httpClient.get(this.baseUrl + `channels/week/WEB/successful`);
-        let getWebFailed = this.httpClient.get(this.baseUrl + `channels/week/WEB/failed`);
+        let getETISALATVTUSuccess = this.httpClient.get(this.baseUrl + `channels/week/ETISALATVTU/successful`);
+        let getETISALATVTUFailed = this.httpClient.get(this.baseUrl + `channels/week/ETISALATVTU/failed`);
 
-        let getAndroidSuccess = this.httpClient.get(this.baseUrl + `channels/week/ANDROID/successful`);
-        let getAndroidFailed = this.httpClient.get(this.baseUrl + `channels/week/ANDROID/failed`);
+        let getRCN_FUND_TRANSFERSuccess = this.httpClient.get(this.baseUrl + `channels/week/RCN_FUND_TRANSFER/successful`);
+        let getRCN_FUND_TRANSFERFailed = this.httpClient.get(this.baseUrl + `channels/week/RCN_FUND_TRANSFER/failed`);
 
-        let getAndroidWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/week/ANDROIDWITHDRAWAL/successful`);
-        let getAndroidWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/week/ANDROIDWITHDRAWAL/failed`);
+        let getMultichoiceSuccess = this.httpClient.get(this.baseUrl + `channels/week/Multichoice/successful`);
+        let getMultichoiceFailed = this.httpClient.get(this.baseUrl + `channels/week/Multichoice/failed`);
 
-        let getAtmSuccess = this.httpClient.get(this.baseUrl + `channels/week/ATM/successful`);
-        let getAtmFailed = this.httpClient.get(this.baseUrl + `channels/week/ATM/failed`);
+        let getIKEDCSuccess = this.httpClient.get(this.baseUrl + `channels/week/IKEDC/successful`);
+        let getIKEDCFailed = this.httpClient.get(this.baseUrl + `channels/week/IKEDC/failed`);
 
-        let getDefaultSuccess = this.httpClient.get(this.baseUrl + `channels/week/DEFAULT/successful`);
-        let getDefaultFailed = this.httpClient.get(this.baseUrl + `channels/week/DEFAULT/failed`);
+        let getEEDCSuccess = this.httpClient.get(this.baseUrl + `channels/week/EEDC/successful`);
+        let getEEDCFailed = this.httpClient.get(this.baseUrl + `channels/week/EEDC/failed`);
 
-        let getOthersSuccess = this.httpClient.get(this.baseUrl + `channels/week/OTHERS/successful`);
-        let getOthersFailed = this.httpClient.get(this.baseUrl + `channels/week/OTHERS/failed`);
+        let getPHEDCSuccess = this.httpClient.get(this.baseUrl + `payments/week/PHEDC/successful`);
+        let getPHEDCFailed = this.httpClient.get(this.baseUrl + `payments/week/PHEDC/failed`);
+
+        let getTRANSFERSuccess = this.httpClient.get(this.baseUrl + `payments/week/TRANSFER/successful`);
+        let getTRANSFERFailed = this.httpClient.get(this.baseUrl + `payments/week/TRANSFER/failed`);
+
+        let getEKEDCSuccess = this.httpClient.get(this.baseUrl + `payments/week/EKEDC/successful`);
+        let getEKEDCFailed = this.httpClient.get(this.baseUrl + `payments/week/EKEDC/failed`);
+
+        let getkedcoSuccess = this.httpClient.get(this.baseUrl + `channels/week/kedco/successful`);
+        let getkedcoFailed = this.httpClient.get(this.baseUrl + `channels/week/kedco/failed`);
+
+        let getSTARTIMESSuccess = this.httpClient.get(this.baseUrl + `channels/week/STARTIMES/successful`);
+        let getSTARTIMESFailed = this.httpClient.get(this.baseUrl + `channels/week/STARTIMES/failed`);
+
+        let getIBEDCSuccess = this.httpClient.get(this.baseUrl + `channels/week/IBEDC/successful`);
+        let getIBEDCFailed = this.httpClient.get(this.baseUrl + `channels/week/IBEDC/failed`);
+
+        let getAEDCSuccess = this.httpClient.get(this.baseUrl + `channels/week/AEDC/successful`);
+        let getAEDCFailed = this.httpClient.get(this.baseUrl + `channels/week/AEDC/failed`);
+
 
         return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
             getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLOPINSuccess, getGLOPINFailed, getGLODATASuccess,
-            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed,getWITHDRAWALSuccess, getWITHDRAWALFailed, getWebSuccess, getWebFailed, getAndroidSuccess,
-            getAndroidFailed, getAndroidWITHDRAWALSuccess, getAndroidWITHDRAWALFailed, getAtmSuccess, getAtmFailed, getDefaultSuccess,
-            getDefaultFailed, getOthersSuccess, getOthersFailed]);
+            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed,getWITHDRAWALSuccess, getWITHDRAWALFailed, getETISALATVTUSuccess, getETISALATVTUFailed, getRCN_FUND_TRANSFERSuccess,
+            getRCN_FUND_TRANSFERFailed, getMultichoiceSuccess, getMultichoiceFailed, getIKEDCSuccess, getIKEDCFailed, getEEDCSuccess,
+            getEEDCFailed, getPHEDCSuccess, getPHEDCFailed, getTRANSFERSuccess, getTRANSFERFailed, getEKEDCSuccess,
+            getEKEDCFailed, getkedcoSuccess, getkedcoFailed, getSTARTIMESSuccess, getSTARTIMESFailed, getIBEDCSuccess,
+            getIBEDCFailed, getAEDCSuccess, getAEDCFailed]);
     }
 
     // THIS month Products
@@ -183,28 +224,50 @@ export class ProductsService {
         let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/month/WITHDRAWAL/successful`);
         let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/month/WITHDRAWAL/failed`);
 
-        let getWebSuccess = this.httpClient.get(this.baseUrl + `channels/month/WEB/successful`);
-        let getWebFailed = this.httpClient.get(this.baseUrl + `channels/month/WEB/failed`);
+        let getETISALATVTUSuccess = this.httpClient.get(this.baseUrl + `channels/month/ETISALATVTU/successful`);
+        let getETISALATVTUFailed = this.httpClient.get(this.baseUrl + `channels/month/ETISALATVTU/failed`);
 
-        let getAndroidSuccess = this.httpClient.get(this.baseUrl + `channels/month/ANDROID/successful`);
-        let getAndroidFailed = this.httpClient.get(this.baseUrl + `channels/month/ANDROID/failed`);
+        let getRCN_FUND_TRANSFERSuccess = this.httpClient.get(this.baseUrl + `channels/month/RCN_FUND_TRANSFER/successful`);
+        let getRCN_FUND_TRANSFERFailed = this.httpClient.get(this.baseUrl + `channels/month/RCN_FUND_TRANSFER/failed`);
 
-        let getAndroidWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `channels/month/ANDROIDWITHDRAWAL/successful`);
-        let getAndroidWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `channels/month/ANDROIDWITHDRAWAL/failed`);
+        let getMultichoiceSuccess = this.httpClient.get(this.baseUrl + `channels/month/Multichoice/successful`);
+        let getMultichoiceFailed = this.httpClient.get(this.baseUrl + `channels/month/Multichoice/failed`);
 
-        let getAtmSuccess = this.httpClient.get(this.baseUrl + `channels/month/ATM/successful`);
-        let getAtmFailed = this.httpClient.get(this.baseUrl + `channels/month/ATM/failed`);
+        let getIKEDCSuccess = this.httpClient.get(this.baseUrl + `channels/month/IKEDC/successful`);
+        let getIKEDCFailed = this.httpClient.get(this.baseUrl + `channels/month/IKEDC/failed`);
 
-        let getDefaultSuccess = this.httpClient.get(this.baseUrl + `channels/month/DEFAULT/successful`);
-        let getDefaultFailed = this.httpClient.get(this.baseUrl + `channels/month/DEFAULT/failed`);
+        let getEEDCSuccess = this.httpClient.get(this.baseUrl + `channels/month/EEDC/successful`);
+        let getEEDCFailed = this.httpClient.get(this.baseUrl + `channels/month/EEDC/failed`);
 
-        let getOthersSuccess = this.httpClient.get(this.baseUrl + `channels/month/OTHERS/successful`);
-        let getOthersFailed = this.httpClient.get(this.baseUrl + `channels/month/OTHERS/failed`);
+        let getPHEDCSuccess = this.httpClient.get(this.baseUrl + `payments/month/PHEDC/successful`);
+        let getPHEDCFailed = this.httpClient.get(this.baseUrl + `payments/month/PHEDC/failed`);
+
+        let getTRANSFERSuccess = this.httpClient.get(this.baseUrl + `payments/month/TRANSFER/successful`);
+        let getTRANSFERFailed = this.httpClient.get(this.baseUrl + `payments/month/TRANSFER/failed`);
+
+        let getEKEDCSuccess = this.httpClient.get(this.baseUrl + `payments/month/EKEDC/successful`);
+        let getEKEDCFailed = this.httpClient.get(this.baseUrl + `payments/month/EKEDC/failed`);
+
+        let getkedcoSuccess = this.httpClient.get(this.baseUrl + `channels/month/kedco/successful`);
+        let getkedcoFailed = this.httpClient.get(this.baseUrl + `channels/month/kedco/failed`);
+
+        let getSTARTIMESSuccess = this.httpClient.get(this.baseUrl + `channels/month/STARTIMES/successful`);
+        let getSTARTIMESFailed = this.httpClient.get(this.baseUrl + `channels/month/STARTIMES/failed`);
+
+        let getIBEDCSuccess = this.httpClient.get(this.baseUrl + `channels/month/IBEDC/successful`);
+        let getIBEDCFailed = this.httpClient.get(this.baseUrl + `channels/month/IBEDC/failed`);
+
+        let getAEDCSuccess = this.httpClient.get(this.baseUrl + `channels/month/AEDC/successful`);
+        let getAEDCFailed = this.httpClient.get(this.baseUrl + `channels/month/AEDC/failed`);
+
+
 
         return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
             getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLOPINSuccess, getGLOPINFailed, getGLODATASuccess,
-            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed,getWITHDRAWALSuccess, getWITHDRAWALFailed, getWebSuccess, getWebFailed, getAndroidSuccess,
-            getAndroidFailed, getAndroidWITHDRAWALSuccess, getAndroidWITHDRAWALFailed, getAtmSuccess, getAtmFailed, getDefaultSuccess,
-            getDefaultFailed, getOthersSuccess, getOthersFailed]);
+            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed,getWITHDRAWALSuccess, getWITHDRAWALFailed, getETISALATVTUSuccess, getETISALATVTUFailed, getRCN_FUND_TRANSFERSuccess,
+            getRCN_FUND_TRANSFERFailed, getMultichoiceSuccess, getMultichoiceFailed, getIKEDCSuccess, getIKEDCFailed, getEEDCSuccess,
+            getEEDCFailed,getPHEDCSuccess, getPHEDCFailed, getTRANSFERSuccess, getTRANSFERFailed, getEKEDCSuccess,
+            getEKEDCFailed, getkedcoSuccess, getkedcoFailed, getSTARTIMESSuccess, getSTARTIMESFailed, getIBEDCSuccess,
+            getIBEDCFailed, getAEDCSuccess, getAEDCFailed]);
     }
 }
