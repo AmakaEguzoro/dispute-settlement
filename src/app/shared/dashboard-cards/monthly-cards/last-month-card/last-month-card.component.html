@@ -9,8 +9,8 @@
                                 <h4 *ngIf="loading == false">
                                         <div *ngIf="isData == true" class="summary-amount">
                                                 &#x20A6;{{totalAmount | thousandSuff : 2}}</div>
-                                        <p *ngIf="isData == true" class="summary-card-text" >
-                                              {{ totalCount | thousandSuff }}
+                                        <p *ngIf="isData == true" class="summary-card-text">
+                                                {{ totalCount | thousandSuff }}
                                                 &nbsp; Transactions</p>
                                 </h4>
                                 <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
@@ -22,7 +22,7 @@
 </div>
 <!--  -->
 <div class="row mt-2">
-        <div class="col-6">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="card classic-admin-card">
                         <div class="card-body">
                                 <div class="pull-right summary-successful">
@@ -42,7 +42,7 @@
                 </div>
         </div>
 
-        <div class="col-6" style="padding-left: 0px;">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="card classic-admin-card">
                         <div class="card-body">
                                 <div class="pull-right summary-failed">{{failedPercent | toNumber | number:'1.0-0'}}%

@@ -24,7 +24,6 @@
 }
 
 .nav-body{
-    font-family: Ubuntu !important;
     font-size: 12px !important;
     color: #002035 !important;
 font-style: normal;
@@ -33,7 +32,6 @@ line-height: 14px;
 letter-spacing: 0.05em;
 }
 .nav-body-dropdown{
-    font-family: Ubuntu !important;
     font-size: 12px !important;
     color: #002035 !important;
 font-style: normal;
@@ -43,7 +41,4 @@ letter-spacing: 0.05em;
 }
 .nav-body :hover{
 color: #2D9CDB !important
-}
-.navbar-dark .navbar-toggler{
-    background: linear-gradient(0deg, #2D9CDB, #2D9CDB), #FFFFFF !important;
 }
