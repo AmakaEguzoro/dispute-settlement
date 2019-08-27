@@ -13,10 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { FooterComponent } from '../main-layout/footer/footer.component';
 import { BasicTableComponent } from './tables/basic-table/basic-table.component';
-import { Chart1Component } from './charts/chart1/chart1.component';
-import { Chart2Component } from './charts/chart2/chart2.component';
 import { Table2Component } from './tables/table2/table2.component';
-import { Chart3Component } from './charts/chart3/chart3.component';
 import { ModalsComponent } from './modals/modals.component';
 import { TypographyComponent } from './css/typography/typography.component';
 import { IconsComponent } from './css/icons/icons.component';
@@ -107,10 +104,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   declarations: [
     FooterComponent,
     BasicTableComponent,
-    Chart1Component,
-    Chart2Component,
     Table2Component,
-    Chart3Component,
     ModalsComponent,
     TypographyComponent,
     IconsComponent,
@@ -180,10 +174,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   exports: [
     FooterComponent,
     BasicTableComponent,
-    Chart1Component,
-    Chart2Component,
     Table2Component,
-    Chart3Component,
     ModalsComponent,
     TypographyComponent,
     IconsComponent,

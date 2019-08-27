@@ -34,12 +34,16 @@ import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 import { OrderModule } from 'ngx-order-pipe';
 import { CustomHttpInterceptorService } from './_auth/Http-inter';
+import { TransactionComponent } from './Transaction/transaction/transaction.component';
+import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrordialogComponent
+    ErrordialogComponent,
+    TransactionComponent,
+    TransactionCardComponent
   ],
   imports: [
     BrowserModule,

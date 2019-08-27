@@ -41,10 +41,7 @@ import { Map1Component } from './views/maps/map1/map1.component';
 import { IconsComponent } from './views/css/icons/icons.component';
 import { TypographyComponent } from './views/css/typography/typography.component';
 import { ModalsComponent } from './views/modals/modals.component';
-import { Chart3Component } from './views/charts/chart3/chart3.component';
 import { Table2Component } from './views/tables/table2/table2.component';
-import { Chart2Component } from './views/charts/chart2/chart2.component';
-import { Chart1Component } from './views/charts/chart1/chart1.component';
 import { BasicTableComponent } from './views/tables/basic-table/basic-table.component';
 import { Profile1Component } from './views/profile/profile1/profile1.component';
 import { Profile2Component } from './views/profile/profile2/profile2.component';
@@ -68,6 +65,7 @@ import { EventCalendarComponent } from './views/event-calendar/event-calendar.co
 import { MembersManagementComponent } from './views/members/members-management/members-management.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { NavigationComponent } from './main-layout/navigation/navigation.component';
+import { TransactionComponent } from './Transaction/transaction/transaction.component';
 
 
 const routes: Route[] = [
@@ -79,8 +77,8 @@ const routes: Route[] = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      // { path: 'home', component: NavigationComponent },
       { path: 'admin-dashboard', component: AdminDashboardComponent },
+      {path: 'transaction', component: TransactionComponent},
     ]
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
@@ -250,14 +248,7 @@ const routes: Route[] = [
 //         { path: 'table2', component: Table2Component },
 //       ]
 //   },
-//   {
-//     path: 'charts', children:
-//       [
-//         { path: 'chart1', component: Chart1Component },
-//         { path: 'chart2', component: Chart2Component },
-//         { path: 'chart3', component: Chart3Component },
-//       ]
-//   },
+
 //   {
 //     path: 'maps', children:
 //       [

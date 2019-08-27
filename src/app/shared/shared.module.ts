@@ -2,8 +2,6 @@ import { ModalComponent } from './components/modal/modal.component';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CascadingPanelComponent } from './components/cascading-panel/cascading-panel.component';
-import { CascadingCardComponent } from './components/cascading-card/cascading-card.component';
 import { OverlayCardComponent } from './components/overlay-card/overlay-card.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -40,8 +38,6 @@ import { ThisWeekPaymentMethodComponent } from './top-5/payment-methods/this-wee
     OrderModule
   ],
   declarations: [
-    CascadingPanelComponent,
-    CascadingCardComponent,
     OverlayCardComponent,
     PanelComponent,
     ModalComponent,
@@ -70,8 +66,6 @@ import { ThisWeekPaymentMethodComponent } from './top-5/payment-methods/this-wee
   ],
   exports: [
     MDBBootstrapModulesPro,
-    CascadingPanelComponent,
-    CascadingCardComponent,
     OverlayCardComponent,
     PanelComponent,
     ModalComponent,

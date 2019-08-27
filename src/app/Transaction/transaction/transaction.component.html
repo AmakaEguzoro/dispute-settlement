@@ -1,0 +1,32 @@
+<div class="container">
+    <app-transaction-card></app-transaction-card>
+    <br> <br>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="trans-head">
+                    <tr>
+                        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of elements">
+                        <th scope="row">{{item.sn}}</th>
+                        <td>{{item.product}}</td>
+                        <td>{{item.sequence}}</td>
+                        <td>{{item.agentSn}}</td>
+                        <td>{{item.terminal}}</td>
+                        <td><mdb-badge pill="true">{{item.channel}}</mdb-badge></td>
+                        <td>{{item.amount}}</td>
+                        <td style="color:forestgreen">{{item.status}}</td>
+                        <td>{{item.responseT}}</td>
+                        <td>{{item.date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+      </div>
+
+</div>

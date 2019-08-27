@@ -87,8 +87,8 @@ body{
     line-height: 24px;
     letter-spacing: 0.05em;
     color: #4F4F4F;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: -2px;
+    margin-right: 0rem;
   }
   
   
@@ -108,7 +108,9 @@ body{
   color: #4F4F4F !important;
   margin-left: 28px !important;
 }
-
+.navbar-nav .dropdown-menu-right.dropdown-menu{
+  left: 0 !important;
+}
 // nav-bar end
 
 // Summary Begin
