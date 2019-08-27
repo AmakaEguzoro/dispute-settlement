@@ -92,9 +92,6 @@ export class ProductsService {
         let getAEDCSuccess = this.httpClient.get(this.baseUrl + `products/day/AEDC/successful`);
         let getAEDCFailed = this.httpClient.get(this.baseUrl + `products/day/AEDC/failed`);
 
-        let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/day/OTHERS/successful`);
-        let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/day/OTHERS/failed`);
-
 
         return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNDATASuccess,
             getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLODATASuccess,
@@ -103,7 +100,7 @@ export class ProductsService {
             getRCN_FUND_TRANSFERFailed, getMultichoiceSuccess, getMultichoiceFailed, getIKEDCSuccess, getIKEDCFailed, getEEDCSuccess,
             getEEDCFailed, getPHEDSuccess, getPHEDFailed, getTRANSFERSuccess, getTRANSFERFailed, getEKEDCSuccess,
             getEKEDCFailed, getkedcoSuccess, getkedcoFailed, getSTARTIMESSuccess, getSTARTIMESFailed, getIBEDCSuccess, getIBEDCFailed,
-         getAEDCSuccess, getAEDCFailed,  getOTHERSSuccess, getOTHERSFailed,
+         getAEDCSuccess, getAEDCFailed,
         ]);
     }
 
@@ -112,18 +109,12 @@ export class ProductsService {
     getThisWeekProducts(): Observable<any[]> {
         let getMTNVTUSuccess = this.httpClient.get(this.baseUrl + `products/week/MTNVTU/successful`);
         let getMTNVTUFailed = this.httpClient.get(this.baseUrl + `products/week/MTNVTU/failed`);
-
-        let getMTNPINSuccess = this.httpClient.get(this.baseUrl + `products/week/MTNPIN/successful`);
-        let getMTNPINFailed = this.httpClient.get(this.baseUrl + `products/week/MTNPIN/failed`);
-
+       
         let getMTNDATASuccess = this.httpClient.get(this.baseUrl + `products/week/MTNDATA/successful`);
         let getMTNDATAFailed = this.httpClient.get(this.baseUrl + `products/week/MTNDATA/failed`);
 
         let getGLOVTUSuccess = this.httpClient.get(this.baseUrl + `products/week/GLOVTU/successful`);
         let getGLOVTUFailed = this.httpClient.get(this.baseUrl + `products/week/GLOVTU/failed`);
-
-        let getGLOPINSuccess = this.httpClient.get(this.baseUrl + `products/week/GLOPIN/successful`);
-        let getGLOPINFailed = this.httpClient.get(this.baseUrl + `products/week/GLOPIN/failed`);
 
         let getGLODATASuccess = this.httpClient.get(this.baseUrl + `products/week/GLODATA/successful`);
         let getGLODATAFailed = this.httpClient.get(this.baseUrl + `products/week/GLODATA/failed`);
@@ -133,9 +124,6 @@ export class ProductsService {
 
         let getAIRTELPINSuccess = this.httpClient.get(this.baseUrl + `products/week/AIRTELPIN/successful`);
         let getAIRTELPINFailed = this.httpClient.get(this.baseUrl + `products/week/AIRTELPIN/failed`);
-
-        let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/week/OTHERS/successful`);
-        let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/week/OTHERS/failed`);
 
         let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `products/week/WITHDRAWAL/successful`);
         let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `products/week/WITHDRAWAL/failed`);
@@ -177,31 +165,27 @@ export class ProductsService {
         let getAEDCFailed = this.httpClient.get(this.baseUrl + `products/week/AEDC/failed`);
 
 
-        return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
-            getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLOPINSuccess, getGLOPINFailed, getGLODATASuccess,
-            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed,getWITHDRAWALSuccess, getWITHDRAWALFailed, getETISALATVTUSuccess, getETISALATVTUFailed, getRCN_FUND_TRANSFERSuccess,
+        return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNDATASuccess,
+            getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLODATASuccess,
+            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed,
+            getWITHDRAWALSuccess, getWITHDRAWALFailed, getETISALATVTUSuccess, getETISALATVTUFailed, getRCN_FUND_TRANSFERSuccess,
             getRCN_FUND_TRANSFERFailed, getMultichoiceSuccess, getMultichoiceFailed, getIKEDCSuccess, getIKEDCFailed, getEEDCSuccess,
             getEEDCFailed, getPHEDSuccess, getPHEDFailed, getTRANSFERSuccess, getTRANSFERFailed, getEKEDCSuccess,
-            getEKEDCFailed, getkedcoSuccess, getkedcoFailed, getSTARTIMESSuccess, getSTARTIMESFailed, getIBEDCSuccess,
-            getIBEDCFailed, getAEDCSuccess, getAEDCFailed]);
+            getEKEDCFailed, getkedcoSuccess, getkedcoFailed, getSTARTIMESSuccess, getSTARTIMESFailed, getIBEDCSuccess, getIBEDCFailed,
+         getAEDCSuccess, getAEDCFailed,
+        ]);
     }
 
     // THIS month Products
     getThisMonthProducts(): Observable<any[]> {
         let getMTNVTUSuccess = this.httpClient.get(this.baseUrl + `products/month/MTNVTU/successful`);
         let getMTNVTUFailed = this.httpClient.get(this.baseUrl + `products/month/MTNVTU/failed`);
-
-        let getMTNPINSuccess = this.httpClient.get(this.baseUrl + `products/month/MTNPIN/successful`);
-        let getMTNPINFailed = this.httpClient.get(this.baseUrl + `products/month/MTNPIN/failed`);
-
+       
         let getMTNDATASuccess = this.httpClient.get(this.baseUrl + `products/month/MTNDATA/successful`);
         let getMTNDATAFailed = this.httpClient.get(this.baseUrl + `products/month/MTNDATA/failed`);
 
         let getGLOVTUSuccess = this.httpClient.get(this.baseUrl + `products/month/GLOVTU/successful`);
         let getGLOVTUFailed = this.httpClient.get(this.baseUrl + `products/month/GLOVTU/failed`);
-
-        let getGLOPINSuccess = this.httpClient.get(this.baseUrl + `products/month/GLOPIN/successful`);
-        let getGLOPINFailed = this.httpClient.get(this.baseUrl + `products/month/GLOPIN/failed`);
 
         let getGLODATASuccess = this.httpClient.get(this.baseUrl + `products/month/GLODATA/successful`);
         let getGLODATAFailed = this.httpClient.get(this.baseUrl + `products/month/GLODATA/failed`);
@@ -211,9 +195,6 @@ export class ProductsService {
 
         let getAIRTELPINSuccess = this.httpClient.get(this.baseUrl + `products/month/AIRTELPIN/successful`);
         let getAIRTELPINFailed = this.httpClient.get(this.baseUrl + `products/month/AIRTELPIN/failed`);
-
-        let getOTHERSSuccess = this.httpClient.get(this.baseUrl + `products/month/OTHERS/successful`);
-        let getOTHERSFailed = this.httpClient.get(this.baseUrl + `products/month/OTHERS/failed`);
 
         let getWITHDRAWALSuccess = this.httpClient.get(this.baseUrl + `products/month/WITHDRAWAL/successful`);
         let getWITHDRAWALFailed = this.httpClient.get(this.baseUrl + `products/month/WITHDRAWAL/failed`);
@@ -255,13 +236,13 @@ export class ProductsService {
         let getAEDCFailed = this.httpClient.get(this.baseUrl + `products/month/AEDC/failed`);
 
 
-
-        return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNPINSuccess, getMTNPINFailed, getMTNDATASuccess,
-            getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLOPINSuccess, getGLOPINFailed, getGLODATASuccess,
-            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed, getOTHERSSuccess, getOTHERSFailed,getWITHDRAWALSuccess, getWITHDRAWALFailed, getETISALATVTUSuccess, getETISALATVTUFailed, getRCN_FUND_TRANSFERSuccess,
+        return forkJoin([getMTNVTUSuccess, getMTNVTUFailed, getMTNDATASuccess,
+            getMTNDATAFailed, getGLOVTUSuccess, getGLOVTUFailed, getGLODATASuccess,
+            getGLODATAFailed, getAIRTELVTUSuccess, getAIRTELVTUFailed, getAIRTELPINSuccess, getAIRTELPINFailed,
+            getWITHDRAWALSuccess, getWITHDRAWALFailed, getETISALATVTUSuccess, getETISALATVTUFailed, getRCN_FUND_TRANSFERSuccess,
             getRCN_FUND_TRANSFERFailed, getMultichoiceSuccess, getMultichoiceFailed, getIKEDCSuccess, getIKEDCFailed, getEEDCSuccess,
-            getEEDCFailed,getPHEDSuccess, getPHEDFailed, getTRANSFERSuccess, getTRANSFERFailed, getEKEDCSuccess,
-            getEKEDCFailed, getkedcoSuccess, getkedcoFailed, getSTARTIMESSuccess, getSTARTIMESFailed, getIBEDCSuccess,
-            getIBEDCFailed, getAEDCSuccess, getAEDCFailed]);
+            getEEDCFailed, getPHEDSuccess, getPHEDFailed, getTRANSFERSuccess, getTRANSFERFailed, getEKEDCSuccess,
+            getEKEDCFailed, getkedcoSuccess, getkedcoFailed, getSTARTIMESSuccess, getSTARTIMESFailed, getIBEDCSuccess, getIBEDCFailed,
+         getAEDCSuccess, getAEDCFailed, ]);
     }
 }

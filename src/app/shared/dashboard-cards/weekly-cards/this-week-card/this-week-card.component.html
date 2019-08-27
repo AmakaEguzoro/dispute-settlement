@@ -8,7 +8,7 @@
                                           'positive' : totalPercent > 0,
                                            'negative' : totalPercent < 0
                                          }">{{ totalPercent | toNumber | number:'1.0-0'}}%</div>
-                                <div class="total-percent mt-3">Previous Week</div>
+                                <div class="total-percent mt-3">Vs Previous Week</div>
                                 <p class="summary-total-trans">Total Transactions</p> <br>
                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                 <h4 *ngIf="loading == false">
