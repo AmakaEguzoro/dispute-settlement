@@ -29,11 +29,9 @@ import { EncrDecrService } from 'app/service/encr-decr.service';
 import { RequestInterceptorService } from './service/requset-interceptor.service';
 
 import { MatDialogModule } from '@angular/material';
-import { ErrordialogComponent } from './views/errordialog/errordialog.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 import { OrderModule } from 'ngx-order-pipe';
-import { CustomHttpInterceptorService } from './_auth/Http-inter';
 import { TransactionComponent } from './Transaction/transaction/transaction.component';
 import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
 
@@ -41,7 +39,6 @@ import { TransactionCardComponent } from './Transaction/transaction-card/transac
 @NgModule({
   declarations: [
     AppComponent,
-    ErrordialogComponent,
     TransactionComponent,
     TransactionCardComponent
   ],
@@ -63,7 +60,6 @@ import { TransactionCardComponent } from './Transaction/transaction-card/transac
     OrderModule
   ],
   entryComponents: [
-    ErrordialogComponent,
   ],
   providers: [
     MDBSpinningPreloader,
@@ -71,7 +67,6 @@ import { TransactionCardComponent } from './Transaction/transaction-card/transac
     // AngularFirestore,
     // AngularFireStorage,
     // EncrDecrService,
-    ErrordialogComponent,
      HttpInterceptorProvider,
     AuthGuard
   ],

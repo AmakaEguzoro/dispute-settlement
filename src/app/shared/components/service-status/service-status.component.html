@@ -1,0 +1,57 @@
+<!-- <div class=""> -->
+  <div class="row">
+    <div class="col-md-6 offset-3">
+      <div class="card my-card">
+        <div class="card-header my-card-header">
+          <img src="../../../../assets/ItexLogo.png" class="img-fluid mx-auto d-block">
+        </div>
+        <div style="position: relative;">
+          <mdb-spinner spinnerType="big" spinnerColor="green" *ngIf="isLoading" class="spinner"></mdb-spinner>
+        </div>
+
+        <div class="card-body my-card-body">
+          <h5 class="text-center font-weight-bold">Services Status Report</h5>
+        </div>
+
+        <div class="table-responsive-md">
+          <table class="table table-sm table-bordered table-striped table-hover my-table border border-top mx-auto">
+            <thead *ngIf="responseData1">
+              <tr>
+                <!-- <th *ngFor="let head of headElements" scope="col">{{ head }}</th> -->
+                <th>S/N</th>
+                <th>Services</th> 
+                <th>Balance</th>
+                <th [ngStyle]="{'display': 'none'}">Last Deposit</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let el of responseData1 let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ el.service }}</td>
+                <td>
+                  <span class="my-badge my-badge-pill" [ngClass]="{
+                        'badge-danger' : el.IntBalance <= 1000000,
+                        'badge-warning' : el.IntBalance > 1000001 && el.IntBalance < 5000000,
+                        'badge-success' : el.IntBalance > 5000000,
+                        'badge-info' : el.IntBalance == 0
+                      }">{{ el.IntBalance | currency:'NGN':"&#x20A6;":'1.2-2' }}
+                  </span>
+                </td>
+                <!--| currency:'NGN':"&#x20A6;":'1.2-2' -->
+                <td [ngStyle]="{'display': 'none'}">{{ el.lastDeposit }}</td>
+                <td>
+                  <button type="button" class="btn btn-sm my-btn" [ngClass]="{
+                      'btn-success' : el.status == 'ON',
+                      'btn-danger' : el.status == 'OFF'
+                    }" (click)="callSwitch(el.service, el.status)">{{el.status}}</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- </div> -->

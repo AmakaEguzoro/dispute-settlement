@@ -1,0 +1,105 @@
+<div class="row mt-5">
+    <div class="col-md-4">
+        <label class="top-head">Top 5 Channels</label>
+        <mdb-card >
+            <mdb-card-body >
+              <mdb-card-title>
+                  <div class="chart-row">
+                    <div class="text-center">
+                        <mdb-spinner *ngIf="loading == true" spinnerType="big" spinnerColor="blue"></mdb-spinner>
+                    </div>
+                      <canvas mdbChart 
+                          [chartType]="chart3Type"
+                          [datasets]="chart3Datasets" 
+                          [labels]="chart3Labels"
+                          [colors]="chart3Colors"
+                          [options]="chartOptions"
+                          [legend]="false"
+                          lineWidth="300px">
+                      </canvas>
+                  </div>
+              </mdb-card-title>
+              <div class="flex-row">
+                  <table mdbTable
+                   borderless="true"
+                    small="true">
+                  
+                    </table>
+              </div>
+            </mdb-card-body>
+          </mdb-card>
+    </div>
+
+
+    <div class="col-md-4">
+        <label class="top-head">Top 5 Channels</label>
+        <mdb-card >
+            <mdb-card-body >
+              <mdb-card-title>
+                  <div class="chart-row">
+                      <div class="text-center">
+                          <mdb-spinner *ngIf="loading == true" spinnerType="big" spinnerColor="blue"></mdb-spinner>
+                      </div>
+                      <canvas mdbChart 
+                          [chartType]="chart3Type"
+                          [datasets]="chart3Datasets" 
+                          [labels]="chart3Labels"
+                          [colors]="chart3Colors"
+                          [options]="chartOptions"
+                          [legend]="false"
+                          lineWidth="300px">
+                      </canvas>
+                  </div>
+              </mdb-card-title>
+              <div class="flex-row">
+                  <table mdbTable borderless="true" small="true">
+                      <tbody>
+                        <tr mdbTableCol *ngFor="let el of elements">
+                          <th scope="row">{{el.product}}</th>
+                          <td>{{el.amount}}</td>
+                          <td>{{el.percent}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+            </mdb-card-body>
+          </mdb-card>
+    </div>
+
+    <div class="col-md-4">
+        <label class="top-head">Top 5 Products</label>
+        <mdb-card >
+            <mdb-card-body >
+              <mdb-card-title>
+                  <div class="chart-row">
+                      <div class="text-center">
+                          <mdb-spinner *ngIf="loading == true" spinnerType="big" spinnerColor="blue"></mdb-spinner>
+                      </div>
+                      <canvas mdbChart 
+                          [chartType]="chart3Type"
+                          [datasets]="chart3Datasets" 
+                          [labels]="chart3Labels"
+                          [colors]="chart3Colors"
+                          [options]="chartOptions"
+                          [legend]="false"
+                          lineWidth="300px">
+                      </canvas>
+                  </div>
+              </mdb-card-title>
+              <div class="flex-row">
+                  <table mdbTable borderless="true" small="true">
+                      <tbody>
+                        <tr mdbTableCol *ngFor="let el of elements">
+                          <th scope="row">{{el.product}}</th>
+                          <td>{{el.amount}}</td>
+                          <td>{{el.percent}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+            </mdb-card-body>
+          </mdb-card>
+    </div>
+</div>
+
+

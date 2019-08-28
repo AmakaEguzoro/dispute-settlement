@@ -20,7 +20,6 @@ import { IconsComponent } from './css/icons/icons.component';
 import { Map1Component } from './maps/map1/map1.component';
 import { Map2Component } from './maps/map2/map2.component';
 import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
 import { LockComponent } from './pages/lock/lock.component';
 import { PricingComponent } from './pages/pricing/pricing.component';
 import { Form1Component } from './forms/form1/form1.component';
@@ -64,20 +63,9 @@ import { HelpComponent } from './help/help.component';
 import { Settings2Component } from './settings/settings2/settings2.component';
 import { Settings3Component } from './settings/settings3/settings3.component';
 import { TestComponent } from './test/test/test.component';
-import { BlogsDashboardComponent } from './blogs/blogs-dashboard/blogs-dashboard.component';
-import { CreateBlogsComponent } from './blogs/create-blogs/create-blogs.component';
-import { CreateFeedsComponent } from './feeds/create-feeds/create-feeds.component';
-import { CreateMembersComponent } from './members/create-members/create-members.component';
 
-import { CreateMinutesComponent } from './minutes/create-minutes/create-minutes.component';
-import { CreateFinanceComponent } from './finance/create-finance/create-finance.component';
-import { CreateElectionsComponent } from './elections/create-elections/create-elections.component';
-import { MembersManagementComponent } from './members/members-management/members-management.component';
-
-import { MembersDashboardComponent } from './members/members-dashboard/members-dashboard.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { RoleManagementComponent } from './admin/role-management/role-management.component';
-import { ExcosComponent } from './members/excos/excos.component';
 // MDB Angular Pro
 import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -110,7 +98,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     IconsComponent,
     Map1Component,
     Map2Component,
-    RegisterComponent,
     LockComponent,
     PricingComponent,
     Form1Component,
@@ -154,17 +141,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     Settings2Component,
     Settings3Component,
     TestComponent,
-    BlogsDashboardComponent,
-    CreateBlogsComponent,
-    CreateFeedsComponent,
-    CreateMembersComponent,
-    MembersDashboardComponent,
     RoleManagementComponent,
-    ExcosComponent,
-    CreateMinutesComponent,
-    CreateFinanceComponent,
-    CreateElectionsComponent,
-    MembersManagementComponent,
     // ErrordialogComponent,
     //  Itex
     NotFoundComponent,
@@ -181,8 +158,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     Map1Component,
     Map2Component,
     Map3Component,
-    LoginComponent,
-    RegisterComponent,
     LockComponent,
     PricingComponent,
     Form1Component,

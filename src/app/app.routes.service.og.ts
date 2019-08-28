@@ -38,7 +38,6 @@ import { Profile3Component } from './views/profile/profile3/profile3.component';
 import { RouterModule, Route } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { LoginComponent } from './views/pages/login/login.component';
-import { RegisterComponent } from './views/pages/register/register.component';
 import { LockComponent } from './views/pages/lock/lock.component';
 import { PricingComponent } from './views/pages/pricing/pricing.component';
 import { SinglePostComponent } from './views/pages/single-post/single-post.component';
@@ -67,7 +66,6 @@ const routes: Route[] = [
   { path: 'pages', children:
     [
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
       { path: 'lock', component: LockComponent },
       { path: 'pricing', component: PricingComponent },
       { path: 'single-post', component: SinglePostComponent },

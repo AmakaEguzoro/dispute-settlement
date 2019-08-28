@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 // Itex begin
 body{
@@ -108,8 +109,11 @@ body{
   color: #4F4F4F !important;
   margin-left: 28px !important;
 }
-.navbar-nav .dropdown-menu-right.dropdown-menu{
-  left: 0 !important;
+// .navbar-nav .dropdown-menu-right.dropdown-menu{
+//   left: 0 !important;
+// }
+.bg-secondary {
+  background-color: #ffff!important;
 }
 // nav-bar end
 

@@ -30,6 +30,7 @@ import { ThisWeekProductComponent } from './top-5/product/this-week-product/this
 import { TodayProductComponent } from './top-5/product/today-product/today-product.component';
 import { ThisWeekPaymentMethodComponent } from './top-5/payment-methods/this-week-payment-method/this-week-payment-method.component';
 import { TransactionService } from 'app/service/transaction.service';
+import { ServiceStatusComponent } from './components/service-status/service-status.component';
 
 @NgModule({
   imports: [
@@ -64,6 +65,7 @@ import { TransactionService } from 'app/service/transaction.service';
     TodayPaymentMethodComponent,
     ThisWeekPaymentMethodComponent,
     ThisMonthPaymentMethodComponent,
+    ServiceStatusComponent
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -91,6 +93,7 @@ import { TransactionService } from 'app/service/transaction.service';
     TodayPaymentMethodComponent,
     ThisWeekPaymentMethodComponent,
     ThisMonthPaymentMethodComponent,
+    ServiceStatusComponent
   ],
   providers: [
     // NotificationService,

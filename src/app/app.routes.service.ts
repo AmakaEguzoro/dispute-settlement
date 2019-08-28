@@ -1,15 +1,5 @@
-import { BlogsDashboardComponent } from './views/blogs/blogs-dashboard/blogs-dashboard.component';
-import { CreateBlogsComponent } from './views/blogs/create-blogs/create-blogs.component';
-import { CreateFeedsComponent } from './views/feeds/create-feeds/create-feeds.component';
-import { CreateMembersComponent } from './views/members/create-members/create-members.component';
-import { MembersDashboardComponent } from './views/members/members-dashboard/members-dashboard.component';
 import { AdminDashboardComponent } from './views/admin/admin-dashboard/admin-dashboard.component';
 import { RoleManagementComponent } from './views/admin/role-management/role-management.component';
-import { ExcosComponent } from './views/members/excos/excos.component';
-import { CreateMinutesComponent } from './views/minutes/create-minutes/create-minutes.component';
-import { CreateFinanceComponent } from './views/finance/create-finance/create-finance.component';
-import { CreateElectionsComponent } from './views/elections/create-elections/create-elections.component';
-
 import { HelpComponent } from './views/help/help.component';
 import { Settings1Component } from './views/settings/settings1/settings1.component';
 import { Settings2Component } from './views/settings/settings2/settings2.component';
@@ -50,7 +40,6 @@ import { RouterModule, Route } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { LoginComponent } from './views/pages/login/login.component';
-import { RegisterComponent } from './views/pages/register/register.component';
 import { LockComponent } from './views/pages/lock/lock.component';
 import { PricingComponent } from './views/pages/pricing/pricing.component';
 import { SinglePostComponent } from './views/pages/single-post/single-post.component';
@@ -62,23 +51,24 @@ import { Dashboard3Component } from './views/dashboards/dashboard3/dashboard3.co
 import { Dashboard4Component } from './views/dashboards/dashboard4/dashboard4.component';
 import { Dashboard5Component } from './views/dashboards/dashboard5/dashboard5.component';
 import { EventCalendarComponent } from './views/event-calendar/event-calendar.component';
-import { MembersManagementComponent } from './views/members/members-management/members-management.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { NavigationComponent } from './main-layout/navigation/navigation.component';
 import { TransactionComponent } from './Transaction/transaction/transaction.component';
+import { ServiceStatusComponent } from './shared/components/service-status/service-status.component';
+import { TodayCardComponent } from './shared/dashboard-cards/daily-cards/today-card/today-card.component';
 
 
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
- 
 
   {
     path: '',
-    runGuardsAndResolvers: 'always',
+    // runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
       { path: 'admin-dashboard', component: AdminDashboardComponent },
       {path: 'transaction', component: TransactionComponent},
+      { path: 'service-status', component: ServiceStatusComponent },
     ]
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
