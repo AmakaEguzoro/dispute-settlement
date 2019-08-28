@@ -29,6 +29,7 @@ import { ThisMonthProductComponent } from './top-5/product/this-month-product/th
 import { ThisWeekProductComponent } from './top-5/product/this-week-product/this-week-product.component';
 import { TodayProductComponent } from './top-5/product/today-product/today-product.component';
 import { ThisWeekPaymentMethodComponent } from './top-5/payment-methods/this-week-payment-method/this-week-payment-method.component';
+import { TransactionService } from 'app/service/transaction.service';
 
 @NgModule({
   imports: [
@@ -97,7 +98,8 @@ import { ThisWeekPaymentMethodComponent } from './top-5/payment-methods/this-wee
     SummaryService,
     ChannelService,
     ProductsService,
-    PaymentMethodService
+    PaymentMethodService,
+    TransactionService
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
