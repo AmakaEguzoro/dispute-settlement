@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LastMonthSuccess, LastMonthFailed, LastMonthTotal } from 'app/_models/summary';
 import { SummaryService } from 'app/service/summary.service';
 // import {chain, math} from 'mathjs';
 import * as math from 'mathjs';
+import { SubSink } from 'subsink/dist/subsink';
 
 @Component({
   selector: 'app-last-month-card',
@@ -10,63 +10,52 @@ import * as math from 'mathjs';
   styleUrls: ['./last-month-card.component.scss']
 })
 export class LastMonthCardComponent implements OnInit {
-  lastMonthSuccess: LastMonthSuccess;
-  lastMonthFailed: LastMonthFailed;
-  lastMonthTotal: LastMonthTotal;
+  totalAmount: any;
+  successCount: any;
+  failedCount: any;
+  successAmount: any;
+  failedAmount: any;
   loading = false;
-  totalCount: any
-  
-//   thisMonthSuccess:any;
-// tot:any;
-  constructor(private summaryService: SummaryService) { 
-    this.getLastMonthTotal();
-    this.getLastMonthSuccessfull();
-    this.getLastMonthFailed();
+  totalCount: any;
+  lastMonthSuccess: any;
+  lastMonthFailed: any;
+
+  successPercent: any;
+  failedPercent: any;
+  private subs = new SubSink();
+  isData: boolean;
+
+  constructor(private summaryService: SummaryService) { }
+
+  async ngOnInit() {
+    this.isData = true;
+    this.loading = true,
+      this.subs.add(
+        await this.summaryService.getLastMonth().subscribe(responseList => {
+          this.loading = false;
+          this.lastMonthSuccess = responseList[0];
+          this.successCount = this.lastMonthSuccess.data.count;
+          this.successAmount = this.lastMonthSuccess.data.amount;
+
+          this.lastMonthFailed = responseList[1];
+          this.failedCount = this.lastMonthFailed.data.count;
+          this.failedAmount = this.lastMonthFailed.data.amount;
+
+          this.totalCount = math.add(this.successCount, this.failedCount);
+          this.totalAmount = math.add(this.successAmount, this.failedAmount);
+
+          this.successPercent = math.chain(this.successCount).divide(this.totalCount).multiply(100);
+          this.failedPercent = math.chain(this.failedCount).divide(this.totalCount).multiply(100);
+        }, error => {
+          this.isData = false;
+          this.loading = false;
+          console.log('cant get lastMonth response', error)
+        }),
+      );
+
   }
 
-  ngOnInit() {
-    this.summaryService.getThisMonthSuccess().subscribe(data =>{
-    const thisMonthSuccess  = data.data;
-    this.totalCount = math.chain( thisMonthSuccess.count).add(this.lastMonthSuccess.data.count);
-    const successPercent = math.chain(this.lastMonthSuccess.data.count).divide(this.totalCount);
-    // .divide(this.totalCount)
-    // .multiply(100).done()
-      console.log(this.totalCount, 'skkc')
-      // lastMonthSuccess?.data.count /lastm?.data.count+lastMonthSuccess?.data.count * 100
-    })
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
-
-  getLastMonthTotal() {
-    this.loading = true;
-    this.summaryService.getLastMonthTotal().subscribe((lastMonthTotal: LastMonthTotal) => {
-      this.loading = false;
-      this.lastMonthTotal = lastMonthTotal;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get lastMonthTotal');
-    })
-  }
-
-  getLastMonthSuccessfull() {
-     this.loading = true;
-    this.summaryService.getLastMonthSuccess().subscribe((lastMonthSuccess: LastMonthSuccess) => {
-      this.loading = false;
-      this.lastMonthSuccess = lastMonthSuccess;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get lastMonthSuccess');
-    })
-  }
-
-  getLastMonthFailed() {
-    this.loading = true;
-    this.summaryService.getLastMonthFailed().subscribe((lastMonthFailed: LastMonthFailed) => {
-      this.loading = false;
-      this.lastMonthFailed = lastMonthFailed;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get lastMonthFailed');
-    })
-  }
-
 }

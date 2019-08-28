@@ -1,10 +1,5 @@
-import { PaymentsDashboardComponent } from './views/payments/payments-dashboard/payments-dashboard.component';
-import { PaymentsOnlineComponent } from './views/payments/payments-online/payments-online.component';
-import { PaymentsOfflineComponent } from './views/payments/payments-offline/payments-offline.component';
 import { AdminDashboardComponent } from './views/admin/admin-dashboard/admin-dashboard.component';
 import { RoleManagementComponent } from './views/admin/role-management/role-management.component';
-
-
 import { HelpComponent } from './views/help/help.component';
 import { Settings1Component } from './views/settings/settings1/settings1.component';
 import { Settings2Component } from './views/settings/settings2/settings2.component';
@@ -26,11 +21,9 @@ import { CardsComponent } from './views/components/cards/cards.component';
 import { ButtonsComponent } from './views/components/buttons/buttons.component';
 import { ShadowComponent } from './views/css/shadow/shadow.component';
 import { ColorsComponent } from './views/css/colors/colors.component';
-import { ImagesComponent } from './views/css/images/images.component';
 import { UtilitiesComponent } from './views/css/utilities/utilities.component';
 import { MediaObjectComponent } from './views/css/media-object/media-object.component';
 import { GridComponent } from './views/css/grid/grid.component';
-import { AlertComponent } from './shared/alerts/alert/alert.component';
 import { Form2Component } from './views/forms/form2/form2.component';
 import { Form1Component } from './views/forms/form1/form1.component';
 import { Map2Component } from './views/maps/map2/map2.component';
@@ -38,17 +31,14 @@ import { Map1Component } from './views/maps/map1/map1.component';
 import { IconsComponent } from './views/css/icons/icons.component';
 import { TypographyComponent } from './views/css/typography/typography.component';
 import { ModalsComponent } from './views/modals/modals.component';
-import { Chart3Component } from './views/charts/chart3/chart3.component';
 import { Table2Component } from './views/tables/table2/table2.component';
-import { Chart2Component } from './views/charts/chart2/chart2.component';
-import { Chart1Component } from './views/charts/chart1/chart1.component';
 import { BasicTableComponent } from './views/tables/basic-table/basic-table.component';
 import { Profile1Component } from './views/profile/profile1/profile1.component';
 import { Profile2Component } from './views/profile/profile2/profile2.component';
 import { Profile3Component } from './views/profile/profile3/profile3.component';
 import { RouterModule, Route } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-import { NotFoundComponent } from './views/errors/not-found/not-found.component';
+import { NotFoundComponent } from './views/not-found/not-found.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { LockComponent } from './views/pages/lock/lock.component';
 import { PricingComponent } from './views/pages/pricing/pricing.component';
@@ -63,25 +53,26 @@ import { Dashboard5Component } from './views/dashboards/dashboard5/dashboard5.co
 import { EventCalendarComponent } from './views/event-calendar/event-calendar.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { NavigationComponent } from './main-layout/navigation/navigation.component';
+import { TransactionComponent } from './Transaction/transaction/transaction.component';
 import { ServiceStatusComponent } from './shared/components/service-status/service-status.component';
 import { TodayCardComponent } from './shared/dashboard-cards/daily-cards/today-card/today-card.component';
 
 
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
-  { path: 'service-status', component: ServiceStatusComponent },
+
   {
     path: '',
-    runGuardsAndResolvers: 'always',
+    // runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'home', component: NavigationComponent },
       { path: 'admin-dashboard', component: AdminDashboardComponent },
-      
-      // { path: 'today', component: TodayCardComponent}
+      {path: 'transaction', component: TransactionComponent},
+      { path: 'service-status', component: ServiceStatusComponent },
     ]
   },
-  { path: '**', redirectTo: 'login', pathMatch: 'full' }
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
+  // { path: 'not', component: NotFoundComponent },
   // { path: 'login', component: LoginComponent},
   // // { path: '', pathMatch: 'full', redirectTo: 'dashboards/v1' },
   // { path: ' ', pathMatch: 'full', redirectTo: 'login' },
@@ -247,14 +238,7 @@ const routes: Route[] = [
 //         { path: 'table2', component: Table2Component },
 //       ]
 //   },
-//   {
-//     path: 'charts', children:
-//       [
-//         { path: 'chart1', component: Chart1Component },
-//         { path: 'chart2', component: Chart2Component },
-//         { path: 'chart3', component: Chart3Component },
-//       ]
-//   },
+
 //   {
 //     path: 'maps', children:
 //       [

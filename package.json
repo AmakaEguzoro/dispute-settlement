@@ -58,11 +58,13 @@
     "hammerjs": "2.0.x",
     "mathjs": "^6.0.4",
     "ng-uikit-pro-standard": "file:ng-uikit-pro-standard-6.2.6.tgz",
+    "ngx-order-pipe": "^2.0.3",
     "node-quickbooks": "^2.0.31",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.2",
     "screenfull": "3.3.x",
     "smoothscroll-polyfill": "0.3.x",
+    "subsink": "^1.0.0",
     "tslib": "^1.9.3",
     "web-animations-js": "2.3.x",
     "zone.js": "0.8.x"

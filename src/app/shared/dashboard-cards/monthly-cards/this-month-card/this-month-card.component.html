@@ -1,50 +1,69 @@
-
-                <!-- first card -->
-                        <div class="card classic-admin-card">
-                                <div class="card-body">
-                                        <!-- <div class="pull-right successful"></div> -->
-                                        <p class="card-text">This Month</p> <br>
-                                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
-                                        <h4>
-                                                <div class="pull-right">&#x20A6;{{thisMonthTotal?.data.amount | thousandSuff : 2}}</div>
-                                                <p class="card-text"> {{thisMonthTotal?.data.count   }}<br>Transactions</p>
-                                        </h4>
-                                </div>
-                        </div>
-
-                <!-- first card -->
 <div class="row">
-        <div class="col-md-6">
-<!-- second card -->
-<div class="card classic-admin-card">
-                <div class="card-body">
-                        <div class="pull-right successful">{{percentage}}% </div>
-                        <p class="card-text">Total Successful</p> <br>
-                        <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
-                        <h4>
-                                <div class="pull-right">&#x20A6;{{thisMonthSuccess?.data.amount | thousandSuff : 2}}</div>
-                                <p  class="card-text">{{thisMonthSuccess?.data.count }}<br>Transactions</p>
-                        </h4>
+        <div class="col-12">
+                <!-- first card -->
+                <label class="summary-total-trans">This Month</label>
+                <div class="card classic-admin-card">
+                        <div class="card-body">
+                                <div class="pull-right" [ngClass]="{
+                                          'positive' : totalPercent > 0,
+                                           'negative' : totalPercent < 0
+                                         }">{{ totalPercent | toNumber | number:'1.0-0'}}%</div>
+                                <div class="total-percent mt-3"> Vs Previous Month</div>
+                                <p class="summary-total-trans">Total Transactions</p> <br>
+                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
+                                <h4 *ngIf="loading == false">
+                                        <div *ngIf="isData == true" class="summary-amount">
+                                                &#x20A6;{{totalAmount | thousandSuff : 2}}</div>
+                                        <p *ngIf="isData == true" class="summary-card-text">
+                                                {{ totalCount | thousandSuff }}
+                                                &nbsp; Transactions</p>
+                                </h4>
+                                <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                        </div>
+                </div>
+
+                <!-- first card -->
+        </div>
+</div>
+<!--  -->
+<div class="row mt-2">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card classic-admin-card">
+                        <div class="card-body">
+                                <div class="pull-right summary-successful">
+                                        {{successPercent | toNumber | number:'1.0-0'}}%
+                                </div>
+                                <p class="summary-card-text">Successful Transactions</p> <br>
+                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
+                                <h4 *ngIf="loading == false">
+                                        <div *ngIf="isData == true" class="summary-amount">
+                                                &#x20A6;{{successAmount | thousandSuff : 2}}</div>
+                                        <p *ngIf="isData == true" class="summary-card-text">
+                                                {{successCount | thousandSuff }}
+                                                &nbsp;Transactions</p>
+                                </h4>
+                                <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                        </div>
                 </div>
         </div>
-<!-- second card -->
-        </div>
-        <div class="col-md-6">
-         <!-- third card -->
-         <div class="card classic-admin-card">
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card classic-admin-card">
                         <div class="card-body">
-                                <div class="pull-right failed">{{thisMonthFailed?.data.count / thisMonthTotal?.data.count | percent:'1.1-2'}}</div>
-                                <p class="card-text">Total Failed</p> <br>
-                                <mdb-spinner *ngIf="loading == true" spinnerColor="blue"></mdb-spinner>
-                                <h4>
-                                        <div class="pull-right"> &#x20A6;{{thisMonthFailed?.data.amount | thousandSuff : 2 }}</div>
-                                        <p  class="card-text">{{thisMonthFailed?.data.count | thousandSuff }}<br>Transactions</p>
+                                <div class="pull-right summary-failed">{{failedPercent | toNumber | number:'1.0-0'}}%
+                                </div>
+                                <p class="summary-card-text">Failed Transactions</p> <br>
+                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
+                                <h4 *ngIf="loading == false">
+                                        <div *ngIf="isData == true" class="summary-amount">
+                                                &#x20A6;{{failedAmount | thousandSuff : 2 }}</div>
+                                        <p *ngIf="isData == true" class="summary-card-text">
+                                                {{failedCount | thousandSuff }}
+                                                &nbsp;Transactions</p>
                                 </h4>
+                                <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                         </div>
 
                 </div>
-        <!-- third card -->
         </div>
-</div>      
-                
-       
+</div>

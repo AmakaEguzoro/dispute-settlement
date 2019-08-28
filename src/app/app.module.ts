@@ -18,7 +18,6 @@ import { ViewsModule } from './views/views.module';
 import { SharedModule } from './shared/shared.module';
 import { MDBSpinningPreloader } from 'ng-uikit-pro-standard';
 
-import { ErrorModule } from './views/errors/error.module';
 
 // main layout
 import { NavigationModule } from './main-layout/navigation/navigation.module';
@@ -32,13 +31,16 @@ import { RequestInterceptorService } from './service/requset-interceptor.service
 import { MatDialogModule } from '@angular/material';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
-
-
+import { OrderModule } from 'ngx-order-pipe';
+import { TransactionComponent } from './Transaction/transaction/transaction.component';
+import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    TransactionComponent,
+    TransactionCardComponent
   ],
   imports: [
     BrowserModule,
@@ -51,10 +53,11 @@ import { HttpInterceptorProvider } from './_auth/errorInterceptor';
     FormsModule,
     SharedModule,
     ViewsModule,
-    ErrorModule,
     ToastModule.forRoot(),
     ReactiveFormsModule,
     // AngularFireModule.initializeApp(environment.firebase),
+    // Itex
+    OrderModule
   ],
   entryComponents: [
   ],
@@ -64,8 +67,7 @@ import { HttpInterceptorProvider } from './_auth/errorInterceptor';
     // AngularFirestore,
     // AngularFireStorage,
     // EncrDecrService,
-    // { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptorService, multi: true }
-    HttpInterceptorProvider,
+     HttpInterceptorProvider,
     AuthGuard
   ],
   bootstrap: [AppComponent],

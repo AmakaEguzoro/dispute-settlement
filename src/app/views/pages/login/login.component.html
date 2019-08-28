@@ -1,97 +1,40 @@
-<!-- <header>
-	<section class="view intro intro-2 ">
-		<div class="full-bg-img rgba-stylish-strong mask flex-center">
-			<div class="container">
-
-				<div class="row">
-
-					<div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-lg-5">
-
-				
-						<div class="card wow fadeIn card-opacity" data-wow-delay="0.3s"
-							style="animation-name: none; visibility: visible;">
-							<div class="card-body pad-10">
-								<div class="row">
-									<div class="col-md-4 mx-auto offset-md-3">
-										<img src="../../../assets/img/logo.png" height="150" width="150"
-											class="img-fluid flex-center" style="margin: 0 auto;">
-									</div>
-								</div>
-								<hr>
-							
-								<form [formGroup]=loginForm  (ngSubmit)="signIn()">
-									<div class="md-form">
-										<i class="fa fa-envelope prefix white-text"></i>
-										<input type="email" [(ngModel)]="email" formControlName="email"
-											 class="form-control"
-											[class.invalid]="!loginForm.controls.email.valid && (loginForm.controls.email.dirty || submitAttempt)"
-											mdbInputDirective>
-										<label for="orangeForm-email">Your email</label>					
-									</div>
-
-									<div class="md-form">
-										<i class="fa fa-lock prefix white-text"></i>
-										<input type="password" [(ngModel)]="password" formControlName="password"
-										 class="form-control" [class.invalid]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty || submitAttempt)"
-											mdbInputDirective>
-										<label for="orangeForm-pass">Your password</label>
-									</div>
-									<div class="text-left">
-										<button [disabled]="!loginForm.valid"
-											class="btn btn-md btn-block btn-md btn-info btn-rounded waves-effect waves-light"
-											rounded="true" mdbWavesEffect>Login</button>
-									</div>
-								</form>
-
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</header> -->
-
 <div *ngIf="!loggedIn()" class="container-fluid">
-	
-	  <div class="col-md-4 offset-md-4 middle">
+
+	<div class="col-md-4 offset-md-4 middle">
 		<div class="jumbotron w-100 h-100" id="jumbotron">
-		  <div class="container-fluid">
-			<img src="../../../../assets/ItexLogo.png" alt="logo" class="img-fluid mx-auto d-block ">
-			<p class="text-center mb-5" class="login-title" style="margin-left: 4rem;">Login to access Dashboard</p>
-		  </div>
-		  <div class="container-fluid">
-			<form [formGroup]="loginForm">
-			  <div class="form-group mb-1">
-				<input class="form-control" type="text" placeholder="Enter Username" formControlName="username" [ngClass]="{'is-invalid': (loginForm.get('username').touched ||
+			<div class="container-fluid">
+				<img src="../../../../assets/ItexLogo.png" alt="logo" class="img-fluid mx-auto d-block ">
+				<p class="text-center new-style-font mb-3 pb-15">Login to access Dashboard</p>
+			</div>
+			<div class="container-fluid">
+				<form [formGroup]="loginForm">
+					<div class="form-group mb-1">
+						<input class="form-control" type="text" placeholder="Enter Username" formControlName="username"
+							[ngClass]="{'is-invalid': (loginForm.get('username').touched ||
 				loginForm.get('username').dirty) &&
 				!loginForm.get('username').valid }">
-				<span class="invalid-feedback">
-				  <h5 class="login-title"> Please enter username </h5>
-				</span>
-				<br>
-				<input class="form-control" type="password" placeholder="Enter password" formControlName="password"
-				  [ngClass]="{'is-invalid': (loginForm.get('password').touched ||
+						<span class="invalid-feedback">
+							<h5 class="login-title"> Please enter username </h5>
+						</span>
+						<br>
+						<input class="form-control" type="password" placeholder="Enter password"
+							formControlName="password" [ngClass]="{'is-invalid': (loginForm.get('password').touched ||
 					  loginForm.get('password').dirty) &&
 					  !loginForm.get('password').valid }">
-				<span class="invalid-feedback">
-				  <h5 class="login-title"> Please enter password </h5>
-				</span>
-			  </div>
-  
-			  <button [disabled]="!loginForm.valid" class="btn btn-primary btn-block mt-4 mb-3"
-				(click)="login()">Sign-in
-				<i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
-			</button>
-			  <span class="login-title" style=" line-height: 23px;"><input type="checkbox"> Remember me</span>
-			  <span class="float-right login-title"><a href="#">Forgot password?</a></span>
-			</form>
-		  </div>
+						<span class="invalid-feedback">
+							<h5 class="login-title"> Please enter password </h5>
+						</span>
+					</div>
+
+					<button [disabled]="!loginForm.valid" class="btn btn btn-block mt-4 mb-3" (click)="login()">Sign-in
+						<i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+					</button>
+					<!-- <span class="login-title"><input type="checkbox"> Remember me</span> -->
+					<span class="float-right login-title"><a href="#">Forgot password?</a></span>
+				</form>
+			</div>
 		</div>
-	  </div>
-  
-  
-	
-  
-  </div>
+	</div>
+
+
+</div>

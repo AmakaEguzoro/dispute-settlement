@@ -1,0 +1,39 @@
+<div class="container">
+    <app-transaction-card></app-transaction-card>
+    <br> <br>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" small="true">
+                    <thead class="trans-head">
+                        <tr>
+                            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data ; let i = index">
+                        <!-- <tr>
+                            <div class="text-align: center">
+                                <mdb-spinner spinnerType="big" spinnerColor="blue"></mdb-spinner>
+                            </div> -->
+
+                            <th scope="row">{{i + 1}}</th>
+                            <td>{{item.product}}</td>
+                            <td>{{item.metadata.seq}}</td>
+                            <td>{{item.id}}</td>
+                            <td>{{item.terminal}}</td>
+                            <td>
+                                <mdb-badge pill="true">{{item.channel}}</mdb-badge>
+                            </td>
+                            <td>{{item.amount}}</td>
+                            <td style="color:forestgreen">{{item.status}}</td>
+                            <td>{{item.responseT}}</td>
+                            <td>{{item.created_at}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

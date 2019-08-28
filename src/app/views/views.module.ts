@@ -13,10 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { FooterComponent } from '../main-layout/footer/footer.component';
 import { BasicTableComponent } from './tables/basic-table/basic-table.component';
-import { Chart1Component } from './charts/chart1/chart1.component';
-import { Chart2Component } from './charts/chart2/chart2.component';
 import { Table2Component } from './tables/table2/table2.component';
-import { Chart3Component } from './charts/chart3/chart3.component';
 import { ModalsComponent } from './modals/modals.component';
 import { TypographyComponent } from './css/typography/typography.component';
 import { IconsComponent } from './css/icons/icons.component';
@@ -37,7 +34,6 @@ import { Dashboard5Component } from './dashboards/dashboard5/dashboard5.componen
 import { GridComponent } from './css/grid/grid.component';
 import { MediaObjectComponent } from './css/media-object/media-object.component';
 import { UtilitiesComponent } from './css/utilities/utilities.component';
-import { ImagesComponent } from './css/images/images.component';
 import { ColorsComponent } from './css/colors/colors.component';
 import { ShadowComponent } from './css/shadow/shadow.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
@@ -67,16 +63,12 @@ import { HelpComponent } from './help/help.component';
 import { Settings2Component } from './settings/settings2/settings2.component';
 import { Settings3Component } from './settings/settings3/settings3.component';
 import { TestComponent } from './test/test/test.component';
-import { PaymentsDashboardComponent } from './payments/payments-dashboard/payments-dashboard.component';
-import { PaymentsOnlineComponent } from './payments/payments-online/payments-online.component';
-import { PaymentsOfflineComponent } from './payments/payments-offline/payments-offline.component';
 
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { RoleManagementComponent } from './admin/role-management/role-management.component';
-
 // MDB Angular Pro
 import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
-import { FilterComponent } from './filter/filter.component'
+import { NotFoundComponent } from './not-found/not-found.component';
 // import { ErrordialogComponent } from '../views/errordialog/errordialog.component';
 
 @NgModule({
@@ -100,16 +92,12 @@ import { FilterComponent } from './filter/filter.component'
   declarations: [
     FooterComponent,
     BasicTableComponent,
-    Chart1Component,
-    Chart2Component,
     Table2Component,
-    Chart3Component,
     ModalsComponent,
     TypographyComponent,
     IconsComponent,
     Map1Component,
     Map2Component,
-    LoginComponent,
     LockComponent,
     PricingComponent,
     Form1Component,
@@ -124,7 +112,6 @@ import { FilterComponent } from './filter/filter.component'
     GridComponent,
     MediaObjectComponent,
     UtilitiesComponent,
-    ImagesComponent,
     ColorsComponent,
     ShadowComponent,
     ButtonsComponent,
@@ -154,28 +141,23 @@ import { FilterComponent } from './filter/filter.component'
     Settings2Component,
     Settings3Component,
     TestComponent,
-    PaymentsDashboardComponent,
-    PaymentsOnlineComponent,
-    PaymentsOfflineComponent,
-    AdminDashboardComponent,
     RoleManagementComponent,
-    FilterComponent,
     // ErrordialogComponent,
+    //  Itex
+    NotFoundComponent,
+    LoginComponent,
+    AdminDashboardComponent,
   ],
   exports: [
     FooterComponent,
     BasicTableComponent,
-    Chart1Component,
-    Chart2Component,
     Table2Component,
-    Chart3Component,
     ModalsComponent,
     TypographyComponent,
     IconsComponent,
     Map1Component,
     Map2Component,
     Map3Component,
-    LoginComponent,
     LockComponent,
     PricingComponent,
     Form1Component,
@@ -190,7 +172,6 @@ import { FilterComponent } from './filter/filter.component'
     GridComponent,
     MediaObjectComponent,
     UtilitiesComponent,
-    ImagesComponent,
     ColorsComponent,
     ShadowComponent,
     ButtonsComponent,
@@ -211,6 +192,10 @@ import { FilterComponent } from './filter/filter.component'
     PostListingComponent,
     Form3Component,
     // ErrordialogComponent
+   // Itex
+   NotFoundComponent,
+   LoginComponent,
+   AdminDashboardComponent,
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

@@ -20,11 +20,9 @@ import { CardsComponent } from './views/components/cards/cards.component';
 import { ButtonsComponent } from './views/components/buttons/buttons.component';
 import { ShadowComponent } from './views/css/shadow/shadow.component';
 import { ColorsComponent } from './views/css/colors/colors.component';
-import { ImagesComponent } from './views/css/images/images.component';
 import { UtilitiesComponent } from './views/css/utilities/utilities.component';
 import { MediaObjectComponent } from './views/css/media-object/media-object.component';
 import { GridComponent } from './views/css/grid/grid.component';
-import { AlertComponent } from './shared/alerts/alert/alert.component';
 import { Form2Component } from './views/forms/form2/form2.component';
 import { Form1Component } from './views/forms/form1/form1.component';
 import { Map2Component } from './views/maps/map2/map2.component';
@@ -32,17 +30,13 @@ import { Map1Component } from './views/maps/map1/map1.component';
 import { IconsComponent } from './views/css/icons/icons.component';
 import { TypographyComponent } from './views/css/typography/typography.component';
 import { ModalsComponent } from './views/modals/modals.component';
-import { Chart3Component } from './views/charts/chart3/chart3.component';
 import { Table2Component } from './views/tables/table2/table2.component';
-import { Chart2Component } from './views/charts/chart2/chart2.component';
-import { Chart1Component } from './views/charts/chart1/chart1.component';
 import { BasicTableComponent } from './views/tables/basic-table/basic-table.component';
 import { Profile1Component } from './views/profile/profile1/profile1.component';
 import { Profile2Component } from './views/profile/profile2/profile2.component';
 import { Profile3Component } from './views/profile/profile3/profile3.component';
 import { RouterModule, Route } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-import { NotFoundComponent } from './views/errors/not-found/not-found.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { LockComponent } from './views/pages/lock/lock.component';
 import { PricingComponent } from './views/pages/pricing/pricing.component';
@@ -115,13 +109,7 @@ const routes: Route[] = [
       { path: 'table1', component: BasicTableComponent },
       { path: 'table2', component: Table2Component },
     ]
-  },
-  { path: 'charts', children:
-    [
-      { path: 'chart1', component: Chart1Component},
-      { path: 'chart2', component: Chart2Component},
-      { path: 'chart3', component: Chart3Component},
-    ]
+  
   },
   { path: 'maps', children:
     [
@@ -136,7 +124,6 @@ const routes: Route[] = [
       { path: 'media', component: MediaObjectComponent},
       { path: 'utilities', component: UtilitiesComponent},
       { path: 'icons', component: IconsComponent},
-      { path: 'images', component: ImagesComponent},
       { path: 'typography', component: TypographyComponent},
       { path: 'colors', component: ColorsComponent},
       { path: 'shadow', component: ShadowComponent},
@@ -149,13 +136,10 @@ const routes: Route[] = [
       { path: 'form3', component: Form3Component},
     ]
   },
-  { path: 'alerts', component: AlertComponent},
   { path: 'modals', component: ModalsComponent},
   { path: 'calendar', component: EventCalendarComponent},
   { path: 'help', component: HelpComponent },
-  {path: 'test', component: TestComponent},
-  { path: '**', component: NotFoundComponent },
-  
+  {path: 'test', component: TestComponent},  
 
 ];
 

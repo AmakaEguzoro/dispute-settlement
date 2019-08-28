@@ -1,0 +1,32 @@
+
+mdb-badge{
+    height: 29px;
+    border-radius: 10px;
+    width: 100%;
+    background: #2F80ED;
+font-style: normal;
+font-weight: 500;
+font-size: 11px;
+line-height: 23px;
+text-align: center;
+color: #FFFFFF;
+}
+
+.trans-head{   
+background: rgba(242, 242, 242, 0.56);
+border: 3px solid rgba(242, 242, 242, 0.56); 
+ }
+
+.card .card-body {
+padding: 0px;
+}
+
+@media (min-width: 1200px){
+ .container {
+  max-width: 1325px;
+}
+}
+
+ table td {
+  font-size: smaller;
+}

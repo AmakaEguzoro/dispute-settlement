@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SummaryService } from 'app/service/summary.service';
-import { YesterdaySuccess, YesterdayFailed, YesterdayTotal } from 'app/_models/summary';
+import * as math from 'mathjs';
+import { chain } from 'mathjs';
+import { SubSink } from 'subsink/dist/subsink';
 
 @Component({
   selector: 'app-yesterday-card',
@@ -8,51 +10,51 @@ import { YesterdaySuccess, YesterdayFailed, YesterdayTotal } from 'app/_models/s
   styleUrls: ['./yesterday-card.component.scss']
 })
 export class YesterdayCardComponent implements OnInit {
-  yesterdaySuccess: YesterdaySuccess;
-  yesterdayFailed: YesterdayFailed;
-  yesterdayTotal: YesterdayTotal;
+  totalAmount: any;
+  successCount: any;
+  failedCount: any;
+  successAmount: any;
+  failedAmount: any;
   loading = false;
-isData: any;
-  constructor(private summaryService: SummaryService) {  }
+  totalCount: any;
+  yesterdaySuccess: any;
+  yesterdayFailed: any;
+  successPercent: any;
+  failedPercent: any;
+  private subs = new SubSink();
+  isData: boolean;
 
-  ngOnInit() {
-    this.getYesterdayTotal();
-  this.getYesterdaySuccessfull();
- this.getYesterdayFailed();
+  constructor(private summaryService: SummaryService) { }
+
+  async ngOnInit() {
+    this.isData = true;
+    this.loading = true,
+      this.subs.add(
+        await this.summaryService.getYesterday().subscribe(responseList => {
+          this.loading = false;
+          this.yesterdaySuccess = responseList[0];
+          this.successCount = this.yesterdaySuccess.data.count;
+          this.successAmount = this.yesterdaySuccess.data.amount;
+
+          this.yesterdayFailed = responseList[1];
+          this.failedCount = this.yesterdayFailed.data.count;
+          this.failedAmount = this.yesterdayFailed.data.amount;
+
+          this.totalCount = math.add(this.successCount, this.failedCount);
+          this.totalAmount = math.add(this.successAmount, this.failedAmount);
+
+          this.successPercent = math.chain(this.successCount).divide(this.totalCount).multiply(100);
+          this.failedPercent = math.chain(this.failedCount).divide(this.totalCount).multiply(100);
+        }, error => {
+          this.isData = false;
+          this.loading = false;
+          console.log('cant get yesterday response', error)
+        }),
+      );
+
   }
 
-  getYesterdayTotal() {
-    this.loading = true;
-    this.summaryService.getYesterdayTotal().subscribe((yesterdayTotal: YesterdayTotal) => {
-      this.loading = false;
-      this.yesterdayTotal = yesterdayTotal;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get yesterdayTotal');
-    })
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
-
-  getYesterdaySuccessfull() {
-    this.loading = true;
-    this.summaryService.getYesterdaySuccess().subscribe((yesterdaySuccess: YesterdaySuccess) => {
-      this.loading = false;
-      this.yesterdaySuccess = yesterdaySuccess;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get yesterdaySuccess');
-    })
-  }
-
-  getYesterdayFailed() {
-    this.loading = false;
-    this.summaryService.getYesterdayFailed().subscribe((yesterdayFailed: YesterdayFailed) => {
-      this.loading = false;
-      this.yesterdayFailed = yesterdayFailed;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get yesterdayFailed');
-    })
-  }
-
 }
-
