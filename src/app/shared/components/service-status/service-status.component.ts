@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Element } from './element';
 import { ElementService } from '../../../service/element.service';
 import { ElementError } from './elementError';
 import { SwitchService } from 'app/service/switch.service';
+import { Subscription } from 'rxjs';
+import { Observable } from "rxjs/Rx";
 
 @Component({
   selector: 'app-service-status',
@@ -10,13 +12,15 @@ import { SwitchService } from 'app/service/switch.service';
   styleUrls: ['./service-status.component.scss']
 })
 
-export class ServiceStatusComponent implements OnInit {
+export class ServiceStatusComponent implements OnInit,OnDestroy {
 
   public responseData1: Element[] | ElementError;
   isLoading: boolean;
   public currentStatus: string;
   data: string;
   color: string; 
+
+  refresh : Subscription;
 
 
   constructor(private elementService: ElementService, public sw:SwitchService) { 
@@ -25,7 +29,18 @@ export class ServiceStatusComponent implements OnInit {
 
   async ngOnInit() {
     await this.getElements();
+
+    this.refresh = Observable.interval(5*1000).subscribe(()=>{
+      this.getElements();
+    })
+
   }
+
+  ngOnDestroy(){
+    this.refresh.unsubscribe();
+  }
+
+  
 
   public getElements() {
     this.isLoading = true;

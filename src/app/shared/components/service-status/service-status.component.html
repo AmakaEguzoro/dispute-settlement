@@ -42,9 +42,9 @@
                 <td [ngStyle]="{'display': 'none'}">{{ el.lastDeposit }}</td>
                 <td>
                   <button type="button" class="btn btn-sm my-btn" [ngClass]="{
-                  'btn-success' : el.status == 'ON',
-                  'btn-danger' : el.status == 'OFF'
-                }" (click)="callSwitch(el.service, el.status)">{{el.status}}</button>
+                      'btn-success' : el.status == 'ON',
+                      'btn-danger' : el.status == 'OFF'
+                    }" (click)="callSwitch(el.service, el.status)">{{el.status}}</button>
                 </td>
               </tr>
             </tbody>
