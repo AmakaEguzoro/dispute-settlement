@@ -12,23 +12,44 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of data ; let i = index">
-                        <!-- <tr>
-                            <div class="text-align: center">
-                                <mdb-spinner spinnerType="big" spinnerColor="blue"></mdb-spinner>
-                            </div> -->
-
                             <th scope="row">{{i + 1}}</th>
-                            <td>{{item.product}}</td>
-                            <td>{{item.metadata.seq}}</td>
-                            <td>{{item.id}}</td>
+                            <td>{{item.name}}
+                                <p class="trans-category">
+                                    {{item.category}}
+                                </p>
+                            </td>
+                            <td>{{item.sequence}}</td>
+                            <td>{{item.wallet}}</td>
                             <td>{{item.terminal}}</td>
                             <td>
-                                <mdb-badge pill="true">{{item.channel}}</mdb-badge>
+                                <mdb-badge pill="true" class="bad">{{item.channel}}</mdb-badge>
                             </td>
-                            <td>{{item.amount}}</td>
-                            <td style="color:forestgreen">{{item.status}}</td>
-                            <td>{{item.responseT}}</td>
-                            <td>{{item.created_at}}</td>
+                            <td> &#x20A6;{{item.nairaAmount | thousandSuff : 2}}
+                                <p class="trans-category">
+                                    <mdb-badge class="trans-icon" default="true">
+                                        <!-- <mdb-icon fab icon="facebook"></mdb-icon> -->
+                                        <mdb-icon fas icon="vr-cardboard"></mdb-icon>
+                                        {{item.paymentMethod}}
+                                        <mdb-icon far icon="money-bill-alt"></mdb-icon>
+                                    </mdb-badge>
+                                </p>
+                            </td>
+                            <td [ngClass]="{
+                                'warnin' : item.status < failed,
+                                'succes' : item.status > successful
+                                
+                              }">{{item.status}}</td>
+                            <td>
+                                <mdb-badge class="bd" [ngClass]="{
+                                    'warning' : item.processTime > 11,
+                                    'success' : item.processTime <= 10,
+                                     'info' : item.processTime == 11,
+                                    'danger' : item.processTime == 0
+                                  }"> {{item.processTime}}s</mdb-badge>
+
+                            </td>
+
+                            <td>{{item.date}}</td>
                         </tr>
                     </tbody>
                 </table>

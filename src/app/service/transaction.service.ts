@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 import { forkJoin } from 'rxjs';
+import { Transaction } from 'app/_models/transaction';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -14,8 +16,13 @@ export class TransactionService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getTransaction(): Observable<any> {
-        return this.httpClient.get<any>(this.baseUrl);
+    getTransaction(transaction: Transaction) {
+        return this.httpClient.post(this.baseUrl, transaction).pipe(
+            map((response: any) => {
+                const transaction = response;
+                return transaction;
+            }
+            ));
     }
 
 }
