@@ -24,6 +24,7 @@ import { ChannelsComponent } from './top-5/channels/channels.component';
 import { AgentsComponent } from './top-5/agents/agents.component';
 import { ProductsComponent } from './top-5/products/products.component';
 import { ServiceStatusComponent } from './components/service-status/service-status.component';
+import { BvnStatusComponent } from './bvn-status/bvn-status.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import { ServiceStatusComponent } from './components/service-status/service-stat
     ChannelsComponent,
     AgentsComponent,
     ProductsComponent,
-    ServiceStatusComponent
+    ServiceStatusComponent,
+    BvnStatusComponent
   ],
   exports: [
     MDBBootstrapModulesPro,

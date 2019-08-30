@@ -1,0 +1,70 @@
+<div class="container">
+<form [formGroup]="Form">
+  <div class="form-group row mb-2">
+    <label for="bvn_Id" class="col-md-2">
+      bvn:
+    </label>
+    <div class="col-md-4">
+      <input type="text" formControlName="bvn" id="bvn_Id" placeholder="BVN" class="form-control">
+      <div *ngIf="Form.get('bvn').touched && Form.get('bvn').invalid" class="alert alert-danger">
+        bvn is required.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group row mb-2">
+    <label for="firstname_Id" class="col-md-2">
+      First Name:
+    </label>
+    <div class="col-md-4">
+      <input type="text" formControlName="firstname" id="firstname_Id" placeholder="First Name" class="form-control">
+      <div *ngIf="firstname.touched && firstname.invalid" class="alert alert-danger">
+        firstname is required.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group row mb-2">
+    <label for="lastname_Id" class="col-md-2">
+      Last Name:
+    </label>
+    <div class="col-md-4">
+      <input type="text" formControlName="lastname" id="lastname_Id" placeholder="Last Name" class="form-control">
+      <div *ngIf="lastname.touched && lastname.invalid" class="alert alert-danger">
+        lastname is required.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group row mb-2">
+    <label for="phoneNo_Id" class="col-md-2">
+      Phone no:
+    </label>
+    <div class="col-md-4">
+      <input type="tel" formControlName="phonenumber" id="phoneNo_Id" placeholder="Phone number" class="form-control">
+      <div *ngIf="phonenumber.touched && phonenumber.invalid" class="alert alert-danger">
+        Phone no is required.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group row mb-2">
+    <label for="dob_Id" class="col-md-2">
+      DOB:
+    </label>
+    <div class="col-md-4">
+      <input type="date" formControlName="dateofbirth" id="dob_Id" placeholder="DOB" class="form-control">
+      <div *ngIf="dateofbirth.touched && dateofbirth.invalid" class="alert alert-danger">
+        DOB is required.
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-dark">Submit</button>
+
+</form>
+</div>

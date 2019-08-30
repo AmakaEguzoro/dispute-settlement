@@ -65,11 +65,13 @@ import { AuthGuard } from './_auth/auth.guard';
 import { NavigationComponent } from './main-layout/navigation/navigation.component';
 import { ServiceStatusComponent } from './shared/components/service-status/service-status.component';
 import { TodayCardComponent } from './shared/dashboard-cards/daily-cards/today-card/today-card.component';
+import { BvnStatusComponent } from './shared/bvn-status/bvn-status.component';
 
 
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'service-status', component: ServiceStatusComponent },
+  { path: 'BVN-status', component: BvnStatusComponent},
   {
     path: '',
     runGuardsAndResolvers: 'always',
