@@ -35,7 +35,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { TransactionComponent } from './Transaction/transaction/transaction.component';
 import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
 import { ModelComponent } from './Transaction/model/model.component';
-import { PaginationModule } from 'ngx-bootstrap';
+import { PaginationModule, ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,8 @@ import { PaginationModule } from 'ngx-bootstrap';
     // AngularFireModule.initializeApp(environment.firebase),
     // Itex
     OrderModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot()
   ],
   //itex
   entryComponents: [ ModelComponent ],

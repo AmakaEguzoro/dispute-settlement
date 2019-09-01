@@ -1,15 +1,53 @@
-<div class="modal-content">
-  <div class="modal-header">
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">×</span>
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Transaction Details</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
     </button>
-    <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
   </div>
   <div class="modal-body">
-    ...
+    <ul *ngIf="list.length">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Category
+              <!-- <mdb-badge pill="true" primary="true">14</mdb-badge> -->
+              <!-- {{data.name}} -->
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            Terminal ID
+              <mdb-badge pill="true" primary="true">14</mdb-badge>
+             
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+            Agent ID
+              <mdb-badge pill="true" primary="true">14</mdb-badge>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+             Type
+                <mdb-badge pill="true" primary="true">14</mdb-badge>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+          Location Of Request
+                <mdb-badge pill="true" primary="true">14</mdb-badge>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+              Reference
+                <mdb-badge pill="true" primary="true">14</mdb-badge>
+              </li>
+          </ul>
+    </ul>
+
+    <!-- <table mdbTable>
+        <tbody>
+          <tr mdbTableCol >
+            <th scope="row">gg</th>
+            <td>dd</td>
+            <td>dff</td>
+            <td>ff</td>
+          </tr>
+        </tbody>
+      </table> -->
+
   </div>
   <div class="modal-footer">
-    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="modalRef.hide()" mdbWavesEffect>Close</button>
-    <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
   </div>
-</div>

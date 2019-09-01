@@ -15,7 +15,7 @@
                     <tbody>
                                     <mdb-spinner  class="loading-screen-icon" *ngIf="loading"  spinnerType="big" spinnerColor="blue"></mdb-spinner>
                             
-                        <tr *ngFor="let item of data ; let i = index">
+                        <tr (click)="openModalWithComponent()" *ngFor="let item of data ; let i = index">
                             <th scope="row">{{serial + i}}</th>
                             <td>{{item.name}}
                                 <p class="trans-category">

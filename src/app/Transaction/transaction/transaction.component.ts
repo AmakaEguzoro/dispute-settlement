@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TransactionService } from 'app/service/transaction.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SubSink } from 'subsink/dist/subsink';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { ModelComponent } from '../model/model.component';
 
 @Component({
   selector: 'app-transaction',
@@ -20,9 +22,10 @@ export class TransactionComponent implements OnInit, OnDestroy {
   serial: number;
   maxSize = 10;
   private subs = new SubSink();
+  bsModalRef: BsModalRef;
 
   constructor(private transactionService: TransactionService,
-     private route: ActivatedRoute, private router: Router) { }
+     private route: ActivatedRoute, private router: Router, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.Transaction();
@@ -36,6 +39,8 @@ export class TransactionComponent implements OnInit, OnDestroy {
     // )
   
   }
+
+
   Transaction() {
     this.isData = true;
     this.loading = true;
@@ -47,8 +52,6 @@ export class TransactionComponent implements OnInit, OnDestroy {
     });
     this.transactionService.getTransaction(this.transaction).subscribe((data) => {
       this.loading = false;
-      // this.serial = this.perPage;
-     
       this.data = data.data.transactions;
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
       this.lastPage = data.data.lastPage;  
@@ -60,6 +63,20 @@ export class TransactionComponent implements OnInit, OnDestroy {
     })
   }
 
+  openModalWithComponent() {
+    const initialState = {
+      list: [
+        'Open a modal with component',
+        'Pass your data',
+        'Do something else',
+        '...'
+      ],
+      title: 'Modal with component'
+    };
+    this.bsModalRef = this.modalService.show(ModelComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+  
   pageChanged(event: any): void {
     this.loading = true;
     this.currentPage = event.page;

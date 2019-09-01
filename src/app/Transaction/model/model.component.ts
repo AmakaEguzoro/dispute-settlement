@@ -1,14 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { MDBModalRef } from 'ng-uikit-pro-standard';
+import { Component, OnInit, Input } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
-  selector: 'app-model',
+  selector: 'modal-content',
   templateUrl: './model.component.html',
   styleUrls: ['./model.component.scss']
 })
 export class ModelComponent implements OnInit {
+  @Input() data: any;
+  
+  title: string;
+  closeBtnName: string;
+  list: any[] = [];
 
-  constructor(public modalRef: MDBModalRef) { }
+  constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
   }
