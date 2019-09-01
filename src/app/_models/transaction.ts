@@ -1,5 +1,5 @@
 export class Transaction {
-    dateRange: Date | string;
+    dateRange: Date ;
     terminalId: string;
     walletId: string;
     accountNumber: string;

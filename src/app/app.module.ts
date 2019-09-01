@@ -34,13 +34,16 @@ import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 import { OrderModule } from 'ngx-order-pipe';
 import { TransactionComponent } from './Transaction/transaction/transaction.component';
 import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
-
+import { ModelComponent } from './Transaction/model/model.component';
+import { PaginationModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
+    //itex
     TransactionComponent,
-    TransactionCardComponent
+    TransactionCardComponent,
+    ModelComponent
   ],
   imports: [
     BrowserModule,
@@ -57,18 +60,21 @@ import { TransactionCardComponent } from './Transaction/transaction-card/transac
     ReactiveFormsModule,
     // AngularFireModule.initializeApp(environment.firebase),
     // Itex
-    OrderModule
+    OrderModule,
+    PaginationModule.forRoot()
   ],
-  entryComponents: [
-  ],
+  //itex
+  entryComponents: [ ModelComponent ],
   providers: [
     MDBSpinningPreloader,
     AsdevApiService,
     // AngularFirestore,
     // AngularFireStorage,
     // EncrDecrService,
+    //itex
      HttpInterceptorProvider,
-    AuthGuard
+    AuthGuard,
+    
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]

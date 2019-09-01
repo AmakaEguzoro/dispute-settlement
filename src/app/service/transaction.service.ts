@@ -17,7 +17,7 @@ export class TransactionService {
     constructor(private httpClient: HttpClient) { }
 
     getTransaction(transaction: Transaction) {
-        return this.httpClient.post(this.baseUrl, transaction).pipe(
+        return this.httpClient.post(this.baseUrl, transaction ).pipe(
             map((response: any) => {
                 const transaction = response;
                 return transaction;

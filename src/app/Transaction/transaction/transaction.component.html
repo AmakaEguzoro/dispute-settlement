@@ -1,6 +1,8 @@
 <div class="container">
+       
     <app-transaction-card></app-transaction-card>
     <br> <br>
+   
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
@@ -11,8 +13,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                                    <mdb-spinner  class="loading-screen-icon" *ngIf="loading"  spinnerType="big" spinnerColor="blue"></mdb-spinner>
+                            
                         <tr *ngFor="let item of data ; let i = index">
-                            <th scope="row">{{i + 1}}</th>
+                            <th scope="row">{{serial + i}}</th>
                             <td>{{item.name}}
                                 <p class="trans-category">
                                     {{item.category}}
@@ -26,18 +30,13 @@
                             </td>
                             <td> &#x20A6;{{item.nairaAmount | thousandSuff : 2}}
                                 <p class="trans-category">
-                                    <mdb-badge class="trans-icon" default="true">
-                                        <!-- <mdb-icon fab icon="facebook"></mdb-icon> -->
-                                        <mdb-icon fas icon="vr-cardboard"></mdb-icon>
-                                        {{item.paymentMethod}}
-                                        <mdb-icon far icon="money-bill-alt"></mdb-icon>
-                                    </mdb-badge>
+                                    {{item.paymentMethod}}
                                 </p>
                             </td>
                             <td [ngClass]="{
-                                'warnin' : item.status < failed,
-                                'succes' : item.status > successful
-                                
+                                'failed' : item.status == 'failed',
+                                'successful' : item.status == 'successful',
+                                'initialized' : item.status == 'initialized'
                               }">{{item.status}}</td>
                             <td>
                                 <mdb-badge class="bd" [ngClass]="{
@@ -46,15 +45,27 @@
                                      'info' : item.processTime == 11,
                                     'danger' : item.processTime == 0
                                   }"> {{item.processTime}}s</mdb-badge>
-
                             </td>
-
-                            <td>{{item.date}}</td>
+                            <td style="color: #828282;">{{item.date}}</td>
                         </tr>
+                        <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                     </tbody>
                 </table>
             </div>
+<br>
+            <pagination
+            [boundaryLinks]="true"
+            [totalItems]="lastPage"
+            [itemsPerPage]="perPage"
+            [(ngModel)]="currentPage"
+            [maxSize]="maxSize"
+            (pageChanged)="pageChanged($event)"
+          firstText="&laquo;" lastText="&raquo;"></pagination>
+          
         </div>
     </div>
 
 </div>
+
+<!-- 
+ -->

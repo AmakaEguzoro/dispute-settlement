@@ -19,7 +19,7 @@ const routes: Route[] = [
     canActivate: [AuthGuard],
     children: [
       { path: 'admin-dashboard', component: AdminDashboardComponent },
-      { path: 'transaction', component: TransactionComponent },
+      { path: 'transaction/details', component: TransactionComponent },
       { path: 'service-status', component: ServiceStatusComponent },
     ]
   },

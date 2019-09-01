@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'modal',
+  selector: 'modl',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
