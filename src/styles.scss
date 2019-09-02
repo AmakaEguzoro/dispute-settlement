@@ -6,6 +6,13 @@ body{
     background-color: #F2F2F2;
     font-family: Ubuntu;
 }
+// loader begin
+.loading-screen-icon {
+  position: absolute;
+  left: 50%;
+  margin-top: 2rem;
+}
+// loader end
 
 // Begin login page
 .login-title {

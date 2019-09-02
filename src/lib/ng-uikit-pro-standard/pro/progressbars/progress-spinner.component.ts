@@ -2,7 +2,7 @@ import { Component, Input, ElementRef, AfterViewInit, Inject, PLATFORM_ID } from
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
-    selector: 'mdb-spinner',
+    selector: 'mdb-spinne',
     templateUrl: 'progress-spinner.component.html'
 })
 export class ProgressSpinnerComponent implements AfterViewInit {
@@ -36,7 +36,7 @@ export class ProgressSpinnerComponent implements AfterViewInit {
                 this.addClass = 'spinner-red-only';
                 break;
             case 'rainbow':
-                this.addClass = 'spinner-rainbow spinner-blue-only mat-progress-spinner';
+                this.addClass = 'spinner-rainbow spinner-blue-only mat-progress-spinne';
                 this.spinerRun();
                 break;
         }
@@ -50,16 +50,16 @@ export class ProgressSpinnerComponent implements AfterViewInit {
             setInterval(() => {
                 switch (counter) {
                     case 0:
-                        this.addClass = 'spinner-red-only mat-progress-spinner ';
+                        this.addClass = 'spinner-red-only mat-progress-spinne ';
                         break;
                     case 1:
-                        this.addClass = 'spinner-yellow-only mat-progress-spinner';
+                        this.addClass = 'spinner-yellow-only mat-progress-spinne';
                         break;
                     case 2:
-                        this.addClass = 'spinner-blue-only mat-progress-spinner';
+                        this.addClass = 'spinner-blue-only mat-progress-spinne';
                         break;
                     case 3:
-                        this.addClass = 'spinner-green-only mat-progress-spinner';
+                        this.addClass = 'spinner-green-only mat-progress-spinne';
                         break;
                 }
 

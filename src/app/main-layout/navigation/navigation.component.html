@@ -1,5 +1,5 @@
 <div *ngIf="loggedIn()">
-    <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark bg-secondary white ie-nav"
+    <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark ie-nav"
         [containerInside]="false">
 
         <mdb-navbar-brand>
@@ -11,7 +11,7 @@
                     <a class="nav-link" [routerLink]="['/admin-dashboard']">Dashboard</a>
                 </li>
                 <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
-                    <a class="nav-link" [routerLink]="['/transaction']">Transaction</a>
+                    <a class="nav-link" [routerLink]="['/transaction/details']">Transaction</a>
                 </li>
                 <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
                     <a class="nav-link" [routerLink]="['/service-status']">Services Status</a>

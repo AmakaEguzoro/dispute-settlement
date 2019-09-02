@@ -1,6 +1,8 @@
 <div class="container">
+
     <app-transaction-card></app-transaction-card>
     <br> <br>
+
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
@@ -11,29 +13,60 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of data ; let i = index">
-                        <!-- <tr>
-                            <div class="text-align: center">
-                                <mdb-spinner spinnerType="big" spinnerColor="blue"></mdb-spinner>
-                            </div> -->
-
-                            <th scope="row">{{i + 1}}</th>
-                            <td>{{item.product}}</td>
-                            <td>{{item.metadata.seq}}</td>
-                            <td>{{item.id}}</td>
+                        <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
+                        </mdb-spinner>
+                        <!-- <div class="progress-loader" [hidden]="!loading"> -->
+ 
+                                <!-- <mat-progress-spinner [mode]="'indeterminate'">
+                                </mat-progress-spinner> -->
+                             
+                            <!-- </div> -->
+                        <tr (click)="openModalWithComponent(item)" *ngFor="let item of data  let i = index">
+                            <th scope="row">{{serial + i}}</th>
+                            <td>{{item.name}}
+                                <p class="trans-category">
+                                    {{item.category}}
+                                </p>
+                            </td>
+                            <td>{{item.sequence}}</td>
+                            <td>{{item.wallet}}</td>
                             <td>{{item.terminal}}</td>
                             <td>
-                                <mdb-badge pill="true">{{item.channel}}</mdb-badge>
+                                <mdb-badge pill="true" class="bad">{{item.channel}}</mdb-badge>
                             </td>
-                            <td>{{item.amount}}</td>
-                            <td style="color:forestgreen">{{item.status}}</td>
-                            <td>{{item.responseT}}</td>
-                            <td>{{item.created_at}}</td>
+                            <td> &#x20A6;{{item.nairaAmount | thousandSuff : 2}}
+                                <p class="trans-category">
+                                    {{item.paymentMethod}}
+                                </p>
+                            </td>
+                            <td [ngClass]="{
+                                                    'failed' : item.status == 'failed',
+                                                    'successful' : item.status == 'successful',
+                                                    'initialized' : item.status == 'initialized'
+                                                  }">{{item.status}}</td>
+                            <td>
+                                <mdb-badge class="bd" [ngClass]="{
+                                                        'warning' : item.processTime > 11,
+                                                        'success' : item.processTime <= 10,
+                                                         'info' : item.processTime == 11,
+                                                        'danger' : item.processTime == 0
+                                                      }"> {{item.processTime}}s</mdb-badge>
+                            </td>
+                            <td style="color: #828282;">{{item.date}}</td>
                         </tr>
+                        <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                     </tbody>
                 </table>
             </div>
+            <br>
+            <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
+                [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;"
+                lastText="&raquo;" ></pagination>
+
         </div>
     </div>
 
 </div>
+
+<!-- 
+ -->

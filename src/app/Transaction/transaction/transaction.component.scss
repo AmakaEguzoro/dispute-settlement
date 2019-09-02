@@ -1,15 +1,16 @@
 
-mdb-badge{
-    height: 29px;
-    border-radius: 10px;
-    width: 100%;
-    background: #2F80ED;
-font-style: normal;
-font-weight: 500;
-font-size: 11px;
-line-height: 23px;
+.bad{
+  height: 23px;
+  border-radius: 10px;
+  width: 100%;
+  background: #2F80ED;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 17px;
 text-align: center;
 color: #FFFFFF;
+margin-top: 9px;
 }
 
 .trans-head{   
@@ -30,3 +31,65 @@ padding: 0px;
  table td {
   font-size: smaller;
 }
+
+.trans-category{
+margin-bottom: 0px;
+font-size: 11px;
+color: darkgray
+}
+.bd{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 17px;
+text-align: center;
+color: #FFFFFF;
+margin-left: 35px;
+}
+.trans-icon{
+  height: 21px;
+line-height: 14px;
+width: 3rem;
+font-size: 12px;
+
+}
+// item.status
+.successful{
+  color: #219653
+}
+.failed{
+  color: #EB5757;
+}
+.initialized{
+  color: #F2C94C;
+}
+// item.response time
+.warning{
+  background: #F2C94C;
+}
+
+.success{
+  background: #219653;
+}
+.info{
+  background: #F2C94C;
+}
+.danger{
+  background: #219653;
+}
+
+.loading-screen-icon {
+  position: absolute;
+  // top: 50%;
+  left: 50%;
+  // transform: translate(-50%, -50%);
+  margin-top: 2rem;
+}
+// .loading-screen-wrapper {
+//   z-index: 100000;
+//   position: absolute;
+//   background-color: rgba(255, 255, 255, 0.6);
+//   width: 100%;
+//   height: 100%;
+//   display: block;
+// }

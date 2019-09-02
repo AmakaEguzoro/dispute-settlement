@@ -80,6 +80,7 @@ export class AuthService {
     private toastService: ToastService) { }
 
   login(user: User) {
+
     return this.http.post(this.baseUrl + 'login', user)
     .pipe(
       map((response: any) => {
