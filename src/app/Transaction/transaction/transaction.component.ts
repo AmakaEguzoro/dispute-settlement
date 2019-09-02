@@ -15,6 +15,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
   loading = true;
   data: any;
   transaction: any;
+
   // pagination
   perPage = 50;
   currentPage = 1;
@@ -29,33 +30,22 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.Transaction();
-    // this.subs.add(
-    //   this.route
-    //   .queryParams
-    //   .subscribe(params => {
-    //     // Defaults to 0 if no query param provided.
-    //     this.currentPage = +params['page'] || 0;
-    //   })
-    // )
-  
   }
-
 
   Transaction() {
     this.isData = true;
     this.loading = true;
-    this.transaction = Object.assign({
+    this.transaction = Object.assign( {}, {
       "dateRange": "", "terminalId": "",
       "walletId": "", "accountNumber": "", "paymentMethod": "", "cardRRN": "", "transactionReference": "",
       "phoneNumber": "", "sequenceNumber": "", "debitReference": "", "product": "", "transactionType": "",
-      "transactionStatus": "", "transactionChannel": "=", "searchField": "", "viewPage": ""
+      "transactionStatus": "", "transactionChannel": "", "searchField": "", "viewPage": ""
     });
     this.transactionService.getTransaction(this.transaction).subscribe((data) => {
       this.loading = false;
       this.data = data.data.transactions;
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
-      this.lastPage = data.data.lastPage;  
-      console.log(this.serial, "current page")   
+      this.lastPage = data.data.lastPage;   
     }, error => {
       this.isData = false;
       this.loading = false;
@@ -63,18 +53,13 @@ export class TransactionComponent implements OnInit, OnDestroy {
     })
   }
 
-  openModalWithComponent() {
+ openModalWithComponent(modal) {
+    this.data = modal;
     const initialState = {
-      list: [
-        'Open a modal with component',
-        'Pass your data',
-        'Do something else',
-        '...'
-      ],
-      title: 'Modal with component'
+      data: this.data,
+      ignoreBackdropClick: true,
     };
     this.bsModalRef = this.modalService.show(ModelComponent, {initialState});
-    this.bsModalRef.content.closeBtnName = 'Close';
   }
   
   pageChanged(event: any): void {
@@ -82,6 +67,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
     this.currentPage = event.page;
     this.Transaction();
     this.router.navigate(['/transaction/details'], { queryParams: { page:  this.currentPage } });
+  
   }
 
   headElements = ['S/N', 'PRODUCT', 'SEQUENCE', 'AGENT ID', 'TERMINAL', 'CHANNEL',

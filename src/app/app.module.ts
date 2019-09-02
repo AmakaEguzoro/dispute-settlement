@@ -28,7 +28,7 @@ import { AsdevApiService } from './providers/asdev-api.service';
 import { EncrDecrService } from 'app/service/encr-decr.service';
 import { RequestInterceptorService } from './service/requset-interceptor.service';
 
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 import { OrderModule } from 'ngx-order-pipe';
@@ -62,7 +62,8 @@ import { PaginationModule, ModalModule } from 'ngx-bootstrap';
     // Itex
     OrderModule,
     PaginationModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    MatProgressSpinnerModule
   ],
   //itex
   entryComponents: [ ModelComponent ],

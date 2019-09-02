@@ -36,10 +36,10 @@ type EasingFn = (currentTime: number, startValue: number,
 * @docs-private
 */
 @Directive({
-    selector: '[mdbSpinners], mat-progress-spinner'
+    selector: '[mdbSpinners], mat-progress-spinne'
 })
 export class MdProgressSpinnerCssMatStylerDirective {
-    @HostBinding('class.mat-progress-spinner') true: any;
+    @HostBinding('class.mat-progress-spinne') true: any;
 }
 
 
@@ -47,7 +47,7 @@ export class MdProgressSpinnerCssMatStylerDirective {
 * <md-progress-spinner> component.
 */
 @Component({
-    selector: 'mdb-Spinners, mat-progress-spinner',
+    selector: 'mdb-Spinners, mat-progress-spinne',
     templateUrl: 'progress-spinner.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

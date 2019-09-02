@@ -1,53 +1,101 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Transaction Details</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <ul *ngIf="list.length">
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Category
-              <!-- <mdb-badge pill="true" primary="true">14</mdb-badge> -->
-              <!-- {{data.name}} -->
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-            Terminal ID
-              <mdb-badge pill="true" primary="true">14</mdb-badge>
-             
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-            Agent ID
-              <mdb-badge pill="true" primary="true">14</mdb-badge>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-             Type
-                <mdb-badge pill="true" primary="true">14</mdb-badge>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-          Location Of Request
-                <mdb-badge pill="true" primary="true">14</mdb-badge>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-              Reference
-                <mdb-badge pill="true" primary="true">14</mdb-badge>
-              </li>
-          </ul>
-    </ul>
-
-    <!-- <table mdbTable>
-        <tbody>
-          <tr mdbTableCol >
-            <th scope="row">gg</th>
-            <td>dd</td>
-            <td>dff</td>
-            <td>ff</td>
-          </tr>
-        </tbody>
-      </table> -->
-
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
-  </div>
+  <h4 class="modal-title pull-left">Details ({{data.name}})</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Category:
+      <strong style="float: right">{{data.category}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Terminal ID:
+      <strong style="float: right">{{data.terminal}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Agent ID:
+      <strong style="float: right">{{data.wallet}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Type:
+      <strong style="float: right">{{data.type}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Customer Name:
+      <strong style="float: right">{{data.VASCustomerName}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Customer Phone:
+      <strong style="float: right">{{data.VASCustomerPhone}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Customer Address:
+      <strong style="float: right">{{data.VASCustomerAddress}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Customer Account:
+      <strong style="float: right">{{data.VASCustomerAccount}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Biller Name:
+      <strong style="float: right">{{data.VASBillerName}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Depositor Name:
+      <strong style="float: right">{{data.VASDepositorName}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Channel:
+      <strong style="float: right">{{data.channel}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Provider Name: :
+      <strong style="float: right">{{data.VASProviderName}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Card-PAN:
+      <strong style="float: right">{{data.cardPAN}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Commission:
+      <strong style="float: right">{{data.commission}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Message:
+      <strong style="float: right">{{data.message}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Reason:
+      <strong style="float: right">{{data.reason}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Reference:
+      <strong style="float: right">{{data.reference}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Sequence:
+      <strong style="float: right">{{data.sequence}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Location:
+      <strong style="float: right">{{data.location}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Transaction AuthCode:
+      <strong style="float: right">{{data.transactionAuthCode}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Transaction STAN:
+      <strong style="float: right">{{data.transactionSTAN}}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Transaction RRN:
+      <strong style="float: right">{{data.transactionRRN}}</strong>
+    </li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">Close</button>
+</div>
