@@ -21,7 +21,8 @@
                                 </mat-progress-spinner> -->
                              
                             <!-- </div> -->
-                        <tr (click)="openModalWithComponent(item)" *ngFor="let item of data  let i = index">
+                            <!-- (click)="openModalWithComponent(item)"  -->
+                        <tr *ngFor="let item of data  let i = index">
                             <th scope="row">{{serial + i}}</th>
                             <td>{{item.name}}
                                 <p class="trans-category">
@@ -34,7 +35,7 @@
                             <td>
                                 <mdb-badge pill="true" class="bad">{{item.channel}}</mdb-badge>
                             </td>
-                            <td> &#x20A6;{{item.nairaAmount | thousandSuff : 2}}
+                            <td> &#x20A6;{{item.nairaAmount | number: "1.2-2" }}
                                 <p class="trans-category">
                                     {{item.paymentMethod}}
                                 </p>
@@ -59,9 +60,12 @@
                 </table>
             </div>
             <br>
-            <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
-                [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;"
-                lastText="&raquo;" ></pagination>
+            <div *ngIf="loading == true" style="cursor: wait;"> </div>
+                    <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
+                    [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;"
+                    lastText="&raquo;" ></pagination>
+           
+          
 
         </div>
     </div>

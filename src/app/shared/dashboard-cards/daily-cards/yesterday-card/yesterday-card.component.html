@@ -8,7 +8,7 @@
                                 <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
                                 <h4 *ngIf="loading == false">
                                         <div *ngIf="isData == true" class="summary-amount">
-                                                &#x20A6;{{totalAmount | thousandSuff : 2}}</div>
+                                                &#x20A6;{{totalAmount | thousandSuff : 2 }}</div>
                                         <p *ngIf="isData == true" class="summary-card-text" >
                                               {{ totalCount | thousandSuff }}
                                                 &nbsp; Transactions</p>

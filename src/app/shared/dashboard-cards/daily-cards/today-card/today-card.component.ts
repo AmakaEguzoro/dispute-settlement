@@ -21,6 +21,8 @@ export class TodayCardComponent implements OnInit, OnDestroy {
   successPercent: any;
   failedPercent: any;
   totalPercent: any;
+  totalSubtract: any;
+  yesterdayTotalAmount: any;
   private subs = new SubSink();
   isData: boolean;
 
@@ -39,12 +41,12 @@ export class TodayCardComponent implements OnInit, OnDestroy {
           this.todayFailed = responseList[1];
           this.failedCount = this.todayFailed.data.count;
           this.failedAmount = this.todayFailed.data.amount;
-
+        
           this.totalCount = math.add(this.successCount, this.failedCount);
           this.totalAmount = math.add(this.successAmount, this.failedAmount);
 
-          this.successPercent = math.chain(this.successCount).divide(this.totalCount).multiply(100);
-          this.failedPercent = math.chain(this.failedCount).divide(this.totalCount).multiply(100);
+          this.successPercent = this.successCount / this.totalCount * 100;
+          this.failedPercent = this.failedCount / this.totalCount * 100;
         }, error => {
           this.isData = false
           this.loading = false;
@@ -53,9 +55,9 @@ export class TodayCardComponent implements OnInit, OnDestroy {
         await this.summaryService.getYesterday().subscribe(responseList => {
           let yesterdaySuccess = responseList[0];
           let yesterdayFailed = responseList[1];
-          let yesterdayTotalAmount = math.add(yesterdaySuccess.data.amount, yesterdayFailed.data.amount);
-          let totalSubtract = math.chain(this.totalAmount).subtract(yesterdayTotalAmount);
-          this.totalPercent = math.chain(totalSubtract).divide(yesterdayTotalAmount).multiply(100);
+          this.yesterdayTotalAmount = math.add(yesterdaySuccess.data.amount, yesterdayFailed.data.amount);
+          this.totalSubtract = math.chain(this.totalAmount).subtract(this.yesterdayTotalAmount);
+          this.totalPercent = this.totalSubtract / this.yesterdayTotalAmount * 100;
         })
       );
 

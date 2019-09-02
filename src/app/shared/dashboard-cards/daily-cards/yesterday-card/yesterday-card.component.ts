@@ -42,9 +42,9 @@ export class YesterdayCardComponent implements OnInit {
 
           this.totalCount = math.add(this.successCount, this.failedCount);
           this.totalAmount = math.add(this.successAmount, this.failedAmount);
-
-          this.successPercent = math.chain(this.successCount).divide(this.totalCount).multiply(100);
-          this.failedPercent = math.chain(this.failedCount).divide(this.totalCount).multiply(100);
+          
+          this.successPercent = this.successCount / this.totalCount * 100;
+          this.failedPercent = this.failedCount / this.totalCount * 100;
         }, error => {
           this.isData = false;
           this.loading = false;

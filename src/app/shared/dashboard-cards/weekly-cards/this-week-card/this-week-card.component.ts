@@ -22,6 +22,8 @@ export class ThisWeekCardComponent implements OnInit {
   successPercent: any;
   failedPercent: any;
   totalPercent: any;
+  totalSubtract: any;
+  lastWeekTotalAmount: any;
   private subs = new SubSink();
   isData: boolean;
   constructor(private summaryService: SummaryService) { }
@@ -43,19 +45,19 @@ export class ThisWeekCardComponent implements OnInit {
           this.totalCount = math.add(this.successCount, this.failedCount);
           this.totalAmount = math.add(this.successAmount, this.failedAmount);
 
-          this.successPercent = math.chain(this.successCount).divide(this.totalCount).multiply(100);
-          this.failedPercent = math.chain(this.failedCount).divide(this.totalCount).multiply(100);
+          this.successPercent = this.successCount / this.totalCount * 100;
+          this.failedPercent = this.failedCount / this.totalCount * 100;
         }, error => {
           this.isData = false;
           this.loading = false;
           console.log('cant get thisWeek response', error);
         }),
-      await  this.summaryService.getLastWeek().subscribe(responseList => {
+        await this.summaryService.getLastWeek().subscribe(responseList => {
           let lastWeekSuccess = responseList[0];
           let lastWeekFailed = responseList[1];
           let lastWeekTotalAmount = math.add(lastWeekSuccess.data.amount, lastWeekFailed.data.amount);
-          let totalSubtract = math.chain(this.totalAmount).subtract(lastWeekTotalAmount);
-          this.totalPercent = math.chain(totalSubtract).divide(lastWeekTotalAmount).multiply(100);
+          this.totalSubtract = math.chain(this.totalAmount).subtract(this.lastWeekTotalAmount);
+          this.totalPercent = this.totalSubtract / this.lastWeekTotalAmount * 100;
         })
       );
 

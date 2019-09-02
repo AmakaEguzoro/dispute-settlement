@@ -3,8 +3,8 @@
 
 // Itex begin
 body{
-    background-color: #F2F2F2;
-    font-family: Ubuntu;
+    background-color: #F2F2F2 !important;
+    font-family: 'Ubuntu',  sans-serif !important;
 }
 // loader begin
 .loading-screen-icon {
@@ -119,9 +119,7 @@ body{
 // .navbar-nav .dropdown-menu-right.dropdown-menu{
 //   left: 0 !important;
 // }
-.bg-secondary {
-  background-color: #ffff!important;
-}
+
 // nav-bar end
 
 // Summary Begin
@@ -190,8 +188,8 @@ font-style: normal;
 font-size: 14px;
 line-height: 16px;
 letter-spacing: 0.05em;
-color: #828282;
-font-weight: 500;
+color: black;
+    font-weight: 600;
   }
 
 .total-percent{
