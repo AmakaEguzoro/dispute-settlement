@@ -14,6 +14,44 @@ body{
 }
 // loader end
 
+// modal begin
+
+// @media (min-width: 1025px) and (max-width: 1280px) {
+  
+//   .modal-dialog .modal-content{
+//     width: 33rem;
+//     margin-left: -11rem;
+//     border-radius: 10px;
+//   }
+  
+// }
+
+// @media (min-width: 992px) {
+//   .modal-dialog .modal-content{
+//       width: 960px;
+//       margin-left: -11rem;
+//       border-radius: 10px;
+//     }
+// }
+
+// @media (min-width: 768px) {
+//   .modal-dialog .modal-content{
+//       width: 720px;
+//       margin-left: -11rem;
+//       border-radius: 10px;
+//     }
+// }
+
+// @media (min-width: 576px) {
+//   .modal-dialog .modal-content{
+//       width: 540px;
+//       margin-left: -11rem;
+//       border-radius: 10px;
+//     }
+// }
+
+// modal end
+
 // Begin login page
 .login-title {
     font-style: normal;

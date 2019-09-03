@@ -21,8 +21,8 @@
                                 </mat-progress-spinner> -->
                              
                             <!-- </div> -->
-                            <!--  -->
-                        <tr (click)="openModal(item)"  *ngFor="let item of data  let i = index">
+                            <!-- (click)="openModal(item)" -->
+                        <tr   *ngFor="let item of data  let i = index">
                             <th scope="row">{{serial + i}}</th>
                             <td>{{item.name}}
                                 <p class="trans-category">
@@ -58,12 +58,13 @@
                         <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                     </tbody>
                 </table>
+                <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
+                [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;"
+                lastText="&raquo;" ></pagination>
             </div>
             <br>
             <div *ngIf="loading == true" style="cursor: wait;"> </div>
-                    <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
-                    [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;"
-                    lastText="&raquo;" ></pagination>
+                  
            
           
 

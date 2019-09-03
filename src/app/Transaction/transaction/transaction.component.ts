@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SubSink } from 'subsink/dist/subsink';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ModelComponent } from '../model/model.component';
+import { SocketService } from 'app/socket.service';
 
 @Component({
   selector: 'app-transaction',
@@ -26,10 +27,13 @@ export class TransactionComponent implements OnInit, OnDestroy {
   bsModalRef: BsModalRef;
 
   constructor(private transactionService: TransactionService,
- private router: Router, private modalService: BsModalService) { }
+ private router: Router, private modalService: BsModalService, private socket: SocketService) { }
 
   ngOnInit() {
     this.Transaction();
+    //this.socket.sendMessage();
+
+    this.socket.getMessage();
   }
 
   Transaction() {

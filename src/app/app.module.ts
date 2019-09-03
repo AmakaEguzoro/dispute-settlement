@@ -36,6 +36,10 @@ import { TransactionComponent } from './Transaction/transaction/transaction.comp
 import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
 import { ModelComponent } from './Transaction/model/model.component';
 import { PaginationModule, ModalModule } from 'ngx-bootstrap';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { SocketService } from './socket.service';
+ 
+const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
 
 @NgModule({
   declarations: [
@@ -63,7 +67,8 @@ import { PaginationModule, ModalModule } from 'ngx-bootstrap';
     OrderModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    SocketIoModule.forRoot(config)
   ],
   //itex
   entryComponents: [ ModelComponent ],
@@ -76,7 +81,7 @@ import { PaginationModule, ModalModule } from 'ngx-bootstrap';
     //itex
      HttpInterceptorProvider,
     AuthGuard,
-    
+    SocketService
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
