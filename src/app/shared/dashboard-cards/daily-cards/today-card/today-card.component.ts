@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SummaryService } from 'app/service/summary.service';
 import * as math from 'mathjs';
 import { SubSink } from 'subsink/dist/subsink';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-today-card',
@@ -23,16 +24,22 @@ export class TodayCardComponent implements OnInit, OnDestroy {
   totalPercent: any;
   totalSubtract: any;
   yesterdayTotalAmount: any;
-  private subs = new SubSink();
   isData: boolean;
+  refresh: Subscription;
 
   constructor(private summaryService: SummaryService) { }
 
   async ngOnInit() {
+    await this.getTodayTransaction();
+
+    this.refresh = Observable.interval(120 * 1000).subscribe(() => {
+      this.getTodayTransaction();
+    })
+  }
+  getTodayTransaction() {
     this.isData = true;
     this.loading = true,
-      this.subs.add(
-        await this.summaryService.getToday().subscribe(responseList => {
+      this.summaryService.getToday().subscribe(responseList => {
           this.loading = false;
           this.todaySuccess = responseList[0];
           this.successCount = this.todaySuccess.data.count;
@@ -52,19 +59,18 @@ export class TodayCardComponent implements OnInit, OnDestroy {
           this.loading = false;
           console.log('cant get today response', error);
         }),
-        await this.summaryService.getYesterday().subscribe(responseList => {
+       this.summaryService.getYesterday().subscribe(responseList => {
           let yesterdaySuccess = responseList[0];
           let yesterdayFailed = responseList[1];
           this.yesterdayTotalAmount = math.add(yesterdaySuccess.data.amount, yesterdayFailed.data.amount);
-          this.totalSubtract = math.chain(this.totalAmount).subtract(this.yesterdayTotalAmount);
+          this.totalSubtract = this.totalAmount - this.yesterdayTotalAmount;
           this.totalPercent = this.totalSubtract / this.yesterdayTotalAmount * 100;
         })
-      );
-
+    
   }
 
   ngOnDestroy() {
-    this.subs.unsubscribe();
+    this.refresh.unsubscribe();
   }
 
 }

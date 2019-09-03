@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SummaryService } from 'app/service/summary.service';
 import { SubSink } from 'subsink/dist/subsink';
 import * as math from 'mathjs';
+import { Subscription, Observable } from 'rxjs';
 
 
 @Component({
@@ -26,13 +27,23 @@ export class ThisWeekCardComponent implements OnInit {
   lastWeekTotalAmount: any;
   private subs = new SubSink();
   isData: boolean;
+  refresh: Subscription;
+
   constructor(private summaryService: SummaryService) { }
 
   async ngOnInit() {
+    await this.getThisWeekTransaction();
+
+    this.refresh = Observable.interval(120 * 1000).subscribe(() => {
+      this.getThisWeekTransaction();
+    })
+  }
+
+  getThisWeekTransaction() {
     this.isData = true;
     this.loading = true,
       this.subs.add(
-        await this.summaryService.getThisWeek().subscribe(responseList => {
+        this.summaryService.getThisWeek().subscribe(responseList => {
           this.loading = false;
           this.thisWeekSuccess = responseList[0];
           this.successCount = this.thisWeekSuccess.data.count;
@@ -52,17 +63,15 @@ export class ThisWeekCardComponent implements OnInit {
           this.loading = false;
           console.log('cant get thisWeek response', error);
         }),
-        await this.summaryService.getLastWeek().subscribe(responseList => {
+        this.summaryService.getLastWeek().subscribe(responseList => {
           let lastWeekSuccess = responseList[0];
           let lastWeekFailed = responseList[1];
-          let lastWeekTotalAmount = math.add(lastWeekSuccess.data.amount, lastWeekFailed.data.amount);
-          this.totalSubtract = math.chain(this.totalAmount).subtract(this.lastWeekTotalAmount);
+          this.lastWeekTotalAmount = math.add(lastWeekSuccess.data.amount, lastWeekFailed.data.amount);
+          this.totalSubtract = this.totalAmount - this.lastWeekTotalAmount;
           this.totalPercent = this.totalSubtract / this.lastWeekTotalAmount * 100;
         })
       );
-
   }
-
   ngOnDestroy() {
     this.subs.unsubscribe();
   }

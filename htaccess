@@ -1,10 +1,9 @@
 <IfModule mod_rewrite.c>
-RewriteEngine On  
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} -s [OR]
+    RewriteCond %{REQUEST_FILENAME} -l [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^.*$ - [NC,L]
 
-# If an existing asset or directory is requested go to it as it is
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
-RewriteRule ^ - [L]
-RewriteCond %{HTTPS} off
-RewriteRule (.*) http://%{HTTP_HOST}/index.html
+    RewriteRule ^(.*) /index.html [NC,L]
 </IfModule>

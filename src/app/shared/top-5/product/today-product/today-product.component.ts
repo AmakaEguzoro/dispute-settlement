@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as math from 'mathjs';
 import { SubSink } from 'subsink/dist/subsink';
 import { ProductsService } from 'app/service/products.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-today-product',
@@ -33,14 +34,28 @@ export class TodayProductComponent implements OnInit, OnDestroy {
   totalAEDCAmount: any;
   elements: any;
   isData: boolean;
+  refresh: Subscription;
 
   constructor(private productsService: ProductsService) { }
 
   async ngOnInit() {
+    await this.getTodayProduct();
+
+    this.refresh = Observable.interval(240 * 1000).subscribe(() => {
+      this.getTodayProduct();
+    });
+  }
+
+  // async test(){
+  //   await this.productsService.getProduct().subscribe(responseList => {
+  //     console.log(responseList)
+  //   },error=>{
+  //     console.log('error running the code')
+  //   });
+  // }
+  getTodayProduct() {
     this.isData = true;
-    this.loading = true,
-      this.subs.add(
-        await this.productsService.getTodayProducts().subscribe(responseList => {
+    this.loading = true, this.productsService.getTodayProducts().subscribe(responseList => {
           this.loading = false;
 
           let MTNVTUSuccess = responseList[0];
@@ -185,19 +200,11 @@ export class TodayProductComponent implements OnInit, OnDestroy {
           this.isData = false;
           this.loading = false;
           console.log('cant get today products response', error);
-        }),
-      );
+        });
   }
 
-  // async test(){
-  //   await this.productsService.getProduct().subscribe(responseList => {
-  //     console.log(responseList)
-  //   },error=>{
-  //     console.log('error running the code')
-  //   });
-  // }
   ngOnDestroy() {
-    this.subs.unsubscribe();
+    this.refresh.unsubscribe();
   }
 
   headElements = ['', 'Success', 'Fail', 'Total'];

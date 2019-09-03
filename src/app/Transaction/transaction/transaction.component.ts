@@ -26,7 +26,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
   bsModalRef: BsModalRef;
 
   constructor(private transactionService: TransactionService,
-     private route: ActivatedRoute, private router: Router, private modalService: BsModalService) { }
+ private router: Router, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.Transaction();
@@ -53,13 +53,14 @@ export class TransactionComponent implements OnInit, OnDestroy {
     })
   }
 
- openModalWithComponent(modal) {
-    this.data = modal;
+ openModal(modal) {
+    this.data.response = modal;
     const initialState = {
-      data: this.data,
+      data: this.data.response,
       ignoreBackdropClick: true,
     };
     this.bsModalRef = this.modalService.show(ModelComponent, {initialState});
+ 
   }
   
   pageChanged(event: any): void {

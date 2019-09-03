@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SummaryService } from 'app/service/summary.service';
 import { SubSink } from 'subsink/dist/subsink';
 import * as math from 'mathjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-this-month-card',
@@ -25,14 +26,23 @@ export class ThisMonthCardComponent implements OnInit {
   lastMonthTotalAmount: any;
   private subs = new SubSink();
   isData: boolean;
+  refresh: Subscription;
 
   constructor(private summaryService: SummaryService) { }
 
   async ngOnInit() {
+    await this.getThisMonthTransaction();
+
+    this.refresh = Observable.interval(120 * 1000).subscribe(() => {
+      this.getThisMonthTransaction();
+    })
+  }
+
+  getThisMonthTransaction() {
     this.isData = true;
     this.loading = true,
       this.subs.add(
-        await this.summaryService.getThisMonth().subscribe(responseList => {
+        this.summaryService.getThisMonth().subscribe(responseList => {
           this.loading = false;
           this.thisMonthSuccess = responseList[0];
           this.successCount = this.thisMonthSuccess.data.count;
@@ -52,15 +62,14 @@ export class ThisMonthCardComponent implements OnInit {
           this.loading = false;
           console.log('cant get this Month response', error);
         }),
-        await this.summaryService.getLastMonth().subscribe(responseList => {
+        this.summaryService.getLastMonth().subscribe(responseList => {
           let lastMonthSuccess = responseList[0];
           let lastMonthFailed = responseList[1];
           this.lastMonthTotalAmount = math.add(lastMonthSuccess.data.amount, lastMonthFailed.data.amount);
-          this.totalSubtract = math.chain(this.totalAmount).subtract(this.lastMonthTotalAmount);
+          this.totalSubtract = this.totalAmount - this.lastMonthTotalAmount;
           this.totalPercent = this.totalSubtract / this.lastMonthTotalAmount * 100;
         })
       );
-
   }
 
   ngOnDestroy() {

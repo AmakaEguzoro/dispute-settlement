@@ -10,7 +10,7 @@
                                          }">{{ totalPercent | toNumber | number:'1.0-0'}}%</div>
                                 <div class="total-percent mt-3">Vs Previous Week</div>
                                 <p class="summary-total-trans">Total Transactions</p> <br>
-                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
+                                <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                                 <h4 *ngIf="loading == false">
                                         <div *ngIf="isData == true" class="summary-amount">
                                                 &#x20A6;{{totalAmount | thousandSuff : 2}}</div>
@@ -34,7 +34,7 @@
                                         {{successPercent | toNumber | number:'1.0-0'}}%
                                 </div>
                                 <p class="summary-card-text">Successful Transactions</p> <br>
-                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
+                                <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                                 <h4 *ngIf="loading == false">
                                         <div *ngIf="isData == true" class="summary-amount">
                                                 &#x20A6;{{successAmount | thousandSuff : 2}}</div>
@@ -53,7 +53,7 @@
                                 <div class="pull-right summary-failed">{{failedPercent | toNumber | number:'1.0-0'}}%
                                 </div>
                                 <p class="summary-card-text">Failed Transactions</p> <br>
-                                <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner>
+                                <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                                 <h4 *ngIf="loading == false">
                                         <div *ngIf="isData == true" class="summary-amount">
                                                 &#x20A6;{{failedAmount | thousandSuff : 2 }}</div>
