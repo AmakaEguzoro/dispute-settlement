@@ -4,7 +4,9 @@ import { Socket } from 'ngx-socket-io';
 @Injectable()
 
 export class SocketService {
- 
+
+ socketData: any;
+
     constructor(private socket: Socket) {}
  
     // sendMessage(){
@@ -17,7 +19,8 @@ export class SocketService {
         return this.socket
             .fromEvent("vas-journal")
             .subscribe( data => {
-               console.log("Response from server - " + JSON.stringify(data))
+                this.socketData = JSON.stringify(data);
+               console.log("Response from server - " + this.socketData )
             } );
     }
     

@@ -1,6 +1,3 @@
-<!-- <div class="container">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
   <div class="modal-header">
     <div class="row">
       <div class="col-12">
@@ -16,8 +13,6 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-
- 
 
   <div class="modal-body">
     <div class="row">
@@ -71,9 +66,13 @@
             <strong style="float: right">{{data.transactionRRN}}</strong>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            Card-PAN:
-            <strong style="float: right">{{data.cardPAN}}</strong>
+            Ref:
+            <strong style="float: right">{{data.reference}}</strong>
           </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+              Provider Name:
+              <strong style="float: right">{{data.VASProviderName}}</strong>
+            </li>
         </ul>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -95,32 +94,20 @@
             <strong style="float: right">{{data.channel}}</strong>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            Provider Name:
-            <strong style="float: right">{{data.VASProviderName}}</strong>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Reference:
-            <strong style="float: right">{{data.reference}}</strong>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
             Sequence:
             <strong style="float: right">{{data.sequence}}</strong>
           </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+              Card-PAN:
+              <strong style="float: right">{{data.cardPAN}}</strong>
+            </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             Message:
             <strong style="float: right">{{data.message}}</strong>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            Reason:
-            <strong style="float: right">{{data.reason}}</strong>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
             Commission:
             <strong style="float: right">{{data.commission}}</strong>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Location:
-            <strong style="float: right">{{data.location}}</strong>
           </li>
         </ul>
       </div>
@@ -131,26 +118,3 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">Close</button>
   </div>
-
-</div>
-</div>
-</div> -->
-
-
-<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
-     role="dialog" aria-labelledby="dialog-sizes-name1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Large modal</h4>
-        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-    </div>
-  </div>
-</div>
- 
