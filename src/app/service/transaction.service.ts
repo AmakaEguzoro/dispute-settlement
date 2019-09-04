@@ -12,15 +12,24 @@ import { map } from 'rxjs/operators';
 
 export class TransactionService {
 
-    baseUrl = 'http://197.253.19.76:6200/api/v1/transaction/details';
+    baseUrl = 'http://197.253.19.76:6200/api/v1/transaction/';
 
     constructor(private httpClient: HttpClient) { }
 
     getTransaction(transaction: Transaction) {
-        return this.httpClient.post(this.baseUrl, transaction ).pipe(
+        return this.httpClient.post(this.baseUrl + `details`, transaction ).pipe(
             map((response: any) => {
                 const transaction = response;
                 return transaction;
+            }
+            ));
+    };
+
+    getTransactionSummary(transaction: Transaction) {
+        return this.httpClient.post(this.baseUrl + `details/summary`, transaction ).pipe(
+            map((response: any) => {
+                const transactionSummary = response;
+                return transactionSummary;
             }
             ));
     }

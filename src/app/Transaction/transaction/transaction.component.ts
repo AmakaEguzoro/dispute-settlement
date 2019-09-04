@@ -5,8 +5,6 @@ import { SubSink } from 'subsink/dist/subsink';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ModelComponent } from '../model/model.component';
 import { SocketService } from 'app/socket.service';
-import { Socket } from 'ngx-socket-io';
-
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -26,15 +24,16 @@ export class TransactionComponent implements OnInit, OnDestroy {
   maxSize = 10;
   // modal
   bsModalRef: BsModalRef;
-  socketData: any;
 
   constructor(private transactionService: TransactionService,
-    private router: Router, private modalService: BsModalService, private socket: SocketService) { }
+    private router: Router, private modalService: BsModalService,
+     private socket: SocketService) { }
 
   ngOnInit() {
     this.Transaction();
-    this.socket.getMessage();
-
+    this.socket.getMessage().subscribe(() => {
+      this.Transaction();
+    });
   }
 
   Transaction() {

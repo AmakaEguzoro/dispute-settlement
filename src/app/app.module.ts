@@ -72,6 +72,7 @@ const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { qu
   ],
   //itex
   entryComponents: [ ModelComponent ],
+  
   providers: [
     MDBSpinningPreloader,
     AsdevApiService,
