@@ -58,12 +58,12 @@
                         <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                     </tbody>
                 </table>
-                <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
+                <pagination style="cursor: wait;" [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
                 [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;"
                 lastText="&raquo;" ></pagination>
             </div>
             <br>
-            <div *ngIf="loading == true" style="cursor: wait;"> </div>
+            <!-- <div *ngIf="loading == true" style="cursor: wait;"> </div> -->
                   
            
           

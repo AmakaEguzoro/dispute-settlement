@@ -24,16 +24,20 @@ export class TransactionComponent implements OnInit, OnDestroy {
   maxSize = 10;
   // modal
   bsModalRef: BsModalRef;
+  private subs = new SubSink();
 
   constructor(private transactionService: TransactionService,
     private router: Router, private modalService: BsModalService,
-     private socket: SocketService) { }
+    private socket: SocketService) { }
 
   ngOnInit() {
     this.Transaction();
-    this.socket.getMessage().subscribe(() => {
-      this.Transaction();
-    });
+    this.subs.add(
+      // this.socket.getMessage().subscribe(() => {
+      //   this.Transaction();
+      // })
+    )
+
   }
 
   Transaction() {
@@ -79,7 +83,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
     'AMOUNT', 'STATUS', 'RESPONSE TIME', 'DATE'];
 
   ngOnDestroy() {
-    // this.subs.unsubscribe();
+    this.subs.unsubscribe();
   }
 
 

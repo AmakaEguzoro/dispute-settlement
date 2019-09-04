@@ -25,13 +25,13 @@ export class TransactionService {
             ));
     };
 
-    getTransactionSummary(transaction: Transaction) {
-        return this.httpClient.post(this.baseUrl + `details/summary`, transaction ).pipe(
-            map((response: any) => {
-                const transactionSummary = response;
-                return transactionSummary;
-            }
-            ));
-    }
+    // getTransactionSummary(transaction: Transaction) {
+    //     return this.httpClient.post(this.baseUrl + `details/summary`, transaction ).pipe(
+    //         map((response: any) => {
+    //             const transactionSummary = response;
+    //             return transactionSummary;
+    //         }
+    //         ));
+    // }
 
 }
