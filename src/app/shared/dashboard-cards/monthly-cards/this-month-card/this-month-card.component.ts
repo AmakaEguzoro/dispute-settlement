@@ -33,7 +33,7 @@ export class ThisMonthCardComponent implements OnInit {
   async ngOnInit() {
     await this.getThisMonthTransaction();
 
-    this.refresh = Observable.interval(120 * 1000).subscribe(() => {
+    this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
       this.getThisMonthTransaction();
     })
   }

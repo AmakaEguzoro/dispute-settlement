@@ -41,7 +41,7 @@ export class ThisMonthProductComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     await this.getThisMonthProduct();
 
-    this.refresh = Observable.interval(240 * 1000).subscribe(() => {
+    this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
       this.getThisMonthProduct();
     });
 

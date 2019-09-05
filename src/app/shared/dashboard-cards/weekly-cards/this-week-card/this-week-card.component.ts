@@ -34,7 +34,7 @@ export class ThisWeekCardComponent implements OnInit {
   async ngOnInit() {
     await this.getThisWeekTransaction();
 
-    this.refresh = Observable.interval(120 * 1000).subscribe(() => {
+    this.refresh = Observable.interval(15 * 60 *1000).subscribe(() => {
       this.getThisWeekTransaction();
     })
   }

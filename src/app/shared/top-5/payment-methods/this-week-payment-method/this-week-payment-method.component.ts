@@ -25,7 +25,7 @@ export class ThisWeekPaymentMethodComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     await this.getThisWeekPayment();
 
-    this.refresh = Observable.interval(240 * 1000).subscribe(() => {
+    this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
       this.getThisWeekPayment();
     });
   }

@@ -25,6 +25,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
   // modal
   bsModalRef: BsModalRef;
   private subs = new SubSink();
+  socketData: any;
 
   constructor(private transactionService: TransactionService,
     private router: Router, private modalService: BsModalService,
@@ -33,8 +34,11 @@ export class TransactionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.Transaction();
     this.subs.add(
-      // this.socket.getMessage().subscribe(() => {
-      //   this.Transaction();
+      // this.socket.getMessage().subscribe((Socketdata : any) => {
+      //   console.log("this is socket data", Socketdata.data)
+      //   this.data.push(Socketdata.data);
+      //   console.log(`transactions ${this.data.length}`);
+      //   // this.data.sort((a,b)=>{a.})
       // })
     )
 

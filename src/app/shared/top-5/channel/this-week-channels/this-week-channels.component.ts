@@ -29,7 +29,7 @@ export class ThisWeekChannelsComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     await this.getThisWeekChannel();
 
-    this.refresh = Observable.interval(240 * 1000).subscribe(() => {
+    this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
       this.getThisWeekChannel();
     });
   }

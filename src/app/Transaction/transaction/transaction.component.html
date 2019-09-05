@@ -9,20 +9,20 @@
                 <table class="table table-hover" small="true">
                     <thead class="trans-head">
                         <tr>
-                            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                            <th class="head" *ngFor="let head of headElements" scope="col">{{head}} </th>
                         </tr>
                     </thead>
                     <tbody>
                         <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
                         </mdb-spinner>
                         <!-- <div class="progress-loader" [hidden]="!loading"> -->
- 
-                                <!-- <mat-progress-spinner [mode]="'indeterminate'">
+
+                        <!-- <mat-progress-spinner [mode]="'indeterminate'">
                                 </mat-progress-spinner> -->
-                             
-                            <!-- </div> -->
-                            <!--  -->
-                        <tr  (click)="openModal(item)" *ngFor="let item of data let i = index">
+
+                        <!-- </div> -->
+                        <!--  -->
+                        <tr (click)="openModal(item)" *ngFor="let item of data let i = index">
                             <th scope="row">{{serial + i}}</th>
                             <td>{{item.name}}
                                 <p class="trans-category">
@@ -32,24 +32,36 @@
                             <td>{{item.sequence}}</td>
                             <td>{{item.wallet}}</td>
                             <td>{{item.terminal}}</td>
-                            <td>
-                                <mdb-badge pill="true" class="bad">{{item.channel}}</mdb-badge>
+                            <td [ngClass]="{
+                                'pos' : item.channel == 'POS',
+                                'android' : item.channel == 'ANDROID',
+                                 'androidPOS' : item.channel == 'ANDROIDPOS',
+                                 'web' : item.channel == 'WEB',
+                                 'default' : item.channel == 'DEFAULT',
+                                 'others' : item.channel == 'OTHER',
+                                 'mtn' : item.channel == 'MTN'
+                              }">
+                                {{item.channel}}
                             </td>
                             <td> &#x20A6;{{item.nairaAmount | number: "1.2-2" }}
-                                <p class="trans-category">
+                                <p class="trans-method">
                                     {{item.paymentMethod}}
                                 </p>
                             </td>
-                            <td [ngClass]="{
-                                                    'failed' : item.status == 'failed',
-                                                    'successful' : item.status == 'successful',
-                                                    'initialized' : item.status == 'initialized'
-                                                  }">{{item.status}}</td>
                             <td>
-                                <mdb-badge class="bd" [ngClass]="{
+                                <mdb-badge class="status" [ngClass]="{
+                                                    'failed' : item.status == 'failed',
+                                                    'success' : item.status == 'successful',
+                                                     'initialized' : item.status == 'initialized',
+                                                    'declined' : item.status == 'declined',
+                                                    'debited' : item.status == 'debited'
+                                                  }"> {{item.status}}</mdb-badge>
+                            </td>
+                            <td>
+                                <mdb-badge class="time" [ngClass]="{
                                                         'warning' : item.processTime > 11,
                                                         'success' : item.processTime <= 10,
-                                                         'info' : item.processTime == 11,
+                                                         'initialized' : item.processTime == 11,
                                                         'danger' : item.processTime == 0
                                                       }"> {{item.processTime}}s</mdb-badge>
                             </td>
@@ -58,15 +70,15 @@
                         <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                     </tbody>
                 </table>
-                <pagination style="cursor: wait;" [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
-                [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;"
-                lastText="&raquo;" ></pagination>
+                <pagination style="cursor: wait;" [boundaryLinks]="true" [totalItems]="lastPage"
+                    [itemsPerPage]="perPage" [(ngModel)]="currentPage" [maxSize]="maxSize"
+                    (pageChanged)="pageChanged($event)" firstText="&laquo;" lastText="&raquo;"></pagination>
             </div>
             <br>
             <!-- <div *ngIf="loading == true" style="cursor: wait;"> </div> -->
-                  
-           
-          
+
+
+
 
         </div>
     </div>

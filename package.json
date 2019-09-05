@@ -42,6 +42,7 @@
     "@types/mathjs": "^6.0.1",
     "angular-calendar": "^0.21.3",
     "angular-epic-spinners": "^2.0.0",
+    "angular-font-awesome": "^3.1.2",
     "automapper-ts": "^1.9.0",
     "bootstrap": "^4.3.1",
     "c": "^0.1.0",

@@ -15,27 +15,26 @@ export class TransactionCardComponent implements OnInit {
   constructor(private transactionService: TransactionService, ) { }
 
   ngOnInit() {
-    // this.TransactionSummary();
+    this.TransactionSummary();
   }
 
-  // TransactionSummary() {
-  //   this.isData = true;
-  //   this.loading = true;
-  //   this.transactionSummary = Object.assign({}, {
-  //     "dateRange": "", "terminalId": "",
-  //     "walletId": "", "accountNumber": "", "paymentMethod": "", "cardRRN": "", "transactionReference": "",
-  //     "phoneNumber": "", "sequenceNumber": "", "debitReference": "", "product": "", "transactionType": "",
-  //     "transactionStatus": "", "transactionChannel": "", "searchField": "", "viewPage": ""
-  //   });
-  //   this.transactionService.getTransactionSummary(this.transactionSummary).subscribe((data) => {
-  //     this.loading = false;
-  //     this.data = data
-  //     console.log(this.data, 'data from summary')
-  //   }, error => {
-  //     this.isData = false;
-  //     this.loading = false;
-  //     console.log('cant get transaction summary details', error);
-  //   });
-  // }
+  TransactionSummary() {
+    this.isData = true;
+    this.loading = true;
+    this.transactionSummary = Object.assign({}, {
+      "dateRange": "2019/09/05 - 2019/09/05", "terminalId": "",
+      "walletId": "", "accountNumber": "", "paymentMethod": "", "cardRRN": "", "transactionReference": "",
+      "phoneNumber": "", "sequenceNumber": "", "debitReference": "", "product": "", "transactionType": "",
+      "transactionStatus": "", "transactionChannel": "", "searchField": "", "viewPage": ""
+    });
+    this.transactionService.getTransactionSummary(this.transactionSummary).subscribe((data) => {
+      this.loading = false;
+      this.data = data.data;
+    }, error => {
+      this.isData = false;
+      this.loading = false;
+      console.log('cant get transaction summary details', error);
+    });
+  }
 
 }

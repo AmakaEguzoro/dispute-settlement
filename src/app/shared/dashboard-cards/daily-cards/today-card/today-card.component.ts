@@ -32,7 +32,7 @@ export class TodayCardComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     await this.getTodayTransaction();
 
-    this.refresh = Observable.interval(120 * 1000).subscribe(() => {
+    this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
       this.getTodayTransaction();
     })
   }
