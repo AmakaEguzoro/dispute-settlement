@@ -1,15 +1,17 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-
+import { User } from 'app/shared/bvn-status/bvn-login';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class BvnLoginService {
-  obj = {
+  obj: User = {
     "email": "phyllis23@vonrueden.org",
     "password": "yourpassword"
   }
@@ -25,10 +27,13 @@ export class BvnLoginService {
       'ITEX-Signature': '78025355d8b5c734547dcaccd32aec6833995e0ec71a5d11e6528367fcd4029d',
       'ITEX-Nonce': 'ITEXBVN90X4UIOPX987'
     })
-
-    return this.http.post<any>(this.loginUrl, this.obj, { headers: headers })
+    console.log("Bvn Login Service ......");
+    return this.http.post<any>(this.loginUrl, {email: this.obj.email, password: this.obj.password}, { headers: headers })
       .pipe(
-        map(data => data),
+        map(data => {
+          console.log("Bvn Response " + JSON.stringify(data));
+          return data;
+        }),
         catchError(this.handleError)
       )
   }
@@ -48,6 +53,5 @@ export class BvnLoginService {
     return throwError(
       'Something bad happened; please try again later.');
   };
-
 
 }

@@ -1,8 +1,9 @@
+import { BvnLoginService } from './../../service/bvn-login.service';
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { BvnService } from 'app/service/bvn.service';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 
-import { ModelBvn } from './bvn';
 
 
 @Component({
@@ -12,73 +13,73 @@ import { ModelBvn } from './bvn';
 })
 export class BvnStatusComponent implements OnInit {
 
-  bvns: ModelBvn;
+  bvnForm: FormGroup;
   errorMessage: any;
+  Token: string;
+  disp_bvnData: any;
+  isLoading: boolean;
+  isChosen: any;
+  validity: any;
 
+  constructor(private fb: FormBuilder, private bvnService: BvnService, private bvnLogin: BvnLoginService) { }
 
-  constructor(private bvnService: BvnService) { }
-
-  Form = new FormGroup({
-    bvn: new FormControl('', Validators.required),
-    firstname: new FormControl('', Validators.required),
-    lastname: new FormControl('', Validators.required),
-    phonenumber: new FormControl('', Validators.required),
-    dateofbirth: new FormControl('', Validators.required),
-  });    
-
-  get bvn(){
-    return this.Form.get('bvn');
+  ngOnInit() {
+    this.bvnForm = this.fb.group({
+      bvn: ['', [Validators.required, Validators.minLength(3)]],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      phonenumber: ['', Validators.required],
+      dateofbirth: ['', Validators.required]
+    });
   }
 
-  get firstname(){
-    return this.Form.get('firstname');
+  onSubmit() {
+    //console.log(this.bvnForm.value)
+    this.isLoading = true;
+    this.bvnLogin.loginPath().subscribe(data => {
+      this.Token = data.token;
+      this.bvnService.createForm(this.bvnForm.value, this.Token)
+        .subscribe((bvnData) => {
+          console.log(JSON.stringify(bvnData));
+         this.disp_bvnData = bvnData.data.message;
+         this.isChosen = bvnData.data.RequestStatus;
+         this.validity = bvnData.data.Validity;
+         
+         this.isLoading = false;
+        }, error => {
+          this.isLoading = false;
+          console.log(error.message);
+        });
+    }, error => {
+      console.log(error.message);
+    });
+    // console.log("Bvn Login Data " + JSON.stringify(bvnTokenData))   
   }
 
-  get lastname(){
-    return this.Form.get('lastname');
+  get bvn() {
+    return this.bvnForm.get('bvn');
   }
 
-  get phonenumber(){
-    return this.Form.get('phonenumber');
+  get firstname() {
+    return this.bvnForm.get('firstname');
   }
 
-  get dateofbirth(){
-    return this.Form.get('dateofbirth');
+  get lastname() {
+    return this.bvnForm.get('lastname');
   }
 
-
-
-
-
-
-
-
-
-
-  ngOnInit(){
-    console.log(this.Form.controls.value);
+  get phonenumber() {
+    return this.bvnForm.get('phonenumber');
   }
-    
-  //   this.initForm();
-  //  }
 
-  // initForm() {
-  //   this.bvnForm = this.fb.group({
-  //     bvn: ['', [Validators.required, Validators.minLength(3)]],
-  //     firstname: ['', Validators.required],
-  //     lastname: ['', Validators.required],
-  //     phonenumber: ['', Validators.required],
-  //     dateofbirth: ['', Validators.required]
-  //   });
-  // }
-
-  // onSubmit() {
-  //   console.log(this.initForm)
-    // this.bvnService.createForm(this.bvnForm)
-    //   .subscribe(
-    //     (response) => { console.log(response) },
-    //     error => this.errorMessage = <any>error
-    //   );
-  // }
-
+  get dateofbirth() {
+    return this.bvnForm.get('dateofbirth');
   }
+
+  public myDatePickerOptions: IMyOptions = {
+    dateFormat: 'dd-mmmm-yyyy',
+    minYear: 1900,
+
+  };
+
+}

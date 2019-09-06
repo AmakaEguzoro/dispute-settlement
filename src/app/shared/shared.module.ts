@@ -1,3 +1,4 @@
+
 import { ModalComponent } from './components/modal/modal.component';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -25,10 +26,13 @@ import { AgentsComponent } from './top-5/agents/agents.component';
 import { ProductsComponent } from './top-5/products/products.component';
 import { ServiceStatusComponent } from './components/service-status/service-status.component';
 import { BvnStatusComponent } from './bvn-status/bvn-status.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MDBBootstrapModulesPro.forRoot(),
   ],
   declarations: [
@@ -55,7 +59,7 @@ import { BvnStatusComponent } from './bvn-status/bvn-status.component';
     AgentsComponent,
     ProductsComponent,
     ServiceStatusComponent,
-    BvnStatusComponent
+    BvnStatusComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -85,7 +89,7 @@ import { BvnStatusComponent } from './bvn-status/bvn-status.component';
     // NotificationService,
     // itex
     SummaryService,
-    ChartService
+    ChartService,
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })

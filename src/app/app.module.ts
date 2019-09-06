@@ -32,6 +32,7 @@ import { RequestInterceptorService } from './service/requset-interceptor.service
 import { MatDialogModule } from '@angular/material';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
+import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 
 
 
@@ -54,6 +55,7 @@ import { HttpInterceptorProvider } from './_auth/errorInterceptor';
     ErrorModule,
     ToastModule.forRoot(),
     ReactiveFormsModule,
+    MDBBootstrapModulesPro.forRoot(),
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   entryComponents: [

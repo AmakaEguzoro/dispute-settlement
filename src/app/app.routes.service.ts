@@ -71,7 +71,7 @@ import { BvnStatusComponent } from './shared/bvn-status/bvn-status.component';
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'service-status', component: ServiceStatusComponent },
-  { path: 'BVN-status', component: BvnStatusComponent},
+  { path: 'bvn-status', component: BvnStatusComponent},
   {
     path: '',
     runGuardsAndResolvers: 'always',
