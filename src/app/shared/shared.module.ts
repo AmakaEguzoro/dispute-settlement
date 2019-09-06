@@ -61,13 +61,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ToNumberPipe,
     RoundPipe,
 
-<<<<<<< HEAD
-    ChannelsComponent,
-    AgentsComponent,
-    ProductsComponent,
+    // ChannelsComponent,
+    // AgentsComponent,
+    // ProductsComponent,
     ServiceStatusComponent,
     BvnStatusComponent,
-=======
     TodayChannelsComponent,
     ThisWeekChannelsComponent,
     ThisMonthChannelsComponent,
@@ -78,7 +76,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ThisWeekPaymentMethodComponent,
     ThisMonthPaymentMethodComponent,
     ServiceStatusComponent
->>>>>>> 0be8e68e0b501cc40ac6e4d809a962cf6419513c
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -112,14 +109,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     // NotificationService,
     // itex
     SummaryService,
-<<<<<<< HEAD
-    ChartService,
-=======
+    // ChartService,
     ChannelService,
     ProductsService,
     PaymentMethodService,
     TransactionService
->>>>>>> 0be8e68e0b501cc40ac6e4d809a962cf6419513c
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })

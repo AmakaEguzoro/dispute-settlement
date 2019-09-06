@@ -31,12 +31,10 @@ import { RequestInterceptorService } from './service/requset-interceptor.service
 import { MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
-<<<<<<< HEAD
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 
 
 
-=======
 import { OrderModule } from 'ngx-order-pipe';
 import { TransactionComponent } from './Transaction/transaction/transaction.component';
 import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
@@ -46,7 +44,6 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { SocketService } from './socket.service';
  
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
->>>>>>> 0be8e68e0b501cc40ac6e4d809a962cf6419513c
 
 @NgModule({
   declarations: [
