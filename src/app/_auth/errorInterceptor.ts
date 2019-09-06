@@ -35,19 +35,15 @@ import { StorageService } from 'app/service/storage.service';
 @Injectable()
 export class httpInterceptor implements HttpInterceptor {
 
-    isRefreshingToken: boolean = false;
-    tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-    constructor(
-        private storageService: StorageService,) {
-    }
+    constructor( ) {  }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        let token: User = this.storageService.get<User>(Constants.STORAGE_VARIABLES.TOKEN);
+        let token = localStorage.getItem('token');
 
-        if (token) {
-            request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
-        }
+        // if (token) {
+        //     request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
+        // }
 
 
 
@@ -56,6 +52,7 @@ export class httpInterceptor implements HttpInterceptor {
         }
 
         request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
+        
         return next.handle(request).pipe(
             map((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {

@@ -28,8 +28,8 @@ export class NavigationComponent implements OnInit {
   }
   logout() {
     localStorage.removeItem('token')
-    this.router.navigate(['/login']),
-    this.toastService.success('Logged Out')
+    this.router.navigate(['/login']);
+    // this.toastService.error('Logged Out');
   }
   loggedIn() {
     return this.authService.loggedIn()

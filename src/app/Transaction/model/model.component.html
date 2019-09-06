@@ -1,0 +1,120 @@
+  <div class="modal-header">
+    <div class="row">
+      <div class="col-12">
+        <h4>{{data.name}}</h4>
+        <br>
+        <div class="trans-catergory" style="margin-top: -2em;">
+          {{data.category}}
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <ul class="list-group">
+          <li class="list-group-item modal-tit d-flex justify-content-between align-items-center">
+            Product details
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Terminal ID:
+            <strong style="float: right">{{data.terminal}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Agent ID:
+            <strong style="float: right">{{data.wallet}}</strong>
+          </li>
+          <br>
+          <li class="list-group-item modal-tit d-flex justify-content-between align-items-center">
+            Customer Details
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Name:
+            <strong style="float: right">{{data.VASCustomerName}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Phone Number:
+            <strong style="float: right">{{data.VASCustomerPhone}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Account Number:
+            <strong style="float: right">{{data.VASCustomerAccount}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Address:
+            <strong style="float: right; margin-left: 8rem;">{{data.VASCustomerAddress}}</strong>
+          </li>
+          <br>
+          <li class="list-group-item modal-tit d-flex justify-content-between align-items-center">
+            Transaction Details
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            AuthCode:
+            <strong style="float: right">{{data.transactionAuthCode}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            STAN:
+            <strong style="float: right">{{data.transactionSTAN}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            RRN:
+            <strong style="float: right">{{data.transactionRRN}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Ref:
+            <strong style="float: right">{{data.reference}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+              Provider Name:
+              <strong style="float: right">{{data.VASProviderName}}</strong>
+            </li>
+        </ul>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Biller Name:
+            <strong style="float: right">{{data.VASBillerName}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Depositor Name:
+            <strong style="float: right">{{data.VASDepositorName}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Type:
+            <strong style="float: right">{{data.type}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Channel:
+            <strong style="float: right">{{data.channel}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Sequence:
+            <strong style="float: right">{{data.sequence}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+              Card-PAN:
+              <strong style="float: right">{{data.cardPAN}}</strong>
+            </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Message:
+            <strong style="float: right">{{data.message}}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Commission:
+            <strong style="float: right">{{data.commission}}</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">Close</button>
+  </div>

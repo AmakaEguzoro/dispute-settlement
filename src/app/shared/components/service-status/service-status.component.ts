@@ -30,7 +30,7 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
   async ngOnInit() {
     await this.getElements();
 
-    this.refresh = Observable.interval(5*1000).subscribe(()=>{
+    this.refresh = Observable.interval(15 * 60 * 1000).subscribe(()=>{
       this.getElements();
     })
 

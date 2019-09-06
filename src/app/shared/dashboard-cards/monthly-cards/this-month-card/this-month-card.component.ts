@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ThisMonthFailed, ThisMonthSuccess, ThisMonthTotal } from 'app/_models/summary';
 import { SummaryService } from 'app/service/summary.service';
+import { SubSink } from 'subsink/dist/subsink';
+import * as math from 'mathjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-this-month-card',
@@ -8,61 +10,69 @@ import { SummaryService } from 'app/service/summary.service';
   styleUrls: ['./this-month-card.component.scss']
 })
 export class ThisMonthCardComponent implements OnInit {
-  thisMonthSuccess: ThisMonthSuccess;
-  thisMonthFailed: ThisMonthFailed;
-  thisMonthTotal: ThisMonthTotal;
+  totalAmount: any;
+  successCount: any;
+  failedCount: any;
+  successAmount: any;
+  failedAmount: any;
   loading = false;
-  lastm:any;
-  percentage : any;
-kk:any;
-  constructor(private summaryService: SummaryService) { 
-    this.getThisMonthTotal();
-    this.getThisMonthSuccessfull();
-    this.getThisMonthFailed();
-  }
+  totalCount: any;
+  thisMonthSuccess: any;
+  thisMonthFailed: any;
+  successPercent: any;
+  failedPercent: any;
+  totalPercent: any;
+  totalSubtract: any;
+  lastMonthTotalAmount: any;
+  private subs = new SubSink();
+  isData: boolean;
+  refresh: Subscription;
 
-  ngOnInit() {
-    this.summaryService.getLastMonthSuccess().subscribe(data =>{
-      this.lastm = data;
-      // this.percentage   = Math.floor(this.lastm.data.count + this.thisMonthSuccess.data.count);
-      // this.kk = Math.chain(this.lastm.data.count).add(this.lastm.data.count);
-      console.log(this.kk , 'jj')
-    })
-   
-  }
+  constructor(private summaryService: SummaryService) { }
 
-  getThisMonthTotal() {
-    this.loading = true;
-    this.summaryService.getThisMonthTotal().subscribe((thisMonthTotal: ThisMonthTotal) => {
-      this.loading = false;
-      this.thisMonthTotal = thisMonthTotal;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get thisMonthTotal');
+  async ngOnInit() {
+    await this.getThisMonthTransaction();
+
+    this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
+      this.getThisMonthTransaction();
     })
   }
 
-  getThisMonthSuccessfull() {
-     this.loading = true;
-    this.summaryService.getThisMonthSuccess().subscribe((thisMonthSuccess: ThisMonthSuccess) => {
-      this.loading = false;
-      this.thisMonthSuccess = thisMonthSuccess;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get thisMonthSuccess');
-    })
+  getThisMonthTransaction() {
+    this.isData = true;
+    this.loading = true,
+      this.subs.add(
+        this.summaryService.getThisMonth().subscribe(responseList => {
+          this.loading = false;
+          this.thisMonthSuccess = responseList[0];
+          this.successCount = this.thisMonthSuccess.data.count;
+          this.successAmount = this.thisMonthSuccess.data.amount;
+
+          this.thisMonthFailed = responseList[1];
+          this.failedCount = this.thisMonthFailed.data.count;
+          this.failedAmount = this.thisMonthFailed.data.amount;
+
+          this.totalCount = math.add(this.successCount, this.failedCount);
+          this.totalAmount = math.add(this.successAmount, this.failedAmount);
+
+          this.successPercent = this.successCount / this.totalCount * 100;
+          this.failedPercent = this.failedCount / this.totalCount * 100;
+        }, error => {
+          this.isData = false;
+          this.loading = false;
+          console.log('cant get this Month response', error);
+        }),
+        this.summaryService.getLastMonth().subscribe(responseList => {
+          let lastMonthSuccess = responseList[0];
+          let lastMonthFailed = responseList[1];
+          this.lastMonthTotalAmount = math.add(lastMonthSuccess.data.amount, lastMonthFailed.data.amount);
+          this.totalSubtract = this.totalAmount - this.lastMonthTotalAmount;
+          this.totalPercent = this.totalSubtract / this.lastMonthTotalAmount * 100;
+        })
+      );
   }
 
-  getThisMonthFailed() {
-    this.loading = true;
-    this.summaryService.getThisMonthFailed().subscribe((thisMonthFailed: ThisMonthFailed) => {
-      this.loading = false;
-      this.thisMonthFailed = thisMonthFailed;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get thisMonthFailed');
-    })
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
-
-
 }

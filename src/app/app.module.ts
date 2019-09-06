@@ -18,7 +18,6 @@ import { ViewsModule } from './views/views.module';
 import { SharedModule } from './shared/shared.module';
 import { MDBSpinningPreloader } from 'ng-uikit-pro-standard';
 
-import { ErrorModule } from './views/errors/error.module';
 
 // main layout
 import { NavigationModule } from './main-layout/navigation/navigation.module';
@@ -29,17 +28,33 @@ import { AsdevApiService } from './providers/asdev-api.service';
 import { EncrDecrService } from 'app/service/encr-decr.service';
 import { RequestInterceptorService } from './service/requset-interceptor.service';
 
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
+<<<<<<< HEAD
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 
 
 
+=======
+import { OrderModule } from 'ngx-order-pipe';
+import { TransactionComponent } from './Transaction/transaction/transaction.component';
+import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
+import { ModelComponent } from './Transaction/model/model.component';
+import { PaginationModule, ModalModule } from 'ngx-bootstrap';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { SocketService } from './socket.service';
+ 
+const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
+>>>>>>> 0be8e68e0b501cc40ac6e4d809a962cf6419513c
 
 @NgModule({
   declarations: [
     AppComponent,
+    //itex
+    TransactionComponent,
+    TransactionCardComponent,
+    ModelComponent
   ],
   imports: [
     BrowserModule,
@@ -52,23 +67,30 @@ import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
     FormsModule,
     SharedModule,
     ViewsModule,
-    ErrorModule,
     ToastModule.forRoot(),
     ReactiveFormsModule,
     MDBBootstrapModulesPro.forRoot(),
     // AngularFireModule.initializeApp(environment.firebase),
+    // Itex
+    OrderModule,
+    PaginationModule.forRoot(),
+    ModalModule.forRoot(),
+    MatProgressSpinnerModule,
+    SocketIoModule.forRoot(config)
   ],
-  entryComponents: [
-  ],
+  //itex
+  entryComponents: [ ModelComponent ],
+  
   providers: [
     MDBSpinningPreloader,
     AsdevApiService,
     // AngularFirestore,
     // AngularFireStorage,
     // EncrDecrService,
-    // { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptorService, multi: true }
-    HttpInterceptorProvider,
-    AuthGuard
+    //itex
+     HttpInterceptorProvider,
+    AuthGuard,
+    SocketService
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]

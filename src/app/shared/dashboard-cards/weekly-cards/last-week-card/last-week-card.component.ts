@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LastWeekTotal, LastWeekFailed, LastWeekSuccess, ThisWeekSuccess } from 'app/_models/summary';
 import { SummaryService } from 'app/service/summary.service';
+import * as math from 'mathjs';
+import { SubSink } from 'subsink/dist/subsink';
 
 @Component({
   selector: 'app-last-week-card',
@@ -8,51 +9,52 @@ import { SummaryService } from 'app/service/summary.service';
   styleUrls: ['./last-week-card.component.scss']
 })
 export class LastWeekCardComponent implements OnInit {
-  lastWeekSuccess: LastWeekSuccess;
-  lastWeekFailed: LastWeekFailed;
-  lastWeekTotal: LastWeekTotal;
+  totalAmount: any;
+  successCount: any;
+  failedCount: any;
+  successAmount: any;
+  failedAmount: any;
   loading = false;
+  totalCount: any;
+  lastWeekSuccess: any;
+  lastWeekFailed: any;
 
-  constructor(private summaryService: SummaryService) { 
-    this.getLastWeekTotal();
-    this.getLastWeekSuccessfull();
-    this.getLastWeekFailed();
+  successPercent: any;
+  failedPercent: any;
+  private subs = new SubSink();
+  isData: boolean;
+
+  constructor(private summaryService: SummaryService) { }
+
+  async ngOnInit() {
+    this.isData = true;
+    this.loading = true,
+      this.subs.add(
+        await this.summaryService.getLastWeek().subscribe(responseList => {
+          this.loading = false;
+          this.lastWeekSuccess = responseList[0];
+          this.successCount = this.lastWeekSuccess.data.count;
+          this.successAmount = this.lastWeekSuccess.data.amount;
+
+          this.lastWeekFailed = responseList[1];
+          this.failedCount = this.lastWeekFailed.data.count;
+          this.failedAmount = this.lastWeekFailed.data.amount;
+
+          this.totalCount = math.add(this.successCount, this.failedCount);
+          this.totalAmount = math.add(this.successAmount, this.failedAmount);
+
+          this.successPercent = this.successCount / this.totalCount * 100;
+          this.failedPercent = this.failedCount / this.totalCount * 100;
+        }, error => {
+          this.isData = false;
+          this.loading = false;
+          console.log('cant get lastWeek response', error)
+        }),
+      );
+
   }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
-
-  getLastWeekTotal() {
-    this.loading = true;
-    this.summaryService.getLastWeekTotal().subscribe((lastWeekTotal: LastWeekTotal) => {
-      this.loading = false;
-      this.lastWeekTotal = lastWeekTotal;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get lastWeekTotal');
-    })
-  }
-
-  getLastWeekSuccessfull() {
-     this.loading = true;
-    this.summaryService.getLastWeekSuccess().subscribe((lastWeekSuccess: LastWeekSuccess) => {
-      this.loading = false;
-      this.lastWeekSuccess = lastWeekSuccess;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get lastWeekSuccess');
-    })
-  }
-
-  getLastWeekFailed() {
-    this.loading = true;
-    this.summaryService.getLastWeekFailed().subscribe((lastWeekFailed: LastWeekFailed) => {
-      this.loading = false;
-      this.lastWeekFailed = lastWeekFailed;
-    }, error => {
-      this.loading = false;
-      console.log(error, 'cannot get lastWeekFailed');
-    })
-  }
-
 }
