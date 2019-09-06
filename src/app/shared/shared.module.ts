@@ -1,3 +1,4 @@
+
 import { ModalComponent } from './components/modal/modal.component';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -31,10 +32,14 @@ import { TodayProductComponent } from './top-5/product/today-product/today-produ
 import { ThisWeekPaymentMethodComponent } from './top-5/payment-methods/this-week-payment-method/this-week-payment-method.component';
 import { TransactionService } from 'app/service/transaction.service';
 import { ServiceStatusComponent } from './components/service-status/service-status.component';
+import { BvnStatusComponent } from './bvn-status/bvn-status.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MDBBootstrapModulesPro.forRoot(),
     // itex
     OrderModule
@@ -56,6 +61,13 @@ import { ServiceStatusComponent } from './components/service-status/service-stat
     ToNumberPipe,
     RoundPipe,
 
+<<<<<<< HEAD
+    ChannelsComponent,
+    AgentsComponent,
+    ProductsComponent,
+    ServiceStatusComponent,
+    BvnStatusComponent,
+=======
     TodayChannelsComponent,
     ThisWeekChannelsComponent,
     ThisMonthChannelsComponent,
@@ -66,6 +78,7 @@ import { ServiceStatusComponent } from './components/service-status/service-stat
     ThisWeekPaymentMethodComponent,
     ThisMonthPaymentMethodComponent,
     ServiceStatusComponent
+>>>>>>> 0be8e68e0b501cc40ac6e4d809a962cf6419513c
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -99,10 +112,14 @@ import { ServiceStatusComponent } from './components/service-status/service-stat
     // NotificationService,
     // itex
     SummaryService,
+<<<<<<< HEAD
+    ChartService,
+=======
     ChannelService,
     ProductsService,
     PaymentMethodService,
     TransactionService
+>>>>>>> 0be8e68e0b501cc40ac6e4d809a962cf6419513c
   ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
