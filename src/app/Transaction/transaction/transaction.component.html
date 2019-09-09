@@ -44,7 +44,10 @@
                                 {{item.channel}}
                             </td>
                             <td> &#x20A6;{{item.nairaAmount | number: "1.2-2" }}
-                                <p class="trans-method">
+                                <p [ngClass]="{
+                                    'cash' : item.paymentMethod == 'cash',
+                                    'cards' : item.paymentMethod == 'card'
+                                  }">
                                     {{item.paymentMethod}}
                                 </p>
                             </td>
@@ -70,7 +73,7 @@
                         <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                     </tbody>
                 </table>
-                <pagination style="cursor: wait;" [boundaryLinks]="true" [totalItems]="lastPage"
+                <pagination [boundaryLinks]="true" [totalItems]="lastPage"
                     [itemsPerPage]="perPage" [(ngModel)]="currentPage" [maxSize]="maxSize"
                     (pageChanged)="pageChanged($event)" firstText="&laquo;" lastText="&raquo;"></pagination>
             </div>

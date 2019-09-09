@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from 'app/service/transaction.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-transaction-card',
@@ -11,6 +12,12 @@ export class TransactionCardComponent implements OnInit {
   loading = true;
   data: any;
   transactionSummary: any;
+  date: string;
+
+  // date range
+DateObj = new Date();
+dateRange: any;
+newRange: any;
 
   constructor(private transactionService: TransactionService, ) { }
 
@@ -19,10 +26,12 @@ export class TransactionCardComponent implements OnInit {
   }
 
   TransactionSummary() {
+    this.dateRange = (String)(this.DateObj.getFullYear() + '/' + (this.DateObj.getMonth() + 1) + '/' + this.DateObj.getDate());
+    this.newRange = `${this.dateRange} - ${this.dateRange}`;
     this.isData = true;
     this.loading = true;
     this.transactionSummary = Object.assign({}, {
-      "dateRange": "2019/09/05 - 2019/09/05", "terminalId": "",
+      "dateRange":  this.newRange, "terminalId": "",
       "walletId": "", "accountNumber": "", "paymentMethod": "", "cardRRN": "", "transactionReference": "",
       "phoneNumber": "", "sequenceNumber": "", "debitReference": "", "product": "", "transactionType": "",
       "transactionStatus": "", "transactionChannel": "", "searchField": "", "viewPage": ""

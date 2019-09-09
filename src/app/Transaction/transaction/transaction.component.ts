@@ -55,6 +55,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
     });
     this.transactionService.getTransaction(this.transaction).subscribe((data) => {
       this.loading = false;
+      console.log('transaction details -',data);
       this.data = data.data.transactions;
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
       this.lastPage = data.data.lastPage;

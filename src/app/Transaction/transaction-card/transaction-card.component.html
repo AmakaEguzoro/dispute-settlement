@@ -1,64 +1,65 @@
 <!-- <div class="container"> -->
 <div class="row">
   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-      <div class="card classic-admin-card">
-          <div class="card-body">
-            <p class="total-trans">Active Users</p> <br>
-            <!-- <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner> -->
-            <h4>
-              <div class="trans-amount">
-               222</div>
-            </h4>
-          </div>
-        </div>
-  </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
     <div class="card classic-admin-card">
-      <div class="card-body">
-        <p class="total-trans">Total Transactions</p> <br>
-        <!-- <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner> -->
+      <div class="card-body" [style.height.em]="'6'">
+        <p class="total-trans">Active Users</p> <br>
+        <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
         <h4>
-            <p class="trans-card-text">
-                33
-                &nbsp; Transactions</p>
           <div class="trans-amount">
-            &#x20A6;222</div>
-       
+            {{data?.usersCount}}</div>
         </h4>
+        <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
       </div>
     </div>
   </div>
   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-      <div class="card classic-admin-card">
-          <div class="card-body">
-            <p class="total-trans">Successful Transactions</p> <br>
-            <!-- <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner> -->
-            <h4>
-                <p class="trans-card-text">
-                    33
-                    &nbsp; Transactions</p>
-              <div class="trans-amount">
-                &#x20A6;222</div>
-           
-            </h4>
-          </div>
-        </div>
+    <div class="card classic-admin-card">
+      <div class="card-body" [style.height.em]="'6'">
+        <p class="total-trans">Total Transactions</p> <br>
+        <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+        <h4 *ngIf="loading == false">
+          <p *ngIf="isData == true" class="trans-card-text">
+            {{data?.transactionCount | thousandSuff }}
+            &nbsp; Transactions</p>
+          <div *ngIf="isData == true" class="trans-amount">
+            &#x20A6;{{data?.totalAmount / 100 | thousandSuff : 2}}</div>
+        </h4>
+        <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+      </div>
+    </div>
   </div>
   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-      <div class="card classic-admin-card">
-          <div class="card-body">
-            <p class="total-trans">Failed Transactions</p> <br>
-            <!-- <mdb-spinner *ngIf="loading" spinnerColor="blue"></mdb-spinner> -->
-            <h4>
-                <p class="trans-card-text">
-                    33
-                    &nbsp; Transactions</p>
-              <div class="trans-amount">
-                &#x20A6;222</div>
-           
-            </h4>
-          </div>
-        </div>
+    <div class="card classic-admin-card">
+      <div class="card-body" [style.height.em]="'6'">
+        <p class="total-trans">Successful Transactions</p> <br>
+        <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+        <h4 *ngIf="loading == false">
+          <p *ngIf="isData == true" class="trans-card-text">
+            {{data?.successfulCount | thousandSuff }}
+            &nbsp; Transactions</p>
+          <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+            &#x20A6;{{data?.successfulAmount / 100 | thousandSuff : 2}}</div>
+        </h4>
+        <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+    <div class="card classic-admin-card">
+      <div class="card-body" [style.height.em]="'6'">
+        <p class="total-trans">Failed Transactions</p> <br>
+        <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+        <h4 *ngIf="loading == false">
+          <p *ngIf="isData == true" class="trans-card-text">
+            {{data?.failedCount | thousandSuff }}
+            &nbsp; Transactions</p>
+          <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
+            &#x20A6;{{data?.failedAmount / 100 | thousandSuff : 2}}</div>
+        </h4>
+        <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+      </div>
+    </div>
   </div>
 </div>
 <!-- </div> -->
