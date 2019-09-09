@@ -31,6 +31,10 @@ import { RequestInterceptorService } from './service/requset-interceptor.service
 import { MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
+import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
+
+
+
 import { OrderModule } from 'ngx-order-pipe';
 import { TransactionComponent } from './Transaction/transaction/transaction.component';
 import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
@@ -62,6 +66,7 @@ const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { qu
     ViewsModule,
     ToastModule.forRoot(),
     ReactiveFormsModule,
+    MDBBootstrapModulesPro.forRoot(),
     // AngularFireModule.initializeApp(environment.firebase),
     // Itex
     OrderModule,

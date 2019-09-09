@@ -5,11 +5,15 @@ import { LoginComponent } from './views/pages/login/login.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { TransactionComponent } from './Transaction/transaction/transaction.component';
 import { ServiceStatusComponent } from './shared/components/service-status/service-status.component';
+import { TodayCardComponent } from './shared/dashboard-cards/daily-cards/today-card/today-card.component';
+import { BvnStatusComponent } from './shared/bvn-status/bvn-status.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 
 
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
+  { path: 'service-status', component: ServiceStatusComponent },
+  { path: 'bvn-status', component: BvnStatusComponent},
 
   { path: 'not-found', component: NotFoundComponent },
 
