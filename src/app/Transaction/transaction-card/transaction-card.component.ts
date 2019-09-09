@@ -38,6 +38,7 @@ newRange: any;
     });
     this.transactionService.getTransactionSummary(this.transactionSummary).subscribe((data) => {
       this.loading = false;
+      console.log('transaction summary -', data);
       this.data = data.data;
     }, error => {
       this.isData = false;

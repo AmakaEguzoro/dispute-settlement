@@ -34,12 +34,12 @@ export class TransactionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.Transaction();
     this.subs.add(
-      // this.socket.getMessage().subscribe((Socketdata : any) => {
-      //   console.log("this is socket data", Socketdata.data)
-      //   this.data.push(Socketdata.data);
-      //   console.log(`transactions ${this.data.length}`);
-      //   // this.data.sort((a,b)=>{a.})
-      // })
+      this.socket.getMessage().subscribe((Socketdata : any) => {
+        console.log("this is socket data", Socketdata.data)
+        this.data.unshift(Socketdata.data);
+        // console.log(`transactions ${this.data.length}`);
+        // this.data.sort((a,b)=>{a.})
+      })
     )
 
   }
