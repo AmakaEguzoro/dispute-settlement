@@ -1,8 +1,74 @@
 <div class="container">
 
-    <app-transaction-card></app-transaction-card>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="card classic-admin-card">
+                <div class="card-body" [style.height.em]="'6'">
+                    <p class="total-trans">Active Users</p> <br>
+                    <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4>
+                        <div class="trans-amount">
+                            {{summaryData?.usersCount}}</div>
+                    </h4>
+                    <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="card classic-admin-card">
+                <div class="card-body" [style.height.em]="'6'">
+                    <p class="total-trans">Total Transactions</p> <br>
+                    <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="loading == false">
+                        <p *ngIf="isData == true" class="trans-card-text">
+                            {{ totalCount  }}
+                            &nbsp; Transactions</p>
+                        <div *ngIf="isData == true" class="trans-amount">
+                            &#x20A6;{{totalAmount / 100 | thousandSuff : 2}}</div>
+                    </h4>
+                    <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="card classic-admin-card">
+                <div class="card-body" [style.height.em]="'6'">
+                    <p class="total-trans">Successful Transactions</p> <br>
+                    <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="loading == false">
+                        <p *ngIf="isData == true" class="trans-card-text">
+                            {{successCount  }}
+                            &nbsp; Transactions</p>
+                        <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                            &#x20A6;{{successAmount / 100 | thousandSuff : 2}}</div>
+                    </h4>
+                    <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="card classic-admin-card">
+                <div class="card-body" [style.height.em]="'6'">
+                    <p class="total-trans">Failed Transactions</p> <br>
+                    <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="loading == false">
+                        <p *ngIf="isData == true" class="trans-card-text">
+                            {{failedCount}}
+                            &nbsp; Transactions</p>
+                        <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
+                            &#x20A6;{{failedAmount / 100 | thousandSuff : 2}}</div>
+                    </h4>
+                    <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <br> <br>
 
+
+    <!-- Transaction Details -->
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
@@ -22,7 +88,7 @@
 
                         <!-- </div> -->
                         <!--  -->
-                        <tr (click)="openModal(item)" *ngFor="let item of data let i = index">
+                        <tr (click)="openModal(item)" *ngFor="let item of detailsData let i = index">
                             <th scope="row">{{serial + i}}</th>
                             <td>{{item.name}}
                                 <p class="trans-category">

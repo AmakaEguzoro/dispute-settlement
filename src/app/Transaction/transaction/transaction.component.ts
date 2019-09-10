@@ -11,10 +11,12 @@ import { SocketService } from 'app/service/socket.service';
   styleUrls: ['./transaction.component.scss']
 })
 export class TransactionComponent implements OnInit, OnDestroy {
+
   isData: boolean;
   loading = true;
   data: any;
   transaction: any;
+  detailsData: any;
 
   // pagination
   perPage = 50;
@@ -22,10 +24,26 @@ export class TransactionComponent implements OnInit, OnDestroy {
   lastPage: number;
   serial: number;
   maxSize = 10;
+
+  // date range
+  DateObj = new Date();
+  dateRange: any;
+  newRange: any;
+
   // modal
   bsModalRef: BsModalRef;
   private subs = new SubSink();
   socketData: any;
+
+  // Summary
+  summaryData: any;
+  transactionSummary: any;
+  failedAmount: any;
+  failedCount: any;
+  successCount: any;
+  successAmount: any;
+  totalAmount: any;
+  totalCount: any;
 
   constructor(private transactionService: TransactionService,
     private router: Router, private modalService: BsModalService,
@@ -33,15 +51,26 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.Transaction();
-    this.subs.add(
-      this.socket.getMessage().subscribe((Socketdata : any) => {
-        console.log("this is socket data", Socketdata.data)
-        this.data.unshift(Socketdata.data);
-        // console.log(`transactions ${this.data.length}`);
-        // this.data.sort((a,b)=>{a.})
-      })
-    )
+    this.TransactionSummary();
+    // this.subs.add(
 
+    // )
+
+    setTimeout(() => {
+    this.getSocketData();
+    }, 3000);
+
+  }
+
+  getSocketData() {
+    this.socket.getMessage().subscribe((Socketdata: any) => {
+      console.log("this is socket data", Socketdata.data)      
+      this.detailsData.unshift(Socketdata.data);
+       
+      this.totalAmount = this.summaryData.totalAmount;
+      this.totalCount = this.summaryData.transactionCount;
+      console.log("total summary count", this.totalCount);
+    });
   }
 
   Transaction() {
@@ -55,8 +84,8 @@ export class TransactionComponent implements OnInit, OnDestroy {
     });
     this.transactionService.getTransaction(this.transaction).subscribe((data) => {
       this.loading = false;
-      console.log('transaction details -',data);
-      this.data = data.data.transactions;
+      console.log('transaction details -', data);
+      this.detailsData = data.data.transactions;
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
       this.lastPage = data.data.lastPage;
     }, error => {
@@ -86,6 +115,37 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
   headElements = ['S/N', 'PRODUCT', 'SEQUENCE', 'AGENT ID', 'TERMINAL', 'CHANNEL',
     'AMOUNT', 'STATUS', 'RESPONSE TIME', 'DATE'];
+
+
+  TransactionSummary() {
+    this.dateRange = (String)(this.DateObj.getFullYear() + '/' + (this.DateObj.getMonth() + 1) + '/' + this.DateObj.getDate());
+    this.newRange = `${this.dateRange} - ${this.dateRange}`;
+    this.isData = true;
+    this.loading = true;
+    this.transactionSummary = Object.assign({}, {
+      "dateRange": this.newRange, "terminalId": "",
+      "walletId": "", "accountNumber": "", "paymentMethod": "", "cardRRN": "", "transactionReference": "",
+      "phoneNumber": "", "sequenceNumber": "", "debitReference": "", "product": "", "transactionType": "",
+      "transactionStatus": "", "transactionChannel": "", "searchField": "", "viewPage": ""
+    });
+    this.transactionService.getTransactionSummary(this.transactionSummary).subscribe((data) => {
+      this.loading = false;
+      this.summaryData = data.data;
+      this.failedAmount = this.summaryData.failedAmount;
+      this.failedCount = this.summaryData.failedCount;
+
+      this.successCount = this.summaryData.successfulCount;
+      this.successAmount = this.summaryData.successfulAmount;
+      
+      this.totalAmount = this.summaryData.totalAmount;
+      this.totalCount = this.summaryData.transactionCount;
+      console.log(this.totalAmount, 'total amount');
+    }, error => {
+      this.isData = false;
+      this.loading = false;
+      console.log('cant get transaction summary details', error);
+    });
+  }
 
   ngOnDestroy() {
     this.subs.unsubscribe();

@@ -1,3 +1,26 @@
+.total-trans{
+  font-style: normal ;
+  font-weight: normal ;
+  font-size: 15px ;
+  line-height: 16px ;
+  color: #002035 ;
+}
+.trans-amount{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 0px;
+  text-align: right;
+  color: #002035;
+}
+.trans-card-text{
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 0px;
+color: black;
+}
+
 .trans-head{   
 background: rgba(242, 242, 242, 0.56);
 border: 3px solid rgba(242, 242, 242, 0.56); 
@@ -17,6 +40,8 @@ padding: 0px;
 
  table td {
   font-size: smaller;
+  padding-bottom: 0px;
+    padding-top: 2px;
 }
 
 .trans-category{

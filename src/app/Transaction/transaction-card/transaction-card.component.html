@@ -20,10 +20,10 @@
         <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
         <h4 *ngIf="loading == false">
           <p *ngIf="isData == true" class="trans-card-text">
-            {{data?.transactionCount | thousandSuff }}
+            {{ totalCount | thousandSuff }}
             &nbsp; Transactions</p>
           <div *ngIf="isData == true" class="trans-amount">
-            &#x20A6;{{data?.totalAmount / 100 | thousandSuff : 2}}</div>
+            &#x20A6;{{totalAmount / 100 | thousandSuff : 2}}</div>
         </h4>
         <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
       </div>
@@ -36,10 +36,10 @@
         <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
         <h4 *ngIf="loading == false">
           <p *ngIf="isData == true" class="trans-card-text">
-            {{data?.successfulCount | thousandSuff }}
+            {{successCount | thousandSuff }}
             &nbsp; Transactions</p>
           <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
-            &#x20A6;{{data?.successfulAmount / 100 | thousandSuff : 2}}</div>
+            &#x20A6;{{successAmount / 100 | thousandSuff : 2}}</div>
         </h4>
         <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
       </div>
@@ -52,10 +52,10 @@
         <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
         <h4 *ngIf="loading == false">
           <p *ngIf="isData == true" class="trans-card-text">
-            {{data?.failedCount | thousandSuff }}
+            {{failedCount | thousandSuff }}
             &nbsp; Transactions</p>
           <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
-            &#x20A6;{{data?.failedAmount / 100 | thousandSuff : 2}}</div>
+            &#x20A6;{{failedAmount / 100 | thousandSuff : 2}}</div>
         </h4>
         <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
       </div>
