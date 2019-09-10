@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Element } from './element';
-import { ElementService } from '../../../service/element.service';
+import { ElementService } from '../../service/element.service';
 import { ElementError } from './elementError';
 import { SwitchService } from 'app/service/switch.service';
 import { Subscription } from 'rxjs';
@@ -19,13 +19,11 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
   public currentStatus: string;
   data: string;
   color: string; 
-
+  isData: boolean;
   refresh : Subscription;
 
 
-  constructor(private elementService: ElementService, public sw:SwitchService) { 
-    //......//
-  }
+  constructor(private elementService: ElementService, public sw:SwitchService) {  }
 
   async ngOnInit() {
     await this.getElements();
@@ -40,15 +38,15 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
     this.refresh.unsubscribe();
   }
 
-  
-
   public getElements() {
+    this.isData = true;
     this.isLoading = true;
     this.elementService.getElements()
       .subscribe((responseList: Element[]) => {
         this.responseData1 = responseList;
         this.isLoading = false;
       }, (err: ElementError) => {
+        this.isData = false;
         this.isLoading = false;
         console.log('an error occured' + err.friendlyMessage);
       });
@@ -67,12 +65,10 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
       "service": service,
       "action" : this.currentStatus
     }
-    //console.log(payload);
 
     return this.sw.switchAction(payload).subscribe(data => {
        this.data = data;
        this.getElements();
-       //console.log(data);
     }, (err: ElementError) => {
       console.log('an error occured' + err.friendlyMessage);
     });

@@ -1,86 +1,80 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-3">
-
-      <!-- Material form login -->
-      <mdb-card class="my-card">
-
-        <mdb-card-header class="white-text text-center my-card-header">
-          <img src="../../../../assets/ItexLogo.png" class="img-fluid mx-auto d-block">
-        </mdb-card-header>
-        
-
-
-        <!--Card content-->
-        <mdb-card-body class="px-lg-5 pt-0">
+    <div class="row">
+  
+      <div class="col-3"></div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="card-header">
+            <img src="../../../../assets/ItexLogo.png" class="img-fluid mx-auto d-block">
+          </div>
           <h5 class="text-center font-weight-bold pt-3">BVN Status</h5>
-
+          <div class="card-body">
           <!-- Form -->
           <form class="text-center" [formGroup]="bvnForm" (ngSubmit)="onSubmit()" style="color: #757575;">
-
-            <!-- bvn -->
-            <div class="md-form">
-              <input type="text" formControlName="bvn" id="bvn_Id" class="form-control" placeholder="BVN Number" autocomplete="off">
-              <!-- <label for="bvn_Id">bvn</label> -->
-              <div *ngIf="bvn.invalid && bvn.touched" class="alert alert-danger">
-                bvn is required.
+  
+              <!-- bvn -->
+              <div class="md-form">
+                <input type="text" formControlName="bvn" id="bvn_Id" class="form-control" placeholder="BVN Number" autocomplete="off">
+                <!-- <label for="bvn_Id">bvn</label> -->
+                <div *ngIf="bvn.invalid && bvn.touched" class="alert alert-danger">
+                  bvn is required.
+                </div>
               </div>
-            </div>
-
-            <!-- firstname -->
-            <div class="md-form">
-              <input type="text" formControlName="firstname" id="firstname" class="form-control" placeholder="First name" autocomplete="off">
-              <!-- <label for="firstname">First name</label> -->
-              <div *ngIf="firstname.invalid && firstname.touched" class="alert alert-danger">
-                First name is required.
+  
+              <!-- firstname -->
+              <div class="md-form">
+                <input type="text" formControlName="firstname" id="firstname" class="form-control" placeholder="First name" autocomplete="off">
+                <!-- <label for="firstname">First name</label> -->
+                <div *ngIf="firstname.invalid && firstname.touched" class="alert alert-danger">
+                  First name is required.
+                </div>
               </div>
-            </div>
-
-            <div class="md-form">
-              <input type="text" formControlName="lastname" id="lastname" class="form-control" placeholder="Last name" autocomplete="off">
-              <!-- <label for="lastname">Last name</label> -->
-              <div *ngIf="lastname.invalid && lastname.touched" class="alert alert-danger">
-                Last name is required.
+  
+              <div class="md-form">
+                <input type="text" formControlName="lastname" id="lastname" class="form-control" placeholder="Last name" autocomplete="off">
+                <!-- <label for="lastname">Last name</label> -->
+                <div *ngIf="lastname.invalid && lastname.touched" class="alert alert-danger">
+                  Last name is required.
+                </div>
               </div>
-            </div>
-
-            <div class="md-form">
-              <input type="tel" formControlName="phonenumber" id="phonenumber" placeholder="Phone number" class="form-control" autocomplete="off">
-              <!-- <label for="phonenumber">phone number</label> -->
-              <div *ngIf="phonenumber.invalid && phonenumber.touched" class="alert alert-danger">
-                Phone number is required.
+  
+              <div class="md-form">
+                <input type="tel" formControlName="phonenumber" id="phonenumber" placeholder="Phone number" class="form-control" autocomplete="off">
+                <!-- <label for="phonenumber">phone number</label> -->
+                <div *ngIf="phonenumber.invalid && phonenumber.touched" class="alert alert-danger">
+                  Phone number is required.
+                </div>
               </div>
-            </div>
-
-            <div class="md-form">
-              <mdb-date-picker formControlName="dateofbirth" id="dateofbirth" placeholder="Date of birth"
-                [options]="myDatePickerOptions"></mdb-date-picker>
-              <div *ngIf="dateofbirth.invalid && dateofbirth.touched" class="alert alert-danger">
-                Date of Birth is required.
+  
+              <div class="md-form">
+                <mdb-date-picker formControlName="dateofbirth" id="dateofbirth" placeholder="Date of birth"
+                  [options]="myDatePickerOptions"></mdb-date-picker>
+                <div *ngIf="dateofbirth.invalid && dateofbirth.touched" class="alert alert-danger">
+                  Date of Birth is required.
+                </div>
               </div>
-            </div>
-
-            <div style="position: relative;">
-              <mdb-spinner spinnerType="small" spinnerColor="green" *ngIf="isLoading" class="spinner mt-2"></mdb-spinner>
-            </div>
-            <span class="my-badge my-badge-pill" *ngIf="disp_bvnData" [ngClass]="{
-              'badge-success' : validity == 'VALID',
-              'badge-danger' :  validity == 'INVALID'
-            }" style="font-weight: 600px; margin-bottom: 10px;">{{disp_bvnData}} || Status: {{validity ? validity : 'INVALID'}}</span>
-
-            <div>
-            <!-- Submit button -->
-            <button [disabled]="!bvnForm.valid" type="submit" class="btn btn-outline-cust btn-block my-3" mdbBtn mdbWavesEffect>Submit</button>
-            </div>
-
-          </form>
-          <!-- Form -->
-
-        </mdb-card-body>
-
-      </mdb-card>
-      <!-- Material form login -->
-      <br>
+  
+              <div style="position: relative;">
+                <mdb-spinner spinnerType="small" spinnerColor="green" *ngIf="isLoading" class="spinner mt-2"></mdb-spinner>
+              </div>
+              <span class="my-badge my-badge-pill" *ngIf="disp_bvnData" [ngClass]="{
+                'badge-success' : validity == 'VALID',
+                'badge-danger' :  validity == 'INVALID'
+              }" style="font-weight: 600px; margin-bottom: 10px;">{{disp_bvnData}} || Status: {{validity ? validity : 'INVALID'}}</span>
+  
+              <div>
+              <!-- Submit button -->
+              <mdb-spinner class="loading-screen-icon" spinnerColor="blue" *ngIf="isLoading"></mdb-spinner>
+              <button [disabled]="!bvnForm.valid" type="submit" class="btn btn-outline-cust btn-block my-3" mdbBtn mdbWavesEffect>Submit</button>
+              </div>
+  
+            </form>
+            <!-- Form -->
+  
+          </div>
+        </div>
+      </div>
+  
     </div>
+    <br>
   </div>
-</div>

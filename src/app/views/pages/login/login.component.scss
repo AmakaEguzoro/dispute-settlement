@@ -21,3 +21,7 @@
 button{
   background: #2D9CDB, 
 }
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}

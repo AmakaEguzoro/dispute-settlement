@@ -10,14 +10,7 @@ import { TooltipsComponent } from './views/components/tooltips/tooltips.componen
 import { TimePickerComponent } from './views/components/time-picker/time-picker.component';
 import { DatePickerComponent } from './views/components/date-picker/date-picker.component';
 import { CollapseComponent } from './views/components/collapse/collapse.component';
-import { TagsComponent } from './views/components/tags/tags.component';
-import { TabsComponent } from './views/components/tabs/tabs.component';
 import { ProgressBarsComponent } from './views/components/progress-bars/progress-bars.component';
-import { PaginationComponent } from './views/components/pagination/pagination.component';
-import { ListsComponent } from './views/components/lists/lists.component';
-import { PanelsComponent } from './views/components/panels/panels.component';
-import { CardsComponent } from './views/components/cards/cards.component';
-import { ButtonsComponent } from './views/components/buttons/buttons.component';
 import { ShadowComponent } from './views/css/shadow/shadow.component';
 import { ColorsComponent } from './views/css/colors/colors.component';
 import { UtilitiesComponent } from './views/css/utilities/utilities.component';
@@ -29,7 +22,6 @@ import { Map2Component } from './views/maps/map2/map2.component';
 import { Map1Component } from './views/maps/map1/map1.component';
 import { IconsComponent } from './views/css/icons/icons.component';
 import { TypographyComponent } from './views/css/typography/typography.component';
-import { ModalsComponent } from './views/modals/modals.component';
 import { Table2Component } from './views/tables/table2/table2.component';
 import { BasicTableComponent } from './views/tables/basic-table/basic-table.component';
 import { Profile1Component } from './views/profile/profile1/profile1.component';
@@ -38,9 +30,6 @@ import { Profile3Component } from './views/profile/profile3/profile3.component';
 import { RouterModule, Route } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { LoginComponent } from './views/pages/login/login.component';
-import { LockComponent } from './views/pages/lock/lock.component';
-import { PricingComponent } from './views/pages/pricing/pricing.component';
-import { SinglePostComponent } from './views/pages/single-post/single-post.component';
 import { PostListingComponent } from './views/pages/post-listing/post-listing.component';
 import { CustomersComponent } from './views/pages/customers/customers.component';
 import { Dashboard1Component } from './views/dashboards/dashboard1/dashboard1.component';
@@ -66,9 +55,6 @@ const routes: Route[] = [
   { path: 'pages', children:
     [
       { path: 'login', component: LoginComponent },
-      { path: 'lock', component: LockComponent },
-      { path: 'pricing', component: PricingComponent },
-      { path: 'single-post', component: SinglePostComponent },
       { path: 'post-listing', component: PostListingComponent },
       { path: 'customers', component: CustomersComponent },
     ]
@@ -89,14 +75,7 @@ const routes: Route[] = [
   },
   { path: 'components', children:
     [
-      { path: 'buttons', component: ButtonsComponent },
-      { path: 'cards', component: CardsComponent },
-      { path: 'panels', component: PanelsComponent },
-      { path: 'lists', component: ListsComponent },
-      { path: 'pagination', component: PaginationComponent },
       { path: 'progress-bars', component: ProgressBarsComponent },
-      { path: 'tabs', component: TabsComponent },
-      { path: 'tags', component: TagsComponent },
       { path: 'collapse', component: CollapseComponent },
       { path: 'date-picker', component: DatePickerComponent },
       { path: 'time-picker', component: TimePickerComponent },
@@ -136,7 +115,6 @@ const routes: Route[] = [
       { path: 'form3', component: Form3Component},
     ]
   },
-  { path: 'modals', component: ModalsComponent},
   { path: 'calendar', component: EventCalendarComponent},
   { path: 'help', component: HelpComponent },
   {path: 'test', component: TestComponent},  

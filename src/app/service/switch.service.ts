@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { ElementError } from 'app/shared/components/service-status/elementError';
+import { ElementError } from 'app/shared/service-status/elementError';
 
 @Injectable({
   providedIn: 'root'

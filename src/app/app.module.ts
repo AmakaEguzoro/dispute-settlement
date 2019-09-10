@@ -41,7 +41,7 @@ import { TransactionCardComponent } from './Transaction/transaction-card/transac
 import { ModelComponent } from './Transaction/model/model.component';
 import { PaginationModule, ModalModule } from 'ngx-bootstrap';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { SocketService } from './socket.service';
+import { SocketService } from './service/socket.service';
  
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
 

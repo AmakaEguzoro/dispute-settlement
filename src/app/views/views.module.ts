@@ -14,14 +14,11 @@ import { SharedModule } from '../shared/shared.module';
 import { FooterComponent } from '../main-layout/footer/footer.component';
 import { BasicTableComponent } from './tables/basic-table/basic-table.component';
 import { Table2Component } from './tables/table2/table2.component';
-import { ModalsComponent } from './modals/modals.component';
 import { TypographyComponent } from './css/typography/typography.component';
 import { IconsComponent } from './css/icons/icons.component';
 import { Map1Component } from './maps/map1/map1.component';
 import { Map2Component } from './maps/map2/map2.component';
 import { LoginComponent } from './pages/login/login.component';
-import { LockComponent } from './pages/lock/lock.component';
-import { PricingComponent } from './pages/pricing/pricing.component';
 import { Form1Component } from './forms/form1/form1.component';
 import { Form2Component } from './forms/form2/form2.component';
 import { StatsCardComponent } from './dashboards/common/stats-card/stats-card.component';
@@ -36,21 +33,13 @@ import { MediaObjectComponent } from './css/media-object/media-object.component'
 import { UtilitiesComponent } from './css/utilities/utilities.component';
 import { ColorsComponent } from './css/colors/colors.component';
 import { ShadowComponent } from './css/shadow/shadow.component';
-import { ButtonsComponent } from './components/buttons/buttons.component';
-import { CardsComponent } from './components/cards/cards.component';
-import { PanelsComponent } from './components/panels/panels.component';
-import { ListsComponent } from './components/lists/lists.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 import { ProgressBarsComponent } from './components/progress-bars/progress-bars.component';
-import { TabsComponent } from './components/tabs/tabs.component';
-import { TagsComponent } from './components/tags/tags.component';
 import { CollapseComponent } from './components/collapse/collapse.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
 import { TooltipsComponent } from './components/tooltips/tooltips.component';
 import { PopoversComponent } from './components/popovers/popovers.component';
 import { CustomersComponent } from './pages/customers/customers.component';
-import { SinglePostComponent } from './pages/single-post/single-post.component';
 import { PostListingComponent } from './pages/post-listing/post-listing.component';
 import { Form3Component } from './forms/form3/form3.component';
 import { Profile1Component } from './profile/profile1/profile1.component';
@@ -93,13 +82,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FooterComponent,
     BasicTableComponent,
     Table2Component,
-    ModalsComponent,
     TypographyComponent,
     IconsComponent,
     Map1Component,
     Map2Component,
-    LockComponent,
-    PricingComponent,
     Form1Component,
     Form2Component,
     StatsCardComponent,
@@ -114,21 +100,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
     UtilitiesComponent,
     ColorsComponent,
     ShadowComponent,
-    ButtonsComponent,
-    CardsComponent,
-    PanelsComponent,
-    ListsComponent,
-    PaginationComponent,
     ProgressBarsComponent,
-    TabsComponent,
-    TagsComponent,
     CollapseComponent,
     DatePickerComponent,
     TimePickerComponent,
     TooltipsComponent,
     PopoversComponent,
     CustomersComponent,
-    SinglePostComponent,
     PostListingComponent,
     Form3Component,
     Profile1Component,
@@ -152,14 +130,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FooterComponent,
     BasicTableComponent,
     Table2Component,
-    ModalsComponent,
     TypographyComponent,
     IconsComponent,
     Map1Component,
     Map2Component,
     Map3Component,
-    LockComponent,
-    PricingComponent,
     Form1Component,
     Form2Component,
     StatsCardComponent,
@@ -174,21 +149,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
     UtilitiesComponent,
     ColorsComponent,
     ShadowComponent,
-    ButtonsComponent,
-    CardsComponent,
-    PanelsComponent,
-    ListsComponent,
-    PaginationComponent,
     ProgressBarsComponent,
-    TabsComponent,
-    TagsComponent,
     CollapseComponent,
     DatePickerComponent,
     TimePickerComponent,
     TooltipsComponent,
     PopoversComponent,
     CustomersComponent,
-    SinglePostComponent,
     PostListingComponent,
     Form3Component,
     // ErrordialogComponent

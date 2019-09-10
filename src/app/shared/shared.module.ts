@@ -1,5 +1,4 @@
 
-import { ModalComponent } from './components/modal/modal.component';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,9 +13,9 @@ import { LastMonthCardComponent } from './dashboard-cards/monthly-cards/last-mon
 import { LastWeekCardComponent } from './dashboard-cards/weekly-cards/last-week-card/last-week-card.component';
 import { ThisWeekCardComponent } from './dashboard-cards/weekly-cards/this-week-card/this-week-card.component';
 import { SummaryService } from 'app/service/summary.service';
-import { ThousandSuffixesPipe } from 'app/service/ThousandSuffixesPipe';
-import { ToNumberPipe } from 'app/service/ToNumberPipe';
-import { RoundPipe } from 'app/service/toRound';
+import { ThousandSuffixesPipe } from 'app/shared/pipe/ThousandSuffixesPipe';
+import { ToNumberPipe } from 'app/shared/pipe/ToNumberPipe';
+import { RoundPipe } from 'app/shared/pipe/toRound';
 import { ChannelService } from 'app/service/channels.service';
 import { ProductsService } from 'app/service/products.service';
 import { OrderModule } from 'ngx-order-pipe';
@@ -31,7 +30,7 @@ import { ThisWeekProductComponent } from './top-5/product/this-week-product/this
 import { TodayProductComponent } from './top-5/product/today-product/today-product.component';
 import { ThisWeekPaymentMethodComponent } from './top-5/payment-methods/this-week-payment-method/this-week-payment-method.component';
 import { TransactionService } from 'app/service/transaction.service';
-import { ServiceStatusComponent } from './components/service-status/service-status.component';
+import { ServiceStatusComponent } from './service-status/service-status.component';
 import { BvnStatusComponent } from './bvn-status/bvn-status.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -47,7 +46,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   declarations: [
     OverlayCardComponent,
     PanelComponent,
-    ModalComponent,
     NotificationComponent,
     // Itex Copmponent
     TodayCardComponent,
@@ -57,13 +55,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     LastWeekCardComponent,
     ThisWeekCardComponent,
 
-    ThousandSuffixesPipe,
-    ToNumberPipe,
-    RoundPipe,
-
-    // ChannelsComponent,
-    // AgentsComponent,
-    // ProductsComponent,
+  
     ServiceStatusComponent,
     BvnStatusComponent,
     TodayChannelsComponent,
@@ -75,13 +67,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     TodayPaymentMethodComponent,
     ThisWeekPaymentMethodComponent,
     ThisMonthPaymentMethodComponent,
-    ServiceStatusComponent
+
+    // Pipe
+    ThousandSuffixesPipe,
+    ToNumberPipe,
+    RoundPipe,
   ],
   exports: [
     MDBBootstrapModulesPro,
     OverlayCardComponent,
     PanelComponent,
-    ModalComponent,
     NotificationComponent,
     // Itex Copmponent
     TodayCardComponent,
@@ -91,9 +86,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     LastWeekCardComponent,
     ThisWeekCardComponent,
 
-    ThousandSuffixesPipe,
-    ToNumberPipe,
-    RoundPipe,
     TodayChannelsComponent,
     ThisWeekChannelsComponent,
     ThisMonthChannelsComponent,
@@ -103,13 +95,17 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     TodayPaymentMethodComponent,
     ThisWeekPaymentMethodComponent,
     ThisMonthPaymentMethodComponent,
-    ServiceStatusComponent
+    ServiceStatusComponent,
+    BvnStatusComponent,
+
+    // pipe
+    ThousandSuffixesPipe,
+    ToNumberPipe,
+    RoundPipe,
   ],
   providers: [
-    // NotificationService,
     // itex
     SummaryService,
-    // ChartService,
     ChannelService,
     ProductsService,
     PaymentMethodService,

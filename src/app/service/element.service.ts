@@ -3,8 +3,8 @@ import { Observable, throwError, forkJoin } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { Element } from '../shared/components/service-status/element';
-import { ElementError } from 'app/shared/components/service-status/elementError';
+import { Element } from '../shared/service-status/element';
+import { ElementError } from 'app/shared/service-status/elementError';
 
 @Injectable({
   providedIn: 'root'

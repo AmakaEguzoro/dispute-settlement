@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SubSink } from 'subsink/dist/subsink';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ModelComponent } from '../model/model.component';
-import { SocketService } from 'app/socket.service';
+import { SocketService } from 'app/service/socket.service';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
