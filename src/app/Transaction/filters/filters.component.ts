@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-filters',
@@ -8,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class FiltersComponent implements OnInit {
 
   // optionsSelect: Array<any>;
-
+  disabled: boolean = true;
   constructor() { }
 
   ngOnInit() {
 
   }
+  public myDatePickerOptions: IMyOptions = {
+    // Your options
+    };
   vendType = [
     { value: '1', label: 'ALL' },
     { value: '2', label: 'B2B' },

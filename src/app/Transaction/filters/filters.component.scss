@@ -25,6 +25,10 @@ button{
     text-align: center;
     margin-left: 0px;
 }
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
 
 input{
   margin-top: 6px;

@@ -25,16 +25,18 @@
       <mdb-select [options]="status" placeholder="Status"></mdb-select>
   </div>
   <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-      <mdb-select  placeholder="Start Date"></mdb-select>
+      <mdb-select [options]="status" [disabled]="disabled" placeholder="Start Date"></mdb-select>
   </div>
   <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-      <mdb-select  placeholder="End Date"></mdb-select>
+      <mdb-select [options]="status" [disabled]="disabled" placeholder="End Date"></mdb-select>
+      <!-- <mdb-date-picker  [options]="myDatePickerOptions" [placeholder]="'Selected date'" [(ngModel)]="model"
+      ></mdb-date-picker> -->
   </div>
 
   <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
       <mdb-select [options]="Ref" placeholder="Ref Number" class="ref"></mdb-select>
       <input  type="text">
-      <button class="btn btn-primary" mdbWavesEffect><mdb-icon fas icon="search"></mdb-icon>
+      <button [disabled]="disabled" class="btn btn-primary" mdbWavesEffect><mdb-icon fas icon="search"></mdb-icon>
             Search
           </button>
   </div>

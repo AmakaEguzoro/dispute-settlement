@@ -66,7 +66,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
   getSocketData() {
     this.socket.getMessage().subscribe((Socketdata: any) => {
-      console.log("this is socket data -", Socketdata.data.status)
+      // console.log("this is socket data -", Socketdata.data.status)
       this.detailsData.unshift(Socketdata.data);
 
       if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
