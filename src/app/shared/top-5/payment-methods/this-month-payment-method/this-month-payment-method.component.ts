@@ -18,16 +18,11 @@ export class ThisMonthPaymentMethodComponent implements OnInit, OnDestroy {
   totalCASHAmount: any;
   elements: any;
   isData: boolean;
-  refresh: Subscription;
 
   constructor(private paymentMethodService: PaymentMethodService) { }
 
   async ngOnInit() {
     await this.getThisMonthPayment();
-
-    this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
-      this.getThisMonthPayment();
-    });
   }
 
   getThisMonthPayment() {
@@ -68,7 +63,7 @@ export class ThisMonthPaymentMethodComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.refresh.unsubscribe();
+    
   }
 
   headElements = ['', 'Success', 'Fail', 'Total'];

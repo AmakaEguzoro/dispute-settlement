@@ -15,6 +15,15 @@ body{
 }
 // loader end
 
+// select button begin
+mdb-select > div > div.single{
+  border-bottom: none !important;
+}
+mdb-select > div > div.single > div.placeholder{
+  font-size: 14px !important;
+}
+// select button end
+
 // Begin login page
 .login-title {
     font-style: normal;

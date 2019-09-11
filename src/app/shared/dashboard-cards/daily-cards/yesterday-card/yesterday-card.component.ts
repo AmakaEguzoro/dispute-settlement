@@ -27,10 +27,15 @@ export class YesterdayCardComponent implements OnInit {
   constructor(private summaryService: SummaryService) { }
 
   async ngOnInit() {
+   await this.getYesterdayTransaction();
+
+  }
+
+  getYesterdayTransaction() {
     this.isData = true;
     this.loading = true,
       this.subs.add(
-        await this.summaryService.getYesterday().subscribe(responseList => {
+        this.summaryService.getYesterday().subscribe(responseList => {
           this.loading = false;
           this.yesterdaySuccess = responseList[0];
           this.successCount = this.yesterdaySuccess.data.count;
@@ -42,7 +47,7 @@ export class YesterdayCardComponent implements OnInit {
 
           this.totalCount = math.add(this.successCount, this.failedCount);
           this.totalAmount = math.add(this.successAmount, this.failedAmount);
-          
+
           this.successPercent = this.successCount / this.totalCount * 100;
           this.failedPercent = this.failedCount / this.totalCount * 100;
         }, error => {

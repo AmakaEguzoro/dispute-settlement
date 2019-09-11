@@ -44,6 +44,8 @@ export class TransactionComponent implements OnInit, OnDestroy {
   successAmount: any;
   totalAmount: any;
   totalCount: any;
+  isLoading = true;
+  usersCount: any;
 
   constructor(private transactionService: TransactionService,
     private router: Router, private modalService: BsModalService,
@@ -57,19 +59,30 @@ export class TransactionComponent implements OnInit, OnDestroy {
     // )
 
     setTimeout(() => {
-    this.getSocketData();
-    }, 3000);
+      this.getSocketData();
+    }, 5000);
 
   }
 
   getSocketData() {
     this.socket.getMessage().subscribe((Socketdata: any) => {
-      console.log("this is socket data", Socketdata.data)      
+      console.log("this is socket data -", Socketdata.data.status)
       this.detailsData.unshift(Socketdata.data);
-       
-      this.totalAmount = this.summaryData.totalAmount;
-      this.totalCount = this.summaryData.transactionCount;
-      console.log("total summary count", this.totalCount);
+
+      if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
+        this.failedAmount += parseInt(Socketdata.data.nairaAmount);
+        this.failedCount += 1;
+        this.totalAmount += parseInt(Socketdata.data.nairaAmount);
+        this.totalCount += 1;
+        this.usersCount += 1;
+      } else if (Socketdata.data.status == "successful") {
+        this.successCount += 1;
+        this.successAmount += parseInt(Socketdata.data.nairaAmount);
+        this.totalAmount += parseInt(Socketdata.data.nairaAmount);
+        this.totalCount += 1;
+        this.usersCount += 1;
+      }
+      // console.log(this.lastPage, 'last page in transaction socket');
     });
   }
 
@@ -84,10 +97,11 @@ export class TransactionComponent implements OnInit, OnDestroy {
     });
     this.transactionService.getTransaction(this.transaction).subscribe((data) => {
       this.loading = false;
-      console.log('transaction details -', data);
       this.detailsData = data.data.transactions;
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
       this.lastPage = data.data.lastPage;
+      // console.log(this.lastPage, 'last page in transaction');
+
     }, error => {
       this.isData = false;
       this.loading = false;
@@ -97,9 +111,9 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
 
   openModal(modal) {
-    this.data.response = modal;
+    this.detailsData.response = modal;
     const initialState = {
-      data: this.data.response,
+      data: this.detailsData.response,
       ignoreBackdropClick: true,
     };
     this.bsModalRef = this.modalService.show(ModelComponent, { initialState, class: 'modal-lg' });
@@ -118,10 +132,10 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
 
   TransactionSummary() {
+    this.isData = true;
+    this.isLoading = true;
     this.dateRange = (String)(this.DateObj.getFullYear() + '/' + (this.DateObj.getMonth() + 1) + '/' + this.DateObj.getDate());
     this.newRange = `${this.dateRange} - ${this.dateRange}`;
-    this.isData = true;
-    this.loading = true;
     this.transactionSummary = Object.assign({}, {
       "dateRange": this.newRange, "terminalId": "",
       "walletId": "", "accountNumber": "", "paymentMethod": "", "cardRRN": "", "transactionReference": "",
@@ -129,20 +143,20 @@ export class TransactionComponent implements OnInit, OnDestroy {
       "transactionStatus": "", "transactionChannel": "", "searchField": "", "viewPage": ""
     });
     this.transactionService.getTransactionSummary(this.transactionSummary).subscribe((data) => {
-      this.loading = false;
+      this.isLoading = false;
       this.summaryData = data.data;
       this.failedAmount = this.summaryData.failedAmount;
       this.failedCount = this.summaryData.failedCount;
 
       this.successCount = this.summaryData.successfulCount;
       this.successAmount = this.summaryData.successfulAmount;
-      
+
       this.totalAmount = this.summaryData.totalAmount;
       this.totalCount = this.summaryData.transactionCount;
-      console.log(this.totalAmount, 'total amount');
+      this.usersCount = this.summaryData.usersCount;
     }, error => {
       this.isData = false;
-      this.loading = false;
+      this.isLoading = false;
       console.log('cant get transaction summary details', error);
     });
   }

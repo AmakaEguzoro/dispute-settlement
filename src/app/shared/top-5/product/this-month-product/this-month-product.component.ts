@@ -34,16 +34,11 @@ export class ThisMonthProductComponent implements OnInit, OnDestroy {
   totalAEDCAmount: any;
   elements: any;
   isData: boolean;
-  refresh: Subscription;
 
   constructor(private productsService: ProductsService) { }
 
   async ngOnInit() {
     await this.getThisMonthProduct();
-
-    this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
-      this.getThisMonthProduct();
-    });
 
   }
 
@@ -199,7 +194,7 @@ export class ThisMonthProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.refresh.unsubscribe();
+    
   }
 
   headElements = ['', 'Success', 'Fail', 'Total'];

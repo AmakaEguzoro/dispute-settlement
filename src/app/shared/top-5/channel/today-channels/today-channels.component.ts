@@ -22,16 +22,12 @@ export class TodayChannelsComponent implements OnInit, OnDestroy {
   totalAtmAmount: any;
   elements: any;
   isData: boolean;
-  refresh: Subscription;
 
   constructor(private channelService: ChannelService) { }
 
   async ngOnInit() {
     await this.getTodayChannel();
 
-    this.refresh = Observable.interval(15 * 60 *1000).subscribe(() => {
-      this.getTodayChannel();
-    });
   }
 
   // mySortingFunction = (a, b) => {
@@ -104,7 +100,7 @@ export class TodayChannelsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.refresh.unsubscribe();
+   
   }
 
   headElements = ['', 'Success', 'Fail', 'Total'];

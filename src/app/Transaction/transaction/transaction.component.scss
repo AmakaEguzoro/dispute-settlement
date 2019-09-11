@@ -29,7 +29,7 @@ border: 3px solid rgba(242, 242, 242, 0.56);
   font-weight: 600 !important;
 }
 .card .card-body {
-padding: 0px;
+  padding: 7px;
 }
 
 @media (min-width: 1200px){
@@ -62,7 +62,7 @@ color: darkgray
   line-height: 17px;
   text-align: center;
   color: #FFFFFF;
-  margin-top: 9px;
+  margin-top: 5px;
 }
 .debited{
  background:  #2F80ED;
@@ -88,7 +88,7 @@ color: darkgray
   margin-left: 35px;
   width: 36px !important;
   border-radius: 10px;
-  margin-top: 9px;
+  margin-top: 7px;
 }
 .warning{
   background: #F2C94C;

@@ -39,9 +39,10 @@ import { OrderModule } from 'ngx-order-pipe';
 import { TransactionComponent } from './Transaction/transaction/transaction.component';
 import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
 import { ModelComponent } from './Transaction/model/model.component';
-import { PaginationModule, ModalModule } from 'ngx-bootstrap';
+import { PaginationModule, ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { SocketService } from './service/socket.service';
+import { FiltersComponent } from './Transaction/filters/filters.component';
  
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
 
@@ -51,7 +52,8 @@ const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { qu
     //itex
     TransactionComponent,
     TransactionCardComponent,
-    ModelComponent
+    ModelComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,7 @@ const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { qu
     OrderModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     MatProgressSpinnerModule,
     SocketIoModule.forRoot(config)
   ],

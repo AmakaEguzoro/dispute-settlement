@@ -22,17 +22,11 @@ export class ThisMonthChannelsComponent implements OnInit, OnDestroy {
   totalAtmAmount: any;
   elements: any;
   isData: boolean;
-  refresh: Subscription;
 
   constructor(private channelService: ChannelService) { }
 
   async ngOnInit() {
     await this.getThisMonthChannel();
-
-    this.refresh = Observable.interval(15 * 60 *1000).subscribe(() => {
-      this.getThisMonthChannel();
-    });
-
   }
 
   getThisMonthChannel() {
@@ -102,7 +96,6 @@ export class ThisMonthChannelsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.refresh.unsubscribe();
   }
 
   headElements = ['', 'Success', 'Fail', 'Total'];

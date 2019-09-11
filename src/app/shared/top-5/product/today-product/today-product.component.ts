@@ -34,16 +34,11 @@ export class TodayProductComponent implements OnInit, OnDestroy {
   totalAEDCAmount: any;
   elements: any;
   isData: boolean;
-  refresh: Subscription;
 
   constructor(private productsService: ProductsService) { }
 
   async ngOnInit() {
     await this.getTodayProduct();
-
-    this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
-      this.getTodayProduct();
-    });
   }
 
   // async test(){
@@ -204,7 +199,7 @@ export class TodayProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.refresh.unsubscribe();
+
   }
 
   headElements = ['', 'Success', 'Fail', 'Total'];
