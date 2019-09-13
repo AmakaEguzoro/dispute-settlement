@@ -94,7 +94,7 @@ export class AuthService {
     );
   }
 
-  loggedIn() {
+  isAuthenticated() {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token)
   }
@@ -104,4 +104,15 @@ export class AuthService {
     this.router.navigate(['/login']),
     this.toastService.success('Logged Out')
   }
+  public getToken(): string {
+    return localStorage.getItem('token');
+  }
+  // public isAuthenticated(): boolean {
+  //   // get the token
+  //   const token = this.getToken();
+  //   // return a boolean reflecting 
+  //   // whether or not the token is expired
+  //   return this.jwtHelper.isTokenExpired(null, token);
+  // }
+
 }

@@ -31,8 +31,8 @@ export class NavigationComponent implements OnInit {
     this.router.navigate(['/login']);
     // this.toastService.error('Logged Out');
   }
-  loggedIn() {
-    return this.authService.loggedIn()
+  isAuthenticated() {
+    return this.authService.isAuthenticated()
  }
   // logout() {
   //   this.authService.log().subscribe(data => {

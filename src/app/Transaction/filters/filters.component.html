@@ -1,57 +1,56 @@
-<!-- <div class="container"> -->
-<div class="row">
-  <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-      <mdb-select [options]="channels" placeholder="Channel"></mdb-select>
-  </div>
-  <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-      <mdb-select [options]="Type" placeholder="Type"></mdb-select>
-  </div>
-  <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-      <mdb-select [options]="products" placeholder="Product"></mdb-select>
-  </div>
-  <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-      <mdb-select [options]="method" placeholder="Method"></mdb-select>
-  </div>
-  <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-      <mdb-select [options]="vendors" placeholder="Vendor"></mdb-select>
-  </div>
-  <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-      <mdb-select [options]="vendType" placeholder="Vend-Type"></mdb-select>
-  </div>
-</div>
-<!-- Second row -->
-<div class="row">
-  <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-      <mdb-select [options]="status" placeholder="Status"></mdb-select>
-  </div>
-  <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-      <mdb-select [options]="status" [disabled]="disabled" placeholder="Start Date"></mdb-select>
-  </div>
-  <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-      <mdb-select [options]="status" [disabled]="disabled" placeholder="End Date"></mdb-select>
-      <!-- <mdb-date-picker  [options]="myDatePickerOptions" [placeholder]="'Selected date'" [(ngModel)]="model"
-      ></mdb-date-picker> -->
-  </div>
-
-  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-      <mdb-select [options]="Ref" placeholder="Ref Number" class="ref"></mdb-select>
-      <input  type="text">
-      <button [disabled]="disabled" class="btn btn-primary" mdbWavesEffect><mdb-icon fas icon="search"></mdb-icon>
-            Search
-          </button>
-  </div>
-
-  <!-- <div class="col-lg-2 col-md-4 col-sm-2 col-xs-6">
-        <mdb-select [options]="Ref" placeholder="Ref Number" class="ref"></mdb-select>
+<form [formGroup]="searchForm">
+    <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <select class="browser-default custom-select"  (change)="getChannel($event)" formControlName="method">
+                        <option value="" disabled>ALL</option>
+                        <option *ngFor="let channel of channels" [value]="channel">{{channel}}</option>
+                    </select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <mdb-select [options]="Type" placeholder="Type" (Change)="getType($event)"></mdb-select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <mdb-select [options]="products" placeholder="Product"
+                value="{{ transactionType == null || undefined ? 'mtnvtu': transactionType }}"
+                (click)="getProduct($event)"></mdb-select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <select class="browser-default custom-select"  (change)="getPaymentMethod($event)" formControlName="method">
+                <option value="" disabled>ALL</option>
+                <option *ngFor="let method of methods" [value]="method">{{method}}</option>
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <select class="browser-default custom-select"  (change)="getVendor($event)" formControlName="method">
+                    <option value="" disabled>ALL</option>
+                    <option *ngFor="let vendor of vendors" [value]="vendor">{{vendor}}</option>
+                </select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <mdb-select [options]="vendType" placeholder="Vend-Type" (Change)="getVendorType($event)"></mdb-select>
+        </div>
     </div>
-    <div class="col-lg-2 col-md-4 col-sm-2 col-xs-6">
-        <input  placeholder="Placeholder" type="text">
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-2 col-xs-6">
-        <button class="btn btn-primary" mdbWavesEffect>
-          Search
-        </button>
-    </div> -->
+    <!-- Second row -->
+    <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+            <mdb-select [options]="status" placeholder="Status" (Change)="getStatus($event)"></mdb-select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+           <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Date of birth"
+                  [options]="myDatePickerOptions"></mdb-date-picker>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+      <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
+      [options]="myDatePickerOptions"></mdb-date-picker>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <mdb-select [options]="Ref" placeholder="Ref Number" class="ref"></mdb-select>
+            <input type="text">
+            <button class="btn btn-primary" mdbWavesEffect (click)="searchTrans()">
+                <mdb-icon fas icon="search"></mdb-icon>
+                Search
+            </button>
+        </div>
 
-</div>
-<!-- </div> -->
+    </div>
+</form>

@@ -105,8 +105,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  loggedIn() {
-    return this.authService.loggedIn()
+  isAuthenticated() {
+    return this.authService.isAuthenticated()
   }
 
 }
