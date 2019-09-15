@@ -196,7 +196,7 @@ export class TransactionComponent implements OnInit {
     ariaLabelOpenCalendar: 'Open Calendar',
     closeAfterSelect: true,
     disableUntil: 
-     {year: this.DateObj.getFullYear() , month: this.DateObj.getMonth(), day: this.DateObj.getDate(+1)}
+     {year: this.DateObj.getFullYear() , month: this.DateObj.getMonth(), day: this.DateObj.getDate()}
   };
 
   deafaultDate: any = new Date().toISOString().split('T')[0]
