@@ -42,20 +42,12 @@ export class httpInterceptor implements HttpInterceptor {
 
         let token = localStorage.getItem('token');
 
-        if (token) {
-            request = request.clone({setHeaders: {Authorization: `Bearer ${token}`}})
-            console.log('token -', token)
-        }
-
-        request = request.clone({
-            // setHeaders: {
-            //   Authorization: `Bearer ${this.auth.getToken()}`
-            // }
-          });
-        //   console.log('token -', this.auth.getToken())
-
         if (!request.headers.has('Content-Type')) {
             request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
+        }
+
+        if (!request.headers.has('token')) {
+            request = request.clone({ headers: request.headers.set('token', token) });
         }
 
         request = request.clone({ headers: request.headers.set('Accept', 'application/json') });

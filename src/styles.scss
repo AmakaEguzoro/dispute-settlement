@@ -405,11 +405,28 @@ margin-bottom: 0px;
     background: linear-gradient(40deg, #45cafc, #4285f4);
 }
 
-.datepickers .md-form, .inputs .md-form {
-    margin-top: 0 !important;
-}
+// .datepickers .md-form, .inputs .md-form {
+//     margin-top: 0 !important;
+// }
 
 .modal-full-height.modal-bottom > .modal-content {
     position: absolute !important;
     bottom: 0;
+}
+
+.md-form input[type=text], .md-form input[type=password], .md-form input[type=email],
+ .md-form input[type=url], .md-form input[type=time], .md-form input[type=date], 
+ .md-form input[type=datetime-local], .md-form input[type=tel], .md-form input[type=number],
+  .md-form input[type=search-md], .md-form input[type=search], .md-form textarea.md-textarea {
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  /* border-bottom: 1px solid #ced4da; */
+  margin-top: -22px;
+  height: 33px !important;
+}
+
+.mydp {
+  width: 155px !important; 
 }
