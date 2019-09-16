@@ -1,4 +1,4 @@
-import { BvnLoginService } from '../../_service/bvn-login.service';
+import { BvnLoginService } from '../../../_service/bvn-login.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { BvnService } from 'app/_service/bvn.service';

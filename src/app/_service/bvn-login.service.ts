@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { User } from 'app/pages/bvn-status/bvn-login';
+import { User } from 'app/pages/status/bvn-status/bvn-login';
 
 @Injectable({
   providedIn: 'root'

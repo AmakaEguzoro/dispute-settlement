@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Element } from './element';
-import { ElementService } from '../../_service/element.service';
+import { ElementService } from '../../../_service/element.service';
 import { ElementError } from './elementError';
 import { SwitchService } from 'app/_service/switch.service';
 import { Subscription } from 'rxjs';

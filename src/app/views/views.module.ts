@@ -32,7 +32,7 @@ import { ColorsComponent } from './css/colors/colors.component';
 import { ShadowComponent } from './css/shadow/shadow.component';
 import { Map3Component } from './maps/map3/map3.component';
 import { EventCalendarComponent } from './event-calendar/event-calendar.component';
-import { RoleManagementComponent } from './admin/role-management/role-management.component';
+import { RoleManagementComponent } from './admins/role-management/role-management.component';
 // MDB Angular Pro
 import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';

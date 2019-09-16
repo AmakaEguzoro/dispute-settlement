@@ -8,12 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes.service';
-
-import { environment } from '../environments/environment';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
-
 import { ViewsModule } from './views/views.module';
 import { SharedModule } from './shared/shared.module';
 import { MDBSpinningPreloader } from 'ng-uikit-pro-standard';
@@ -29,17 +23,13 @@ import { MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
-
-
-
 import { OrderModule } from 'ngx-order-pipe';
-import { TransactionComponent } from './Transaction/transaction/transaction.component';
-import { ModelComponent } from './Transaction/model/model.component';
 import { PaginationModule, ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { SocketService } from './_service/socket.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { PagesModule } from './pages/pages.module';
+import { ModelComponent } from './pages/Transaction/model/model.component';
  
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
 
@@ -50,9 +40,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    //itex
-    TransactionComponent,
-    ModelComponent,
   ],
   imports: [
     BrowserModule,

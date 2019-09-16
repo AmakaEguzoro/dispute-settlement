@@ -1,12 +1,12 @@
-import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { RouterModule, Route } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { LoginComponent } from './_auth/login/login.component';
 import { AuthGuard } from './_auth/auth.guard';
-import { TransactionComponent } from './Transaction/transaction/transaction.component';
-import { ServiceStatusComponent } from './pages/service-status/service-status.component';
-import { BvnStatusComponent } from './pages/bvn-status/bvn-status.component';
+import { ServiceStatusComponent } from './pages/status/service-status/service-status.component';
+import { BvnStatusComponent } from './pages/status/bvn-status/bvn-status.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { TransactionComponent } from './pages/Transaction/transaction/transaction.component';
 
 
 const routes: Route[] = [
