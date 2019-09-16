@@ -43,8 +43,13 @@ import { PaginationModule, ModalModule, BsDatepickerModule } from 'ngx-bootstrap
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { SocketService } from './service/socket.service';
 import { FiltersComponent } from './Transaction/filters/filters.component';
+import { JwtModule } from '@auth0/angular-jwt';
  
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -76,7 +81,13 @@ const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { qu
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
     MatProgressSpinnerModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        blacklistedRoutes: ['http://197.253.19.76:6200/api/v1/auth']
+      }
+    })
   ],
   //itex
   entryComponents: [ ModelComponent ],

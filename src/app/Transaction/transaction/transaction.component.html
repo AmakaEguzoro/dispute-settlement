@@ -131,7 +131,7 @@
                 </select>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <input type="text" formControlName="method" >
+                <input type="text" formControlName="filterValue" [(ngModel)]="filterValue" >
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                 <button class="btn btn-primary" mdbWavesEffect (click)="searchTrans()">
@@ -139,18 +139,6 @@
                     Search
                 </button>
             </div>
-            <!-- <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                <select class="browser-default custom-select ref" (change)="getType($event)" formControlName="method">
-                    <option value="">Ref Number</option>
-                    <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
-                </select>
-                <input type="text">
-                <button class="btn btn-primary" mdbWavesEffect (click)="searchTrans()">
-                    <mdb-icon fas icon="search"></mdb-icon>
-                    Search
-                </button>
-            </div> -->
-
         </div>
     </form>
 

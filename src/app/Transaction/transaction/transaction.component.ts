@@ -17,6 +17,7 @@ export class TransactionComponent implements OnInit {
   // Details
   isData: boolean;
   loading = true;
+  isFiltering = false;
   data: any;
   transaction: any;
   detailsData: any;
@@ -98,6 +99,7 @@ export class TransactionComponent implements OnInit {
       method: ['', Validators.min],
       startDate: ['', Validators.min],
       endDate: ['', Validators.min],
+      filterValue: ['', Validators.min]
     });
     // this.searchForm.get('method').setValue('filterValue');
   }
@@ -107,31 +109,36 @@ export class TransactionComponent implements OnInit {
     this.TransactionSummary(this.payload);
     setTimeout(() => {
       this.getSocketData();
-    }, 1 * 10 * 1000);
+    }, 1 * 60 * 1000);
   }
 
   getSocketData() {
-    this.socket.getMessage().subscribe((Socketdata: any) => {
-      this.detailsData.unshift(Socketdata.data);
-      if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
-        this.failedAmount += parseInt(Socketdata.data.nairaAmount);
-        this.failedCount += 1;
-        this.totalAmount += parseInt(Socketdata.data.nairaAmount);
-        this.totalCount += 1;
-        this.usersCount += 1;
-      } else if (Socketdata.data.status == "successful") {
-        this.successCount += 1;
-        this.successAmount += parseInt(Socketdata.data.nairaAmount);
-        this.totalAmount += parseInt(Socketdata.data.nairaAmount);
-        this.totalCount += 1;
-        this.usersCount += 1;
-      }
-    });
+    console.log("isfiltering socket? ", this.isFiltering);
+    if(this.isFiltering == false){
+      this.socket.getMessage().subscribe((Socketdata: any) => {
+        this.detailsData.unshift(Socketdata.data);
+        console.log('get socket data-', Socketdata.data.status)
+          if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
+            this.failedAmount += parseInt(Socketdata.data.nairaAmount);
+            this.failedCount += 1;
+            this.totalAmount += parseInt(Socketdata.data.nairaAmount);
+            this.totalCount += 1;
+            this.usersCount += 1;
+          } else if (Socketdata.data.status == "successful") {
+            this.successCount += 1;
+            this.successAmount += parseInt(Socketdata.data.nairaAmount);
+            this.totalAmount += parseInt(Socketdata.data.nairaAmount);
+            this.totalCount += 1;
+            this.usersCount += 1;
+          }
+      });
+    }
   }
 
   Transaction(payload) {
     this.isData = true;
     this.loading = true;
+    // console.log("isfiltering? ", this.isFiltering);    
     this.transactionService.getTransaction(payload).subscribe((data) => {
       this.loading = false;
       this.detailsData = data.data.transactions;
@@ -243,6 +250,7 @@ export class TransactionComponent implements OnInit {
   }
   searchTrans() {
     // this.range = `${this.start[0]}/${this.start[1]}/${this.start[2]} - ${this.end[0]}/${this.end[1]}/${this.end[2]}`;
+    this.isFiltering = true;
     this.start = this.searchForm.value.startDate;
     this.end = this.searchForm.value.endDate;
     this.range = `${this.start} - ${this.end}`;
@@ -270,12 +278,13 @@ export class TransactionComponent implements OnInit {
     this.TransactionSummary(this.paload);
   }
   getFilter(event) {
+    this.isFiltering = true;
     this.filter = event.target.value;    
-    this.filterValue = this.searchForm.value.method
+    this.filterValue = this.searchForm.value.filterValue;
     console.log('filter value -', this.filterValue)
     if (this.filter == 'sequenceNumber') {
       this.sequenceNumber = this.filterValue;
-      // console.log('yes seq = ', this.filterValue);
+      console.log('yes seq = ', this.filterValue);
     } else if (this.filter == 'transactionReference') {
       this.transactionReference = this.filterValue;
     } else if (this.filter == 'debitReference') {
