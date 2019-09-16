@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as math from 'mathjs';
 import { SubSink } from 'subsink/dist/subsink';
-import { ProductsService } from 'app/service/products.service';
+import { ProductsService } from 'app/_service/products.service';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({

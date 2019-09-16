@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SummaryService } from 'app/service/summary.service';
+import { SummaryService } from 'app/_service/summary.service';
 import * as math from 'mathjs';
 import { SubSink } from 'subsink/dist/subsink';
 import { Subscription, Observable } from 'rxjs';

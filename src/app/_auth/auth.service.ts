@@ -5,9 +5,7 @@ import { Observable, from } from 'rxjs';
 import { LoginResponseModel } from 'model/response/auth.model';
 import { Endpoint } from 'common/endpoint'
 import { map, catchError } from 'rxjs/operators';
-import { EncrDecrService } from '../service/encr-decr.service';
 import { Constants } from 'common/constants';
-import { StorageService } from '../service/storage.service';
 import { environment } from 'environments/environment';
 import { User } from 'app/_models/user';
 import { JwtHelperService } from "@auth0/angular-jwt";

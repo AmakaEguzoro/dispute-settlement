@@ -25,9 +25,6 @@ import { NavigationModule } from './main-layout/navigation/navigation.module';
 import { AsdevApiService } from './providers/asdev-api.service';
 
 //encrption decryption service
-import { EncrDecrService } from 'app/service/encr-decr.service';
-import { RequestInterceptorService } from './service/requset-interceptor.service';
-
 import { MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
@@ -37,13 +34,12 @@ import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 
 import { OrderModule } from 'ngx-order-pipe';
 import { TransactionComponent } from './Transaction/transaction/transaction.component';
-import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
 import { ModelComponent } from './Transaction/model/model.component';
 import { PaginationModule, ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { SocketService } from './service/socket.service';
-import { FiltersComponent } from './Transaction/filters/filters.component';
+import { SocketService } from './_service/socket.service';
 import { JwtModule } from '@auth0/angular-jwt';
+import { PagesModule } from './pages/pages.module';
  
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
 
@@ -56,9 +52,7 @@ export function tokenGetter() {
     AppComponent,
     //itex
     TransactionComponent,
-    TransactionCardComponent,
     ModelComponent,
-    FiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -69,13 +63,14 @@ export function tokenGetter() {
     AppRoutes,
     RouterModule,
     FormsModule,
-    SharedModule,
+
     ViewsModule,
     ToastModule.forRoot(),
     ReactiveFormsModule,
     MDBBootstrapModulesPro.forRoot(),
-    // AngularFireModule.initializeApp(environment.firebase),
     // Itex
+    SharedModule,
+    PagesModule,
     OrderModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
@@ -95,9 +90,6 @@ export function tokenGetter() {
   providers: [
     MDBSpinningPreloader,
     AsdevApiService,
-    // AngularFirestore,
-    // AngularFireStorage,
-    // EncrDecrService,
     //itex
      HttpInterceptorProvider,
     AuthGuard,

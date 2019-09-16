@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ChannelService } from 'app/service/channels.service';
+import { ChannelService } from 'app/_service/channels.service';
 import { SubSink } from 'subsink/dist/subsink';
 import * as math from 'mathjs';
 import { Observable, Subscription } from 'rxjs';

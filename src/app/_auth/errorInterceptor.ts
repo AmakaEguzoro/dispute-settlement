@@ -4,34 +4,7 @@ import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { User } from 'app/_models/user';
 import { Constants } from 'common/constants';
-import { StorageService } from 'app/service/storage.service';
 import { AuthService } from './auth.service';
-
-@Injectable()
-// export class httpInterceptor implements HttpInterceptor {
-//    	// intercept request and add token
-// 	intercept(
-// 		request: HttpRequest<any>,
-// 		next: HttpHandler
-// 	): Observable<HttpEvent<any>> {
-
-// 		return next.handle(request).pipe(
-// 			tap(
-// 				event => {
-// 					 if (event instanceof HttpResponse) {
-// 					}
-// 				},
-// 				error => {
-// 					console.error(error.status);
-// 					console.error(error.message);
-
-//	}
-// 			
-//)
-// 		);
-// 	}
-// }
-
 
 @Injectable()
 export class httpInterceptor implements HttpInterceptor {

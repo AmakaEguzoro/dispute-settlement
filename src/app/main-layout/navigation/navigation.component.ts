@@ -29,19 +29,9 @@ export class NavigationComponent implements OnInit {
   logout() {
     localStorage.removeItem('token')
     this.router.navigate(['/login']);
-    // this.toastService.error('Logged Out');
   }
   isAuthenticated() {
     return this.authService.isAuthenticated()
  }
-  // logout() {
-  //   this.authService.log().subscribe(data => {
-  //     this.router.navigate(['/login'])
-  //   },
-  //     error => {
-  //       console.log("An error Occured");
-  //     });
-  // }
-
 
 }

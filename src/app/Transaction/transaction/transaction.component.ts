@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TransactionService } from 'app/service/transaction.service';
+import { TransactionService } from 'app/_service/transaction.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SubSink } from 'subsink/dist/subsink';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ModelComponent } from '../model/model.component';
-import { SocketService } from 'app/service/socket.service';
+import { SocketService } from 'app/_service/socket.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IMyOptions } from 'ng-uikit-pro-standard';
 @Component({
@@ -61,15 +61,15 @@ export class TransactionComponent implements OnInit {
   phoneNumber: any;
   terminalId: any;
   walletId: any;
+  cardRRN: any;
   product: any;
   transactionChannel: any;
   transactionType: any;
-  paload: any;
+  filterData: any;
   start: any;
   end: any;
   range: any;
   DateObj: any = new Date();
-  // disable: any = (this.DateObj.getFullYear()+1 + '/' + (this.DateObj.getMonth() + 1) + '/' + this.DateObj.getDate());
   dateRange = (String)(this.DateObj.getFullYear() + '/' + (this.DateObj.getMonth() + 1) + '/' + this.DateObj.getDate());
   newRange = `${this.dateRange} - ${this.dateRange}`;
   payload = {
@@ -101,7 +101,6 @@ export class TransactionComponent implements OnInit {
       endDate: ['', Validators.min],
       filterValue: ['', Validators.min]
     });
-    // this.searchForm.get('method').setValue('filterValue');
   }
 
   ngOnInit() {
@@ -114,23 +113,23 @@ export class TransactionComponent implements OnInit {
 
   getSocketData() {
     console.log("isfiltering socket? ", this.isFiltering);
-    if(this.isFiltering == false){
+    if (this.isFiltering == false) {
       this.socket.getMessage().subscribe((Socketdata: any) => {
         this.detailsData.unshift(Socketdata.data);
         console.log('get socket data-', Socketdata.data.status)
-          if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
-            this.failedAmount += parseInt(Socketdata.data.nairaAmount);
-            this.failedCount += 1;
-            this.totalAmount += parseInt(Socketdata.data.nairaAmount);
-            this.totalCount += 1;
-            this.usersCount += 1;
-          } else if (Socketdata.data.status == "successful") {
-            this.successCount += 1;
-            this.successAmount += parseInt(Socketdata.data.nairaAmount);
-            this.totalAmount += parseInt(Socketdata.data.nairaAmount);
-            this.totalCount += 1;
-            this.usersCount += 1;
-          }
+        if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
+          this.failedAmount += parseInt(Socketdata.data.nairaAmount);
+          this.failedCount += 1;
+          this.totalAmount += parseInt(Socketdata.data.nairaAmount);
+          this.totalCount += 1;
+          this.usersCount += 1;
+        } else if (Socketdata.data.status == "successful") {
+          this.successCount += 1;
+          this.successAmount += parseInt(Socketdata.data.nairaAmount);
+          this.totalAmount += parseInt(Socketdata.data.nairaAmount);
+          this.totalCount += 1;
+          this.usersCount += 1;
+        }
       });
     }
   }
@@ -160,7 +159,7 @@ export class TransactionComponent implements OnInit {
       data: this.detailsData.response,
       ignoreBackdropClick: true,
     };
-    this.bsModalRef = this.modalService.show(ModelComponent, { initialState, class: 'modal-lg' });
+    this.bsModalRef = this.modalService.show(ModelComponent, { initialState });
 
   };
 
@@ -202,8 +201,8 @@ export class TransactionComponent implements OnInit {
     startDate: this.dateRange,
     ariaLabelOpenCalendar: 'Open Calendar',
     closeAfterSelect: true,
-    disableUntil: 
-     {year: this.DateObj.getFullYear() , month: this.DateObj.getMonth(), day: this.DateObj.getDate()}
+    disableUntil:
+      { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
   deafaultDate: any = new Date().toISOString().split('T')[0]
@@ -212,11 +211,8 @@ export class TransactionComponent implements OnInit {
   vendTypes = ['B2B', 'ITEX']
   type = ['Postpaid', 'Prepaid', 'smartcard', 'Token', 'Non Energy', 'NIL'];
   channels = ['POS', 'ANDROID', 'WEB', 'ANDROIDPOS', 'DEFAULT', 'OTHERS'];
-  Refs = [
-    // 'Terminal ID', 'Agent ID', 'Sequence Number',
-    // 'Receipt Number', 'Debit Reference', 'Retrieval Ref Number',
-    // 'Transaction Ref', 'Account number', 'Phone Number',
-     'walletId', 'terminalId', 'cardRRN', 'transactionReference',];
+  Refs = ['Terminal ID', 'Agent ID', 'Sequence Number', 'Debit Reference',
+    'Transaction Ref', 'Account number', 'Phone Number', 'cardRRN'];
   vendors = ['Itex', 'Gecharl Resources', 'PhilTech Solutions', 'Vella', 'GI Solutions',
     'Karosealliance', 'Payant', 'Now Now', 'Mars Konnect', 'FCube', 'Zenith Vas', 'XchangeBox',
     'Daphty', 'GreyStone', 'Call Phone'
@@ -249,18 +245,17 @@ export class TransactionComponent implements OnInit {
     this.transactionStatus = event.target.value;
   }
   searchTrans() {
-    // this.range = `${this.start[0]}/${this.start[1]}/${this.start[2]} - ${this.end[0]}/${this.end[1]}/${this.end[2]}`;
     this.isFiltering = true;
     this.start = this.searchForm.value.startDate;
     this.end = this.searchForm.value.endDate;
     this.range = `${this.start} - ${this.end}`;
-    this.paload = {
+    this.filterData = {
       "dateRange": this.range,
       "terminalId": this.terminalId ? this.terminalId : '',
       "walletId": this.walletId ? this.walletId : '',
       "accountNumber": this.accountNumber ? this.accountNumber : '',
       "paymentMethod": this.paymentMethod ? this.paymentMethod : '',
-      "cardRRN": "",
+      "cardRRN": this.cardRRN ? this.cardRRN : '',
       "transactionReference": this.transactionReference ? this.transactionReference : '',
       "phoneNumber": this.phoneNumber ? this.phoneNumber : '',
       "sequenceNumber": this.sequenceNumber ? this.sequenceNumber : '',
@@ -273,34 +268,31 @@ export class TransactionComponent implements OnInit {
       "viewPage": "",
     };
 
-    console.log(this.paload);
-    this.Transaction(this.paload);
-    this.TransactionSummary(this.paload);
+    console.log(this.filterData);
+    this.Transaction(this.filterData);
+    this.TransactionSummary(this.filterData);
   }
   getFilter(event) {
     this.isFiltering = true;
-    this.filter = event.target.value;    
+    this.filter = event.target.value;
     this.filterValue = this.searchForm.value.filterValue;
-    console.log('filter value -', this.filterValue)
-    if (this.filter == 'sequenceNumber') {
+    if (this.filter == 'Sequence Number') {
       this.sequenceNumber = this.filterValue;
-      console.log('yes seq = ', this.filterValue);
-    } else if (this.filter == 'transactionReference') {
+    } else if (this.filter == 'Transaction Ref') {
       this.transactionReference = this.filterValue;
-    } else if (this.filter == 'debitReference') {
+    } else if (this.filter == 'Debit Reference') {
       this.debitReference = this.filterValue;
-    } else if (this.filter == 'terminalId') {
+    } else if (this.filter == 'Terminal ID') {
       this.terminalId = this.filterValue;
-      console.log('yes terminalId = ', this.filterValue);
-    } else if (this.filter == 'walletId') {
+    } else if (this.filter == 'Agent ID') {
       this.walletId = this.filterValue;
-      console.log('yes walletId = ', this.filterValue);
-    } else if (this.filter == 'accountNumber') {
+    } else if (this.filter == 'Account number') {
       this.accountNumber = this.filterValue;
-    } else if (this.filter == 'phoneNumber') {
+    } else if (this.filter == 'Phone Number') {
       this.phoneNumber = this.filterValue;
+    } else if (this.filter == 'cardRRN') {
+      this.cardRRN = this.filterValue;
     }
-
   }
 
 }
