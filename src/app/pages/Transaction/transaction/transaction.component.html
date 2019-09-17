@@ -21,7 +21,7 @@
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="trans-card-text">
-                            {{ totalCount | thousandSuff }}
+                            {{ totalCount }}
                             &nbsp; Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount">
                             &#x20A6;{{totalAmount / 100 | thousandSuff : 2}}</div>
@@ -37,7 +37,7 @@
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="trans-card-text">
-                            {{ successCount | thousandSuff }}
+                            {{ successCount }}
                             &nbsp; Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
                             &#x20A6;{{successAmount / 100 | thousandSuff : 2}}</div>
@@ -53,7 +53,7 @@
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="trans-card-text">
-                            {{failedCount | thousandSuff }}
+                            {{failedCount }}
                             &nbsp; Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
                             &#x20A6;{{failedAmount / 100 | thousandSuff : 2}}</div>
@@ -124,13 +124,13 @@
                     [options]="myDatePickerOptions" ></mdb-date-picker>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <select class="browser-default custom-select ref" (change)="getFilter($event)">
+                <select class="browser-default custom-select ref" (change)="getRef($event)">
                     <option value="">Ref Number</option>
                   <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
                 </select>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <input type="text" formControlName="filterValue" [(ngModel)]="filterValue" >
+                <input type="text"  formControlName="filterValue"  (change)="getFilter($event)" ngDefaultControl [(ngModel)]="filterValue" >
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                 <button class="btn btn-primary" mdbWavesEffect (click)="searchTrans()">

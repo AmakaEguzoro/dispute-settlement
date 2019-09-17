@@ -30,6 +30,7 @@ import { SocketService } from './_service/socket.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { PagesModule } from './pages/pages.module';
 import { ModelComponent } from './pages/Transaction/model/model.component';
+import { NotificationComponent } from './views/notification/notification.component';
  
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
 
@@ -40,6 +41,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

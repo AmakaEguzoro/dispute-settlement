@@ -7,6 +7,7 @@ import { ToNumberPipe } from 'app/shared/pipe/ToNumberPipe';
 import { OrderModule } from 'ngx-order-pipe';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RoundPipe } from './pipe/toRound';
 
 @NgModule({
   imports: [
@@ -19,13 +20,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
   declarations: [
     NotFoundComponent,
     ThousandSuffixesPipe,
-    ToNumberPipe
+    ToNumberPipe,
+    RoundPipe
   ],
   exports: [
     MDBBootstrapModulesPro,
     NotFoundComponent,
     ThousandSuffixesPipe,
     ToNumberPipe,
+    RoundPipe
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]

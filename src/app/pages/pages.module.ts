@@ -28,6 +28,9 @@ import { ThisMonthProductComponent } from "./admin/admin-top-5/product/this-mont
 import { TodayPaymentMethodComponent } from "./admin/admin-top-5/payment-methods/today-payment-method/today-payment-method.component";
 import { ThisWeekPaymentMethodComponent } from "./admin/admin-top-5/payment-methods/this-week-payment-method/this-week-payment-method.component";
 import { ThisMonthPaymentMethodComponent } from "./admin/admin-top-5/payment-methods/this-month-payment-method/this-month-payment-method.component";
+import { SharedModule } from "app/shared/shared.module";
+import { OrderModule } from "ngx-order-pipe";
+import { PaginationModule } from "ngx-bootstrap";
 
 
 @NgModule({
@@ -35,8 +38,10 @@ import { ThisMonthPaymentMethodComponent } from "./admin/admin-top-5/payment-met
       CommonModule,
       FormsModule,
       ReactiveFormsModule,
+      SharedModule,
+      OrderModule,
       MDBBootstrapModulesPro.forRoot(),
-
+      PaginationModule.forRoot(),
     ],
     declarations: [
       // Itex Copmponent

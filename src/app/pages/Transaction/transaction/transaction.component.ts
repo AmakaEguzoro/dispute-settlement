@@ -5,7 +5,7 @@ import { SubSink } from 'subsink/dist/subsink';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ModelComponent } from '../model/model.component';
 import { SocketService } from 'app/_service/socket.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { IMyOptions } from 'ng-uikit-pro-standard';
 @Component({
   selector: 'app-transaction',
@@ -33,6 +33,7 @@ export class TransactionComponent implements OnInit {
   bsModalRef: BsModalRef;
   private subs = new SubSink();
   socketData: any;
+  disabled: true;
 
   // Summary
   summaryData: any;
@@ -99,7 +100,7 @@ export class TransactionComponent implements OnInit {
       method: ['', Validators.min],
       startDate: ['', Validators.min],
       endDate: ['', Validators.min],
-      filterValue: ['', Validators.min]
+      filterValue: ['',]
     });
   }
 
@@ -108,27 +109,26 @@ export class TransactionComponent implements OnInit {
     this.TransactionSummary(this.payload);
     setTimeout(() => {
       this.getSocketData();
-    }, 1 * 60 * 1000);
+    }, 1 * 10 * 1000);
   }
 
   getSocketData() {
-    console.log("isfiltering socket? ", this.isFiltering);
+    // console.log("isfiltering socket? ", this.isFiltering);
     if (this.isFiltering == false) {
       this.socket.getMessage().subscribe((Socketdata: any) => {
+        this.detailsData.pop();
         this.detailsData.unshift(Socketdata.data);
         console.log('get socket data-', Socketdata.data.status)
         if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
           this.failedAmount += parseInt(Socketdata.data.nairaAmount);
-          this.failedCount += 1;
+          this.failedCount = parseInt( this.failedCount)+1;
           this.totalAmount += parseInt(Socketdata.data.nairaAmount);
           this.totalCount += 1;
-          this.usersCount += 1;
         } else if (Socketdata.data.status == "successful") {
           this.successCount += 1;
           this.successAmount += parseInt(Socketdata.data.nairaAmount);
           this.totalAmount += parseInt(Socketdata.data.nairaAmount);
           this.totalCount += 1;
-          this.usersCount += 1;
         }
       });
     }
@@ -244,6 +244,9 @@ export class TransactionComponent implements OnInit {
   getStatus(event) {
     this.transactionStatus = event.target.value;
   }
+  getRef(event) {
+    this.filter = event.target.value;
+  }
   searchTrans() {
     this.isFiltering = true;
     this.start = this.searchForm.value.startDate;
@@ -272,9 +275,9 @@ export class TransactionComponent implements OnInit {
     this.Transaction(this.filterData);
     this.TransactionSummary(this.filterData);
   }
+
   getFilter(event) {
     this.isFiltering = true;
-    this.filter = event.target.value;
     this.filterValue = this.searchForm.value.filterValue;
     if (this.filter == 'Sequence Number') {
       this.sequenceNumber = this.filterValue;
