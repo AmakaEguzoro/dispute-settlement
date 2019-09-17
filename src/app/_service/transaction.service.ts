@@ -32,6 +32,15 @@ export class TransactionService {
                 return transactionSummary;
             }
             ));
-    }
+    };
+
+    getTransactionReversed (transaction: Transaction) {
+        return this.httpClient.post(this.baseUrl + `reversed`, transaction ).pipe(
+            map((response: any) => {
+                const transactionReversed = response;
+                return transactionReversed;
+            }
+            ));
+    };
 
 }

@@ -31,6 +31,8 @@ import { ThisMonthPaymentMethodComponent } from "./admin/admin-top-5/payment-met
 import { SharedModule } from "app/shared/shared.module";
 import { OrderModule } from "ngx-order-pipe";
 import { PaginationModule } from "ngx-bootstrap";
+import { TransactionReversalComponent } from './Transaction/transaction-reversal/transaction-reversal.component';
+import { ReversalModelComponent } from './Transaction/transaction-reversal/reversal-model/reversal-model.component';
 
 
 @NgModule({
@@ -67,7 +69,9 @@ import { PaginationModule } from "ngx-bootstrap";
       LoginComponent,
       AdminDashboardComponent,
       TransactionComponent,
-      ModelComponent
+      ModelComponent,
+      TransactionReversalComponent,
+      ReversalModelComponent
   
     ],
     exports: [
@@ -95,7 +99,9 @@ import { PaginationModule } from "ngx-bootstrap";
       LoginComponent,
       AdminDashboardComponent,
       TransactionComponent,
-      ModelComponent
+      ModelComponent,
+      TransactionReversalComponent,
+      ReversalModelComponent
   
     ],
     providers: [

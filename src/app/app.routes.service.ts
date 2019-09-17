@@ -7,6 +7,7 @@ import { ServiceStatusComponent } from './pages/status/service-status/service-st
 import { BvnStatusComponent } from './pages/status/bvn-status/bvn-status.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { TransactionComponent } from './pages/Transaction/transaction/transaction.component';
+import { TransactionReversalComponent } from './pages/Transaction/transaction-reversal/transaction-reversal.component';
 
 
 const routes: Route[] = [
@@ -22,6 +23,7 @@ const routes: Route[] = [
       { path: 'transaction/details', component: TransactionComponent },
       { path: 'service-status', component: ServiceStatusComponent },
       { path: 'bvn-status', component: BvnStatusComponent},
+      { path: 'transaction/reversal', component: TransactionReversalComponent},
     ]
   },
   

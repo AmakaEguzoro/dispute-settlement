@@ -1,0 +1,188 @@
+.total-trans{
+    font-style: normal ;
+    font-weight: normal ;
+    font-size: 15px ;
+    line-height: 16px ;
+    color: #002035 ;
+  }
+  .trans-amount{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 0px;
+    text-align: right;
+    color: #002035;
+  }
+  .trans-card-text{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 0px;
+  color: black;
+  }
+  
+  .trans-head{   
+  background: rgba(242, 242, 242, 0.56);
+  border: 3px solid rgba(242, 242, 242, 0.56); 
+   }
+  .head{
+    font-weight: 600 !important;
+  }
+  .card .card-body {
+    padding: 7px;
+  }
+
+  
+  table td {
+    font-size: smaller;
+    padding-bottom: 0px;
+      padding-top: 2px;
+  }
+  // item.status
+.status{
+    height: 23px;
+    border-radius: 10px;
+    width: 100%;
+    background: #2F80ED;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 5px;
+  }
+  .failed{
+    background: #EB5757;
+  }
+  .initialized{
+    background: #F2C94C;
+  }
+
+  // Item process time
+  .time{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-left: 35px;
+    width: 36px !important;
+    border-radius: 10px;
+    margin-top: 7px;
+  }
+  .warning{
+    background: #F2C94C;
+  }
+  .success{
+    background: #219653;
+  }
+  
+  .danger{
+    background: #219653;
+  }
+  // item channel
+  .pos{
+    color: #219653;
+    font-weight: 600;
+  }
+  .web{
+    color: #F2C94C;
+    font-weight: 600;
+  }
+  .android{
+    color:  #EB5757; 
+    font-weight: 600;
+  }
+  .androidPOS{
+    color:  brown;
+    font-weight: 600;
+  }
+  .default{
+    color: purple;
+    font-weight: 600;
+  }
+  .others{
+    color: #2F80ED;
+    font-weight: 600;
+  }
+  .mtn{
+  color: chocolate;
+  font-weight: 600;
+  }
+  
+  // item paymant method
+  .cash{
+  color: black;
+    background-image: url('/assets/money.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    box-shadow: none;
+    border: none;
+    height: 19px;
+  }
+  
+  .cards{
+  color: black;
+    background-image: url('/assets/credit-card.svg');
+    height: 19px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    box-shadow: none;
+    border: none;
+  }
+
+  mdb-date-picker{
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    padding-right: -4px;
+    font-weight: 400;
+    font-size: 14px;
+    background: white;
+    padding: 10px;
+    }
+    
+    
+    .custom-select{
+      border: 1px solid #E0E0E0;
+      border-radius: 10px;
+      width: 9rem;
+      padding-right: -4px;
+      height: 33px;
+      padding-left: 12px;
+      margin-top: 5px;
+      font-weight: 400;
+      font-size: 14px;
+    }
+    button{
+      width: 177px;
+      border-radius: 0px;
+      margin-top: 5px;
+      height: 33px;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      text-align: center;
+      margin-left: 0px;
+    }
+    button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+    }
+    
+    input{
+      margin-top: 5px;
+      height: 33px;
+      padding-left: 0px;
+      border: 1px solid #2F80ED;
+      width: 18rem;
+      margin-left: -3rem;
+    }
+    .ref{
+    margin-top: 5px;
+    border-radius: 5px 0px 0px 5px;
+    border: 1px solid #2F80ED
+    }

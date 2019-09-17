@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <div class="row">
+    <div class="col-12">
+      <h4>{{data.product}}</h4>
+    </div>
+  </div>
+
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Terminal ID:
+          <strong style="float: right">{{data.terminal}}</strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Reference:
+          <strong style="float: right; margin-left: 2rem;">{{data.reference}}</strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Pay Method:
+          <strong style="float: right">{{data.paymentMethod}}</strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Channel:
+          <strong style="float: right">{{data.channel}}</strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Type:
+          <strong style="float: right">{{data.type}}</strong>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">Close</button>
+</div>

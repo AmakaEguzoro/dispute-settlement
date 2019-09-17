@@ -109,7 +109,7 @@ export class TransactionComponent implements OnInit {
     this.TransactionSummary(this.payload);
     setTimeout(() => {
       this.getSocketData();
-    }, 1 * 10 * 1000);
+    }, 1 * 60 * 1000);
   }
 
   getSocketData() {
@@ -205,7 +205,6 @@ export class TransactionComponent implements OnInit {
       { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
-  deafaultDate: any = new Date().toISOString().split('T')[0]
   methods = ['Card', 'Cash', 'Mcash'];
   stat = ['Approved', 'Declined', 'Pending'];
   vendTypes = ['B2B', 'ITEX']
