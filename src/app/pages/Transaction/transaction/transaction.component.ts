@@ -3,7 +3,7 @@ import { TransactionService } from 'app/_service/transaction.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SubSink } from 'subsink/dist/subsink';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { ModelComponent } from '../model/model.component';
+import { ModelComponent } from './model/model.component';
 import { SocketService } from 'app/_service/socket.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { IMyOptions } from 'ng-uikit-pro-standard';
@@ -159,8 +159,8 @@ export class TransactionComponent implements OnInit {
       data: this.detailsData.response,
       ignoreBackdropClick: true,
     };
-    this.bsModalRef = this.modalService.show(ModelComponent, { initialState });
-
+    this.bsModalRef = this.modalService.show(ModelComponent, { initialState, class: 'modal-lg' });
+    // 
   };
 
   pageChanged(event: any): void {
@@ -210,7 +210,7 @@ export class TransactionComponent implements OnInit {
   vendTypes = ['B2B', 'ITEX']
   type = ['Postpaid', 'Prepaid', 'smartcard', 'Token', 'Non Energy', 'NIL'];
   channels = ['POS', 'ANDROID', 'WEB', 'ANDROIDPOS', 'DEFAULT', 'OTHERS'];
-  Refs = ['Terminal ID', 'Agent ID', 'Sequence Number', 'Debit Reference',
+  Refs = ['Terminal ID', 'Agent ID', 'Sequence Number',
     'Transaction Ref', 'Account number', 'Phone Number', 'cardRRN'];
   vendors = ['Itex', 'Gecharl Resources', 'PhilTech Solutions', 'Vella', 'GI Solutions',
     'Karosealliance', 'Payant', 'Now Now', 'Mars Konnect', 'FCube', 'Zenith Vas', 'XchangeBox',

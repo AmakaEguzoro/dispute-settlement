@@ -47,19 +47,14 @@ export class TransactionReversalComponent implements OnInit {
     "dateRange": this.newRange,
     "terminalId": "",
     "walletId": "",
-    "accountNumber": "",
     "paymentMethod": "",
-    "cardRRN": "",
     "transactionReference": "",
-    "phoneNumber": "",
     "sequenceNumber": "",
-    "debitReference": "",
     "product": "",
     "transactionType": "",
     "transactionStatus": "",
-    "transactionChannel": "",
-    "searchField": "",
     "viewPage": "",
+   "download":false
   };
 
   constructor(private transactionService: TransactionService,
@@ -150,19 +145,14 @@ export class TransactionReversalComponent implements OnInit {
       "dateRange": this.range,
       "terminalId": this.terminalId ? this.terminalId : '',
       "walletId": this.walletId ? this.walletId : '',
-      "accountNumber": "",
-      "paymentMethod": "",
-      "cardRRN": "",
       "transactionReference": this.transactionReference ? this.transactionReference : '',
-      "phoneNumber": "",
       "sequenceNumber": this.sequenceNumber ? this.sequenceNumber : '',
-      "debitReference": "",
+      "paymentMethod": "",
       "product": this.product ? this.product : '',
       "transactionType": "",
       "transactionStatus": this.transactionStatus ? this.transactionStatus : '',
-      "transactionChannel": "",
-      "searchField": "",
       "viewPage": "",
+      "download":false
     };
 
     console.log(this.filterData);

@@ -29,7 +29,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { SocketService } from './_service/socket.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { PagesModule } from './pages/pages.module';
-import { ModelComponent } from './pages/Transaction/model/model.component';
+import { ModelComponent } from './pages/Transaction/transaction/model/model.component';
 import { NotificationComponent } from './views/notification/notification.component';
 import { ReversalModelComponent } from './pages/Transaction/transaction-reversal/reversal-model/reversal-model.component';
  

@@ -8,6 +8,7 @@ import { BvnStatusComponent } from './pages/status/bvn-status/bvn-status.compone
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { TransactionComponent } from './pages/Transaction/transaction/transaction.component';
 import { TransactionReversalComponent } from './pages/Transaction/transaction-reversal/transaction-reversal.component';
+import { TransactionLocksComponent } from './pages/Transaction/transaction-locks/transaction-locks.component';
 
 
 const routes: Route[] = [
@@ -24,6 +25,7 @@ const routes: Route[] = [
       { path: 'service-status', component: ServiceStatusComponent },
       { path: 'bvn-status', component: BvnStatusComponent},
       { path: 'transaction/reversal', component: TransactionReversalComponent},
+      { path: 'transaction/locks', component: TransactionLocksComponent},
     ]
   },
   

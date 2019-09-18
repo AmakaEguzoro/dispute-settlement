@@ -1,0 +1,97 @@
+<div class="container">
+  <label>Transaction Locks</label>
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+      <div class="card classic-admin-card">
+        <div class="card-body">
+          <p class="total-trans">Transaction Locks</p> <br>
+          <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+          <h4 *ngIf="loading == false">
+            <div *ngIf="isData == true" class="trans-amount">
+              &#x20A6;{{tranLockAmount | thousandSuff : 2}}</div>
+          </h4>
+          <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br>
+
+  <!-- filter -->
+  <form [formGroup]="searchForm">
+    <div class="row">
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -22px;">
+        <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
+          [options]="myDatePickerOptions"></mdb-date-picker>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -22px;">
+        <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date" [options]="myDatePickerOptions">
+        </mdb-date-picker>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+        <select class="browser-default custom-select ref" (change)="getRef($event)">
+          <option value="">Ref Number</option>
+          <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
+        </select>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+        <input type="text" formControlName="filterValue" (change)="getFilter($event)" ngDefaultControl
+          [(ngModel)]="filterValue">
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+        <button class="btn btn-primary" mdbWavesEffect (click)="searchTrans()">
+          <mdb-icon fas icon="search"></mdb-icon>
+          Search
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Table -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover" small="true">
+          <thead class="trans-head">
+            <tr>
+              <th class="head" *ngFor="let head of headElements" scope="col">{{head}} </th>
+            </tr>
+          </thead>
+          <tbody>
+            <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
+            </mdb-spinner>
+            <tr *ngFor="let item of locksData let i = index">
+              <th scope="row">{{serial + i}}</th>
+              <td>{{item.wallet}}</td>
+              <td> &#x20A6;{{item.amount | number: "1.2-2" }}</td>
+              <td>{{item.reference}}</td>
+              <td>
+                <mdb-badge class="status" [ngClass]="{
+                                              'failed' : item.status == 'false',
+                                              'success' : item.status == 'reversed'
+                                            }"> {{item.status}}</mdb-badge>
+              </td>
+              <td>
+                <mdb-badge class="time" [ngClass]="{
+                                                'warning' : item.processTime > 11,
+                                                'success' : item.processTime <= 10,
+                                                 'initialized' : item.processTime == 11,
+                                                'danger' : item.processTime == 0
+                                              }"> {{item.processTime}}s</mdb-badge>
+              </td>
+              <td style="color: #828282;">{{item.date}}</td>
+            </tr>
+            <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+          </tbody>
+        </table>
+        <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage" [(ngModel)]="currentPage"
+          [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;" lastText="&raquo;"></pagination>
+      </div>
+      <br>
+    </div>
+  </div>
+
+
+
+</div>

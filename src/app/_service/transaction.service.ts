@@ -43,4 +43,13 @@ export class TransactionService {
             ));
     };
 
+    getTransactionLocks (transaction: Transaction) {
+        return this.httpClient.post(this.baseUrl + `locked`, transaction ).pipe(
+            map((response: any) => {
+                const transactionLocks = response;
+                return transactionLocks;
+            }
+            ));
+    };
+
 }

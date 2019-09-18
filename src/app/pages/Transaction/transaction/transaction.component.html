@@ -1,5 +1,5 @@
 <div class="container">
-
+<label>Transactions</label>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="card classic-admin-card">
@@ -53,7 +53,7 @@
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="trans-card-text">
-                            {{failedCount }}
+                            {{failedCount  }}
                             &nbsp; Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
                             &#x20A6;{{failedAmount / 100 | thousandSuff : 2}}</div>
@@ -115,17 +115,18 @@
                     <option *ngFor="let status of stat" [value]="status">{{status}}</option>
                 </select>
             </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -22px;">
+                <mdb-date-picker class="mydp-f" formControlName="startDate" id="startDate" placeholder="Start Date"
                     [options]="myDatePickerOptions"></mdb-date-picker>
             </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -22px;">
                 <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
                     [options]="myDatePickerOptions" ></mdb-date-picker>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                 <select class="browser-default custom-select ref" (change)="getRef($event)">
                     <option value="">Ref Number</option>
+                     <option value="" disabled>Debit Reference</option>
                   <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
                 </select>
             </div>

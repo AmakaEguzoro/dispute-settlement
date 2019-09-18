@@ -18,7 +18,7 @@ import { LastMonthCardComponent } from "./admin/dashboard-cards/monthly-cards/la
 import { LastWeekCardComponent } from "./admin/dashboard-cards/weekly-cards/last-week-card/last-week-card.component";
 import { ThisWeekCardComponent } from "./admin/dashboard-cards/weekly-cards/this-week-card/this-week-card.component";
 import { TransactionComponent } from "./Transaction/transaction/transaction.component";
-import { ModelComponent } from "./Transaction/model/model.component";
+import { ModelComponent } from "./Transaction/transaction/model/model.component";
 import { TodayChannelsComponent } from "./admin/admin-top-5/channel/today-channels/today-channels.component";
 import { ThisWeekChannelsComponent } from "./admin/admin-top-5/channel/this-week-channels/this-week-channels.component";
 import { ThisMonthChannelsComponent } from "./admin/admin-top-5/channel/this-month-channels/this-month-channels.component";
@@ -33,6 +33,7 @@ import { OrderModule } from "ngx-order-pipe";
 import { PaginationModule } from "ngx-bootstrap";
 import { TransactionReversalComponent } from './Transaction/transaction-reversal/transaction-reversal.component';
 import { ReversalModelComponent } from './Transaction/transaction-reversal/reversal-model/reversal-model.component';
+import { TransactionLocksComponent } from './Transaction/transaction-locks/transaction-locks.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { ReversalModelComponent } from './Transaction/transaction-reversal/rever
       TransactionComponent,
       ModelComponent,
       TransactionReversalComponent,
-      ReversalModelComponent
+      ReversalModelComponent,
+      TransactionLocksComponent
   
     ],
     exports: [
@@ -101,7 +103,8 @@ import { ReversalModelComponent } from './Transaction/transaction-reversal/rever
       TransactionComponent,
       ModelComponent,
       TransactionReversalComponent,
-      ReversalModelComponent
+      ReversalModelComponent,
+      TransactionLocksComponent
   
     ],
     providers: [
