@@ -88,8 +88,8 @@ export class TransactionLocksComponent implements OnInit {
     startDate: this.dateRange,
     ariaLabelOpenCalendar: 'Open Calendar',
     closeAfterSelect: true,
-    disableUntil:
-      { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
+    // disableUntil:
+    //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
   Refs = ['Agent ID', 'Transaction Ref'];

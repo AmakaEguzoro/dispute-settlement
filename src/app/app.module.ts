@@ -32,6 +32,9 @@ import { PagesModule } from './pages/pages.module';
 import { ModelComponent } from './pages/Transaction/transaction/model/model.component';
 import { NotificationComponent } from './views/notification/notification.component';
 import { ReversalModelComponent } from './pages/Transaction/transaction-reversal/reversal-model/reversal-model.component';
+import { RegisterComponent } from './_auth/register/register.component';
+import { AuthModule } from './_auth/_auth.module';
+import { ServiceModule } from './_service/_service.module';
  
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
 
@@ -42,7 +45,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    NotificationComponent
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,8 @@ export function tokenGetter() {
     // Itex
     SharedModule,
     PagesModule,
+    // ServiceModule,
+    // AuthModule,
     OrderModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
@@ -70,7 +75,9 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        blacklistedRoutes: ['http://197.253.19.76:6200/api/v1/auth']
+        blacklistedRoutes: ['http://197.253.19.76:6200/api/v1/auth', 
+        // 'http://197.253.19.76:6200/api/v1/users/create'
+      ]
       }
     })
   ],

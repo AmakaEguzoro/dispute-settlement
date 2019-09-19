@@ -34,6 +34,7 @@ import { PaginationModule } from "ngx-bootstrap";
 import { TransactionReversalComponent } from './Transaction/transaction-reversal/transaction-reversal.component';
 import { ReversalModelComponent } from './Transaction/transaction-reversal/reversal-model/reversal-model.component';
 import { TransactionLocksComponent } from './Transaction/transaction-locks/transaction-locks.component';
+import { RegisterComponent } from "app/_auth/register/register.component";
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { TransactionLocksComponent } from './Transaction/transaction-locks/trans
       ThisWeekPaymentMethodComponent,
       ThisMonthPaymentMethodComponent,
       LoginComponent,
+      RegisterComponent,
       AdminDashboardComponent,
       TransactionComponent,
       ModelComponent,
@@ -99,6 +101,7 @@ import { TransactionLocksComponent } from './Transaction/transaction-locks/trans
       ServiceStatusComponent,
       BvnStatusComponent,
       LoginComponent,
+      RegisterComponent,
       AdminDashboardComponent,
       TransactionComponent,
       ModelComponent,

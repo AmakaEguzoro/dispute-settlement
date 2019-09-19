@@ -28,11 +28,30 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
 
   canActivate() : boolean {
+    
       if (!this.authService.isAuthenticated()) {
           this.router.navigate(['/login']);
           return false;
       }
       return true;
   }
+
+  // canActivate(next: ActivatedRouteSnapshot) : boolean {
+  //   const roles = next.firstChild.data['roles'] as Array<string>;
+  //   if (roles) {
+  //     const match = this.authService.roleMatch(roles);
+  //     if (match) {
+  //       return true;
+  //     } else {
+  //       this.router.navigate(['transaction/details']);
+  //     }
+  //   }
+
+  //     if (!this.authService.isAuthenticated()) {
+  //         this.router.navigate(['/login']);
+  //         return false;
+  //     }
+  //     return true;
+  // }
 
 }

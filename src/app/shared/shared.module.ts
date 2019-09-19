@@ -8,6 +8,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RoundPipe } from './pipe/toRound';
+import { HasRoleDirective } from './Directives/has-role.directive';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { RoundPipe } from './pipe/toRound';
     NotFoundComponent,
     ThousandSuffixesPipe,
     ToNumberPipe,
-    RoundPipe
+    RoundPipe,
+    HasRoleDirective
   ],
   exports: [
     MDBBootstrapModulesPro,

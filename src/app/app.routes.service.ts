@@ -9,6 +9,7 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { TransactionComponent } from './pages/Transaction/transaction/transaction.component';
 import { TransactionReversalComponent } from './pages/Transaction/transaction-reversal/transaction-reversal.component';
 import { TransactionLocksComponent } from './pages/Transaction/transaction-locks/transaction-locks.component';
+import { RegisterComponent } from './_auth/register/register.component';
 
 
 const routes: Route[] = [
@@ -20,12 +21,15 @@ const routes: Route[] = [
     // runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'admin-dashboard', component: AdminDashboardComponent },
+      { path: 'admin-dashboard', component: AdminDashboardComponent, 
+      // data: {roles: ['Admin',]}
+    },
       { path: 'transaction/details', component: TransactionComponent },
       { path: 'service-status', component: ServiceStatusComponent },
       { path: 'bvn-status', component: BvnStatusComponent},
       { path: 'transaction/reversal', component: TransactionReversalComponent},
       { path: 'transaction/locks', component: TransactionLocksComponent},
+      { path: 'register', component: RegisterComponent},
     ]
   },
   

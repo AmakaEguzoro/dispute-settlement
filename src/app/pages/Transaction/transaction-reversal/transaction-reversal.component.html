@@ -46,18 +46,6 @@
                 <option *ngFor="let product of products" [value]="product">{{product}}</option>
             </select>
         </div>
-        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -22px;">
-            <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
-                [options]="myDatePickerOptions"></mdb-date-picker>
-        </div>
-        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -22px;">
-            <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
-                [options]="myDatePickerOptions" ></mdb-date-picker>
-        </div>
-    </div>
-    <!-- Second row -->
-    <div class="row">
-     <div class="col-6"></div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" >
             <select class="browser-default custom-select ref" (change)="getRef($event)">
                 <option value="">Ref Number</option>
@@ -73,11 +61,22 @@
                 Search
             </button>
         </div>
+    
+    </div>
+    <!-- Second row -->
+    <div class="row">
+     <!-- <div class="col-6"></div> -->
+     <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -22px;">
+        <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
+            [options]="myDatePickerOptions"></mdb-date-picker>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -22px;">
+        <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
+            [options]="myDatePickerOptions" ></mdb-date-picker>
+    </div>
     </div>
 
     </form>
-
-    <br>
 
     <!-- Table -->
     <div class="card">

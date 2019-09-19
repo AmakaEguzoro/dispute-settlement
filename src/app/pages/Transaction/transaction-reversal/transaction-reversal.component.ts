@@ -116,11 +116,11 @@ export class TransactionReversalComponent implements OnInit {
     startDate: this.dateRange,
     ariaLabelOpenCalendar: 'Open Calendar',
     closeAfterSelect: true,
-    disableUntil:
-      { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
+    // disableUntil: this.dateRange;
+    //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
-  stat = ['reversed', 'declined'];
+  stat = ['Reversed', 'Declined'];
   Refs = ['Terminal ID', 'Agent ID', 'Sequence Number', 'Transaction Ref'];
   products = [
     'IKEDC', 'TRANSFER', 'WITHDRAWAL', 'EKEDC', 'MULTICHOICE', 'EEDC', 'PHED', 'AEDC',

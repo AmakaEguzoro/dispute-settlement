@@ -11,6 +11,7 @@ import { User } from 'app/_models/user';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Router } from '@angular/router';
+import { Register } from 'app/_models/register';
 
 @Injectable({
   providedIn: 'root'
@@ -68,28 +69,28 @@ import { Router } from '@angular/router';
 // }
 
 export class AuthService {
- 
-  baseUrl = environment.api.baseUrl +'/auth/';
+
+  baseUrl = environment.api.baseUrl;
   jwtHelper = new JwtHelperService();
-  decodedToken : any;
-  
+  decodedToken: any;
+
   // user: User;
-  constructor(private http: HttpClient,  private router: Router,
+  constructor(private http: HttpClient, private router: Router,
     private toastService: ToastService) { }
 
   login(user: User) {
 
-    return this.http.post(this.baseUrl + 'login', user)
-    .pipe(
-      map((response: any) => {
-        const user = response;
-        if(user) {
-          localStorage.setItem('token', user.token);
-          // this.decodedToken = this.jwtHelper.decodeToken(user.token);
-          // console.log(this.decodedToken)
-        }
-      })
-    );
+    return this.http.post(this.baseUrl + '/auth/login', user)
+      .pipe(
+        map((response: any) => {
+          const user = response;
+          if (user) {
+            localStorage.setItem('token', user.token);
+            // this.decodedToken = this.jwtHelper.decodeToken(user.token);
+            // console.log(this.decodedToken)
+          }
+        })
+      );
   }
 
   isAuthenticated() {
@@ -100,17 +101,23 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token')
     this.router.navigate(['/login']),
-    this.toastService.success('Logged Out')
+      this.toastService.success('Logged Out')
   }
-  public getToken(): string {
-    return localStorage.getItem('token');
+  
+  register(newUser: Register) {
+    return this.http.post(this.baseUrl + '/users/create', newUser);
   }
-  // public isAuthenticated(): boolean {
-  //   // get the token
-  //   const token = this.getToken();
-  //   // return a boolean reflecting 
-  //   // whether or not the token is expired
-  //   return this.jwtHelper.isTokenExpired(null, token);
+
+  // roleMatch(allowedRoles): boolean {
+  //   let isMatch = false;
+  //   const userRoles = this.decodedToken.role as Array<string>;
+  //   allowedRoles.forEach(element => {
+  //     if (userRoles.includes(element)) {
+  //       isMatch = true;
+  //       return;
+  //     }
+  //   });
+  //   return isMatch;
   // }
 
 }
