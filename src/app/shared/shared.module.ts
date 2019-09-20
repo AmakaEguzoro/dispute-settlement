@@ -33,7 +33,6 @@ import { TransactionService } from 'app/service/transaction.service';
 import { ServiceStatusComponent } from './service-status/service-status.component';
 import { BvnStatusComponent } from './bvn-status/bvn-status.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { UserManagementComponent } from './user-management/user-management.component';
 
 @NgModule({
   imports: [
@@ -73,7 +72,6 @@ import { UserManagementComponent } from './user-management/user-management.compo
     ThousandSuffixesPipe,
     ToNumberPipe,
     RoundPipe,
-    UserManagementComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,
