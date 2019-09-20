@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
       { value: 3, label: 'Level 3' },
       { value: 4, label: 'Level 4' },
       { value: 5, label: 'Level 5' },
-      ];
+    ];
   }
 
   // role = ['1', '2', '3', '4', '5'];
@@ -57,15 +57,18 @@ export class RegisterComponent implements OnInit {
       this.newUser = Object.assign({}, this.registerForm.value);
       this.authService.register(this.newUser).subscribe((data) => {
         this.loading = false;
-        console.log(data);
         this.toastService.success('Registration successful');
-        console.log('registration successfull' );
+        this.registerForm.reset();
+        console.log('registration successfull');
       }, error => {
         this.loading = false;
         this.toastService.error(error);
         console.log('error in registration -', error.message);
-        
       });
     }
+  }
+
+  cancel() {
+    this.registerForm.reset();
   }
 }

@@ -6,7 +6,9 @@
         <div class="card-body">
           <form [formGroup]="registerForm">
             <div class="form-group mb-1">
-              <label> <mdb-icon fas icon="user"></mdb-icon>  &nbsp;Full Name</label>
+              <label>
+                <mdb-icon fas icon="user"></mdb-icon> &nbsp;Full Name
+              </label>
               <input class="form-control" type="text" placeholder="Enter Name" formControlName="name" [ngClass]="{'is-invalid': (registerForm.get('name').touched ||
 				registerForm.get('name').dirty) &&
 				!registerForm.get('name').valid }">
@@ -14,7 +16,9 @@
                 <h5 class="login-title"> Please enter name </h5>
               </span>
               <br>
-              <label> <mdb-icon fas icon="user"></mdb-icon>  &nbsp; Username</label>
+              <label>
+                <mdb-icon fas icon="user"></mdb-icon> &nbsp; Username
+              </label>
               <input class="form-control" type="text" placeholder="Enter Username" formControlName="username" [ngClass]="{'is-invalid': (registerForm.get('username').touched ||
 				registerForm.get('username').dirty) &&
 				!registerForm.get('username').valid }">
@@ -22,7 +26,9 @@
                 <h5 class="login-title"> Please enter username </h5>
               </span>
               <br>
-              <label><mdb-icon fas icon="lock"></mdb-icon> &nbsp;Password</label>
+              <label>
+                <mdb-icon fas icon="lock"></mdb-icon> &nbsp;Password
+              </label>
               <input class="form-control" type="text" placeholder="Enter Password" formControlName="password" [ngClass]="{'is-invalid': (registerForm.get('password').touched ||
 				registerForm.get('password').dirty) &&
 				!registerForm.get('password').valid }">
@@ -30,7 +36,9 @@
                 <h5 class="login-title"> Please enter password </h5>
               </span>
               <br>
-              <label> <mdb-icon fas icon="envelope"></mdb-icon> &nbsp;Email Address</label>
+              <label>
+                <mdb-icon fas icon="envelope"></mdb-icon> &nbsp;Email Address
+              </label>
               <input class="form-control" type="text" placeholder="Enter Email" formControlName="email" [ngClass]="{'is-invalid': (registerForm.get('email').touched ||
 				registerForm.get('email').dirty) &&
 				!registerForm.get('email').valid }">
@@ -38,7 +46,9 @@
                 <h5 class="login-title"> Please enter email </h5>
               </span>
               <br>
-              <label> <mdb-icon fas icon="user"></mdb-icon>  &nbsp; Role</label>
+              <label>
+                <mdb-icon fas icon="user"></mdb-icon> &nbsp; Role
+              </label>
               <mdb-select ngDefaultControl [(ngModel)]="role" formControlName="role" [options]="optionsSelect"
                 placeholder="Choose your role">
               </mdb-select>
@@ -46,16 +56,19 @@
                 <h5 class="login-title"> Please enter role </h5>
               </span>
               <br> <br>
-              <label> <mdb-icon fas icon="pencil-alt"></mdb-icon> &nbsp;Agent IDs To View (Leave Blank to See Transactions for All Wallets)</label>
+              <label>
+                <mdb-icon fas icon="pencil-alt"></mdb-icon> &nbsp;Agent IDs To View (Leave Blank to See Transactions for
+                All Wallets)
+              </label>
               <textarea class="form-control" placeholder="Message" formControlName="wallets"></textarea>
             </div>
-
-            <button class="btn btn btn-block mt-4 mb-3" (click)="register()">Register
+            <br>
+            <button class="btn btn-primary" (click)="register()">Register
               <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
             </button>
-            
-
-
+            <button class="btn btn-white" (click)="cancel()">Cancel
+              <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+            </button>
           </form>
         </div>
       </div>

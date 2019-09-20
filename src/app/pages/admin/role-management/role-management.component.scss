@@ -4,6 +4,9 @@
   .card .card-body {
     padding: 7px;
   }
+  .card{
+    width: 100%;
+  }
   table td {
     font-size: smaller;
     padding-bottom: 0px;
@@ -14,7 +17,16 @@
     padding-top: 0.1rem;
     padding-bottom: 0rem;
 }
-  
+.loading-icon{
+  position: absolute;
+  left: 50%;
+  margin-top: 0rem;
+  cursor: wait;
+}
+ button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+   }
   label{
     font-style: normal;
   font-weight: normal;
@@ -28,7 +40,7 @@
     border: 3px solid rgba(242, 242, 242, 0.56); 
      }
      button{
-      width: 4rem;
+      width: 5rem;
       border-radius: 5px;
       margin-top: 3px;
       height: 23px;

@@ -12,7 +12,7 @@
               </tr>
             </thead>
             <tbody>
-              <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
+              <mdb-spinner class="loading-icon" *ngIf="loading" spinnerType="small" spinnerColor="blue">
               </mdb-spinner>
               <tr *ngFor="let item of users let i = index">
                 <th scope="row">{{1 + i}}</th>
@@ -23,7 +23,7 @@
                 <td>{{item.is_admin}}</td>
                 <td>{{item.updated_at}}</td>
                 <td>
-                  <button  class="btn btn-primary" (click)="openModal(item)">Edit</button>
+                  <button [disabled]="true"  class="btn btn-primary" (click)="openModal(item)">Edit</button>
                 </td>
                 <!-- <td>
                     <button class="btn btn-danger">Delete</button>

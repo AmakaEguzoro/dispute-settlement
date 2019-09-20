@@ -39,7 +39,7 @@ export class RoleManagementComponent implements OnInit {
     });
   }
 
-  headElements = ['S/N', 'ID', 'NAME', 'USERNAME', 'EMAIL', 'ROLE', 'DATE', 'EDIT'];
+  headElements = ['S/N', 'ID', 'NAME', 'USERNAME', 'EMAIL', 'ROLE', 'DATE', 'EDIT', ];
 
   openModal(modal) {
     this.users.response = modal;
