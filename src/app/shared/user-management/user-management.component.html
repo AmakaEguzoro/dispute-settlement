@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="md-form">
+        <input type="text" class="form-control" [(ngModel)]="searchText" id="search-input" placeholder="Search">
+      </div>
+    </div>
+    <table mdbTable stickyHeader="true" hover="true" striped="true" class="z-depth-1">
+      <thead class="sticky-top">
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements" [sortBy]="headElements[i]"
+            scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+      </tr>
+      </thead>
+      <tbody #row>
+        <tr mdbTableCol *ngFor="let el of elements; let i = index">
+          <th scope="row">{{el.id}}</th>
+          <td class="red-text">{{el.first}}</td>
+          <td>{{el.last}}</td>
+          <td>{{el.handle}}</td>
+        </tr>
+        </tbody>
+        <tfoot class="grey lighten-5 w-100">
+          <tr>
+            <td colspan="4">
+              <mdb-table-pagination paginationAlign="" [searchDataSource]="elements"></mdb-table-pagination>
+            </td>
+          </tr>
+          </tfoot>
+    </table>
+
+  </div>
+</div>

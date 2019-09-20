@@ -44,6 +44,7 @@ export class BvnStatusComponent implements OnInit {
          this.disp_bvnData = bvnData.data.message;
          this.isChosen = bvnData.data.RequestStatus;
          this.validity = bvnData.data.Validity;
+         console.log(this.validity);
          
          this.isLoading = false;
         }, error => {

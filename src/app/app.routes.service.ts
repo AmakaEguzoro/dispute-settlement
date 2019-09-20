@@ -7,6 +7,7 @@ import { TransactionComponent } from './Transaction/transaction/transaction.comp
 import { ServiceStatusComponent } from './shared/service-status/service-status.component';
 import { BvnStatusComponent } from './shared/bvn-status/bvn-status.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
+import { UserManagementComponent } from './shared/user-management/user-management.component';
 
 
 const routes: Route[] = [
@@ -22,6 +23,7 @@ const routes: Route[] = [
       { path: 'transaction/details', component: TransactionComponent },
       { path: 'service-status', component: ServiceStatusComponent },
       { path: 'bvn-status', component: BvnStatusComponent},
+      { path: 'user-management', component: UserManagementComponent}
     ]
   },
   
