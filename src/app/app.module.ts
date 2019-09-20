@@ -49,7 +49,6 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     NotificationComponent,
-    HasRoleDirective
   ],
   imports: [
     BrowserModule,

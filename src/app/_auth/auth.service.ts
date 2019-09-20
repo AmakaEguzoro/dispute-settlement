@@ -112,10 +112,11 @@ export class AuthService {
     return this.http.post(this.baseUrl + '/users/create', newUser);
   }
 
-  roleMatch(allowedRoles): boolean {
+  roleMatch(expectedRole): boolean {
     let isMatch = false;
-    const userRoles = this.decodedToken.role as Array<number>;
-    allowedRoles.forEach(element => {
+    const roles = localStorage.getItem('role');
+    const userRoles = roles;    
+    expectedRole.forEach(element => {
       if (userRoles.includes(element)) {
         isMatch = true;
         return;

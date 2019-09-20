@@ -7,13 +7,13 @@
         </mdb-navbar-brand>
         <links>
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
+                <!-- <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
                     <a class="nav-link" [routerLink]="['/admin-dashboard']">Dashboard</a>
-                </li>
-                <!-- <li *appHasRole="[3,4,5]" class="nav-item waves-light nav-body"
+                </li> -->
+                <li *appHasRole="[5]" class="nav-item waves-light nav-body"
                 routerLinkActive="active" mdbWavesEffect>
                    <a class="nav-link" [routerLink]="['/admin-dashboard']">Dashboard</a>
-               </li> -->
+               </li>
                 <li class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
                     <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
                         mdbWavesEffect>
@@ -32,7 +32,7 @@
                         mdbWavesEffect>
                         Status<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/service-status']">Services
+                        <a *appHasRole="[5]" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/service-status']">Services
                             Status</a>
                         <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/bvn-status']">BVN
                             Status</a>
@@ -41,7 +41,7 @@
             </ul>
 
             <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item dropdown nav-body" dropdown>
+                <li *appHasRole="[5]" class="nav-item dropdown nav-body" dropdown>
                     <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
                         mdbWavesEffect> Users<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">

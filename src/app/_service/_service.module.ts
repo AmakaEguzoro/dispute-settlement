@@ -12,10 +12,11 @@ import { BvnLoginService } from "./bvn-login.service";
 import { BvnService } from "./bvn.service";
 import { ElementService } from "./element.service";
 import { SwitchService } from "./switch.service";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
     imports: [
-     
+        CommonModule,
     ],
     declarations: [
     ],

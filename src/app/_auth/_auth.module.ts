@@ -4,10 +4,11 @@ import { AuthGuard } from "./auth.guard";
 import { AuthService } from "./auth.service";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
     imports: [
-        
+        CommonModule,
     ],
     declarations: [
         LoginComponent,

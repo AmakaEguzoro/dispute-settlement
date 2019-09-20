@@ -14,7 +14,7 @@ export class HasRoleDirective {
     private authService: AuthService) { }
 
   ngOnInit() {
-    const userRoles = this.authService.decodedToken.role as Array<number>;
+    const userRoles = this.authService.decodedToken;
     // if no roles clear the view container ref
     if (!userRoles) {
       this.viewContainerRef.clear();
