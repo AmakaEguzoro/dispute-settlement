@@ -10,26 +10,32 @@ import { TransactionComponent } from './pages/Transaction/transaction/transactio
 import { TransactionReversalComponent } from './pages/Transaction/transaction-reversal/transaction-reversal.component';
 import { TransactionLocksComponent } from './pages/Transaction/transaction-locks/transaction-locks.component';
 import { RegisterComponent } from './_auth/register/register.component';
+import { RoleManagementComponent } from './pages/admin/role-management/role-management.component';
+import { RoleGuard } from './_auth/role-guard.service';
 
 
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'not-found', component: NotFoundComponent },
-
+  
+  
   {
     path: '',
     // runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
       { path: 'admin-dashboard', component: AdminDashboardComponent, 
-      // data: {roles: ['Admin',]}
-    },
+      canActivate: [RoleGuard],data: { expectedRole: 5} },
       { path: 'transaction/details', component: TransactionComponent },
-      { path: 'service-status', component: ServiceStatusComponent },
+      { path: 'service-status', component: ServiceStatusComponent,
+       canActivate: [RoleGuard],data: { expectedRole: 5} },
       { path: 'bvn-status', component: BvnStatusComponent},
       { path: 'transaction/reversal', component: TransactionReversalComponent},
       { path: 'transaction/locks', component: TransactionLocksComponent},
-      { path: 'register', component: RegisterComponent},
+      { path: 'register', component: RegisterComponent,
+       canActivate: [RoleGuard],data: { expectedRole: 5}},
+      { path: 'users', component: RoleManagementComponent,
+      canActivate: [RoleGuard],data: { expectedRole: 5}},
     ]
   },
   

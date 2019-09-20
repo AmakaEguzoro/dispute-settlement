@@ -35,6 +35,8 @@ import { TransactionReversalComponent } from './Transaction/transaction-reversal
 import { ReversalModelComponent } from './Transaction/transaction-reversal/reversal-model/reversal-model.component';
 import { TransactionLocksComponent } from './Transaction/transaction-locks/transaction-locks.component';
 import { RegisterComponent } from "app/_auth/register/register.component";
+import { RoleManagementComponent } from './admin/role-management/role-management.component';
+import { UserModalComponent } from './admin/role-management/user-modal/user-modal.component';
 
 
 @NgModule({
@@ -75,7 +77,9 @@ import { RegisterComponent } from "app/_auth/register/register.component";
       ModelComponent,
       TransactionReversalComponent,
       ReversalModelComponent,
-      TransactionLocksComponent
+      TransactionLocksComponent,
+      RoleManagementComponent,
+      UserModalComponent
   
     ],
     exports: [
@@ -107,7 +111,8 @@ import { RegisterComponent } from "app/_auth/register/register.component";
       ModelComponent,
       TransactionReversalComponent,
       ReversalModelComponent,
-      TransactionLocksComponent
+      TransactionLocksComponent,
+      RoleManagementComponent
   
     ],
     providers: [

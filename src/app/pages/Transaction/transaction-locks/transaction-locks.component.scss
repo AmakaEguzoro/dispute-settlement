@@ -37,6 +37,10 @@
      max-width: 1325px;
    }
    }
+   table.table th, table.table td {
+    padding-top: 0.1rem;
+    padding-bottom: 0rem;
+}
 
   table td {
     font-size: smaller;

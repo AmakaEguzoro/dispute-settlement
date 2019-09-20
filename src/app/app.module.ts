@@ -35,6 +35,9 @@ import { ReversalModelComponent } from './pages/Transaction/transaction-reversal
 import { RegisterComponent } from './_auth/register/register.component';
 import { AuthModule } from './_auth/_auth.module';
 import { ServiceModule } from './_service/_service.module';
+import { HasRoleDirective } from './shared/Directives/has-role.directive';
+import { UserModalComponent } from './pages/admin/role-management/user-modal/user-modal.component';
+import { RoleGuard } from './_auth/role-guard.service';
  
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
 
@@ -46,6 +49,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     NotificationComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule,
@@ -82,7 +86,7 @@ export function tokenGetter() {
     })
   ],
   //itex
-  entryComponents: [ ModelComponent, ReversalModelComponent ],
+  entryComponents: [ ModelComponent, ReversalModelComponent, UserModalComponent ],
   
   providers: [
     MDBSpinningPreloader,
@@ -90,6 +94,7 @@ export function tokenGetter() {
     //itex
      HttpInterceptorProvider,
     AuthGuard,
+    RoleGuard,
     SocketService
   ],
   bootstrap: [AppComponent],

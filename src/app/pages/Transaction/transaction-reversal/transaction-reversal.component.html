@@ -22,7 +22,7 @@
                     <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="loading == false">
                         <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
-                            &#x20A6;{{failedReversalAmount / 100 | thousandSuff : 2}}</div>
+                            &#x20A6;{{failedReversalAmount  | thousandSuff : 2}}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                 </div>

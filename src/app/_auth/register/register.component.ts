@@ -16,15 +16,14 @@ export class RegisterComponent implements OnInit {
   newUser: Register;
   loading = false;
   filter: any;
-  payload = {
-    "username": "",
-    "password": "",
-    "name": "",
-    "email": "",
-    "role": Number,
-    "wallets": "",
-  
-  };
+  // payload = {
+  //   "username": "",
+  //   "password": "",
+  //   "name": "",
+  //   "email": "",
+  //   "role": Number,
+  //   "wallets": "",
+  // };
 
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private toastService: ToastService) {
@@ -37,22 +36,26 @@ export class RegisterComponent implements OnInit {
       wallets: ['',]
     });
   }
-
+  optionsSelect: Array<any>;
   ngOnInit() {
+    this.optionsSelect = [
+      { value: 1, label: 'Level 1' },
+      { value: 2, label: 'Level 2' },
+      { value: 3, label: 'Level 3' },
+      { value: 4, label: 'Level 4' },
+      { value: 5, label: 'Level 5' },
+      ];
   }
 
-  role = ['1', '2', '3', '4', '5'];
+  // role = ['1', '2', '3', '4', '5'];
 
-  getRef(event) {
-    this.filter = event.target.value;
-    console.log('roles event- ', this.filter); 
-  }
 
-  register(payload) {
+
+  register() {
     this.loading = true;
     if (this.registerForm.valid) {
-      // this.newUser = Object.assign({}, this.registerForm.value);
-      this.authService.register(payload).subscribe((data) => {
+      this.newUser = Object.assign({}, this.registerForm.value);
+      this.authService.register(this.newUser).subscribe((data) => {
         this.loading = false;
         console.log(data);
         this.toastService.success('Registration successful');

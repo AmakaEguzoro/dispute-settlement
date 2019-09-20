@@ -1,0 +1,27 @@
+<div class="modal-dialog-scrollable">
+    <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-12">
+          <h4> Edit Roles for {{data.name}}</h4>
+        </div>
+      </div>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+        <div>
+            Username:
+            <strong style="float: right">{{data.username}}</strong>
+          </div>
+    </div>
+
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary">submit</button>
+      <button type="button" class="btn btn-white" (click)="bsModalRef.hide()">Cancel</button>
+    </div>
+  </div>
+</div>

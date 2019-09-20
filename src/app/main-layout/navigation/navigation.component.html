@@ -10,7 +10,7 @@
                 <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
                     <a class="nav-link" [routerLink]="['/admin-dashboard']">Dashboard</a>
                 </li>
-                <!-- <li *appHasRole="['Admin',]" class="nav-item waves-light nav-body"
+                <!-- <li *appHasRole="[3,4,5]" class="nav-item waves-light nav-body"
                 routerLinkActive="active" mdbWavesEffect>
                    <a class="nav-link" [routerLink]="['/admin-dashboard']">Dashboard</a>
                </li> -->
@@ -41,14 +41,21 @@
             </ul>
 
             <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item dropdown btn-group" dropdown routerLinkActive="active" >
+                <li class="nav-item dropdown nav-body" dropdown>
+                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+                        mdbWavesEffect> Users<span class="caret"></span></a>
+                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                        <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/register']">Create User</a>
+                        <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/users']">View Users</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown btn-group" dropdown routerLinkActive="active">
                     <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown"
                         mdbWavesEffect>
                         Hi
                         <!-- Hi {{authService.decodedToken.name}} -->
                     </a>
                     <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
-                        <a class="dropdown-item"  mdbWavesEffect [routerLink]="['/register']">Create User</a>
                         <a (click)="logout()" class="dropdown-item">Log Out</a>
                     </div>
                 </li>

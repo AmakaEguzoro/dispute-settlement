@@ -12,6 +12,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Router } from '@angular/router';
 import { Register } from 'app/_models/register';
+import { Users } from 'app/_models/users';
 
 @Injectable({
   providedIn: 'root'
@@ -84,10 +85,12 @@ export class AuthService {
       .pipe(
         map((response: any) => {
           const user = response;
+          console.log('on Boarding :', user);
+          
           if (user) {
             localStorage.setItem('token', user.token);
+            localStorage.setItem('role', user.user.is_admin);
             // this.decodedToken = this.jwtHelper.decodeToken(user.token);
-            // console.log(this.decodedToken)
           }
         })
       );
@@ -99,25 +102,30 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
+    localStorage.clear();
     this.router.navigate(['/login']),
       this.toastService.success('Logged Out')
   }
-  
+
   register(newUser: Register) {
     return this.http.post(this.baseUrl + '/users/create', newUser);
   }
 
-  // roleMatch(allowedRoles): boolean {
-  //   let isMatch = false;
-  //   const userRoles = this.decodedToken.role as Array<string>;
-  //   allowedRoles.forEach(element => {
-  //     if (userRoles.includes(element)) {
-  //       isMatch = true;
-  //       return;
-  //     }
-  //   });
-  //   return isMatch;
-  // }
+  roleMatch(allowedRoles): boolean {
+    let isMatch = false;
+    const userRoles = this.decodedToken.role as Array<number>;
+    allowedRoles.forEach(element => {
+      if (userRoles.includes(element)) {
+        isMatch = true;
+        return;
+      }
+    });
+    return isMatch;
+  }
+
+  getUsers() {
+    return this.http.get(this.baseUrl + `/users/fetch/all`);
+  }
 
 }

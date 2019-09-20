@@ -1,11 +1,11 @@
 import { Component, OnInit , ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef  , Input} from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent, MdbTableService } from 'ng-uikit-pro-standard';
 @Component({
-  selector: 'app-role-management',
-  templateUrl: './role-management.component.html',
-  styleUrls: ['./role-management.component.scss']
+  selector: 'app-role-manager',
+  templateUrl: './role-manager.component.html',
+  styleUrls: ['./role-manager.component.scss']
 })
-export class RoleManagementComponent implements OnInit , AfterViewInit{
+export class RoleManagerComponent implements OnInit , AfterViewInit{
  
   @ViewChild(MdbTableDirective) mdbTable: MdbTableDirective;
   @ViewChild(MdbTablePaginationComponent) mdbPagination: MdbTablePaginationComponent;

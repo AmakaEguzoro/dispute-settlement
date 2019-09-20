@@ -23,7 +23,7 @@ import { HasRoleDirective } from './Directives/has-role.directive';
     ThousandSuffixesPipe,
     ToNumberPipe,
     RoundPipe,
-    HasRoleDirective
+    // HasRoleDirective
   ],
   exports: [
     MDBBootstrapModulesPro,

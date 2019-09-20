@@ -1,0 +1,44 @@
+<div class="container">
+    <label>Users</label>
+  <div class="row">
+
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover" small="true">
+            <thead class="trans-head">
+              <tr>
+                <th class="head" *ngFor="let head of headElements" scope="col">{{head}} </th>
+              </tr>
+            </thead>
+            <tbody>
+              <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
+              </mdb-spinner>
+              <tr *ngFor="let item of users let i = index">
+                <th scope="row">{{1 + i}}</th>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.is_admin}}</td>
+                <td>{{item.updated_at}}</td>
+                <td>
+                  <button  class="btn btn-primary" (click)="openModal(item)">Edit</button>
+                </td>
+                <!-- <td>
+                    <button class="btn btn-danger">Delete</button>
+                  </td> -->
+              </tr>
+              <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+            </tbody>
+          </table>
+          <!-- <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
+                      [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)"
+                      firstText="&laquo;" lastText="&raquo;"></pagination> -->
+        </div>
+        <br>
+      </div>
+    </div>
+
+  </div>
+</div>

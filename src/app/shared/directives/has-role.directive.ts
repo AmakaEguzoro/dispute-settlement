@@ -14,22 +14,22 @@ export class HasRoleDirective {
     private authService: AuthService) { }
 
   ngOnInit() {
-    const userRoles = this.authService.decodedToken.role as Array<string>;
+    const userRoles = this.authService.decodedToken.role as Array<number>;
     // if no roles clear the view container ref
     if (!userRoles) {
       this.viewContainerRef.clear();
     }
 
     // if user has role needed then render the element
-  //   if (this.authService.roleMatch(this.appHasRole)) {
-  //     if (!this.isVisible) {
-  //       this.isVisible = true;
-  //       this.viewContainerRef.createEmbeddedView(this.templateRef);
-  //     } else {
-  //       this.isVisible = false;
-  //       this.viewContainerRef.clear();
-  //     }
-  //   }
+    if (this.authService.roleMatch(this.appHasRole)) {
+      if (!this.isVisible) {
+        this.isVisible = true;
+        this.viewContainerRef.createEmbeddedView(this.templateRef);
+      } else {
+        this.isVisible = false;
+        this.viewContainerRef.clear();
+      }
+    }
    }
 
 

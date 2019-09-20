@@ -32,10 +32,10 @@ import { ColorsComponent } from './css/colors/colors.component';
 import { ShadowComponent } from './css/shadow/shadow.component';
 import { Map3Component } from './maps/map3/map3.component';
 import { EventCalendarComponent } from './event-calendar/event-calendar.component';
-import { RoleManagementComponent } from './admins/role-management/role-management.component';
 // MDB Angular Pro
 import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
+import { RoleManagerComponent } from './admins/role-manager/role-manager.component';
 // import { ErrordialogComponent } from '../views/errordialog/errordialog.component';
 
 @NgModule({
@@ -77,7 +77,7 @@ import { NotFoundComponent } from '../shared/not-found/not-found.component';
     ShadowComponent,
     Map3Component,
     EventCalendarComponent,
-    RoleManagementComponent,
+    RoleManagerComponent,
     // ErrordialogComponent,
     //  Itex
   
@@ -102,6 +102,7 @@ import { NotFoundComponent } from '../shared/not-found/not-found.component';
     UtilitiesComponent,
     ColorsComponent,
     ShadowComponent,
+    RoleManagerComponent,
     // ErrordialogComponent
    // Itex
   ],
