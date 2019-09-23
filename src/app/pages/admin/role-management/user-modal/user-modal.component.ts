@@ -8,7 +8,7 @@ import { Users } from 'app/_models/users';
   styleUrls: ['./user-modal.component.scss']
 })
 export class UserModalComponent implements OnInit {
-  
+  @Input() data: any;
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {

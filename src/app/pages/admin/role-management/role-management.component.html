@@ -1,8 +1,22 @@
 <div class="container">
-    <label>Users</label>
+  <label>Users</label>
   <div class="row">
-
-    <div class="card">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"></div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"></div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <mdb-icon fas icon="search"></mdb-icon>
+            </div>
+          </div>
+          <input type="text" class="form-control"
+           name="searchString" placeholder="Search users..."
+            [(ngModel)]="searchString">
+        </div>   
+    </div>
+  
+    <div class="card mt-1">
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-hover" small="true">
@@ -14,8 +28,8 @@
             <tbody>
               <mdb-spinner class="loading-icon" *ngIf="loading" spinnerType="small" spinnerColor="blue">
               </mdb-spinner>
-              <tr *ngFor="let item of users let i = index">
-                <th scope="row">{{1 + i}}</th>
+              <tr *ngFor="let item of users | filter : 'name' : searchString; let i = index">
+                <th scope="row">{{serial + i}}</th>
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.username}}</td>
@@ -23,7 +37,7 @@
                 <td>{{item.is_admin}}</td>
                 <td>{{item.updated_at}}</td>
                 <td>
-                  <button [disabled]="true"  class="btn btn-primary" (click)="openModal(item)">Edit</button>
+                  <button class="btn btn-primary" (click)="openModal(item)">Edit</button>
                 </td>
                 <!-- <td>
                     <button class="btn btn-danger">Delete</button>
@@ -32,9 +46,8 @@
               <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
             </tbody>
           </table>
-          <!-- <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
-                      [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)"
-                      firstText="&laquo;" lastText="&raquo;"></pagination> -->
+          <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage" [(ngModel)]="currentPage"
+            [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;" lastText="&raquo;"></pagination>
         </div>
         <br>
       </div>

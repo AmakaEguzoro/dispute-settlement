@@ -47,9 +47,8 @@
               </span>
               <br>
               <label>
-                <mdb-icon fas icon="user"></mdb-icon> &nbsp; Role
-              </label>
-              <mdb-select ngDefaultControl [(ngModel)]="role" formControlName="role" [options]="optionsSelect"
+                  <mdb-icon fas icon="user"></mdb-icon> &nbsp;Role</label>
+              <mdb-select ngDefaultControl  formControlName="role" [options]="optionsSelect"
                 placeholder="Choose your role">
               </mdb-select>
               <span class="invalid-feedback">
@@ -63,12 +62,10 @@
               <textarea class="form-control" placeholder="Message" formControlName="wallets"></textarea>
             </div>
             <br>
-            <button class="btn btn-primary" (click)="register()">Register
+            <button [disabled]="!registerForm.valid" class="btn btn-primary" (click)="register()">Register
               <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
             </button>
-            <button class="btn btn-white" (click)="cancel()">Cancel
-              <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
-            </button>
+            <button class="btn btn-white" (click)="cancel()">Cancel</button>
           </form>
         </div>
       </div>

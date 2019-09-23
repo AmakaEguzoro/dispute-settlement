@@ -40,8 +40,13 @@ export class TransactionLocksComponent implements OnInit {
     "walletId": "",
     "transactionReference": "",
     "viewPage": "",
-    "download": false
+    "download": false,
   };
+  load ={
+    "wallet": "",
+    "reference": "",
+    "amount": "",
+  }
 
   constructor(private transactionService: TransactionService,
     private router: Router, private fb: FormBuilder) {
@@ -55,6 +60,7 @@ export class TransactionLocksComponent implements OnInit {
 
   ngOnInit() {
     this.TransactionLocks(this.payload);
+    // this.removeTransactionLocks(this.load);
   }
 
   TransactionLocks(payload) {
@@ -73,7 +79,18 @@ export class TransactionLocksComponent implements OnInit {
     })
   };
 
-  headElements = ['S/N', 'AGENT ID', 'AMOUNT', 'REFERENCE', 'STATUS', 'PROCESS TIME', 'DATE'];
+  removeTransactionLocks(load) {
+    this.loading = true;
+    this.transactionService.removeTransactionLocks(load).subscribe((data) => {
+      this.loading = false;
+      console.log(data, "hell")
+    }, error => {
+      this.loading = false;
+      console.log('cant remove transaction locks', error);
+    })
+  };
+
+  headElements = ['S/N', 'AGENT ID', 'AMOUNT', 'REFERENCE', 'STATUS', 'PROCESS TIME', 'DATE', 'ACTION'];
 
   pageChanged(event: any): void {
     this.loading = true;

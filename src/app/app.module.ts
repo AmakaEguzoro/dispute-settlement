@@ -14,17 +14,16 @@ import { MDBSpinningPreloader } from 'ng-uikit-pro-standard';
 
 
 // main layout
-import { NavigationModule } from './main-layout/navigation/navigation.module';
 
 import { AsdevApiService } from './providers/asdev-api.service';
 
 //encrption decryption service
-import { MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatDialogModule, MatProgressSpinnerModule, MatTabsModule } from '@angular/material';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 import { OrderModule } from 'ngx-order-pipe';
-import { PaginationModule, ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { PaginationModule, ModalModule, BsDatepickerModule, TabsModule } from 'ngx-bootstrap';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { SocketService } from './_service/socket.service';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -35,11 +34,13 @@ import { ReversalModelComponent } from './pages/Transaction/transaction-reversal
 import { RegisterComponent } from './_auth/register/register.component';
 import { AuthModule } from './_auth/_auth.module';
 import { ServiceModule } from './_service/_service.module';
-import { HasRoleDirective } from './shared/Directives/has-role.directive';
+import { HasRoleDirective } from './main-layout/navigation/directives/has-role.directive';
 import { UserModalComponent } from './pages/admin/role-management/user-modal/user-modal.component';
 import { RoleGuard } from './_auth/role-guard.service';
- 
-const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
+import { NavigationModule } from './main-layout/navigation/navigation.module';
+import { RouterTestingModule } from '@angular/router/testing';
+
+const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" } } };
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -49,17 +50,18 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     NotificationComponent,
+
   ],
   imports: [
     BrowserModule,
     MatDialogModule,
     BrowserAnimationsModule,
     HttpClientModule, HttpModule,
-    NavigationModule,
     AppRoutes,
     RouterModule,
+    RouterTestingModule,
     FormsModule,
-
+    NavigationModule,
     ViewsModule,
     ToastModule.forRoot(),
     ReactiveFormsModule,
@@ -67,31 +69,33 @@ export function tokenGetter() {
     // Itex
     SharedModule,
     PagesModule,
+    MatTabsModule,
     // ServiceModule,
     // AuthModule,
     OrderModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    TabsModule.forRoot(),
     MatProgressSpinnerModule,
     SocketIoModule.forRoot(config),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        blacklistedRoutes: ['http://197.253.19.76:6200/api/v1/auth', 
-        // 'http://197.253.19.76:6200/api/v1/users/create'
-      ]
+        blacklistedRoutes: ['http://197.253.19.76:6200/api/v1/auth',
+          // 'http://197.253.19.76:6200/api/v1/users/create'
+        ]
       }
     })
   ],
   //itex
-  entryComponents: [ ModelComponent, ReversalModelComponent, UserModalComponent ],
-  
+  entryComponents: [ModelComponent, ReversalModelComponent, UserModalComponent],
+
   providers: [
     MDBSpinningPreloader,
     AsdevApiService,
     //itex
-     HttpInterceptorProvider,
+    HttpInterceptorProvider,
     AuthGuard,
     RoleGuard,
     SocketService

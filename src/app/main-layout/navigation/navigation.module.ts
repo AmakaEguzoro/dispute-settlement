@@ -5,7 +5,8 @@ import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/cor
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HasRoleDirective } from 'app/shared/Directives/has-role.directive';
+import { HasRoleDirective } from './directives/has-role.directive';
+import { FooterComponent } from '../footer/footer.component';
 
 @NgModule({
   imports: [
@@ -17,10 +18,13 @@ import { HasRoleDirective } from 'app/shared/Directives/has-role.directive';
   declarations: [
     NavigationComponent,
     NavbarComponent,
+    FooterComponent,
     HasRoleDirective
   ],
   exports: [
     NavigationComponent,
+    FooterComponent,
+    NavbarComponent,
     HasRoleDirective
   ],
   schemas: [

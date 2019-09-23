@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { forkJoin } from 'rxjs';
 import { Transaction } from 'app/_models/transaction';
 import { map } from 'rxjs/operators';
+import { RemoveLock } from 'app/_models/removeLocks';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,7 @@ export class TransactionService {
     constructor(private httpClient: HttpClient) { }
 
     getTransaction(transaction: Transaction) {
-        return this.httpClient.post(this.baseUrl + `details`, transaction ).pipe(
+        return this.httpClient.post(this.baseUrl + `details`, transaction).pipe(
             map((response: any) => {
                 const transaction = response;
                 return transaction;
@@ -26,7 +27,7 @@ export class TransactionService {
     };
 
     getTransactionSummary(transaction: Transaction) {
-        return this.httpClient.post(this.baseUrl + `details/summary`, transaction ).pipe(
+        return this.httpClient.post(this.baseUrl + `details/summary`, transaction).pipe(
             map((response: any) => {
                 const transactionSummary = response;
                 return transactionSummary;
@@ -34,8 +35,8 @@ export class TransactionService {
             ));
     };
 
-    getTransactionReversed (transaction: Transaction) {
-        return this.httpClient.post(this.baseUrl + `reversed`, transaction ).pipe(
+    getTransactionReversed(transaction: Transaction) {
+        return this.httpClient.post(this.baseUrl + `reversed`, transaction).pipe(
             map((response: any) => {
                 const transactionReversed = response;
                 return transactionReversed;
@@ -43,8 +44,8 @@ export class TransactionService {
             ));
     };
 
-    getTransactionLocks (transaction: Transaction) {
-        return this.httpClient.post(this.baseUrl + `locked`, transaction ).pipe(
+    getTransactionLocks(transaction: Transaction) {
+        return this.httpClient.post(this.baseUrl + `locked`, transaction).pipe(
             map((response: any) => {
                 const transactionLocks = response;
                 return transactionLocks;
@@ -52,4 +53,14 @@ export class TransactionService {
             ));
     };
 
+    removeTransactionLocks(removeLock: RemoveLock) {
+        return this.httpClient.post(this.baseUrl + `lock/remove`, removeLock).pipe(
+            map((response: any) => {
+                const removeTransactionLocks = response;
+                console.log(removeTransactionLocks);
+                
+                return removeTransactionLocks;
+            }
+            ));
+    }
 }

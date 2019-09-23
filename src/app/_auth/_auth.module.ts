@@ -11,8 +11,8 @@ import { CommonModule } from "@angular/common";
         CommonModule,
     ],
     declarations: [
-        LoginComponent,
-        RegisterComponent,
+        // LoginComponent,
+        // RegisterComponent,
     ],
     exports: [
         // LoginComponent,

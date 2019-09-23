@@ -37,6 +37,10 @@ import { TransactionLocksComponent } from './Transaction/transaction-locks/trans
 import { RegisterComponent } from "app/_auth/register/register.component";
 import { RoleManagementComponent } from './admin/role-management/role-management.component';
 import { UserModalComponent } from './admin/role-management/user-modal/user-modal.component';
+import { HasRoleDirective } from "app/main-layout/navigation/directives/has-role.directive";
+import { NavigationComponent } from "../main-layout/navigation/navigation.component";
+import { FooterComponent } from "../main-layout/footer/footer.component";
+import { NavbarComponent } from "../main-layout/navigation/navbar/navbar.component";
 
 
 @NgModule({
@@ -79,7 +83,7 @@ import { UserModalComponent } from './admin/role-management/user-modal/user-moda
       ReversalModelComponent,
       TransactionLocksComponent,
       RoleManagementComponent,
-      UserModalComponent
+      UserModalComponent,
   
     ],
     exports: [
@@ -112,8 +116,7 @@ import { UserModalComponent } from './admin/role-management/user-modal/user-moda
       TransactionReversalComponent,
       ReversalModelComponent,
       TransactionLocksComponent,
-      RoleManagementComponent
-  
+      RoleManagementComponent,
     ],
     providers: [
       // itex

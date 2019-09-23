@@ -17,7 +17,6 @@ export class TransactionComponent implements OnInit {
   // Details
   isData: boolean;
   loading = true;
-  isFiltering = false;
   data: any;
   transaction: any;
   detailsData: any;
@@ -109,16 +108,14 @@ export class TransactionComponent implements OnInit {
     this.TransactionSummary(this.payload);
     setTimeout(() => {
       this.getSocketData();
-    }, 1 * 60 * 1000);
+    },1 * 60 * 1000);
   }
 
   getSocketData() {
-    // console.log("isfiltering socket? ", this.isFiltering);
-    if (this.isFiltering == false) {
       this.socket.getMessage().subscribe((Socketdata: any) => {
         this.detailsData.pop();
         this.detailsData.unshift(Socketdata.data);
-        console.log('get socket data-', Socketdata.data.status)
+        // console.log('get socket data-', Socketdata.data.status)
         if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
           this.failedAmount += parseInt(Socketdata.data.nairaAmount);
           this.failedCount = parseInt( this.failedCount)+1;
@@ -131,20 +128,17 @@ export class TransactionComponent implements OnInit {
           this.totalCount += 1;
         }
       });
-    }
+    
   }
 
   Transaction(payload) {
     this.isData = true;
     this.loading = true;
-    // console.log("isfiltering? ", this.isFiltering);    
     this.transactionService.getTransaction(payload).subscribe((data) => {
       this.loading = false;
       this.detailsData = data.data.transactions;
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
       this.lastPage = data.data.lastPage;
-      console.log(this.detailsData, 'last page in transaction');
-
     }, error => {
       this.isData = false;
       this.loading = false;
@@ -247,7 +241,6 @@ export class TransactionComponent implements OnInit {
     this.filter = event.target.value;
   }
   searchTrans() {
-    this.isFiltering = true;
     this.start = this.searchForm.value.startDate;
     this.end = this.searchForm.value.endDate;
     this.range = `${this.start} - ${this.end}`;
@@ -270,13 +263,12 @@ export class TransactionComponent implements OnInit {
       "viewPage": "",
     };
 
-    console.log(this.filterData);
     this.Transaction(this.filterData);
     this.TransactionSummary(this.filterData);
+    this.socket.disconnectSocket();
   }
 
   getFilter(event) {
-    this.isFiltering = true;
     this.filterValue = this.searchForm.value.filterValue;
     if (this.filter == 'Sequence Number') {
       this.sequenceNumber = this.filterValue;

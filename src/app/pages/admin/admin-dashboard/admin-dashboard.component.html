@@ -1,7 +1,6 @@
-<!-- Nav tabs -->
-<!-- <div class="container"> -->
+
     <mdb-tabset  class="tab-pil" [buttonClass]="'pills-indigo'" [contentClass]="'mdb-tabse'">
-        <!-- Day Panel-->
+ 
         <mdb-tab heading="Day" >
           <div class="row mt-1">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -30,7 +29,7 @@
       
       
         
-        <!--Week Panel-->
+    
         <mdb-tab heading="Week">
           <div class="row mt-1">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -53,7 +52,8 @@
             </div>
           </div>
         </mdb-tab>
-        <!--Month Panel-->
+     
+        
         <mdb-tab heading="Month">
           <div class="row mt-1">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -77,4 +77,48 @@
           </div>
         </mdb-tab>
       </mdb-tabset>
-<!-- </div> -->
+
+      <!-- <div style="padding: 5px;">
+        <nav md-tab-nav-bar >
+            <a md-tab-link
+               *ngFor="let routeLink of routeLinks; let i = index;"
+               [routerLink]="routeLink.link"
+               routerLinkActive="mat-tab-link-active"
+               routerLinkActive="routerLinkActive"
+               [active]="activeLinkIndex === i"
+               (click)="activeLinkIndex = i"
+               [routerLinkActiveOptions]="{exact: true}">
+                {{routeLink.label}}
+            </a>
+        </nav>
+    <router-outlet></router-outlet>
+    </div> -->
+<!-- 
+    <div (click)="$event.preventDefault()">
+     
+      <button type="button" class="btn btn-primary btn-sm" (click)="addNewTab()">
+        Add new tab
+      </button>
+    <hr/>
+    <tabset>
+      <tab heading="Static title">Static content</tab>
+      <tab *ngFor="let tabz of tabs"
+           [heading]="tabz.title"
+           [routerLink]="tabz.link"
+           [active]="tabz.active"
+           (selectTab)="tabz.active = true"
+           (deselect)="tabz.active = false"
+           [disabled]="tabz.disabled"
+           [removable]="tabz.removable"
+           (removed)="removeTabHandler(tabz)"
+           [customClass]="tabz.customClass">
+        {{tabz?.content}}
+      </tab>
+    </tabset>
+  </div> -->
+  
+  
+    <!-- <app-tabs [tabs]="usersTabs" (navigate)="switchTabs($event)"> </app-tabs>
+    <div *ngIf="isAuthenticated()">
+      <router-outlet></router-outlet>
+    </div> -->

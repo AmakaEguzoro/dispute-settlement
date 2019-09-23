@@ -14,24 +14,39 @@ export class NavigationComponent implements OnInit {
   @ViewChild('sidenav') sidenav: ElementRef;
 
   clicked: boolean;
-
+  // userDisplayName = '';
+  userDisplayName: any
   constructor(private authService: AuthService, private router: Router,
     private toastService: ToastService) {
     this.clicked = this.clicked === undefined ? false : true;
   }
 
   ngOnInit() {
+    // this.userDisplayName = localStorage.getItem('loggedUser');
+    // console.log(this.userDisplayName);
+    // this.named()
   }
 
   setClicked(val: boolean): void {
     this.clicked = val;
   }
   logout() {
-    localStorage.removeItem('token')
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
   isAuthenticated() {
     return this.authService.isAuthenticated()
- }
+  }
+//   named() {
+//     this.authService.getUsers().subscribe((data) => {
+// this.name = data.data;
+
+//     })
+//   }
+
+named() {
+  this.userDisplayName = localStorage.getItem('loggedUser');
+  console.log(this.userDisplayName);
+}
 
 }

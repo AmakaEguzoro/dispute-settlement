@@ -11,7 +11,6 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CalendarModule } from 'angular-calendar';
 import { SharedModule } from '../shared/shared.module';
 
-import { FooterComponent } from '../main-layout/footer/footer.component';
 import { TypographyComponent } from './css/typography/typography.component';
 import { IconsComponent } from './css/icons/icons.component';
 import { Map1Component } from './maps/map1/map1.component';
@@ -57,7 +56,7 @@ import { RoleManagerComponent } from './admins/role-manager/role-manager.compone
     // ErrordialogComponent
   ],
   declarations: [
-    FooterComponent,
+  
     TypographyComponent,
     IconsComponent,
     Map1Component,
@@ -83,7 +82,7 @@ import { RoleManagerComponent } from './admins/role-manager/role-manager.compone
   
   ],
   exports: [
-    FooterComponent,
+
     TypographyComponent,
     IconsComponent,
     Map1Component,

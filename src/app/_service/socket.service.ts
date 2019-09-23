@@ -20,4 +20,8 @@ export class SocketService {
             .fromEvent("vas-journal")
             .map( data => data);
     }
+
+    disconnectSocket(){
+        return this.socket.disconnect();
+    }
 }

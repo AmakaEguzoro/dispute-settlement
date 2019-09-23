@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="modal-tit">
-            Product details
+           <i> Product details</i>
           </div>
           <div class="details mt-2">
             Terminal ID:
@@ -31,7 +31,7 @@
           </div>
           <br>
           <div class="modal-tit">
-            Customer Details
+            <i>Customer Details</i>
           </div>
           <div class="details mt-2">
             Name:
@@ -51,7 +51,7 @@
           </div>
           <br>
           <div class="modal-tit">
-            Transaction Details
+            <i>Transaction Details</i>
           </div>
           <div class="details mt-2">
             AuthCode:
@@ -68,6 +68,10 @@
           <div class="details mt-2">
             Provider Name:
             <strong style="float: right">{{data.VASProviderName}}</strong>
+          </div>
+          <div class="details mt-2">
+            Token:
+            <strong style="float: right">{{data.token}}</strong>
           </div>
           <div class="details mt-2">
               Ref:
@@ -105,9 +109,16 @@
             <strong style="float: right">{{data.message}}</strong>
           </div>
           <div class="moda mt-2">
-            Commission:
-            <strong style="float: right">{{data.commission}}</strong>
+              Commission:
+            <strong style="float: right"> &#x20A6; {{data.commission}}</strong>
           </div>
+          <div class="moda mt-2">
+              Response:
+              <strong style="float: right">
+                <textarea>
+                    {{data.response | json}}
+                </textarea></strong>
+            </div>
         </div>
       </div>
 

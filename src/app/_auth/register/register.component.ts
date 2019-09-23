@@ -16,14 +16,7 @@ export class RegisterComponent implements OnInit {
   newUser: Register;
   loading = false;
   filter: any;
-  // payload = {
-  //   "username": "",
-  //   "password": "",
-  //   "name": "",
-  //   "email": "",
-  //   "role": Number,
-  //   "wallets": "",
-  // };
+
 
   constructor(private authService: AuthService, private router: Router,
     private fb: FormBuilder, private toastService: ToastService) {

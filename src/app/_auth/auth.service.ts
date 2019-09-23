@@ -85,11 +85,11 @@ export class AuthService {
       .pipe(
         map((response: any) => {
           const user = response;
-          console.log('on Boarding :', user);
-          
           if (user) {
             localStorage.setItem('token', user.token);
             localStorage.setItem('role', user.user.is_admin);
+            localStorage.setItem('loggedUser', user.user.name);
+            
             // this.decodedToken = this.jwtHelper.decodeToken(user.token);
           }
         })
@@ -103,6 +103,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('loggedUser');
     localStorage.clear();
     this.router.navigate(['/login']),
       this.toastService.success('Logged Out')

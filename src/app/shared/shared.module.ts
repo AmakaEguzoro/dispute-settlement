@@ -8,7 +8,9 @@ import { OrderModule } from 'ngx-order-pipe';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RoundPipe } from './pipe/toRound';
-import { HasRoleDirective } from './Directives/has-role.directive';
+import { HasRoleDirective } from '../main-layout/navigation/directives/has-role.directive';
+import { FilterPipe } from './pipe/filter';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
   imports: [
@@ -23,14 +25,16 @@ import { HasRoleDirective } from './Directives/has-role.directive';
     ThousandSuffixesPipe,
     ToNumberPipe,
     RoundPipe,
-   
+    FilterPipe,
+    TabsComponent,
   ],
   exports: [
     NotFoundComponent,
     ThousandSuffixesPipe,
     ToNumberPipe,
     RoundPipe,
-  
+    FilterPipe,
+    TabsComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]

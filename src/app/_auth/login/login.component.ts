@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
       this.user = Object.assign({}, this.loginForm.value);
       this.authService.login(this.user).subscribe((data) => {
         this.loading = false;        
-        this.router.navigate(['/transaction/locks']);
+        this.router.navigate(['/transaction/details']);
       }, error => {
         this.toastService.error(error.error.error);
         console.log(error);
