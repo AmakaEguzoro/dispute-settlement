@@ -42,11 +42,7 @@ export class TransactionLocksComponent implements OnInit {
     "viewPage": "",
     "download": false,
   };
-  load ={
-    "wallet": "",
-    "reference": "",
-    "amount": "",
-  }
+  
 
   constructor(private transactionService: TransactionService,
     private router: Router, private fb: FormBuilder) {
@@ -69,6 +65,8 @@ export class TransactionLocksComponent implements OnInit {
     this.transactionService.getTransactionLocks(payload).subscribe((data) => {
       this.loading = false;
       this.locksData = data.transactions;
+      console.log(data, 'locks');
+      
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
       this.lastPage = data.lastPage;
       this.tranLockAmount = data.tranLockAmount;
@@ -79,18 +77,24 @@ export class TransactionLocksComponent implements OnInit {
     })
   };
 
-  removeTransactionLocks(load) {
+  removeTransactionLocks(item) {
     this.loading = true;
+    let load = {
+      "wallet": item.wallet,
+      "reference": item.reference,
+      "amount": item.amount,
+    }
+
     this.transactionService.removeTransactionLocks(load).subscribe((data) => {
       this.loading = false;
-      console.log(data, "hell")
+      console.log(data, "remove locks");
     }, error => {
       this.loading = false;
       console.log('cant remove transaction locks', error);
     })
   };
 
-  headElements = ['S/N', 'AGENT ID', 'AMOUNT', 'REFERENCE', 'STATUS', 'PROCESS TIME', 'DATE', 'ACTION'];
+  headElements = ['S/N', 'AGENT ID', 'AMOUNT', 'REFERENCE', 'STATUS', 'DATE', 'ACTION'];
 
   pageChanged(event: any): void {
     this.loading = true;

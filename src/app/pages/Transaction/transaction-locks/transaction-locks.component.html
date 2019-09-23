@@ -72,16 +72,8 @@
                                               'success' : item.status == 'reversed'
                                             }"> {{item.status}}</mdb-badge>
               </td>
-              <td>
-                <mdb-badge class="time" [ngClass]="{
-                                                'warning' : item.processTime > 11,
-                                                'success' : item.processTime <= 10,
-                                                 'initialized' : item.processTime == 11,
-                                                'danger' : item.processTime == 0
-                                              }"> {{item.processTime}}s</mdb-badge>
-              </td>
               <td style="color: #828282;">{{item.date}}</td>
-              <td><button class="status" >On</button></td>
+              <td ><button class="status" (click)="removeTransactionLocks(item)">Remove Lock</button></td>
             </tr>
             <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
           </tbody>

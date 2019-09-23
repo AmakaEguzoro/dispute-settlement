@@ -50,7 +50,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     NotificationComponent,
-
+   
   ],
   imports: [
     BrowserModule,

@@ -54,12 +54,17 @@ export class TransactionService {
     };
 
     removeTransactionLocks(removeLock: RemoveLock) {
+        console.log('here');
+        
         return this.httpClient.post(this.baseUrl + `lock/remove`, removeLock).pipe(
             map((response: any) => {
+                console.log(response);
+                
                 const removeTransactionLocks = response;
                 console.log(removeTransactionLocks);
                 
                 return removeTransactionLocks;
+                
             }
             ));
     }
