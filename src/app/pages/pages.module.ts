@@ -41,6 +41,7 @@ import { HasRoleDirective } from "app/main-layout/navigation/directives/has-role
 import { NavigationComponent } from "../main-layout/navigation/navigation.component";
 import { FooterComponent } from "../main-layout/footer/footer.component";
 import { NavbarComponent } from "../main-layout/navigation/navbar/navbar.component";
+import { DirectiveModule } from "app/directive.module";
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { NavbarComponent } from "../main-layout/navigation/navbar/navbar.compone
       FormsModule,
       ReactiveFormsModule,
       SharedModule,
+      DirectiveModule,
       OrderModule,
       MDBBootstrapModulesPro.forRoot(),
       PaginationModule.forRoot(),

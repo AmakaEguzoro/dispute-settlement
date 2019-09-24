@@ -7,6 +7,7 @@ import { NavigationComponent } from './navigation.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HasRoleDirective } from './directives/has-role.directive';
 import { FooterComponent } from '../footer/footer.component';
+import { DirectiveModule } from 'app/directive.module';
 
 @NgModule({
   imports: [
@@ -14,18 +15,19 @@ import { FooterComponent } from '../footer/footer.component';
     RouterModule,
     FormsModule,
     MDBBootstrapModulesPro.forRoot(),
+    DirectiveModule
   ],
   declarations: [
     NavigationComponent,
     NavbarComponent,
     FooterComponent,
-    HasRoleDirective
+    // HasRoleDirective
   ],
   exports: [
     NavigationComponent,
     FooterComponent,
     NavbarComponent,
-    HasRoleDirective
+    // HasRoleDirective
   ],
   schemas: [
     NO_ERRORS_SCHEMA,

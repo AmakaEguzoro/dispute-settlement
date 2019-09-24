@@ -7,7 +7,7 @@
         </mdb-navbar-brand>
         <links>
             <ul class="navbar-nav mr-auto">
-                <li *appHasRole="[5]" class="nav-item waves-light nav-body"
+                <li *appHasRole="['3', '4', '5']" class="nav-item waves-light nav-body"
                 routerLinkActive="active" mdbWavesEffect>
                    <a class="nav-link" [routerLink]="['/admin-dashboard']">Dashboard</a>
                </li>
@@ -18,20 +18,20 @@
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
                         <a class="dropdown-item waves-light" mdbWavesEffect
                             [routerLink]="['/transaction/details']">Transactions</a>
-                        <a *appHasRole="[5]" class="dropdown-item waves-light" mdbWavesEffect
+                        <a *appHasRole="['3', '4', '5']" class="dropdown-item waves-light" mdbWavesEffect
                             [routerLink]="['/transaction/reversal']">Transactions Reversal</a>
-                        <a *appHasRole="[5]" class="dropdown-item waves-light" mdbWavesEffect
+                        <a *appHasRole="['3', '4', '5']" class="dropdown-item waves-light" mdbWavesEffect
                             [routerLink]="['/transaction/locks']">Transactions Locks</a>
                     </div>
                 </li>
-                <li *appHasRole="[5]" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+                <li *appHasRole="['4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
                     <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
                         mdbWavesEffect>
                         Status<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a *appHasRole="[5]" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/service-status']">Services
+                        <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/service-status']">Services
                             Status</a>
-                        <a *appHasRole="[5]" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/bvn-status']">BVN
+                        <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/bvn-status']">BVN
                             Status</a>
                     </div>
                 </li>

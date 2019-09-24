@@ -39,6 +39,7 @@ import { UserModalComponent } from './pages/admin/role-management/user-modal/use
 import { RoleGuard } from './_auth/role-guard.service';
 import { NavigationModule } from './main-layout/navigation/navigation.module';
 import { RouterTestingModule } from '@angular/router/testing';
+import { DirectiveModule } from './directive.module';
 
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" } } };
 
@@ -50,7 +51,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     NotificationComponent,
-   
+  
   ],
   imports: [
     BrowserModule,
@@ -61,6 +62,7 @@ export function tokenGetter() {
     RouterModule,
     RouterTestingModule,
     FormsModule,
+    DirectiveModule,
     NavigationModule,
     ViewsModule,
     ToastModule.forRoot(),

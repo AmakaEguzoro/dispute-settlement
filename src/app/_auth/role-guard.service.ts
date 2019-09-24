@@ -10,10 +10,10 @@ export class RoleGuard implements CanActivate {
 
   constructor(public auth: AuthService, public router: Router) {  }
   
-  canActivate(route: ActivatedRouteSnapshot): boolean {
-    const expectedRole = route.data.expectedRole;    
-    const token = parseInt(localStorage.getItem('role'));
-    if ( token == expectedRole ) {
+  canActivate(route: ActivatedRouteSnapshot) {
+    const expectedRole = route.data.expectedRole ;
+    const role = parseInt(localStorage.getItem('role')) ;
+    if ( expectedRole.includes(role) ) {
       console.log("You are  authorized to access this area")
       return true;
     }

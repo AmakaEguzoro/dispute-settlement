@@ -25,27 +25,27 @@ const routes: Route[] = [
     canActivate: [AuthGuard],
     children: [
       { path: 'admin-dashboard', component: AdminDashboardComponent, 
-      canActivate: [RoleGuard],data: { expectedRole: 5} },
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
 
       { path: 'transaction/details', component: TransactionComponent },
 
       { path: 'service-status', component: ServiceStatusComponent,
-       canActivate: [RoleGuard],data: { expectedRole: 5} },
+       canActivate: [RoleGuard],data: { expectedRole: [4, 5]} },
 
       { path: 'bvn-status', component: BvnStatusComponent,
-      canActivate: [RoleGuard],data: { expectedRole: 5} },
+      canActivate: [RoleGuard],data: { expectedRole : [4, 5]  } },
       
       { path: 'transaction/reversal', component: TransactionReversalComponent,
-      canActivate: [RoleGuard],data: { expectedRole: 5} },
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
 
       { path: 'transaction/locks', component: TransactionLocksComponent,
-      canActivate: [RoleGuard],data: { expectedRole: 5} },
-
+      canActivate: [RoleGuard],data: { expectedRole: [ 3, 4, 5] } },
+      
       { path: 'register', component: RegisterComponent,
-       canActivate: [RoleGuard],data: { expectedRole: 5}},
+       canActivate: [RoleGuard],data: { expectedRole: [5]}},
 
       { path: 'users', component: RoleManagementComponent,
-      canActivate: [RoleGuard],data: { expectedRole: 5}},
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]}},
     ]
   },
   

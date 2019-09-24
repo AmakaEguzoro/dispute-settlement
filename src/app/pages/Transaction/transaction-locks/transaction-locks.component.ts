@@ -56,7 +56,6 @@ export class TransactionLocksComponent implements OnInit {
 
   ngOnInit() {
     this.TransactionLocks(this.payload);
-    // this.removeTransactionLocks(this.load);
   }
 
   TransactionLocks(payload) {
@@ -64,9 +63,7 @@ export class TransactionLocksComponent implements OnInit {
     this.loading = true;   
     this.transactionService.getTransactionLocks(payload).subscribe((data) => {
       this.loading = false;
-      this.locksData = data.transactions;
-      console.log(data, 'locks');
-      
+      this.locksData = data.transactions;      
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
       this.lastPage = data.lastPage;
       this.tranLockAmount = data.tranLockAmount;
@@ -84,6 +81,8 @@ export class TransactionLocksComponent implements OnInit {
       "reference": item.reference,
       "amount": item.amount,
     }
+  console.log(load);
+  
 
     this.transactionService.removeTransactionLocks(load).subscribe((data) => {
       this.loading = false;
@@ -93,8 +92,6 @@ export class TransactionLocksComponent implements OnInit {
       console.log('cant remove transaction locks', error);
     })
   };
-
-  headElements = ['S/N', 'AGENT ID', 'AMOUNT', 'REFERENCE', 'STATUS', 'DATE', 'ACTION'];
 
   pageChanged(event: any): void {
     this.loading = true;

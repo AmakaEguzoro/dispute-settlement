@@ -56,6 +56,12 @@ export class AdminDashboardComponent implements OnInit {
     // this.link()
 
   }
+  week() {
+    this.router.navigate(['/transaction/details']);
+    // this.router.navigate(['/admin-dashboard'], { queryParams: 'h' });
+    console.log('wek tab');
+    
+  }
   // isAuthenticated() {
   //   return this.authService.isAuthenticated()
   // }
