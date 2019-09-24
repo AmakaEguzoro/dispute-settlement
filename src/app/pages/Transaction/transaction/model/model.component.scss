@@ -4,7 +4,10 @@
     }
 
 .modal-tit{
-    font-size: 14px;
+    font-size: 13px;
+}
+.details{
+    font-size: 14px
 }
 .vas-address{
     float: right; 
@@ -15,6 +18,7 @@
 textarea{
     height: 11rem;
     width: 17rem;
+    font-size: 14px
 }
 @media (min-width: 768px) and (max-width: 1024px){
     textarea{

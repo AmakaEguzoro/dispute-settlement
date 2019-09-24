@@ -1,13 +1,17 @@
 <div class="container">
-<label>Transactions</label>
+    <label>Transactions</label>
+    <div class="wallet">Wallet Balance: &nbsp; &#x20A6;</div>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="card classic-admin-card">
                 <div class="card-body" [style.height.em]="'6'">
-                    <p class="total-trans">Active Users</p> <br>
+                    <p class="total-trans">Active Users</p>
+                    <div class="total-users">
+                        <mdb-icon class="users" fas icon="users"></mdb-icon>
+                    </div> <br>
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
-                        <div *ngIf="isData == true" class="trans-amount">
+                        <div *ngIf="isData == true" class="trans-amount mt-4">
                             {{usersCount}}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
@@ -17,12 +21,15 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="card classic-admin-card">
                 <div class="card-body" [style.height.em]="'6'">
-                    <p class="total-trans">Total Transactions</p> <br>
+                    <p class="total-trans">Total Transactions</p>
+                    <div class="total-users">
+                            <mdb-icon class="total" fas icon="check"></mdb-icon>
+                    </div> <br>
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
-                        <p *ngIf="isData == true" class="trans-card-text">
+                        <p *ngIf="isData == true" class="summary-card-text mt-1">
                             {{ totalCount }}
-                            &nbsp; Transactions</p>
+                            <br> Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount">
                             &#x20A6;{{totalAmount / 100 | thousandSuff : 2}}</div>
                     </h4>
@@ -33,12 +40,15 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="card classic-admin-card">
                 <div class="card-body" [style.height.em]="'6'">
-                    <p class="total-trans">Successful Transactions</p> <br>
+                    <p class="total-trans">Successful Transactions</p>
+                    <div class="total-users">
+                        <mdb-icon class="total" fas icon="check"></mdb-icon>
+                    </div><br>
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
-                        <p *ngIf="isData == true" class="trans-card-text">
+                        <p *ngIf="isData == true" class="summary-card-text mt-1">
                             {{ successCount }}
-                            &nbsp; Transactions</p>
+                            <br> Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
                             &#x20A6;{{successAmount / 100 | thousandSuff : 2}}</div>
                     </h4>
@@ -49,12 +59,15 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="card classic-admin-card">
                 <div class="card-body" [style.height.em]="'6'">
-                    <p class="total-trans">Failed Transactions</p> <br>
+                    <p class="total-trans">Failed Transactions</p>
+                    <div class="total-users">
+                        <mdb-icon class="fail" fas icon="times"></mdb-icon>
+                    </div><br>
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
-                        <p *ngIf="isData == true" class="trans-card-text">
+                        <p *ngIf="isData == true" class="summary-card-text mt-1">
                             {{failedCount  }}
-                            &nbsp; Transactions</p>
+                            <br>Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
                             &#x20A6;{{failedAmount / 100 | thousandSuff : 2}}</div>
                     </h4>
@@ -121,22 +134,27 @@
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -22px;">
                 <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
-                    [options]="myDatePickerOptions" ></mdb-date-picker>
+                    [options]="myDatePickerOptions"></mdb-date-picker>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                 <select class="browser-default custom-select ref" (change)="getRef($event)">
                     <option value="">Ref Number</option>
-                     <option value="" disabled>Debit Reference</option>
-                  <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
+                    <option value="" disabled>Debit Reference</option>
+                    <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
                 </select>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <input type="text"  formControlName="filterValue"  (change)="getFilter($event)" ngDefaultControl [(ngModel)]="filterValue" >
+                <input type="text" formControlName="filterValue" (change)="getFilter($event)" ngDefaultControl
+                    [(ngModel)]="filterValue">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <button class="btn btn-primary" mdbWavesEffect (click)="searchTrans()">
+                <button class="btn btn-primary search" mdbWavesEffect (click)="searchTrans()">
                     <mdb-icon fas icon="search"></mdb-icon>
                     Search
+                </button>
+                <button class="btn btn-primary save" mdbWavesEffect>
+                    <mdb-icon fas icon="download"></mdb-icon>
+                    Save
                 </button>
             </div>
         </div>

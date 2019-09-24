@@ -42,6 +42,11 @@ import { NavigationComponent } from "../main-layout/navigation/navigation.compon
 import { FooterComponent } from "../main-layout/footer/footer.component";
 import { NavbarComponent } from "../main-layout/navigation/navbar/navbar.component";
 import { DirectiveModule } from "app/directive.module";
+import { DayCardComponent } from './admin/dashboard-cards/daily-cards/day-card/day-card.component';
+import { MonthCardComponent } from './admin/dashboard-cards/monthly-cards/month-card/month-card.component';
+import { WeekCardComponent } from './admin/dashboard-cards/weekly-cards/week-card/week-card.component';
+import { RouterModule } from "@angular/router";
+import { AppRoutes } from "app/app.routes.service";
 
 
 @NgModule({
@@ -49,6 +54,8 @@ import { DirectiveModule } from "app/directive.module";
       CommonModule,
       FormsModule,
       ReactiveFormsModule,
+      AppRoutes,
+      RouterModule,
       SharedModule,
       DirectiveModule,
       OrderModule,
@@ -86,6 +93,9 @@ import { DirectiveModule } from "app/directive.module";
       TransactionLocksComponent,
       RoleManagementComponent,
       UserModalComponent,
+      DayCardComponent,
+      MonthCardComponent,
+      WeekCardComponent,
   
     ],
     exports: [
@@ -119,6 +129,9 @@ import { DirectiveModule } from "app/directive.module";
       ReversalModelComponent,
       TransactionLocksComponent,
       RoleManagementComponent,
+      DayCardComponent,
+      MonthCardComponent,
+      WeekCardComponent,
     ],
     providers: [
       // itex

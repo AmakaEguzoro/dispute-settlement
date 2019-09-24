@@ -12,6 +12,7 @@
   line-height: 0px;
   text-align: right;
   color: #002035;
+  margin-top: -16px;
 }
 .trans-card-text{
 font-style: normal;
@@ -32,11 +33,28 @@ border: 3px solid rgba(242, 242, 242, 0.56);
   padding: 7px;
 }
 
-@media (min-width: 1200px){
- .container {
-  max-width: 1325px;
+.wallet{
+  float: right;
+  color: #828282;
 }
+
+.users{
+  color: black;
+  font-size: 24px;
 }
+.fail{
+  color: #EB5757;
+  font-size: 24px;
+}
+.total{
+  color:#219653;
+  font-size: 24px;
+}
+.total-users{
+  float: right;
+  margin-top: -22px;
+}
+
 
  table td {
   font-size: smaller;
@@ -196,7 +214,7 @@ padding: 10px;
 .custom-select{
   border: 1px solid #E0E0E0;
   border-radius: 5px;
-  width: 11rem;
+  width: 9rem;
   padding-right: -4px;
   height: 33px;
   padding-left: 12px;
@@ -204,11 +222,18 @@ padding: 10px;
   font-weight: 400;
   font-size: 14px;
 }
-button{
-  width: 177px;
+.search{
+  width: 91px;
+  margin-left: -1rem;
   margin-top: 5px;
   height: 33px;
-  font-size: 14px;
+  font-size: 13px;
+}
+.save{
+  width: 5rem;
+  margin-top: -66px;
+  margin-left:  77px;
+  font-size: 13px;
 }
 button:disabled {
 cursor: not-allowed;
@@ -220,7 +245,7 @@ input{
   height: 33px;
   padding-left: 0px;
   border: 1px solid #2F80ED;
-  width: 18rem;
+  width: 14rem;
   margin-left: -3rem;
 }
 .ref{

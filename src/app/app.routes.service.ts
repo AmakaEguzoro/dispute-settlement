@@ -12,6 +12,9 @@ import { TransactionLocksComponent } from './pages/Transaction/transaction-locks
 import { RegisterComponent } from './_auth/register/register.component';
 import { RoleManagementComponent } from './pages/admin/role-management/role-management.component';
 import { RoleGuard } from './_auth/role-guard.service';
+import { DayCardComponent } from './pages/admin/dashboard-cards/daily-cards/day-card/day-card.component';
+import { WeekCardComponent } from './pages/admin/dashboard-cards/weekly-cards/week-card/week-card.component';
+import { MonthCardComponent } from './pages/admin/dashboard-cards/monthly-cards/month-card/month-card.component';
 
 
 const routes: Route[] = [
@@ -24,7 +27,16 @@ const routes: Route[] = [
     // runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'admin-dashboard', component: AdminDashboardComponent, 
+      // { path: 'admin-dashboard', component: AdminDashboardComponent, 
+      // canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
+      { path: 'admin-dashboard/day', component: DayCardComponent, 
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
+      { path: 'admin-dashboard/week', component: WeekCardComponent, 
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
+      { path: 'admin-dashboard/month', component: MonthCardComponent, 
       canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
 
       { path: 'transaction/details', component: TransactionComponent },

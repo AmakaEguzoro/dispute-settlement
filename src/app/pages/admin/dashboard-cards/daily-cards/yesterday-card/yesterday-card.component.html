@@ -11,7 +11,7 @@
                                                 &#x20A6;{{totalAmount | thousandSuff : 2 }}</div>
                                         <p *ngIf="isData == true" class="summary-card-text" >
                                               {{ totalCount | thousandSuff }}
-                                                &nbsp; Transactions</p>
+                                               <br> Transactions</p>
                                 </h4>
                                 <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                         </div>
@@ -35,7 +35,7 @@
                                                 &#x20A6;{{successAmount | thousandSuff : 2}}</div>
                                         <p *ngIf="isData == true" class="summary-card-text">
                                                 {{successCount | thousandSuff }}
-                                                &nbsp;Transactions</p>
+                                                <br>Transactions</p>
                                 </h4>
                                 <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                         </div>
@@ -54,7 +54,7 @@
                                                 &#x20A6;{{failedAmount | thousandSuff : 2 }}</div>
                                         <p *ngIf="isData == true" class="summary-card-text">
                                                 {{failedCount | thousandSuff }}
-                                                &nbsp;Transactions</p>
+                                                <br>Transactions</p>
                                 </h4>
                                 <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                         </div>

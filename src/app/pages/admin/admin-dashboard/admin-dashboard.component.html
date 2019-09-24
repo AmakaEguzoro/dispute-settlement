@@ -1,125 +1,31 @@
+<!-- <mdb-tabset class="tab-pil" [buttonClass]="'pills-indigo'" [contentClass]="'mdb-tabse'">
 
-    <mdb-tabset  class="tab-pil" [buttonClass]="'pills-indigo'" [contentClass]="'mdb-tabse'">
- 
-        <mdb-tab heading="Day" >
-          <div class="row mt-1">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <!-- <button  (click)="week()" >hi</button> -->
-              <app-today-card></app-today-card>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding-left: 3px">
-              <app-yesterday-card></app-yesterday-card>
-            </div>
-          </div>
-      
-          
-          <div class="row">
-            <div class="col-md-4 col-sm-12 col-xs-12">
-              <app-today-channels></app-today-channels>
-            </div>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-              <app-today-product></app-today-product>
-            </div>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-              <app-today-payment-method></app-today-payment-method>
-            </div>
-          </div>
-        </mdb-tab>
-      
-      
-      
-      
-        
-    
-        <mdb-tab heading="Week">
-          <div class="row mt-1">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <app-this-week-card></app-this-week-card>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding-left: 3px">
-              <app-last-week-card></app-last-week-card>
-            </div>
-          </div>
-      
-          <div class="row">
-            <div class="col-md-4 col-sm-12 col-xs-12">
-              <app-this-week-channels></app-this-week-channels>
-            </div>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-              <app-this-week-product></app-this-week-product>
-            </div>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-              <app-this-week-payment-method></app-this-week-payment-method>
-            </div>
-          </div>
-        </mdb-tab>
-     
-        
-        <mdb-tab heading="Month">
-          <div class="row mt-1">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <app-this-month-card></app-this-month-card>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding-left: 3px">
-              <app-last-month-card></app-last-month-card>
-            </div>
-          </div>
-      
-          <div class="row">
-            <div class="col-md-4 col-sm-12 col-xs-12">
-              <app-this-month-channels></app-this-month-channels>
-            </div>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-              <app-this-month-product></app-this-month-product>
-            </div>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-              <app-this-month-payment-method></app-this-month-payment-method>
-            </div>
-          </div>
-        </mdb-tab>
-      </mdb-tabset>
+  <mdb-tab heading="Day">
+    <app-day-card></app-day-card>
+  </mdb-tab>
 
-      <!-- <div style="padding: 5px;">
-        <nav md-tab-nav-bar >
-            <a md-tab-link
-               *ngFor="let routeLink of routeLinks; let i = index;"
-               [routerLink]="routeLink.link"
-               routerLinkActive="mat-tab-link-active"
-               routerLinkActive="routerLinkActive"
-               [active]="activeLinkIndex === i"
-               (click)="activeLinkIndex = i"
-               [routerLinkActiveOptions]="{exact: true}">
-                {{routeLink.label}}
-            </a>
-        </nav>
-    <router-outlet></router-outlet>
-    </div> -->
-<!-- 
-    <div (click)="$event.preventDefault()">
-     
-      <button type="button" class="btn btn-primary btn-sm" (click)="addNewTab()">
-        Add new tab
-      </button>
-    <hr/>
-    <tabset>
-      <tab heading="Static title">Static content</tab>
-      <tab *ngFor="let tabz of tabs"
-           [heading]="tabz.title"
-           [routerLink]="tabz.link"
-           [active]="tabz.active"
-           (selectTab)="tabz.active = true"
-           (deselect)="tabz.active = false"
-           [disabled]="tabz.disabled"
-           [removable]="tabz.removable"
-           (removed)="removeTabHandler(tabz)"
-           [customClass]="tabz.customClass">
-        {{tabz?.content}}
-      </tab>
-    </tabset>
-  </div> -->
+
+  <mdb-tab heading="Week">
+    <app-week-card></app-week-card>
+  </mdb-tab>
+
+
+  <mdb-tab heading="Month">
+    <app-month-card></app-month-card>
+  </mdb-tab>
+</mdb-tabset> -->
+
+<div class="card" id="profile-main">
   
-  
-    <!-- <app-tabs [tabs]="usersTabs" (navigate)="switchTabs($event)"> </app-tabs>
-    <div *ngIf="isAuthenticated()">
-      <router-outlet></router-outlet>
-    </div> -->
+    <div class="pm-body clearfix" style="padding-left: 0px">
+        <ul class="tab-nav tn-justified">
+            <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"  class="waves-effect"><a [routerLink]="['/wallet/settings']" >About</a></li> -->
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="waves-effect"><a [routerLink]="['/admin-dashboard/day']" >Day</a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="waves-effect"><a [routerLink]="['/admin-dashboard/week']">Week</a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="waves-effect"><a [routerLink]="['/admin-dashboard/month']" >Month</a></li>
+        </ul>
+
+        <router-outlet></router-outlet>
+        
+    </div>
+</div>

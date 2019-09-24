@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TransactionService } from 'app/_service/transaction.service';
 import { Router } from '@angular/router';
-import { IMyOptions } from 'ng-uikit-pro-standard';
+import { IMyOptions, ToastService } from 'ng-uikit-pro-standard';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-transaction-locks',
@@ -31,6 +32,7 @@ export class TransactionLocksComponent implements OnInit {
   start: any;
   end: any;
   range: any;
+  modalRef: BsModalRef;
 
   DateObj: any = new Date();
   dateRange = (String)(this.DateObj.getFullYear() + '/' + (this.DateObj.getMonth() + 1) + '/' + this.DateObj.getDate());
@@ -42,10 +44,11 @@ export class TransactionLocksComponent implements OnInit {
     "viewPage": "",
     "download": false,
   };
-  
+
 
   constructor(private transactionService: TransactionService,
-    private router: Router, private fb: FormBuilder) {
+    private router: Router, private fb: FormBuilder,
+    private modalService: BsModalService, private toastService: ToastService) {
     this.searchForm = this.fb.group({
       method: ['', Validators.min],
       startDate: ['', Validators.min],
@@ -60,10 +63,10 @@ export class TransactionLocksComponent implements OnInit {
 
   TransactionLocks(payload) {
     this.isData = true;
-    this.loading = true;   
+    this.loading = true;
     this.transactionService.getTransactionLocks(payload).subscribe((data) => {
       this.loading = false;
-      this.locksData = data.transactions;      
+      this.locksData = data.transactions;
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
       this.lastPage = data.lastPage;
       this.tranLockAmount = data.tranLockAmount;
@@ -81,17 +84,27 @@ export class TransactionLocksComponent implements OnInit {
       "reference": item.reference,
       "amount": item.amount,
     }
-  console.log(load);
-  
+    console.log(load);
+
 
     this.transactionService.removeTransactionLocks(load).subscribe((data) => {
       this.loading = false;
-      console.log(data, "remove locks");
+      this.toastService.success(data.message)
     }, error => {
       this.loading = false;
+      this.toastService.error(error)
       console.log('cant remove transaction locks', error);
     })
   };
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+ 
+  }
+
+  decline(): void {
+    this.modalRef.hide();
+  }
 
   pageChanged(event: any): void {
     this.loading = true;

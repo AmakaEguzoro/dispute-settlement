@@ -9,10 +9,12 @@ body{
 // loader begin
 .loading-screen-icon {
   position: absolute;
-  left: 50%;
+  left: 40%;
   margin-top: 2rem;
   cursor: wait;
 }
+.table-responsive {
+  overflow-x: overlay !important;}
 // loader end
 md-form input[type=text]{
   border-bottom: none !important;

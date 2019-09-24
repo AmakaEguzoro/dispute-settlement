@@ -60,7 +60,7 @@ export function tokenGetter() {
     HttpClientModule, HttpModule,
     AppRoutes,
     RouterModule,
-    RouterTestingModule,
+    // RouterTestingModule,
     FormsModule,
     DirectiveModule,
     NavigationModule,
