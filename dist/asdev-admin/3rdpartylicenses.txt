@@ -1686,8 +1686,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-undefined
-
 ngx-socket-io
 MIT
 MIT License
@@ -2454,6 +2452,8 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 
 END OF TERMS AND CONDITIONS
 
+
+undefined
 
 typed-function
 The MIT License (MIT)
