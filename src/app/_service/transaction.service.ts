@@ -6,6 +6,7 @@ import { forkJoin } from 'rxjs';
 import { Transaction } from 'app/_models/transaction';
 import { map } from 'rxjs/operators';
 import { RemoveLock } from 'app/_models/removeLocks';
+import { WalletBalance } from 'app/_models/user';
 
 @Injectable({
     providedIn: 'root'
@@ -54,18 +55,20 @@ export class TransactionService {
     };
 
     removeTransactionLocks(removeLock: RemoveLock) {
-        console.log('here');
-        
         return this.httpClient.post(this.baseUrl + `lock/remove`, removeLock).pipe(
-            map((response: any) => {
-                console.log(response);
-                
+            map((response: any) => {                
                 const removeTransactionLocks = response;
-                console.log(removeTransactionLocks);
-                
                 return removeTransactionLocks;
-                
             }
             ));
     }
+
+    getWalletBalance(walletBalance: WalletBalance) {
+        return this.httpClient.post(`http://vas.itexapp.com/vas/wallet-balance` , walletBalance).pipe(
+          map((response: any) => {
+              const walletBalance = response;
+              return walletBalance;
+          }
+          ));
+      }
 }

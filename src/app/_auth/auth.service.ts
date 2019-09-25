@@ -7,7 +7,7 @@ import { Endpoint } from 'common/endpoint'
 import { map, catchError } from 'rxjs/operators';
 import { Constants } from 'common/constants';
 import { environment } from 'environments/environment';
-import { User } from 'app/_models/user';
+import { User, WalletBalance } from 'app/_models/user';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Router } from '@angular/router';
@@ -85,11 +85,13 @@ export class AuthService {
       .pipe(
         map((response: any) => {
           const user = response;
+
           if (user) {
             localStorage.setItem('token', user.token);
             localStorage.setItem('role', user.user.is_admin);
             localStorage.setItem('loggedUser', user.user.name);
-            
+            localStorage.setItem('loggedEmail', user.user.email);
+            localStorage.setItem('walletId', user.user.walletData);
             // this.decodedToken = this.jwtHelper.decodeToken(user.token);
           }
         })
@@ -100,6 +102,16 @@ export class AuthService {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token)
   }
+
+  currentUserWallet() {
+    const walletString = localStorage.getItem('walletId');
+    if (walletString) {
+      let wallet = walletString.split(",")[0];
+
+      return wallet;
+    }
+  }
+
 
   logout() {
     localStorage.removeItem('token');
@@ -113,11 +125,14 @@ export class AuthService {
   register(newUser: Register) {
     return this.http.post(this.baseUrl + '/users/create', newUser);
   }
-
+  currentUserName() {
+    const username = localStorage.getItem('loggedUser');
+    return username
+  }
   roleMatch(expectedRole): boolean {
     let isMatch = false;
     const roles = localStorage.getItem('role');
-    const userRoles = roles;    
+    const userRoles = roles;
     expectedRole.forEach(element => {
       if (userRoles.includes(element)) {
         isMatch = true;
@@ -130,5 +145,6 @@ export class AuthService {
   getUsers() {
     return this.http.get(this.baseUrl + `/users/fetch/all`);
   }
+
 
 }

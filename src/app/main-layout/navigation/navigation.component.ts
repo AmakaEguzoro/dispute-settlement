@@ -24,7 +24,7 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     // this.userDisplayName = localStorage.getItem('loggedUser');
     // console.log(this.userDisplayName);
-    // this.named()
+    this.username()
   }
 
   setClicked(val: boolean): void {
@@ -37,16 +37,16 @@ export class NavigationComponent implements OnInit {
   isAuthenticated() {
     return this.authService.isAuthenticated()
   }
-//   named() {
-//     this.authService.getUsers().subscribe((data) => {
-// this.name = data.data;
 
-//     })
-//   }
+  username() {
+  this.userDisplayName = this.authService.currentUserName();
+   console.log(this.userDisplayName);
+   
+  }
 
-named() {
-  this.userDisplayName = localStorage.getItem('loggedUser');
-  console.log(this.userDisplayName);
-}
+  named() {
+    this.userDisplayName = localStorage.getItem('loggedUser');
+    console.log(this.userDisplayName);
+  }
 
 }

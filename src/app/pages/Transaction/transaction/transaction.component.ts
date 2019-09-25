@@ -7,6 +7,9 @@ import { ModelComponent } from './model/model.component';
 import { SocketService } from 'app/_service/socket.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { IMyOptions } from 'ng-uikit-pro-standard';
+import { ExcelService } from 'app/_service/excel.service';
+import { AuthService } from 'app/_auth/auth.service';
+import { User } from 'app/_models/user';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -45,12 +48,12 @@ export class TransactionComponent implements OnInit {
   totalCount: any;
   isLoading = true;
   usersCount: any;
-
   // filters
   searchForm: FormGroup;
   paymentMethod: any;
   vendor: any;
   vendorType: any;
+  vendType: any;
   transactionStatus: any;
   filter: any;
   filterValue: any;
@@ -69,6 +72,7 @@ export class TransactionComponent implements OnInit {
   start: any;
   end: any;
   range: any;
+  userBalance:any;
   DateObj: any = new Date();
   dateRange = (String)(this.DateObj.getFullYear() + '/' + (this.DateObj.getMonth() + 1) + '/' + this.DateObj.getDate());
   newRange = `${this.dateRange} - ${this.dateRange}`;
@@ -89,12 +93,16 @@ export class TransactionComponent implements OnInit {
     "transactionChannel": "",
     "searchField": "",
     "viewPage": "",
+    "vendType": "",
+    "vendor": ""
   };
 
 
   constructor(private transactionService: TransactionService,
     private router: Router, private modalService: BsModalService,
-    private socket: SocketService, private fb: FormBuilder) {
+    private socket: SocketService, private fb: FormBuilder,
+    private excelService: ExcelService,
+    private authService: AuthService) {
     this.searchForm = this.fb.group({
       method: ['', Validators.min],
       startDate: ['', Validators.min],
@@ -106,19 +114,22 @@ export class TransactionComponent implements OnInit {
   ngOnInit() {
     this.Transaction(this.payload);
     this.TransactionSummary(this.payload);
+    this.walletBalance();
     setTimeout(() => {
       this.getSocketData();
-    },1 * 60 * 1000);
+    }, 1 * 60 * 1000);
   }
 
   getSocketData() {
-      this.socket.getMessage().subscribe((Socketdata: any) => {
+    this.socket.getMessage().subscribe((Socketdata: any) => {
+      // console.log('get socket data-', Socketdata.data.status)
+      let currentWallet = this.userWallet();
+      if (currentWallet == "ALL" || currentWallet == Socketdata.data.wallet) {
         this.detailsData.pop();
         this.detailsData.unshift(Socketdata.data);
-        // console.log('get socket data-', Socketdata.data.status)
         if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
           this.failedAmount += parseInt(Socketdata.data.nairaAmount);
-          this.failedCount = parseInt( this.failedCount)+1;
+          this.failedCount = parseInt(this.failedCount) + 1;
           this.totalAmount += parseInt(Socketdata.data.nairaAmount);
           this.totalCount += 1;
         } else if (Socketdata.data.status == "successful") {
@@ -127,8 +138,61 @@ export class TransactionComponent implements OnInit {
           this.totalAmount += parseInt(Socketdata.data.nairaAmount);
           this.totalCount += 1;
         }
-      });
-    
+      }
+
+    });
+
+  }
+
+  userWallet() {
+    return this.authService.currentUserWallet();
+  }
+  walletBalance() {
+    const username = localStorage.getItem('loggedEmail');
+    const wallet = this.userWallet();
+    let balance = {
+      "username": username,
+      "wallet": wallet
+    }
+    this.transactionService.getWalletBalance(balance).subscribe((data) => {
+      console.log('balance', data);
+      this.userBalance = data;
+      console.log('balance', this.userBalance);
+    }, error => {
+      this.userBalance = null;
+      console.log('cant get balance -', error);
+
+    })
+  }
+  exportAsXLSX(): void {
+    this.start = this.searchForm.value.startDate;
+    this.end = this.searchForm.value.endDate;
+    this.range = `${this.start} - ${this.end}`;
+    this.filterData = {
+      "dateRange": this.range,
+      "terminalId": this.terminalId ? this.terminalId : '',
+      "walletId": this.walletId ? this.walletId : '',
+      "accountNumber": this.accountNumber ? this.accountNumber : '',
+      "paymentMethod": this.paymentMethod ? this.paymentMethod : '',
+      "cardRRN": this.cardRRN ? this.cardRRN : '',
+      "transactionReference": this.transactionReference ? this.transactionReference : '',
+      "phoneNumber": this.phoneNumber ? this.phoneNumber : '',
+      "sequenceNumber": this.sequenceNumber ? this.sequenceNumber : '',
+      "debitReference": this.debitReference ? this.debitReference : '',
+      "product": this.product ? this.product : '',
+      "transactionType": this.transactionType ? this.transactionType : '',
+      "transactionStatus": this.transactionStatus ? this.transactionStatus : '',
+      "transactionChannel": this.transactionChannel ? this.transactionChannel : '',
+      "searchField": "",
+      "viewPage": "",
+      "vendType": this.vendType ? this.vendType : '',
+      "vendor": this.vendor ? this.vendor : '',
+      "download": false
+    };
+
+    this.Transaction(this.filterData);
+    this.socket.disconnectSocket();
+    this.excelService.exportAsExcelFile(this.detailsData, 'ITEX-TranReport');
   }
 
   Transaction(payload) {
@@ -261,6 +325,8 @@ export class TransactionComponent implements OnInit {
       "transactionChannel": this.transactionChannel ? this.transactionChannel : '',
       "searchField": "",
       "viewPage": "",
+      "vendType": this.vendType ? this.vendType : '',
+      "vendor": this.vendor ? this.vendor : '',
     };
 
     this.Transaction(this.filterData);

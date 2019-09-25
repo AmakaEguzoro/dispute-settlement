@@ -223,17 +223,46 @@ padding: 10px;
   font-size: 14px;
 }
 .search{
-  width: 91px;
-  margin-left: -1rem;
-  margin-top: 5px;
-  height: 33px;
-  font-size: 13px;
+  // width: 91px;
+  // margin-left: -1rem;
+  // margin-top: 5px;
+  // height: 33px;
+  // font-size: 13px;
+  background: #2F80ED;
+
+  height: 31px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 23px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-left: -16px;
+  width: 81px !important;
+  border-radius: 5px;
+  margin-top: 7px;
+  cursor: pointer;
+  margin-right: 6px;
 }
 .save{
-  width: 5rem;
-  margin-top: -66px;
-  margin-left:  77px;
-  font-size: 13px;
+  // width: 5rem;
+  // margin-top: -66px;
+  // margin-left:  77px;
+  // font-size: 13px;
+  background: #2F80ED;
+
+  height: 31px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 23px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-left: -4px;
+  width: 81px !important;
+  border-radius: 5px;
+  margin-top: 7px;
+  cursor: pointer
 }
 button:disabled {
 cursor: not-allowed;

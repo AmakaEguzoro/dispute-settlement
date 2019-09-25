@@ -36,12 +36,12 @@
                 <td>{{item.email}}</td>
                 <td>{{item.is_admin}}</td>
                 <td>{{item.updated_at}}</td>
-                <td>
-                  <button class="btn btn-primary edit" (click)="openModal(item)">Edit</button>
-                </td>
                 <!-- <td>
-                    <button class="btn btn-danger">Delete</button>
-                  </td> -->
+                  <button class="btn btn-primary edit" (click)="openModal(item)">Edit</button>
+                </td> -->
+                <td>
+                   <mdb-badge class="edit" (click)="openModal(item)">Edit</mdb-badge>
+                  </td>
               </tr>
               <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
             </tbody>

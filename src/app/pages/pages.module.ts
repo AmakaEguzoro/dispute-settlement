@@ -47,6 +47,7 @@ import { MonthCardComponent } from './admin/dashboard-cards/monthly-cards/month-
 import { WeekCardComponent } from './admin/dashboard-cards/weekly-cards/week-card/week-card.component';
 import { RouterModule } from "@angular/router";
 import { AppRoutes } from "app/app.routes.service";
+import { ExcelService } from "app/_service/excel.service";
 
 
 @NgModule({
@@ -139,7 +140,8 @@ import { AppRoutes } from "app/app.routes.service";
     ChannelService,
     ProductsService,
     PaymentMethodService,
-    TransactionService
+    TransactionService,
+    ExcelService,
     ],
 
     schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
