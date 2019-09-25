@@ -157,7 +157,18 @@
     padding: 10px;
     }
     
-    
+    .fail{
+      color: #EB5757;
+      font-size: 24px;
+    }
+    .total{
+      color:#219653;
+      font-size: 24px;
+    } 
+    .total-users{
+      float: right;
+      margin-top: -22px;
+    }
     .custom-select{
       border: 1px solid #E0E0E0;
       border-radius: 5px;

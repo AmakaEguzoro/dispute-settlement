@@ -73,6 +73,7 @@ export class TransactionComponent implements OnInit {
   end: any;
   range: any;
   userBalance:any;
+  exportData: any;
   DateObj: any = new Date();
   dateRange = (String)(this.DateObj.getFullYear() + '/' + (this.DateObj.getMonth() + 1) + '/' + this.DateObj.getDate());
   newRange = `${this.dateRange} - ${this.dateRange}`;
@@ -155,16 +156,13 @@ export class TransactionComponent implements OnInit {
       "wallet": wallet
     }
     this.transactionService.getWalletBalance(balance).subscribe((data) => {
-      console.log('balance', data);
       this.userBalance = data;
-      console.log('balance', this.userBalance);
     }, error => {
       this.userBalance = null;
-      console.log('cant get balance -', error);
-
     })
   }
   exportAsXLSX(): void {
+    this.socket.disconnectSocket();
     this.start = this.searchForm.value.startDate;
     this.end = this.searchForm.value.endDate;
     this.range = `${this.start} - ${this.end}`;
@@ -187,12 +185,24 @@ export class TransactionComponent implements OnInit {
       "viewPage": "",
       "vendType": this.vendType ? this.vendType : '',
       "vendor": this.vendor ? this.vendor : '',
-      "download": false
+      "download": true
     };
 
-    this.Transaction(this.filterData);
-    this.socket.disconnectSocket();
-    this.excelService.exportAsExcelFile(this.detailsData, 'ITEX-TranReport');
+    this.isData = true;
+    this.loading = true;
+    this.transactionService.getTransaction(this.filterData).subscribe((data) => {
+      this.loading = false;
+      this.exportData = data.data.transactions;
+      this.excelService.exportAsExcelFile(this.exportData, 'ITEX-TranReport');
+      
+    }, error => {
+      this.isData = false;
+      this.loading = false;
+      console.log('cant get transaction details', error);
+    })
+    
+    
+    
   }
 
   Transaction(payload) {

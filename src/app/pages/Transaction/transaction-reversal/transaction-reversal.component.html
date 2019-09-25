@@ -4,7 +4,10 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="card classic-admin-card">
                 <div class="card-body">
-                    <p class="total-trans">Successful Reversals</p> <br>
+                    <p class="total-trans">Successful Reversals</p>
+                    <div class="total-users">
+                        <mdb-icon class="total" fas icon="check"></mdb-icon>
+                    </div> <br>
                     <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="loading == false">
                         <div *ngIf="isData == true" class="trans-amount" style="color: #219653;">
@@ -18,7 +21,10 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="card classic-admin-card">
                 <div class="card-body">
-                    <p class="total-trans">Failed Reversals</p> <br>
+                    <p class="total-trans">Failed Reversals</p>
+                    <div class="total-users">
+                        <mdb-icon class="fail" fas icon="times"></mdb-icon>
+                    </div> <br>
                     <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="loading == false">
                         <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
@@ -48,7 +54,7 @@
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" >
             <select class="browser-default custom-select ref" (change)="getRef($event)">
-                <option value="">Ref Number</option>
+                <option value="">Select</option>
               <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
             </select>
         </div>
