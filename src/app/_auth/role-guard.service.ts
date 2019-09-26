@@ -14,11 +14,9 @@ export class RoleGuard implements CanActivate {
     const expectedRole = route.data.expectedRole ;
     const role = parseInt(localStorage.getItem('role')) ;
     if ( expectedRole.includes(role) ) {
-      console.log("You are  authorized to access this area")
       return true;
     }
     this.auth.logout();
-    console.log("You are not authorized to access this area")
     return false;
   }
    

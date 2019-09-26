@@ -95,7 +95,8 @@ export class TransactionComponent implements OnInit {
     "searchField": "",
     "viewPage": "",
     "vendType": "",
-    "vendor": ""
+    "vendor": "",
+    "download": false,
   };
 
 
@@ -123,7 +124,6 @@ export class TransactionComponent implements OnInit {
 
   getSocketData() {
     this.socket.getMessage().subscribe((Socketdata: any) => {
-      // console.log('get socket data-', Socketdata.data.status)
       let currentWallet = this.userWallet();
       if (currentWallet == "ALL" || currentWallet == Socketdata.data.wallet) {
         this.detailsData.pop();
@@ -211,8 +211,12 @@ export class TransactionComponent implements OnInit {
     this.transactionService.getTransaction(payload).subscribe((data) => {
       this.loading = false;
       this.detailsData = data.data.transactions;
+      console.log(this.detailsData);
+      
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
-      this.lastPage = data.data.lastPage;
+      this.lastPage = data.data.lastPage * this.perPage;
+      console.log("Last Page logged", this.lastPage);
+      
     }, error => {
       this.isData = false;
       this.loading = false;
@@ -269,6 +273,7 @@ export class TransactionComponent implements OnInit {
     startDate: this.dateRange,
     ariaLabelOpenCalendar: 'Open Calendar',
     closeAfterSelect: true,
+    minYear: 1900,
     // disableUntil:
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
@@ -285,9 +290,10 @@ export class TransactionComponent implements OnInit {
     'Daphty', 'GreyStone', 'Call Phone'
   ];
   products = [
-    'IKEDC', 'TRANSFER', 'WITHDRAWAL', 'EKEDC', 'MULTICHOICE', 'EEDC', 'PHED', 'AEDC',
-    'MTN-VTU', 'IBEDC', 'MTN-DATA', 'GLO-VTU', 'AIRTEL-VTU', 'AIRTEL-PIN', 'GLO-DATA', 'RCN_FUND',
-    'ETISALAT-VTU', 'KEDCO', 'STARTIMES', 'GERRAD HOSPITAL'];
+    'IKEDC', 'IBEDC','EKEDC','EEDC', 'PHED', 'AEDC','KEDCO',
+     'TRANSFER', 'WITHDRAWAL',  'MULTICHOICE', 
+    'MTNVTU', 'MTNDATA', 'AIRTELDATA', 'AIRTELVTU','GLOVTU', 'GLODATA', 
+    'ETISALATVTU','ETISALATDATA', 'RCN_FUND',  'STARTIMES', 'GEHS', 'SMILE'];
 
   getPaymentMethod(event) {
     this.paymentMethod = event.target.value;
@@ -297,12 +303,12 @@ export class TransactionComponent implements OnInit {
   }
   getProduct(event) {
     this.product = event.target.value;
+    
   }
   getType(event) {
     this.transactionType = event.target.value;
   }
   getVendor(event) {
-    console.log(event.target.value);
     this.vendor = event.target.value;
   }
   getVendorType(event) {
@@ -318,6 +324,7 @@ export class TransactionComponent implements OnInit {
     this.start = this.searchForm.value.startDate;
     this.end = this.searchForm.value.endDate;
     this.range = `${this.start} - ${this.end}`;
+    this.getFilter();
     this.filterData = {
       "dateRange": this.range,
       "terminalId": this.terminalId ? this.terminalId : '',
@@ -338,13 +345,15 @@ export class TransactionComponent implements OnInit {
       "vendType": this.vendType ? this.vendType : '',
       "vendor": this.vendor ? this.vendor : '',
     };
-
+    
     this.Transaction(this.filterData);
     this.TransactionSummary(this.filterData);
+    console.log(this.filterData);
+    
     this.socket.disconnectSocket();
   }
 
-  getFilter(event) {
+  getFilter() {
     this.filterValue = this.searchForm.value.filterValue;
     if (this.filter == 'Sequence Number') {
       this.sequenceNumber = this.filterValue;
@@ -355,7 +364,7 @@ export class TransactionComponent implements OnInit {
     } else if (this.filter == 'Terminal ID') {
       this.terminalId = this.filterValue;
     } else if (this.filter == 'Agent ID') {
-      this.walletId = this.filterValue;
+      this.walletId = this.filterValue;      
     } else if (this.filter == 'Account number') {
       this.accountNumber = this.filterValue;
     } else if (this.filter == 'Phone Number') {

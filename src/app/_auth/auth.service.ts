@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
-import { User } from 'app/_models/user';
+import { User, EditUser } from 'app/_models/user';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Router } from '@angular/router';
 import { Register } from 'app/_models/register';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,12 @@ export class AuthService {
   baseUrl = environment.api.baseUrl;
   jwtHelper = new JwtHelperService();
   decodedToken: any;
-
+  postIdSource = new  BehaviorSubject<number>(0);
+  postIdData: any;
   constructor(private http: HttpClient, private router: Router,
-    private toastService: ToastService) { }
+    private toastService: ToastService) { 
+      this.postIdData= this.postIdSource.asObservable();
+    }
 
   login(user: User) {
     return this.http.post(this.baseUrl + '/auth/login', user)
@@ -66,7 +70,8 @@ export class AuthService {
   }
   currentUserName() {
     const username = localStorage.getItem('loggedUser');
-    return username
+    if (username) {
+    } return username
   }
   roleMatch(expectedRole): boolean {
     let isMatch = false;
@@ -84,5 +89,17 @@ export class AuthService {
   getUsers() {
     return this.http.get(this.baseUrl + `/users/fetch/all`);
   }
+  
+  editUsers(editUser: EditUser) {
+    return this.http.post(this.baseUrl + `/users/fetch`, editUser).pipe(
+      map((response: any) => {
+        const editUser = response;
+        return editUser;
+      }
+      ));
+  }
 
+  changePostId(id: number){
+    this.postIdSource.next(id);
+}
 }

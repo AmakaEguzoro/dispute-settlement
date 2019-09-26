@@ -7,3 +7,7 @@ export class WalletBalance {
     username: string;
     wallet: string;
 }
+
+export class EditUser{
+    username: string;
+}

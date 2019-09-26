@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { forkJoin } from 'rxjs';
 import { Transaction } from 'app/_models/transaction';
 import { map } from 'rxjs/operators';
@@ -71,4 +71,7 @@ export class TransactionService {
           }
           ));
       }
+      
+
+   
 }
