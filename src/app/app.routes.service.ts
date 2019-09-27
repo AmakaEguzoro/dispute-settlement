@@ -1,29 +1,63 @@
-import { AdminDashboardComponent } from './views/admin/admin-dashboard/admin-dashboard.component';
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { RouterModule, Route } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-import { LoginComponent } from './views/pages/login/login.component';
+import { LoginComponent } from './_auth/login/login.component';
 import { AuthGuard } from './_auth/auth.guard';
-import { TransactionComponent } from './Transaction/transaction/transaction.component';
-import { ServiceStatusComponent } from './shared/service-status/service-status.component';
-import { BvnStatusComponent } from './shared/bvn-status/bvn-status.component';
-import { NotFoundComponent } from './views/not-found/not-found.component';
-import { UserManagementComponent } from './shared/user-management/user-management.component';
+import { ServiceStatusComponent } from './pages/status/service-status/service-status.component';
+import { BvnStatusComponent } from './pages/status/bvn-status/bvn-status.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { TransactionComponent } from './pages/Transaction/transaction/transaction.component';
+import { TransactionReversalComponent } from './pages/Transaction/transaction-reversal/transaction-reversal.component';
+import { TransactionLocksComponent } from './pages/Transaction/transaction-locks/transaction-locks.component';
+import { RegisterComponent } from './_auth/register/register.component';
+import { RoleManagementComponent } from './pages/admin/role-management/role-management.component';
+import { RoleGuard } from './_auth/role-guard.service';
+import { DayCardComponent } from './pages/admin/dashboard-cards/daily-cards/day-card/day-card.component';
+import { WeekCardComponent } from './pages/admin/dashboard-cards/weekly-cards/week-card/week-card.component';
+import { MonthCardComponent } from './pages/admin/dashboard-cards/monthly-cards/month-card/month-card.component';
 
 
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'not-found', component: NotFoundComponent },
-
+  
+  
   {
     path: '',
     // runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'admin-dashboard', component: AdminDashboardComponent },
+      // { path: 'admin-dashboard', component: AdminDashboardComponent, 
+      // canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
+      { path: 'admin-dashboard/day', component: DayCardComponent, 
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
+      { path: 'admin-dashboard/week', component: WeekCardComponent, 
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
+      { path: 'admin-dashboard/month', component: MonthCardComponent, 
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
       { path: 'transaction/details', component: TransactionComponent },
-      { path: 'service-status', component: ServiceStatusComponent },
-      { path: 'bvn-status', component: BvnStatusComponent},
-      { path: 'user-management', component: UserManagementComponent}
+
+      { path: 'service-status', component: ServiceStatusComponent,
+       canActivate: [RoleGuard],data: { expectedRole: [4, 5]} },
+
+      { path: 'bvn-status', component: BvnStatusComponent,
+      canActivate: [RoleGuard],data: { expectedRole : [4, 5]  } },
+      
+      { path: 'transaction/reversal', component: TransactionReversalComponent,
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
+      { path: 'transaction/locks', component: TransactionLocksComponent,
+      canActivate: [RoleGuard],data: { expectedRole: [ 3, 4, 5] } },
+      
+      { path: 'register', component: RegisterComponent,
+       canActivate: [RoleGuard],data: { expectedRole: [5]}},
+
+      { path: 'users', component: RoleManagementComponent,
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]}},
     ]
   },
   

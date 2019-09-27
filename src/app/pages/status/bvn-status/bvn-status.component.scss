@@ -54,9 +54,21 @@
 }
 
 .my-badge-pill {
-  padding : 5px 13px;
+  padding : 5px 13px; 
   border-radius: 10rem;
 }
+
+.loading-icon{
+  position: absolute;
+  left: 45%;
+  margin-top: 10rem;
+  cursor: wait;
+ }
+
+ .card-header {
+   background-color: #2D9CDB;
+   height: 6rem;
+ }
 
 button:disabled {
   cursor: not-allowed;
@@ -79,16 +91,8 @@ button:disabled {
  
 }
 
-.loading-icon{
- position: absolute;
- left: 45%;
- margin-top: 10rem;
- cursor: wait;
-}
-.card-header {
-  background-color: #2D9CDB;
-  height: 6rem;
-}
+
+
 
  
 

@@ -1,4 +1,4 @@
-<div *ngIf="loggedIn()">
+<div *ngIf="isAuthenticated()">
     <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark ie-nav"
         [containerInside]="false">
 
@@ -7,17 +7,33 @@
         </mdb-navbar-brand>
         <links>
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
-                    <a class="nav-link" [routerLink]="['/admin-dashboard']">Dashboard</a>
+                <li *appHasRole="['3', '4', '5']" class="nav-item waves-light nav-body"
+                routerLinkActive="active" mdbWavesEffect>
+                   <a class="nav-link" [routerLink]="['/admin-dashboard/day']">Dashboard</a>
+               </li>
+                <li class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+                        mdbWavesEffect>
+                        Transaction<span class="caret"></span></a>
+                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                        <a class="dropdown-item waves-light" mdbWavesEffect
+                            [routerLink]="['/transaction/details']">Transactions</a>
+                        <a *appHasRole="['3', '4', '5']" class="dropdown-item waves-light" mdbWavesEffect
+                            [routerLink]="['/transaction/reversal']">Transactions Reversal</a>
+                        <a *appHasRole="['3', '4', '5']" class="dropdown-item waves-light" mdbWavesEffect
+                            [routerLink]="['/transaction/locks']">Transactions Locks</a>
+                    </div>
                 </li>
-                <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
-                    <a class="nav-link" [routerLink]="['/transaction/details']">Transaction</a>
-                </li>
-                <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
-                    <a class="nav-link" [routerLink]="['/service-status']">Services Status</a>
-                </li>
-                <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
-                    <a class="nav-link" [routerLink]="['/bvn-status']">BVN Status</a>
+                <li *appHasRole="['4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+                        mdbWavesEffect>
+                        Status<span class="caret"></span></a>
+                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                        <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/service-status']">Services
+                            Status</a>
+                        <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/bvn-status']">BVN
+                            Status</a>
+                    </div>
                 </li>
                 <li class="nav-item waves-light nav-body" routerLinkActive="active" mdbWavesEffect>
                     <a class="nav-link" [routerLink]="['/user-management']">User Management</a>
@@ -25,15 +41,21 @@
             </ul>
 
             <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item dropdown btn-group" dropdown>
+                <li *appHasRole="[5]" class="nav-item dropdown nav-body" dropdown routerLinkActive="active">
+                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+                        mdbWavesEffect> Users<span class="caret"></span></a>
+                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                        <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/register']">Create User</a>
+                        <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/users']">View Users</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown btn-group" dropdown >
                     <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown"
                         mdbWavesEffect>
-                        Hi
+                        Hi  &nbsp; 
                         <!-- Hi {{authService.decodedToken.name}} -->
                     </a>
                     <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
-                        <a class="dropdown-item" href="#">Create User</a>
-                        <!-- <button>hi</button> -->
                         <a (click)="logout()" class="dropdown-item">Log Out</a>
                     </div>
                 </li>
