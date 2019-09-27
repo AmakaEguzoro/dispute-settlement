@@ -108,7 +108,8 @@
                 </select>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                <select disabled class="browser-default custom-select" (change)="getVendor($event)" formControlName="method">
+                <select disabled class="browser-default custom-select" (change)="getVendor($event)"
+                    formControlName="method">
                     <option value="">Vendors</option>
                     <option *ngFor="let vendor of vendors" [value]="vendor">{{vendor}}</option>
                 </select>
@@ -123,16 +124,17 @@
         <!-- Second row -->
         <div class="row">
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <select class="browser-default custom-select stat" (change)="getStatus($event)" formControlName="method">
+                <select class="browser-default custom-select stat" (change)="getStatus($event)"
+                    formControlName="method">
                     <option value="">Status</option>
                     <option *ngFor="let status of stat" [value]="status">{{status}}</option>
                 </select>
             </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -16px;">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -9px;">
                 <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
                     [options]="myDatePickerOptions"></mdb-date-picker>
             </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -16px;">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -9px;">
                 <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
                     [options]="myDatePickerOptions"></mdb-date-picker>
             </div>
@@ -148,10 +150,14 @@
                     [(ngModel)]="filterValue">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <mdb-badge class="search" (click)="searchTrans()"><mdb-icon fas icon="search"></mdb-icon>
-                    &nbsp;Search</mdb-badge>
-                <mdb-badge class="save" (click)="exportAsXLSX()"> <mdb-icon fas icon="download"></mdb-icon>
-                    &nbsp;Save</mdb-badge>
+                <mdb-badge class="search" (click)="searchTrans()">
+                    <mdb-icon fas icon="search"></mdb-icon>
+                    &nbsp;Search
+                </mdb-badge>
+                <mdb-badge class="save" (click)="exportAsXLSX()">
+                    <mdb-icon fas icon="download"></mdb-icon>
+                    &nbsp;Save
+                </mdb-badge>
             </div>
         </div>
     </form>
