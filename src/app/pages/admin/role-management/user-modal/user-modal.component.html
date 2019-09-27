@@ -1,0 +1,60 @@
+<div class="modal-dialog-scrollable">
+    <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-12">
+          <h4> Edit Roles for {{data.name}}</h4>
+        </div>
+      </div>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+        <div>
+            Username:
+            <strong style="float: right">{{data.username}}</strong>
+          </div>
+    </div>
+
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary">submit</button>
+      <button type="button" class="btn btn-white" (click)="bsModalRef.hide()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div role="document">
+  <div>
+    <form class="form-horizontal" id="add-form" [formGroup]="editPostForm" (ngSubmit)="onPostEditFormSubmit()">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="add-modal-label">Edit Post</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Role</label>
+          <div class="col-sm-10">
+            <select formControlName="is_admin">
+              <option [value]="null">Select Role</option>
+              <option *ngFor="let item of users" [value]="item.id">{{item.is_admin}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">UserName</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="username" />{{users.username}}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onClose()">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
+  </div>
+</div> -->

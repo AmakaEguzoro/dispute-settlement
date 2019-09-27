@@ -1,0 +1,30 @@
+button{
+    // background: #2D9CDB;
+    color: white;
+    border-radius: 8px;
+    width: 136px;
+    margin-right: 3rem;
+  }
+  
+  button:disabled {
+      cursor: not-allowed;
+      pointer-events: all !important;
+}
+    
+label{
+color: black;
+ }
+
+ @media (min-width: 768px) and (max-width: 1024px) {
+  
+    button{
+        margin-right: 1rem;
+      }
+  }
+  @media (min-width: 375px) and (max-width: 812px) {
+  
+    button{
+        margin-right: 1rem;
+      }
+    
+  }

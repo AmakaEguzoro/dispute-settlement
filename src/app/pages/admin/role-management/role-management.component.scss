@@ -1,0 +1,60 @@
+.head{
+    font-weight: 600 !important;
+  }
+  .card .card-body {
+    padding: 7px;
+  }
+  .card{
+    width: 100%;
+  }
+  table td {
+    font-size: smaller;
+    padding-bottom: 0px;
+      padding-top: 2px;
+  }
+
+  table.table th, table.table td {
+    padding-top: 0.1rem;
+    padding-bottom: 0rem;
+}
+.loading-icon{
+  position: absolute;
+  left: 50%;
+  margin-top: 0rem;
+  cursor: wait;
+}
+ button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+   }
+  label{
+    font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: #828282;
+  }
+
+  .trans-head{   
+    background: rgba(242, 242, 242, 0.56);
+    border: 3px solid rgba(242, 242, 242, 0.56); 
+     }
+     .edit{
+      width: 6rem;
+      border-radius: 5px;
+      margin-top: 3px;
+      height: 23px;
+      font-weight: 500;
+      font-size: 13px;
+      // line-height: 11px;
+      text-align: center;
+      background: #2F80ED;
+    }
+
+    // input{
+    //   width: 15%;
+    // }
+    .form-control{
+      width: 15%;
+      // height: 2px
+    }

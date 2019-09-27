@@ -9,14 +9,14 @@ main {
     flex: 1 0 auto;
 }
 
-:host /deep/ div.mydp.picker {
+/* :host /deep/ div.mydp.picker {
   z-index: 98;
 }
 
 :host /deep/ .mydp.picker.picker--opened {
   z-index: 1000;
-}
+} */
 
-:host /deep/ mdb-select {
+/* :host /deep/ mdb-select {
   z-index: 99;
-}
+} */
