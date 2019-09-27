@@ -22,7 +22,8 @@ export class RoleManagementComponent implements OnInit {
   maxSize = 10;
   serial: number;
   lastPage: number;
-  public searchString: string;
+  searchString: string;
+  index;
 
   constructor(private authService: AuthService,
     private modalService: BsModalService,
@@ -47,8 +48,18 @@ export class RoleManagementComponent implements OnInit {
 
     });
   }
-
-  headElements = ['S/N', 'ID', 'NAME', 'USERNAME', 'EMAIL', 'ROLE', 'DATE', 'EDIT',];
+  // updateSample(index: any, modal) {
+  //   // modal =this.users.response;
+  //   this.index = index;
+  //   this.users = { ...this.users[index]}
+  //   this.bsModalRef = this.modalService.show(modal,
+  //     Object.assign({}, { class: 'gray modal-lg' })
+  //   );
+  // }
+  // update(item) {
+  //   this.users[this.index] = item;
+  // }
+  headElements = ['S/N', 'NAME', 'USERNAME', 'EMAIL', 'ROLE', 'DATE', 'EDIT', 'REMOVE'];
 
   openModal(modal) {
     this.users.response = modal;
@@ -59,6 +70,32 @@ export class RoleManagementComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(UserModalComponent, { initialState });
   }
+  // editPost(id: number) {
+  //   this.authService.changePostId(id);
+
+  //   this.bsModalRef = this.modalService.show(UserModalComponent);
+  //   this.bsModalRef.content.event.subscribe(result => {
+  //     if (result == 'OK') {
+  //       setTimeout(() => {
+  //         this.getUsers();
+  //       }, 5000);
+  //     }
+  //   });
+  // }
+
+  // editUser(item) {
+  //   let load = {
+  //     "username":item.username
+  //   }
+  //   this.authService.editUsers(load).subscribe(data => {
+  //     console.log("added -", data);
+
+  //   }, error => {
+  //     console.log('edit error -', error);
+
+  //   })
+  // }
+
   pageChanged(event: any): void {
     this.loading = true;
     this.currentPage = event.page;

@@ -93,15 +93,18 @@ export class LoginComponent implements OnInit {
   login() {
     this.loading = true;
     if (this.loginForm.valid) {
-      this.user = Object.assign({}, this.loginForm.value);
-      this.authService.login(this.user).subscribe((data) => {
-        this.loading = false;        
-        this.router.navigate(['/transaction/details']);
-      }, error => {
-        this.toastService.error(error.error.error);
-        console.log(error);
-        this.loading = false;
-      })
+      if(this.loginForm.dirty){
+        this.user = Object.assign({}, this.loginForm.value);
+        this.authService.login(this.user).subscribe((data) => {
+          this.loading = false;        
+          this.router.navigate(['/transaction/details']);
+        }, error => {
+          this.toastService.error(error.error.error);
+          console.log(error);
+          this.loading = false;
+        })
+      }
+  
     }
   }
 

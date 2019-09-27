@@ -80,7 +80,7 @@ export class TransactionReversalComponent implements OnInit {
       this.loading = false;
       this.reversedData = data.data.transactions;
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
-      this.lastPage = data.data.lastPage;
+      this.lastPage = data.data.lastPage * this.perPage;
       this.failedReversalAmount = data.data.failedReversalAmount;
       this.reversedAmount = data.data.reversedAmount;
     }, error => {
@@ -116,6 +116,7 @@ export class TransactionReversalComponent implements OnInit {
     startDate: this.dateRange,
     ariaLabelOpenCalendar: 'Open Calendar',
     closeAfterSelect: true,
+    minYear: 1900,
     // disableUntil: this.dateRange;
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
@@ -123,9 +124,10 @@ export class TransactionReversalComponent implements OnInit {
   stat = ['Reversed', 'Declined'];
   Refs = ['Terminal ID', 'Agent ID', 'Sequence Number', 'Transaction Ref'];
   products = [
-    'IKEDC', 'TRANSFER', 'WITHDRAWAL', 'EKEDC', 'MULTICHOICE', 'EEDC', 'PHED', 'AEDC',
-    'MTN-VTU', 'IBEDC', 'MTN-DATA', 'GLO-VTU', 'AIRTEL-VTU', 'AIRTEL-PIN', 'GLO-DATA', 'RCN_FUND',
-    'ETISALAT-VTU', 'KEDCO', 'STARTIMES', 'GERRAD HOSPITAL'];
+    'IKEDC', 'IBEDC','EKEDC','EEDC', 'PHED', 'AEDC','KEDCO',
+     'TRANSFER', 'WITHDRAWAL',  'MULTICHOICE', 
+    'MTNVTU', 'MTNDATA', 'AIRTELDATA', 'AIRTELVTU','GLOVTU', 'GLODATA', 
+    'ETISALATVTU','ETISALATDATA', 'RCN_FUND',  'STARTIMES', 'GEHS', 'SMILE'];
 
   getProduct(event) {
     this.product = event.target.value;
@@ -141,6 +143,7 @@ export class TransactionReversalComponent implements OnInit {
     this.start = this.searchForm.value.startDate;
     this.end = this.searchForm.value.endDate;
     this.range = `${this.start} - ${this.end}`;
+    this.getFilter();
     this.filterData = {
       "dateRange": this.range,
       "terminalId": this.terminalId ? this.terminalId : '',
@@ -159,7 +162,7 @@ export class TransactionReversalComponent implements OnInit {
     this.TransactionReserval(this.filterData);
   }
 
-  getFilter(event) {
+  getFilter() {
     this.filterValue = this.searchForm.value.filterValue;
     if (this.filter == 'Sequence Number') {
       this.sequenceNumber = this.filterValue;

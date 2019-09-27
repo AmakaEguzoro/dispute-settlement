@@ -112,7 +112,7 @@
               Commission:
             <strong class="details" style="float: right"> &#x20A6; {{data.commission}}</strong>
           </div>
-          <div class="details mt-2">
+          <div *appHasRole="[5]" class="details mt-2">
               Response:
               <strong class="details" style="float: right">
                 <textarea>

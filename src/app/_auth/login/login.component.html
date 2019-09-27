@@ -26,7 +26,7 @@
 						</span>
 					</div>
 
-					<button [disabled]="!loginForm.valid" class="btn btn btn-block mt-4 mb-3" (click)="login()">Sign-in
+					<button [disabled]="!loginForm.valid && !loginForm.dirty" class="btn btn btn-block mt-4 mb-3" (click)="login()">Sign-in
 						<i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
 					</button>
 					<!-- <span class="login-title"><input type="checkbox"> Remember me</span> -->

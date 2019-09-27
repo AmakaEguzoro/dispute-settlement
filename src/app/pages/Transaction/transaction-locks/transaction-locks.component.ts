@@ -68,7 +68,7 @@ export class TransactionLocksComponent implements OnInit {
       this.loading = false;
       this.locksData = data.transactions;
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
-      this.lastPage = data.lastPage;
+      this.lastPage = data.lastPage * this.perPage;
       this.tranLockAmount = data.tranLockAmount;
     }, error => {
       this.isData = false;
@@ -84,9 +84,6 @@ export class TransactionLocksComponent implements OnInit {
       "reference": item.reference,
       "amount": item.amount,
     }
-    console.log(load);
-
-
     this.transactionService.removeTransactionLocks(load).subscribe((data) => {
       this.loading = false;
       this.toastService.success(data.message)
@@ -119,6 +116,7 @@ export class TransactionLocksComponent implements OnInit {
     startDate: this.dateRange,
     ariaLabelOpenCalendar: 'Open Calendar',
     closeAfterSelect: true,
+    minYear: 1900,
     // disableUntil:
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
@@ -133,6 +131,7 @@ export class TransactionLocksComponent implements OnInit {
     this.start = this.searchForm.value.startDate;
     this.end = this.searchForm.value.endDate;
     this.range = `${this.start} - ${this.end}`;
+    this.getFilter();
     this.filterData = {
       "dateRange": this.range,
       "walletId": this.walletId ? this.walletId : '',
@@ -144,7 +143,7 @@ export class TransactionLocksComponent implements OnInit {
     this.TransactionLocks(this.filterData);
   }
 
-  getFilter(event) {
+  getFilter() {
     this.filterValue = this.searchForm.value.filterValue;
     if (this.filter == 'Agent ID') {
       this.walletId = this.filterValue;

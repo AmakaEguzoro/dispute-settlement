@@ -14,17 +14,16 @@ export class NavigationComponent implements OnInit {
   @ViewChild('sidenav') sidenav: ElementRef;
 
   clicked: boolean;
-  // userDisplayName = '';
   userDisplayName: any
-  constructor(private authService: AuthService, private router: Router,
-    private toastService: ToastService) {
+  constructor(private authService: AuthService, private router: Router, ) {
     this.clicked = this.clicked === undefined ? false : true;
   }
 
   ngOnInit() {
     // this.userDisplayName = localStorage.getItem('loggedUser');
-    // console.log(this.userDisplayName);
-    this.username()
+
+    this.userDisplayName = this.username();
+    console.log(this.userDisplayName);
   }
 
   setClicked(val: boolean): void {
@@ -39,9 +38,8 @@ export class NavigationComponent implements OnInit {
   }
 
   username() {
-  this.userDisplayName = this.authService.currentUserName();
-   console.log(this.userDisplayName);
-   
+    return this.authService.currentUserName();
+    //  console.log(this.userDisplayName);
   }
 
   named() {
