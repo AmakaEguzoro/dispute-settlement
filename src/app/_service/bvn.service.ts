@@ -1,11 +1,10 @@
-import { FormGroup } from '@angular/forms';
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { BvnLoginService } from 'app/_service/bvn-login.service'
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ export class BvnService {
    }
 
   createForm(bvn: any, token: string): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'bvn-token': token });
     return this.http.post<any>(this.baseUrl, bvn, { headers: headers })
       .pipe(
         map(data => data),
