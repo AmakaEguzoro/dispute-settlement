@@ -8,5 +8,11 @@ export const Endpoint = {
     AUTH: {
         login: `${auth}/login`,
         logout: `${auth}/logout`,
+    },
+
+    AGENCY_BANKING: {
+        url: `${BASE_URL}`
     }
+
+
 }
