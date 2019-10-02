@@ -67,6 +67,7 @@
     "ngx-order-pipe": "^2.0.3",
     "ngx-pagination": "^4.1.0",
     "ngx-socket-io": "^3.0.1",
+    "ngx-web-worker": "^8.0.0",
     "node-quickbooks": "^2.0.31",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.2",

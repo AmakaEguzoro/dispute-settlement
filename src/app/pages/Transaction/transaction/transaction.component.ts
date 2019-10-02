@@ -9,7 +9,10 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { IMyOptions } from 'ng-uikit-pro-standard';
 import { ExcelService } from 'app/_service/excel.service';
 import { AuthService } from 'app/_auth/auth.service';
+import * as fileSaver from 'file-saver';
 import { User } from 'app/_models/user';
+import { WebworkerService } from 'app/web-worker/webworker.service';
+import { EXCEL_EXPORT } from 'app/web-worker/excel-export.script';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -99,12 +102,15 @@ export class TransactionComponent implements OnInit {
     "download": false,
   };
 
+  // private EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  // private EXCEL_EXTENSION = 'xlsx';
 
   constructor(private transactionService: TransactionService,
     private router: Router, private modalService: BsModalService,
     private socket: SocketService, private fb: FormBuilder,
     private excelService: ExcelService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private webworker: WebworkerService) {
     this.searchForm = this.fb.group({
       method: ['', Validators.min],
       startDate: ['', Validators.min],
@@ -192,31 +198,28 @@ export class TransactionComponent implements OnInit {
     this.loading = true;
     this.transactionService.getTransaction(this.filterData).subscribe((data) => {
       this.loading = false;
-      this.exportData = data.data.transactions;
+      this.exportData = data.data.transactions;      
       this.excelService.exportAsExcelFile(this.exportData, 'ITEX-TranReport');
       
     }, error => {
       this.isData = false;
       this.loading = false;
       console.log('cant get transaction details', error);
-    })
-    
-    
-    
+    })    
   }
+
 
   Transaction(payload) {
     this.isData = true;
     this.loading = true;
     this.transactionService.getTransaction(payload).subscribe((data) => {
       this.loading = false;
-      this.detailsData = data.data.transactions;
+      this.detailsData = data.data.transactions; 
       console.log(this.detailsData);
       
       this.serial = 1 + (this.currentPage - 1) * this.perPage;
       this.lastPage = data.data.lastPage * this.perPage;
       console.log("Last Page logged", this.lastPage);
-      
     }, error => {
       this.isData = false;
       this.loading = false;
@@ -235,12 +238,7 @@ export class TransactionComponent implements OnInit {
     // 
   };
 
-  pageChanged(event: any): void {
-    this.loading = true;
-    this.currentPage = event.page;
-    this.Transaction(this.payload);
-    this.router.navigate(['/transaction/details'], { queryParams: { page: this.currentPage } });
-  };
+ 
 
   headElements = ['S/N', 'PRODUCT', 'SEQUENCE', 'AGENT ID', 'TERMINAL', 'CHANNEL',
     'AMOUNT', 'STATUS', 'RESPONSE TIME', 'DATE'];
@@ -303,7 +301,6 @@ export class TransactionComponent implements OnInit {
   }
   getProduct(event) {
     this.product = event.target.value;
-    
   }
   getType(event) {
     this.transactionType = event.target.value;
@@ -348,7 +345,7 @@ export class TransactionComponent implements OnInit {
     
     this.Transaction(this.filterData);
     this.TransactionSummary(this.filterData);
-    console.log(this.filterData);
+    // console.log(this.filterData);
     
     this.socket.disconnectSocket();
   }
@@ -373,5 +370,19 @@ export class TransactionComponent implements OnInit {
       this.cardRRN = this.filterValue;
     }
   }
+
+  pageChanged(event: any): void {
+    // this.loading = true;
+    this.currentPage = event.page;
+    console.log('current page', this.currentPage);
+    
+    this.searchTrans();
+    // this.Transaction(this.payload);
+    // this.Transaction(this.filterData);
+
+    
+    this.router.navigateByUrl('/transaction/details', { queryParams: { page: this.currentPage } });
+  
+  };
 
 }

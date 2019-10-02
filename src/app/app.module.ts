@@ -40,6 +40,7 @@ import { RoleGuard } from './_auth/role-guard.service';
 import { NavigationModule } from './main-layout/navigation/navigation.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DirectiveModule } from './directive.module';
+import { WebworkerService } from './web-worker/webworker.service';
 
 const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" } } };
 
@@ -100,7 +101,8 @@ export function tokenGetter() {
     HttpInterceptorProvider,
     AuthGuard,
     RoleGuard,
-    SocketService
+    SocketService,
+    WebworkerService
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
