@@ -21,6 +21,11 @@
                 "output": "/assets"
               },
               {
+                "glob": "**/*",
+                "input": "./node_modules/xlsx/dist",
+                "output": "./scripts/"
+              },
+              {
                 "glob": "favicon.ico",
                 "input": "src",
                 "output": "/"
@@ -125,6 +130,11 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/xlsx/dist",
+                "output": "./scripts/"
               },
               {
                 "glob": "favicon.ico",

@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-3"></div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="card" [style.height.em]="'52'">
+        <div class="card-header">
+          <img src="../../../../assets/ItexLogo.png" class="img-fluid mx-auto d-block">
+        </div>
+        <h5 class="text-center font-weight-bold mt-2">Services Status Report</h5>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered table-striped border-top" small="true">
+              <thead *ngIf="responseData1">
+                <tr>
+                  <th>S/N</th>
+                  <th>Services</th>
+                  <th>Balance</th>
+                  <th [ngStyle]="{'display': 'none'}">Last Deposit</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <mdb-spinner class="loading-icon" *ngIf="isLoading" spinnerType="big" spinnerColor="blue">
+                </mdb-spinner>
+
+                <tr *ngFor="let el of responseData1 let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ el.service }}</td>
+                  <td>
+                    <span class="my-badge my-badge-pill" [ngClass]="{
+                                    'badge-danger' : el.IntBalance <= 1000000,
+                                    'badge-warning' : el.IntBalance > 1000001 && el.IntBalance < 5000000,
+                                    'badge-success' : el.IntBalance > 5000000,
+                                    'badge-info' : el.IntBalance == 0
+                                  }">{{ el.IntBalance | currency:'NGN':"&#x20A6;":'1.2-2' }}
+                    </span>
+                  </td>
+                  <td [ngStyle]="{'display': 'none'}">{{ el.lastDeposit }}</td>
+                  <td>
+                    <button type="button" class="btn btn-sm" [ngClass]="{
+                                  'btn-success' : el.status == 'ON',
+                                  'btn-danger' : el.status == 'OFF'
+                                }" (click)="callSwitch(el.service, el.status)">{{el.status}}</button>
+                  </td>
+                </tr>
+                <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br>
+</div>

@@ -1,0 +1,40 @@
+<div *ngIf="!isAuthenticated()" class="container-fluid">
+
+	<div class="col-md-4 offset-md-4 middle">
+		<div class="jumbotron w-100 h-100" id="jumbotron">
+			<div class="container-fluid">
+				<img src="../../../../assets/ItexLogo.png" alt="logo" class="img-fluid mx-auto d-block ">
+				<p class="text-center new-style-font mb-3 pb-15">Login to access Dashboard</p>
+			</div>
+			<div class="container-fluid">
+				<form [formGroup]="loginForm">
+					<div class="form-group mb-1">
+						<input class="form-control" type="text" placeholder="Enter Username" formControlName="username"
+							[ngClass]="{'is-invalid': (loginForm.get('username').touched ||
+				loginForm.get('username').dirty) &&
+				!loginForm.get('username').valid }">
+						<span class="invalid-feedback">
+							<h5 class="login-title"> Please enter username </h5>
+						</span>
+						<br>
+						<input class="form-control" type="password" placeholder="Enter password"
+							formControlName="password" [ngClass]="{'is-invalid': (loginForm.get('password').touched ||
+					  loginForm.get('password').dirty) &&
+					  !loginForm.get('password').valid }">
+						<span class="invalid-feedback">
+							<h5 class="login-title"> Please enter password </h5>
+						</span>
+					</div>
+
+					<button [disabled]="!loginForm.valid && !loginForm.dirty" class="btn btn btn-block mt-4 mb-3" (click)="login()">Sign-in
+						<i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+					</button>
+					<!-- <span class="login-title"><input type="checkbox"> Remember me</span> -->
+					<span class="float-right login-title"><a href="#">Forgot password?</a></span>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</div>

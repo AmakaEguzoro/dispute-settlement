@@ -1,107 +1,105 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginRequestModel } from 'model/request/auth.model';
-import { Observable, from } from 'rxjs';
-import { LoginResponseModel } from 'model/response/auth.model';
-import { Endpoint } from 'common/endpoint'
-import { map, catchError } from 'rxjs/operators';
-import { EncrDecrService } from '../service/encr-decr.service';
-import { Constants } from 'common/constants';
-import { StorageService } from '../service/storage.service';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
-import { User } from 'app/_models/user';
+import { User, EditUser } from 'app/_models/user';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Router } from '@angular/router';
+import { Register } from 'app/_models/register';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-// export class AuthService {
-//   token: any;
-//   constructor(private http: HttpClient,
-//     private storageService: StorageService) { }
-
-//   signIn(loginRequest: LoginRequestModel): Observable<LoginResponseModel> {
-//     return this.http.post(Endpoint.AUTH.login, loginRequest,
-//       {
-//         headers: {
-//           'Content-Type': 'application/json'
-//         }
-//       }).pipe(
-//         map(data => {
-//           this.processLogin(data);
-//           return data;
-//         }), catchError((error) => {
-//           console.log(error);
-//           return Observable.throw(error);
-//         }));
-//   }
-
-//   processLogin(response: LoginResponseModel) {
-//     this.storageService.set(Constants.STORAGE_VARIABLES.TOKEN, response);
-//   }
-
-//   isAuthenticated(): boolean {
-//     if (!this.storageService.get(Constants.STORAGE_VARIABLES.TOKEN)) {
-//       return false;
-//     }
-
-//     const login = this.storageService.get<LoginResponseModel>(Constants.STORAGE_VARIABLES.TOKEN);
-//     if (login.access_token && login.expires_at) {
-//       var expireInDate = new Date(login.expires_at);
-//       return expireInDate > (new Date());
-//     }
-
-//     return true;
-//   }
-
-//   signOut() {
-//     return this.http.get(Endpoint.AUTH.logout)
-//       .pipe(map(data => {
-//         this.storageService.clear(Constants.STORAGE_VARIABLES.TOKEN);
-//         return data;
-//       },
-//         error => {
-//           console.log(`error ${error}`);
-//         }
-//       ));
-//   }
-// }
 
 export class AuthService {
- 
-  baseUrl = environment.api.baseUrl +'/auth/';
+
+  baseUrl = environment.api.baseUrl;
   jwtHelper = new JwtHelperService();
-  decodedToken : any;
-  
-  // user: User;
-  constructor(private http: HttpClient,  private router: Router,
-    private toastService: ToastService) { }
+  decodedToken: any;
+  postIdSource = new  BehaviorSubject<number>(0);
+  postIdData: any;
+  constructor(private http: HttpClient, private router: Router,
+    private toastService: ToastService) { 
+      this.postIdData= this.postIdSource.asObservable();
+    }
 
   login(user: User) {
-
-    return this.http.post(this.baseUrl + 'login', user)
-    .pipe(
-      map((response: any) => {
-        const user = response;
-        if(user) {
-          localStorage.setItem('token', user.token);
-          // this.decodedToken = this.jwtHelper.decodeToken(user.token);
-          // console.log(this.decodedToken)
-        }
-      })
-    );
+    return this.http.post(this.baseUrl + '/auth/login', user)
+      .pipe(
+        map((response: any) => {
+          const user = response;
+          if (user) {
+            localStorage.setItem('token', user.token);
+            localStorage.setItem('role', user.user.is_admin);
+            localStorage.setItem('loggedUser', user.user.name);
+            localStorage.setItem('loggedEmail', user.user.email);
+            localStorage.setItem('walletId', user.user.walletData);
+          }
+        })
+      );
   }
 
-  loggedIn() {
+  isAuthenticated() {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token)
   }
 
-  logout() {
-    localStorage.removeItem('token')
-    this.router.navigate(['/login']),
-    this.toastService.success('Logged Out')
+  currentUserWallet() {
+    const walletString = localStorage.getItem('walletId');
+    if (walletString) {
+      let wallet = walletString.split(",")[0];
+      return wallet;
+    }
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('loggedUser');
+    localStorage.removeItem('loggedEmail');
+    localStorage.removeItem('walletId');
+    localStorage.clear();
+    this.router.navigate(['/login']),
+      this.toastService.success('Logged Out')
+  }
+
+  register(newUser: Register) {
+    return this.http.post(this.baseUrl + '/users/create', newUser);
+  }
+  currentUserName() {
+    const username = localStorage.getItem('loggedUser');
+    if (username) {
+    } return username
+  }
+  roleMatch(expectedRole): boolean {
+    let isMatch = false;
+    const roles = localStorage.getItem('role');
+    const userRoles = roles;
+    expectedRole.forEach(element => {
+      if (userRoles.includes(element)) {
+        isMatch = true;
+        return;
+      }
+    });
+    return isMatch;
+  }
+
+  getUsers() {
+    return this.http.get(this.baseUrl + `/users/fetch/all`);
+  }
+  
+  editUsers(editUser: EditUser) {
+    return this.http.post(this.baseUrl + `/users/fetch`, editUser).pipe(
+      map((response: any) => {
+        const editUser = response;
+        return editUser;
+      }
+      ));
+  }
+
+  changePostId(id: number){
+    this.postIdSource.next(id);
+}
 }

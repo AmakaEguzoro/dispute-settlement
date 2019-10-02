@@ -8,86 +8,101 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes.service';
-
-import { environment } from '../environments/environment';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
-
 import { ViewsModule } from './views/views.module';
 import { SharedModule } from './shared/shared.module';
 import { MDBSpinningPreloader } from 'ng-uikit-pro-standard';
 
 
 // main layout
-import { NavigationModule } from './main-layout/navigation/navigation.module';
 
 import { AsdevApiService } from './providers/asdev-api.service';
 
 //encrption decryption service
-import { EncrDecrService } from 'app/service/encr-decr.service';
-import { RequestInterceptorService } from './service/requset-interceptor.service';
-
-import { MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatDialogModule, MatProgressSpinnerModule, MatTabsModule } from '@angular/material';
 import { AuthGuard } from './_auth/auth.guard';
 import { HttpInterceptorProvider } from './_auth/errorInterceptor';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
-
-
-
 import { OrderModule } from 'ngx-order-pipe';
-import { TransactionComponent } from './Transaction/transaction/transaction.component';
-import { TransactionCardComponent } from './Transaction/transaction-card/transaction-card.component';
-import { ModelComponent } from './Transaction/model/model.component';
-import { PaginationModule, ModalModule } from 'ngx-bootstrap';
+import { PaginationModule, ModalModule, BsDatepickerModule, TabsModule } from 'ngx-bootstrap';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { SocketService } from './socket.service';
- 
-const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" }} };
+import { SocketService } from './_service/socket.service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { PagesModule } from './pages/pages.module';
+import { ModelComponent } from './pages/Transaction/transaction/model/model.component';
+import { NotificationComponent } from './views/notification/notification.component';
+import { ReversalModelComponent } from './pages/Transaction/transaction-reversal/reversal-model/reversal-model.component';
+import { RegisterComponent } from './_auth/register/register.component';
+import { AuthModule } from './_auth/_auth.module';
+import { ServiceModule } from './_service/_service.module';
+import { HasRoleDirective } from './main-layout/navigation/directives/has-role.directive';
+import { UserModalComponent } from './pages/admin/role-management/user-modal/user-modal.component';
+import { RoleGuard } from './_auth/role-guard.service';
+import { NavigationModule } from './main-layout/navigation/navigation.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { DirectiveModule } from './directive.module';
+import { WebworkerService } from './web-worker/webworker.service';
+
+const config: SocketIoConfig = { url: 'http://197.253.19.76:8002', options: { query: { "token": "59fj9439ewdi93" } } };
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    //itex
-    TransactionComponent,
-    TransactionCardComponent,
-    ModelComponent
+    NotificationComponent,
+  
   ],
   imports: [
     BrowserModule,
     MatDialogModule,
     BrowserAnimationsModule,
     HttpClientModule, HttpModule,
-    NavigationModule,
     AppRoutes,
     RouterModule,
+    // RouterTestingModule,
     FormsModule,
-    SharedModule,
+    DirectiveModule,
+    NavigationModule,
     ViewsModule,
     ToastModule.forRoot(),
     ReactiveFormsModule,
     MDBBootstrapModulesPro.forRoot(),
-    // AngularFireModule.initializeApp(environment.firebase),
     // Itex
+    SharedModule,
+    PagesModule,
+    MatTabsModule,
+    // ServiceModule,
+    // AuthModule,
     OrderModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    TabsModule.forRoot(),
     MatProgressSpinnerModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        blacklistedRoutes: ['http://197.253.19.76:6200/api/v1/auth',
+          // 'http://197.253.19.76:6200/api/v1/users/create'
+        ]
+      }
+    })
   ],
   //itex
-  entryComponents: [ ModelComponent ],
-  
+  entryComponents: [ModelComponent, ReversalModelComponent, UserModalComponent],
+
   providers: [
     MDBSpinningPreloader,
     AsdevApiService,
-    // AngularFirestore,
-    // AngularFireStorage,
-    // EncrDecrService,
     //itex
-     HttpInterceptorProvider,
+    HttpInterceptorProvider,
     AuthGuard,
-    SocketService
+    RoleGuard,
+    SocketService,
+    WebworkerService
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]

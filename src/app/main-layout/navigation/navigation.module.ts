@@ -5,20 +5,29 @@ import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/cor
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HasRoleDirective } from './directives/has-role.directive';
+import { FooterComponent } from '../footer/footer.component';
+import { DirectiveModule } from 'app/directive.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
-    MDBBootstrapModulesPro.forRoot()
+    MDBBootstrapModulesPro.forRoot(),
+    DirectiveModule
   ],
   declarations: [
     NavigationComponent,
     NavbarComponent,
+    FooterComponent,
+    // HasRoleDirective
   ],
   exports: [
-    NavigationComponent
+    NavigationComponent,
+    FooterComponent,
+    NavbarComponent,
+    // HasRoleDirective
   ],
   schemas: [
     NO_ERRORS_SCHEMA,

@@ -1,0 +1,35 @@
+.trans-category{
+    font-size: 11px ;
+    color: darkgray;
+    }
+
+.modal-tit{
+    font-size: 13px;
+}
+.details{
+    font-size: 14px
+}
+.vas-address{
+    float: right; 
+    margin-left: 7rem;
+    margin-top: -23px;
+    margin-bottom: 9px;
+}
+textarea{
+    height: 11rem;
+    width: 17rem;
+    font-size: 14px
+}
+@media (min-width: 768px) and (max-width: 1024px){
+    textarea{
+        height: 8rem;
+        width: 9rem;
+    }
+  }
+  @media (min-width: 1024px) and (max-width: 1366px){
+    textarea{
+        height: 11rem;
+        width: 17rem;
+    }
+  }
+
