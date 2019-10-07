@@ -35,6 +35,7 @@ import { EventCalendarComponent } from './event-calendar/event-calendar.componen
 import { MDBBootstrapModulesPro} from 'ng-uikit-pro-standard';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
 import { RoleManagerComponent } from './admins/role-manager/role-manager.component';
+import { AgencyBankingComponent } from 'app/AgencyBanking/agency-banking/agency-banking.component';
 // import { ErrordialogComponent } from '../views/errordialog/errordialog.component';
 
 @NgModule({
@@ -77,6 +78,7 @@ import { RoleManagerComponent } from './admins/role-manager/role-manager.compone
     Map3Component,
     EventCalendarComponent,
     RoleManagerComponent,
+    AgencyBankingComponent,
     // ErrordialogComponent,
     //  Itex
   
@@ -102,6 +104,7 @@ import { RoleManagerComponent } from './admins/role-manager/role-manager.compone
     ColorsComponent,
     ShadowComponent,
     RoleManagerComponent,
+    AgencyBankingComponent
     // ErrordialogComponent
    // Itex
   ],
