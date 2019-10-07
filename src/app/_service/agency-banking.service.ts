@@ -9,10 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class AgencyBankingService {
 
+  baseUrl = 'http://197.253.19.76:6200/api/v1/transaction/agents';
+
   constructor(public http:HttpClient) { }
  
   getAgencyBankingData(transaction:any):Observable<any>{
-    return this.http.post(Endpoint.AGENCY_BANKING.url, transaction ).pipe(
+    return this.http.post(this.baseUrl, transaction ).pipe(
       map((response: any) => {
           const transaction = response;
           return transaction;
