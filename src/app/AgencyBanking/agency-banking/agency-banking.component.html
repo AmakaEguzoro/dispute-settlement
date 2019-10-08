@@ -1,0 +1,38 @@
+<div class="container margin-top">
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-body">
+
+        <label>Agency Banking</label>
+
+        <!-- Filters -->
+        <form [formGroup]="searchForm">
+
+          <!-- Second row -->
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6" style="margin-top: -9px;">
+              <mdb-date-picker (dateChanged)="onDateChnaged($event)" id="startDate" placeholder="Select Date"
+                [options]="myDatePickerOptions"></mdb-date-picker>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+              <button type="button" class="btn btn-primary" (click)="downloadAgencyReport()"
+                [disabled]="loading">Download</button>
+            </div>
+          </div>
+
+        </form>
+
+        <!-- Transaction Details -->
+        <div class="loading-height">
+
+          <div class="card-body offset-md-5">
+            <div class="spinner-border center" *ngIf="!loading">
+              <span class="sr-only">Downloading Please Wait ...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
