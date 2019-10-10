@@ -1,0 +1,110 @@
+
+.btn {
+  margin-top: 3rem;
+}
+
+.btn-outline-cust {
+    color: #5c94bd;   // old color - #4f81c7;
+    border-color: #5c94bd;
+  }
+  
+  .btn-outline-cust:hover {
+    color: #fff;
+    background-color: #5c94bd;
+    border-color: #5c94bd;
+  }
+  
+  .btn-outline-cust:focus,
+  .btn-outline-cust.focus {
+    box-shadow: 0 0 0 0.2rem #5c94bd;;
+  }
+  
+  .btn-outline-cust.disabled,
+  .btn-outline-cust:disabled {
+    color: #5c94bd;
+    background-color: transparent;
+  }
+  
+  .btn-outline-cust:not(:disabled):not(.disabled):active,
+  .btn-outline-cust:not(:disabled):not(.disabled).active,
+  .show > .btn-outline-cust.dropdown-toggle {
+    color: #fff;
+    background-color: #5c94bd;
+    border-color: #5c94bd;
+  }
+  
+  .btn-outline-cust:not(:disabled):not(.disabled):active:focus,
+  .btn-outline-cust:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-outline-cust.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem #5c94bd;;
+  }
+  
+  // .spinner {
+  //   position: absolute;
+  //   text-align: center;
+  //   z-index: +1;
+  // }
+  
+  .my-badge {
+    display: inline-block;
+    font-size: 75%;
+    margin-top: 1.25rem;
+    font-weight: 300;
+    line-height: 1;
+    background-color: #5c94bd;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.16)
+  }
+  
+  .my-badge-pill {
+    padding : 15px 13px; 
+    border-radius: 10rem;
+  }
+  
+  .loading-icon{
+    position: absolute;
+    left: 45%;
+    margin-top: 10rem;
+    cursor: wait;
+   }
+  
+   .card-header {
+     background-color: #5c94bd;       //#2D9CDB;
+     height: 6rem;
+   }
+
+   .mcash__width {
+     width: 5rem;
+   }
+  
+  button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+  }
+  
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .card{
+       width: 35rem;
+       margin-left: -7rem;
+       }
+  }
+  
+  @media (min-width: 1024px) and (max-width: 1280px) {
+   .card{
+       width: 40rem;
+       margin-left: -7rem;
+       }
+   
+  }
+  
+  
+  
+  
+   
+  
+  
+  
