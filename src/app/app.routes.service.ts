@@ -15,7 +15,9 @@ import { RoleGuard } from './_auth/role-guard.service';
 import { DayCardComponent } from './pages/admin/dashboard-cards/daily-cards/day-card/day-card.component';
 import { WeekCardComponent } from './pages/admin/dashboard-cards/weekly-cards/week-card/week-card.component';
 import { MonthCardComponent } from './pages/admin/dashboard-cards/monthly-cards/month-card/month-card.component';
-import { McashComponent } from './pages/mcash/mcash.component';
+import { AgencyBankingComponent } from './AgencyBanking/agency-banking/agency-banking.component';
+import { McashTransactionComponent } from './pages/Mcash/transaction/mcash-transaction.component';
+
 
 
 const routes: Route[] = [
@@ -41,6 +43,12 @@ const routes: Route[] = [
       canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
 
       { path: 'transaction/details', component: TransactionComponent },
+
+      { path: 'agency/banking', component: AgencyBankingComponent,
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
+      { path: 'mcash/transactions', component: McashTransactionComponent,
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
 
       { path: 'service-status', component: ServiceStatusComponent,
        canActivate: [RoleGuard],data: { expectedRole: [4, 5]} },

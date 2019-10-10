@@ -54,7 +54,7 @@ export class TransactionReversalComponent implements OnInit {
     "transactionType": "",
     "transactionStatus": "",
     "viewPage": "",
-   "download":false
+  //  "download":false
   };
 
   constructor(private transactionService: TransactionService,
@@ -97,7 +97,7 @@ export class TransactionReversalComponent implements OnInit {
     this.loading = true;
     this.currentPage = event.page;
     this.TransactionReserval(this.payload);
-    this.router.navigate(['/transaction/reversed'], { queryParams: { page: this.currentPage } });
+    this.router.navigateByUrl('/transaction/reversal', { queryParams: { page: this.currentPage } });
   };
 
   openModal(modal) {
@@ -131,6 +131,7 @@ export class TransactionReversalComponent implements OnInit {
 
   getProduct(event) {
     this.product = event.target.value;
+    console.log('product value', this.product);
   }
   getStatus(event) {
     this.transactionStatus = event.target.value;
@@ -155,19 +156,24 @@ export class TransactionReversalComponent implements OnInit {
       "transactionType": "",
       "transactionStatus": this.transactionStatus ? this.transactionStatus : '',
       "viewPage": "",
-      "download":false
+      // "download":false
     };
 
-    console.log(this.filterData);
+
     this.TransactionReserval(this.filterData);
+    console.log(this.filterData);
   }
 
   getFilter() {
     this.filterValue = this.searchForm.value.filterValue;
     if (this.filter == 'Sequence Number') {
       this.sequenceNumber = this.filterValue;
+      console.log('sequence', this.sequenceNumber);
+      
     } else if (this.filter == 'Transaction Ref') {
       this.transactionReference = this.filterValue;
+      console.log('tran ID', this.transactionReference);
+      
     } else if (this.filter == 'Terminal ID') {
       this.terminalId = this.filterValue;
     } else if (this.filter == 'Agent ID') {

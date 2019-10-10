@@ -48,8 +48,7 @@ import { WeekCardComponent } from './admin/dashboard-cards/weekly-cards/week-car
 import { RouterModule } from "@angular/router";
 import { AppRoutes } from "app/app.routes.service";
 import { ExcelService } from "app/_service/excel.service";
-import { McashComponent } from './mcash/mcash.component';
-
+import { McashTransactionComponent } from './Mcash/transaction/mcash-transaction.component';
 
 @NgModule({
     imports: [
@@ -98,7 +97,9 @@ import { McashComponent } from './mcash/mcash.component';
       DayCardComponent,
       MonthCardComponent,
       WeekCardComponent,
-      McashComponent,
+
+      McashTransactionComponent,
+      
   
     ],
     exports: [
@@ -135,6 +136,8 @@ import { McashComponent } from './mcash/mcash.component';
       DayCardComponent,
       MonthCardComponent,
       WeekCardComponent,
+      
+      McashTransactionComponent,
     ],
     providers: [
       // itex

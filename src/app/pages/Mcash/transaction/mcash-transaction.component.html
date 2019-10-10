@@ -1,17 +1,20 @@
 <div class="container">
-    <label>Transactions</label>
+    <label>Mcash Transactions</label>
     <div *ngIf="userBalance != null" class="wallet">Wallet Balance: &nbsp; &#x20A6;{{userBalance}}</div>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="card classic-admin-card">
                 <div class="card-body" [style.height.em]="'6'">
-                    <p class="total-trans">Active Users</p>
+                    <p class="total-trans">Active Merchants</p>
                     <div class="total-users">
                         <mdb-icon class="users" fas icon="users"></mdb-icon>
                     </div> <br>
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
-                        <div *ngIf="isData == true" class="trans-amount mt-4">
+                        <p *ngIf="isData == true" class="summary-card-text mt-1">
+                                {{ terminalCount }}
+                                <br> Active Terminals</p>
+                        <div *ngIf="isData == true" class="trans-amount">
                             {{usersCount}}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
@@ -31,7 +34,7 @@
                             {{ totalCount }}
                             <br> Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount">
-                            &#x20A6;{{totalAmount / 100 | thousandSuff : 2}}</div>
+                            &#x20A6;{{totalAmount | thousandSuff : 2}}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                 </div>
@@ -50,7 +53,7 @@
                             {{ successCount }}
                             <br> Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
-                            &#x20A6;{{successAmount / 100 | thousandSuff : 2}}</div>
+                            &#x20A6;{{successAmount | thousandSuff : 2}}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                 </div>
@@ -69,7 +72,7 @@
                             {{failedCount  }}
                             <br>Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
-                            &#x20A6;{{failedAmount / 100 | thousandSuff : 2}}</div>
+                            &#x20A6;{{failedAmount | thousandSuff : 2}}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                 </div>
@@ -80,48 +83,6 @@
 
     <!-- Filters -->
     <form [formGroup]="searchForm">
-        <div class="row">
-            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                <select class="browser-default custom-select" (change)="getChannel($event)" formControlName="method">
-                    <option value="">Channel</option>
-                    <!-- <option value="" disabled>ALL</option> -->
-                    <option *ngFor="let channel of channels" [value]="channel">{{channel}}</option>
-                </select>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                <select class="browser-default custom-select" (change)="getType($event)" formControlName="method">
-                    <option value="">Type</option>
-                    <option *ngFor="let type of type" [value]="type">{{type}}</option>
-                </select>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                <select class="browser-default custom-select" (change)="getProduct($event)" formControlName="method">
-                    <option value="">Product</option>
-                    <option *ngFor="let product of products" [value]="product">{{product}}</option>
-                </select>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                <select class="browser-default custom-select" (change)="getPaymentMethod($event)"
-                    formControlName="method">
-                    <option value="">Method</option>
-                    <option *ngFor="let method of methods" [value]="method">{{method}}</option>
-                </select>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                <select disabled class="browser-default custom-select" (change)="getVendor($event)"
-                    formControlName="method">
-                    <option value="">Vendors</option>
-                    <option *ngFor="let vendor of vendors" [value]="vendor">{{vendor}}</option>
-                </select>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                <select class="browser-default custom-select" (change)="getVendorType($event)" formControlName="method">
-                    <option value="">Vend-Type</option>
-                    <option *ngFor="let vendType of vendTypes" [value]="vendType">{{vendType}}</option>
-                </select>
-            </div>
-        </div>
-        <!-- Second row -->
         <div class="row">
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                 <select class="browser-default custom-select stat" (change)="getStatus($event)"
@@ -141,7 +102,6 @@
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                 <select class="browser-default custom-select ref" (change)="getRef($event)">
                     <option value="">Select</option>
-                    <option value="" disabled>Debit Reference</option>
                     <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
                 </select>
             </div>
@@ -182,48 +142,29 @@
 
                         <!-- </div> -->
                         <!--  -->
-                        <tr (click)="openModal(item)" *ngFor="let item of detailsData let i = index">
+                        <tr *ngFor="let item of detailsData let i = index">
                             <th scope="row">{{serial + i}}</th>
-                            <td>{{item.name}}
-                                <p class="trans-category">
-                                    {{item.category}}
+                            <td>{{item.merchantCode}}
+                                <p class="trans-category" style="font-style: italic">
+                                    {{item.type}}
                                 </p>
                             </td>
-                            <td>{{item.sequence}}</td>
-                            <td>{{item.wallet}}</td>
+                            <td>{{item.reference}}</td>
+                            <td>{{item.phonenumber}}</td>
                             <td>{{item.terminal}}</td>
-                            <td [ngClass]="{
-                                'pos' : item.channel == 'POS',
-                                'android' : item.channel == 'ANDROID',
-                                 'androidPOS' : item.channel == 'ANDROIDPOS',
-                                 'web' : item.channel == 'WEB',
-                                 'default' : item.channel == 'DEFAULT',
-                                 'others' : item.channel == 'OTHER',
-                                 'mtn' : item.channel == 'MTN'
-                              }">
-                                {{item.channel}}
-                            </td>
-                            <td> &#x20A6;{{item.nairaAmount | number: "1.2-2" }}
-                                <p [ngClass]="{
-                                    'cash' : item.paymentMethod == 'cash',
-                                    'cards' : item.paymentMethod == 'card'
-                                  }">
-                                    {{item.paymentMethod}}
-                                </p>
-                            </td>
+                            <td> &#x20A6;{{item.amount | number: "1.2-2" }}</td>                            
                             <td>
                                 <mdb-badge class="status" [ngClass]="{
                                                     'failed' : item.status == 'failed',
                                                     'success' : item.status == 'successful',
-                                                     'initialized' : item.status == 'initialized',
-                                                    'declined' : item.status == 'declined',
-                                                    'debited' : item.status == 'debited'
+                                                     'initialized' : item.status == 'initialized'
                                                   }"> {{item.status}}</mdb-badge>
                             </td>
+                            <td>{{item.message}}</td>
                             <td>
                                 <mdb-badge class="time" [ngClass]="{
-                                                        'warning' : item.processTime > 11,
-                                                        'success' : item.processTime <= 10,
+                                                        'warning' : item.processTime > 20,
+                                                        'success' : item.processTime <= 19,
                                                          'initialized' : item.processTime == 11,
                                                         'danger' : item.processTime == 0
                                                       }"> {{item.processTime}}s</mdb-badge>

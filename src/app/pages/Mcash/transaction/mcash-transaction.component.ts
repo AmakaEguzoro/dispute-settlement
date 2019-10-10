@@ -1,24 +1,22 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TransactionService } from 'app/_service/transaction.service';
+import { McashtransactionService } from 'app/_service/mcashtransaction.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SubSink } from 'subsink/dist/subsink';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { ModelComponent } from './model/model.component';
 import { SocketService } from 'app/_service/socket.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { IMyOptions } from 'ng-uikit-pro-standard';
 import { ExcelService } from 'app/_service/excel.service';
 import { AuthService } from 'app/_auth/auth.service';
-import * as fileSaver from 'file-saver';
 import { User } from 'app/_models/user';
 import { WebworkerService } from 'app/web-worker/webworker.service';
 import { EXCEL_EXPORT } from 'app/web-worker/excel-export.script';
 @Component({
   selector: 'app-transaction',
-  templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.scss']
+  templateUrl: './mcash-transaction.component.html',
+  styleUrls: ['./mcash-transaction.component.scss']
 })
-export class TransactionComponent implements OnInit {
+export class McashTransactionComponent implements OnInit {
 
   // Details
   isData: boolean;
@@ -51,6 +49,7 @@ export class TransactionComponent implements OnInit {
   totalCount: any;
   isLoading = true;
   usersCount: any;
+  terminalCount: any;
   // filters
   searchForm: FormGroup;
   paymentMethod: any;
@@ -105,7 +104,7 @@ export class TransactionComponent implements OnInit {
   // private EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
   // private EXCEL_EXTENSION = 'xlsx';
 
-  constructor(private transactionService: TransactionService,
+  constructor(private transactionService: McashtransactionService,
     private router: Router, private modalService: BsModalService,
     private socket: SocketService, private fb: FormBuilder,
     private excelService: ExcelService,
@@ -122,53 +121,40 @@ export class TransactionComponent implements OnInit {
   ngOnInit() {
     this.Transaction(this.payload);
     this.TransactionSummary(this.payload);
-    this.walletBalance();
-    setTimeout(() => {
-      this.getSocketData();
-    }, 1 * 60 * 1000);
+    // setTimeout(() => {
+    //   this.getSocketData();
+    // }, 1 * 60 * 1000);
   }
 
-  getSocketData() {
-    this.socket.getMessage().subscribe((Socketdata: any) => {
-      let currentWallet = this.userWallet();
-      if (currentWallet == "ALL" || currentWallet == Socketdata.data.wallet) {
-        this.detailsData.pop();
-        this.detailsData.unshift(Socketdata.data);
-        if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
-          this.failedAmount += parseInt(Socketdata.data.nairaAmount);
-          this.failedCount = parseInt(this.failedCount) + 1;
-          this.totalAmount += parseInt(Socketdata.data.nairaAmount);
-          this.totalCount += 1;
-        } else if (Socketdata.data.status == "successful") {
-          this.successCount += 1;
-          this.successAmount += parseInt(Socketdata.data.nairaAmount);
-          this.totalAmount += parseInt(Socketdata.data.nairaAmount);
-          this.totalCount += 1;
-        }
-      }
+  // getSocketData() {
+  //   this.socket.getMessage().subscribe((Socketdata: any) => {
+  //     let currentWallet = this.userWallet();
+  //     if (currentWallet == "ALL" || currentWallet == Socketdata.data.wallet) {
+  //       this.detailsData.pop();
+  //       this.detailsData.unshift(Socketdata.data);
+  //       if (Socketdata.data.status == "failed" || Socketdata.data.status == "declined") {
+  //         this.failedAmount += parseInt(Socketdata.data.nairaAmount);
+  //         this.failedCount = parseInt(this.failedCount) + 1;
+  //         this.totalAmount += parseInt(Socketdata.data.nairaAmount);
+  //         this.totalCount += 1;
+  //       } else if (Socketdata.data.status == "successful") {
+  //         this.successCount += 1;
+  //         this.successAmount += parseInt(Socketdata.data.nairaAmount);
+  //         this.totalAmount += parseInt(Socketdata.data.nairaAmount);
+  //         this.totalCount += 1;
+  //       }
+  //     }
 
-    });
+  //   });
 
-  }
+  // }
 
   userWallet() {
     return this.authService.currentUserWallet();
   }
-  walletBalance() {
-    const username = localStorage.getItem('loggedEmail');
-    const wallet = this.userWallet();
-    let balance = {
-      "username": username,
-      "wallet": wallet
-    }
-    this.transactionService.getWalletBalance(balance).subscribe((data) => {
-      this.userBalance = data;
-    }, error => {
-      this.userBalance = null;
-    })
-  }
+  
   exportAsXLSX(): void {
-    this.socket.disconnectSocket();
+    //this.socket.disconnectSocket();
     this.start = this.searchForm.value.startDate;
     this.end = this.searchForm.value.endDate;
     this.range = `${this.start} - ${this.end}`;
@@ -228,20 +214,19 @@ export class TransactionComponent implements OnInit {
   };
 
 
-  openModal(modal) {
-    this.detailsData.response = modal;
-    const initialState = {
-      data: this.detailsData.response,
-      ignoreBackdropClick: true,
-    };
-    this.bsModalRef = this.modalService.show(ModelComponent, { initialState, class: 'modal-lg' });
-    // 
-  };
+  // openModal(modal) {
+  //   this.detailsData.response = modal;
+  //   const initialState = {
+  //     data: this.detailsData.response,
+  //     ignoreBackdropClick: true,
+  //   };
+  //   this.bsModalRef = this.modalService.show(ModelComponent, { initialState, class: 'modal-lg' });
+  //   // 
+  // };
 
  
 
-  headElements = ['S/N', 'PRODUCT', 'SEQUENCE', 'AGENT ID', 'TERMINAL', 'CHANNEL',
-    'AMOUNT', 'STATUS', 'RESPONSE TIME', 'DATE'];
+  headElements = ['S/N', 'MERCHANT CODE', 'REFERENCE', 'PHONENUMBER', 'TERMINAL', 'AMOUNT', 'STATUS', 'MESSAGE', 'LIFE-CYCLE', 'DATE'];
 
   TransactionSummary(payload) {
     this.isData = true;
@@ -258,6 +243,8 @@ export class TransactionComponent implements OnInit {
       this.totalAmount = this.summaryData.totalAmount;
       this.totalCount = this.summaryData.transactionCount;
       this.usersCount = this.summaryData.usersCount;
+      this.terminalCount = this.summaryData.terminalCount;
+
     }, error => {
       this.isData = false;
       this.isLoading = false;
@@ -276,22 +263,8 @@ export class TransactionComponent implements OnInit {
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
-  methods = ['Card', 'Cash', 'Mcash'];
   stat = ['Approved', 'Declined', 'Pending'];
-  vendTypes = ['B2B', 'ITEX']
-  type = ['Postpaid', 'Prepaid', 'smartcard', 'Token', 'Non Energy', 'NIL'];
-  channels = ['POS', 'ANDROID', 'WEB', 'ANDROIDPOS', 'DEFAULT', 'OTHERS'];
-  Refs = ['Terminal ID', 'Agent ID', 'Sequence Number',
-    'Transaction Ref', 'Account number', 'Phone Number', 'cardRRN'];
-  vendors = ['Itex', 'Gecharl Resources', 'PhilTech Solutions', 'Vella', 'GI Solutions',
-    'Karosealliance', 'Payant', 'Now Now', 'Mars Konnect', 'FCube', 'Zenith Vas', 'XchangeBox',
-    'Daphty', 'GreyStone', 'Call Phone'
-  ];
-  products = [
-    'IKEDC', 'IBEDC','EKEDC','EEDC', 'PHED', 'AEDC','KEDCO',
-     'TRANSFER', 'WITHDRAWAL',  'MULTICHOICE', 
-    'MTNVTU', 'MTNDATA', 'AIRTELDATA', 'AIRTELVTU','GLOVTU', 'GLODATA', 
-    'ETISALATVTU','ETISALATDATA', 'RCN_FUND',  'STARTIMES', 'GEHS', 'SMILE'];
+  Refs = ['Terminal ID', 'Transaction Ref', 'Phone Number'];
 
   getPaymentMethod(event) {
     this.paymentMethod = event.target.value;
@@ -347,7 +320,7 @@ export class TransactionComponent implements OnInit {
     this.TransactionSummary(this.filterData);
     // console.log(this.filterData);
     
-    this.socket.disconnectSocket();
+    //this.socket.disconnectSocket();
   }
 
   getFilter() {
@@ -381,7 +354,7 @@ export class TransactionComponent implements OnInit {
     // this.Transaction(this.filterData);
 
     
-    this.router.navigateByUrl('/transaction/details', { queryParams: { page: this.currentPage } });
+    this.router.navigateByUrl('/mcash/transactions', { queryParams: { page: this.currentPage } });
   
   };
 

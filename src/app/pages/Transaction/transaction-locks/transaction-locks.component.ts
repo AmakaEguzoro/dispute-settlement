@@ -42,7 +42,7 @@ export class TransactionLocksComponent implements OnInit {
     "walletId": "",
     "transactionReference": "",
     "viewPage": "",
-    "download": false,
+    // "download": false,
   };
 
 
@@ -107,7 +107,7 @@ export class TransactionLocksComponent implements OnInit {
     this.loading = true;
     this.currentPage = event.page;
     this.TransactionLocks(this.payload);
-    this.router.navigate(['/transaction/locks'], { queryParams: { page: this.currentPage } });
+    this.router.navigateByUrl('/transaction/locks', { queryParams: { page: this.currentPage } });
   };
 
   // filters
@@ -137,7 +137,7 @@ export class TransactionLocksComponent implements OnInit {
       "walletId": this.walletId ? this.walletId : '',
       "transactionReference": this.transactionReference ? this.transactionReference : '',
       "viewPage": "",
-      "download": false
+      // "download": false
     };
     console.log(this.filterData);
     this.TransactionLocks(this.filterData);
