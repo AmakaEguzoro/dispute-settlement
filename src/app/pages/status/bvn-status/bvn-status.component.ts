@@ -5,7 +5,6 @@ import { BvnService } from 'app/_service/bvn.service';
 import { IMyOptions } from 'ng-uikit-pro-standard';
 
 
-
 @Component({
   selector: 'app-bvn-status',
   templateUrl: './bvn-status.component.html',

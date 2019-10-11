@@ -67,6 +67,9 @@ const routes: Route[] = [
 
       { path: 'users', component: RoleManagementComponent,
       canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]}},
+
+    ////////// MCASH ROUTE ////////////////////////
+    //  { path: 'Mcash', component: McashComponent},
     ]
   },
   
