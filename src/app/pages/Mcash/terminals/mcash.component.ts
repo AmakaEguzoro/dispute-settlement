@@ -1,4 +1,4 @@
-import { McashService } from './../../_service/mcash.service';
+import { McashterminalsService } from 'app/_service/mcashterminals.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -14,7 +14,7 @@ export class McashComponent implements OnInit {
   resp_message: string;
   isLoading: boolean;
 
-  constructor(private fb: FormBuilder, private mCash: McashService) { }
+  constructor(private fb: FormBuilder, private mCash: McashterminalsService) { }
 
 
   ngOnInit() {

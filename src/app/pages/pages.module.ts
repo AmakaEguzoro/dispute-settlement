@@ -49,6 +49,7 @@ import { RouterModule } from "@angular/router";
 import { AppRoutes } from "app/app.routes.service";
 import { ExcelService } from "app/_service/excel.service";
 import { McashTransactionComponent } from './Mcash/transaction/mcash-transaction.component';
+import { McashComponent } from './Mcash/terminals/mcash.component';
 
 @NgModule({
     imports: [
@@ -99,6 +100,7 @@ import { McashTransactionComponent } from './Mcash/transaction/mcash-transaction
       WeekCardComponent,
 
       McashTransactionComponent,
+      McashComponent,
       
   
     ],
@@ -138,6 +140,7 @@ import { McashTransactionComponent } from './Mcash/transaction/mcash-transaction
       WeekCardComponent,
       
       McashTransactionComponent,
+      McashComponent,
     ],
     providers: [
       // itex

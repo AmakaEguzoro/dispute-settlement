@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { McashService } from './mcash.service';
+import { McashterminalsService } from './mcashterminals.service';
 
 describe('McashService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: McashService = TestBed.get(McashService);
+    const service: McashterminalsService = TestBed.get(McashterminalsService);
     expect(service).toBeTruthy();
   });
 });

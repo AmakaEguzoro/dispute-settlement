@@ -17,6 +17,7 @@ import { WeekCardComponent } from './pages/admin/dashboard-cards/weekly-cards/we
 import { MonthCardComponent } from './pages/admin/dashboard-cards/monthly-cards/month-card/month-card.component';
 import { AgencyBankingComponent } from './AgencyBanking/agency-banking/agency-banking.component';
 import { McashTransactionComponent } from './pages/Mcash/transaction/mcash-transaction.component';
+import { McashComponent } from './pages/Mcash/terminals/mcash.component';
 
 
 
@@ -48,6 +49,9 @@ const routes: Route[] = [
       canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
 
       { path: 'mcash/transactions', component: McashTransactionComponent,
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
+      { path: 'mcash/map-terminals', component: McashComponent,
       canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
 
       { path: 'service-status', component: ServiceStatusComponent,

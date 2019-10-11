@@ -40,13 +40,15 @@
                     <a class="nav-link" [routerLink]="['/agency/banking']">Agency Banking</a>
                 </li>
 
-                <li class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+                <li *appHasRole="['2', '3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
                     <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
                         mdbWavesEffect>
                         MCASH (USSD)<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
                         <a class="dropdown-item waves-light" mdbWavesEffect
                             [routerLink]="['/mcash/transactions']">Transactions</a>
+                        <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect
+                            [routerLink]="['/mcash/map-terminals']">Map Terminals</a>
                     </div>
                 </li>
             </ul>

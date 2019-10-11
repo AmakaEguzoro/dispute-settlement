@@ -19,7 +19,7 @@
               <input type="text" formControlName="merchantCode" id="merch_code" class="form-control mb-2"
                 placeholder="Merchant code" autocomplete="off">
               <!-- <label for="merch_code">Merchant Code</label> -->
-              <div *ngIf="merchantCode.invalid && merchantCode.touched"  class="alert alert-danger">
+              <div *ngIf="merchantCode.invalid && merchantCode.touched"  class="alert alert-danger alert-dismissible">
                 Merchant code is required.
               </div>
             </div>
@@ -55,7 +55,7 @@
             <div style="position: relative;">
               <mdb-spinner spinnerType="small" spinnerColor="green" *ngIf="isLoading" class="spinner mt-2"></mdb-spinner>
             </div>
-            <span class="my-badge my-badge-pill" *ngIf="resp_message">{{ resp_message }}</span>
+            <span class="alert alert-success" *ngIf="resp_message">{{ resp_message }}</span>
 
             <!-- Submit button -->
             <div>
