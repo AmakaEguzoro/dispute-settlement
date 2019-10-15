@@ -50,6 +50,7 @@ import { AppRoutes } from "app/app.routes.service";
 import { ExcelService } from "app/_service/excel.service";
 import { McashTransactionComponent } from './Mcash/transaction/mcash-transaction.component';
 import { McashComponent } from './Mcash/terminals/mcash.component';
+import { ErrorAnalysisComponent } from './error-analysis/error-analysis.component';
 
 @NgModule({
     imports: [
@@ -101,6 +102,7 @@ import { McashComponent } from './Mcash/terminals/mcash.component';
 
       McashTransactionComponent,
       McashComponent,
+      ErrorAnalysisComponent,
       
   
     ],

@@ -1,0 +1,53 @@
+<div class="container">
+  <label>Error Analysis</label>
+  <!-- Filters -->
+  <form [formGroup]="searchForm">
+    <!-- Second row -->
+    <div class="row">
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -9px;">
+        <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
+          [options]="myDatePickerOptions"></mdb-date-picker>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -9px;">
+        <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date" [options]="myDatePickerOptions">
+        </mdb-date-picker>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+        <button type="button" mdbBtn color="primary" mdbWavesEffect><mdb-icon fas icon="search"></mdb-icon> Search</button>
+        
+    </div>
+    </div>
+
+
+  </form>
+
+  <!-- Transaction Details -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover" small="true">
+          <thead class="trans-head">
+              <tr>
+                  <th class="head" *ngFor="let head of headElements" scope="col">{{head}} </th>
+              </tr>
+          </thead>
+          <tbody>
+              <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
+              </mdb-spinner>
+              <tr *ngFor="let error of errorData let i = index">
+                <td>{{ i+ 1 }}</td>
+                <td>{{ error.name }}</td>
+                <td>{{error.error}}</td>
+                <td>{{error.count}}</td>
+              </tr>
+              <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+          </tbody>
+      </table>
+      <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
+          [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)"
+          firstText="&laquo;" lastText="&raquo;"></pagination>
+      </div>
+    </div>
+  </div>
+
+</div>

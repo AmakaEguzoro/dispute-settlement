@@ -18,6 +18,7 @@ import { MonthCardComponent } from './pages/admin/dashboard-cards/monthly-cards/
 import { AgencyBankingComponent } from './AgencyBanking/agency-banking/agency-banking.component';
 import { McashTransactionComponent } from './pages/Mcash/transaction/mcash-transaction.component';
 import { McashComponent } from './pages/Mcash/terminals/mcash.component';
+import { ErrorAnalysisComponent } from './pages/error-analysis/error-analysis.component';
 
 
 
@@ -46,6 +47,10 @@ const routes: Route[] = [
       { path: 'transaction/details', component: TransactionComponent },
 
       { path: 'agency/banking', component: AgencyBankingComponent,
+      canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
+
+      
+      { path: 'error/analysis', component: ErrorAnalysisComponent,
       canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
 
       { path: 'mcash/transactions', component: McashTransactionComponent,
