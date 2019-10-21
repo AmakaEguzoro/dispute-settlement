@@ -20,10 +20,11 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.userDisplayName = localStorage.getItem('loggedUser');
+    this.userDisplayName = localStorage.getItem('loggedUser');
 
     // this.userDisplayName = this.username();
     // console.log(this.userDisplayName);
+
   }
 
   setClicked(val: boolean): void {
