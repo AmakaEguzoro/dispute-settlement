@@ -21,6 +21,11 @@ export class ElementService {
   private ibedcUrl = 'http://197.253.19.75:8029/service/status/ibedc';
   private aedcUrl = 'http://197.253.19.75:8029/service/status/aedc';
   private smileUrl = 'http://197.253.19.75:8029/service/status/smile';
+  private mtnUrl = 'http://197.253.19.75:8029/service/status/mtn';
+  private gloUrl = 'http://197.253.19.75:8029/service/status/glo';
+  private airtelUrl = 'http://197.253.19.75:8029/service/status/airtel';
+  private etisalatUrl = 'http://197.253.19.75:8029/service/status/etisalat';
+
 
   constructor(private http: HttpClient) { }
 
@@ -36,9 +41,13 @@ export class ElementService {
     let ibedc = this.http.get<Element[]>(this.ibedcUrl);
     let aedc = this.http.get<Element[]>(this.aedcUrl);
     let smile = this.http.get<Element[]>(this.smileUrl);
+    let mtn = this.http.get<Element[]>(this.mtnUrl);
+    let glo = this.http.get<Element[]>(this.gloUrl);
+    let airtel = this.http.get<Element[]>(this.airtelUrl);
+    let etisalat = this.http.get<Element[]>(this.etisalatUrl);
 
 
-    return forkJoin([multichoice, eedc, phed, transfer, ekedc, ikedc, startimes, ibedc, aedc, smile]).pipe(catchError(err => this.handleHttpError(err)));
+    return forkJoin([multichoice, eedc, phed, transfer, mtn, glo, airtel, ekedc, ikedc, startimes, ibedc, aedc, smile, etisalat]).pipe(catchError(err => this.handleHttpError(err)));
   }
 
   private handleHttpError(error: HttpErrorResponse): Observable<ElementError>{
