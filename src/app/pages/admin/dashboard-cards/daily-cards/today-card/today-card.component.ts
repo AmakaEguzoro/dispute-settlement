@@ -10,23 +10,52 @@ import { Subscription, Observable } from 'rxjs';
   styleUrls: ['./today-card.component.scss']
 })
 export class TodayCardComponent implements OnInit, OnDestroy {
-  totalAmount: any;
-  successCount: any;
-  failedCount: any;
-  successAmount: any;
-  failedAmount: any;
+
   loading = false;
-  totalCount: any;
-  todaySuccess: any;
-  todayFailed: any;
-  successPercent: any;
-  failedPercent: any;
-  totalPercent: any;
-  totalSubtract: any;
-  yesterdayTotalAmount: any;
   isData: boolean;
   refresh: Subscription;
 
+  //version 2 variables
+  
+  //response holder for success and  fail 
+  responseCurrent: any;
+  responsePrevious: any;
+
+  previousTotal: any = null;
+
+  //response holder for success and  fail count
+  successCountCurrent: any;
+  failCountCurrent: any;
+
+  //response holder for success and  fail  amount
+  successAmountCurrent: any = null;
+  failAmountCurrent: any = null;
+
+  //percentage change
+  percentChange: any = null;
+
+  //response holder for success and  fail  percentage
+  successPercentCurrent: any;
+  failPercentCurrent: any;
+
+  //total amount and count
+  totalAmountCurrent: any;
+  totalCountCurrent: any;
+
+  //previous data
+  previousAmountSuccess:any;
+  previousCountSuccess:any;
+
+  previousAmountFailed:any;
+  previousCountFailed:any;
+
+  previousPercentFailed:any;
+  previousPercentSuccess:any;
+
+  totalCountPrevious:any;
+
+
+  
   constructor(private summaryService: SummaryService) { }
 
   async ngOnInit() {
@@ -40,31 +69,50 @@ export class TodayCardComponent implements OnInit, OnDestroy {
     this.isData = true;
     this.loading = true,
       this.summaryService.getToday().subscribe(responseList => {
-          this.loading = false;
-          this.todaySuccess = responseList[0];
-          this.successCount = this.todaySuccess.data.count;
-          this.successAmount = this.todaySuccess.data.amount;
+          
+          console.log(responseList); 
+          this.loading = false;  this.responseCurrent = responseList[0];
+          this.responsePrevious = responseList[1];
+    
+          // console.log(this.responsePrevious);
+    
+          //summary of the data for success and fail
+          this.successCountCurrent = parseInt(this.responseCurrent.data.successfulCount);
+          this.failCountCurrent = parseInt(this.responseCurrent.data.failedCount);
+    
+          //summary of the data for success and fail
+          this.successAmountCurrent = parseFloat(this.responseCurrent.data.successfulAmount);
+          this.failAmountCurrent = parseFloat(this.responseCurrent.data.failedAmount);
+    
+          //output response to display
+          this.totalCountCurrent = this.responseCurrent.data.transactionCount;
+          this.totalAmountCurrent = this.responseCurrent.data.totalAmount;
+    
+    
+          //summary of the data for success and fail
+          this.successPercentCurrent = this.responseCurrent.data.successfulPercent;
+          this.failPercentCurrent = this.responseCurrent.data.failedPercent;
+    
+          //summary of the data for previous  success and fail
+    
+          this.previousAmountSuccess = parseFloat(this.responsePrevious.data.successfulAmount);
+          this.previousAmountFailed = parseFloat(this.responsePrevious.data.failedAmount);
+          this.previousTotal = this.previousAmountSuccess + this.previousAmountFailed / 100;
+          this.totalCountPrevious = this.responsePrevious.data.transactionCount;
+          this.previousCountFailed = this.responsePrevious.data.failedCount;
+          this.previousCountSuccess = this.responsePrevious.data.successfulCount;
 
-          this.todayFailed = responseList[1];
-          this.failedCount = this.todayFailed.data.count;
-          this.failedAmount = this.todayFailed.data.amount;
-        
-          this.totalCount = math.add(this.successCount, this.failedCount);
-          this.totalAmount = math.add(this.successAmount, this.failedAmount);
+          this.previousPercentFailed = this.responsePrevious.data.failedPercent;
+          this.previousPercentSuccess = this.responsePrevious.data.successfulPercent;
 
-          this.successPercent = this.successCount / this.totalCount * 100;
-          this.failedPercent = this.failedCount / this.totalCount * 100;
+          this.percentChange = ((this.totalAmountCurrent - this.previousTotal) / this.previousTotal);
+          console.log(this.percentChange);
+          
+    
         }, error => {
           this.isData = false
           this.loading = false;
           console.log('cant get today response', error);
-        }),
-       this.summaryService.getYesterday().subscribe(responseList => {
-          let yesterdaySuccess = responseList[0];
-          let yesterdayFailed = responseList[1];
-          this.yesterdayTotalAmount = math.add(yesterdaySuccess.data.amount, yesterdayFailed.data.amount);
-          this.totalSubtract = this.totalAmount - this.yesterdayTotalAmount;
-          this.totalPercent = this.totalSubtract / this.yesterdayTotalAmount * 100;
         })
     
   }
