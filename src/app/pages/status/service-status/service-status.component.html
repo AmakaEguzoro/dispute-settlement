@@ -3,7 +3,7 @@
 
     <div class="col-3"></div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="card" [style.height.em]="'52'">
+      <div class="card" [style.height.em]="'64'">
         <div class="card-header">
           <img src="../../../../assets/ItexLogo.png" class="img-fluid mx-auto d-block">
         </div>
@@ -38,17 +38,43 @@
                   </td>
                   <td [ngStyle]="{'display': 'none'}">{{ el.lastDeposit }}</td>
                   <td>
-                    <button type="button" class="btn btn-sm" [ngClass]="{
+                    <button data-toggle="modal" data-target="#basicExample" type="button" class="btn btn-sm" [ngClass]="{
                                   'btn-success' : el.status == 'ON',
                                   'btn-danger' : el.status == 'OFF'
-                                }" (click)="callSwitch(el.service, el.status)">{{el.status}}</button>
+                                }" (click)="frame.show()" mdbWavesEffect>{{el.status}}</button>
+                    <!-- callSwitch(el.service, el.status) -->
+                    <!-- showModal(item) -->
                   </td>
-                </tr>
-                <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                  <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header text-center">
+                          <h4 class="modal-title w-100 font-weight-bold">*Comment</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            (click)="frame.hide()">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                          <form [formGroup]="editCommentForm">
+                            <div class="md-form mb-5">
+                              <textarea id="commentForm" formControlName="commentform" class="form-control" placeholder="Leave A Comment"
+                                mdbValidate></textarea>
+                              <!-- <label for="commentForm">Leave A Comment</label> -->
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                          <button mdbBtn color="default" class="waves-light" mdbWavesEffect
+                            (click)="callSwitch(el.service, el.status)">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </tbody>
             </table>
           </div>
-
         </div>
       </div>
     </div>
