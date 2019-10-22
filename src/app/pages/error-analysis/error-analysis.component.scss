@@ -32,3 +32,38 @@
     padding: 10px;
   }
   
+  .badges-custom{
+    border-radius: 50%;
+    position: relative;
+    left: -53px;
+    top: -4px;
+    height: 35px;
+    width: 35px;
+  }
+
+  .badges-custom >span{
+    top: 7px;
+    position: relative;
+  }
+
+  .badge-content{
+    border-radius: 50%;
+    position: relative;
+    left: -25px;
+    top: -4px;
+  }
+  .badge-side{
+    border-radius: 50%;
+    position: relative;
+    left: -10px;
+    top: -1px;
+    width: 30px;
+    height: 30px;
+  }
+.list-group > li{
+  background: #f2f2f2;
+  margin-bottom: 7px !important;
+  width: 98%;
+  margin: 0 auto;;
+}
+ 
