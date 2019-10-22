@@ -47,7 +47,11 @@ import { AppRoutes } from "app/app.routes.service";
 import { ExcelService } from "app/_service/excel.service";
 import { McashTransactionComponent } from './Mcash/transaction/mcash-transaction.component';
 import { McashComponent } from './Mcash/terminals/mcash.component';
+<<<<<<< HEAD
 import { ErrorAnalysisComponent } from './error-analysis/error-analysis.component';
+=======
+import { StatusModalComponent } from './status/service-status/status-modal/status-modal.component';
+>>>>>>> 04a4be55db3db83999472e86cbae6fc61bfb01f8
 
 @NgModule({
     imports: [
@@ -96,7 +100,11 @@ import { ErrorAnalysisComponent } from './error-analysis/error-analysis.componen
 
       McashTransactionComponent,
       McashComponent,
+<<<<<<< HEAD
       ErrorAnalysisComponent,
+=======
+      StatusModalComponent,
+>>>>>>> 04a4be55db3db83999472e86cbae6fc61bfb01f8
       
   
     ],
