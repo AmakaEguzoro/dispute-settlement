@@ -25,9 +25,7 @@ export class AgencyBankingComponent implements OnInit {
   constructor(public fb: FormBuilder, 
     public agencyBanking: AgencyBankingService,
     public excelService:ExcelService
-    ) {
-      console.log(this.loading);
-      
+    ) {  
       this.searchForm = this.fb.group({
       // startDate: ['', Validators.min],
       // endDate: ['', Validators.min]
@@ -36,7 +34,6 @@ export class AgencyBankingComponent implements OnInit {
 
   public onDateChnaged(event) {
     this.payload.dateRange = event.actualDateFormatted;
-    console.log('new payload ', this.payload.dateRange);
   }
 
   public myDatePickerOptions: IMyOptions = {

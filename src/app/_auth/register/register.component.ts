@@ -52,7 +52,6 @@ export class RegisterComponent implements OnInit {
         this.loading = false;
         this.toastService.success('Registration successful');
         this.registerForm.reset();
-        console.log('registration successfull');
       }, error => {
         this.loading = false;
         this.toastService.error(error);
