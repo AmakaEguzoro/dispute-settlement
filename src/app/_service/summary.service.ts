@@ -11,47 +11,30 @@ import { forkJoin } from 'rxjs';
 export class SummaryService {
     baseUrl = 'http://197.253.19.76:6200/api/v1/summary/';
 
+    baseUrlV2 = 'http://197.253.19.76:6200/api/v1/transaction/dashboard/';
+
     constructor(private httpClient: HttpClient) { }
 
 // today Summary
     getToday(): Observable<any[]> {
-        let getTodaySuccess = this.httpClient.get(this.baseUrl + `day/successful`);
-        let getTodayFailed = this.httpClient.get(this.baseUrl + `day/failed`);
+        let getTodaySuccess = this.httpClient.get(this.baseUrlV2 + `day`);
+        let getTodayFailed = this.httpClient.get(this.baseUrlV2 + `yesterday`);
         return forkJoin([getTodaySuccess, getTodayFailed]);
     }
 
-    // Yesterday Summary
-    getYesterday(): Observable<any[]> {
-        let getYesterdaySuccess = this.httpClient.get(this.baseUrl + `yesterday/successful`);
-        let getYesterdayFailed = this.httpClient.get(this.baseUrl + `yesterday/failed`);
-        return forkJoin([getYesterdaySuccess, getYesterdayFailed]);
-    }
 
     // this week
     getThisWeek(): Observable<any[]> {
-        let getThisWeekSuccess = this.httpClient.get(this.baseUrl + `week/successful`);
-        let getThisWeekFailed = this.httpClient.get(this.baseUrl + `week/failed`);
+        let getThisWeekSuccess = this.httpClient.get(this.baseUrlV2 + `week`);
+        let getThisWeekFailed = this.httpClient.get(this.baseUrlV2 + `last_week`);
         return forkJoin([getThisWeekSuccess, getThisWeekFailed]);
-    }
-
-    // last week
-    getLastWeek(): Observable<any[]> {
-        let getLastWeekSuccess = this.httpClient.get(this.baseUrl + `last_week/successful`);
-        let getLastWeekFailed = this.httpClient.get(this.baseUrl + `last_week/failed`);
-        return forkJoin([getLastWeekSuccess, getLastWeekFailed]);
     }
 
     // this month
     getThisMonth(): Observable<any[]> {
-        let getThisMonthSuccess = this.httpClient.get(this.baseUrl + `month/successful`);
-        let getThisMonthFailed = this.httpClient.get(this.baseUrl + `month/failed`);
+        let getThisMonthSuccess = this.httpClient.get(this.baseUrlV2 + `month`);
+        let getThisMonthFailed = this.httpClient.get(this.baseUrlV2 + `last_month`);
         return forkJoin([getThisMonthSuccess, getThisMonthFailed]);
     }
 
-    // last month
-    getLastMonth(): Observable<any[]> {
-        let getLastMonthSuccess = this.httpClient.get(this.baseUrl + `last_month/successful`);
-        let getLastMonthFailed = this.httpClient.get(this.baseUrl + `last_month/failed`);
-        return forkJoin([getLastMonthSuccess, getLastMonthFailed]);
-    }
 }

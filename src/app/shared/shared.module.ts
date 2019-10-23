@@ -11,6 +11,7 @@ import { RoundPipe } from './pipe/toRound';
 import { HasRoleDirective } from '../main-layout/navigation/directives/has-role.directive';
 import { FilterPipe } from './pipe/filter';
 import { TabsComponent } from './tabs/tabs.component';
+import { GroupByPipe } from './pipe/groupBy';
 
 @NgModule({
   imports: [
@@ -18,12 +19,14 @@ import { TabsComponent } from './tabs/tabs.component';
     FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModulesPro.forRoot(),
-    OrderModule
+    OrderModule,
+    // GroupByPipe
   ],
   declarations: [
     NotFoundComponent,
     ThousandSuffixesPipe,
     ToNumberPipe,
+    GroupByPipe,
     RoundPipe,
     FilterPipe,
     TabsComponent,
@@ -34,6 +37,7 @@ import { TabsComponent } from './tabs/tabs.component';
     ToNumberPipe,
     RoundPipe,
     FilterPipe,
+    GroupByPipe,
     TabsComponent,
   ],
   providers: [],

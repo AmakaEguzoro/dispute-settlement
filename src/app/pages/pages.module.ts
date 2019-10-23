@@ -12,10 +12,7 @@ import { TransactionService } from "app/_service/transaction.service";
 import { LoginComponent } from "app/_auth/login/login.component";
 import { AdminDashboardComponent } from "./admin/admin-dashboard/admin-dashboard.component";
 import { TodayCardComponent } from "./admin/dashboard-cards/daily-cards/today-card/today-card.component";
-import { YesterdayCardComponent } from "./admin/dashboard-cards/daily-cards/yesterday-card/yesterday-card.component";
 import { ThisMonthCardComponent } from "./admin/dashboard-cards/monthly-cards/this-month-card/this-month-card.component";
-import { LastMonthCardComponent } from "./admin/dashboard-cards/monthly-cards/last-month-card/last-month-card.component";
-import { LastWeekCardComponent } from "./admin/dashboard-cards/weekly-cards/last-week-card/last-week-card.component";
 import { ThisWeekCardComponent } from "./admin/dashboard-cards/weekly-cards/this-week-card/this-week-card.component";
 import { TransactionComponent } from "./Transaction/transaction/transaction.component";
 import { ModelComponent } from "./Transaction/transaction/model/model.component";
@@ -50,6 +47,7 @@ import { AppRoutes } from "app/app.routes.service";
 import { ExcelService } from "app/_service/excel.service";
 import { McashTransactionComponent } from './Mcash/transaction/mcash-transaction.component';
 import { McashComponent } from './Mcash/terminals/mcash.component';
+import { ErrorAnalysisComponent } from './error-analysis/error-analysis.component';
 import { StatusModalComponent } from './status/service-status/status-modal/status-modal.component';
 
 @NgModule({
@@ -68,10 +66,7 @@ import { StatusModalComponent } from './status/service-status/status-modal/statu
     declarations: [
       // Itex Copmponent
       TodayCardComponent,
-      YesterdayCardComponent,
       ThisMonthCardComponent,
-      LastMonthCardComponent,
-      LastWeekCardComponent,
       ThisWeekCardComponent,
   
       ServiceStatusComponent,
@@ -102,6 +97,7 @@ import { StatusModalComponent } from './status/service-status/status-modal/statu
 
       McashTransactionComponent,
       McashComponent,
+      ErrorAnalysisComponent,
       StatusModalComponent,
       
   
@@ -110,10 +106,7 @@ import { StatusModalComponent } from './status/service-status/status-modal/statu
       MDBBootstrapModulesPro,
 
       TodayCardComponent,
-      YesterdayCardComponent,
       ThisMonthCardComponent,
-      LastMonthCardComponent,
-      LastWeekCardComponent,
       ThisWeekCardComponent,
   
       TodayChannelsComponent,

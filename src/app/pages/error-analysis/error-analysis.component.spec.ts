@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LastWeekCardComponent } from './last-week-card.component';
+import { ErrorAnalysisComponent } from './error-analysis.component';
 
-describe('LastWeekCardComponent', () => {
-  let component: LastWeekCardComponent;
-  let fixture: ComponentFixture<LastWeekCardComponent>;
+describe('ErrorAnalysisComponent', () => {
+  let component: ErrorAnalysisComponent;
+  let fixture: ComponentFixture<ErrorAnalysisComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LastWeekCardComponent ]
+      declarations: [ ErrorAnalysisComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LastWeekCardComponent);
+    fixture = TestBed.createComponent(ErrorAnalysisComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

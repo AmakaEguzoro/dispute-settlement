@@ -13,9 +13,9 @@
             </thead>
           <tbody>
             <tr *ngFor="let item of elements | orderBy: 'total':true ">
-              <th class="channel-id" scope="row">{{item.title}}</th>
+              <th class="channel-id" scope="row">{{item.name}}</th>
               <td class="channel-success">{{item.success | thousandSuff : 2}}</td>
-              <td class="channel-fail">{{item.fail | thousandSuff : 2 }}</td>
+              <td class="channel-fail">{{item.failed | thousandSuff : 2 }}</td>
               <td class="channel-total">{{item.total | thousandSuff : 2}}</td>
             </tr>
             </tbody>
