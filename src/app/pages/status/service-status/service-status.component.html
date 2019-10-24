@@ -60,13 +60,17 @@
                           <form [formGroup]="editCommentForm">
                             <div class="md-form mb-5">
                               <textarea id="commentForm" formControlName="commentform" class="form-control" placeholder="Leave A Comment"
-                                mdbValidate></textarea>
+                                mdbValidate  [ngClass]="{'is-invalid': (editCommentForm.get('commentform').touched ||
+                                editCommentForm.get('commentform').dirty) &&
+                                !editCommentForm.get('commentform').valid }">
+                                <span class="invalid-feedback"></textarea>
                               <!-- <label for="commentForm">Leave A Comment</label> -->
                             </div>
                           </form>
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
                           <button mdbBtn color="default" class="waves-light" mdbWavesEffect
+                          [disabled]="!editCommentForm.valid && !editCommentForm.dirty"
                             (click)="callSwitch(el.service, el.status)">Submit</button>
                         </div>
                       </div>
