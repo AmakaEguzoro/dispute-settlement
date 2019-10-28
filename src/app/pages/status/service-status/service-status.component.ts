@@ -72,7 +72,7 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
   // }
 
   public callSwitch(service, action){
-
+    this.isLoading = true;
     this.currentStatus = action;
     if(action == "ON"){
        this.currentStatus = "OFF";
