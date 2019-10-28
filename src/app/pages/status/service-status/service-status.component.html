@@ -71,7 +71,7 @@
                         <div class="modal-footer d-flex justify-content-center">
                           <button mdbBtn color="default" class="waves-light" mdbWavesEffect
                           [disabled]="!editCommentForm.valid && !editCommentForm.dirty"
-                            (click)="callSwitch(el.service, el.status)">Submit</button>
+                            (click)="callSwitch(el.service, el.status); frame.hide()">Submit</button>
                         </div>
                       </div>
                     </div>
