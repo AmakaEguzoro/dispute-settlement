@@ -68,7 +68,7 @@ export class ThisMonthCardComponent implements OnInit, OnDestroy {
   getTodayTransaction() {
     this.isData = true;
     this.loading = true,
-      this.summaryService.getToday().subscribe(responseList => {
+      this.summaryService.getThisMonth().subscribe(responseList => {
           
           console.log(responseList); 
           this.loading = false;  this.responseCurrent = responseList[0];
