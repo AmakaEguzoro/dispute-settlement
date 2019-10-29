@@ -59,16 +59,16 @@ export class ThisMonthCardComponent implements OnInit, OnDestroy {
   constructor(private summaryService: SummaryService) { }
 
   async ngOnInit() {
-    await this.getTodayTransaction();
+    await this.getThisMonthTransaction();
 
     this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
-      this.getTodayTransaction();
+      this.getThisMonthTransaction();
     })
   }
-  getTodayTransaction() {
+  getThisMonthTransaction() {
     this.isData = true;
     this.loading = true,
-      this.summaryService.getToday().subscribe(responseList => {
+      this.summaryService.getThisMonth().subscribe(responseList => {
           
           console.log(responseList); 
           this.loading = false;  this.responseCurrent = responseList[0];

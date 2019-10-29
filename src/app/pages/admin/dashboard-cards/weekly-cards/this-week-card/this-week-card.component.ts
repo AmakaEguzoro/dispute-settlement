@@ -60,13 +60,13 @@ export class ThisWeekCardComponent implements OnInit, OnDestroy {
   constructor(private summaryService: SummaryService) { }
 
   async ngOnInit() {
-    await this.getTodayTransaction();
+    await this.getThisWeekTransaction();
 
     this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
-      this.getTodayTransaction();
+      this.getThisWeekTransaction();
     })
   }
-  getTodayTransaction() {
+  getThisWeekTransaction() {
     this.isData = true;
     this.loading = true,
       this.summaryService.getThisWeek().subscribe(responseList => {
