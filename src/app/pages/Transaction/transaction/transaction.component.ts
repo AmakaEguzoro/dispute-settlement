@@ -55,6 +55,7 @@ export class TransactionComponent implements OnInit {
   searchForm: FormGroup;
   paymentMethod: any;
   vendor: any;
+  virtualTID: any;
   vendorType: any;
   vendType: any;
   transactionStatus: any;
@@ -99,6 +100,7 @@ export class TransactionComponent implements OnInit {
     "viewPage": "",
     "vendType": "",
     "vendor": "",
+    "virtualTID": "",
     "download": false,
   };
 
@@ -191,6 +193,7 @@ export class TransactionComponent implements OnInit {
       "viewPage": "",
       "vendType": this.vendType ? this.vendType : '',
       "vendor": this.vendor ? this.vendor : '',
+      "virtualTID": this.virtualTID ? this.virtualTID : '',
       "download": true
     };
 
@@ -199,7 +202,7 @@ export class TransactionComponent implements OnInit {
     this.transactionService.getTransaction(this.filterData).subscribe((data) => {
       this.loading = false;
       this.exportData = data.data.transactions;      
-      this.excelService.exportAsExcelFile(this.exportData, 'ITEX-TranReport');
+      this.excelService.exportAsExcelFile(this.exportData, 'ITEX-TranReport'+ this.range);
       
     }, error => {
       this.isData = false;
@@ -240,7 +243,7 @@ export class TransactionComponent implements OnInit {
 
  
 
-  headElements = ['S/N', 'PRODUCT', 'SEQUENCE', 'AGENT ID', 'TERMINAL', 'CHANNEL',
+  headElements = ['S/N', 'PRODUCT', 'SEQUENCE', 'AGENT ID', 'TERMINAL', 'V-TID', 'CHANNEL',
     'AMOUNT', 'STATUS', 'RESPONSE TIME', 'DATE'];
 
   TransactionSummary(payload) {
@@ -282,7 +285,7 @@ export class TransactionComponent implements OnInit {
   type = ['Postpaid', 'Prepaid', 'smartcard', 'Token', 'Non Energy', 'NIL'];
   channels = ['POS', 'ANDROID', 'WEB', 'ANDROIDPOS', 'DEFAULT', 'OTHERS'];
   Refs = ['Terminal ID', 'Agent ID', 'Sequence Number',
-    'Transaction Ref', 'Account number', 'Phone Number', 'cardRRN'];
+    'Transaction Ref', 'Account number', 'Phone Number', 'cardRRN', 'Virtual TID'];
   vendors = ['Itex', 'Gecharl Resources', 'PhilTech Solutions', 'Vella', 'GI Solutions',
     'Karosealliance', 'Payant', 'Now Now', 'Mars Konnect', 'FCube', 'Zenith Vas', 'XchangeBox',
     'Daphty', 'GreyStone', 'Call Phone'
@@ -340,6 +343,7 @@ export class TransactionComponent implements OnInit {
       "searchField": "",
       "viewPage": "",
       "vendType": this.vendType ? this.vendType : '',
+      "virtualTID": this.virtualTID ? this.virtualTID : '',      
       "vendor": this.vendor ? this.vendor : '',
     };
     
@@ -368,6 +372,8 @@ export class TransactionComponent implements OnInit {
       this.phoneNumber = this.filterValue;
     } else if (this.filter == 'cardRRN') {
       this.cardRRN = this.filterValue;
+    } else if (this.filter == 'Virtual TID') {
+      this.virtualTID = this.filterValue;
     }
   }
 
