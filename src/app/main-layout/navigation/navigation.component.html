@@ -7,7 +7,7 @@
         </mdb-navbar-brand>
         <links>
             <ul class="navbar-nav mr-auto">
-                <li *appHasRole="['3', '4', '5']" class="nav-item waves-light nav-body"
+                <li *appHasRole="['2','3', '4', '5']" class="nav-item waves-light nav-body"
                 routerLinkActive="active" mdbWavesEffect>
                    <a class="nav-link" [routerLink]="['/admin-dashboard/day']">Dashboard</a>
                </li>
@@ -44,7 +44,7 @@
                 <li *appHasRole="['3', '4', '5']" class="nav-item waves-light nav-body" mdbWavesEffect routerLinkActive="active">
                     <a class="nav-link" [routerLink]="['/error/analysis']">Error Analysis</a>
                 </li>
-                <li *appHasRole="['2', '3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+                <li *appHasRole="['3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
                     <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
                         mdbWavesEffect>
                         MCASH (USSD)<span class="caret"></span></a>
