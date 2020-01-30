@@ -156,6 +156,12 @@ export class TransactionComponent implements OnInit {
   userWallet() {
     return this.authService.currentUserWallet();
   }
+
+  userName(){
+    const username = localStorage.getItem('loggedUser');
+    return username;
+  }
+
   walletBalance() {
     const username = localStorage.getItem('loggedEmail');
     const wallet = this.userWallet();
@@ -197,18 +203,21 @@ export class TransactionComponent implements OnInit {
       "download": true
     };
 
-    this.isData = true;
-    this.loading = true;
-    this.transactionService.getTransaction(this.filterData).subscribe((data) => {
-      this.loading = false;
-      this.exportData = data.data.transactions;      
-      this.excelService.exportAsExcelFile(this.exportData, 'ITEX-TranReport'+ this.range);
-      
-    }, error => {
-      this.isData = false;
-      this.loading = false;
-      console.log('cant get transaction details', error);
-    })    
+    if(this.userName() != "Providus"){
+      this.isData = true;
+      this.loading = true;
+      this.transactionService.getTransaction(this.filterData).subscribe((data) => {
+        this.loading = false;
+        this.exportData = data.data.transactions;      
+        this.excelService.exportAsExcelFile(this.exportData, 'ITEX-TranReport'+ this.range);
+        
+      }, error => {
+        this.isData = false;
+        this.loading = false;
+        console.log('cant get transaction details', error);
+      })    
+    }
+    
   }
 
 
@@ -294,7 +303,7 @@ export class TransactionComponent implements OnInit {
     'IKEDC', 'IBEDC','EKEDC','EEDC', 'PHED', 'AEDC','KEDCO',
      'TRANSFER', 'WITHDRAWAL',  'MULTICHOICE', 
     'MTNVTU', 'MTNDATA', 'AIRTELDATA', 'AIRTELVTU','GLOVTU', 'GLODATA', 
-    'ETISALATVTU','ETISALATDATA', 'RCN_FUND',  'STARTIMES', 'GEHS', 'SMILE'];
+    'ETISALATVTU','ETISALATDATA', 'RCN_FUND',  'STARTIMES', 'GEHS', 'OLHS', 'SMILE'];
 
   getPaymentMethod(event) {
     this.paymentMethod = event.target.value;
