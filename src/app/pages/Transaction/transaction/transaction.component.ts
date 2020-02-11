@@ -56,6 +56,7 @@ export class TransactionComponent implements OnInit {
   paymentMethod: any;
   vendor: any;
   virtualTID: any;
+  clientReference: any;
   vendorType: any;
   vendType: any;
   transactionStatus: any;
@@ -101,6 +102,7 @@ export class TransactionComponent implements OnInit {
     "vendType": "",
     "vendor": "",
     "virtualTID": "",
+    "clientReference": "",
     "download": false,
   };
 
@@ -200,6 +202,7 @@ export class TransactionComponent implements OnInit {
       "vendType": this.vendType ? this.vendType : '',
       "vendor": this.vendor ? this.vendor : '',
       "virtualTID": this.virtualTID ? this.virtualTID : '',
+      "clientReference": this.clientReference ? this.clientReference : '',
       "download": true
     };
 
@@ -294,7 +297,7 @@ export class TransactionComponent implements OnInit {
   type = ['Postpaid', 'Prepaid', 'smartcard', 'Token', 'Non Energy', 'NIL'];
   channels = ['POS', 'ANDROID', 'WEB', 'ANDROIDPOS', 'DEFAULT', 'OTHERS'];
   Refs = ['Terminal ID', 'Agent ID', 'Sequence Number',
-    'Transaction Ref', 'Account number', 'Phone Number', 'cardRRN', 'Virtual TID'];
+    'Transaction Ref', 'Client Reference', 'Account number', 'Phone Number', 'cardRRN', 'Virtual TID'];
   vendors = ['Itex', 'Gecharl Resources', 'PhilTech Solutions', 'Vella', 'GI Solutions',
     'Karosealliance', 'Payant', 'Now Now', 'Mars Konnect', 'FCube', 'Zenith Vas', 'XchangeBox',
     'Daphty', 'GreyStone', 'Call Phone'
@@ -352,7 +355,8 @@ export class TransactionComponent implements OnInit {
       "searchField": "",
       "viewPage": "",
       "vendType": this.vendType ? this.vendType : '',
-      "virtualTID": this.virtualTID ? this.virtualTID : '',      
+      "virtualTID": this.virtualTID ? this.virtualTID : '',    
+      "clientReference": this.clientReference ? this.clientReference : '',
       "vendor": this.vendor ? this.vendor : '',
     };
     
@@ -383,6 +387,8 @@ export class TransactionComponent implements OnInit {
       this.cardRRN = this.filterValue;
     } else if (this.filter == 'Virtual TID') {
       this.virtualTID = this.filterValue;
+    } else if (this.filter == 'Client Reference') {
+      this.clientReference = this.filterValue;
     }
   }
 
