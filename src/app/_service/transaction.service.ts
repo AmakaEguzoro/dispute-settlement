@@ -15,6 +15,7 @@ import { WalletBalance } from 'app/_models/user';
 export class TransactionService {
 
     baseUrl = 'http://197.253.19.76:6200/api/v1/transaction/';
+    vasRequerybaseUrl = 'http://staging.itexapp.com:8028/api/v1/vas/metadata/update/'
 
     constructor(private httpClient: HttpClient) { }
 
@@ -71,7 +72,11 @@ export class TransactionService {
           }
           ));
       }
-      
+
+    interfaceWithVasForRequery(reference){
+        let response = this.httpClient.get(this.vasRequerybaseUrl + reference);
+        return response;
+    }
 
    
 }
