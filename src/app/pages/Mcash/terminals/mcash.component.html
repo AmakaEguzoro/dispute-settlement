@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-3"></div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-center align-items-center">
+          <img src="../../../../assets/ItexLogo.png" class="img-fluid">
+          <img src="../../../assets/Mcash.png" class="img-fluid mcash__width">
+        </div>
+        <h5 class="text-center font-weight-normal pt-3"> Map Terminals</h5>
+        <div class="card-body">
+
+          <!-- Form -->
+          <form class="text-center" [formGroup]="McashForm" (ngSubmit)="onSubmit()" style="color: #757575;">
+
+            <!-- Merchant code -->
+            <div class="md-form">
+              <input type="text" formControlName="merchantCode" id="merch_code" class="form-control mb-2"
+                placeholder="Merchant code" autocomplete="off">
+              <!-- <label for="merch_code">Merchant Code</label> -->
+              <div *ngIf="merchantCode.invalid && merchantCode.touched"  class="alert alert-danger alert-dismissible">
+                Merchant code is required.
+              </div>
+            </div>
+
+            <!-- Terminal ID -->
+            <div class="md-form">
+              <input type="text" formControlName="terminalId" id="term_id" class="form-control"
+                placeholder="Terminal id" autocomplete="off">
+              <!-- <label for="terminal_id">Terminal ID</label> -->
+              <div *ngIf="terminalId.invalid && terminalId.touched"  class="alert alert-danger">
+                Terminal ID is required.
+              </div>
+            </div>
+
+            <div class="md-form">
+              <input type="text" formControlName="merchantName" id="merch_name" class="form-control"
+                placeholder="Merchant name" autocomplete="off">
+              <!-- <label for="merch_name">Merchant name</label> -->
+              <div *ngIf="merchantName.invalid && merchantName.touched"  class="alert alert-danger">
+                Merchant name is required.
+              </div>
+            </div>
+
+            <div class="md-form">
+              <input type="text" formControlName="terminalBank" id="term_bank" placeholder="Terminal Bank"
+                class="form-control" autocomplete="off">
+              <!-- <label for="term_bank">Terminal Bank</label> -->
+              <div *ngIf="terminalBank.invalid && terminalBank.touched"  class="alert alert-danger">
+                Terminal bank is required.
+              </div>
+            </div>
+
+            <div style="position: relative;">
+              <mdb-spinner spinnerType="small" spinnerColor="green" *ngIf="isLoading" class="spinner mt-2"></mdb-spinner>
+            </div>
+            <span class="alert alert-success" *ngIf="resp_message">{{ resp_message }}</span>
+
+            <!-- Submit button -->
+            <div>
+              <button [disabled]="!McashForm.valid" type="submit" class="btn btn-outline-cust btn-block" mdbBtn
+                mdbWavesEffect>Submit</button>
+            </div>
+
+          </form>
+          <!-- Form -->
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br>
+</div>

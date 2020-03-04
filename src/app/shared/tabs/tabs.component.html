@@ -1,0 +1,7 @@
+<ul class="nav">
+  <li *ngFor="let tab of tabs">
+    <a *ngIf="!tab.disabled" [ngClass]="{'active': currentRoute === tab.link || tab.isActive}"
+      (click)="performNavigation(tab.link)">{{ tab.name }}</a>
+    <a *ngIf="tab.disabled" class="tab-disabled">{{ tab.name }}</a>
+  </li>
+</ul>

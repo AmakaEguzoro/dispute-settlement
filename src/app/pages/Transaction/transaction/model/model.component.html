@@ -1,0 +1,139 @@
+<div class="modal-dialog-scrollable">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-12">
+          <h4>{{data.name}}</h4>
+          <br>
+          <div class="trans-catergory" style="margin-top: -2em;">
+            {{data.category}} <br>
+            <mdb-badge type="button" *ngIf="data.VASBillerName == 'IKEDC' && data.status == 'initialized'" class="requery" (click)="requeryInitializedTransaction(data.reference)"><i class="fa fa-refresh"></i> RE-QUERY</mdb-badge>
+          </div>
+          
+        </div>
+      </div>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="modal-tit"> 
+           <i> Product details</i>
+          </div>
+          <div class="details mt-2">
+            Terminal ID:
+            <strong class="details" style="float: right">{{data.terminal}}</strong>
+          </div>
+          <div class="details mt-2">
+            Agent ID:
+            <b  class="details" style="float: right;">{{data.wallet}}</b>
+          </div>
+          <br>
+          <div class="modal-tit">
+            <i>Customer Details</i>
+          </div>
+          <div class="details mt-2">
+            Name:
+            <strong class="details" class="vas-address">{{data.VASCustomerName}}</strong>
+          </div>
+          <div class="details mt-2">
+            Phone Number:
+            <strong  class="details" style="float: right">{{data.VASCustomerPhone}}</strong>
+          </div>
+          <div class="details mt-2">
+            Account Number:
+            <strong  class="details" style="float: right">{{data.VASCustomerAccount}}</strong>
+          </div>
+          <div class="details mt-2">
+            Address:
+            <strong  class="details" class="vas-address">{{data.VASCustomerAddress}}</strong>
+          </div>
+          <br>
+          <div class="modal-tit">
+            <i>Transaction Details</i>
+          </div>
+          <div class="details mt-2">
+            AuthCode:
+            <strong  class="details" style="float: right">{{data.transactionAuthCode}}</strong>
+          </div>
+          <div class="details mt-2">
+            STAN:
+            <strong  class="details" style="float: right">{{data.transactionSTAN}}</strong>
+          </div>
+          <div class="details mt-2">
+            RRN:
+            <strong  class="details" style="float: right">{{data.transactionRRN}}</strong>
+          </div>
+          <div class="details mt-2">
+            Provider Name:
+            <strong  class="details" style="float: right">{{data.VASProviderName}}</strong>
+          </div>
+          <div class="details mt-2">
+            Token:
+            <strong  class="details" style="float: right">{{data.token}}</strong>
+          </div>
+          <div class="details mt-2">
+              Ref:
+              <strong  class="details" style="float: right">{{data.reference}}</strong>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div>
+            Biller Name:
+            <strong  class="details" style="float: right">{{data.VASBillerName}}</strong>
+          </div>
+          <div class="details mt-2">
+            Depositor Name:
+            <strong  class="details" style="float: right">{{data.VASDepositorName}}</strong>
+          </div>
+          <div class="details mt-2">
+            Type:
+            <strong  class="details" style="float: right">{{data.type}}</strong>
+          </div>
+          <div class="details mt-2">
+            Channel:
+            <strong class="details" style="float: right">{{data.channel}}</strong>
+          </div>
+          <div class="details mt-2">
+            Sequence:
+            <strong class="details" style="float: right">{{data.sequence}}</strong>
+          </div>
+          <div class="details mt-2">
+            Card-PAN:
+            <strong class="details" style="float: right">{{data.cardPAN}}</strong>
+          </div>
+          <div class="details mt-2">
+            Message:
+            <strong class="details" style="float: right">{{data.message}}</strong>
+          </div>
+          <div class="details mt-2">
+              Commission:
+            <strong class="details" style="float: right"> &#x20A6; {{data.commission}}</strong>
+          </div>
+          <br>
+          <div class="details mt-2">
+            Client Reference:
+          <strong class="details" style="float: right"> {{ data.clientReference }}</strong>
+        </div>
+          <div *appHasRole="[5]" class="details mt-2">
+              Response:
+              <strong class="details" style="float: right">
+                <textarea>
+                    {{data.response | json}}
+                </textarea></strong>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">Close</button>
+    </div>
+  </div>
+</div>

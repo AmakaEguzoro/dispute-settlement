@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-3"></div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="registerForm">
+            <div class="form-group mb-1">
+              <label>
+                <mdb-icon fas icon="user"></mdb-icon> &nbsp;Full Name
+              </label>
+              <input class="form-control" type="text" placeholder="Enter Name" formControlName="name" [ngClass]="{'is-invalid': (registerForm.get('name').touched ||
+				registerForm.get('name').dirty) &&
+				!registerForm.get('name').valid }">
+              <span class="invalid-feedback">
+                <h5 class="login-title"> Please enter name </h5>
+              </span>
+              <br>
+              <label>
+                <mdb-icon fas icon="user"></mdb-icon> &nbsp; Username
+              </label>
+              <input class="form-control" type="text" placeholder="Enter Username" formControlName="username" [ngClass]="{'is-invalid': (registerForm.get('username').touched ||
+				registerForm.get('username').dirty) &&
+				!registerForm.get('username').valid }">
+              <span class="invalid-feedback">
+                <h5 class="login-title"> Please enter username </h5>
+              </span>
+              <br>
+              <label>
+                <mdb-icon fas icon="lock"></mdb-icon> &nbsp;Password
+              </label>
+              <input class="form-control" type="text" placeholder="Enter Password" formControlName="password" [ngClass]="{'is-invalid': (registerForm.get('password').touched ||
+				registerForm.get('password').dirty) &&
+				!registerForm.get('password').valid }">
+              <span class="invalid-feedback">
+                <h5 class="login-title"> Please enter password </h5>
+              </span>
+              <br>
+              <label>
+                <mdb-icon fas icon="user"></mdb-icon> &nbsp;Payvice Username
+              </label>
+              <input class="form-control" type="text" placeholder="Enter payvice username" formControlName="email" [ngClass]="{'is-invalid': (registerForm.get('email').touched ||
+				registerForm.get('email').dirty) &&
+				!registerForm.get('email').valid }">
+              <span class="invalid-feedback">
+                <h5 class="login-title"> Please enter payvice username </h5>
+              </span>
+              <br>
+              <label>
+                  <mdb-icon fas icon="user"></mdb-icon> &nbsp;Role</label>
+              <mdb-select ngDefaultControl  formControlName="role" [options]="optionsSelect"
+                placeholder="Choose your role">
+              </mdb-select>
+              <span class="invalid-feedback">
+                <h5 class="login-title"> Please enter role </h5>
+              </span>
+              <br> <br>
+              <label>
+                <mdb-icon fas icon="pencil-alt"></mdb-icon> &nbsp;Agent IDs To View (Leave Blank to See Transactions for
+                All Wallets)
+              </label>
+              <textarea class="form-control" placeholder="Message" formControlName="wallets"></textarea>
+            </div>
+            <br>
+            <button [disabled]="!registerForm.valid" class="btn btn-primary" (click)="register()">Register
+              <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+            </button>
+            <button class="btn btn-white" (click)="cancel()">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
