@@ -108,10 +108,9 @@
                 </select>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                <select disabled class="browser-default custom-select" (change)="getVendor($event)"
-                    formControlName="method">
-                    <option value="">Vendors</option>
-                    <option *ngFor="let vendor of vendors" [value]="vendor">{{vendor}}</option>
+                <select class="browser-default custom-select" (change)="getProvider($event)" formControlName="method">
+                    <option value="">NIP Providers</option>
+                    <option *ngFor="let service of cashinService" [value]="service">{{service}}</option>
                 </select>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
@@ -146,8 +145,7 @@
                 </select>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <input type="text" formControlName="filterValue"  ngDefaultControl
-                    [(ngModel)]="filterValue">
+                <input type="text" formControlName="filterValue" ngDefaultControl [(ngModel)]="filterValue">
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                 <mdb-badge class="search" (click)="searchTrans()">
@@ -220,7 +218,7 @@
                                                     'declined' : item.status == 'declined',
                                                     'debited' : item.status == 'debited'
                                                   }"> {{item.status}}</mdb-badge><br>
-                                
+
                             </td>
                             <td>
                                 <mdb-badge class="time" [ngClass]="{

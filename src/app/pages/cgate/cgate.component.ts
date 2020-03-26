@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { TransactionService } from "app/_service/transaction.service";
+import { CgatetransactionService } from "app/_service/cgatetransaction.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { SubSink } from "subsink/dist/subsink";
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
-import { ModelComponent } from "./model/model.component";
 import { SocketService } from "app/_service/socket.service";
 import {
   FormGroup,
@@ -14,17 +13,16 @@ import {
 import { IMyOptions } from "ng-uikit-pro-standard";
 import { ExcelService } from "app/_service/excel.service";
 import { AuthService } from "app/_auth/auth.service";
-import * as fileSaver from "file-saver";
 import { User } from "app/_models/user";
 import { WebworkerService } from "app/web-worker/webworker.service";
 import { EXCEL_EXPORT } from "app/web-worker/excel-export.script";
+
 @Component({
-  selector: "app-transaction",
-  templateUrl: "./transaction.component.html",
-  styleUrls: ["./transaction.component.scss"]
+  selector: "app-cgate",
+  templateUrl: "./cgate.component.html",
+  styleUrls: ["./cgate.component.scss"]
 })
-export class TransactionComponent implements OnInit {
-  // Details
+export class CgateComponent implements OnInit {
   isData: boolean;
   loading = true;
   data: any;
@@ -55,13 +53,11 @@ export class TransactionComponent implements OnInit {
   totalCount: any;
   isLoading = true;
   usersCount: any;
+  terminalCount: any;
   // filters
   searchForm: FormGroup;
   paymentMethod: any;
   vendor: any;
-  provider: any;
-  virtualTID: any;
-  clientReference: any;
   vendorType: any;
   vendType: any;
   transactionStatus: any;
@@ -112,9 +108,6 @@ export class TransactionComponent implements OnInit {
     viewPage: "",
     vendType: "",
     vendor: "",
-    transferProvider: "",
-    virtualTID: "",
-    clientReference: "",
     download: false
   };
 
@@ -122,7 +115,7 @@ export class TransactionComponent implements OnInit {
   // private EXCEL_EXTENSION = 'xlsx';
 
   constructor(
-    private transactionService: TransactionService,
+    private transactionService: CgatetransactionService,
     private router: Router,
     private modalService: BsModalService,
     private socket: SocketService,
@@ -142,63 +135,14 @@ export class TransactionComponent implements OnInit {
   ngOnInit() {
     this.Transaction(this.payload);
     this.TransactionSummary(this.payload);
-    this.walletBalance();
-    setTimeout(() => {
-      this.getSocketData();
-    }, 1 * 60 * 1000);
-  }
-
-  getSocketData() {
-    this.socket.getMessage().subscribe((Socketdata: any) => {
-      let currentWallet = this.userWallet();
-      if (currentWallet == "ALL" || currentWallet == Socketdata.data.wallet) {
-        this.detailsData.pop();
-        this.detailsData.unshift(Socketdata.data);
-        if (
-          Socketdata.data.status == "failed" ||
-          Socketdata.data.status == "declined"
-        ) {
-          this.failedAmount += parseInt(Socketdata.data.nairaAmount);
-          this.failedCount = parseInt(this.failedCount) + 1;
-          this.totalAmount += parseInt(Socketdata.data.nairaAmount);
-          this.totalCount += 1;
-        } else if (Socketdata.data.status == "successful") {
-          this.successCount += 1;
-          this.successAmount += parseInt(Socketdata.data.nairaAmount);
-          this.totalAmount += parseInt(Socketdata.data.nairaAmount);
-          this.totalCount += 1;
-        }
-      }
-    });
   }
 
   userWallet() {
     return this.authService.currentUserWallet();
   }
 
-  userName() {
-    const username = localStorage.getItem("loggedUser");
-    return username;
-  }
-
-  walletBalance() {
-    const username = localStorage.getItem("loggedEmail");
-    const wallet = this.userWallet();
-    let balance = {
-      username: username,
-      wallet: wallet
-    };
-    this.transactionService.getWalletBalance(balance).subscribe(
-      data => {
-        this.userBalance = data;
-      },
-      error => {
-        this.userBalance = null;
-      }
-    );
-  }
   exportAsXLSX(): void {
-    this.socket.disconnectSocket();
+    //this.socket.disconnectSocket();
     this.start = this.searchForm.value.startDate;
     this.end = this.searchForm.value.endDate;
     this.range = `${this.start} - ${this.end}`;
@@ -225,31 +169,23 @@ export class TransactionComponent implements OnInit {
       viewPage: "",
       vendType: this.vendType ? this.vendType : "",
       vendor: this.vendor ? this.vendor : "",
-      transferProvider: this.provider ? this.provider : "",
-      virtualTID: this.virtualTID ? this.virtualTID : "",
-      clientReference: this.clientReference ? this.clientReference : "",
       download: true
     };
 
-    if (this.userName() != "Providus") {
-      this.isData = true;
-      this.loading = true;
-      this.transactionService.getTransaction(this.filterData).subscribe(
-        data => {
-          this.loading = false;
-          this.exportData = data.data.transactions;
-          this.excelService.exportAsExcelFile(
-            this.exportData,
-            "ITEX-TranReport" + this.range
-          );
-        },
-        error => {
-          this.isData = false;
-          this.loading = false;
-          console.log("cant get transaction details", error);
-        }
-      );
-    }
+    this.isData = true;
+    this.loading = true;
+    this.transactionService.getTransaction(this.filterData).subscribe(
+      data => {
+        this.loading = false;
+        this.exportData = data.data.transactions;
+        this.excelService.exportAsExcelFile(this.exportData, "ITEX-TranReport");
+      },
+      error => {
+        this.isData = false;
+        this.loading = false;
+        console.log("cant get transaction details", error);
+      }
+    );
   }
 
   Transaction(payload) {
@@ -273,30 +209,26 @@ export class TransactionComponent implements OnInit {
     );
   }
 
-  openModal(modal) {
-    this.detailsData.response = modal;
-    const initialState = {
-      data: this.detailsData.response,
-      ignoreBackdropClick: true
-    };
-    this.bsModalRef = this.modalService.show(ModelComponent, {
-      initialState,
-      class: "modal-lg"
-    });
-    //
-  }
+  // openModal(modal) {
+  //   this.detailsData.response = modal;
+  //   const initialState = {
+  //     data: this.detailsData.response,
+  //     ignoreBackdropClick: true,
+  //   };
+  //   this.bsModalRef = this.modalService.show(ModelComponent, { initialState, class: 'modal-lg' });
+  //   //
+  // };
 
   headElements = [
     "S/N",
-    "PRODUCT",
-    "SEQUENCE",
-    "AGENT ID",
+    "MERCHANT CODE",
+    "REFERENCE",
+    "PHONENUMBER",
     "TERMINAL",
-    "V-TID",
-    "CHANNEL",
     "AMOUNT",
     "STATUS",
-    "RESPONSE TIME",
+    "MESSAGE",
+    "LIFE-CYCLE",
     "DATE"
   ];
 
@@ -316,6 +248,7 @@ export class TransactionComponent implements OnInit {
         this.totalAmount = this.summaryData.totalAmount;
         this.totalCount = this.summaryData.transactionCount;
         this.usersCount = this.summaryData.usersCount;
+        this.terminalCount = this.summaryData.terminalCount;
       },
       error => {
         this.isData = false;
@@ -336,65 +269,8 @@ export class TransactionComponent implements OnInit {
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
-  methods = ["Card", "Cash", "Mcash"];
   stat = ["Approved", "Declined", "Pending"];
-  vendTypes = ["B2B", "ITEX"];
-  type = ["Postpaid", "Prepaid", "smartcard", "Token", "Non Energy", "NIL"];
-  channels = ["POS", "ANDROID", "WEB", "ANDROIDPOS", "DEFAULT", "OTHERS"];
-  Refs = [
-    "Terminal ID",
-    "Agent ID",
-    "Sequence Number",
-    "Transaction Ref",
-    "Client Reference",
-    "Account number",
-    "Phone Number",
-    "cardRRN",
-    "Virtual TID"
-  ];
-  vendors = [
-    "Itex",
-    "Gecharl Resources",
-    "PhilTech Solutions",
-    "Vella",
-    "GI Solutions",
-    "Karosealliance",
-    "Payant",
-    "Now Now",
-    "Mars Konnect",
-    "FCube",
-    "Zenith Vas",
-    "XchangeBox",
-    "Daphty",
-    "GreyStone",
-    "Call Phone"
-  ];
-  cashinService = ["ITEXNIP", "FIDELITY", "GTB-GAPS", "ETRANZACT"];
-  products = [
-    "IKEDC",
-    "IBEDC",
-    "EKEDC",
-    "EEDC",
-    "PHED",
-    "AEDC",
-    "KEDCO",
-    "TRANSFER",
-    "WITHDRAWAL",
-    "MULTICHOICE",
-    "MTNVTU",
-    "MTNDATA",
-    "AIRTELDATA",
-    "AIRTELVTU",
-    "GLOVTU",
-    "GLODATA",
-    "ETISALATVTU",
-    "ETISALATDATA",
-    "RCN_FUND",
-    "STARTIMES",
-    "GEHS",
-    "OLHS",
-    "SMILE"
-  ];
+  Refs = ["Terminal ID", "Transaction Ref", "Phone Number"];
 
   getPaymentMethod(event) {
     this.paymentMethod = event.target.value;
@@ -410,9 +286,6 @@ export class TransactionComponent implements OnInit {
   }
   getVendor(event) {
     this.vendor = event.target.value;
-  }
-  getProvider(event) {
-    this.provider = event.target.value;
   }
   getVendorType(event) {
     this.vendorType = event.target.value;
@@ -450,17 +323,14 @@ export class TransactionComponent implements OnInit {
       searchField: "",
       viewPage: "",
       vendType: this.vendType ? this.vendType : "",
-      virtualTID: this.virtualTID ? this.virtualTID : "",
-      clientReference: this.clientReference ? this.clientReference : "",
-      vendor: this.vendor ? this.vendor : "",
-      transferProvider: this.provider ? this.provider : ""
+      vendor: this.vendor ? this.vendor : ""
     };
 
     this.Transaction(this.filterData);
     this.TransactionSummary(this.filterData);
     // console.log(this.filterData);
 
-    this.socket.disconnectSocket();
+    //this.socket.disconnectSocket();
   }
 
   getFilter() {
@@ -481,10 +351,6 @@ export class TransactionComponent implements OnInit {
       this.phoneNumber = this.filterValue;
     } else if (this.filter == "cardRRN") {
       this.cardRRN = this.filterValue;
-    } else if (this.filter == "Virtual TID") {
-      this.virtualTID = this.filterValue;
-    } else if (this.filter == "Client Reference") {
-      this.clientReference = this.filterValue;
     }
   }
 
@@ -497,7 +363,7 @@ export class TransactionComponent implements OnInit {
     // this.Transaction(this.payload);
     // this.Transaction(this.filterData);
 
-    this.router.navigateByUrl("/transaction/details", {
+    this.router.navigateByUrl("/cgate/transactions", {
       queryParams: { page: this.currentPage }
     });
   }

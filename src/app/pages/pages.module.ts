@@ -49,6 +49,7 @@ import { McashTransactionComponent } from './Mcash/transaction/mcash-transaction
 import { McashComponent } from './Mcash/terminals/mcash.component';
 import { ErrorAnalysisComponent } from './error-analysis/error-analysis.component';
 import { StatusModalComponent } from './status/service-status/status-modal/status-modal.component';
+import { CgateComponent } from './cgate/cgate.component';
 
 @NgModule({
     imports: [
@@ -99,6 +100,7 @@ import { StatusModalComponent } from './status/service-status/status-modal/statu
       McashComponent,
       ErrorAnalysisComponent,
       StatusModalComponent,
+      CgateComponent,
       
   
     ],
