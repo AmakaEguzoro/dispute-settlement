@@ -15,7 +15,8 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "assets": [{
+            "assets": [
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
@@ -31,7 +32,10 @@
                 "output": "/"
               }
             ],
-            "styles": [{
+            "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              {
                 "input": "node_modules/font-awesome/scss/font-awesome.scss"
               },
               {
@@ -47,7 +51,8 @@
                 "input": "node_modules/angular-calendar/scss/angular-calendar.scss"
               }
             ],
-            "scripts": [{
+            "scripts": [
+              {
                 "input": "node_modules/chart.js/dist/Chart.js"
               },
               {
@@ -66,9 +71,8 @@
                 "input": "node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"
               },
               {
-                "input":   "node_modules/automapper-ts/dist/automapper.min.js"
+                "input": "node_modules/automapper-ts/dist/automapper.min.js"
               }
- 
             ]
           },
           "configurations": {
@@ -82,10 +86,12 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
@@ -120,13 +126,16 @@
               "node_modules/hammerjs/hammer.min.js"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "node_modules/font-awesome/scss/font-awesome.scss",
               "scss/bootstrap/bootstrap.scss",
               "scss/mdb.scss",
               "src/styles.scss",
               "node_modules/angular-calendar/scss/angular-calendar.scss"
             ],
-            "assets": [{
+            "assets": [
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"

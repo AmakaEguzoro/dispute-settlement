@@ -9,7 +9,7 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
-  FormControl
+  FormControl,
 } from "@angular/forms";
 import { IMyOptions } from "ng-uikit-pro-standard";
 import { ExcelService } from "app/_service/excel.service";
@@ -21,7 +21,7 @@ import { EXCEL_EXPORT } from "app/web-worker/excel-export.script";
 @Component({
   selector: "app-transaction",
   templateUrl: "./transaction.component.html",
-  styleUrls: ["./transaction.component.scss"]
+  styleUrls: ["./transaction.component.scss"],
 })
 export class TransactionComponent implements OnInit {
   // Details
@@ -115,7 +115,7 @@ export class TransactionComponent implements OnInit {
     transferProvider: "",
     virtualTID: "",
     clientReference: "",
-    download: false
+    download: false,
   };
 
   // private EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
@@ -135,7 +135,7 @@ export class TransactionComponent implements OnInit {
       method: ["", Validators.min],
       startDate: ["", Validators.min],
       endDate: ["", Validators.min],
-      filterValue: [""]
+      filterValue: [""],
     });
   }
 
@@ -186,13 +186,13 @@ export class TransactionComponent implements OnInit {
     const wallet = this.userWallet();
     let balance = {
       username: username,
-      wallet: wallet
+      wallet: wallet,
     };
     this.transactionService.getWalletBalance(balance).subscribe(
-      data => {
+      (data) => {
         this.userBalance = data;
       },
-      error => {
+      (error) => {
         this.userBalance = null;
       }
     );
@@ -228,14 +228,14 @@ export class TransactionComponent implements OnInit {
       transferProvider: this.provider ? this.provider : "",
       virtualTID: this.virtualTID ? this.virtualTID : "",
       clientReference: this.clientReference ? this.clientReference : "",
-      download: true
+      download: true,
     };
 
     if (this.userName() != "Providus") {
       this.isData = true;
       this.loading = true;
       this.transactionService.getTransaction(this.filterData).subscribe(
-        data => {
+        (data) => {
           this.loading = false;
           this.exportData = data.data.transactions;
           this.excelService.exportAsExcelFile(
@@ -243,7 +243,7 @@ export class TransactionComponent implements OnInit {
             "ITEX-TranReport" + this.range
           );
         },
-        error => {
+        (error) => {
           this.isData = false;
           this.loading = false;
           console.log("cant get transaction details", error);
@@ -256,7 +256,7 @@ export class TransactionComponent implements OnInit {
     this.isData = true;
     this.loading = true;
     this.transactionService.getTransaction(payload).subscribe(
-      data => {
+      (data) => {
         this.loading = false;
         this.detailsData = data.data.transactions;
         console.log(this.detailsData);
@@ -265,7 +265,7 @@ export class TransactionComponent implements OnInit {
         this.lastPage = data.data.lastPage * this.perPage;
         console.log("Last Page logged", this.lastPage);
       },
-      error => {
+      (error) => {
         this.isData = false;
         this.loading = false;
         console.log("cant get transaction details", error);
@@ -277,11 +277,11 @@ export class TransactionComponent implements OnInit {
     this.detailsData.response = modal;
     const initialState = {
       data: this.detailsData.response,
-      ignoreBackdropClick: true
+      ignoreBackdropClick: true,
     };
     this.bsModalRef = this.modalService.show(ModelComponent, {
       initialState,
-      class: "modal-lg"
+      class: "modal-lg",
     });
     //
   }
@@ -297,14 +297,14 @@ export class TransactionComponent implements OnInit {
     "AMOUNT",
     "STATUS",
     "RESPONSE TIME",
-    "DATE"
+    "DATE",
   ];
 
   TransactionSummary(payload) {
     this.isData = true;
     this.isLoading = true;
     this.transactionService.getTransactionSummary(payload).subscribe(
-      data => {
+      (data) => {
         this.isLoading = false;
         this.summaryData = data.data;
         this.failedAmount = this.summaryData.failedAmount;
@@ -317,7 +317,7 @@ export class TransactionComponent implements OnInit {
         this.totalCount = this.summaryData.transactionCount;
         this.usersCount = this.summaryData.usersCount;
       },
-      error => {
+      (error) => {
         this.isData = false;
         this.isLoading = false;
         console.log("cant get transaction summary details", error);
@@ -331,7 +331,7 @@ export class TransactionComponent implements OnInit {
     startDate: this.dateRange,
     ariaLabelOpenCalendar: "Open Calendar",
     closeAfterSelect: true,
-    minYear: 1900
+    minYear: 1900,
     // disableUntil:
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
@@ -350,7 +350,7 @@ export class TransactionComponent implements OnInit {
     "Account number",
     "Phone Number",
     "cardRRN",
-    "Virtual TID"
+    "Virtual TID",
   ];
   vendors = [
     "Itex",
@@ -367,7 +367,7 @@ export class TransactionComponent implements OnInit {
     "XchangeBox",
     "Daphty",
     "GreyStone",
-    "Call Phone"
+    "Call Phone",
   ];
   cashinService = ["ITEXNIP", "FIDELITY", "GTB-GAPS", "ETRANZACT"];
   products = [
@@ -393,7 +393,7 @@ export class TransactionComponent implements OnInit {
     "STARTIMES",
     "GEHS",
     "OLHS",
-    "SMILE"
+    "SMILE",
   ];
 
   getPaymentMethod(event) {
@@ -453,7 +453,7 @@ export class TransactionComponent implements OnInit {
       virtualTID: this.virtualTID ? this.virtualTID : "",
       clientReference: this.clientReference ? this.clientReference : "",
       vendor: this.vendor ? this.vendor : "",
-      transferProvider: this.provider ? this.provider : ""
+      transferProvider: this.provider ? this.provider : "",
     };
 
     this.Transaction(this.filterData);
@@ -498,7 +498,7 @@ export class TransactionComponent implements OnInit {
     // this.Transaction(this.filterData);
 
     this.router.navigateByUrl("/transaction/details", {
-      queryParams: { page: this.currentPage }
+      queryParams: { page: this.currentPage },
     });
   }
 }

@@ -417,3 +417,22 @@ md-form input[type="text"] {
   // margin-top: -22px;
   height: 19px !important;
 }
+
+.customclass {
+  background-color: #d9e0e7 !important;
+  border-color: rgba(105, 195, 150, 1);
+  .nav-item.active .nav-link {
+    border-color: #406b99;
+    color: black;
+  }
+  .nav-item .nav-link {
+    color: black;
+  }
+
+  .tab-content.card {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: rgb(217, 224, 231);
+    border-color: rgba(105, 195, 150, 1);
+  }
+}

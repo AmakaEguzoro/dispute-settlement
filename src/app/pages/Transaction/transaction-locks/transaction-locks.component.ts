@@ -1,14 +1,14 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TransactionService } from 'app/_service/transaction.service';
-import { Router } from '@angular/router';
-import { IMyOptions, ToastService } from 'ng-uikit-pro-standard';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-
+import { Component, OnInit, TemplateRef } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { TransactionService } from "app/_service/transaction.service";
+import { Router } from "@angular/router";
+import { IMyOptions, ToastService } from "ng-uikit-pro-standard";
+import { BsModalRef, BsModalService } from "ngx-bootstrap";
+import { SocketService } from "app/_service/socket.service";
 @Component({
-  selector: 'app-transaction-locks',
-  templateUrl: './transaction-locks.component.html',
-  styleUrls: ['./transaction-locks.component.scss']
+  selector: "app-transaction-locks",
+  templateUrl: "./transaction-locks.component.html",
+  styleUrls: ["./transaction-locks.component.scss"],
 })
 export class TransactionLocksComponent implements OnInit {
   isData: boolean;
@@ -35,25 +35,34 @@ export class TransactionLocksComponent implements OnInit {
   modalRef: BsModalRef;
 
   DateObj: any = new Date();
-  dateRange = (String)(this.DateObj.getFullYear() + '/' + (this.DateObj.getMonth() + 1) + '/' + this.DateObj.getDate());
+  dateRange = String(
+    this.DateObj.getFullYear() +
+      "/" +
+      (this.DateObj.getMonth() + 1) +
+      "/" +
+      this.DateObj.getDate()
+  );
   newRange = `${this.dateRange} - ${this.dateRange}`;
   payload = {
-    "dateRange": this.newRange,
-    "walletId": "",
-    "transactionReference": "",
-    "viewPage": "",
+    dateRange: this.newRange,
+    walletId: "",
+    transactionReference: "",
+    viewPage: "",
     // "download": false,
   };
 
-
-  constructor(private transactionService: TransactionService,
-    private router: Router, private fb: FormBuilder,
-    private modalService: BsModalService, private toastService: ToastService) {
+  constructor(
+    private transactionService: TransactionService,
+    private router: Router,
+    private fb: FormBuilder,
+    private modalService: BsModalService,
+    private toastService: ToastService
+  ) {
     this.searchForm = this.fb.group({
-      method: ['', Validators.min],
-      startDate: ['', Validators.min],
-      endDate: ['', Validators.min],
-      filterValue: ['',]
+      method: ["", Validators.min],
+      startDate: ["", Validators.min],
+      endDate: ["", Validators.min],
+      filterValue: [""],
     });
   }
 
@@ -64,39 +73,44 @@ export class TransactionLocksComponent implements OnInit {
   TransactionLocks(payload) {
     this.isData = true;
     this.loading = true;
-    this.transactionService.getTransactionLocks(payload).subscribe((data) => {
-      this.loading = false;
-      this.locksData = data.transactions;
-      this.serial = 1 + (this.currentPage - 1) * this.perPage;
-      this.lastPage = data.lastPage * this.perPage;
-      this.tranLockAmount = data.tranLockAmount;
-    }, error => {
-      this.isData = false;
-      this.loading = false;
-      console.log('cant get transaction locks', error);
-    })
-  };
+    this.transactionService.getTransactionLocks(payload).subscribe(
+      (data) => {
+        this.loading = false;
+        this.locksData = data.transactions;
+        this.serial = 1 + (this.currentPage - 1) * this.perPage;
+        this.lastPage = data.lastPage * this.perPage;
+        this.tranLockAmount = data.tranLockAmount;
+      },
+      (error) => {
+        this.isData = false;
+        this.loading = false;
+        console.log("cant get transaction locks", error);
+      }
+    );
+  }
 
   removeTransactionLocks(item) {
     this.loading = true;
     let load = {
-      "wallet": item.wallet,
-      "reference": item.reference,
-      "amount": item.amount,
-    }
-    this.transactionService.removeTransactionLocks(load).subscribe((data) => {
-      this.loading = false;
-      this.toastService.success(data.message)
-    }, error => {
-      this.loading = false;
-      this.toastService.error(error)
-      console.log('cant remove transaction locks', error);
-    })
-  };
+      wallet: item.wallet,
+      reference: item.reference,
+      amount: item.amount,
+    };
+    this.transactionService.removeTransactionLocks(load).subscribe(
+      (data) => {
+        this.loading = false;
+        this.toastService.success(data.message);
+      },
+      (error) => {
+        this.loading = false;
+        this.toastService.error(error);
+        console.log("cant remove transaction locks", error);
+      }
+    );
+  }
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
- 
+    this.modalRef = this.modalService.show(template, { class: "modal-sm" });
   }
 
   decline(): void {
@@ -107,21 +121,23 @@ export class TransactionLocksComponent implements OnInit {
     this.loading = true;
     this.currentPage = event.page;
     this.TransactionLocks(this.payload);
-    this.router.navigateByUrl('/transaction/locks', { queryParams: { page: this.currentPage } });
-  };
+    this.router.navigateByUrl("/transaction/locks", {
+      queryParams: { page: this.currentPage },
+    });
+  }
 
   // filters
   public myDatePickerOptions: IMyOptions = {
-    dateFormat: 'yyyy/mm/dd',
+    dateFormat: "yyyy/mm/dd",
     startDate: this.dateRange,
-    ariaLabelOpenCalendar: 'Open Calendar',
+    ariaLabelOpenCalendar: "Open Calendar",
     closeAfterSelect: true,
     minYear: 1900,
     // disableUntil:
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
-  Refs = ['Agent ID', 'Transaction Ref'];
+  Refs = ["Agent ID", "Transaction Ref"];
 
   getRef(event) {
     this.filter = event.target.value;
@@ -133,10 +149,12 @@ export class TransactionLocksComponent implements OnInit {
     this.range = `${this.start} - ${this.end}`;
     this.getFilter();
     this.filterData = {
-      "dateRange": this.range,
-      "walletId": this.walletId ? this.walletId : '',
-      "transactionReference": this.transactionReference ? this.transactionReference : '',
-      "viewPage": "",
+      dateRange: this.range,
+      walletId: this.walletId ? this.walletId : "",
+      transactionReference: this.transactionReference
+        ? this.transactionReference
+        : "",
+      viewPage: "",
       // "download": false
     };
     console.log(this.filterData);
@@ -145,11 +163,10 @@ export class TransactionLocksComponent implements OnInit {
 
   getFilter() {
     this.filterValue = this.searchForm.value.filterValue;
-    if (this.filter == 'Agent ID') {
+    if (this.filter == "Agent ID") {
       this.walletId = this.filterValue;
-    } else if (this.filter == 'Transaction Ref') {
+    } else if (this.filter == "Transaction Ref") {
       this.transactionReference = this.filterValue;
     }
   }
-
 }
