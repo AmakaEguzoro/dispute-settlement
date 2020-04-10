@@ -1,0 +1,75 @@
+<div class="container-fluid" *ngIf="showing=='table1'">
+  <div class="row col-6">
+
+    <button mdbBtn type="button" color="teal" outline="true" size="sm" mdbWavesEffect
+      (click)="displayhome.emit('home')">Back</button>
+
+    <button mdbBtn type="button" color="teal" rounded="true" size="sm" mdbWavesEffect
+      (click)="exportAsXLSX()">Export</button>
+  </div>
+  <div class="container">
+    <span>
+      <h3>Users</h3>
+    </span>
+    <div class="card" style="border-color: teal;">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table #table class="table table-hover " small="true">
+            <thead class="trans-head">
+              <tr>
+                <th class="head" *ngFor="let head of headElements" scope="col" style="color: rgb(64, 107, 153); ;">
+                  {{head}}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <mdb-spinner class="loading-screen-icon" *ngIf="isLoading" spinnerType="big" spinnerColor="blue">
+              </mdb-spinner>
+              <!-- <div class="progress-loader" [hidden]="!loading"> -->
+
+              <!-- <mat-progress-spinner [mode]="'indeterminate'">
+                                </mat-progress-spinner> -->
+
+              <!-- </div> -->
+              <!--  -->
+              <tr *ngFor="let item of summaryuser let i = index">
+                <th scope="row">{{serial + i}}</th>
+                <td>{{item.name}}
+                </td>
+                <td>{{item.user_type}}
+                </td>
+                <td>{{item.wallet}}</td>
+                <td>
+                  <mdb-badge class="status" [ngClass]="{
+                                                                  'failed' : item.online == 'N',
+                                                                  'success' : item.online == 'Y'
+                                                                   
+                                                                }">
+                    {{(item.online=="Y")? "Online":"Offline"}}
+
+
+                  </mdb-badge><br>
+
+                </td>
+                <td>&#x20A6;{{item.wallet_balance/ 100 | number: "1.2-2"}}</td>
+                <td style="color: #828282; ;">{{item.date_created}}</td>
+              </tr>
+              <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+            </tbody>
+          </table>
+          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+            <button mdbBtn type="button" color="teal" class="waves-light" mdbWavesEffect (click)="prev()"
+              [disabled]="prev_disable">Prev</button>
+            <br>
+            <div class="btn-text" style="margin-top: 14px;">
+              Page {{this.page}}</div>
+            <button mdbBtn type="button" color="teal" class="waves-light" mdbWavesEffect (click)="next()">Next</button>
+          </div>
+          <br>
+          <!-- <div *ngIf="loading == true" style="cursor: wait;"> </div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
