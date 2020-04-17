@@ -55,6 +55,8 @@ import { ErrorAnalysisComponent } from "./error-analysis/error-analysis.componen
 import { StatusModalComponent } from "./status/service-status/status-modal/status-modal.component";
 import { CgateComponent } from "./cgate/cgate.component";
 import { TransactionGlobalComponent } from "./Transaction/transaction-global/transaction-global.component";
+import { TransactionNipComponent } from "./Transaction/transaction-nip/transaction-nip.component";
+
 import { Table1Component } from "./Transaction/transaction-global/table1/table1.component";
 import { Table2Component } from "./Transaction/transaction-global/table2/table2.component";
 
@@ -114,6 +116,7 @@ import { VascashComponent } from "./Transaction/transaction-global/vascash/vasca
     StatusModalComponent,
     CgateComponent,
     TransactionGlobalComponent,
+    TransactionNipComponent,
     Table1Component,
     Table2Component,
 

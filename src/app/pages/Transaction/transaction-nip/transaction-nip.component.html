@@ -1,0 +1,337 @@
+<div>
+  <app-table1 *ngIf="showing=='table1'" [filterData]="filterData" [showing]="showing"
+    (displayhome)="handleChange('home')"></app-table1>
+  <app-table2 *ngIf="showing=='table2'" [filterData]="filterData" [showing]="showing"
+    (displayhome)="handleChange('home')"></app-table2>
+  <app-cashin *ngIf="showing=='cashin'" [filterData]="filterData" [showing]="showing"
+    (displayhome)="handleChange('home')"></app-cashin>
+  <app-cashout *ngIf="showing=='cashout'" [filterData]="filterData" [showing]="showing"
+    (displayhome)="handleChange('home')"></app-cashout>
+  <app-vascard *ngIf="showing=='vascard'" [filterData]="filterData" [showing]="showing"
+    (displayhome)="handleChange('home')"></app-vascard>
+  <app-vascash *ngIf="showing=='vascash'" [filterData]="filterData" [showing]="showing"
+    (displayhome)="handleChange('home')"></app-vascash>
+</div>
+
+<div class="container-fluid" *ngIf="showing=='home'">
+  <div class="col-md-12 parent">
+    <div id="report">
+      <span>NIP Settlement Cycle Report</span>
+    </div>
+    <hr class="top" />
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-10 col-md-10 col-lg-10 offset-1">
+          <div class="container">
+            <form [formGroup]="searchForm">
+              <div class="row">
+
+                <div class="col-md-4">
+                  <div class="row">
+
+                    <div class="row">
+                      <div id="datepicker" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Date"
+                          [options]="myDatePickerOptions" size="sm"></mdb-date-picker>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <button class="btn-sm" type="button" mdbBtn mdbWavesEffect
+                          style="color: white; background-color: rgba(64, 107, 153, 1); top:35px; position: relative;"
+                          (click)="searchTrans()">
+                          Generate
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!--5 search forms-->
+                <div class="col-md-8" style="left: 20px;margin-top: 38px; ">
+                  <div class="row">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+                      <select class="browser-default custom-select stat" (change)="getChannel($event)"
+                        formControlName="channel">
+                        <option value="">Payment Channel</option>
+                        <option *ngFor="let status of Channels" [value]="status">{{
+                                status
+                              }}</option>
+                      </select>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                      <select class="browser-default custom-select stat" (change)="getType($event)"
+                        formControlName="paymentType">
+                        <option value="">
+                          Payment Method
+                        </option>
+                        <option *ngFor="let status of Methods" [value]="status">{{
+                                status
+                              }}</option>
+                      </select>
+                    </div>
+
+
+
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+          <div class="row" style="margin-top: 40px;">
+            <div class="col-lg-3 col-md-3 col-sm-6 offset-4">
+              <div class="card card-stats" style="background-color: white;">
+                <div class="card-title ">
+                  <div class="row">
+
+                    <div class="col-12 col-md-12">
+                      <div class="numbers">
+                        <div class="titlebg">TOTAL SESSIONS</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text d-flex" style="text-align: center; justify-content: center; margin-top: 30px;">
+                  <span>
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                        &#x20A6;{{total_transactions / 100 | number}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                  </span>
+                </div>
+
+                <div class="card-footer" style="height: 60px; background-color: #fff;">
+                  <mdb-spinner *ngIf="isExportLoading && Session=='all'" spinnerType="small" spinnerColor="blue">
+                  </mdb-spinner>
+                  <div class="row" *ngIf="isExportLoading == false">
+                    <div class="col-6">
+                      <div style="font-size: 12px; display: table-footer-group;">
+                        <p *ngIf="isData == true" class="summary-card-text mt-1"
+                          style="text-align: center; font-size: 14px;">
+                          {{total_transactions_count}}
+                          <br>Transactions</p>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div (click)="exportToExcel('all')" class="mt-1"
+                        style="cursor: pointer; font-size: 17px; text-align: right;" *ngIf="isData==true">
+                        <mdb-icon fas icon="download"></mdb-icon> Export
+                      </div>
+                    </div>
+                  </div>
+                  <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 40px;">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats" style="background-color: white;">
+                <div class="card-title ">
+                  <div class="row">
+
+                    <div class="col-12 col-md-12">
+                      <div class="numbers">
+                        <div class="titlebg">SESSION 1 (4pm - 5.59am)</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text d-flex" style="text-align: center; justify-content: center; margin-top: 30px;">
+                  <span>
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                        &#x20A6;{{sessionOneAmount / 100 | number}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                  </span>
+                </div>
+                <div class="card-footer" style="height: 60px; background-color: #fff;">
+                  <mdb-spinner *ngIf="isExportLoading && Session=='1'" spinnerType="small" spinnerColor="blue">
+                  </mdb-spinner>
+                  <div class="row" *ngIf="isExportLoading == false">
+                    <div class="col-6">
+                      <div style="font-size: 12px; display: table-footer-group;">
+                        <p *ngIf="isData == true" class="summary-card-text mt-1"
+                          style="text-align: center; font-size: 14px;">
+                          {{sessionOneCount}}
+                          <br>Transactions</p>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div (click)="exportToExcel('1')" class="mt-1"
+                        style="cursor: pointer; font-size: 17px; text-align: right;" *ngIf="isData==true">
+                        <mdb-icon fas icon="download"></mdb-icon> Export
+                      </div>
+                    </div>
+                  </div>
+                  <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats" style="background-color: white;">
+                <div class="card-title ">
+                  <div class="row">
+
+                    <div class="col-12 col-md-12">
+                      <div class="numbers">
+                        <div class="titlebg">SESSION 2 (6am - 9.59am)</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text d-flex" style="text-align: center; justify-content: center; margin-top: 30px;">
+                  <span>
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                        &#x20A6;{{sessionTwoAmount/ 100 | number}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                  </span>
+                </div>
+                <div class="card-footer" style="height: 60px; background-color: #fff;">
+                  <mdb-spinner *ngIf="isExportLoading && Session=='2'" spinnerType="small" spinnerColor="blue">
+                  </mdb-spinner>
+                  <div class="row" *ngIf="isExportLoading == false">
+                    <div class="col-6">
+                      <div style="font-size: 12px; display: table-footer-group;">
+                        <p *ngIf="isData == true" class="summary-card-text mt-1"
+                          style="text-align: center; font-size: 14px;">
+                          {{sessionTwoCount}}
+                          <br>Transactions</p>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div (click)="exportToExcel('2')" class="mt-1"
+                        style="cursor: pointer; font-size: 17px; text-align: right;" *ngIf="isData==true">
+                        <mdb-icon fas icon="download"></mdb-icon> Export
+                      </div>
+                    </div>
+                  </div>
+                  <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats" style="background-color: white;">
+                <div class="card-title ">
+                  <div class="row">
+
+                    <div class="col-12 col-md-12">
+                      <div class="numbers">
+                        <div class="titlebg">SESSION 3 (10am -12.59pm)</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text d-flex" style="text-align: center; justify-content: center; margin-top: 30px;">
+                  <span>
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                        &#x20A6;{{sessionThreeAmount/ 100 | number}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                  </span>
+                </div>
+
+                <div class="card-footer" style="height: 60px; background-color: #fff;">
+                  <mdb-spinner *ngIf="isExportLoading && Session=='3'" spinnerType="small" spinnerColor="blue">
+                  </mdb-spinner>
+                  <div class="row" *ngIf="isExportLoading == false">
+                    <div class="col-6">
+                      <div style="font-size: 12px; display: table-footer-group;">
+                        <p *ngIf="isData == true" class="summary-card-text mt-1"
+                          style="text-align: center; font-size: 14px;">
+                          {{sessionThreeCount}}
+                          <br>Transactions</p>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div (click)="exportToExcel('3')" class="mt-1"
+                        style="cursor: pointer; font-size: 17px; text-align: right;" *ngIf="isData==true">
+                        <mdb-icon fas icon="download"></mdb-icon> Export
+                      </div>
+                    </div>
+                  </div>
+                  <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats" style="background-color: white;">
+                <div class="card-title ">
+                  <div class="row">
+
+                    <div class="col-12 col-md-12">
+                      <div class="numbers">
+                        <div class="titlebg">SESSION 4 (1pm - 3.59pm)</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text d-flex" style="text-align: center; justify-content: center; margin-top: 30px;">
+                  <span>
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                        &#x20A6;{{sessionFourAmount/ 100 | number}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                  </span>
+                </div>
+                <div class="card-footer" style="height: 60px; background-color: #fff;">
+                  <mdb-spinner *ngIf="isExportLoading && Session=='4'" spinnerType="small" spinnerColor="blue">
+                  </mdb-spinner>
+                  <div class="row" *ngIf="isExportLoading == false">
+                    <div class="col-6">
+                      <div style="font-size: 12px; display: table-footer-group;">
+                        <p *ngIf="isData == true" class="summary-card-text mt-1"
+                          style="text-align: center; font-size: 14px;">
+                          {{sessionFourCount}}
+                          <br>Transactions</p>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div (click)="exportToExcel('4')" class="mt-1"
+                        style="cursor: pointer; font-size: 17px; text-align: right;" *ngIf="isData==true">
+                        <mdb-icon fas icon="download"></mdb-icon> Export
+                      </div>
+                    </div>
+                  </div>
+                  <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

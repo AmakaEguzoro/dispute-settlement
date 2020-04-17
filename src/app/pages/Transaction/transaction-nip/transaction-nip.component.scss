@@ -28,13 +28,14 @@ hr.top {
   position: relative;
   top: 35px;
   width: 100%;
-
+  height: 420px;
   left: -25px;
 
   text-align: center;
   background-color: rgb(217, 224, 231);
   border-radius: 4px;
 }
+
 .global:hover {
   filter: drop-shadow(0px 3px 6px rgba(110, 93, 93, 0.467));
   transition: ease, 0.5s, 0.5s;
@@ -42,11 +43,11 @@ hr.top {
 
 .heading {
   text-align: center;
-  background-color: rgb(105, 195, 150);
-  height: auto;
+  background-color: rgba(64, 107, 153, 1);
+  height: 40px;
   width: auto;
   overflow: visible;
-  color: black;
+  color: white;
   font-size: 1em;
   position: relative;
 
@@ -55,6 +56,7 @@ hr.top {
   padding: 10px 0px;
   border-radius: 4px;
 }
+
 .rounded-circle {
   position: relative;
   top: 25px;
@@ -62,6 +64,7 @@ hr.top {
   max-width: 50px;
   max-height: 50px;
 }
+
 mdb-date-picker {
   border: 1px solid #e0e0e0;
   border-radius: 5px;
@@ -80,15 +83,18 @@ mdb-date-picker {
   position: relative;
   left: 5px;
 }
+
 .datarange {
   position: relative;
   top: 5px;
   left: 50px;
 }
+
 #datepicker {
   position: relative;
   top: 20px;
 }
+
 #secondsearch {
   position: relative;
   top: 20px;
@@ -97,8 +103,9 @@ mdb-date-picker {
   float: left;
   text-align: left;
 }
+
 .header {
-  background-color: rgb(105, 195, 150);
+  background-color: rgba(64, 107, 153, 1);
   width: auto;
   height: auto;
   color: black;
@@ -110,33 +117,40 @@ mdb-date-picker {
   font-size: 18px;
   filter: drop-shadow(0px 3px 6px rgba(110, 93, 93, 0.467));
 }
+
 .card {
   border-radius: 4px;
 }
+
 .cardgrid {
   width: auto;
   height: auto;
   background-color: rgb(217, 224, 231);
   filter: drop-shadow(0px 3px 6px rgba(110, 93, 93, 0.467));
 }
+
 .parentgrid {
   display: grid;
   position: relative;
 }
+
 .tamount {
   position: relative;
   top: 20px;
   left: 30px;
   text-align: center;
 }
+
 .amountused {
   position: relative;
   left: 30px;
   text-align: center;
 }
+
 hr.dotted {
   border-top: 1px dashed black;
 }
+
 .btnexport {
   top: 20px;
   left: 70px;
@@ -145,6 +159,7 @@ hr.dotted {
   color: white;
   font-size: 12px;
 }
+
 .tabs {
   box-shadow: 0px 2px 15px 2px;
   position: absolute;
@@ -198,32 +213,34 @@ label:hover {
 }
 
 [type="radio"],
-#r1:checked ~ #slider {
+#r1:checked~#slider {
   transform: translate(-450px, 0px);
 }
 
 [type="radio"],
-#r2:checked ~ #slider {
+#r2:checked~#slider {
   transform: translate(-300px, 0px);
 }
 
 [type="radio"],
-#r3:checked ~ #slider {
+#r3:checked~#slider {
   transform: translate(-150px, 0px);
 }
 
-[type="radio"]:checked + label {
+[type="radio"]:checked+label {
   color: white;
 }
 
-[type="radio"]:checked + label + .content {
+[type="radio"]:checked+label+.content {
   display: inline-block;
 }
+
 .tabclass {
   top: 50px;
   width: 100%;
   justify-content: center;
 }
+
 .total-trans {
   font-style: normal;
   font-weight: normal;
@@ -234,6 +251,7 @@ label:hover {
   width: auto;
   height: auto;
 }
+
 .trans-amount {
   font-style: normal;
   font-weight: normal;
@@ -243,6 +261,7 @@ label:hover {
   color: #002035;
   margin-top: -16px;
 }
+
 .trans-card-text {
   font-style: normal;
   font-weight: 600;
@@ -255,9 +274,11 @@ label:hover {
   background: rgba(242, 242, 242, 0.56);
   border: 3px solid rgba(242, 242, 242, 0.56);
 }
+
 .head {
   font-weight: 600 !important;
 }
+
 .card .card-body {
   padding: 7px;
 }
@@ -271,14 +292,17 @@ label:hover {
   color: black;
   font-size: 24px;
 }
+
 .fail {
   color: #eb5757;
   font-size: 24px;
 }
+
 .total {
   color: #219653;
   font-size: 24px;
 }
+
 .total-users {
   float: right;
   margin-top: -22px;
@@ -293,6 +317,7 @@ label:hover {
   text-align: center;
   font-size: 1em;
 }
+
 .tabs {
   background: linear-gradient(0deg, #2d9cdb, #2d9cdb), #ffffff !important;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
@@ -301,6 +326,7 @@ label:hover {
   color: #ffff !important;
   padding-left: 2rem;
 }
+
 .nav-link {
   font-style: normal;
   font-weight: 500;
@@ -324,6 +350,7 @@ label:hover {
     margin-right: 2rem;
   }
 }
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .nav-link {
     font-style: normal;
@@ -336,6 +363,7 @@ label:hover {
     margin-right: 8rem;
   }
 }
+
 @media (min-width: 217px) and (max-width: 507px) {
   .nav-link {
     font-style: normal;
@@ -348,6 +376,7 @@ label:hover {
     margin-right: 4rem;
   }
 }
+
 @media (min-width: 320px) and (max-width: 568px) {
   .nav-link {
     font-style: normal;
@@ -360,28 +389,34 @@ label:hover {
     margin-right: 1rem;
   }
 }
+
 .card-body {
-  background-color: rgb(105, 195, 150);
+  background-color: rgba(64, 107, 153, 1);
   width: auto;
 }
+
 .card-category {
   font-size: 18px;
   font-weight: bold;
 }
+
 .card:hover {
   filter: drop-shadow(0px 3px 6px rgba(110, 93, 93, 0.467));
   transition: ease, 0.5s, 0.5s;
 }
 
 .numbers {
-  background-color: rgba(105, 195, 150, 1);
+  background-color: rgba(64, 107, 153, 1);
   width: 100%;
   border-radius: 4px;
   text-align: center;
+  color: #fff;
 }
+
 .grid-items {
   display: grid;
 }
+
 #card-layout {
   width: 1100px;
   height: 100px;
@@ -389,26 +424,27 @@ label:hover {
   border-color: white;
   border-width: 2px;
 }
+
 .vl {
   border-left: 1px solid green;
   height: 50px;
   position: relative;
   left: 80px;
 }
+
 .v2 {
   border-left: 20px solid rgb(64, 107, 153);
   height: 150px;
   position: relative;
   left: 14px;
 }
-// @media screen and (min-width: 601px) {
-//   .v2 {
-//     height: 200px;
-//   }
-// }
+
+.panel-tw {
+  background: #5bc0de;
+}
+
 .card-bodyy {
   background-color: rgba(255, 255, 255, 0.1);
-  border-left: 20px solid rgb(64, 107, 153);
-  height: 150px;
 }
+
 $grid-gutter-width: 50px;
