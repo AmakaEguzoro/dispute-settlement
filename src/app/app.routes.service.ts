@@ -9,6 +9,7 @@ import { NotFoundComponent } from "./shared/not-found/not-found.component";
 import { TransactionComponent } from "./pages/Transaction/transaction/transaction.component";
 import { TransactionReversalComponent } from "./pages/Transaction/transaction-reversal/transaction-reversal.component";
 import { TransactionGlobalComponent } from "./pages/Transaction/transaction-global/transaction-global.component";
+import { TransactionNipComponent } from "./pages/Transaction/transaction-nip/transaction-nip.component";
 import { TransactionLocksComponent } from "./pages/Transaction/transaction-locks/transaction-locks.component";
 import { RegisterComponent } from "./_auth/register/register.component";
 import { RoleManagementComponent } from "./pages/admin/role-management/role-management.component";
@@ -94,6 +95,13 @@ const routes: Route[] = [
       {
         path: "transaction/global",
         component: TransactionGlobalComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] }
+      },
+
+      {
+        path: "transaction/nip",
+        component: TransactionNipComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5] }
       },

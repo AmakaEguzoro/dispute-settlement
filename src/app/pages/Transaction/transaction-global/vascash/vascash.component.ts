@@ -8,21 +8,21 @@ import {
   Output,
   EventEmitter,
   ViewChild,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from "@angular/core";
 import { TransactionglobalService } from "..//..//..//..//_service/transactionglobal.service";
 import { Router } from "@angular/router";
 import { ExcelService } from "app/_service/excel.service";
 import {
   MdbTableDirective,
-  MdbTablePaginationComponent,
+  MdbTablePaginationComponent
 } from "ng-uikit-pro-standard";
 import * as XLSX from "xlsx";
 
 @Component({
   selector: "app-vascash",
   templateUrl: "./vascash.component.html",
-  styleUrls: ["./vascash.component.scss"],
+  styleUrls: ["./vascash.component.scss"]
 })
 export class VascashComponent implements OnInit {
   @Input() showing;
@@ -88,7 +88,7 @@ export class VascashComponent implements OnInit {
     "Channel",
 
     "Status",
-    "Date",
+    "Date"
   ];
 
   TableSummary() {
@@ -99,18 +99,18 @@ export class VascashComponent implements OnInit {
       paymentType: "cash",
       page: this.page - 1,
       limit: "50",
-      download: false,
+      download: false
     };
     this.isData = true;
     this.isLoading = true;
     this.tableService.exportTable(payload).subscribe(
-      (data) => {
+      data => {
         this.isLoading = false;
         this.summarytrans = data;
 
         this.serial = 1 + (this.page - 1) * this.perPage;
       },
-      (error) => {
+      error => {
         this.isData = false;
         this.isLoading = false;
         console.log("cant get transaction details", error);
@@ -124,7 +124,7 @@ export class VascashComponent implements OnInit {
     console.log("current page", this.currentPage);
 
     this.router.navigateByUrl("/transaction/global", {
-      queryParams: { page: this.currentPage },
+      queryParams: { page: this.currentPage }
     });
   }
 
@@ -154,14 +154,14 @@ export class VascashComponent implements OnInit {
       channel: this.filterData ? this.filterData.channel : "",
       paymentType: "cash",
 
-      download: false,
+      download: true
     };
 
     if (this.userName() != "Providus") {
       this.isData = true;
       this.isLoading = true;
       this.tableService.exportTable(this.exportDetails).subscribe(
-        (data) => {
+        data => {
           this.isLoading = false;
           this.exportData = data;
           this.excelService.exportAsExcelFile(
@@ -169,7 +169,7 @@ export class VascashComponent implements OnInit {
             "ITEX-VasCashReport" + this.range
           );
         },
-        (error) => {
+        error => {
           this.isData = false;
           this.isLoading = false;
           console.log("cant get transaction details", error);

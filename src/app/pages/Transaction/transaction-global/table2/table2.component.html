@@ -52,11 +52,12 @@
           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
             <button mdbBtn type="button" color="teal" class="waves-light" mdbWavesEffect (click)="prev()"
-              [disabled]="prev_disable">Prev</button>
+              [disabled]="prev_disable" size="sm">Prev</button>
             <br>
             <div class="btn-text" style="margin-top: 14px;">
               Page {{this.page}}</div>
-            <button mdbBtn type="button" color="teal" class="waves-light" mdbWavesEffect (click)="next()">Next</button>
+            <button mdbBtn type="button" color="teal" class="waves-light" mdbWavesEffect (click)="next()"
+              size="sm">Next</button>
           </div>
           <br>
           <!-- <div *ngIf="loading == true" style="cursor: wait;"> </div> -->

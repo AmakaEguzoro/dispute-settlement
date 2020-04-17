@@ -8,21 +8,21 @@ import {
   Output,
   EventEmitter,
   ViewChild,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from "@angular/core";
 import { TransactionglobalService } from "..//..//..//..//_service/transactionglobal.service";
 import { Router } from "@angular/router";
 import { ExcelService } from "app/_service/excel.service";
 import {
   MdbTableDirective,
-  MdbTablePaginationComponent,
+  MdbTablePaginationComponent
 } from "ng-uikit-pro-standard";
 import * as XLSX from "xlsx";
 import { interval } from "rxjs/";
 @Component({
   selector: "app-cashin",
   templateUrl: "./cashin.component.html",
-  styleUrls: ["./cashin.component.scss"],
+  styleUrls: ["./cashin.component.scss"]
 })
 export class CashinComponent implements OnInit {
   @Input() showing;
@@ -91,7 +91,7 @@ export class CashinComponent implements OnInit {
     "Payment Method",
     "Channel",
     "Status",
-    "Date",
+    "Date"
   ];
 
   TableSummary() {
@@ -103,19 +103,19 @@ export class CashinComponent implements OnInit {
       product: "transfer",
       download: false,
       page: this.page - 1,
-      limit: "50",
+      limit: "50"
     };
     console.log(this.page, "bet");
     this.isData = true;
     this.isLoading = true;
     this.tableService.exportTable(payload).subscribe(
-      (data) => {
+      data => {
         this.isLoading = false;
         this.summarytrans = data;
         console.log(payload);
         this.serial = 1 + (this.page - 1) * this.perPage;
       },
-      (error) => {
+      error => {
         this.isData = false;
         this.isLoading = false;
         console.log("cant get transaction details", error);
@@ -129,7 +129,7 @@ export class CashinComponent implements OnInit {
     console.log("current page", this.currentPage);
 
     this.router.navigateByUrl("/transaction/global", {
-      queryParams: { page: this.page },
+      queryParams: { page: this.page }
     });
   }
   next() {
@@ -171,14 +171,14 @@ export class CashinComponent implements OnInit {
       channel: this.filterData ? this.filterData.channel : "",
       paymentType: this.filterData ? this.filterData.paymentType : "",
       product: "transfer",
-      download: false,
+      download: true
     };
 
     if (this.userName() != "Providus") {
       this.isData = true;
       this.isLoading = true;
       this.tableService.exportTable(this.exportDetails).subscribe(
-        (data) => {
+        data => {
           this.isLoading = false;
           this.exportData = data;
           this.excelService.exportAsExcelFile(
@@ -186,7 +186,7 @@ export class CashinComponent implements OnInit {
             "ITEX-CashInReport" + this.range
           );
         },
-        (error) => {
+        error => {
           this.isData = false;
           this.isLoading = false;
           console.log("cant get transaction details", error);
