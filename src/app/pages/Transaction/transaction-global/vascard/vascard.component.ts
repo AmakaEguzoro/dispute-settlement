@@ -1,3 +1,4 @@
+import { ModalDirective } from "./../../../../../lib/ng-uikit-pro-standard/free/modals/modal.directive";
 import {
   Component,
   OnInit,
@@ -8,24 +9,25 @@ import {
   Output,
   EventEmitter,
   ViewChild,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from "@angular/core";
 import { TransactionglobalService } from "..//..//..//..//_service/transactionglobal.service";
 import { Router } from "@angular/router";
 import { ExcelService } from "app/_service/excel.service";
 import {
   MdbTableDirective,
-  MdbTablePaginationComponent
+  MdbTablePaginationComponent,
 } from "ng-uikit-pro-standard";
 import * as XLSX from "xlsx";
 
 @Component({
   selector: "app-vascard",
   templateUrl: "./vascard.component.html",
-  styleUrls: ["./vascard.component.scss"]
+  styleUrls: ["./vascard.component.scss"],
 })
 export class VascardComponent implements OnInit {
   @Input() showing;
+  @Input() vascardtotal: number;
   @Input() filterData;
   @Output() displayhome = new EventEmitter();
   @ViewChild("table") table: ElementRef;
@@ -33,6 +35,7 @@ export class VascardComponent implements OnInit {
   @ViewChild(MdbTablePaginationComponent)
   mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild("row") row: ElementRef;
+  @ViewChild("basicModal") basicModal: ModalDirective;
   isData: boolean;
   isLoading: boolean;
   searchText: string = "";
@@ -45,7 +48,8 @@ export class VascardComponent implements OnInit {
   lastPage: number;
   serial: number;
   maxSize = 10;
-
+  srange = 1;
+  endRange: number;
   summarytrans: any;
   start: any;
   end: any;
@@ -56,16 +60,20 @@ export class VascardComponent implements OnInit {
   exportData: any;
   range: string;
   page = 1;
+  next_disable: boolean = false;
   prev_disable: boolean = true;
+  limit: number = 50;
   http: any;
   exportDetails: {
     startDate: any;
     endDate: any;
     channel: any;
     paymentType: any;
-
+    pageRange: any;
     download: boolean;
   };
+  pageRange: string;
+  total: number;
   constructor(
     private tableService: TransactionglobalService,
     private router: Router,
@@ -75,6 +83,8 @@ export class VascardComponent implements OnInit {
   maxVisibleItems: number = 5;
   ngOnInit() {
     this.filterData = this.filterData;
+    this.total = Math.ceil(this.vascardtotal / this.limit);
+    this.endRange = this.total;
     this.TableSummary();
   }
 
@@ -88,7 +98,7 @@ export class VascardComponent implements OnInit {
     "Channel",
 
     "Status",
-    "Date"
+    "Date",
   ];
 
   TableSummary() {
@@ -98,19 +108,19 @@ export class VascardComponent implements OnInit {
       channel: this.filterData ? this.filterData.channel : "",
       paymentType: "card",
       page: this.page - 1,
-      limit: "50",
-      download: false
+      limit: this.limit,
+      download: false,
     };
     this.isData = true;
     this.isLoading = true;
     this.tableService.exportTable(payload).subscribe(
-      data => {
+      (data) => {
         this.isLoading = false;
         this.summarytrans = data;
 
         this.serial = 1 + (this.page - 1) * this.perPage;
       },
-      error => {
+      (error) => {
         this.isData = false;
         this.isLoading = false;
         console.log("cant get transaction details", error);
@@ -124,7 +134,7 @@ export class VascardComponent implements OnInit {
     console.log("current page", this.currentPage);
 
     this.router.navigateByUrl("/transaction/global", {
-      queryParams: { page: this.currentPage }
+      queryParams: { page: this.currentPage },
     });
   }
 
@@ -147,20 +157,21 @@ export class VascardComponent implements OnInit {
     (this.start = this.filterData ? this.filterData.startDate : ""),
       (this.end = this.filterData ? this.filterData.endDate : ""),
       (this.range = `${this.start} - ${this.end}`);
+    this.pageRange = `${this.srange} - ${this.endRange}`;
     this.exportDetails = {
       startDate: this.filterData ? this.filterData.startDate : "",
       endDate: this.filterData ? this.filterData.endDate : "",
       channel: this.filterData ? this.filterData.channel : "",
       paymentType: "card",
-
-      download: true
+      pageRange: this.pageRange,
+      download: true,
     };
 
     if (this.userName() != "Providus") {
       this.isData = true;
       this.isLoading = true;
       this.tableService.exportTable(this.exportDetails).subscribe(
-        data => {
+        (data) => {
           this.isLoading = false;
           this.exportData = data;
           this.excelService.exportAsExcelFile(
@@ -168,13 +179,14 @@ export class VascardComponent implements OnInit {
             "ITEX-VasCardReport" + this.range
           );
         },
-        error => {
+        (error) => {
           this.isData = false;
           this.isLoading = false;
           console.log("cant get transaction details", error);
         }
       );
     }
+    this.basicModal.hide();
   }
   userName() {
     const username = localStorage.getItem("loggedUser");
@@ -182,6 +194,9 @@ export class VascardComponent implements OnInit {
   }
   next() {
     this.page += 1;
+    if (this.page >= this.total) {
+      this.next_disable = true;
+    }
     this.prev_disable = false;
     this.TableSummary();
   }
@@ -191,6 +206,24 @@ export class VascardComponent implements OnInit {
     if (this.page == 1) {
       this.prev_disable = true;
     }
+    this.next_disable = false;
     this.TableSummary();
+  }
+
+  stepUp() {
+    this.srange = this.srange + 1;
+  }
+  stepDown() {
+    if (this.srange != 1) {
+      this.srange = this.srange - 1;
+    }
+  }
+  endUp() {
+    this.endRange = this.endRange + 1;
+  }
+  endDown() {
+    if (this.endRange != 1) {
+      this.endRange = this.endRange - 1;
+    }
   }
 }
