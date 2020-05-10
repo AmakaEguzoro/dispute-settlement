@@ -12,6 +12,7 @@ import {
 import { TransactionglobalService } from "..//..//..//..//_service/transactionglobal.service";
 import { Router } from "@angular/router";
 import * as XLSX from "xlsx";
+import { ExcelService } from "app/_service/excel.service";
 @Component({
   selector: "app-table2",
   templateUrl: "./table2.component.html",
@@ -26,6 +27,7 @@ export class Table2Component implements OnInit {
   isLoading: boolean;
   prev_disable: boolean = true;
   page = 1;
+  sortBalance: any;
   summaryagent: [];
   perPage = 50;
   currentPage = 1;
@@ -35,23 +37,37 @@ export class Table2Component implements OnInit {
   start: string;
   end: string;
   range: string;
+  sort = "descending";
   payload: {
     startDate: any;
     endDate: any;
     channel: any;
     paymentType: any;
+    sortBalance: string;
     limit: string;
     page: number;
   };
+  exportDetails: {
+    startDate: string;
+    endDate: string;
+    sortBalance: any;
+    download: boolean;
+  };
+  exportData: any;
 
   constructor(
     private tableService: TransactionglobalService,
-    private router: Router
+    private router: Router,
+    private excelService: ExcelService
   ) {}
 
   ngOnInit() {
     this.TableSummary();
   }
+  sorts = [
+    { value: "ascending", label: "Ascending" },
+    { value: "descending", label: "Descending" },
+  ];
 
   headElements = [
     "S/N",
@@ -69,6 +85,7 @@ export class Table2Component implements OnInit {
       channel: this.filterData ? this.filterData.channel : "",
       paymentType: this.filterData ? this.filterData.paymentType : "",
       limit: "50",
+      sortBalance: this.sortBalance,
       page: this.page - 1,
     };
     this.isData = true;
@@ -91,15 +108,42 @@ export class Table2Component implements OnInit {
     this.start = this.payload.startDate;
     this.end = this.payload.endDate;
     this.range = `${this.start} - ${this.end}`;
+    this.exportDetails = {
+      startDate: this.start ? this.start : "",
+      endDate: this.end ? this.end : "",
+      sortBalance: this.sortBalance ? this.sortBalance : "",
+      download: true,
+    };
 
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(
-      this.table.nativeElement
-    );
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+    if (this.userName() != "Providus") {
+      this.isData = true;
+      this.isLoading = true;
+      this.tableService.getAgentTable(this.exportDetails).subscribe(
+        (data) => {
+          this.isLoading = false;
+          this.exportData = data;
+          this.excelService.exportAsExcelFile(
+            this.exportData,
+            "ITEX-AgentReport" + this.range
+          );
+        },
+        (error) => {
+          this.isData = false;
+          this.isLoading = false;
+          console.log("cant get transaction details", error);
+        }
+      );
+    }
+  }
 
-    /* save to file */
-    XLSX.writeFile(wb, "agents.xlsx");
+  userName() {
+    const username = localStorage.getItem("loggedUser");
+    return username;
+  }
+  getChannel(event) {
+    this.sortBalance = event.target.value;
+
+    this.TableSummary();
   }
   next() {
     this.page += 1;

@@ -121,6 +121,7 @@ export class TransactionGlobalComponent implements OnInit {
   cashout_total: any;
   vascard_total: any;
   vascash_total: any;
+  totalcount: { card_total: any };
 
   constructor(
     private transactionService: TransactionglobalService,
@@ -211,6 +212,7 @@ export class TransactionGlobalComponent implements OnInit {
   getType(event) {
     this.paymentType = event.target.value;
   }
+  cashintotal = this.cashin_total;
 
   searchTrans() {
     this.startDate = this.searchForm.value.startDate;

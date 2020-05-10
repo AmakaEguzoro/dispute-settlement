@@ -3,13 +3,13 @@
     (displayhome)="handleChange('home')"></app-table1>
   <app-table2 *ngIf="showing=='table2'" [filterData]="filterData" [showing]="showing"
     (displayhome)="handleChange('home')"></app-table2>
-  <app-cashin *ngIf="showing=='cashin'" [filterData]="filterData" [showing]="showing"
+  <app-cashin *ngIf="showing=='cashin'" [filterData]="filterData" [cashintotal]="cashin_total" [showing]="showing"
     (displayhome)="handleChange('home')"></app-cashin>
-  <app-cashout *ngIf="showing=='cashout'" [filterData]="filterData" [showing]="showing"
+  <app-cashout *ngIf="showing=='cashout'" [filterData]="filterData" [showing]="showing" [cashouttotal]="cashout_total"
     (displayhome)="handleChange('home')"></app-cashout>
-  <app-vascard *ngIf="showing=='vascard'" [filterData]="filterData" [showing]="showing"
+  <app-vascard *ngIf="showing=='vascard'" [filterData]="filterData" [showing]="showing" [vascardtotal]="vascard_total"
     (displayhome)="handleChange('home')"></app-vascard>
-  <app-vascash *ngIf="showing=='vascash'" [filterData]="filterData" [showing]="showing"
+  <app-vascash *ngIf="showing=='vascash'" [filterData]="filterData" [showing]="showing" [vascashtotal]="vascash_total"
     (displayhome)="handleChange('home')"></app-vascash>
 </div>
 

@@ -1,16 +1,41 @@
 <div class="container-fluid" *ngIf="showing=='table2'">
-  <div class="row">
 
-    <button mdbBtn type="button" color="teal" outline="true" size="sm" mdbWavesEffect
-      (click)="displayhome.emit('home')">Back</button>
+  <div class="container col-12">
+    <form>
+      <div class="row">
 
-    <button mdbBtn type="button" color="teal" rounded="true" size="sm" mdbWavesEffect
-      (click)="exportAsXLSX()">Export</button>
+        <div class="row col-6">
+
+          <button mdbBtn type="button" color="teal" outline="true" size="sm" mdbWavesEffect
+            (click)="displayhome.emit('home')">Back</button>
+
+          <button mdbBtn type="button" color="teal" rounded="true" size="sm" mdbWavesEffect
+            (click)="exportAsXLSX()">Export</button>
+
+        </div>
+
+
+      </div>
+    </form>
   </div>
   <div class="container">
-    <span>
-      <h3>Agents</h3>
-    </span>
+    <div class="row" style="display: flex; justify-content: space-between;">
+      <span>
+        <h3>Agents</h3>
+      </span>
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+        <select class="browser-default custom-select selectpicker" data-style="teal" (change)="getChannel($event)"
+          ([ngModel])="sort">
+          <option selected value="decending">Sort Wallet Balance</option>
+          <option *ngFor="let sort of sorts" [value]="sort.value">
+            {{sort.label}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+
+
     <div class="card" style="border-color: teal;">
       <div class="card-body">
         <div class="table-responsive">

@@ -11,6 +11,8 @@ import {
 } from "@angular/core";
 import { TransactionglobalService } from "..//..//..//..//_service/transactionglobal.service";
 import { Router } from "@angular/router";
+import { ExcelService } from "app/_service/excel.service";
+import { IMyOptions } from "ng-uikit-pro-standard";
 import * as XLSX from "xlsx";
 @Component({
   selector: "app-table1",
@@ -30,15 +32,27 @@ export class Table1Component implements OnInit {
     channel: string;
     paymentType: string;
     limit: string;
+    sortBalance: string;
     page: number;
   };
+  exportDetails: {
+    startDate: string;
+    endDate: string;
+    sortBalance: string;
+    download: boolean;
+  };
+  exportData: any;
+  sortBalance: any;
+  sorrtBalance: any;
   constructor(
     private tableService: TransactionglobalService,
-    private router: Router
+    private router: Router,
+    private excelService: ExcelService
   ) {}
   isData: boolean;
   isLoading: boolean;
   summaryuser: [];
+
   perPage = 50;
   currentPage = 1;
   lastPage: number;
@@ -49,7 +63,11 @@ export class Table1Component implements OnInit {
   ngOnInit() {
     this.TableSummary();
   }
-
+  sorts = [
+    { value: "ascending", label: "Ascending" },
+    { value: "descending", label: "Descending" },
+  ];
+  sort = "descending";
   headElements = [
     "SN",
     "Username",
@@ -59,6 +77,11 @@ export class Table1Component implements OnInit {
     "Wallet Balance",
     "Date Created",
   ];
+  getChannel(event) {
+    this.sortBalance = event.target.value;
+
+    this.TableSummary();
+  }
 
   TableSummary() {
     this.payload = {
@@ -67,6 +90,7 @@ export class Table1Component implements OnInit {
       channel: "",
       paymentType: "",
       limit: "50",
+      sortBalance: this.sortBalance,
       page: this.page - 1,
     };
     this.isData = true;
@@ -95,20 +119,44 @@ export class Table1Component implements OnInit {
       queryParams: { page: this.currentPage },
     });
   }
+
   exportAsXLSX(): void {
     this.start = this.payload.startDate;
     this.end = this.payload.endDate;
     this.range = `${this.start} - ${this.end}`;
+    this.exportDetails = {
+      startDate: this.start ? this.start : "",
+      endDate: this.end ? this.end : "",
+      sortBalance: this.sortBalance ? this.sortBalance : "",
+      download: true,
+    };
 
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(
-      this.table.nativeElement
-    );
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-
-    /* save to file */
-    XLSX.writeFile(wb, "users.xlsx");
+    if (this.userName() != "Providus") {
+      this.isData = true;
+      this.isLoading = true;
+      this.tableService.getUserTable(this.exportDetails).subscribe(
+        (data) => {
+          this.isLoading = false;
+          this.exportData = data;
+          this.excelService.exportAsExcelFile(
+            this.exportData,
+            "ITEX-UserReport" + this.range
+          );
+        },
+        (error) => {
+          this.isData = false;
+          this.isLoading = false;
+          console.log("cant get transaction details", error);
+        }
+      );
+    }
   }
+
+  userName() {
+    const username = localStorage.getItem("loggedUser");
+    return username;
+  }
+
   next() {
     this.page += 1;
     this.prev_disable = false;
