@@ -64,6 +64,8 @@ import { CashinComponent } from "./Transaction/transaction-global/cashin/cashin.
 import { CashoutComponent } from "./Transaction/transaction-global/cashout/cashout.component";
 import { VascardComponent } from "./Transaction/transaction-global/vascard/vascard.component";
 import { VascashComponent } from "./Transaction/transaction-global/vascash/vascash.component";
+import { AgentdashboardComponent } from './agentdashboard/agentdashboard.component';
+import { AgentdetailComponent } from './agentdashboard/agentdetail/agentdetail.component';
 
 @NgModule({
   imports: [
@@ -124,6 +126,8 @@ import { VascashComponent } from "./Transaction/transaction-global/vascash/vasca
     CashoutComponent,
     VascardComponent,
     VascashComponent,
+    AgentdashboardComponent,
+    AgentdetailComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,

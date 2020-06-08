@@ -1,0 +1,220 @@
+<app-agentdetail *ngIf="showing=='cashin'" [showing]="showing" (displayhome)="handleChange('home')"
+  [agentData]="agentData"></app-agentdetail>
+<div class="container-fluid" *ngIf="showing=='home'" style="margin-top: -30px;">
+  <div class="row col-12" style="display: flex; justify-content: space-between;">
+    <div class="mt-4 col-2">
+      <img src="../..//../assets/payvice.png" width="100%">
+    </div>
+
+    <div style="display: flex; justify-content: space-between;">
+      <div class="row">
+        <div>
+          <form [formGroup]="searchForm">
+            <div>
+              <div class="row" style="margin-top: 21px;">
+                <div id="datepicker" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-2">
+                  <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
+                    [options]="myDatePickerOptions" size="sm"></mdb-date-picker>
+                </div>
+                <div id="datepicker" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mt-2">
+                  <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
+                    [options]="myDatePickerOptions" size="sm">
+                  </mdb-date-picker>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 mt-4">
+                  <button color="teal" size="sm" mdbBtn mdbWavesEffect (click)="searchAgent()">
+                    Generate
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="row mt-5">
+          <div>
+            <input type="text" class="form-control" name="searchString" placeholder="Search Agent TID..."
+              [(ngModel)]="searchString" (keyup)="searchAgentID()"></div>
+          <div style="margin-top: -4px;">
+            <button mdbBtn color="teal" (click)="exportAgent()" size="sm">
+              <mdb-icon fas icon="download"></mdb-icon>&nbsp;Export
+            </button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="border-color: teal;">
+    <div class="card-body">
+      <div class="table-responsive">
+
+        <table class="table table-hover" small="true">
+          <thead class="trans-head">
+            <tr>
+              <th class="head" *ngFor="let head of headElements" scope="col"
+                style="color: rgb(64, 107, 153); text-align: center;white-space: nowrap;">
+                {{head}}
+                <mdb-icon fas icon="sort" size="sm" (click)="sortAgent()" style="cursor: pointer;"></mdb-icon>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
+            </mdb-spinner>
+            <tr *ngFor="let item of summaryData |filter:searchString   let index = index">
+              <th style="text-align: center;" scope="row">{{serial + index}}</th>
+              <td style="text-align: center;">{{item.firstname|uppercase}}
+              </td>
+              <td style="text-align: center;">{{item.lastname |uppercase}}</td>
+              <td style="text-align: center;">{{item.email || "N/A"}}</td>
+              <td style="white-space: nowrap;">{{item.mobile || "N/A"}}</td>
+              <td style="font-weight: 600;">{{item.userTID || "N/A"}}</td>
+              <td style="text-align: center;white-space: break-spaces;">{{item.createdAt | date :'medium'}}</td>
+              <td style="text-align: center;white-space: break-spaces;">{{item.updatedAt | date :'medium'}}</td>
+
+              <td style="text-align: center;">
+                <mdb-icon *ngIf="item.agentStatus.validated" fas icon="check" style="color: green; position: relative; top: 3px; left: 15px;
+                            ">
+                </mdb-icon>
+                <mdb-icon *ngIf="!item.agentStatus.validated" fas icon="times" style="color: red;position: relative; top: 3px; left: 15px;
+                            "></mdb-icon>
+
+              </td>
+              <td style="text-align: center;">
+                <span [ngClass]="{
+                                                                                  'warning' : item.agentStatus.uploadedDocuments == false,
+                                                                                  'success' : item.agentStatus.uploadedDocuments == true
+                                                                                  
+                                                                                }">
+                  {{(item.agentStatus.uploadedDocuments==true)? "Available":"Pending"}}
+                </span><br>
+
+              </td>
+              <td style="text-align: center;">
+                <span [ngClass]="{
+                                                                                                  'warning' : !item.agentStatus.updatedBio,
+                                                                                                  'warning' : item.agentStatus.updatedBio== false,
+                                                                                                  'success' : item.agentStatus.updatedBio== true
+                                                                                                  
+                                                                                                }">
+                  {{(item.agentStatus.updatedBio==true)? "Available":"Pending"}}
+                </span><br>
+              </td>
+              <td>
+                <div style="display: flex;">
+
+                  <div (click)="showagent(item.userTID,'cashin')" style="cursor: pointer; white-space: nowrap;"
+                    *ngIf="item.agentStatus.updatedBio||item.agentStatus.uploadedDocuments">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="color: teal;"
+                      *ngIf="loading"></span>
+                    <span style="font-family: sans-serif; font-variant: inherit; font-size: smaller;" class="anim">
+                      <mdb-icon far icon="eye" *ngIf="!loading"></mdb-icon> View Agent
+                    </span>
+                  </div>
+                </div>
+              </td>
+              <div mdbModal #validate="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+                aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="validate.hide()">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <span>
+                        <span style="font-size: 15pt;">Validate Agent?</span>
+                      </span>
+                    </div>
+                    <div class="modal-body row" style="display: flex;
+    justify-content: space-around;
+">
+                      <span style="font-size: 15pt;">{{item.firstname|uppercase}} {{item.lastname|uppercase}}</span>
+                      <span style="font-size: 15pt; color: teal;">{{item.userTID}}</span>
+                      <a (click)="showagent(item.userTID,'cashin')">
+                        <mdb-icon far icon="eye"></mdb-icon>
+                      </a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" mdbBtn color="teal" class="waves-light" aria-label="Close"
+                        (click)="validateagent(item.userTID)" mdbWavesEffect>Approve</button>
+                      <button type="button" mdbBtn color="secondary" class="waves-light btn-close" aria-label="Close"
+                        (click)="validate.hide()" mdbWavesEffect>Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tr>
+            <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+          </tbody>
+        </table>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+          <button mdbBtn type="button" color="teal" class="waves-light" mdbWavesEffect (click)="prev()"
+            [disabled]="prev_disable" size="sm">Prev</button>
+          <br>
+          <div class="btn-text" style="margin-top: 14px;">
+            Page {{this.page}} of {{this.total}}</div>
+          <button mdbBtn type="button" color="teal" class="waves-light" mdbWavesEffect (click)="next()" size="sm"
+            [disabled]="next_disable">Next</button>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+      aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h6 class="modal-title w-100" id="myModalLabel">Create Bank Login Details</h6>
+          </div>
+          <div class="modal-body">
+            <form style="color: #757575;" [formGroup]="registerForm">
+              <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter Username
+              <br>
+              <input type="text" ngDefaultControl formControlName="username" [ngClass]="{'is-invalid': (registerForm.get('username').touched ||
+                  registerForm.get('username').dirty) &&
+                  !registerForm.get('username').valid }">
+              <span class="invalid-feedback">
+                <h5 class="login-title"> Please enter username </h5>
+              </span>
+              <br>
+              <mdb-icon fas icon="key"></mdb-icon> &nbsp; Enter Password
+              <br>
+              <input type="text" ngDefaultControl formControlName="password" [ngClass]="{'is-invalid': (registerForm.get('password').touched ||
+            registerForm.get('password').dirty) &&
+            !registerForm.get('password').valid }">
+              <span class="invalid-feedback">
+                <h5 class="login-title"> Please enter password </h5>
+              </span>
+              <br>
+              <mdb-icon fas icon="id-badge"></mdb-icon> &nbsp;Select Role
+              <br>
+              <mdb-select ngDefaultControl [options]="optionsSelect" placeholder="Choose your option"
+                formControlName="role" [ngClass]="{'is-invalid': (registerForm.get('role').touched ||
+            registerForm.get('role').dirty) &&
+            !registerForm.get('role').valid }"></mdb-select>
+              <br>
+              <br>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+            <button [disabled]="!registerForm.valid" class="search-button" mdbWavesEffect (click)="register()">Create
+            </button>
+            <button class="search-button" aria-label="Close" (click)="cancel()" style="background: #ED7A53;"
+              mdbWavesEffect>Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+<!-- </div> -->
