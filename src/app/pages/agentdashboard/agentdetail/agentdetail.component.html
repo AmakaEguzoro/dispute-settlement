@@ -125,6 +125,29 @@
                 <span class="inputs">{{(agentData.userTID)?agentData.userTID:null}}</span></div>
             </div>
           </div>
+          <br>
+          <div class="form-row rowform">
+            <div class="col-md-6 row tired" style="display: flex;
+                        justify-content: flex-end;">
+              <div class="col-md-3">
+                <span class="bluetext">Gender</span></div>
+              <div class="col-md-5">
+                <span
+                  class="inputs">{{(agentData.agentUpgrade.bio.gender)?agentData.agentUpgrade.bio.gender:null}}</span>
+              </div>
+            </div>
+            <br />
+            <div class="col-md-6 row tired" style="display: flex;
+                        justify-content: flex-start; ">
+              <div class="col-md-3">
+                <span class="bluetext">Ward</span>
+              </div>
+              <div class="col-md-5">
+                <span
+                  class="inputs">{{(agentData.agentUpgrade.bio.office_ward)?agentData.agentUpgrade.bio.office_ward:null}}</span>
+              </div>
+            </div>
+          </div>
 
 
           <hr>
@@ -244,7 +267,7 @@
                 </div>
                 <div class="col-md-5">
                   <span
-                    class="inputs">{{(agentData.agentUpgrade.guarantor.office_address)?agentData.agentUpgrade.guarantor.address:null}}</span>
+                    class="inputs">{{(agentData.agentUpgrade.guarantor.office_address)?agentData.agentUpgrade.guarantor.office_address:null}}</span>
                 </div>
               </div>
             </div>
@@ -591,8 +614,7 @@
   ">
           <span style="font-size: 15pt;">{{(agentData.firstname)?agentData.firstname:null |uppercase}}
             {{(agentData.lastname)?agentData.lastname:null |uppercase}}</span>
-          <span
-            style="font-size: 15pt; color: teal;">{{agentData.userTID}}{{(agentData.userTID)?agentData.userTID:null |uppercase}}</span>
+          <span style="font-size: 15pt; color: teal;">{{(agentData.userTID)?agentData.userTID:null |uppercase}}</span>
         </div>
         <div class="modal-footer">
           <button type="button" mdbBtn color="teal" class="waves-light" aria-label="Close" (click)="validateagent()"
