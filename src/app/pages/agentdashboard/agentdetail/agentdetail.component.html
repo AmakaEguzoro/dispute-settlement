@@ -148,6 +148,29 @@
               </div>
             </div>
           </div>
+          <br>
+          <div class="form-row rowform">
+            <div class="col-md-6 row tired" style="display: flex;
+                                  justify-content: flex-end;">
+              <div class="col-md-3">
+                <span class="bluetext">LGA</span></div>
+              <div class="col-md-5">
+                <span
+                  class="inputs">{{(agentData.agentUpgrade.bio.office_lga)?agentData.agentUpgrade.bio.office_lga:null}}</span>
+              </div>
+            </div>
+            <br />
+            <div class="col-md-6 row tired" style="display: flex;
+                                  justify-content: flex-start; ">
+              <div class="col-md-3">
+                <span class="bluetext">State</span>
+              </div>
+              <div class="col-md-5">
+                <span
+                  class="inputs">{{(agentData.agentUpgrade.bio.office_state)?agentData.agentUpgrade.bio.office_state:null}}</span>
+              </div>
+            </div>
+          </div>
 
 
           <hr>
@@ -236,14 +259,12 @@
 
 
               <div class="col-md-6 row tired" style="display: flex;
-                                                          justify-content: flex-start;">
+                                                justify-content: flex-start; ">
                 <div class="col-md-3">
-                  <span class="bluetext">Position/Status</span>
-                </div>
+                  <span class="bluetext">Relationship</span></div>
                 <div class="col-md-5">
-                  <span class="inputs">
-                    {{(agentData.agentUpgrade.guarantor.position)?agentData.agentUpgrade.guarantor.position:null}}
-                  </span>
+                  <span
+                    class="inputs">{{(agentData.agentUpgrade.guarantor.relationship)?agentData.agentUpgrade.guarantor.relationship:null|uppercase}}</span>
                 </div>
               </div>
             </div>
@@ -272,18 +293,7 @@
               </div>
             </div>
 
-            <div class="form-row rowform">
-              <div class="col-md-6 row tired" style="display: flex;
-                                    justify-content: flex-end; ">
-                <div class="col-md-3">
-                  <span class="bluetext">Relationship</span></div>
-                <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.guarantor.relationship)?agentData.agentUpgrade.guarantor.relationship:null|uppercase}}</span>
-                </div>
-              </div>
 
-            </div>
             <hr>
           </div>
 
