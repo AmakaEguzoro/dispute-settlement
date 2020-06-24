@@ -53,7 +53,7 @@ export class AgentdashboardComponent implements OnInit {
   prev_disable: boolean = true;
   pageRange: string;
 
-  next_disable: boolean = true;
+  next_disable: boolean = false;
   // search;
   searchFieldSearch = "";
   searchForm: FormGroup;
@@ -172,11 +172,11 @@ export class AgentdashboardComponent implements OnInit {
     });
   }
   next() {
-    console.log(this.total, this.page);
-    if (this.page >= this.total) {
-      this.next_disable = false;
-    }
     this.page += 1;
+    console.log(this.total);
+    if (this.page >= this.total) {
+      this.next_disable = true;
+    }
     this.prev_disable = false;
     this.AgentSummary();
   }

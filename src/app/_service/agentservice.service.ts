@@ -16,7 +16,7 @@ export class AgentserviceService {
   validateagentUrl = "https://payvice.itexapp.com/v1/agents/validateAgent";
   key = "3A56745C8CC617398AACAE7D66BACDE7";
 
-  getAgentTable(limit = 50, page = 1, sort) {
+  getAgentTable(limit = 50, page, sort) {
     return this.httpClient.get(
       `${this.agentsummaryUrl}?limit=${limit}&page=${page}&order=${sort}`
     );
