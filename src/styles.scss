@@ -437,3 +437,28 @@ md-form input[type="text"] {
     border-color: rgba(105, 195, 150, 1);
   }
 }
+.tooltip-inner {
+  height: 55px;
+  font-size: 8pt;
+  font-family: sans-serif;
+  background: teal;
+  color: white;
+  font-style: italic;
+}
+.overlay {
+  position: absolute;
+  left: 50%;
+  z-index: 99999;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: wait;
+  text-align: center;
+
+  background-color: rgba(0, 0, 0, 0.15);
+  margin-top: 0rem;
+}

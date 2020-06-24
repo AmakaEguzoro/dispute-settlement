@@ -58,7 +58,8 @@
             </tr>
           </thead>
           <tbody>
-            <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
+
+            <mdb-spinner class="overlay" *ngIf="loading" spinnerType="big" spinnerColor="blue">
             </mdb-spinner>
             <tr *ngFor="let item of summaryData |filter:searchString   let index = index">
               <th style="text-align: center;" scope="row">{{serial + index}}</th>
@@ -100,16 +101,22 @@
                 </span><br>
               </td>
               <td>
-                <div style="display: flex;">
+                <div style="display: flex;" *ngIf="item.agentStatus.updatedBio||item.agentStatus.uploadedDocuments">
 
-                  <div (click)="showagent(item.userTID,'cashin')" style="cursor: pointer; white-space: nowrap;"
-                    *ngIf="item.agentStatus.updatedBio||item.agentStatus.uploadedDocuments">
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="color: teal;"
-                      *ngIf="loading"></span>
+                  <div (click)="showagent(item.userTID,'cashin',loading)" style="cursor: pointer; white-space: nowrap;">
+                    <!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="color: teal;"
+                      *ngIf="loading"></span> -->
                     <span style="font-family: sans-serif; font-variant: inherit; font-size: smaller;" class="anim">
-                      <mdb-icon far icon="eye" *ngIf="!loading"></mdb-icon> View Agent
+                      <mdb-icon far icon="eye"></mdb-icon> View Agent
                     </span>
                   </div>
+                </div>
+                <div *ngIf="!item.agentStatus.updatedBio&&!item.agentStatus.uploadedDocuments"
+                  style="text-align: center;">
+                  <mdb-icon fas icon="exclamation-triangle" style="font-size: smaller;
+    color: darkslategrey;" mdbTooltip="Agent Hasn't Completed Onboarding" placement="top" mdbWavesEffect>
+
+                  </mdb-icon>
                 </div>
               </td>
               <div mdbModal #validate="mdbModal" class="modal fade" tabindex="-1" role="dialog"
