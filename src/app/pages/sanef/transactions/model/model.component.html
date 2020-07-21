@@ -1,0 +1,101 @@
+<div class="modal-dialog-scrollable">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-12">
+          <h4>{{data.accountNumber}}</h4>
+
+        </div>
+      </div>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="modal-tit">
+            <i> Transaction details</i>
+          </div>
+          <div class="details mt-2" *ngIf="data.terminal">
+            Wallet ID:
+            <span class="details" style="float: right">{{data.agentPayviceId}}</span>
+          </div>
+          <div class="details mt-2">
+            Agent Code:
+            <span class="details" style="float: right;">{{data.agentCode}}</span>
+          </div>
+          <br>
+          <div class="modal-tit">
+            <i>Customer Details</i>
+          </div>
+
+          <div class="details mt-2">
+            Phone Number:
+            <span class="details" style="float: right">{{data.accountNumber}}</span>
+          </div>
+
+          <br><br>
+          <div class="modal-tit">
+            <i>Transaction Details</i>
+          </div>
+          <div class="details mt-2">
+            Amount:
+            <span class="details" style="float: right"> &#x20A6; {{data.amount/100}}</span>
+          </div>
+          <div class="details mt-2">
+            Account Number:
+            <span class="details" style="float: right">{{data.accountNumber}}</span>
+          </div>
+
+        </div>
+
+
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="modal-tit">
+            <i>Service Details</i>
+          </div>
+
+          <div class="details mt-2">
+            Type:
+            <span class="details" style="float: right">{{data.type}}</span>
+          </div>
+
+          <div class="details mt-2">
+            Message:
+            <span class="details" style="float: right">{{data.message}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.description">
+            Description:
+            <span class="details" style="float: right">{{data.description}}</span>
+          </div>
+          <!-- <div class="details mt-2" *ngIf="data.commission">
+            Commission:
+            <span class="details" style="float: right"> &#x20A6; {{data.commission}}</span>
+          </div> -->
+
+          <br><br>
+          <div class="modal-tit">
+            <i>Transaction References</i>
+          </div>
+
+
+          <div class="details mt-2" *ngIf="data.reference">
+            Ref:
+            <span class="details" style="float: right">{{data.reference}}</span>
+          </div>
+
+          <br>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">Close</button>
+    </div>
+  </div>
+</div>

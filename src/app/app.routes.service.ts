@@ -1,3 +1,5 @@
+import { TransactionsComponent } from "./pages/sanef/transactions/transactions.component";
+import { AccountComponent } from "./pages/sanef/account/account.component";
 import { AdminDashboardComponent } from "./pages/admin/admin-dashboard/admin-dashboard.component";
 import { RouterModule, Route } from "@angular/router";
 import { ModuleWithProviders } from "@angular/core";
@@ -102,6 +104,18 @@ const routes: Route[] = [
       {
         path: "onboarding/dashboard",
         component: AgentdashboardComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] },
+      },
+      {
+        path: "sanef/account",
+        component: AccountComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] },
+      },
+      {
+        path: "sanef/transactions",
+        component: TransactionsComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5] },
       },

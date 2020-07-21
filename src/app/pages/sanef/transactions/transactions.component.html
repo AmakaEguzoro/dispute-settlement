@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="row" style="display: flex;
+    justify-content: space-between;">
+    <div class="ml-5 mt-2">
+      <h3>Transactions</h3>
+    </div>
+    <div>
+      <form [formGroup]="searchForm">
+        <div class="row">
+          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -9px;">
+            <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
+              [options]="myDatePickerOptions"></mdb-date-picker>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -9px;">
+            <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
+              [options]="myDatePickerOptions">
+            </mdb-date-picker>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+            <select class="browser-default custom-select ref" (change)="getRef($event)">
+              <option value="">Select</option>
+
+              <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
+            </select>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <input type="text" formControlName="filterValue" ngDefaultControl [(ngModel)]="filterValue">
+          </div>
+          <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 mt-2">
+            <button mdbBtn color="teal" size="sm" (click)="searchTrans()">
+              <mdb-icon fas icon="search"></mdb-icon>
+              &nbsp;Search
+            </button>
+            <button mdbBtn color="teal" size="sm" (click)="exportAsXLSX()">
+              <mdb-icon fas icon="download"></mdb-icon>
+              &nbsp;Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class="card" style="border-color: teal;">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover" small="true">
+          <thead class="trans-head">
+            <tr>
+              <th class="head" *ngFor="let head of headElements" scope="col"
+                style="color: rgb(64, 107, 153); text-align: center ;">
+                {{head}}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <mdb-spinner class="loading-screen-icon" *ngIf="isLoading" spinnerType="big" spinnerColor="blue">
+            </mdb-spinner>
+            <tr (click)="openModal(item)" *ngFor="let item of summarytrans let i = index">
+              <th style="text-align: center;" scope="row">{{serial + i}}</th>
+              <td style="text-align: center;">{{item.accountNumber}} </td>
+              <td style="text-align: center;">{{item.type}} </td>
+              <td style="text-align: center; font-weight: bold;">{{item.agentPayviceId}} </td>
+              <td style="text-align: center;">{{item.cashCode}} </td>
+
+
+              <td style="text-align: center;">{{item.amount/ 100 | number: "1.2-2" ||"N/A" }} </td>
+              <td style="text-align: center;">{{item.commission / 100 | number: "1.2-2" ||"N/A"}}</td>
+              <td style="text-align: center;">{{item.status}} </td>
+              <td style="text-align: center;">{{item.walletOperationStatus||"N/A"}}</td>
+              <td style="text-align: center;">{{item.cashCodeApprovalStatus||"N/A"}}</td>
+              <td style="text-align: center;">{{item.cashCodeValidationStatus||"N/A"}}</td>
+
+
+
+              <!-- <div style="text-align: center;">
+                <mdb-icon fas icon="exclamation-triangle" style="font-size: smaller;" mdbTooltip={{item.description}}
+                  placement="top" mdbWavesEffect>
+
+                </mdb-icon>
+              </div> -->
+              <td style="text-align: center; ">{{item.createdAt|date :'medium'}}</td>
+            </tr>
+            <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+          </tbody>
+
+        </table>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+          <button mdbBtn type="button" color="teal" class="waves-light" mdbWavesEffect (click)="prev()"
+            [disabled]="prev_disable" size="sm">Prev</button>
+          <br>
+          <div class="btn-text" style="margin-top: 14px;">
+            Page {{this.viewPage}} of {{total}}</div>
+          <button mdbBtn type="button" color="teal" class="waves-light" mdbWavesEffect (click)="next()" size="sm"
+            [disabled]="next_disable">Next</button>
+
+
+        </div>
+
+        <br>
+        <!-- <div *ngIf="loading == true" style="cursor: wait;"> </div> -->
+
+      </div>
+    </div>
+  </div>
