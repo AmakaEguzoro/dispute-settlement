@@ -75,6 +75,14 @@
         </li>
         <li *appHasRole="['3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            SANEF<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/sanef/account']">Accounts</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/sanef/transactions']">Transactions</a>
+          </div>
+        </li>
+        <li *appHasRole="['3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             Onboarding<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
             <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/onboarding/dashboard']">Dashboard</a>

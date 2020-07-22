@@ -64,9 +64,11 @@ import { CashinComponent } from "./Transaction/transaction-global/cashin/cashin.
 import { CashoutComponent } from "./Transaction/transaction-global/cashout/cashout.component";
 import { VascardComponent } from "./Transaction/transaction-global/vascard/vascard.component";
 import { VascashComponent } from "./Transaction/transaction-global/vascash/vascash.component";
-import { AgentdashboardComponent } from './agentdashboard/agentdashboard.component';
-import { AgentdetailComponent } from './agentdashboard/agentdetail/agentdetail.component';
-
+import { AgentdashboardComponent } from "./agentdashboard/agentdashboard.component";
+import { AgentdetailComponent } from "./agentdashboard/agentdetail/agentdetail.component";
+import { AccountComponent } from "./sanef/account/account.component";
+import { TransactionsComponent } from "./sanef/transactions/transactions.component";
+import { SanefModelComponent } from "./sanef/transactions/model/model.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -85,7 +87,7 @@ import { AgentdetailComponent } from './agentdashboard/agentdetail/agentdetail.c
     TodayCardComponent,
     ThisMonthCardComponent,
     ThisWeekCardComponent,
-
+    SanefModelComponent,
     ServiceStatusComponent,
     BvnStatusComponent,
 
@@ -121,13 +123,14 @@ import { AgentdetailComponent } from './agentdashboard/agentdetail/agentdetail.c
     TransactionNipComponent,
     Table1Component,
     Table2Component,
-
     CashinComponent,
     CashoutComponent,
     VascardComponent,
     VascashComponent,
     AgentdashboardComponent,
     AgentdetailComponent,
+    AccountComponent,
+    TransactionsComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -135,7 +138,7 @@ import { AgentdetailComponent } from './agentdashboard/agentdetail/agentdetail.c
     TodayCardComponent,
     ThisMonthCardComponent,
     ThisWeekCardComponent,
-
+    SanefModelComponent,
     TodayChannelsComponent,
     ThisWeekChannelsComponent,
     ThisMonthChannelsComponent,

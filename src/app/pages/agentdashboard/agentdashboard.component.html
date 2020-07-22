@@ -65,8 +65,8 @@
               <th style="text-align: center;" scope="row">{{serial + index}}</th>
               <td style="text-align: center;">{{item.firstname|uppercase}}
               </td>
-              <td style="text-align: center;">{{item.lastname |uppercase}}</td>
-              <td style="text-align: center;">{{item.email || "N/A"}}</td>
+              <td style="text-align: center; ">{{item.lastname |uppercase}}</td>
+              <td style="text-align: center; line-break: anywhere;">{{item.email || "N/A"}}</td>
               <td style="white-space: nowrap;">{{item.mobile || "N/A"}}</td>
               <td style="font-weight: 600;">{{item.userTID || "N/A"}}</td>
               <td style="text-align: center;white-space: break-spaces;">{{item.createdAt | date :'medium'}}</td>
@@ -113,8 +113,8 @@
                 </div>
                 <div *ngIf="!item.agentStatus.updatedBio&&!item.agentStatus.uploadedDocuments"
                   style="text-align: center;">
-                  <mdb-icon fas icon="exclamation-triangle" style="font-size: smaller;
-    color: darkslategrey;" mdbTooltip="Agent Didn't Complete Registration." placement="top" mdbWavesEffect>
+                  <mdb-icon fas icon="exclamation-triangle" style="font-size: smaller;"
+                    mdbTooltip="Agent Didn't Complete Registration." placement="top" mdbWavesEffect>
 
                   </mdb-icon>
                 </div>
