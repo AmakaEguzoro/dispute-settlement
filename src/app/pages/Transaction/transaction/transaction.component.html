@@ -12,7 +12,7 @@
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
                         <div *ngIf="isData == true" class="trans-amount mt-4">
-                            {{usersCount}}</div>
+                            {{usersCount | number}}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                 </div>
@@ -28,10 +28,10 @@
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
-                            {{ totalCount }}
+                            {{ totalCount | number }}
                             <br> Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount">
-                            &#x20A6;{{totalAmount / 100 | thousandSuff : 2}}</div>
+                            &#x20A6;{{totalAmount / 100 | number}}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                 </div>
@@ -47,10 +47,10 @@
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
-                            {{ successCount }}
+                            {{ successCount | number }}
                             <br> Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
-                            &#x20A6;{{successAmount / 100 | thousandSuff : 2}}</div>
+                            &#x20A6;{{successAmount / 100 | number}}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                 </div>
@@ -66,10 +66,10 @@
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
-                            {{failedCount  }}
+                            {{failedCount | number }}
                             <br>Transactions</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
-                            &#x20A6;{{failedAmount / 100 | thousandSuff : 2}}</div>
+                            &#x20A6;{{failedAmount / 100 | number }}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                 </div>

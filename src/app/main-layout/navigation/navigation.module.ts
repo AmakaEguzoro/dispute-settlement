@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HasRoleDirective } from './directives/has-role.directive';
 import { FooterComponent } from '../footer/footer.component';
 import { DirectiveModule } from 'app/directive.module';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   imports: [
@@ -21,12 +22,15 @@ import { DirectiveModule } from 'app/directive.module';
     NavigationComponent,
     NavbarComponent,
     FooterComponent,
+    SideNavComponent,
     // HasRoleDirective
   ],
   exports: [
     NavigationComponent,
     FooterComponent,
     NavbarComponent,
+    SideNavComponent,
+
     // HasRoleDirective
   ],
   schemas: [
