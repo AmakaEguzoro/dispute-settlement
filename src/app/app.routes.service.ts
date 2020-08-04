@@ -25,6 +25,7 @@ import { McashComponent } from "./pages/Mcash/terminals/mcash.component";
 import { ErrorAnalysisComponent } from "./pages/error-analysis/error-analysis.component";
 import { CgateComponent } from "./pages/cgate/cgate.component";
 import { AgentdashboardComponent } from "./pages/agentdashboard/agentdashboard.component";
+import { AppConfigComponent } from "./pages/settings/app-configuration/app-config/app-config.component";
 
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
@@ -168,8 +169,12 @@ const routes: Route[] = [
         data: { expectedRole: [3, 4, 5] },
       },
 
-      ////////// MCASH ROUTE ////////////////////////
-      //  { path: 'Mcash', component: McashComponent},
+      {
+        path: "app/configurations",
+        component: AppConfigComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [5] },
+      },
     ],
   },
 

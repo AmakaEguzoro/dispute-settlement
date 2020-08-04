@@ -69,6 +69,7 @@ import { AgentdetailComponent } from "./agentdashboard/agentdetail/agentdetail.c
 import { AccountComponent } from "./sanef/account/account.component";
 import { TransactionsComponent } from "./sanef/transactions/transactions.component";
 import { SanefModelComponent } from "./sanef/transactions/model/model.component";
+import { AppConfigComponent } from './settings/app-configuration/app-config/app-config.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -131,6 +132,7 @@ import { SanefModelComponent } from "./sanef/transactions/model/model.component"
     AgentdetailComponent,
     AccountComponent,
     TransactionsComponent,
+    AppConfigComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -166,6 +168,7 @@ import { SanefModelComponent } from "./sanef/transactions/model/model.component"
 
     McashTransactionComponent,
     McashComponent,
+    AppConfigComponent,
   ],
   providers: [
     // itex
