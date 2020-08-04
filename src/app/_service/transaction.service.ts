@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { forkJoin } from 'rxjs';
-import { Transaction } from 'app/_models/transaction';
+import { Transaction, TransactionLimit } from 'app/_models/transaction';
 import { map } from 'rxjs/operators';
 import { RemoveLock } from 'app/_models/removeLocks';
 import { WalletBalance } from 'app/_models/user';
@@ -78,5 +78,13 @@ export class TransactionService {
         return response;
     }
 
+    getTransactionLimits(transactionLimit: TransactionLimit) {
+        return this.httpClient.post(`http://vas.itexapp.com/api/v1/wallet/reset-limit`, transactionLimit).pipe(
+            map((response: any) => {
+                const transactionLimit = response;
+                return transactionLimit;
+            }
+            ));
+    };
    
 }

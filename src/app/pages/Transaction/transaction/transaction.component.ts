@@ -394,6 +394,7 @@ export class TransactionComponent implements OnInit {
     "GEHS",
     "OLHS",
     "SMILE",
+    "LCC",
   ];
 
   getPaymentMethod(event) {
@@ -458,7 +459,7 @@ export class TransactionComponent implements OnInit {
 
     this.Transaction(this.filterData);
     this.TransactionSummary(this.filterData);
-    // console.log(this.filterData);
+    // console.log('filter',this.filterData);
 
     this.socket.disconnectSocket();
   }

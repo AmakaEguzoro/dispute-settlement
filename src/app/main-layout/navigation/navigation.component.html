@@ -23,6 +23,10 @@
               [routerLink]="['/transaction/global']">
               Global Transactions
             </a>
+            <a *appHasRole="['5']" class="dropdown-item waves-light" mdbWavesEffect
+            [routerLink]="['/transaction/limits']">
+            Transactions Limits
+          </a>
           </div>
         </li>
         <li *appHasRole="['4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
