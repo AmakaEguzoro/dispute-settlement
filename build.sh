@@ -3,4 +3,4 @@ ng build --prod
 ###
 cp htaccess dist/asdev-admin
 cd dist/asdev-admin
-mv htaccess .htaccess
+mv htaccess .htaccess+

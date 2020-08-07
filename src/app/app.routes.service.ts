@@ -25,6 +25,7 @@ import { McashComponent } from "./pages/Mcash/terminals/mcash.component";
 import { ErrorAnalysisComponent } from "./pages/error-analysis/error-analysis.component";
 import { CgateComponent } from "./pages/cgate/cgate.component";
 import { AgentdashboardComponent } from "./pages/agentdashboard/agentdashboard.component";
+import { TransactionLimitsComponent } from "./pages/Transaction/transaction-limits/transaction-limits.component";
 
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
@@ -164,6 +165,12 @@ const routes: Route[] = [
       {
         path: "users",
         component: RoleManagementComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] },
+      },
+      {
+        path: "transaction/limits",
+        component: TransactionLimitsComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5] },
       },
