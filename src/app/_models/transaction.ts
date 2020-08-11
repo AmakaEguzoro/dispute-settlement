@@ -16,3 +16,8 @@ export class Transaction {
     searchField: string;
     viewPage: number;
 }
+
+export class TransactionLimit {
+    wallet: string;
+    password: string;
+}

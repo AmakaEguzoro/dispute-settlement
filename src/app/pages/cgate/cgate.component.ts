@@ -43,6 +43,8 @@ export class CgateComponent implements OnInit {
   disabled: true;
 
   // Summary
+  pendingCount: any;
+  pendingAmount: any;
   summaryData: any;
   transactionSummary: any;
   failedAmount: any;
@@ -221,14 +223,17 @@ export class CgateComponent implements OnInit {
 
   headElements = [
     "S/N",
-    "MERCHANT CODE",
+    "MERCHANT ID",
     "REFERENCE",
     "PHONENUMBER",
-    "TERMINAL",
+    "TERMINAL ID",
     "AMOUNT",
+    "CHARGE",
     "STATUS",
     "MESSAGE",
-    "LIFE-CYCLE",
+    "BANK NAME",
+    "MERCHANT NAME",
+    "LIFE-CYCLE (SECS)",
     "DATE"
   ];
 
@@ -244,6 +249,9 @@ export class CgateComponent implements OnInit {
 
         this.successCount = this.summaryData.successfulCount;
         this.successAmount = this.summaryData.successfulAmount;
+
+        this.pendingCount = this.summaryData.pendingCount;
+        this.pendingAmount = this.summaryData.pendingAmount;
 
         this.totalAmount = this.summaryData.totalAmount;
         this.totalCount = this.summaryData.transactionCount;

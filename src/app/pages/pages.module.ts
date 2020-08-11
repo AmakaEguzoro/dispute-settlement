@@ -70,6 +70,8 @@ import { AccountComponent } from "./sanef/account/account.component";
 import { TransactionsComponent } from "./sanef/transactions/transactions.component";
 import { SanefModelComponent } from "./sanef/transactions/model/model.component";
 import { AppConfigComponent } from './settings/app-configuration/app-config/app-config.component';
+import { TransactionLimitsComponent } from "./Transaction/transaction-limits/transaction-limits.component";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -133,6 +135,7 @@ import { AppConfigComponent } from './settings/app-configuration/app-config/app-
     AccountComponent,
     TransactionsComponent,
     AppConfigComponent,
+    TransactionLimitsComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -169,6 +172,8 @@ import { AppConfigComponent } from './settings/app-configuration/app-config/app-
     McashTransactionComponent,
     McashComponent,
     AppConfigComponent,
+    TransactionLimitsComponent,
+
   ],
   providers: [
     // itex

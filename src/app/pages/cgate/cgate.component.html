@@ -7,35 +7,6 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
       <div class="card classic-admin-card">
         <div class="card-body" [style.height.em]="'6'">
-          <p class="total-trans">Active Merchants</p>
-          <div class="total-users">
-            <mdb-icon class="users" fas icon="users"></mdb-icon>
-          </div>
-          <br />
-          <mdb-spinner
-            *ngIf="isLoading"
-            spinnerType="small"
-            spinnerColor="blue"
-          ></mdb-spinner>
-          <h4 *ngIf="isLoading == false">
-            <p *ngIf="isData == true" class="summary-card-text mt-1">
-              {{ terminalCount }}
-              <br />
-              Active Terminals
-            </p>
-            <div *ngIf="isData == true" class="trans-amount">
-              {{ usersCount }}
-            </div>
-          </h4>
-          <strong class="summary-noData" *ngIf="isData == false"
-            >No Data Available</strong
-          >
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-      <div class="card classic-admin-card">
-        <div class="card-body" [style.height.em]="'6'">
           <p class="total-trans">Total Transactions</p>
           <div class="total-users">
             <mdb-icon class="users" fab icon="gg"></mdb-icon>
@@ -53,7 +24,36 @@
               Transactions
             </p>
             <div *ngIf="isData == true" class="trans-amount">
-              &#x20A6;{{ totalAmount | thousandSuff: 2 }}
+              &#x20A6;{{ totalAmount  }}
+            </div>
+          </h4>
+          <strong class="summary-noData" *ngIf="isData == false"
+            >No Data Available</strong
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+      <div class="card classic-admin-card">
+        <div class="card-body" [style.height.em]="'6'">
+          <p class="total-trans">Pending Transactions</p>
+          <div class="total-users">
+            <mdb-icon class="" fab icon="gg"></mdb-icon>
+          </div>
+          <br />
+          <mdb-spinner
+            *ngIf="isLoading"
+            spinnerType="small"
+            spinnerColor="blue"
+          ></mdb-spinner>
+          <h4 *ngIf="isLoading == false">
+            <p *ngIf="isData == true" class="summary-card-text mt-1">
+              {{ pendingCount }}
+              <br />
+              Transactions
+            </p>
+            <div *ngIf="isData == true" class="trans-amount" style="color: #e9bb66 ">
+              &#x20A6;{{ pendingAmount  }}
             </div>
           </h4>
           <strong class="summary-noData" *ngIf="isData == false"
@@ -86,7 +86,7 @@
               class="trans-amount"
               style="color: #219653"
             >
-              &#x20A6;{{ successAmount | thousandSuff: 2 }}
+              &#x20A6;{{ successAmount }}
             </div>
           </h4>
           <strong class="summary-noData" *ngIf="isData == false"
@@ -118,7 +118,7 @@
               class="trans-amount"
               style="color: #EB5757"
             >
-              &#x20A6;{{ failedAmount | thousandSuff: 2 }}
+              &#x20A6;{{ failedAmount }}
             </div>
           </h4>
           <strong class="summary-noData" *ngIf="isData == false"
@@ -228,7 +228,7 @@
             <tr *ngFor="let item of detailsData; let i = index">
               <th scope="row">{{ serial + i }}</th>
               <td>
-                {{ item.merchantCode }}
+                {{ item.merchantId }}
                 <p class="trans-category" style="font-style: italic">
                   {{ item.type }}
                 </p>
@@ -237,27 +237,29 @@
               <td>{{ item.phonenumber }}</td>
               <td>{{ item.terminal }}</td>
               <td>&#x20A6;{{ item.amount | number: "1.2-2" }}</td>
+              <td>&#x20A6;{{ item.charge | number: "1.2-2" }}</td>
               <td>
                 <mdb-badge
                   class="status"
                   [ngClass]="{
                     failed: item.status == 'failed',
                     success: item.status == 'successful',
-                    initialized: item.status == 'initialized'
+                    pending: item.status == 'pending'
                   }"
                 >
                   {{ item.status }}</mdb-badge
                 >
               </td>
               <td>{{ item.message }}</td>
+              <td>{{ item.customerBankName }}</td>
+              <td>{{ item.merchantName }}</td>
               <td>
                 <mdb-badge
                   class="time"
                   [ngClass]="{
-                    warning: item.processTime > 20,
-                    success: item.processTime <= 19,
-                    initialized: item.processTime == 11,
-                    danger: item.processTime == 0
+                    warning: item.processTime >= 61,
+                    success: item.processTime <= 60,
+                    danger: item.processTime > 120
                   }"
                 >
                   {{ item.processTime }}s</mdb-badge

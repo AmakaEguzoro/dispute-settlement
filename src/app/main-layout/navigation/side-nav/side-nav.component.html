@@ -46,7 +46,7 @@
             <!-- Collapsible  -->
             <mdb-accordion-item *appHasRole="[ '2', '3', '4', '5']">
               <mdb-accordion-item-head mdbWavesEffect
-                [ngClass]="{'active':(transLink || {}).isActive || (transLink1 || {}).isActive || (transLink2 || {}).isActive || (transLink3 || {}).isActive || (transLink4 || {}).isActive}"
+                [ngClass]="{'active':(transLink || {}).isActive || (transLink1 || {}).isActive || (transLink2 || {}).isActive || (transLink3 || {}).isActive || (transLink4 || {}).isActive || (transLink5 || {}).isActive}"
                 #transLink="routerLinkActive" routerLinkActive="active">
                 <mdb-icon far icon="hand-pointer"></mdb-icon> Transactions
               </mdb-accordion-item-head>
@@ -60,6 +60,8 @@
                       routerLinkActive="active" mdbWavesEffect> Transactions Locks </a></li>
                   <li><a *appHasRole="['3', '4', '5']" #transLink4="routerLinkActive" routerLink="transaction/global"
                       routerLinkActive="active" mdbWavesEffect> Global Transactions </a></li>
+                      <li><a *appHasRole="['5']" #transLink5="routerLinkActive" routerLink="/transaction/limits"
+                        routerLinkActive="active" mdbWavesEffect> Transactions Limits </a></li>
                 </ul>
               </mdb-accordion-item-body>
             </mdb-accordion-item>
