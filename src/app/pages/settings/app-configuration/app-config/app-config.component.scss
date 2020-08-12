@@ -132,9 +132,27 @@
     margin-top: -1px;
     cursor: pointer
   }
+
+  .search-but{
+    background: #2F80ED;
+    height: 31px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 23px;
+    text-align: center;
+    color: #FFFFFF;
+    width: 81px !important;
+    border-radius: 5px;
+    margin-top: -3px;
+    cursor: pointer;
+    border: none;
+  }
+
   button:disabled {
   cursor: not-allowed;
   pointer-events: all !important;
+  background: darkgray;
   }
   
   input{
@@ -168,4 +186,5 @@
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-left: 0px;
   }
