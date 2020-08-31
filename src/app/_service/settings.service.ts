@@ -10,19 +10,51 @@ import { Register } from 'app/_models/settings';
 })
 
 export class SettingsService {
-    baseUrl = 'http://197.253.19.76:8019/api/v1/';
+
+    // baseUrlTest = 'http://197.253.19.76:8018/api/v1/';
+
+    baseUrlLive = 'http://197.253.19.76:8019/api/v1/';
+
 
     constructor(private httpClient: HttpClient) { }
 
-    getAppConfig(): Observable<any> {
-        return this.httpClient.get(this.baseUrl + 'vas/system/app-settings')
-        .pipe(map(response => {
-            return response;
-        }));
+    //App Config live
+    getAppConfigLive(): Observable<any> {
+        return this.httpClient.get(this.baseUrlLive + 'vas/system/app-settings')
+            .pipe(map(response => {
+                return response;
+            }));
     }
 
-    register(newUser: Register) {
-        return this.httpClient.post(this.baseUrl + 'vas/system/app-settings', newUser);
-      }
+    registerAppConfigLive(newUser: Register) {
+        return this.httpClient.post(this.baseUrlLive + 'vas/system/app-settings', newUser);
+    }
+
+    deleteAppConfigLive(id) {
+        return this.httpClient.delete(this.baseUrlLive + `vas/system/app-settings/delete/${id}`)
+            .map(response => {
+                return response;
+            });
+    }
+
+    //App Config test
+    // getAppConfigTest(): Observable<any> {
+    //     return this.httpClient.get(this.baseUrlTest + 'vas/system/app-settings')
+    //         .pipe(map(response => {
+    //             return response;
+    //         }));
+    // }
+
+    // registerAppConfigTest(newUser: Register) {
+    //     return this.httpClient.post(this.baseUrlTest + 'vas/system/app-settings', newUser);
+    // }
+
+    // deleteAppConfigTest(id) {
+    //     return this.httpClient.delete(this.baseUrlTest + `vas/system/app-settings/delete/${id}`)
+    //         .map(response => {
+    //             return response;
+    //         });
+    // }
+
 
 }
