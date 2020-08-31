@@ -10,7 +10,7 @@ import { Register } from 'app/_models/settings';
 })
 
 export class SettingsService {
-    baseUrl = 'http://197.253.19.76:8019/api/v1/';
+    baseUrl = 'http://197.253.19.76:8018/api/v1/';
 
     constructor(private httpClient: HttpClient) { }
 
