@@ -32,10 +32,10 @@ export class AuthService {
           const user = response;
           if (user) {
             localStorage.setItem('token', user.token);
-            localStorage.setItem('role', user.user.is_admin);
+            localStorage.setItem('role', user.user.role);
             localStorage.setItem('loggedUser', user.user.name);
             localStorage.setItem('loggedEmail', user.user.email);
-            localStorage.setItem('walletId', user.user.walletData);
+            localStorage.setItem('walletId', user.user.wallets);
           }
         })
       );

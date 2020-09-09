@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <label>App Configurations</label>
 
   <div class="row">
@@ -14,7 +14,6 @@
               <tr>
                 <th scope="row">1</th>
 
-                <!-- <td>1</td> -->
 
                 <td>channel id</td>
                 <td>itex</td>
@@ -28,22 +27,18 @@
                     Delete
                   </mdb-badge>
                 </td>
-                <!-- <td ><button>delete</button></td> -->
               </tr>
               <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
             </tbody>
           </table>
-          <!-- <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage" [(ngModel)]="currentPage"
-            [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;" lastText="&raquo;"></pagination> -->
-        </div>
+          </div>
         <br>
-        <!-- <div *ngIf="loading == true" style="cursor: wait;"> </div> -->
 
       </div>
     </div>
 
   </div>
-</div>
+</div> -->
 
 <!-- Add User Modal -->
 <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
@@ -75,13 +70,13 @@
           <span class="invalid-feedback">
             <h5 class="login-title"> Please enter value </h5>
           </span>
-          
+
           <br>
         </form>
       </div>
       <div class="modal-footer">
         <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
-        <button [disabled]="!registerForm.valid" class="search-but" mdbWavesEffect (click)="register()">Create
+        <button [disabled]="!registerForm.valid" class="search-but" mdbWavesEffect (click)="registerAppConfigLive()">Create
         </button>
         <button class="search-but" aria-label="Close" (click)="cancel()" style="background: #EB5757;"
           mdbWavesEffect>Cancel</button>
@@ -106,18 +101,68 @@
       </div>
       <div class="modal-footer">
         <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
-        <!-- <mdb-badge class="save" (click)="deleteUser()" mdbwaveseffect style="background: #EB5757;">
-          Yes
-        </mdb-badge>
-        <mdb-badge class="search" (click)="deleteModal.hide" mdbwaveseffect>
-          No
-        </mdb-badge> -->
-        <button  class="search-but" mdbWavesEffect (click)="deleteUser()" 
-        style="background: #EB5757;">Yes
+    
+        <button class="search-but" mdbWavesEffect (click)="deleteAppConfigLive()" style="background: #EB5757;">Yes
         </button>
-        <button class="search-but" (click)="deleteModal.hide" 
-          mdbWavesEffect>No</button>
+        <button class="search-but" (click)="deleteModal.hide" mdbWavesEffect>No</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<div class="container margin-top">
+  <div class="col-md-6 offset-md-3">
+    <label>Live App Configurations</label>
+    <div class="switch" style="float: right;">
+      <label style="font-size: 18px;">
+        Live
+        <input type="checkbox">
+        <span class="lever"></span> Test
+      </label><br>
+    </div>
+    <div class="card">
+      <div class="card-body">
+
+        <mdb-badge class="add-button" (click)="openRegister()" mdbwaveseffect>
+         Add
+        </mdb-badge>
+        <br>
+       
+        <div class="table-responsive">
+          <table class="table table-hover" small="true">
+
+            <tbody>
+              <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="small" spinnerColor="blue">
+              </mdb-spinner>
+              <tr *ngFor="let item of tt">
+                <th scope="row">{{item.no}} </th>
+                <td>  {{item.field}}   </td>
+                <td>{{item.value}} </td>
+                <td>
+                  <mdb-badge class="search" (click)="openRegister()" mdbwaveseffect>
+                    Edit
+                  </mdb-badge>
+                </td>
+                <td>
+                  <mdb-badge class="save" (click)="openDelete()" mdbwaveseffect>
+                    Delete
+                  </mdb-badge>
+                </td>
+                <!-- <td ><button>delete</button></td> -->
+              </tr>
+              <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+            </tbody>
+          </table>
+          <!-- <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage" [(ngModel)]="currentPage"
+            [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;" lastText="&raquo;"></pagination> -->
+        </div>
+        <br>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

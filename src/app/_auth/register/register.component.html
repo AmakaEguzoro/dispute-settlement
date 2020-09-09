@@ -17,7 +17,7 @@
               </span>
               <br>
               <label>
-                <mdb-icon fas icon="user"></mdb-icon> &nbsp; Username
+                <mdb-icon fas icon="user"></mdb-icon> &nbsp; Username (Used for Login)
               </label>
               <input class="form-control" type="text" placeholder="Enter Username" formControlName="username" [ngClass]="{'is-invalid': (registerForm.get('username').touched ||
 				registerForm.get('username').dirty) &&
@@ -37,13 +37,13 @@
               </span>
               <br>
               <label>
-                <mdb-icon fas icon="user"></mdb-icon> &nbsp;Payvice Username
+                <mdb-icon fas icon="envelope"></mdb-icon> &nbsp;Email Address
               </label>
-              <input class="form-control" type="text" placeholder="Enter payvice username" formControlName="email" [ngClass]="{'is-invalid': (registerForm.get('email').touched ||
+              <input class="form-control" type="text" placeholder="Enter email address" formControlName="email" [ngClass]="{'is-invalid': (registerForm.get('email').touched ||
 				registerForm.get('email').dirty) &&
 				!registerForm.get('email').valid }">
               <span class="invalid-feedback">
-                <h5 class="login-title"> Please enter payvice username </h5>
+                <h5 class="login-title"> Please enter email address </h5>
               </span>
               <br>
               <label>
@@ -56,10 +56,10 @@
               </span>
               <br> <br>
               <label>
-                <mdb-icon fas icon="pencil-alt"></mdb-icon> &nbsp;Agent IDs To View (Leave Blank to See Transactions for
+                <mdb-icon fas icon="pencil-alt"></mdb-icon> Enter Wallet IDs <br>(Leave Blank to See Transactions for
                 All Wallets)
               </label>
-              <textarea class="form-control" placeholder="Message" formControlName="wallets"></textarea>
+              <textarea class="form-control" placeholder="..." formControlName="wallets"></textarea>
             </div>
             <br>
             <button [disabled]="!registerForm.valid" class="btn btn-primary" (click)="register()">Register

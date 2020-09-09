@@ -36,10 +36,11 @@
       font-size: 16px;
       font-weight: 600;
   }
-  // table.table th, table.table td {
-  //   padding-top: 0.1rem;
-  //   padding-bottom: 0rem;
-  // }
+  table.table th, table.table td {
+    padding-top: 4px !important;
+    font-weight: 600;
+    padding-bottom: 0rem;
+  }
   
   .trans-category{
   margin-bottom: 0px;
@@ -188,3 +189,20 @@
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     margin-left: 0px;
   }
+.add-button{
+  background: #2F80ED;
+  height: 31px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 23px;
+  text-align: center;
+  color: #FFFFFF;
+  width: 34px !important;
+  border-radius: 5px;
+  margin-top: -3px;
+  cursor: pointer;
+  margin-right: 6px;
+  float: right;
+  border-radius: 17px;
+}

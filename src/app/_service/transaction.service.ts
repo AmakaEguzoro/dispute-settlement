@@ -14,7 +14,7 @@ import { WalletBalance } from 'app/_models/user';
 
 export class TransactionService {
 
-    baseUrl = 'http://197.253.19.76:6200/api/v1/transaction/';
+    baseUrl = environment.api.baseUrl + '/transaction/';
     vasRequerybaseUrl = 'http://staging.itexapp.com:8028/api/v1/vas/metadata/update/'
 
     constructor(private httpClient: HttpClient) { }

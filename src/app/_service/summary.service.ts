@@ -9,9 +9,9 @@ import { forkJoin } from 'rxjs';
 })
 
 export class SummaryService {
-    baseUrl = 'http://197.253.19.76:6200/api/v1/summary/';
+    baseUrl = environment.api.baseUrl + '/summary/';
 
-    baseUrlV2 = 'http://197.253.19.76:6200/api/v1/transaction/dashboard/';
+    baseUrlV2 = environment.api.baseUrl + '/transaction/dashboard/';
 
     constructor(private httpClient: HttpClient) { }
 

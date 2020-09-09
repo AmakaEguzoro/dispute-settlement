@@ -99,7 +99,7 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         blacklistedRoutes: [
-          "http://197.253.19.76:6200/api/v1/auth",
+          "http://127.0.0.1:8000/api/v1/auth",
           // 'http://197.253.19.76:6200/api/v1/users/create'
         ],
       },
