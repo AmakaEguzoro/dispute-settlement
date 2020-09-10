@@ -16,9 +16,9 @@
                                                 </mdb-spinner>
                                                 <h4 *ngIf="loading == false">
                                                         <div *ngIf="isData == true" class="summary-amount">
-                                                                &#x20A6;{{totalAmountCurrent | thousandSuff : 2}}</div>
+                                                                &#x20A6;{{totalAmountCurrent | number}}</div>
                                                         <p *ngIf="isData == true" class="summary-card-text">
-                                                                {{ totalCountCurrent | thousandSuff }}
+                                                                {{ totalCountCurrent | number }}
                                                                 <br> Transactions</p>
                                                 </h4>
                                                 <strong class="summary-noData" *ngIf="isData == false">No Data
@@ -90,9 +90,9 @@
                                                 </mdb-spinner>
                                                 <h4 *ngIf="loading == false">
                                                         <div *ngIf="isData == true" class="summary-amount">
-                                                                &#x20A6;{{previousTotal | thousandSuff : 2 }}</div>
+                                                                &#x20A6;{{previousTotal | number }}</div>
                                                         <p *ngIf="isData == true" class="summary-card-text">
-                                                                {{ totalCountPrevious | thousandSuff }}
+                                                                {{ totalCountPrevious | number }}
                                                                 <br> Transactions</p>
                                                 </h4>
                                                 <strong class="summary-noData" *ngIf="isData == false">No Data

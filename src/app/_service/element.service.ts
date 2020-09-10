@@ -10,21 +10,23 @@ import { ElementError } from 'app/pages/status/service-status/elementError';
   providedIn: 'root'
 })
 export class ElementService {
+
+  baseurl = 'http://197.253.19.76:8018/api/v1';
  
-  private multiUrl = 'http://vas.itexapp.com/service/status/multichoice';
-  private eedcUrl = 'http://197.253.19.75:8029/service/status/eedc';
-  private phedUrl = 'http://197.253.19.75:8029/service/status/phed';
-  private transUrl = 'http://197.253.19.75:8029/service/status/transfer';
-  private ekedcUrl = 'http://197.253.19.75:8029/service/status/ekedc';
-  private ikedcUrl = 'http://197.253.19.75:8029/service/status/ikedc';
-  private starUrl = 'http://197.253.19.75:8029/service/status/startimes';
-  private ibedcUrl = 'http://197.253.19.75:8029/service/status/ibedc';
-  private aedcUrl = 'http://197.253.19.75:8029/service/status/aedc';
-  private smileUrl = 'http://197.253.19.75:8029/service/status/smile';
-  private mtnUrl = 'http://197.253.19.75:8029/service/status/mtn';
-  private gloUrl = 'http://197.253.19.75:8029/service/status/glo';
-  private airtelUrl = 'http://197.253.19.75:8029/service/status/airtel';
-  private etisalatUrl = 'http://197.253.19.75:8029/service/status/etisalat';
+  private multiUrl = this.baseurl + '/vas/service/status/multichoice';
+  private eedcUrl = this.baseurl + '/vas/service/status/eedc';
+  private phedUrl = this.baseurl + '/vas/service/status/phed';
+  private transUrl = this.baseurl + '/vas/service/status/transfer';
+  private ekedcUrl = this.baseurl + '/vas/service/status/ekedc';
+  private ikedcUrl = this.baseurl + '/vas/service/status/ikedc';
+  private starUrl = this.baseurl + '/vas/service/status/startimes';
+  private ibedcUrl = this.baseurl + '/vas/service/status/ibedc';
+  private aedcUrl = this.baseurl + '/vas/service/status/aedc';
+  private smileUrl = this.baseurl + '/vas/service/status/smile';
+  private mtnUrl = this.baseurl + '/vas/service/status/mtn';
+  private gloUrl = this.baseurl + '/vas/service/status/glo';
+  private airtelUrl = this.baseurl + '/vas/service/status/airtel';
+  private etisalatUrl = this.baseurl + '/vas/service/status/etisalat';
 
 
   constructor(private http: HttpClient) { }

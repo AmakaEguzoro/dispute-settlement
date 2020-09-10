@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { IMyOptions, ToastService } from "ng-uikit-pro-standard";
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
 import { SocketService } from "app/_service/socket.service";
+import { ExcelService } from "app/_service/excel.service";
+
 @Component({
   selector: "app-transaction-locks",
   templateUrl: "./transaction-locks.component.html",
@@ -33,7 +35,7 @@ export class TransactionLocksComponent implements OnInit {
   end: any;
   range: any;
   modalRef: BsModalRef;
-
+  exportData: any;
   DateObj: any = new Date();
   dateRange = String(
     this.DateObj.getFullYear() +
@@ -56,7 +58,8 @@ export class TransactionLocksComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private modalService: BsModalService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private excelService: ExcelService
   ) {
     this.searchForm = this.fb.group({
       method: ["", Validators.min],
@@ -159,6 +162,42 @@ export class TransactionLocksComponent implements OnInit {
     };
     console.log(this.filterData);
     this.TransactionLocks(this.filterData);
+  }
+
+  exportAsXLSX(): void {
+   
+    console.log("transaction locks download");
+    this.loading = true;
+    this.start = this.searchForm.value.startDate;
+    this.end = this.searchForm.value.endDate;
+    this.range = `${this.start} - ${this.end}`;
+    this.filterData = {
+      dateRange: this.range,
+      walletId: this.walletId ? this.walletId : "",
+      transactionReference: this.transactionReference
+        ? this.transactionReference
+        : "",
+      viewPage: "",
+      "download": true
+    };
+
+    this.transactionService.getTransactionLocks(this.filterData).subscribe(
+      (data) => {
+        this.loading = false;
+        this.exportData = data;
+        console.log(data);
+        this.excelService.exportAsExcelFile(
+          this.exportData,
+          "ITEX-TransactiononHoldReport" + this.range
+        );
+      },
+      (error) => {
+        this.isData = false;
+        this.loading = false;
+        console.log("cant get transaction locks", error);
+      }
+    );
+
   }
 
   getFilter() {

@@ -74,10 +74,14 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
   public callSwitch(service, action){
     this.isLoading = true;
     this.currentStatus = action;
+    console.log("action: ",  this.currentStatus);
+    
     if(action == "ON"){
        this.currentStatus = "OFF";
     } else if(action == "OFF"){
        this.currentStatus = "ON";
+    } else {
+      this.currentStatus = "ON";
     }
 
     let comment = this.editCommentForm.value;
@@ -85,7 +89,7 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
     // Create Object    
     let payload = {
       "service": service,
-      "action" : this.currentStatus,
+      "action" : this.currentStatus != "" ? this.currentStatus : "ON",
       "comment":  comment.commentform,
       "name" : name
     }
