@@ -11,7 +11,7 @@
           <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
           <h4 *ngIf="loading == false">
             <div *ngIf="isData == true" class="trans-amount">
-              &#x20A6;{{tranLockAmount | thousandSuff : 2}}</div>
+              &#x20A6;{{tranLockAmount | number }}</div>
           </h4>
           <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
         </div>
@@ -38,16 +38,23 @@
           <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
         </select>
       </div>
-      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+      <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6">
         <input type="text" formControlName="filterValue"  ngDefaultControl
           [(ngModel)]="filterValue">
       </div>
-      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-        <button class="btn btn-primary" mdbWavesEffect (click)="searchTrans()">
+      <div class="" >
+        <button class="btn btn-primary btn-sm" mdbWavesEffect (click)="searchTrans()" style="margin-left: 160px; width: 150px !important;">
           <mdb-icon fas icon="search"></mdb-icon>
           Search
         </button>
       </div>
+      <div class="">
+        <button class="btn btn-primary btn-sm" mdbWavesEffect (click)="exportAsXLSX()" style="width: 150px !important;">
+          <mdb-icon fas icon="download"></mdb-icon>
+          &nbsp;Save
+        </button>
+      </div>
+
     </div>
   </form>
 

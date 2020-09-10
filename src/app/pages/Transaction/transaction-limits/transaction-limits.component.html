@@ -1,0 +1,44 @@
+<div class="container margin-top">
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-body">
+
+        <label>Transaction Limits</label>
+
+        <!-- Filters -->
+        <form [formGroup]="searchForm">
+          <div class="form-group mb-1">
+          <label class="head-2">
+            <mdb-icon fas icon="user"></mdb-icon> &nbsp;Wallet
+                    </label>
+          <input class="form-control" type="text" placeholder="Enter Wallet" formControlName="wallet" [ngClass]="{'is-invalid': (searchForm.get('wallet').touched ||
+    searchForm.get('wallet').dirty) &&
+    !searchForm.get('wallet').valid }">
+          <span class="invalid-feedback">
+            <h5 class="login-title"> Please enter wallet </h5>
+          </span>
+          <br>
+          <label class="head-2">
+            <mdb-icon fas icon="lock"></mdb-icon> &nbsp;Password
+          </label>
+          <input class="form-control" type="password" placeholder="Enter Password" formControlName="password" [ngClass]="{'is-invalid': (searchForm.get('password').touched ||
+    searchForm.get('password').dirty) &&
+    !searchForm.get('password').valid }">
+          <span class="invalid-feedback">
+            <h5 class="login-title"> Please enter password </h5>
+          </span>
+          <br>
+          <button [disabled]="!searchForm.valid" class="btn btn-primary" (click)="Search()">Submit
+            <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+          </button>
+          </div>
+
+        </form>
+
+        <!-- Transaction Details -->
+     
+      </div>
+
+    </div>
+  </div>
+</div>

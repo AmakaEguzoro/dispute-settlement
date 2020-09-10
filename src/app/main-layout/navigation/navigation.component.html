@@ -1,82 +1,120 @@
 <div *ngIf="isAuthenticated()">
-    <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark ie-nav"
-        [containerInside]="false">
+  <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg navbar-dark ie-nav"
+    [containerInside]="false">
+    <mdb-navbar-brand>
+      <img src="./assets/ItexLogo.png" style="width: 78px; height: 30px; padding-left: 16px;" />
+    </mdb-navbar-brand>
+    <links>
+      <ul class="navbar-nav mr-auto">
+        <li *appHasRole="['2', '3', '4', '5']" class="nav-item waves-light nav-body" routerLinkActive="active"
+          mdbWavesEffect>
+          <a class="nav-link" [routerLink]="['/admin-dashboard/day']">Dashboard</a>
+        </li>
+        <li class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Transaction<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/transaction/details']">Transactions</a>
+            <a *appHasRole="['3', '4', '5']" class="dropdown-item waves-light" mdbWavesEffect
+              [routerLink]="['/transaction/reversal']">Transactions Reversal</a>
+            <a *appHasRole="['3', '4', '5']" class="dropdown-item waves-light" mdbWavesEffect
+              [routerLink]="['/transaction/locks']">Transactions Locks</a>
+            <a *appHasRole="['3', '4', '5']" class="dropdown-item waves-light" mdbWavesEffect
+              [routerLink]="['/transaction/global']">
+              Global Transactions
+            </a>
+            <a *appHasRole="['5']" class="dropdown-item waves-light" mdbWavesEffect
+            [routerLink]="['/transaction/limits']">
+            Transactions Limits
+          </a>
+          </div>
+        </li>
+        <li *appHasRole="['4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Status<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect
+              [routerLink]="['/service-status']">Services Status</a>
+            <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect
+              [routerLink]="['/bvn-status']">BVN Status</a>
+          </div>
+        </li>
 
-        <mdb-navbar-brand>
-            <img src="./assets/ItexLogo.png" style="width: 78px; height: 30px; padding-left: 16px;">
-        </mdb-navbar-brand>
-        <links>
-            <ul class="navbar-nav mr-auto">
-                <li *appHasRole="['3', '4', '5']" class="nav-item waves-light nav-body"
-                routerLinkActive="active" mdbWavesEffect>
-                   <a class="nav-link" [routerLink]="['/admin-dashboard/day']">Dashboard</a>
-               </li>
-                <li class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
-                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
-                        mdbWavesEffect>
-                        Transaction<span class="caret"></span></a>
-                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a class="dropdown-item waves-light" mdbWavesEffect
-                            [routerLink]="['/transaction/details']">Transactions</a>
-                        <a *appHasRole="['3', '4', '5']" class="dropdown-item waves-light" mdbWavesEffect
-                            [routerLink]="['/transaction/reversal']">Transactions Reversal</a>
-                        <a *appHasRole="['3', '4', '5']" class="dropdown-item waves-light" mdbWavesEffect
-                            [routerLink]="['/transaction/locks']">Transactions Locks</a>
-                    </div>
-                </li>
-                <li *appHasRole="['4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
-                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
-                        mdbWavesEffect>
-                        Status<span class="caret"></span></a>
-                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/service-status']">Services
-                            Status</a>
-                        <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/bvn-status']">BVN
-                            Status</a>
-                    </div>
-                </li>
-                
-                <li *appHasRole="['3', '4', '5']" class="nav-item waves-light nav-body" mdbWavesEffect routerLinkActive="active">
-                    <a class="nav-link" [routerLink]="['/agency/banking']">Agency Banking</a>
-                </li>
+        <li *appHasRole="['3', '4', '5']" class="nav-item waves-light nav-body" mdbWavesEffect
+          routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/agency/banking']">Agency Banking</a>
+        </li>
 
-                 
-                <li *appHasRole="['3', '4', '5']" class="nav-item waves-light nav-body" mdbWavesEffect routerLinkActive="active">
-                    <a class="nav-link" [routerLink]="['/error/analysis']">Error Analysis</a>
-                </li>
-                <li *appHasRole="['2', '3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
-                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
-                        mdbWavesEffect>
-                        MCASH (USSD)<span class="caret"></span></a>
-                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a class="dropdown-item waves-light" mdbWavesEffect
-                            [routerLink]="['/mcash/transactions']">Transactions</a>
-                        <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect
-                            [routerLink]="['/mcash/map-terminals']">Map Terminals</a>
-                    </div>
-                </li>
-            </ul>
+        <li *appHasRole="['3', '4', '5']" class="nav-item waves-light nav-body" mdbWavesEffect
+          routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/error/analysis']">Error Analysis</a>
+        </li>
+        <li *appHasRole="['3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            MCASH (USSD)<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/mcash/transactions']">Transactions</a>
+            <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect
+              [routerLink]="['/mcash/map-terminals']">Map Terminals</a>
+          </div>
+        </li>
+        <!--cgate-->
 
-            <ul class="navbar-nav nav-flex-icons">
-                <li *appHasRole="[5]" class="nav-item dropdown nav-body" dropdown routerLinkActive="active">
-                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
-                        mdbWavesEffect> Users<span class="caret"></span></a>
-                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                        <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/register']">Create User</a>
-                        <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/users']">View Users</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown btn-group" dropdown >
-                    <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown"
-                        mdbWavesEffect>
-                       Hi {{ userDisplayName }}&nbsp; 
-                        <!-- Hi {{authService.decodedToken.name}} -->
-                    </a>
-                    <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
-                        <a (click)="logout()" class="dropdown-item">Log Out</a>
-                    </div>
-                </li>
-            </ul>
-        </links>
-    </mdb-navbar>
+        <li *appHasRole="['3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            CGate<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/cgate/transactions']">Transactions</a>
+          </div>
+        </li>
+
+        <li *appHasRole="['3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            NIP<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/transaction/nip']">Settlement
+              Report</a>
+            <a *appHasRole="['4', '5']" class="dropdown-item waves-light" mdbWavesEffect>Configurations</a>
+          </div>
+        </li>
+        <li *appHasRole="['3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            SANEF<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/sanef/account']">Accounts</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/sanef/transactions']">Transactions</a>
+          </div>
+        </li>
+        <li *appHasRole="['3', '4', '5']" class="nav-item dropdown nav-body" routerLinkActive="active" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Onboarding<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/onboarding/dashboard']">Dashboard</a>
+
+          </div>
+        </li>
+
+      </ul>
+
+      <ul class="navbar-nav nav-flex-icons">
+        <li *appHasRole="[5]" class="nav-item dropdown nav-body" dropdown routerLinkActive="active">
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Users<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/register']">Create User</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/users']">View Users</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown btn-group" dropdown>
+          <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown" mdbWavesEffect>
+            Hi {{ userDisplayName }}&nbsp;
+            <!-- Hi {{authService.decodedToken.name}} -->
+          </a>
+          <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+            <a (click)="logout()" class="dropdown-item">Log Out</a>
+          </div>
+        </li>
+      </ul>
+    </links>
+  </mdb-navbar>
 </div>

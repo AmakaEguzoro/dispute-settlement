@@ -1,0 +1,1111 @@
+<div>
+  <app-table1 *ngIf="showing=='table1'" [filterData]="filterData" [showing]="showing"
+    (displayhome)="handleChange('home')"></app-table1>
+  <app-table2 *ngIf="showing=='table2'" [filterData]="filterData" [showing]="showing"
+    (displayhome)="handleChange('home')"></app-table2>
+  <app-cashin *ngIf="showing=='cashin'" [filterData]="filterData" [cashintotal]="cashin_total" [showing]="showing"
+    (displayhome)="handleChange('home')"></app-cashin>
+  <app-cashout *ngIf="showing=='cashout'" [filterData]="filterData" [showing]="showing" [cashouttotal]="cashout_total"
+    (displayhome)="handleChange('home')"></app-cashout>
+  <app-vascard *ngIf="showing=='vascard'" [filterData]="filterData" [showing]="showing" [vascardtotal]="vascard_total"
+    (displayhome)="handleChange('home')"></app-vascard>
+  <app-vascash *ngIf="showing=='vascash'" [filterData]="filterData" [showing]="showing" [vascashtotal]="vascash_total"
+    (displayhome)="handleChange('home')"></app-vascash>
+</div>
+
+<div class="container-fluid" *ngIf="showing=='home'">
+  <div class="col-md-12 parent">
+    <div id="report">
+      <span>Report</span>
+    </div>
+    <hr class="top" />
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="text-align: center;">
+          <div class="card global">
+            <div class="heading">
+              <span class="col-sm-12 col-md-6 col-lg-6"> GLOBAL TRANSACTIONS</span>
+            </div>
+            <div class="avatar mx-auto col-1" style="left: inherit;">
+              <img src="..//..//..//../assets/ItexLogo.png" class="rounded-circle" alt="avatar"
+                style="top: -1px; text-align: center;" />
+            </div>
+
+            <div class="card-text mt-3 d-flex"
+              style="position: relative; justify-content: center; align-content: center;">
+              <div style="text-align: center;">
+
+                <div class="row ">
+                  <span class="col-md-5 col-sm-5 ">Total Amount</span>
+                  <span class="col-md-7 col-sm-7" style=" font-weight: bold; font-size: 12px;">
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" style=" font-size: 20px">
+                        &#x20A6;{{globaltrans / 100 | thousandSuff : 2}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+                  </span>
+                </div>
+                <br>
+                <hr style="background-color: black; border-width: 2px;max-width: 100%;">
+
+                <div class="row">
+                  <span class="col-md-5 col-sm-5">Total Wallet Balance</span>
+                  <span class="col-md-7 col-sm-7" style=" font-weight: bold; ">
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" style=" font-size: 20px">
+                        &#x20A6;{{total_wallet_balance / 100 | thousandSuff : 2}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                  </span>
+                </div>
+                <br>
+                <hr style="background-color: white; border-width: 2px;">
+                <div class="row">
+                  <span class="col-md-5 col-sm-5">Total Users</span>
+                  <span class="col-md-7 col-sm-7" style=" font-weight: bold; font-size: 14px;">
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" style=" font-size: 20px; cursor: pointer;"
+                        (click)="displaytable('table1')">
+                        {{total_users|number }}&nbsp;&nbsp; <mdb-icon fas icon="chevron-right">
+                        </mdb-icon>
+                      </div>
+                    </h4>
+                    <strong (click)="displaytable('table1')" class="summary-noData text-dark" *ngIf="isData == false"
+                      style="cursor: pointer;">No
+                      Data Available</strong>
+
+                  </span>
+                </div>
+                <br>
+                <hr style="background-color: white; border-width: 2px;">
+                <div class="row">
+                  <span class="col-md-5 col-sm-5">Total Agents </span>
+                  <span class="col-md-7 col-sm-7" style=" font-weight: bold; font-size: 14px; text-align: center;">
+
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" style=" font-size: 20px; text-align: center;cursor: pointer; "
+                        (click)="displaytable2('table2')">
+
+                        {{total_agents |number}}&nbsp;&nbsp; <mdb-icon fas icon="chevron-right"></mdb-icon>
+                      </div>
+                    </h4>
+                    <strong (click)="displaytable2('table2')" class="summary-noData text-dark" *ngIf="isData == false"
+                      style="cursor: pointer;">No Data Available</strong>
+
+                  </span>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+        <div class="col-sm-9">
+          <div class="container">
+            <form [formGroup]="searchForm">
+              <div class="row">
+
+                <div class="col-md-4">
+                  <div class="row">
+
+                    <div class="row">
+                      <div id="datepicker" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
+                          [options]="myDatePickerOptions" size="sm"></mdb-date-picker>
+                      </div>
+                      <div id="datepicker" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
+                          [options]="myDatePickerOptions" size="sm">
+                        </mdb-date-picker>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <button class="btn-sm" type="button" mdbBtn mdbWavesEffect
+                          style="color: white; background-color: #69c396; top:35px; position: relative;"
+                          (click)="searchTrans()">
+                          Generate
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <br>
+                <!--5 search forms-->
+                <div class="col-md-8" style="left: 30px;margin-top: 38px; ">
+                  <div class="row">
+
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
+
+                      <select class="browser-default custom-select stat" (change)="getChannel($event)"
+                        formControlName="channel">
+                        <option value="">Select Payment Channel</option>
+                        <option *ngFor="let status of stat" [value]="status">{{
+                                status
+                              }}</option>
+                      </select>
+                    </div>
+
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
+                      <select class="browser-default custom-select stat" (change)="getType($event)"
+                        formControlName="paymentType">
+                        <option value="">
+                          Select Payment Type
+                        </option>
+                        <option *ngFor="let status of Refs" [value]="status">{{
+                                status
+                              }}</option>
+                      </select>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+
+          <div class="row" style="margin-top: 20px;">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+              <div class="card card-stats" style="background-color: white;">
+                <div class="card-title ">
+                  <div class="row">
+
+                    <div class="col-12 col-md-12">
+                      <div class="numbers">
+                        <div class="titlebg">TRANSFER</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text d-flex" style="text-align: center; justify-content: center; margin-top: 30px;">
+                  <span>
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                        &#x20A6;{{cashin / 100 | thousandSuff : 2}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                  </span>
+                </div>
+                <span style="text-align: center; font-weight: bold;">Total Amount</span>
+                <div class="card-footer" style="background-color: white;">
+                  <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                  <h4 *ngIf="isLoading == false">
+                    <div class="row" style=" display: flex; justify-content: space-around;">
+                      <div>
+                        <p *ngIf="isData == true" class="summary-card-text" style="text-align: center;">
+                          {{cashin_total}}
+                          <br>Transactions</p>
+                      </div>
+
+                      <div (click)="displaytable3('cashin')" style="cursor: pointer;    
+       font-size: 17px;
+       text-align: center;
+                  " *ngIf="isData==true">
+
+                        <mdb-icon fas icon="download"></mdb-icon>
+                        <br>
+                        <span> Export</span>
+                      </div>
+                    </div>
+
+                  </h4>
+                  <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+              <div class="card card-stats" style="background-color: white;">
+                <div class="card-title ">
+                  <div class="row">
+
+                    <div class="col-12 col-md-12">
+                      <div class="numbers">
+                        <div class="titlebg">WITHDRAWAL</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text d-flex" style="text-align: center; justify-content: center; margin-top: 30px;">
+                  <span>
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                        &#x20A6;{{cashout/ 100 | thousandSuff : 2}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                  </span>
+                </div>
+                <span style="text-align: center; font-weight: bold;">Total Amount</span>
+                <div class="card-footer " style="background-color: white;">
+                  <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                  <h4 *ngIf="isLoading == false">
+                    <div class="row" style=" display: flex; justify-content: space-around;">
+                      <div>
+                        <p *ngIf="isData == true" class="summary-card-text" style="text-align: center;">
+                          {{cashout_total}}
+                          <br>Transactions</p>
+                      </div>
+
+                      <div (click)="displaytable3('cashout')" style="cursor: pointer;
+                      font-size: 17px;
+                text-align: center;
+                     " *ngIf="isData==true">
+                        <mdb-icon fas icon="download"></mdb-icon>
+                        <br>
+                        <span>Export</span>
+                      </div>
+                    </div>
+                  </h4>
+                  <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats" style="background-color: white;">
+                <div class="card-title ">
+                  <div class="row">
+
+                    <div class="col-12 col-md-12">
+                      <div class="numbers">
+                        <div class="titlebg">VAS CARD</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text d-flex" style="text-align: center; justify-content: center; margin-top: 30px;">
+                  <span>
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                        &#x20A6;{{vascard/ 100 | thousandSuff : 2}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                  </span>
+                </div>
+                <span style="text-align: center; font-weight: bold;">Total Amount</span>
+                <div class="card-footer  " style="background-color: white;">
+                  <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                  <h4 *ngIf="isLoading == false">
+                    <div class="row" style=" display: flex; justify-content: space-around;">
+                      <div style="font-size: 12px;">
+                        <p *ngIf="isData == true" class="summary-card-text" style="text-align: center;">
+                          {{vascard_total}}
+                          <br>Transactions</p>
+                      </div>
+
+                      <div (click)="displaytable3('vascard')" style="cursor: pointer;     
+                    font-size: 17px;
+                    text-align: center;
+                " *ngIf="isData==true">
+                        <mdb-icon fas icon="download"></mdb-icon>
+                        <br>
+                        <span> Export</span>
+                      </div>
+                    </div>
+                  </h4>
+                  <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats" style="background-color: white;">
+                <div class="card-title ">
+                  <div class="row">
+
+                    <div class="col-12 col-md-12">
+                      <div class="numbers">
+                        <div class="titlebg">VAS CASH</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text d-flex" style="text-align: center; justify-content: center; margin-top: 30px;">
+                  <span>
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                        &#x20A6;{{vascash/ 100 | thousandSuff : 2}}</div>
+                    </h4>
+                    <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                  </span>
+                </div>
+                <span style="text-align: center; font-weight: bold;">Total Amount</span>
+                <div class="card-footer " style="background-color: white;">
+                  <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                  <h4 *ngIf="isLoading == false">
+                    <div class="row" style=" display: flex; justify-content: space-around;">
+                      <div style="font-size: 12px;">
+                        <p *ngIf="isData == true" class="summary-card-text" style="text-align: center;">
+                          {{vascash_total}}
+                          <br>Transactions</p>
+                      </div>
+
+                      <div (click)="displaytable3('vascash')" style="cursor: pointer;
+                    font-size: 17px;
+                    text-align: center;
+                " *ngIf="isData==true">
+                        <mdb-icon fas icon="download"></mdb-icon>
+                        <br>
+                        <span>Export</span>
+                      </div>
+                    </div>
+                  </h4>
+                  <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+          <!--start the bottom tab here-->
+          <div class="tabclass " style="margin-top: 20px;">
+            <mdb-tabset [buttonClass]="'classic-tabs  customclass'" [contentClass]="'card'" [justified]="true"
+              class="classic-tabs customclass" style="margin-top:100%;">
+              <!--Panel 1-->
+              <mdb-tab heading="AIRTIME AND DATA" style="background-color: rgb(217, 224, 231);;">
+                <div class="col-12 mt-3 d-flex justify-content-center align-items-center" style="text-align: center;">
+                  <div class="card classic-admin-card" id="card-layout">
+                    <div class="row mt-4">
+                      <div class="col-12" style="top: -10px;">
+                        <span class="mt-1" style=" font-weight: bold; ">
+                          <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                          <h4 *ngIf="isLoading == false">
+                            <div *ngIf="isData == true" style=" font-size: 20px">
+                              &#x20A6;{{totalairtime / 100 | thousandSuff : 2}}</div>
+                          </h4>
+                          <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                        </span>
+                        <br>
+                        <span>Total amount</span>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-3">
+                  <div class="col-12">
+
+                    <div class="grid-items">
+                      <div class="row">
+
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/mtn.png" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 summary-card-text mt-1"
+                                  style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          &#x20A6;{{mtn / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/airtel.png" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          &#x20A6;{{airtel / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/glo.jpg" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          &#x20A6;{{glo / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <!--end of first row-->
+
+
+
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/9mobile.png" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          &#x20A6;{{mobile9 / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+
+                        <!--end of 2nd row-->
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mdb-tab>
+              <!--Panel 2-->
+              <mdb-tab heading="INTERNET SERVICES">
+                <div class="col-12 mt-3 d-flex justify-content-center align-items-center" style="text-align: center;">
+                  <div class="card classic-admin-card" id="card-layout">
+                    <div class="row mt-4">
+                      <div class="col-12" style="top: -10px;">
+                        <span class="mt-1" style=" font-weight: bold; ">
+                          <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                          <h4 *ngIf="isLoading == false">
+                            <div *ngIf="isData == true" style=" font-size: 20px">
+                              &#x20A6;{{smile / 100 | thousandSuff : 2}}</div>
+                          </h4>
+                          <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                        </span>
+                        <br>
+                        <span>Total amount</span>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                  <div class="card card-stats">
+                    <div class="card-bodyy">
+                      <div class="row mt-4 ml-2">
+
+                        <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                          <div class="icon-big text-center icon-warning  text-center" style="align-self: center">
+                            <img src="..//..//..//../assets/smile-logo.svg" class="float-left img-fluid" alt="..."
+                              width="100px">
+                          </div>
+                        </div>
+                        <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                          <div class="numberss">
+                            <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                            <span class="mt-1" style=" font-weight: bold; ">
+                              <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                              <h4 *ngIf="isLoading == false">
+                                <div *ngIf="isData == true" style=" font-size: 20px">
+                                  &#x20A6;{{smile / 100 | thousandSuff : 2}}</div>
+                              </h4>
+                              <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                Available</strong>
+
+                            </span>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mdb-tab>
+              <!--Panel 3-->
+              <mdb-tab heading="UTILITIES">
+                <div class="col-12 mt-3 d-flex justify-content-center align-items-center" style="text-align: center;">
+                  <div class="card classic-admin-card" id="card-layout">
+                    <div class="row mt-4">
+                      <div class="col-12" style="top: -10px;">
+                        <span class="mt-1" style=" font-weight: bold; ">
+                          <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                          <h4 *ngIf="isLoading == false">
+                            <div *ngIf="isData == true" style=" font-size: 20px">
+                              &#x20A6;{{totalutilities / 100 | thousandSuff : 2}}</div>
+                          </h4>
+                          <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                        </span>
+                        <br>
+                        <span>Total amount</span>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-12">
+
+                    <div class="grid-items">
+                      <div class="row">
+
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/ie.png" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          {{ikeja_electric / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/ekedc.jpg" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          {{eko_electric / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/ibadan.png" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          {{ibadan_electric / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/enugu.jpg" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          &#x20A6;{{enugu_electric / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/PHED.png" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          &#x20A6;{{ph_electric / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/abuja.png" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          &#x20A6;{{abuja_electric / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 mt-3">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/kano.png" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          &#x20A6;{{kano_electric / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mdb-tab>
+              <mdb-tab heading="CABLE TV">
+                <div class="col-12 mt-3 d-flex justify-content-center align-items-center" style="text-align: center;">
+                  <div class="card classic-admin-card" id="card-layout">
+                    <div class="row mt-4">
+                      <div class="col-12" style="top: -10px;">
+                        <span style=" font-weight: bold; ">
+                          <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                          <h4 *ngIf="isLoading == false">
+                            <div *ngIf="isData == true" style=" font-size: 20px">
+                              {{totalcable / 100 | thousandSuff : 2}}</div>
+                          </h4>
+                          <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                        </span>
+                        <br>
+                        <span>Total amount</span>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-12">
+
+                    <div class="grid-items">
+                      <div class="row">
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/multichoice.png" class="float-left img-fluid"
+                                      alt="..." width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          {{multichoice / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/startimes.png" class="float-left img-fluid"
+                                      alt="..." width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-2" style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          {{startimes / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mdb-tab>
+
+              <mdb-tab heading="OTHERS">
+                <div class="col-12 mt-3 d-flex justify-content-center align-items-center" style="text-align: center;">
+                  <div class="card classic-admin-card" id="card-layout">
+                    <div class="row mt-4">
+                      <div class="col-12" style="top: -10px;">
+                        <span class="mt-1" style=" font-weight: bold; ">
+                          <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                          <h4 *ngIf="isLoading == false">
+                            <div *ngIf="isData == true" style=" font-size: 20px">
+                              {{others / 100 | thousandSuff : 2}}</div>
+                          </h4>
+                          <strong class="summary-noData text-dark" *ngIf="isData == false">No Data Available</strong>
+
+                        </span>
+                        <br>
+                        <span>Total amount</span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-12">
+
+                    <div class="grid-items">
+                      <div class="row">
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/waec.jpg" class="float-left img-fluid" alt="..."
+                                      width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-sm-6 mt-2"
+                                  style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          {{waec/ 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                            <div class="card-bodyy">
+                              <div class="row mt-4 ml-2">
+
+                                <div class="col-6 col-md-6" style="align-self: center; text-align: center;">
+                                  <div class="icon-big text-center icon-warning  text-center"
+                                    style="align-self: center">
+                                    <img src="..//..//..//../assets/genesis-logo.png" class="float-left img-fluid"
+                                      alt="..." width="100px">
+                                  </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-sm-6 mt-2"
+                                  style="text-align: center; align-self: center;">
+                                  <div class="numberss">
+                                    <p class="card-category" style="font-size: 15px;">Amount Used</p>
+                                    <span class="mt-1" style=" font-weight: bold; ">
+                                      <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue">
+                                      </mdb-spinner>
+                                      <h4 *ngIf="isLoading == false">
+                                        <div *ngIf="isData == true" style=" font-size: 20px">
+                                          {{genesis / 100 | thousandSuff : 2}}</div>
+                                      </h4>
+                                      <strong class="summary-noData text-dark" *ngIf="isData == false">No Data
+                                        Available</strong>
+
+                                    </span>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mdb-tab>
+            </mdb-tabset>
+          </div>
+
+          <!-- it ends here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

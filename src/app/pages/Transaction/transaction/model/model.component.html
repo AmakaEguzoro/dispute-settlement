@@ -6,8 +6,12 @@
           <h4>{{data.name}}</h4>
           <br>
           <div class="trans-catergory" style="margin-top: -2em;">
-            {{data.category}}
+            {{data.category}} <br>
+            <mdb-badge type="button" *ngIf="data.VASBillerName == 'IKEDC' && data.status == 'initialized'"
+              class="requery" (click)="requeryInitializedTransaction(data.reference)"><i class="fa fa-refresh"></i>
+              RE-QUERY</mdb-badge>
           </div>
+
         </div>
       </div>
       <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
@@ -19,106 +23,127 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="modal-tit">
-           <i> Product details</i>
+            <i> Wallet details</i>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.terminal">
             Terminal ID:
-            <strong class="details" style="float: right">{{data.terminal}}</strong>
+            <span class="details" style="float: right">{{data.terminal}}</span>
           </div>
           <div class="details mt-2">
             Agent ID:
-            <b  class="details" style="float: right;">{{data.wallet}}</b>
+            <span class="details" style="float: right;">{{data.wallet}}</span>
           </div>
           <br>
           <div class="modal-tit">
             <i>Customer Details</i>
           </div>
-          <div class="details mt-2">
-            Name:
-            <strong class="details" class="vas-address">{{data.VASCustomerName}}</strong>
+          <div class="details mt-2" *ngIf="data.VASCustomerName">
+            Customer Name:
+            <span class="details" style="float: right">{{data.VASCustomerName}}</span>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.VASCustomerPhone">
             Phone Number:
-            <strong  class="details" style="float: right">{{data.VASCustomerPhone}}</strong>
+            <span class="details" style="float: right">{{data.VASCustomerPhone}}</span>
           </div>
-          <div class="details mt-2">
-            Account Number:
-            <strong  class="details" style="float: right">{{data.VASCustomerAccount}}</strong>
-          </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.VASCustomerAddress">
             Address:
-            <strong  class="details" class="vas-address">{{data.VASCustomerAddress}}</strong>
+            <span class="details" class="vas-address">{{data.VASCustomerAddress}}</span>
           </div>
-          <br>
+          <br><br>
           <div class="modal-tit">
             <i>Transaction Details</i>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.VASCustomerAccount">
+            Amount:
+            <span class="details" style="float: right"> &#x20A6; {{data.nairaAmount}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.VASCustomerAccount">
+            Account Number:
+            <span class="details" style="float: right">{{data.VASCustomerAccount}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.bankName">
+            Bank Name:
+            <span class="details" style="float: right">{{data.bankName}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.provider && data.name == 'Vice Banking Transfer'">
+            Provider:
+            <b class="details" style="float: right;">{{data.provider}}</b>
+          </div>
+          <div class="details mt-2" *ngIf="data.transactionAuthCode">
             AuthCode:
-            <strong  class="details" style="float: right">{{data.transactionAuthCode}}</strong>
+            <span class="details" style="float: right">{{data.transactionAuthCode}}</span>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.transactionSTAN">
             STAN:
-            <strong  class="details" style="float: right">{{data.transactionSTAN}}</strong>
+            <span class="details" style="float: right">{{data.transactionSTAN}}</span>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.transactionRRN">
             RRN:
-            <strong  class="details" style="float: right">{{data.transactionRRN}}</strong>
+            <span class="details" style="float: right">{{data.transactionRRN}}</span>
           </div>
-          <div class="details mt-2">
-            Provider Name:
-            <strong  class="details" style="float: right">{{data.VASProviderName}}</strong>
+          <div class="details mt-2" *ngIf="data.cardPAN">
+            Card-PAN:
+            <span class="details" style="float: right">{{data.cardPAN}}</span>
           </div>
-          <div class="details mt-2">
-            Token:
-            <strong  class="details" style="float: right">{{data.token}}</strong>
-          </div>
-          <div class="details mt-2">
-              Ref:
-              <strong  class="details" style="float: right">{{data.reference}}</strong>
-            </div>
         </div>
 
+
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div>
-            Biller Name:
-            <strong  class="details" style="float: right">{{data.VASBillerName}}</strong>
+          <div class="modal-tit">
+            <i>Service Details</i>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.category == 'Electricity'">
+            Token:
+            <span class="details" style="float: right">{{data.token}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.VASDepositorName">
             Depositor Name:
-            <strong  class="details" style="float: right">{{data.VASDepositorName}}</strong>
+            <span class="details" style="float: right">{{data.VASDepositorName}}</span>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.type && data.category == 'Electricity'">
             Type:
-            <strong  class="details" style="float: right">{{data.type}}</strong>
+            <span class="details" style="float: right">{{data.type}}</span>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.channel">
             Channel:
-            <strong class="details" style="float: right">{{data.channel}}</strong>
+            <span class="details" style="float: right">{{data.channel}}</span>
           </div>
-          <div class="details mt-2">
-            Sequence:
-            <strong class="details" style="float: right">{{data.sequence}}</strong>
-          </div>
-          <div class="details mt-2">
-            Card-PAN:
-            <strong class="details" style="float: right">{{data.cardPAN}}</strong>
-          </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.message">
             Message:
-            <strong class="details" style="float: right">{{data.message}}</strong>
+            <span class="details" style="float: right">{{data.message}}</span>
           </div>
-          <div class="details mt-2">
-              Commission:
-            <strong class="details" style="float: right"> &#x20A6; {{data.commission}}</strong>
+          <!-- <div class="details mt-2" *ngIf="data.commission">
+            Commission:
+            <span class="details" style="float: right"> &#x20A6; {{data.commission}}</span>
+          </div> -->
+
+          <br><br>
+          <div class="modal-tit">
+            <i>Transaction References</i>
           </div>
+
+          <div class="details mt-2" *ngIf="data.sequence">
+            Sequence:
+            <span class="details" style="float: right">{{data.sequence}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.reference">
+            Ref:
+            <span class="details" style="float: right">{{data.reference}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.clientReference">
+            Client Reference:
+            <span class="details" style="float: right" *ngIf="data.clientReference">
+              {{ data.clientReference | slice:0:20}}</span>
+          </div>
+          <br>
           <div *appHasRole="[5]" class="details mt-2">
-              Response:
-              <strong class="details" style="float: right">
-                <textarea>
+            Response:
+            <span class="details" style="float: right">
+              <textarea>
                     {{data.response | json}}
-                </textarea></strong>
-            </div>
+                </textarea></span>
+          </div>
         </div>
       </div>
 

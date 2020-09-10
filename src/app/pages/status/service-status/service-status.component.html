@@ -16,8 +16,9 @@
                   <th>S/N</th>
                   <th>Services</th>
                   <th>Balance</th>
-                  <th [ngStyle]="{'display': 'none'}">Last Deposit</th>
                   <th>Status</th>
+                  <th>Last Deposit</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -36,7 +37,6 @@
                                   }">{{ el.IntBalance | currency:'NGN':"&#x20A6;":'1.2-2' }}
                     </span>
                   </td>
-                  <td [ngStyle]="{'display': 'none'}">{{ el.lastDeposit }}</td>
                   <td>
                     <button data-toggle="modal" data-target="#basicExample" type="button" class="btn btn-sm" [ngClass]="{
                                   'btn-success' : el.status == 'ON',
@@ -45,6 +45,8 @@
                     <!-- callSwitch(el.service, el.status) -->
                     <!-- showModal(item) -->
                   </td>
+                  <td>{{ el.lastDeposit }}</td>
+
                   <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
                     aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

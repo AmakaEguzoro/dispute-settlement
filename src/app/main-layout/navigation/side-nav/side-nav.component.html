@@ -1,0 +1,247 @@
+<body class="light-blue-skin"></body>
+
+<!--Double navigation-->
+<header *ngIf="isAuthenticated()">
+  <!-- Sidebar navigation -->
+  <mdb-side-nav #sidenav class="sn-bg-1 fixed" [fixed]="true">
+
+    <mdb-navbar-brand>
+      <!-- Logo -->
+      <li>
+        <mdb-icon fas icon="times" (click)="sidenav.hide()"style=" float: right;
+        margin-right: 1rem; margin-bottom: -2rem;"></mdb-icon>
+        <div class="logo-wrapper waves-light">
+          <a href="#"><img src="./assets/ItexLogo.png" class="img-fluid flex-center"></a>
+        </div>
+      </li>
+      <!--/. Logo -->
+    </mdb-navbar-brand>
+
+    <!-- <div class="" style="background:#3F729B; height: 100%;"> -->
+
+    <links>
+      <!--Social-->
+      <!-- <li>
+        <ul class="social">
+          <li><a class="icons-sm fb-ic"><mdb-icon fab icon="facebook"> </mdb-icon></a></li>
+          <li><a class="icons-sm pin-ic"><mdb-icon fab icon="pinterest"> </mdb-icon></a></li>
+          <li><a class="icons-sm gplus-ic"><mdb-icon fab icon="google-plus"> </mdb-icon></a></li>
+          <li><a class="icons-sm tw-ic"><mdb-icon fab icon="twitter"> </mdb-icon></a></li>
+        </ul>
+      </li> -->
+      <!--/Social-->
+
+      <!-- Side navigation links -->
+      <li>
+        <ul class="collapsible collapsible-accordion">
+          <mdb-accordion [multiple]="false" aria-multiselectable="false">
+
+            <mdb-accordion-item class="no-collase" *appHasRole="['2', '3', '4', '5']">
+              <mdb-accordion-item-head routerLinkActive="active" mdbWavesEffect [routerLink]="['/admin-dashboard/day']">
+                <mdb-icon far icon="hand-pointer"></mdb-icon> Dashboard
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+            <!-- Collapsible  -->
+            <mdb-accordion-item *appHasRole="[ '2', '3', '4', '5']">
+              <mdb-accordion-item-head mdbWavesEffect
+                [ngClass]="{'active':(transLink || {}).isActive || (transLink1 || {}).isActive || (transLink2 || {}).isActive || (transLink3 || {}).isActive || (transLink4 || {}).isActive || (transLink5 || {}).isActive}"
+                #transLink="routerLinkActive" routerLinkActive="active">
+                <mdb-icon far icon="hand-pointer"></mdb-icon> Transactions
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <ul>
+                  <li><a *appHasRole="['2', '3', '4', '5']" #transLink1="routerLinkActive"
+                      routerLink="transaction/details" routerLinkActive="active" mdbWavesEffect> Transactions </a></li>
+                  <!-- <li><a *appHasRole="['3', '4', '5']" #transLink2="routerLinkActive" routerLink="transaction/reversal"
+                      routerLinkActive="active" mdbWavesEffect> Transactions Reversal </a></li> -->
+                  <li><a *appHasRole="['3', '4', '5']" #transLink3="routerLinkActive" routerLink="transaction/locks"
+                      routerLinkActive="active" mdbWavesEffect> Transactions on-Hold </a></li>
+                  <li><a *appHasRole="['3', '4', '5']" #transLink4="routerLinkActive" routerLink="transaction/global"
+                      routerLinkActive="active" mdbWavesEffect> Global Transactions </a></li>
+                      <li><a *appHasRole="['5']" #transLink5="routerLinkActive" routerLink="/transaction/limits"
+                        routerLinkActive="active" mdbWavesEffect> Transactions Limits </a></li>
+                </ul>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+            <mdb-accordion-item *appHasRole="['4', '5']">
+              <mdb-accordion-item-head mdbWavesEffect
+                [ngClass]="{'active':(statusLink || {}).isActive || (statusLink1 || {}).isActive || (statusLink2 || {}).isActive}"
+                #statusLink="routerLinkActive" routerLinkActive="active">
+                <mdb-icon far icon="hand-pointer"></mdb-icon> Status
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <ul>
+                  <li><a *appHasRole="['4', '5']" #statusLink1="routerLinkActive" routerLink="service-status"
+                      routerLinkActive="active" mdbWavesEffect> Services Status </a></li>
+                  <li><a *appHasRole="['4', '5']" #statusLink2="routerLinkActive" routerLink="bvn-status"
+                      routerLinkActive="active" mdbWavesEffect>
+                      BVN Status</a></li>
+                </ul>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+            <!-- Simple link -->
+            <mdb-accordion-item class="no-collase" *appHasRole="[ '3', '4', '5']">
+              <mdb-accordion-item-head routerLinkActive="active" mdbWavesEffect [routerLink]="['/agency/banking']">
+                <mdb-icon far icon="hand-pointer"></mdb-icon> Agency Banking
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+            <mdb-accordion-item class="no-collase" *appHasRole="[ '3', '4', '5']">
+              <mdb-accordion-item-head routerLinkActive="active" mdbWavesEffect [routerLink]="['/error/analysis']">
+                <mdb-icon far icon="hand-pointer"></mdb-icon> Error Analysis
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+
+            <mdb-accordion-item *appHasRole="['3', '4', '5']">
+              <mdb-accordion-item-head mdbWavesEffect
+                [ngClass]="{'active':(mcashLink || {}).isActive || (mcashLink1 || {}).isActive || (mcashLink2 || {}).isActive}"
+                #mcashLink="routerLinkActive" routerLinkActive="active">
+                <mdb-icon far icon="hand-pointer"></mdb-icon> MCASH (USSD)
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <ul>
+                  <li><a *appHasRole="['3','4', '5']" #mcashLink1="routerLinkActive" routerLink="mcash/transactions"
+                      routerLinkActive="active" mdbWavesEffect>MCASH Transactions </a></li>
+                  <li><a *appHasRole="['3','4', '5']" #mcashLink2="routerLinkActive" routerLink="mcash/map-terminals"
+                      routerLinkActive="active" mdbWavesEffect>
+                      Map Terminals</a></li>
+                </ul>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+            <mdb-accordion-item *appHasRole="['3', '4', '5']">
+              <mdb-accordion-item-head mdbWavesEffect
+                [ngClass]="{'active':(cgateLink || {}).isActive || (cgateLink1 || {}).isActive}"
+                #cgateLink="routerLinkActive" routerLinkActive="active">
+                <mdb-icon far icon="hand-pointer"></mdb-icon> CGATE
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <ul>
+                  <li><a *appHasRole="['3','4', '5']" #cgateLink1="routerLinkActive" routerLink="cgate/transactions"
+                      routerLinkActive="active" mdbWavesEffect>CGATE Transactions </a></li>
+                </ul>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+            <mdb-accordion-item *appHasRole="['3', '4', '5']">
+              <mdb-accordion-item-head mdbWavesEffect
+                [ngClass]="{'active':(nipLink || {}).isActive || (nipLink1 || {}).isActive || (nipLink2 || {}).isActive }"
+                #nipLink="routerLinkActive" routerLinkActive="active">
+                <mdb-icon far icon="hand-pointer"></mdb-icon> NIP
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <ul>
+                  <li><a *appHasRole="['3','4', '5']" #nipLink1="routerLinkActive" routerLink="transaction/nip"
+                      routerLinkActive="active" mdbWavesEffect>Settlement Reports </a></li>
+                  <li><a *appHasRole="['4', '5']" #nipLink2="routerLinkActive" routerLinkActive="active"
+                      mdbWavesEffect>Configurations </a></li>
+                </ul>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+            <mdb-accordion-item *appHasRole="['3', '4', '5']">
+              <mdb-accordion-item-head mdbWavesEffect
+                [ngClass]="{'active':(boardingLink || {}).isActive || (boardingLink1 || {}).isActive}"
+                #boardingLink="routerLinkActive" routerLinkActive="active">
+                <mdb-icon far icon="hand-pointer"></mdb-icon> Onboarding
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <ul>
+                  <li><a *appHasRole="['3','4', '5']" #cgateLink1="routerLinkActive" routerLink="onboarding/dashboard"
+                      routerLinkActive="active" mdbWavesEffect>Dashboard </a></li>
+                </ul>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+            <mdb-accordion-item *appHasRole="['5']">
+              <mdb-accordion-item-head mdbWavesEffect
+                [ngClass]="{'active':(settingsLink || {}).isActive || (settingsLink1 || {}).isActive || (settingsLink2 || {}).isActive || (settingsLink3 || {}).isActive}"
+                #settingsLink="routerLinkActive" routerLinkActive="active">
+                <mdb-icon far icon="hand-pointer"></mdb-icon> Settings
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <ul>
+                  <li><a *appHasRole="['5']" #settingsLink1="routerLinkActive" routerLink="app/configurations"
+                      routerLinkActive="active" mdbWavesEffect>App Configurations </a></li>
+                  <li><a *appHasRole="['5']" #settingsLink2="routerLinkActive" routerLink="wallet/configurations"
+                      routerLinkActive="active" mdbWavesEffect>Wallet Limits </a></li>
+                  <li><a *appHasRole="['5']" #settingsLink3="routerLinkActive" routerLink="b2b/configurations"
+                      routerLinkActive="active" mdbWavesEffect>B2B Configurations </a></li>
+                </ul>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+          </mdb-accordion>
+        </ul>
+      </li>
+      <!--/. Side navigation links -->
+    </links>
+    <!-- </div> -->
+
+    <div class="sidenav-bg mask-strong"></div>
+  </mdb-side-nav>
+  <!--/. Sidebar navigation -->
+
+  <!-- Navbar -->
+  <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav"
+    [containerInside]="false">
+
+    <navlinks class="navbar-container">
+      <!-- SideNav slide-out button -->
+      <div class="float-left">
+        <a (click)="sidenav.show()" class="button-collapse">
+          <mdb-icon fas icon="bars"></mdb-icon>
+        </a>
+      </div>
+      <!--/. SideNav slide-out button -->
+    </navlinks>
+
+    <mdb-navbar-brand>
+      <!-- Breadcrumb-->
+      <div class="breadcrumbs breadcrumb-dn mr-auto">
+        <img src="./assets/ItexLogo.png" style="height: 2rem;">
+      </div>
+      <!--/. Breadcrumb-->
+    </mdb-navbar-brand>
+
+    <navlinks>
+      <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav">
+
+        <!-- <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="user"></mdb-icon> <span
+            class="clearfix d-none d-sm-inline-block">Users</span></a>
+        </li> -->
+        <li *appHasRole="['5']" class="nav-item dropdown btn-group" dropdown routerLinkActive="active">
+          <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <mdb-icon fas icon="user"></mdb-icon> Users
+          </a>
+          <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+            <a *appHasRole="['5']" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/register']">Create
+              User</a>
+            <a *appHasRole="['5']" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/users']">View
+              Users</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown btn-group" dropdown>
+          <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Hi&nbsp; {{ userDisplayName }}
+          </a>
+          <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+            <a (click)="logout()" class="dropdown-item">Log Out</a>
+
+          </div>
+        </li>
+      </ul>
+    </navlinks>
+  </mdb-navbar>
+  <!--/. Navbar -->
+
+</header>
+<!--/.Double navigation-->

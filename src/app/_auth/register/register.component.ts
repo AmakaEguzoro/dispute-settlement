@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
     this.loading = true;
     if (this.registerForm.valid) {
       this.newUser = Object.assign({}, this.registerForm.value);
+      
       this.authService.register(this.newUser).subscribe((data) => {
         this.loading = false;
         this.toastService.success('Registration successful');

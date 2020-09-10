@@ -1,4 +1,8 @@
-import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import {
+  NO_ERRORS_SCHEMA,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NgModule,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MDBBootstrapModulesPro } from "ng-uikit-pro-standard";
@@ -28,125 +32,159 @@ import { ThisMonthPaymentMethodComponent } from "./admin/admin-top-5/payment-met
 import { SharedModule } from "app/shared/shared.module";
 import { OrderModule } from "ngx-order-pipe";
 import { PaginationModule } from "ngx-bootstrap";
-import { TransactionReversalComponent } from './Transaction/transaction-reversal/transaction-reversal.component';
-import { ReversalModelComponent } from './Transaction/transaction-reversal/reversal-model/reversal-model.component';
-import { TransactionLocksComponent } from './Transaction/transaction-locks/transaction-locks.component';
+import { TransactionReversalComponent } from "./Transaction/transaction-reversal/transaction-reversal.component";
+import { ReversalModelComponent } from "./Transaction/transaction-reversal/reversal-model/reversal-model.component";
+import { TransactionLocksComponent } from "./Transaction/transaction-locks/transaction-locks.component";
 import { RegisterComponent } from "app/_auth/register/register.component";
-import { RoleManagementComponent } from './admin/role-management/role-management.component';
-import { UserModalComponent } from './admin/role-management/user-modal/user-modal.component';
+import { RoleManagementComponent } from "./admin/role-management/role-management.component";
+import { UserModalComponent } from "./admin/role-management/user-modal/user-modal.component";
 import { HasRoleDirective } from "app/main-layout/navigation/directives/has-role.directive";
 import { NavigationComponent } from "../main-layout/navigation/navigation.component";
 import { FooterComponent } from "../main-layout/footer/footer.component";
 import { NavbarComponent } from "../main-layout/navigation/navbar/navbar.component";
 import { DirectiveModule } from "app/directive.module";
-import { DayCardComponent } from './admin/dashboard-cards/daily-cards/day-card/day-card.component';
-import { MonthCardComponent } from './admin/dashboard-cards/monthly-cards/month-card/month-card.component';
-import { WeekCardComponent } from './admin/dashboard-cards/weekly-cards/week-card/week-card.component';
+import { DayCardComponent } from "./admin/dashboard-cards/daily-cards/day-card/day-card.component";
+import { MonthCardComponent } from "./admin/dashboard-cards/monthly-cards/month-card/month-card.component";
+import { WeekCardComponent } from "./admin/dashboard-cards/weekly-cards/week-card/week-card.component";
 import { RouterModule } from "@angular/router";
 import { AppRoutes } from "app/app.routes.service";
 import { ExcelService } from "app/_service/excel.service";
-import { McashTransactionComponent } from './Mcash/transaction/mcash-transaction.component';
-import { McashComponent } from './Mcash/terminals/mcash.component';
-import { ErrorAnalysisComponent } from './error-analysis/error-analysis.component';
-import { StatusModalComponent } from './status/service-status/status-modal/status-modal.component';
+import { McashTransactionComponent } from "./Mcash/transaction/mcash-transaction.component";
+import { McashComponent } from "./Mcash/terminals/mcash.component";
+import { ErrorAnalysisComponent } from "./error-analysis/error-analysis.component";
+import { StatusModalComponent } from "./status/service-status/status-modal/status-modal.component";
+import { CgateComponent } from "./cgate/cgate.component";
+import { TransactionGlobalComponent } from "./Transaction/transaction-global/transaction-global.component";
+import { TransactionNipComponent } from "./Transaction/transaction-nip/transaction-nip.component";
+
+import { Table1Component } from "./Transaction/transaction-global/table1/table1.component";
+import { Table2Component } from "./Transaction/transaction-global/table2/table2.component";
+
+import { CashinComponent } from "./Transaction/transaction-global/cashin/cashin.component";
+import { CashoutComponent } from "./Transaction/transaction-global/cashout/cashout.component";
+import { VascardComponent } from "./Transaction/transaction-global/vascard/vascard.component";
+import { VascashComponent } from "./Transaction/transaction-global/vascash/vascash.component";
+import { AgentdashboardComponent } from "./agentdashboard/agentdashboard.component";
+import { AgentdetailComponent } from "./agentdashboard/agentdetail/agentdetail.component";
+import { AccountComponent } from "./sanef/account/account.component";
+import { TransactionsComponent } from "./sanef/transactions/transactions.component";
+import { SanefModelComponent } from "./sanef/transactions/model/model.component";
+import { AppConfigComponent } from './settings/app-configuration/app-config/app-config.component';
+import { TransactionLimitsComponent } from "./Transaction/transaction-limits/transaction-limits.component";
 
 @NgModule({
-    imports: [
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,
-      AppRoutes,
-      RouterModule,
-      SharedModule,
-      DirectiveModule,
-      OrderModule,
-      MDBBootstrapModulesPro.forRoot(),
-      PaginationModule.forRoot(),
-    ],
-    declarations: [
-      // Itex Copmponent
-      TodayCardComponent,
-      ThisMonthCardComponent,
-      ThisWeekCardComponent,
-  
-      ServiceStatusComponent,
-      BvnStatusComponent,
-      
-      TodayChannelsComponent,
-      ThisWeekChannelsComponent,
-      ThisMonthChannelsComponent,
-      TodayProductComponent,
-      ThisWeekProductComponent,
-      ThisMonthProductComponent,
-      TodayPaymentMethodComponent,
-      ThisWeekPaymentMethodComponent,
-      ThisMonthPaymentMethodComponent,
-      LoginComponent,
-      RegisterComponent,
-      AdminDashboardComponent,
-      TransactionComponent,
-      ModelComponent,
-      TransactionReversalComponent,
-      ReversalModelComponent,
-      TransactionLocksComponent,
-      RoleManagementComponent,
-      UserModalComponent,
-      DayCardComponent,
-      MonthCardComponent,
-      WeekCardComponent,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutes,
+    RouterModule,
+    SharedModule,
+    OrderModule,
+    PaginationModule.forRoot(),
+    DirectiveModule,
+    MDBBootstrapModulesPro.forRoot(),
+  ],
+  declarations: [
+    // Itex Copmponent
+    TodayCardComponent,
+    ThisMonthCardComponent,
+    ThisWeekCardComponent,
+    SanefModelComponent,
+    ServiceStatusComponent,
+    BvnStatusComponent,
 
-      McashTransactionComponent,
-      McashComponent,
-      ErrorAnalysisComponent,
-      StatusModalComponent,
-      
-  
-    ],
-    exports: [
-      MDBBootstrapModulesPro,
+    TodayChannelsComponent,
+    ThisWeekChannelsComponent,
+    ThisMonthChannelsComponent,
+    TodayProductComponent,
+    ThisWeekProductComponent,
+    ThisMonthProductComponent,
+    TodayPaymentMethodComponent,
+    ThisWeekPaymentMethodComponent,
+    ThisMonthPaymentMethodComponent,
+    LoginComponent,
+    RegisterComponent,
+    AdminDashboardComponent,
+    TransactionComponent,
+    ModelComponent,
+    TransactionReversalComponent,
+    ReversalModelComponent,
+    TransactionLocksComponent,
+    RoleManagementComponent,
+    UserModalComponent,
+    DayCardComponent,
+    MonthCardComponent,
+    WeekCardComponent,
 
-      TodayCardComponent,
-      ThisMonthCardComponent,
-      ThisWeekCardComponent,
-  
-      TodayChannelsComponent,
-      ThisWeekChannelsComponent,
-      ThisMonthChannelsComponent,
-      TodayProductComponent,
-      ThisWeekProductComponent,
-      ThisMonthProductComponent,
-      TodayPaymentMethodComponent,
-      ThisWeekPaymentMethodComponent,
-      ThisMonthPaymentMethodComponent,
+    McashTransactionComponent,
+    McashComponent,
+    ErrorAnalysisComponent,
+    StatusModalComponent,
+    CgateComponent,
+    TransactionGlobalComponent,
+    TransactionNipComponent,
+    Table1Component,
+    Table2Component,
+    CashinComponent,
+    CashoutComponent,
+    VascardComponent,
+    VascashComponent,
+    AgentdashboardComponent,
+    AgentdetailComponent,
+    AccountComponent,
+    TransactionsComponent,
+    AppConfigComponent,
+    TransactionLimitsComponent,
+  ],
+  exports: [
+    MDBBootstrapModulesPro,
 
-      ServiceStatusComponent,
-      BvnStatusComponent,
-      LoginComponent,
-      RegisterComponent,
-      AdminDashboardComponent,
-      TransactionComponent,
-      ModelComponent,
-      TransactionReversalComponent,
-      ReversalModelComponent,
-      TransactionLocksComponent,
-      RoleManagementComponent,
-      DayCardComponent,
-      MonthCardComponent,
-      WeekCardComponent,
-      
-      McashTransactionComponent,
-      McashComponent,
-    ],
-    providers: [
-      // itex
-      SummaryService,
+    TodayCardComponent,
+    ThisMonthCardComponent,
+    ThisWeekCardComponent,
+    SanefModelComponent,
+    TodayChannelsComponent,
+    ThisWeekChannelsComponent,
+    ThisMonthChannelsComponent,
+    TodayProductComponent,
+    ThisWeekProductComponent,
+    ThisMonthProductComponent,
+    TodayPaymentMethodComponent,
+    ThisWeekPaymentMethodComponent,
+    ThisMonthPaymentMethodComponent,
+
+    ServiceStatusComponent,
+    BvnStatusComponent,
+    LoginComponent,
+    RegisterComponent,
+    AdminDashboardComponent,
+    TransactionComponent,
+    ModelComponent,
+    TransactionReversalComponent,
+    ReversalModelComponent,
+    TransactionLocksComponent,
+    RoleManagementComponent,
+    DayCardComponent,
+    MonthCardComponent,
+    WeekCardComponent,
+
+    McashTransactionComponent,
+    McashComponent,
+    AppConfigComponent,
+    TransactionLimitsComponent,
+
+  ],
+  providers: [
+    // itex
+    SummaryService,
     ChannelService,
     ProductsService,
     PaymentMethodService,
     TransactionService,
     ExcelService,
-    ],
+  ],
 
-    schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
-  })
-  export class PagesModule { }
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
+})
+export class PagesModule {}
