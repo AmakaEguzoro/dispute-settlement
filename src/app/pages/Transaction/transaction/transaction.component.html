@@ -5,22 +5,6 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="card classic-admin-card">
                 <div class="card-body" [style.height.em]="'6'">
-                    <p class="total-trans">Active Users</p>
-                    <div class="total-users">
-                        <mdb-icon class="users" fas icon="users"></mdb-icon>
-                    </div> <br>
-                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
-                    <h4 *ngIf="isLoading == false">
-                        <div *ngIf="isData == true" class="trans-amount mt-4">
-                            {{usersCount | number}}</div>
-                    </h4>
-                    <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-            <div class="card classic-admin-card">
-                <div class="card-body" [style.height.em]="'6'">
                     <p class="total-trans">Total Transactions</p>
                     <div class="total-users">
                         <mdb-icon class="users" fab icon="gg"></mdb-icon>
@@ -29,9 +13,28 @@
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
                             {{ totalCount | number }}
-                            <br> Transactions</p>
+                            <br> Tnxs</p>
                         <div *ngIf="isData == true" class="trans-amount">
                             &#x20A6;{{totalAmount / 100 | number}}</div>
+                    </h4>
+                    <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="card classic-admin-card">
+                <div class="card-body" [style.height.em]="'6'">
+                    <p class="total-trans">Pending Transactions</p>
+                    <div class="total-users">
+                        <mdb-icon class="pending" fab icon="exclamation-circle"></mdb-icon>
+                    </div> <br>
+                    <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="isLoading == false">
+                        <p *ngIf="isData == true" class="summary-card-text mt-1">
+                            {{ pendingCount | number }}
+                            <br> Tnxs</p>
+                        <div *ngIf="isData == true" class="trans-amount">
+                            &#x20A6;{{pendingAmount / 100 | number}}</div>
                     </h4>
                     <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                 </div>
@@ -48,7 +51,7 @@
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
                             {{ successCount | number }}
-                            <br> Transactions</p>
+                            <br> Tnxs</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
                             &#x20A6;{{successAmount / 100 | number}}</div>
                     </h4>
@@ -67,7 +70,7 @@
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
                             {{failedCount | number }}
-                            <br>Transactions</p>
+                            <br>Tnxs</p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
                             &#x20A6;{{failedAmount / 100 | number }}</div>
                     </h4>

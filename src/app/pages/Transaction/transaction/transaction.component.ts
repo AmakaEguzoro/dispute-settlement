@@ -85,6 +85,9 @@ export class TransactionComponent implements OnInit {
   userBalance: any;
   exportData: any;
   DateObj: any = new Date();
+  pendingCount: any;
+  pendingAmount: any;
+  
   dateRange = String(
     this.DateObj.getFullYear() +
       "/" +
@@ -312,6 +315,9 @@ export class TransactionComponent implements OnInit {
 
         this.successCount = this.summaryData.successfulCount;
         this.successAmount = this.summaryData.successfulAmount;
+
+        this.pendingCount = this.summaryData.initializedCount;
+        this.pendingAmount = this.summaryData.initializedAmount;
 
         this.totalAmount = this.summaryData.totalAmount;
         this.totalCount = this.summaryData.transactionCount;
