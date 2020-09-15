@@ -71,6 +71,9 @@ import { TransactionsComponent } from "./sanef/transactions/transactions.compone
 import { SanefModelComponent } from "./sanef/transactions/model/model.component";
 import { AppConfigComponent } from './settings/app-configuration/app-config/app-config.component';
 import { TransactionLimitsComponent } from "./Transaction/transaction-limits/transaction-limits.component";
+import { B2bConfigComponent } from "./settings/B2B-CONFIGURATION/b2b-config/b2b-config.component";
+import { DataPlansComponent } from "./settings/Data-config/data-plans/data-plans.component";
+import { WalletLimitsComponent } from "./settings/Wallet-config/wallet-limits/wallet-limits.component";
 
 @NgModule({
   imports: [
@@ -136,6 +139,9 @@ import { TransactionLimitsComponent } from "./Transaction/transaction-limits/tra
     TransactionsComponent,
     AppConfigComponent,
     TransactionLimitsComponent,
+    B2bConfigComponent,
+    WalletLimitsComponent,
+    DataPlansComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -173,6 +179,9 @@ import { TransactionLimitsComponent } from "./Transaction/transaction-limits/tra
     McashComponent,
     AppConfigComponent,
     TransactionLimitsComponent,
+    B2bConfigComponent,
+    WalletLimitsComponent,
+    DataPlansComponent,
 
   ],
   providers: [

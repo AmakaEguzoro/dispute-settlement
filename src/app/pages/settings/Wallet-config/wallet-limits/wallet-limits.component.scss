@@ -1,0 +1,212 @@
+.total-trans{
+    font-style: normal ;
+    font-weight: normal ;
+    font-size: 15px ;
+    line-height: 16px ;
+    color: #002035 ;
+  }
+  .trans-amount{
+    font-style: normal;
+    font-weight:  600;
+    font-size: 19px;
+    line-height: 0px;
+    text-align: right;
+    color: #002035;
+    margin-top: -16px;
+  }
+  .trans-card-text{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 0px;
+  color: black;
+  }
+  
+  .head{
+    font-weight: 600 !important;
+  }
+  
+  .card .card-body {
+    padding: 7px;
+  }
+  
+  
+  table td {
+    font-size: smaller;
+    padding-bottom: 0px;
+      padding-top: 2px;
+  }
+  table.table th, table.table td {
+    padding-top: 0.1rem;
+    padding-bottom: 0rem;
+  }
+  .trans-head{   
+    background: rgba(242, 242, 242, 0.56);
+    border: 3px solid rgba(242, 242, 242, 0.56); 
+     }
+    
+    .trans-category{
+    margin-bottom: 0px;
+    font-size: 11px;
+    color: darkgray
+    }
+    
+    // item.status
+    .status{
+      height: 23px;
+      border-radius: 10px;
+      width: 100%;
+      background: #2F80ED;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 17px;
+      text-align: center;
+      color: #FFFFFF;
+      margin-top: 5px;
+    }
+    
+    
+   
+    .loading-screen-icon {
+      position: absolute;
+      // top: 50%;
+      left: 50%;
+      // transform: translate(-50%, -50%);
+      margin-top: 2rem;
+      cursor: wait;
+    }
+    
+    label{
+      font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #828282;
+    }
+    mdb-date-picker{
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    padding-right: -4px;
+    font-weight: 400;
+    font-size: 14px;
+    background: white;
+    padding: 10px;
+    }
+    
+    .custom-select{
+      border: 1px solid #E0E0E0;
+      border-radius: 5px;
+      width: 9rem;
+      padding-right: -4px;
+      height: 33px;
+      padding-left: 12px;
+      margin-top: 5px;
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .search{
+      background: #2F80ED;
+      height: 31px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 23px;
+      text-align: center;
+      color: #FFFFFF;
+      margin-left: -10px;
+      width: 81px !important;
+      border-radius: 5px;
+      margin-top: -3px;
+      cursor: pointer;
+      margin-right: 6px;
+    }
+    .save{
+      background: #EB5757;
+      height: 31px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 23px;
+      text-align: center;
+      color: #FFFFFF;
+      margin-left: -4px;
+      width: 81px !important;
+      border-radius: 5px;
+      margin-top: -1px;
+      cursor: pointer
+    }
+  
+    .search-but{
+      background: #2F80ED;
+      height: 31px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 23px;
+      text-align: center;
+      color: #FFFFFF;
+      width: 81px !important;
+      border-radius: 5px;
+      margin-top: -3px;
+      cursor: pointer;
+      border: none;
+    }
+  
+    button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+    background: darkgray;
+    }
+    
+    input{
+      margin-top: 14px;
+      height: 33px;
+      padding-left: 0px;
+      border: 1px solid #2F80ED;
+      width: 14rem;
+      margin-left: -3rem;
+    }
+    .ref{
+    margin-top: 14px;
+    border-radius: 5px 0px 0px 5px;
+    border: 1px solid #2F80ED
+    }
+    .stat{
+      margin-top: 14px;
+    }
+    
+    input[type=text]{
+      display: block;
+      width: 100%;
+      height: calc(1.5em + .75rem + 2px);
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      margin-left: 0px;
+    }
+  .add-button{
+    background: #2F80ED;
+    height: 31px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 23px;
+    text-align: center;
+    color: #FFFFFF;
+    width: 34px !important;
+    border-radius: 5px;
+    margin-top: -3px;
+    cursor: pointer;
+      margin-right: -25rem;
+    float: right;
+    border-radius: 17px;
+  }
+  

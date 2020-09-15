@@ -27,6 +27,9 @@ import { CgateComponent } from "./pages/cgate/cgate.component";
 import { AgentdashboardComponent } from "./pages/agentdashboard/agentdashboard.component";
 import { AppConfigComponent } from "./pages/settings/app-configuration/app-config/app-config.component";
 import { TransactionLimitsComponent } from "./pages/Transaction/transaction-limits/transaction-limits.component";
+import { DataPlansComponent } from "./pages/settings/Data-config/data-plans/data-plans.component";
+import { WalletLimitsComponent } from "./pages/settings/Wallet-config/wallet-limits/wallet-limits.component";
+import { B2bConfigComponent } from "./pages/settings/B2B-CONFIGURATION/b2b-config/b2b-config.component";
 
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
@@ -179,6 +182,25 @@ const routes: Route[] = [
       {
         path: "app/configurations",
         component: AppConfigComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [5] },
+      },
+
+      {
+        path: "b2b/configurations",
+        component: B2bConfigComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [5] },
+      },
+      {
+        path: "wallet/configurations",
+        component: WalletLimitsComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [5] },
+      },
+      {
+        path: "data/configurations",
+        component: DataPlansComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [5] },
       },

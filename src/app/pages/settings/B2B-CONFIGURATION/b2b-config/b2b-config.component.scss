@@ -22,25 +22,28 @@
   color: black;
   }
   
-  
+  .head{
+    font-weight: 600 !important;
+  }
   
   .card .card-body {
     padding: 7px;
   }
   
   
-   table td {
+  table td {
     font-size: smaller;
     padding-bottom: 0px;
       padding-top: 2px;
-      font-size: 16px;
-      font-weight: 600;
   }
   table.table th, table.table td {
-    padding-top: 4px !important;
-    font-weight: 600;
+    padding-top: 0.1rem;
     padding-bottom: 0rem;
   }
+  .trans-head{   
+    background: rgba(242, 242, 242, 0.56);
+    border: 3px solid rgba(242, 242, 242, 0.56); 
+     }
   
   .trans-category{
   margin-bottom: 0px;
@@ -202,7 +205,8 @@
   border-radius: 5px;
   margin-top: -3px;
   cursor: pointer;
-  margin-right: 6px;
+  margin-right: -25rem;
   float: right;
   border-radius: 17px;
 }
+
