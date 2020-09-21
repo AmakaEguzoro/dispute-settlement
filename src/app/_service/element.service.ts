@@ -11,7 +11,7 @@ import { ElementError } from 'app/pages/status/service-status/elementError';
 })
 export class ElementService {
 
-  baseurl = 'http://197.253.19.76:8018/api/v1';
+  baseurl = 'http://197.253.19.76:8019/api/v1';
  
   private multiUrl = this.baseurl + '/vas/service/status/multichoice';
   private eedcUrl = this.baseurl + '/vas/service/status/eedc';

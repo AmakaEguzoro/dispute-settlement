@@ -9,7 +9,7 @@ import { ElementError } from 'app/pages/status/service-status/elementError';
 })
 export class SwitchService {
 
-  private Url = 'http://197.253.19.76:8018/api/v1/vas/service/status/switch';
+  private Url = 'http://197.253.19.76:8019/api/v1/vas/service/status/switch';
 
   constructor(private http: HttpClient) { }
 

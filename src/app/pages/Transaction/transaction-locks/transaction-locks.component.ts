@@ -97,7 +97,7 @@ export class TransactionLocksComponent implements OnInit {
     let load = {
       wallet: item.wallet,
       reference: item.reference,
-      amount: item.amount,
+      amount: String(item.amount),
     };
     this.transactionService.removeTransactionLocks(load).subscribe(
       (data) => {
