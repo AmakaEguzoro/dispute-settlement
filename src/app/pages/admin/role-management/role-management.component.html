@@ -30,12 +30,10 @@
               </mdb-spinner>
               <tr *ngFor="let item of users | filter : 'name' : searchString; let i = index">
                 <th scope="row">{{serial + i}}</th>
-                <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
-
                 <td>{{item.username}}</td>
                 <td>{{item.email}}</td>
-                <td>{{item.is_admin}}</td>
+                <td>{{item.role}}</td>
                 <td>{{item.updated_at}}</td>
                 <td>
                   <mdb-badge class="edit" (click)="openModal(item)">Edit</mdb-badge>
