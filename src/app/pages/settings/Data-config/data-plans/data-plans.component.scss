@@ -1,46 +1,49 @@
 .total-trans{
-    font-style: normal ;
-    font-weight: normal ;
-    font-size: 15px ;
-    line-height: 16px ;
-    color: #002035 ;
-  }
-  .trans-amount{
-    font-style: normal;
-    font-weight:  600;
-    font-size: 19px;
-    line-height: 0px;
-    text-align: right;
-    color: #002035;
-    margin-top: -16px;
-  }
-  .trans-card-text{
+  font-style: normal ;
+  font-weight: normal ;
+  font-size: 15px ;
+  line-height: 16px ;
+  color: #002035 ;
+}
+.trans-amount{
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight:  600;
+  font-size: 19px;
   line-height: 0px;
-  color: black;
-  }
-  
-  
-  
-  .card .card-body {
-    padding: 7px;
-  }
-  
-  
-   table td {
-    font-size: smaller;
-    padding-bottom: 0px;
-      padding-top: 2px;
-      font-size: 16px;
-      font-weight: 600;
-  }
-  table.table th, table.table td {
-    padding-top: 4px !important;
-    font-weight: 600;
-    padding-bottom: 0rem;
-  }
+  text-align: right;
+  color: #002035;
+  margin-top: -16px;
+}
+.trans-card-text{
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 0px;
+color: black;
+}
+
+.head{
+  font-weight: 600 !important;
+}
+
+.card .card-body {
+  padding: 7px;
+}
+
+
+table td {
+  font-size: smaller;
+  padding-bottom: 0px;
+    padding-top: 2px;
+}
+table.table th, table.table td {
+  padding-top: 0.1rem;
+  padding-bottom: 0rem;
+}
+.trans-head{   
+  background: rgba(242, 242, 242, 0.56);
+  border: 3px solid rgba(242, 242, 242, 0.56); 
+   }
   
   .trans-category{
   margin-bottom: 0px;
@@ -202,7 +205,7 @@
   border-radius: 5px;
   margin-top: -3px;
   cursor: pointer;
-  margin-right: 6px;
+    margin-right: -25rem;
   float: right;
   border-radius: 17px;
 }

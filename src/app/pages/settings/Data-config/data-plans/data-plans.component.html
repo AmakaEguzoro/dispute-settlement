@@ -1,0 +1,578 @@
+<div [ngSwitch]="currentView">
+  <div *ngSwitchDefault class="container margin-top">
+    <div class="col-md-6 offset-md-3">
+      <label>Live Data Configurations</label>
+
+      <div class="switch" style="float: right;">
+        <label style="font-size: 18px;">
+          Live
+          <input type="checkbox" (click)="setCurrentView('test')">
+          <span class="lever"></span> Test
+        </label><br>
+      </div>
+      <mdb-badge class="add-button" (click)="openRegister()" mdbwaveseffect>
+        Add
+      </mdb-badge>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover" small="true">
+            <thead class="trans-head">
+              <tr>
+                <th class="head" *ngFor="let head of headElements" scope="col">{{head}} </th>
+              </tr>
+            </thead>
+            <tbody>
+              <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="small" spinnerColor="blue">
+              </mdb-spinner>
+              <tr *ngFor="let item of detailsData let i = index">
+                <th scope="row">{{serial + i}}</th>
+                <td> {{item.type}} </td>
+                <td> {{item.code}} </td>
+                <td> {{item.duration}} </td>
+                <td> {{item.amount}} </td>
+                <td> {{item.value}} </td>
+                <td> {{item.price}} </td>
+                <td> {{item.tariff_id}} </td>
+                <td> {{item.description}} </td>
+                <td>
+                  <mdb-badge class="search" (click)="openUpdate(item)" mdbwaveseffect>
+                    Edit
+                  </mdb-badge>
+                </td>
+                <td>
+                  <mdb-badge class="save" (click)="openDelete(item)" mdbwaveseffect>
+                    Delete
+                  </mdb-badge>
+                </td>
+              </tr>
+              <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+            </tbody>
+          </table>
+          <!-- <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage" [(ngModel)]="currentPage"
+            [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;" lastText="&raquo;"></pagination> -->
+        </div>
+        <br>
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Add User Modal -->
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h6 class="modal-title w-100" id="myModalLabel">Register Setting</h6>
+        </div>
+        <div class="modal-body">
+          <form style="color: #757575;" [formGroup]="registerForm">
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter type
+            <br>
+            <input type="text" ngDefaultControl formControlName="type" [ngClass]="{'is-invalid': (registerForm.get('type').touched ||
+            registerForm.get('type').dirty) &&
+            !registerForm.get('type').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter type </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter tariff id
+            <br>
+            <input type="text" ngDefaultControl formControlName="tariff_id" [ngClass]="{'is-invalid': (registerForm.get('tariff_id').touched ||
+            registerForm.get('tariff_id').dirty) &&
+            !registerForm.get('tariff_id').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter tariff_id </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter code
+            <br>
+            <input type="text" ngDefaultControl formControlName="code" [ngClass]="{'is-invalid': (registerForm.get('code').touched ||
+registerForm.get('code').dirty) &&
+!registerForm.get('code').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter code </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter duration
+            <br>
+            <input type="text" ngDefaultControl formControlName="duration" [ngClass]="{'is-invalid': (registerForm.get('duration').touched ||
+registerForm.get('duration').dirty) &&
+!registerForm.get('duration').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter duration </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter amount
+            <br>
+            <input type="text" ngDefaultControl formControlName="amount" [ngClass]="{'is-invalid': (registerForm.get('amount').touched ||
+registerForm.get('amount').dirty) &&
+!registerForm.get('amount').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter amount </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter price
+            <br>
+            <input type="text" ngDefaultControl formControlName="price" [ngClass]="{'is-invalid': (registerForm.get('price').touched ||
+registerForm.get('price').dirty) &&
+!registerForm.get('price').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter price </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter value
+            <br>
+            <input type="text" ngDefaultControl formControlName="value" [ngClass]="{'is-invalid': (registerForm.get('value').touched ||
+registerForm.get('value').dirty) &&
+!registerForm.get('value').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter value </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter description
+            <br>
+            <input type="text" ngDefaultControl formControlName="description" [ngClass]="{'is-invalid': (registerForm.get('description').touched ||
+registerForm.get('description').dirty) &&
+!registerForm.get('description').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter description </h5>
+            </span>
+            <br>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+          <button [disabled]="!registerForm.valid" class="search-but" mdbWavesEffect
+            (click)="registerDataConfigLive()">Create
+          </button>
+          <button class="search-but" aria-label="Close" (click)="cancel()" style="background: #EB5757;"
+            mdbWavesEffect>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update user modal -->
+   <div mdbModal #updateModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="updateModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h6 class="modal-title w-100" id="myModalLabel">Update Setting</h6>
+        </div>
+        <div class="modal-body">
+      <form style="color: #757575;" [formGroup]="registerForm">
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter type
+        <br>
+        <input type="text" ngDefaultControl formControlName="type" [(ngModel)]="updateType" [ngClass]="{'is-invalid': (registerForm.get('type').touched ||
+        registerForm.get('type').dirty) &&
+        !registerForm.get('type').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter type </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter tariff id
+        <br>
+        <input type="text" ngDefaultControl formControlName="tariff_id" [(ngModel)]="updateTariff_id" [ngClass]="{'is-invalid': (registerForm.get('tariff_id').touched ||
+        registerForm.get('tariff_id').dirty) &&
+        !registerForm.get('tariff_id').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter tariff_id </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter code
+        <br>
+        <input type="text" ngDefaultControl formControlName="code" [(ngModel)]="updateCode" [ngClass]="{'is-invalid': (registerForm.get('code').touched ||
+registerForm.get('code').dirty) &&
+!registerForm.get('code').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter code </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter duration
+        <br>
+        <input type="text" ngDefaultControl formControlName="duration" [(ngModel)]="updateDuration" [ngClass]="{'is-invalid': (registerForm.get('duration').touched ||
+registerForm.get('duration').dirty) &&
+!registerForm.get('duration').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter duration </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter amount
+        <br>
+        <input type="text" ngDefaultControl formControlName="amount" [(ngModel)]="updateAmount" [ngClass]="{'is-invalid': (registerForm.get('amount').touched ||
+registerForm.get('amount').dirty) &&
+!registerForm.get('amount').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter amount </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter price
+        <br>
+        <input type="text" ngDefaultControl formControlName="price" [(ngModel)]="updatePrice" [ngClass]="{'is-invalid': (registerForm.get('price').touched ||
+registerForm.get('price').dirty) &&
+!registerForm.get('price').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter price </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter value
+        <br>
+        <input type="text" ngDefaultControl formControlName="value" [(ngModel)]="updateValue" [ngClass]="{'is-invalid': (registerForm.get('value').touched ||
+registerForm.get('value').dirty) &&
+!registerForm.get('value').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter value </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter description
+        <br>
+        <input type="text" ngDefaultControl formControlName="description" [(ngModel)]="updateDescription" [ngClass]="{'is-invalid': (registerForm.get('description').touched ||
+registerForm.get('description').dirty) &&
+!registerForm.get('description').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter description </h5>
+        </span>
+        <br>
+      </form>
+        </div>
+        <div class="modal-footer">
+          <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+          <button [disabled]="!registerForm.valid" class="search-but" mdbWavesEffect
+            (click)="updateDataConfigLive()">Update
+          </button>
+          <button class="search-but" aria-label="Close" (click)="updateModal.hide()" style="background: #EB5757;"
+            mdbWavesEffect>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <!-- Delete User Modal -->
+  <div mdbModal #deleteModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6 class="modal-title w-100" id="myModalLabel">Delete Setting Permanently?</h6>
+
+        </div>
+        <div class="modal-footer">
+          <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+
+          <button class="search-but" mdbWavesEffect (click)="deleteDataConfigLive()" style="background: #EB5757;">Yes
+          </button>
+          <button class="search-but" (click)="deleteModal.hide" mdbWavesEffect>No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Test server -->
+  <div *ngSwitchCase="'test'" class="container margin-top">
+    <div class="col-md-6 offset-md-3">
+      <label>Test Data Configurations</label>
+      <div class="switch" style="float: right;">
+        <label style="font-size: 18px;">
+          Live
+          <input type="checkbox" checked (click)="setCurrentView('live')">
+          <span class="lever"></span> Test
+        </label><br>
+      </div>
+      <mdb-badge class="add-button" (click)="openRegisterTest()" mdbwaveseffect>
+        Add
+      </mdb-badge>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover" small="true">
+            <thead class="trans-head">
+              <tr>
+                <th class="head" *ngFor="let head of headElements" scope="col">{{head}} </th>
+              </tr>
+            </thead>
+            <tbody>
+              <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="small" spinnerColor="blue">
+              </mdb-spinner>
+              <tr *ngFor="let item of testData let i = index">
+                <th scope="row">{{serial + i}}</th>
+                <td> {{item.type}} </td>
+                <td> {{item.code}} </td>
+                <td> {{item.duration}} </td>
+                <td> {{item.amount}} </td>
+                <td> {{item.value}} </td>
+                <td> {{item.price}} </td>
+                <td> {{item.tariff_id}} </td>
+                <td> {{item.description}} </td>
+                <td>
+                  <mdb-badge class="search" (click)="openUpdateTest(item)" mdbwaveseffect>
+                    Edit
+                  </mdb-badge>
+                </td>
+                <td>
+                  <mdb-badge class="save" (click)="openDeleteTest(item)" mdbwaveseffect>
+                    Delete
+                  </mdb-badge>
+                </td>
+              </tr>
+              <strong class="summary-noData" *ngIf="isData2 == false">No Data Available</strong>
+            </tbody>
+          </table>
+          <!-- <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage" [(ngModel)]="currentPage"
+            [maxSize]="maxSize" (pageChanged)="pageChanged($event)" firstText="&laquo;" lastText="&raquo;"></pagination> -->
+        </div>
+        <br>
+
+
+      </div>
+
+    </div>
+
+  <!-- Add User Modal -->
+    <div mdbModal #basicModalTest="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModalTest.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h6 class="modal-title w-100" id="myModalLabel">Register Setting</h6>
+        </div>
+        <div class="modal-body">
+          <form style="color: #757575;" [formGroup]="registerForm">
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter type
+            <br>
+            <input type="text" ngDefaultControl formControlName="type" [ngClass]="{'is-invalid': (registerForm.get('type').touched ||
+            registerForm.get('type').dirty) &&
+            !registerForm.get('type').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter type </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter tariff id
+            <br>
+            <input type="text" ngDefaultControl formControlName="tariff_id" [ngClass]="{'is-invalid': (registerForm.get('tariff_id').touched ||
+            registerForm.get('tariff_id').dirty) &&
+            !registerForm.get('tariff_id').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter tariff_id </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter code
+            <br>
+            <input type="text" ngDefaultControl formControlName="code" [ngClass]="{'is-invalid': (registerForm.get('code').touched ||
+registerForm.get('code').dirty) &&
+!registerForm.get('code').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter code </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter duration
+            <br>
+            <input type="text" ngDefaultControl formControlName="duration" [ngClass]="{'is-invalid': (registerForm.get('duration').touched ||
+registerForm.get('duration').dirty) &&
+!registerForm.get('duration').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter duration </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter amount
+            <br>
+            <input type="text" ngDefaultControl formControlName="amount" [ngClass]="{'is-invalid': (registerForm.get('amount').touched ||
+registerForm.get('amount').dirty) &&
+!registerForm.get('amount').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter amount </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter price
+            <br>
+            <input type="text" ngDefaultControl formControlName="price" [ngClass]="{'is-invalid': (registerForm.get('price').touched ||
+registerForm.get('price').dirty) &&
+!registerForm.get('price').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter price </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter value
+            <br>
+            <input type="text" ngDefaultControl formControlName="value" [ngClass]="{'is-invalid': (registerForm.get('value').touched ||
+registerForm.get('value').dirty) &&
+!registerForm.get('value').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter value </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter description
+            <br>
+            <input type="text" ngDefaultControl formControlName="description" [ngClass]="{'is-invalid': (registerForm.get('description').touched ||
+registerForm.get('description').dirty) &&
+!registerForm.get('description').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter description </h5>
+            </span>
+            <br>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+          <button [disabled]="!registerForm.valid" class="search-but" mdbWavesEffect
+            (click)="registerDataConfigTest()">Create
+          </button>
+          <button class="search-but" aria-label="Close" (click)="cancel()" style="background: #EB5757;"
+            mdbWavesEffect>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Delete User Modal -->
+<div mdbModal #deleteModalTest="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+aria-labelledby="myBasicModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModalTest.hide()">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h6 class="modal-title w-100" id="myModalLabel">Delete Setting Permanently?</h6>
+
+    </div>
+    <div class="modal-footer">
+      <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+
+      <button class="search-but" mdbWavesEffect (click)="deleteDataConfigTest()" style="background: #EB5757;">Yes
+      </button>
+      <button class="search-but" (click)="deleteModalTest.hide" mdbWavesEffect>No</button>
+    </div>
+  </div>
+</div>
+</div>
+
+ <!-- Update user modal -->
+ <div mdbModal #updateModalTest="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+aria-labelledby="myBasicModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="updateModalTest.hide()">
+        <span aria-hidden="true">×</span>
+      </button>
+      <h6 class="modal-title w-100" id="myModalLabel">Update Setting</h6>
+    </div>
+    <div class="modal-body">
+      <form style="color: #757575;" [formGroup]="registerForm">
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter type
+        <br>
+        <input type="text" ngDefaultControl formControlName="type" [(ngModel)]="updateTypeTest" [ngClass]="{'is-invalid': (registerForm.get('type').touched ||
+        registerForm.get('type').dirty) &&
+        !registerForm.get('type').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter type </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter tariff id
+        <br>
+        <input type="text" ngDefaultControl formControlName="tariff_id" [(ngModel)]="updateTariff_idTest" [ngClass]="{'is-invalid': (registerForm.get('tariff_id').touched ||
+        registerForm.get('tariff_id').dirty) &&
+        !registerForm.get('tariff_id').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter tariff_id </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter code
+        <br>
+        <input type="text" ngDefaultControl formControlName="code" [(ngModel)]="updateCodeTest" [ngClass]="{'is-invalid': (registerForm.get('code').touched ||
+registerForm.get('code').dirty) &&
+!registerForm.get('code').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter code </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter duration
+        <br>
+        <input type="text" ngDefaultControl formControlName="duration" [(ngModel)]="updateDurationTest" [ngClass]="{'is-invalid': (registerForm.get('duration').touched ||
+registerForm.get('duration').dirty) &&
+!registerForm.get('duration').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter duration </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter amount
+        <br>
+        <input type="text" ngDefaultControl formControlName="amount" [(ngModel)]="updateAmountTest" [ngClass]="{'is-invalid': (registerForm.get('amount').touched ||
+registerForm.get('amount').dirty) &&
+!registerForm.get('amount').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter amount </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter price
+        <br>
+        <input type="text" ngDefaultControl formControlName="price" [(ngModel)]="updatePriceTest" [ngClass]="{'is-invalid': (registerForm.get('price').touched ||
+registerForm.get('price').dirty) &&
+!registerForm.get('price').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter price </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter value
+        <br>
+        <input type="text" ngDefaultControl formControlName="value" [(ngModel)]="updateValueTest" [ngClass]="{'is-invalid': (registerForm.get('value').touched ||
+registerForm.get('value').dirty) &&
+!registerForm.get('value').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter value </h5>
+        </span>
+        <br>
+        <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter description
+        <br>
+        <input type="text" ngDefaultControl formControlName="description" [(ngModel)]="updateDescriptionTest" [ngClass]="{'is-invalid': (registerForm.get('description').touched ||
+registerForm.get('description').dirty) &&
+!registerForm.get('description').valid }">
+        <span class="invalid-feedback">
+          <h5 class="login-title"> Please enter description </h5>
+        </span>
+        <br>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+      <button [disabled]="!registerForm.valid" class="search-but" mdbWavesEffect
+        (click)="updateDataConfigTest()">Update
+      </button>
+      <button class="search-but" aria-label="Close" (click)="updateModalTest.hide()" style="background: #EB5757;"
+        mdbWavesEffect>Cancel</button>
+    </div>
+  </div>
+</div>
+</div>
+
+  </div>
+<!-- close test server -->
+
+
+</div>

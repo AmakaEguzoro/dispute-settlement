@@ -1,0 +1,255 @@
+<div [ngSwitch]="currentView">
+  <div *ngSwitchDefault class="container margin-top">
+    <div class="col-md-6 offset-md-3">
+      <label>Live Wallet Limits</label>
+
+      <div class="switch" style="float: right;">
+        <label style="font-size: 18px;">
+          Live
+          <input type="checkbox" (click)="setCurrentView('test')">
+          <span class="lever"></span> Test
+        </label><br>
+      </div>
+      <mdb-badge class="add-button" (click)="openRegister()" mdbwaveseffect>
+        Add
+      </mdb-badge>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <strong class="summary-noData">No Data Available</strong>
+        <br>
+      </div>
+    </div>
+
+  <!-- Add User Modal -->
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h6 class="modal-title w-100" id="myModalLabel">Register Setting</h6>
+        </div>
+        <div class="modal-body">
+          <form style="color: #757575;" [formGroup]="registerForm">
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter wallet Id
+            <br>
+            <input type="text" ngDefaultControl formControlName="walletId" [ngClass]="{'is-invalid': (registerForm.get('walletId').touched ||
+            registerForm.get('walletId').dirty) &&
+            !registerForm.get('walletId').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter wallet Id </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter limit
+            <br>
+            <input type="text" ngDefaultControl formControlName="limit" [ngClass]="{'is-invalid': (registerForm.get('limit').touched ||
+            registerForm.get('limit').dirty) &&
+            !registerForm.get('limit').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter limit </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter daily limit
+            <br>
+            <input type="text" ngDefaultControl formControlName="dailyLimit" [ngClass]="{'is-invalid': (registerForm.get('dailyLimit').touched ||
+registerForm.get('dailyLimit').dirty) &&
+!registerForm.get('dailyLimit').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter daily Limit </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter account no
+            <br>
+            <input type="text" ngDefaultControl formControlName="acctNo" [ngClass]="{'is-invalid': (registerForm.get('acctNo').touched ||
+registerForm.get('acctNo').dirty) &&
+!registerForm.get('acctNo').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter account no </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter merchant name
+            <br>
+            <input type="text" ngDefaultControl formControlName="merchantName" [ngClass]="{'is-invalid': (registerForm.get('merchantName').touched ||
+registerForm.get('merchantName').dirty) &&
+!registerForm.get('merchantName').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter merchant name </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter transfer
+            <br>
+            <input type="text" ngDefaultControl formControlName="transfer" [ngClass]="{'is-invalid': (registerForm.get('transfer').touched ||
+registerForm.get('transfer').dirty) &&
+!registerForm.get('transfer').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter transfer </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter tp
+            <br>
+            <input type="text" ngDefaultControl formControlName="tp" [ngClass]="{'is-invalid': (registerForm.get('tp').touched ||
+registerForm.get('tp').dirty) &&
+!registerForm.get('tp').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter tp </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter itex
+            <br>
+            <input type="text" ngDefaultControl formControlName="itex" [ngClass]="{'is-invalid': (registerForm.get('itex').touched ||
+registerForm.get('itex').dirty) &&
+!registerForm.get('itex').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter itex </h5>
+            </span>
+            <br>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+          <button [disabled]="!registerForm.valid" class="search-but" mdbWavesEffect
+            (click)="registerWalletConfigLive()">Create
+          </button>
+          <button class="search-but" aria-label="Close" (click)="cancel()" style="background: #EB5757;"
+            mdbWavesEffect>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+<!-- close live server -->
+
+
+  <!-- Test server -->
+  <div *ngSwitchCase="'test'" class="container margin-top">
+    <div class="col-md-6 offset-md-3">
+      <label>Test Wallet Limits</label>
+      <div class="switch" style="float: right;">
+        <label style="font-size: 18px;">
+          Live
+          <input type="checkbox" checked (click)="setCurrentView('live')">
+          <span class="lever"></span> Test
+        </label><br>
+      </div>
+      <mdb-badge class="add-button" (click)="openRegisterTest()" mdbwaveseffect>
+        Add
+      </mdb-badge>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <strong class="summary-noData">No Data Available</strong>
+        <br>
+      </div>
+
+    </div>
+
+  <!-- Add User Modal -->
+    <div mdbModal #basicModalTest="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModalTest.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h6 class="modal-title w-100" id="myModalLabel">Register Setting</h6>
+        </div>
+        <div class="modal-body">
+          <form style="color: #757575;" [formGroup]="registerForm">
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter wallet Id
+            <br>
+            <input type="text" ngDefaultControl formControlName="walletId" [ngClass]="{'is-invalid': (registerForm.get('walletId').touched ||
+            registerForm.get('walletId').dirty) &&
+            !registerForm.get('walletId').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter wallet Id </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter limit
+            <br>
+            <input type="text" ngDefaultControl formControlName="limit" [ngClass]="{'is-invalid': (registerForm.get('limit').touched ||
+            registerForm.get('limit').dirty) &&
+            !registerForm.get('limit').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter limit </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter daily limit
+            <br>
+            <input type="text" ngDefaultControl formControlName="dailyLimit" [ngClass]="{'is-invalid': (registerForm.get('dailyLimit').touched ||
+registerForm.get('dailyLimit').dirty) &&
+!registerForm.get('dailyLimit').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter daily Limit </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter account no
+            <br>
+            <input type="text" ngDefaultControl formControlName="acctNo" [ngClass]="{'is-invalid': (registerForm.get('acctNo').touched ||
+registerForm.get('acctNo').dirty) &&
+!registerForm.get('acctNo').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter account no </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter merchant name
+            <br>
+            <input type="text" ngDefaultControl formControlName="merchantName" [ngClass]="{'is-invalid': (registerForm.get('merchantName').touched ||
+registerForm.get('merchantName').dirty) &&
+!registerForm.get('merchantName').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter merchant name </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter transfer
+            <br>
+            <input type="text" ngDefaultControl formControlName="transfer" [ngClass]="{'is-invalid': (registerForm.get('transfer').touched ||
+registerForm.get('transfer').dirty) &&
+!registerForm.get('transfer').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter transfer </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter tp
+            <br>
+            <input type="text" ngDefaultControl formControlName="tp" [ngClass]="{'is-invalid': (registerForm.get('tp').touched ||
+registerForm.get('tp').dirty) &&
+!registerForm.get('tp').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter tp </h5>
+            </span>
+            <br>
+            <mdb-icon far icon="user"></mdb-icon> &nbsp; Enter itex
+            <br>
+            <input type="text" ngDefaultControl formControlName="itex" [ngClass]="{'is-invalid': (registerForm.get('itex').touched ||
+registerForm.get('itex').dirty) &&
+!registerForm.get('itex').valid }">
+            <span class="invalid-feedback">
+              <h5 class="login-title"> Please enter itex </h5>
+            </span>
+            <br>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+          <button [disabled]="!registerForm.valid" class="search-but" mdbWavesEffect
+            (click)="registerWalletConfigTest()">Create
+          </button>
+          <button class="search-but" aria-label="Close" (click)="cancel()" style="background: #EB5757;"
+            mdbWavesEffect>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+<!-- close test server -->
+
+
+</div>

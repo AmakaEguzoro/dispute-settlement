@@ -8,10 +8,11 @@
     <mdb-navbar-brand>
       <!-- Logo -->
       <li>
-        <mdb-icon fas icon="times" (click)="sidenav.hide()"style=" float: right;
+        <mdb-icon fas icon="times" (click)="sidenav.hide()" style=" float: right;
         margin-right: 1rem; margin-bottom: -2rem;"></mdb-icon>
         <div class="logo-wrapper waves-light">
-          <a href="#"><img src="./assets/ItexLogo.png" class="img-fluid flex-center"></a>
+         <img src="./assets/user-icon.png" style="height: 6rem; width: 11rem; margin-left: 28px;" 
+         (click)="sidenav.hide()">
         </div>
       </li>
       <!--/. Logo -->
@@ -162,7 +163,7 @@
 
             <mdb-accordion-item *appHasRole="['5']">
               <mdb-accordion-item-head mdbWavesEffect
-                [ngClass]="{'active':(settingsLink || {}).isActive || (settingsLink1 || {}).isActive || (settingsLink2 || {}).isActive || (settingsLink3 || {}).isActive}"
+                [ngClass]="{'active':(settingsLink || {}).isActive || (settingsLink1 || {}).isActive || (settingsLink2 || {}).isActive || (settingsLink3 || {}).isActive || (settingsLink4 || {}).isActive}"
                 #settingsLink="routerLinkActive" routerLinkActive="active">
                 <mdb-icon far icon="hand-pointer"></mdb-icon> Settings
               </mdb-accordion-item-head>
@@ -174,6 +175,8 @@
                       routerLinkActive="active" mdbWavesEffect>Wallet Limits </a></li>
                   <li><a *appHasRole="['5']" #settingsLink3="routerLinkActive" routerLink="b2b/configurations"
                       routerLinkActive="active" mdbWavesEffect>B2B Configurations </a></li>
+                  <li><a *appHasRole="['5']" #settingsLink4="routerLinkActive" routerLink="data/configurations"
+                      routerLinkActive="active" mdbWavesEffect>Data Plans </a></li>
                 </ul>
               </mdb-accordion-item-body>
             </mdb-accordion-item>
