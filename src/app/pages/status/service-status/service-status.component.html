@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-3"></div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="col-2"></div>
+    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
       <div class="card" [style.height.em]="'64'">
         <div class="card-header">
           <img src="../../../../assets/ItexLogo.png" class="img-fluid mx-auto d-block">
@@ -18,7 +18,7 @@
                   <th>Balance</th>
                   <th>Status</th>
                   <th>Last Deposit</th>
-
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -46,40 +46,74 @@
                     <!-- showModal(item) -->
                   </td>
                   <td>{{ el.lastDeposit }}</td>
+                  <td><button data-toggle="modal" data-target="#basicExample" type="button" class="btn btn-sm btn-warning" [ngClass]="btn-secondary" (click)="frame2.show()" mdbWavesEffect>TOP-UP BALANCE</button></td>
 
                   <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
-                    aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header text-center">
-                          <h4 class="modal-title w-100 font-weight-bold">*Comment</h4>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                            (click)="frame.hide()">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body mx-3">
-                          <form [formGroup]="editCommentForm">
-                            <div class="md-form mb-5">
-                              <textarea id="commentForm" formControlName="commentform" class="form-control" placeholder="Leave A Comment"
-                                mdbValidate  [ngClass]="{'is-invalid': (editCommentForm.get('commentform').touched ||
-                                editCommentForm.get('commentform').dirty) &&
-                                !editCommentForm.get('commentform').valid }">
-                                <span class="invalid-feedback"></textarea>
-                              <!-- <label for="commentForm">Leave A Comment</label> -->
-                            </div>
-                          </form>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                          <button mdbBtn color="default" class="waves-light" mdbWavesEffect
-                          [disabled]="!editCommentForm.valid && !editCommentForm.dirty"
-                            (click)="callSwitch(el.service, el.status); frame.hide()">Submit</button>
-                        </div>
+                  aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">*Comment</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                          (click)="frame.hide()">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body mx-3">
+                        <form [formGroup]="editCommentForm">
+                          <div class="md-form mb-5">
+                            <textarea id="commentForm" formControlName="commentform" class="form-control" placeholder="Leave A Comment"
+                              mdbValidate  [ngClass]="{'is-invalid': (editCommentForm.get('commentform').touched ||
+                              editCommentForm.get('commentform').dirty) &&
+                              !editCommentForm.get('commentform').valid }">
+                              <span class="invalid-feedback"></textarea>
+                            <!-- <label for="commentForm">Leave A Comment</label> -->
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-center">
+                        <button mdbBtn color="default" class="waves-light" mdbWavesEffect
+                        [disabled]="!editCommentForm.valid && !editCommentForm.dirty"
+                          (click)="callSwitch(el.service, el.status); frame.hide()">Submit</button>
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <div mdbModal #frame2="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+                aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h6 class="modal-title w-100 font-weight-bold">Topup {{el.service}} Balance</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        (click)="frame2.hide()">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body mx-3">
+                      <p style="font-weight: bold; text-align: center;">Current Balance is: {{ el.IntBalance | currency:'NGN':"&#x20A6;":'1.2-2' }} </p>
+                      <form [formGroup]="topupForm">
+                        <div class="md-form mb-5">
+                          <input class="form-control" type="text" placeholder="&#8358;" formControlName="balance" [ngClass]="">
+                          <!-- <label for="commentForm">Leave A Comment</label> -->
+                        </div>
+                        <div class="d-flex justify-content-center" style="margin-top: 0px; margin-bottom: 10px;">
+                          <button  color="default" class="waves-light" mdbWavesEffect
+                            (click)="callTopup(el.service); frame2.hide()">TOP-UP</button>
+                        </div>
+                      </form>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+          
+
               </tbody>
             </table>
+
+        
           </div>
         </div>
       </div>

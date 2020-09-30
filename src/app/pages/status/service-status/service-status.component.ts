@@ -25,7 +25,7 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
   color: string; 
   isData: boolean;
   refresh : Subscription;
-
+  topupForm: any;
 
   constructor(private elementService: ElementService, public sw:SwitchService,
      private modalService: BsModalService, private fb: FormBuilder) {  }
@@ -39,7 +39,11 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
 
     this.editCommentForm = this.fb.group({
       commentform: ['', [Validators.required]]
-  });
+    });
+
+    this.topupForm = this.fb.group({
+      balance: ['', [Validators.required]]
+    });
 
 }
 
@@ -105,4 +109,31 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
     });
   
   }
+
+  public callTopup(service){
+    this.isLoading = true;
+
+    let balance = this.topupForm.value;
+    // Create Object    
+    let payload = {
+      "service": service,
+      "balance":  balance.balance
+    }
+
+    console.log("payload", payload);
+
+    return this.sw.topupService(payload).subscribe(data => {
+       this.data = data;
+       console.log(this.data);
+       this.getElements();  
+      
+    }, (err: ElementError) => {
+      this.isLoading = false;
+      console.log('an error occured' + err.friendlyMessage);
+    });
+  
+  }
+
+  
+
 }
