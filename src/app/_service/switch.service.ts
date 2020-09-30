@@ -11,10 +11,22 @@ export class SwitchService {
 
   private Url = 'http://197.253.19.76:8019/api/v1/vas/service/status/switch';
 
+  private topupUrl = 'http://197.253.19.76:8019/api/v1/vas/service/status/topup';
+
+
   constructor(private http: HttpClient) { }
 
   switchAction(payload): Observable<any> {
     return this.http.post(this.Url, payload, {
+      headers: {
+        'Content-Type': 'Application/json'
+      }
+
+    }).pipe(catchError(err => this.handleHttpError(err)));
+  }
+
+  topupService(payload): Observable<any> {
+    return this.http.post(this.topupUrl, payload, {
       headers: {
         'Content-Type': 'Application/json'
       }
