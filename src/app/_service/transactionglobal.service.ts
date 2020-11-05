@@ -18,8 +18,12 @@ export class TransactionglobalService {
   transurl = "http://197.253.19.76:6200/api/v1/vas/report/trans/table";
   exporturl = "http://197.253.19.76:6200/api/v1/vas/report/export";
 
-  summaryNipUrl = "http://197.253.19.76:6200/api/v1/vas/nip-report/summary";
-  exportNipUrl = "http://197.253.19.76:6200/api/v1/vas/nip-report/export";
+  summaryNipUrl = environment.api.baseUrl + "/vas/nip-report/summary";
+  exportNipUrl = environment.api.baseUrl + "/vas/nip-report/export";
+
+  summarySettlementNipUrl = environment.api.baseUrl + "/vas/nip-setl-report/summary";
+  exportSettlementNipUrl = environment.api.baseUrl + "/vas/nip-setl-report/export";
+
   constructor(private httpClient: HttpClient) {}
 
   getTransactionSummary(transaction) {
@@ -84,4 +88,25 @@ export class TransactionglobalService {
       })
     );
   }
+
+  getTransactionSummarySettlementNip(transaction) {
+    return this.httpClient.post(this.summarySettlementNipUrl, transaction).pipe(
+      map((response: any) => {
+        const transactionSummary = response;
+        console.log("transactionsummary", transactionSummary);
+        return transactionSummary;
+      })
+    );
+  }
+
+  exportSettlementTableNip(exportdata) {
+    return this.httpClient.post(this.exportSettlementNipUrl, exportdata).pipe(
+      map((response: any) => {
+        const exportTable = response;
+        console.log("export Nip Service ", exportTable);
+        return exportTable;
+      })
+    );
+  }
+  
 }

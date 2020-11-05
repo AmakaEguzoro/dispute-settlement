@@ -53,7 +53,7 @@
               </mdb-accordion-item-head>
               <mdb-accordion-item-body>
                 <ul>
-                  <li><a *appHasRole="['2', '3', '4', '5']" #transLink1="routerLinkActive"
+                  <li><a *appHasRole="['1','2', '3', '4', '5']" #transLink1="routerLinkActive"
                       routerLink="transaction/details" routerLinkActive="active" mdbWavesEffect> Transactions </a></li>
                   <!-- <li><a *appHasRole="['3', '4', '5']" #transLink2="routerLinkActive" routerLink="transaction/reversal"
                       routerLinkActive="active" mdbWavesEffect> Transactions Reversal </a></li> -->
@@ -61,8 +61,7 @@
                       routerLinkActive="active" mdbWavesEffect> Transactions on-Hold </a></li>
                   <li><a *appHasRole="['3', '4', '5']" #transLink4="routerLinkActive" routerLink="transaction/global"
                       routerLinkActive="active" mdbWavesEffect> Global Transactions </a></li>
-                      <li><a *appHasRole="['5']" #transLink5="routerLinkActive" routerLink="/transaction/limits"
-                        routerLinkActive="active" mdbWavesEffect> Transactions Limits </a></li>
+                      
                 </ul>
               </mdb-accordion-item-body>
             </mdb-accordion-item>
@@ -140,9 +139,9 @@
               <mdb-accordion-item-body>
                 <ul>
                   <li><a *appHasRole="['3','4', '5']" #nipLink1="routerLinkActive" routerLink="transaction/nip"
-                      routerLinkActive="active" mdbWavesEffect>Settlement Reports </a></li>
-                  <li><a *appHasRole="['4', '5']" #nipLink2="routerLinkActive" routerLinkActive="active"
-                      mdbWavesEffect>Configurations </a></li>
+                      routerLinkActive="active" mdbWavesEffect>Transaction Reports </a></li>
+                      <li><a *appHasRole="['3','4', '5']" #nipLink1="routerLinkActive" routerLink="transaction-settlement/nip"
+                        routerLinkActive="active" mdbWavesEffect>Settlement Reports </a></li>
                 </ul>
               </mdb-accordion-item-body>
             </mdb-accordion-item>

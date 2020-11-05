@@ -31,6 +31,7 @@ export class AuthService {
         map((response: any) => {
           const user = response;
           if (user) {
+            console.log("Logged in User: ", user.user);
             localStorage.setItem('token', user.token);
             localStorage.setItem('role', user.user.role);
             localStorage.setItem('loggedUser', user.user.name);
@@ -47,10 +48,17 @@ export class AuthService {
   }
 
   currentUserWallet() {
-    const walletString = localStorage.getItem('walletId');
+    const walletString = localStorage.getItem('wallets');
     if (walletString) {
       let wallet = walletString.split(",")[0];
       return wallet;
+    }
+  }
+
+  currentUserRole() {
+    const role = localStorage.getItem('role');
+    if (role) {
+      return parseInt(role);
     }
   }
 

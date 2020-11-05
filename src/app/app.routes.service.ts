@@ -12,6 +12,8 @@ import { TransactionComponent } from "./pages/Transaction/transaction/transactio
 import { TransactionReversalComponent } from "./pages/Transaction/transaction-reversal/transaction-reversal.component";
 import { TransactionGlobalComponent } from "./pages/Transaction/transaction-global/transaction-global.component";
 import { TransactionNipComponent } from "./pages/Transaction/transaction-nip/transaction-nip.component";
+import { TransactionNipSetlComponent } from "./pages/Transaction/transaction-nip-setl/transaction-nip-setl.component";
+
 import { TransactionLocksComponent } from "./pages/Transaction/transaction-locks/transaction-locks.component";
 import { RegisterComponent } from "./_auth/register/register.component";
 import { RoleManagementComponent } from "./pages/admin/role-management/role-management.component";
@@ -127,6 +129,13 @@ const routes: Route[] = [
       {
         path: "transaction/nip",
         component: TransactionNipComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] },
+      },
+
+      {
+        path: "transaction-settlement/nip",
+        component: TransactionNipSetlComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5] },
       },

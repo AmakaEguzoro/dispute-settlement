@@ -56,6 +56,7 @@ import { StatusModalComponent } from "./status/service-status/status-modal/statu
 import { CgateComponent } from "./cgate/cgate.component";
 import { TransactionGlobalComponent } from "./Transaction/transaction-global/transaction-global.component";
 import { TransactionNipComponent } from "./Transaction/transaction-nip/transaction-nip.component";
+import { TransactionNipSetlComponent } from "./Transaction/transaction-nip-setl/transaction-nip-setl.component";
 
 import { Table1Component } from "./Transaction/transaction-global/table1/table1.component";
 import { Table2Component } from "./Transaction/transaction-global/table2/table2.component";
@@ -127,6 +128,7 @@ import { WalletLimitsComponent } from "./settings/Wallet-config/wallet-limits/wa
     CgateComponent,
     TransactionGlobalComponent,
     TransactionNipComponent,
+    TransactionNipSetlComponent,
     Table1Component,
     Table2Component,
     CashinComponent,

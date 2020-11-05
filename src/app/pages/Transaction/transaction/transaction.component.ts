@@ -87,7 +87,8 @@ export class TransactionComponent implements OnInit {
   DateObj: any = new Date();
   pendingCount: any;
   pendingAmount: any;
-  
+  amount: any;
+  cardPAN: any;
   dateRange = String(
     this.DateObj.getFullYear() +
       "/" +
@@ -148,13 +149,14 @@ export class TransactionComponent implements OnInit {
     this.walletBalance();
     setTimeout(() => {
       this.getSocketData();
-    }, 1 * 60 * 1000);
+    }, 0.05 * 60 * 1000);
   }
 
   getSocketData() {
     this.socket.getMessage().subscribe((Socketdata: any) => {
-      let currentWallet = this.userWallet();
-      if (currentWallet == "ALL" || currentWallet == Socketdata.data.wallet) {
+      let currentRole = this.userRole();
+      if (currentRole >= 2) {
+        console.log(Socketdata.data);
         this.detailsData.pop();
         this.detailsData.unshift(Socketdata.data);
         if (
@@ -177,6 +179,10 @@ export class TransactionComponent implements OnInit {
 
   userWallet() {
     return this.authService.currentUserWallet();
+  }
+
+  userRole(){
+    return this.authService.currentUserRole();
   }
 
   userName() {
@@ -342,21 +348,23 @@ export class TransactionComponent implements OnInit {
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
-  methods = ["Card", "Cash", "Mcash"];
+  methods = ["Card", "Cash", "Mcash", "Cgate"];
   stat = ["Approved", "Declined", "Pending"];
   vendTypes = ["B2B", "ITEX"];
-  type = ["Postpaid", "Prepaid", "smartcard", "Token", "Non Energy", "NIL"];
-  channels = ["POS", "ANDROID", "WEB", "ANDROIDPOS", "DEFAULT", "OTHERS"];
+  types = ["Postpaid", "Prepaid", "Smartcard"];
+  channels = ["LINUXPOS", "MOBILE", "WEB", "ANDROIDPOS", "B2B", "USSD", "MPOS"];
   Refs = [
+    "Amount",
     "Terminal ID",
     "Agent ID",
     "Sequence Number",
     "Transaction Ref",
     "Client Reference",
-    "Account number",
+    "Account/Meter Number",
     "Phone Number",
     "cardRRN",
     "Virtual TID",
+    "Card PAN"
   ];
   vendors = [
     "Itex",
@@ -375,13 +383,13 @@ export class TransactionComponent implements OnInit {
     "GreyStone",
     "Call Phone",
   ];
-  cashinService = ["ITEXNIP", "FIDELITY", "GTB-GAPS", "ETRANZACT"];
+  cashinService = ["ITEX_NIP", "GTPNIP", "FIDELITY", "GTB-GAPS", "ETRANZACT"];
   products = [
     "IKEDC",
     "IBEDC",
     "EKEDC",
     "EEDC",
-    "PHED",
+    "PHEDC",
     "AEDC",
     "KEDCO",
     "TRANSFER",
@@ -389,6 +397,8 @@ export class TransactionComponent implements OnInit {
     "MULTICHOICE",
     "MTNVTU",
     "MTNDATA",
+    "MTNVTUSONITE",
+    "MTNDATASONITE",
     "AIRTELDATA",
     "AIRTELVTU",
     "GLOVTU",
@@ -440,7 +450,7 @@ export class TransactionComponent implements OnInit {
       terminalId: this.terminalId ? this.terminalId : "",
       walletId: this.walletId ? this.walletId : "",
       accountNumber: this.accountNumber ? this.accountNumber : "",
-      paymentMethod: this.paymentMethod ? this.paymentMethod : "",
+      paymentMethod: this.paymentMethod ? this.paymentMethod.toLowerCase() : "",
       cardRRN: this.cardRRN ? this.cardRRN : "",
       transactionReference: this.transactionReference
         ? this.transactionReference
@@ -449,7 +459,7 @@ export class TransactionComponent implements OnInit {
       sequenceNumber: this.sequenceNumber ? this.sequenceNumber : "",
       debitReference: this.debitReference ? this.debitReference : "",
       product: this.product ? this.product : "",
-      transactionType: this.transactionType ? this.transactionType : "",
+      transactionType: this.transactionType ? this.transactionType.toLowerCase() : "",
       transactionStatus: this.transactionStatus ? this.transactionStatus : "",
       transactionChannel: this.transactionChannel
         ? this.transactionChannel
@@ -460,6 +470,9 @@ export class TransactionComponent implements OnInit {
       virtualTID: this.virtualTID ? this.virtualTID : "",
       clientReference: this.clientReference ? this.clientReference : "",
       vendor: this.vendor ? this.vendor : "",
+      amount: this.amount ? this.amount : "",
+      cardPAN: this.cardPAN ? this.cardPAN : "",
+
       transferProvider: this.provider ? this.provider : "",
     };
 
@@ -482,7 +495,7 @@ export class TransactionComponent implements OnInit {
       this.terminalId = this.filterValue;
     } else if (this.filter == "Agent ID") {
       this.walletId = this.filterValue;
-    } else if (this.filter == "Account number") {
+    } else if (this.filter == "Account/Meter Number") {
       this.accountNumber = this.filterValue;
     } else if (this.filter == "Phone Number") {
       this.phoneNumber = this.filterValue;
@@ -492,6 +505,10 @@ export class TransactionComponent implements OnInit {
       this.virtualTID = this.filterValue;
     } else if (this.filter == "Client Reference") {
       this.clientReference = this.filterValue;
+    } else if (this.filter == "Amount") {
+      this.amount = this.filterValue;
+    } else if (this.filter == "Card PAN") {
+      this.cardPAN = this.filterValue;
     }
   }
 
