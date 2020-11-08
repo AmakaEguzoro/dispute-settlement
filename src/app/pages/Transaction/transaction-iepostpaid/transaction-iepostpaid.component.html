@@ -1,0 +1,161 @@
+<div class="container">
+    <label>IE Stored/Forwarded Transaction Report</label>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="card classic-admin-card">
+                <div class="card-body">
+                    <p class="total-trans">Processed <b>[ {{processedCount}} ]</b></p>
+                    <div class="total-users">
+                        <mdb-icon class="total" fas icon="check"></mdb-icon>
+                    </div> <br>
+                    <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="loading == false">
+                        <div *ngIf="isData == true" class="trans-amount" style="color: #219653;">
+                            &#x20A6;{{processedAmount | number}}</div>
+                    </h4>
+                    <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="card classic-admin-card">
+                <div class="card-body">
+                    <p class="total-trans">Pending <b>[ {{pendingCount}} ]</b></p>
+                    <div class="total-users">
+                        <mdb-icon class="pending" fas icon="exclamation-circle"></mdb-icon>
+                    </div> <br>
+                    <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="loading == false">
+                        <div *ngIf="isData == true" class="trans-amount" style="color: #d4b00c">
+                            &#x20A6;{{pendingAmount  | number }}</div>
+                    </h4>
+                    <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="card classic-admin-card">
+                <div class="card-body">
+                    <p class="total-trans">Failed <b>[ {{failedCount}} ]</b></p>
+                    <div class="total-users">
+                        <mdb-icon class="fail" fas icon="times"></mdb-icon>
+                    </div> <br>
+                    <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                    <h4 *ngIf="loading == false">
+                        <div *ngIf="isData == true" class="trans-amount" style="color: #bd3c08">
+                            &#x20A6;{{failedAmount  | number }}</div>
+                    </h4>
+                    <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+    <!-- filter -->
+    <form [formGroup]="searchForm">
+    <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+            <select class="browser-default custom-select" (change)="getStatus($event)" formControlName="method">
+                <option value="">Status</option>
+                <option *ngFor="let status of stat" [value]="status">{{status}}</option>
+            </select>
+        </div>
+        
+        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" >
+            <select class="browser-default custom-select ref" (change)="getRef($event)">
+                <option value="">Select</option>
+              <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
+            </select>
+        </div>
+        <div class="col-lg-1 col-md-4 col-sm-6 col-xs-6" >
+            <input type="text" formControlName="filterValue" ngDefaultControl [(ngModel)]="filterValue" >
+        </div>
+        <div class="" >
+            <button class="btn btn-primary" mdbWavesEffect (click)="searchTrans()" style="margin-left: 160px; width: 150px !important;">
+                <mdb-icon fas icon="search"></mdb-icon>
+                Search
+            </button>
+        </div>
+        <div class="">
+            <button class="btn btn-primary btn-sm" mdbWavesEffect (click)="exportAsXLSX()" style="width: 150px !important;">
+              <mdb-icon fas icon="download"></mdb-icon>
+              &nbsp;Save
+            </button>
+          </div>
+    
+    </div>
+    <!-- Second row -->
+    <div class="row">
+     <!-- <div class="col-6"></div> -->
+     <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -17px;">
+        <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
+            [options]="myDatePickerOptions"></mdb-date-picker>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -17px">
+        <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
+            [options]="myDatePickerOptions" ></mdb-date-picker>
+    </div>
+    </div>
+
+    </form>
+
+    <!-- Table -->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" small="true">
+                    <thead class="trans-head">
+                        <tr>
+                            <th class="head" *ngFor="let head of headElements" scope="col">{{head}} </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
+                        </mdb-spinner>
+                        <tr *ngFor="let item of ieData let i = index">
+                            <th scope="row">{{serial + i}}</th>
+                            <td>{{item.product}}
+                            </td>
+                            <td>{{item.wallet}}</td>
+                            <td>{{item.VASCustomerAccount}}</td>
+                            <td>
+                                {{item.channel}}
+                            </td>
+                            <td> &#x20A6;{{item.amount | number: "1.2-2" }}
+                                <p [ngClass]="{
+                              'cash' : item.paymentMethod == 'cash',
+                              'cards' : item.paymentMethod == 'card'
+                            }">
+                                    {{item.paymentMethod}}
+                                </p>
+                            </td>
+                            <td>
+                                <mdb-badge class="status" [ngClass]="{
+                                              'failed' : item.status == 'failed',
+                                              'success' : item.status == 'successful',
+                                              'warning' : item.status == 'pending'
+                                            }"> {{item.status}}</mdb-badge>
+                            </td>
+                            <td>
+                                 {{item.reference}}
+                            </td>
+                            <td>{{item.date}}</td>
+                        </tr>
+                        <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                    </tbody>
+                </table>
+                <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
+                    [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)"
+                    firstText="&laquo;" lastText="&raquo;"></pagination>
+            </div>
+            <br>
+        </div>
+    </div>
+
+
+
+</div>

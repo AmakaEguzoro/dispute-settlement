@@ -46,6 +46,15 @@ export class TransactionService {
             ));
     };
 
+    getTransactionIEpostpaid(transaction: Transaction) {
+        return this.httpClient.post(this.baseUrl + `iepostpaids`, transaction).pipe(
+            map((response: any) => {
+                const transactionIEpostpaid = response;
+                return transactionIEpostpaid;
+            }
+            ));
+    };
+
     getTransactionLocks(transaction: Transaction) {
         return this.httpClient.post(this.baseUrl + `locked`, transaction).pipe(
             map((response: any) => {
