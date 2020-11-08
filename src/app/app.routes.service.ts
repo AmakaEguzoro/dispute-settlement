@@ -10,6 +10,8 @@ import { BvnStatusComponent } from "./pages/status/bvn-status/bvn-status.compone
 import { NotFoundComponent } from "./shared/not-found/not-found.component";
 import { TransactionComponent } from "./pages/Transaction/transaction/transaction.component";
 import { TransactionReversalComponent } from "./pages/Transaction/transaction-reversal/transaction-reversal.component";
+import { TransactionIepostpaidComponent } from "./pages/Transaction/transaction-iepostpaid/transaction-iepostpaid.component";
+
 import { TransactionGlobalComponent } from "./pages/Transaction/transaction-global/transaction-global.component";
 import { TransactionNipComponent } from "./pages/Transaction/transaction-nip/transaction-nip.component";
 import { TransactionNipSetlComponent } from "./pages/Transaction/transaction-nip-setl/transaction-nip-setl.component";
@@ -157,6 +159,13 @@ const routes: Route[] = [
       {
         path: "transaction/reversal",
         component: TransactionReversalComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] },
+      },
+
+      {
+        path: "transaction/iepostpaid",
+        component: TransactionIepostpaidComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5] },
       },

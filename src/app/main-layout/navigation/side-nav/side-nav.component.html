@@ -61,6 +61,8 @@
                       routerLinkActive="active" mdbWavesEffect> Transactions on-Hold </a></li>
                   <li><a *appHasRole="['3', '4', '5']" #transLink4="routerLinkActive" routerLink="transaction/global"
                       routerLinkActive="active" mdbWavesEffect> Global Transactions </a></li>
+                  <li><a *appHasRole="['3', '4', '5']" #transLink4="routerLinkActive" routerLink="transaction/iepostpaid"
+                    routerLinkActive="active" mdbWavesEffect> IE Stored/Forwarded Postpaids </a></li>
                       
                 </ul>
               </mdb-accordion-item-body>
@@ -91,7 +93,7 @@
               <mdb-accordion-item-body></mdb-accordion-item-body>
             </mdb-accordion-item>
 
-            <mdb-accordion-item class="no-collase" *appHasRole="[ '3', '4', '5']">
+            <mdb-accordion-item class="no-collase" *appHasRole="[ '1', '2', '3', '4', '5']">
               <mdb-accordion-item-head routerLinkActive="active" mdbWavesEffect [routerLink]="['/error/analysis']">
                 <mdb-icon far icon="hand-pointer"></mdb-icon> Error Analysis
               </mdb-accordion-item-head>

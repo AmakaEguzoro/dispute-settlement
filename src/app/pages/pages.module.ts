@@ -57,6 +57,7 @@ import { CgateComponent } from "./cgate/cgate.component";
 import { TransactionGlobalComponent } from "./Transaction/transaction-global/transaction-global.component";
 import { TransactionNipComponent } from "./Transaction/transaction-nip/transaction-nip.component";
 import { TransactionNipSetlComponent } from "./Transaction/transaction-nip-setl/transaction-nip-setl.component";
+import { TransactionIepostpaidComponent } from "./Transaction/transaction-iepostpaid/transaction-iepostpaid.component";
 
 import { Table1Component } from "./Transaction/transaction-global/table1/table1.component";
 import { Table2Component } from "./Transaction/transaction-global/table2/table2.component";
@@ -113,6 +114,7 @@ import { WalletLimitsComponent } from "./settings/Wallet-config/wallet-limits/wa
     TransactionComponent,
     ModelComponent,
     TransactionReversalComponent,
+    TransactionIepostpaidComponent,
     ReversalModelComponent,
     TransactionLocksComponent,
     RoleManagementComponent,
@@ -120,7 +122,7 @@ import { WalletLimitsComponent } from "./settings/Wallet-config/wallet-limits/wa
     DayCardComponent,
     MonthCardComponent,
     WeekCardComponent,
-
+    
     McashTransactionComponent,
     McashComponent,
     ErrorAnalysisComponent,

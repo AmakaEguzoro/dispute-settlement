@@ -15,8 +15,8 @@
           </mdb-date-picker>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-          <button type="button" mdbBtn color="primary" mdbWavesEffect>
-            <mdb-icon fas icon="search"></mdb-icon> Search
+          <button type="button" mdbBtn color="primary" (click)="searchTrans()" mdbWavesEffect>
+            <mdb-icon fas icon="search"></mdb-icon> Filter
           </button>
 
         </div>
@@ -26,65 +26,31 @@
     </form>
 
     <div class="row">
-      <div class="col-9">
+      <div class="col-12">
         <!-- Error Analysis Details -->
         <div class="card" style="padding-bottom: 120px;;">
           <div class="card-body">
-            <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
-            </mdb-spinner>
-            <mdb-accordion [multiple]="false">
-              <mdb-accordion-item [collapsed]="false" *ngFor="let item of errorData | groupBy:'name' ">
-                <mdb-accordion-item-head>
-                  <span *ngIf="item.key != null">{{ item.key }}</span>
-                  <span class="pull-right">
-                    <mdb-badge color="cyan" class="badges-custom">
-                      <span style="top: 7px; position: relative;">
-                        {{ item.value.length }}
-                      </span>
-                    </mdb-badge>
-                  </span>
-                </mdb-accordion-item-head>
-                <mdb-accordion-item-body>
-                  <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let item of item.value">
-                      <span>{{item.error }}</span>
-                      <span class="pull-right">
-                        <mdb-badge default="true" class="badge-content">{{item.count}}</mdb-badge>
-                      </span>
-                    </li>
-                  </ul>
-                </mdb-accordion-item-body>
-              </mdb-accordion-item>
-            </mdb-accordion>
+
+            <div style="display: block">
+              <canvas mdbChart
+                  [chartType]="chartType"
+                  [datasets]="chartDatasets"
+                  [labels]="chartLabels"
+                  [colors]="chartColors"
+                  [options]="chartOptions"
+                  [legend]="true"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)">
+              </canvas>
+            </div>
+            
+      
 
           </div>
         </div>
 
       </div>
-      <div class="col-3">
-        <div class="card" style="padding-bottom: 90px;">
-          <div class="card-body">
-            <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
-            </mdb-spinner>
-            <h5>Errors
-              <!-- <span class="pull-right">
-                <mdb-badge primary="true" class="badge-side">44</mdb-badge>
-              </span> -->
-            </h5>
-            <ul class="list-group">
-              <li class="list-group-item" *ngFor="let item of errorData | groupBy:'name' ">
-                 <span *ngIf="item.key != null">{{ item.key }}</span>
-                <span class="pull-right">
-                  <mdb-badge default="true" class="badge-side">
-                    <span style="position: relative; top: 5px;">{{ item.value.length }}</span>
-                  </mdb-badge>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
 
-      </div>
     </div>
   </div>
 

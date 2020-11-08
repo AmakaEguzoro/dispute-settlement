@@ -13,6 +13,63 @@ export class ErrorAnalysisComponent implements OnInit {
   isData:boolean;
   loading:boolean;
   searchForm:any;
+  start: any;
+  end: any;
+  range: any;
+  failureCount =  [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+  products = [
+    "IKEDC",
+    "IBEDC",
+    "EKEDC",
+    "EEDC",
+    "PHEDC",
+    "AEDC",
+    "KEDCO",
+    "TRANSFER",
+    "WITHDRAWAL",
+    "MULTICHOICE",
+    "MTNVTU",
+    "MTNDATA",
+    "MTNVTUSONITE",
+    "MTNDATASONITE",
+    "AIRTELDATA",
+    "AIRTELVTU",
+    "GLOVTU",
+    "GLODATA",
+    "ETISALATVTU",
+    "ETISALATDATA",
+    "STARTIMES",
+    "GEHS",
+    "OLHS",
+    "SMILE",
+    "LCC"
+  ];
 
   DateObj: any = new Date();
   dateRange = (String)(this.DateObj.getFullYear() + '/' + (this.DateObj.getMonth() + 1) + '/' + this.DateObj.getDate());
@@ -30,22 +87,40 @@ export class ErrorAnalysisComponent implements OnInit {
    errorData:any;
 
   ngOnInit() {
-    this.getErrorAnalysisForVas()
+    this.getErrorAnalysisForVas(this.payload)
   }
 
-  getErrorAnalysisForVas(){
+  getErrorAnalysisForVas(payload){
     this.isData = false;
     this.loading = true;
-    this.errorService.getErrorAnalysis(this.payload).subscribe(data =>{
+    this.errorService.getErrorAnalysis(payload).subscribe(data =>{
       this.isData = true;
       this.loading = false;
         console.log(data);
-        this.errorData = data;
+        let failureCount = data.data.failureCount;
+        this.products = data.data.products;
+        this.chartDatasets = [
+          { data: failureCount, label: "Service Failure Error Anaylysis for " + payload.dateRange },
+        ];
     }, error =>{
       this.loading = false;
       console.log(error.error.error)
     })
 
+  }
+
+  searchTrans() {
+    this.start = this.searchForm.value.startDate;
+    this.end = this.searchForm.value.endDate;
+    this.range = `${this.start} - ${this.end}`;
+   
+    this.payload = {
+      "dateRange": this.range
+    };
+  
+    console.log(this.payload);
+
+    this.getErrorAnalysisForVas(this.payload)
   }
 
   public myDatePickerOptions: IMyOptions = {
@@ -60,4 +135,99 @@ export class ErrorAnalysisComponent implements OnInit {
   searchError(){
     
   }
+
+  public chartType: string = 'horizontalBar';
+
+  public chartDatasets: Array<any> = [
+    { data: this.failureCount, label: 'Active Services' }
+  ];
+
+  public chartLabels: Array<any> = this.products;
+
+  public chartColors: Array<any> = [
+    {
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+
+        
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+
+        
+      ],
+      borderWidth: 1,
+    }
+  ];
+
+  public chartOptions: any = {
+    responsive: true
+  };
+  public chartClicked(e: any): void { }
+  public chartHovered(e: any): void { }
+
+  
 }
