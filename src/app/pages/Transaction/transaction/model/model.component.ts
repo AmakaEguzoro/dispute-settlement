@@ -29,7 +29,15 @@ export class ModelComponent implements OnInit {
     this.transactionService.interfaceWithVasForRequery(reference).subscribe((data) => {
       console.log(data);
       this.trandata = data;
-      this.toastService.success(this.trandata.status);
+      this.isLoading = false;
+
+      if(this.trandata.status == "success"){
+        this.toastService.success("Requery Successful. ");
+        window.location.reload();
+      } else {
+        this.toastService.success("Requery Failed.");
+      }
+
     }, error => {
       this.isData = false;
       this.isLoading = false;

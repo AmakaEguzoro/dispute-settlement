@@ -10,6 +10,7 @@
             <mdb-badge type="button" *ngIf="data.VASBillerName == 'IKEDC' && data.status == 'initialized'"
               class="requery" (click)="requeryInitializedTransaction(data.reference)"><i class="fa fa-refresh"></i>
               RE-QUERY</mdb-badge>
+              <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
           </div>
 
         </div>
