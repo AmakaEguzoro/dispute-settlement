@@ -11,8 +11,8 @@
         <mdb-icon fas icon="times" (click)="sidenav.hide()" style=" float: right;
         margin-right: 1rem; margin-bottom: -2rem;"></mdb-icon>
         <div class="logo-wrapper waves-light">
-         <img src="./assets/user-icon.png" style="height: 6rem; width: 11rem; margin-left: 28px;" 
-         (click)="sidenav.hide()">
+          <img src="./assets/user-icon.png" style="height: 6rem; width: 11rem; margin-left: 28px;"
+            (click)="sidenav.hide()">
         </div>
       </li>
       <!--/. Logo -->
@@ -55,15 +55,16 @@
                 <ul>
                   <li><a *appHasRole="['1','2', '3', '4', '5']" #transLink1="routerLinkActive"
                       routerLink="transaction/details" routerLinkActive="active" mdbWavesEffect> Transactions </a></li>
-                  <!-- <li><a *appHasRole="['3', '4', '5']" #transLink2="routerLinkActive" routerLink="transaction/reversal"
-                      routerLinkActive="active" mdbWavesEffect> Transactions Reversal </a></li> -->
+                  <li><a #transLink2="routerLinkActive" routerLink="inconclusive/transaction" routerLinkActive="active"
+                      mdbWavesEffect> Inconclusive Transactions </a></li>
                   <li><a *appHasRole="['3', '4', '5']" #transLink3="routerLinkActive" routerLink="transaction/locks"
                       routerLinkActive="active" mdbWavesEffect> Transactions on-Hold </a></li>
                   <li><a *appHasRole="['3', '4', '5']" #transLink4="routerLinkActive" routerLink="transaction/global"
                       routerLinkActive="active" mdbWavesEffect> Global Transactions </a></li>
-                  <li><a *appHasRole="['3', '4', '5']" #transLink4="routerLinkActive" routerLink="transaction/iepostpaid"
-                    routerLinkActive="active" mdbWavesEffect> IE Stored/Forwarded Postpaids </a></li>
-                      
+                  <li><a *appHasRole="['3', '4', '5']" #transLink4="routerLinkActive"
+                      routerLink="transaction/iepostpaid" routerLinkActive="active" mdbWavesEffect> IE Stored/Forwarded
+                      Postpaids </a></li>
+
                 </ul>
               </mdb-accordion-item-body>
             </mdb-accordion-item>
@@ -142,8 +143,9 @@
                 <ul>
                   <li><a *appHasRole="['3','4', '5']" #nipLink1="routerLinkActive" routerLink="transaction/nip"
                       routerLinkActive="active" mdbWavesEffect>Transaction Reports </a></li>
-                      <li><a *appHasRole="['3','4', '5']" #nipLink1="routerLinkActive" routerLink="transaction-settlement/nip"
-                        routerLinkActive="active" mdbWavesEffect>Settlement Reports </a></li>
+                  <li><a *appHasRole="['3','4', '5']" #nipLink1="routerLinkActive"
+                      routerLink="transaction-settlement/nip" routerLinkActive="active" mdbWavesEffect>Settlement
+                      Reports </a></li>
                 </ul>
               </mdb-accordion-item-body>
             </mdb-accordion-item>

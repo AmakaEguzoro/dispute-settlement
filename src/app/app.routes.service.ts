@@ -34,6 +34,7 @@ import { TransactionLimitsComponent } from "./pages/Transaction/transaction-limi
 import { DataPlansComponent } from "./pages/settings/Data-config/data-plans/data-plans.component";
 import { WalletLimitsComponent } from "./pages/settings/Wallet-config/wallet-limits/wallet-limits.component";
 import { B2bConfigComponent } from "./pages/settings/B2B-CONFIGURATION/b2b-config/b2b-config.component";
+import { InconclusiveTransactionComponent } from "./pages/Transaction/inconclusive-transaction/inconclusive-transaction.component";
 
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
@@ -69,6 +70,8 @@ const routes: Route[] = [
       },
 
       { path: "transaction/details", component: TransactionComponent },
+      { path: "inconclusive/transaction", component: InconclusiveTransactionComponent },
+
 
       {
         path: "agency/banking",
