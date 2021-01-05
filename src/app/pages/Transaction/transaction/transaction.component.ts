@@ -349,7 +349,7 @@ export class TransactionComponent implements OnInit {
   };
 
   methods = ["Card", "Cash", "Mcash", "Cgate"];
-  stat = ["Approved", "Declined", "Pending"];
+  stat = ["Approved", "Declined", "Pending", "successful|nocredit"];
   vendTypes = ["B2B", "ITEX"];
   types = ["Postpaid", "Prepaid", "Smartcard"];
   channels = ["LINUXPOS", "MOBILE", "WEB", "ANDROIDPOS", "B2B", "USSD", "MPOS"];
@@ -383,7 +383,7 @@ export class TransactionComponent implements OnInit {
     "GreyStone",
     "Call Phone",
   ];
-  cashinService = ["ITEX_NIP", "GTPNIP", "FIDELITY", "GTB-GAPS", "ETRANZACT"];
+  cashinService = ["ITEX_NIP", "GTB_NIP", "FIDELITY", "GTB-GAPS", "ETRANZACT"];
   products = [
     "IKEDC",
     "IBEDC",
@@ -465,7 +465,7 @@ export class TransactionComponent implements OnInit {
         ? this.transactionChannel
         : "",
       searchField: "",
-      viewPage: "",
+      viewPage: this.currentPage ? this.currentPage : "",
       vendType: this.vendType ? this.vendType : "",
       virtualTID: this.virtualTID ? this.virtualTID : "",
       clientReference: this.clientReference ? this.clientReference : "",
