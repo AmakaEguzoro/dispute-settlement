@@ -12,7 +12,7 @@ import { WalletBalance } from "app/_models/user";
   providedIn: "root"
 })
 export class CgatetransactionService {
-  baseUrl = "http://197.253.19.76:6200/api/v1/cgate/transaction/";
+  baseUrl = "http://197.253.19.76:6007/api/v1/cgate/transaction/";
 
   constructor(private httpClient: HttpClient) {}
 

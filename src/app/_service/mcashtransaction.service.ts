@@ -14,7 +14,7 @@ import { WalletBalance } from 'app/_models/user';
 
 export class McashtransactionService {
 
-    baseUrl = 'http://197.253.19.76:6200/api/v1/mcash/transaction/';
+    baseUrl = 'http://197.253.19.76:6007/api/v1/mcash/transaction/';
 
     constructor(private httpClient: HttpClient) { }
 

@@ -157,7 +157,7 @@ export class TransactionLocksComponent implements OnInit {
       transactionReference: this.transactionReference
         ? this.transactionReference
         : "",
-      viewPage: "",
+      viewPage: this.currentPage ? this.currentPage : "",
       // "download": false
     };
     console.log(this.filterData);
