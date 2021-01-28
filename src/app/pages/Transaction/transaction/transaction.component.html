@@ -193,6 +193,9 @@
                             <td>{{item.wallet}}</td>
                             <td>{{item.terminal}}</td>
                             <td>{{item.virtualTID}}</td>
+                            <td><a mdbTooltip="{{item.cardIssuer}}" placement="top">
+                                {{ (item.cardIssuer.length>6)? (item.cardIssuer | slice:0:6)+'...':(item.cardIssuer) || "N/A" }}</a>
+                            </td>
                             <td [ngClass]="{
                                 'pos' : item.channel == 'POS',
                                 'android' : item.channel == 'ANDROID',
