@@ -302,6 +302,7 @@ export class TransactionComponent implements OnInit {
     "AGENT ID",
     "TERMINAL",
     "V-TID",
+    "ISSUER",
     "CHANNEL",
     "AMOUNT",
     "STATUS",
