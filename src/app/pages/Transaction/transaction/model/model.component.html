@@ -86,9 +86,13 @@
             Card-PAN:
             <span class="details" style="float: right">{{data.cardPAN}}</span>
           </div> 
-          <div class="details mt-2" *ngIf="data.cardPAN">
+          <div class="details mt-2">
             Card Issuer:
             <span class="details" style="float: right">{{data.cardIssuer || "N/A"}}</span>
+          </div>
+             <div class="details mt-2">
+            Processor:
+            <span class="details" style="float: right">{{data.processor || "N/A"}}</span>
           </div>
         </div>
 
