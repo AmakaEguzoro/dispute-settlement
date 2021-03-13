@@ -110,7 +110,7 @@ amountField:boolean=false
        
         this.loading = false;
         this.toast.error(error.message)
-        console.log("cant register agent", error);
+        console.log("cant validate agent", error);
       }
     );
   }
