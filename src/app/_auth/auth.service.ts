@@ -37,6 +37,7 @@ export class AuthService {
             localStorage.setItem('loggedUser', user.user.name);
             localStorage.setItem('loggedEmail', user.user.email);
             localStorage.setItem('walletId', user.user.wallets);
+            localStorage.setItem('loggedUsername',user.user.username)
           }
         })
       );

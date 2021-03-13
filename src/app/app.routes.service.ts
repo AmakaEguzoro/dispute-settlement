@@ -35,7 +35,8 @@ import { DataPlansComponent } from "./pages/settings/Data-config/data-plans/data
 import { WalletLimitsComponent } from "./pages/settings/Wallet-config/wallet-limits/wallet-limits.component";
 import { B2bConfigComponent } from "./pages/settings/B2B-CONFIGURATION/b2b-config/b2b-config.component";
 import { InconclusiveTransactionComponent } from "./pages/Transaction/inconclusive-transaction/inconclusive-transaction.component";
-
+import { NqrComponent } from './pages/nqr/nqr.component';
+import { NqrHistoryComponent } from './pages/nqr/nqr-history/nqr-history.component';
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
   { path: "not-found", component: NotFoundComponent },
@@ -116,6 +117,18 @@ const routes: Route[] = [
       {
         path: "onboarding/dashboard",
         component: AgentdashboardComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] },
+      },
+       {
+        path: "nqr/onboard",
+        component: NqrComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] },
+      },
+       {
+        path: "nqr/onboard-history",
+        component: NqrHistoryComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5] },
       },

@@ -1,0 +1,88 @@
+<div class="container-fluid" style="display: flex; justify-content: center; align-items: center;">
+  <div id="newUser" class="col-md-6 col-sm-offset-3">
+
+    <form name="newUser" class="register">
+      <div class="row" style="justify-content: space-around;">
+        <h1>NQR ONBOARDING FORM</h1>
+        <img class="img-fluid" src="../../../assets/qr-code (1).svg" style="width: 10%;" />
+      </div>
+
+
+      <fieldset class="row2">
+
+
+        <div class="form-group">
+
+          <label>Wallet ID*</label>
+
+          <input type="text" [ngModelOptions]="{standalone: true}" name="userFirst" class="form-control"
+            (blur)="VerifyAccount()" [(ngModel)]="walletid" name="walletid">
+          <p *ngIf="errors.walletid" class="text-danger error-style">
+            {{ errors.walletid }}
+          </p>
+
+
+          <label>Name *</label>
+          <input type="text" [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="name" name="name">
+        </div>
+        <p *ngIf="errors.name" class="text-danger error-style">
+          {{ errors.name }}
+        </p>
+
+
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="email"
+            name="email">
+          <p *ngIf="errors.email" class="text-danger error-style">
+            {{ errors.email }}
+          </p>
+        </div>
+
+
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="text" [ngModelOptions]="{standalone: true}" class="form-control" [(ngModel)]="phoneNo"
+            name="phoneNo">
+          <p *ngIf="errors.phoneNo" class="text-danger error-style">
+            {{ errors.phoneNo }}
+          </p>
+
+          <label>Fixed Amount *</label>
+          <select (change)="showAmount($event)" class="browser-default col-lg-7 custom-select d-block"
+            style="background-color:white">
+
+            <option *ngFor="let option of options" [value]="option.value">{{option.label}}</option>
+          </select>
+          <div *ngIf="amountField">
+            <label>Amount *</label>
+            <input type="text" [ngModelOptions]="{standalone: true}" name="street" class="form-control"
+              placeholder="(₦)" [(ngModel)]="amount" name="amount">
+            <p *ngIf="errors.amount" class="text-danger error-style">
+              {{ errors.amount }}
+            </p>
+          </div>
+        </div>
+
+      </fieldset>
+
+
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <button type="button" class="btn btn-primary" mdbWavesEffect type="button" [disabled]="is_registered"
+          (click)="CreateAccount()" id="registerButton">{{loading ?
+          'Registering' : 'Register' }} &nbsp;<i class="fa "
+            [ngClass]="{'spinner-border spinner-border-sm':loading==true}"></i></button>
+
+      </div>
+      <div style="display: flex; justify-content: flex-end;">
+        <div class="spinner-border" *ngIf="loading" role="status" style="font-size: 26px;
+                                                                          height: 0px;
+                                                                          width: 13px;
+                                                                          vertical-align: middle;">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

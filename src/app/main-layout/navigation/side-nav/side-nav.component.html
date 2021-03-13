@@ -164,6 +164,22 @@
               </mdb-accordion-item-body>
             </mdb-accordion-item>
 
+            <mdb-accordion-item *appHasRole="['3', '4', '5']">
+              <mdb-accordion-item-head mdbWavesEffect
+                [ngClass]="{'active':(boardingLink || {}).isActive || (boardingLink1 || {}).isActive}"
+                #boardingLink="routerLinkActive" routerLinkActive="active">
+                <mdb-icon far icon="hand-pointer"></mdb-icon>NQR
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <ul>
+                  <li><a *appHasRole="['3','4', '5']" #cgateLink1="routerLinkActive" routerLink="nqr/onboard"
+                      routerLinkActive="active" mdbWavesEffect>Onboarding</a></li>
+                  <!-- <li><a *appHasRole="['3','4', '5']" #cgateLink1="routerLinkActive" routerLink="nqr/onboard-history"
+                      routerLinkActive="active" mdbWavesEffect>Onboarding History</a></li> -->
+                </ul>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+
             <mdb-accordion-item *appHasRole="['5']">
               <mdb-accordion-item-head mdbWavesEffect
                 [ngClass]="{'active':(settingsLink || {}).isActive || (settingsLink1 || {}).isActive || (settingsLink2 || {}).isActive || (settingsLink3 || {}).isActive || (settingsLink4 || {}).isActive}"

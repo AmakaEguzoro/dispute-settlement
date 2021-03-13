@@ -10,7 +10,12 @@
             <mdb-badge type="button" *ngIf="data.VASBillerName == 'IKEDC' && data.status == 'initialized'"
               class="requery" (click)="requeryInitializedTransaction(data.reference)"><i class="fa fa-refresh"></i>
               RE-QUERY</mdb-badge>
-              <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+            <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+
+
+
+
+
           </div>
 
         </div>
@@ -85,15 +90,17 @@
           <div class="details mt-2" *ngIf="data.cardPAN">
             Card-PAN:
             <span class="details" style="float: right">{{data.cardPAN}}</span>
-          </div> 
+          </div>
           <div class="details mt-2">
             Card Issuer:
             <span class="details" style="float: right">{{data.cardIssuer || "N/A"}}</span>
           </div>
-             <div class="details mt-2">
+          <div class="details mt-2">
             Processor:
             <span class="details" style="float: right">{{data.processor || "N/A"}}</span>
           </div>
+
+
         </div>
 
 
@@ -155,12 +162,53 @@
           </div>
         </div>
       </div>
-
+      <mdb-badge *ngIf="data.status=='successful|nocredit' && role=='5'" type="button" class="credit-wallet"
+        (click)="basicModal.show()">
+        <mdb-icon fas icon="credit-card"></mdb-icon> &nbsp; Credit Wallet
+      </mdb-badge>
     </div>
 
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">Close</button>
+
+      <div>
+        <button type="button" class="btn btn-primary" mdbWavesEffect
+          style="background-color: #fff !important;color:#4285F4 !important; border-style: 1px solid #4285f4 ;"
+          (click)="bsModalRef.hide()">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Password</h4>
+      </div>
+      <div class="modal-body row" style="display: flex; justify-content: space-evenly; align-items: center;">
+
+        <div class="form-outline">
+          <label class="form-label" for="form1">Enter Password</label>&nbsp;
+          <mdb-icon fas icon="lock"></mdb-icon>
+          <input [(ngModel)]="password" name="password" type="text" id="form1"
+            class="form-control form-icon-trailing" />
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn class=" btn btn-primary waves-light" aria-label="Close" mdbWavesEffect
+          style="background-color: #fff !important;color:#4285F4 !important;  border-style: 1px solid #4285f4 ;"
+          (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="btn btn-primary waves-light" mdbWavesEffect
+          (click)="reCreditTransaction()">{{loading ?
+          'Submitting' : 'Submit' }} &nbsp;<i class="fa "
+            [ngClass]="{'spinner-border spinner-border-sm':loading==true}"></i></button>
+      </div>
     </div>
   </div>
 </div>

@@ -16,7 +16,7 @@ export class TransactionService {
 
     baseUrl = environment.api.baseUrl + '/transaction/';
     vasRequerybaseUrl = 'http://197.253.19.76:8019/api/v1/vas/metadata/update/'
-
+pendingCreditUrl='http://197.253.19.76:8018/api/v1/vas/vicebanking/withdrawal/post-pending-credit'
     constructor(private httpClient: HttpClient) { }
 
     getTransaction(transaction: Transaction) {
@@ -95,5 +95,15 @@ export class TransactionService {
             }
             ));
     };
+
+
+    pendingCreditRequery(data){
+        return this.httpClient.post(this.pendingCreditUrl,data).pipe(
+            map((response: any) => {
+                const res = response;
+                return res;
+            }
+            ));
+    }
    
 }

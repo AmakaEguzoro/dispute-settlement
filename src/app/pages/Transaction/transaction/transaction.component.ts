@@ -11,6 +11,7 @@ import {
   Validators,
   FormControl,
 } from "@angular/forms";
+import { MDBBootstrapModulesPro } from "ng-uikit-pro-standard";
 import { IMyOptions } from "ng-uikit-pro-standard";
 import { ExcelService } from "app/_service/excel.service";
 import { AuthService } from "app/_auth/auth.service";
@@ -350,7 +351,7 @@ export class TransactionComponent implements OnInit {
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
-  methods = ["Card", "Cash", "Mcash", "Cgate"];
+  methods = ["Card", "Cash", "Mcash", "Cgate","NQR"];
   stat = ["Approved", "Declined", "Pending", "successful|nocredit"];
   vendTypes = ["B2B", "ITEX"];
   types = ["Postpaid", "Prepaid", "Smartcard"];
