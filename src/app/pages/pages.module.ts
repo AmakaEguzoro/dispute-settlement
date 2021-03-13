@@ -77,6 +77,8 @@ import { B2bConfigComponent } from "./settings/B2B-CONFIGURATION/b2b-config/b2b-
 import { DataPlansComponent } from "./settings/Data-config/data-plans/data-plans.component";
 import { WalletLimitsComponent } from "./settings/Wallet-config/wallet-limits/wallet-limits.component";
 import { InconclusiveTransactionComponent } from './Transaction/inconclusive-transaction/inconclusive-transaction.component';
+import { NqrComponent } from './nqr/nqr.component';
+import { NqrHistoryComponent } from './nqr/nqr-history/nqr-history.component';
 
 @NgModule({
   imports: [
@@ -148,6 +150,8 @@ import { InconclusiveTransactionComponent } from './Transaction/inconclusive-tra
     WalletLimitsComponent,
     DataPlansComponent,
     InconclusiveTransactionComponent,
+    NqrComponent,
+    NqrHistoryComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,

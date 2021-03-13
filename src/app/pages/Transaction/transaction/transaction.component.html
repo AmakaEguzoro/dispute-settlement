@@ -1,6 +1,6 @@
 <div class="container">
     <label>Transactions</label>
-    <div class="wallet"><b>Current Transacting Users: &nbsp; {{usersCount}}</b></div>
+    <div class="wallet col-lg-12"><b>Current Transacting Users: &nbsp; {{usersCount}}</b></div>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="card classic-admin-card">
@@ -13,7 +13,8 @@
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
                             {{ totalCount | number }}
-                            <br> Tnxs</p>
+                            <br> Tnxs
+                        </p>
                         <div *ngIf="isData == true" class="trans-amount">
                             &#x20A6;{{totalAmount / 100 | number}}</div>
                     </h4>
@@ -32,7 +33,8 @@
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
                             {{ pendingCount | number }}
-                            <br> Tnxs</p>
+                            <br> Tnxs
+                        </p>
                         <div *ngIf="isData == true" class="trans-amount">
                             &#x20A6;{{pendingAmount / 100 | number}}</div>
                     </h4>
@@ -51,7 +53,8 @@
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
                             {{ successCount | number }}
-                            <br> Tnxs</p>
+                            <br> Tnxs
+                        </p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
                             &#x20A6;{{successAmount / 100 | number}}</div>
                     </h4>
@@ -70,7 +73,8 @@
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
                             {{failedCount | number }}
-                            <br>Tnxs</p>
+                            <br>Tnxs
+                        </p>
                         <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
                             &#x20A6;{{failedAmount / 100 | number }}</div>
                     </h4>
@@ -195,7 +199,8 @@
                             <td>{{item.virtualTID}}</td>
                             <td>{{item.processor || "N/A"}}</td>
                             <td><a mdbTooltip="{{item.cardIssuer}}" placement="top">
-                                {{ (item.cardIssuer.length>6)? (item.cardIssuer | slice:0:6)+'...':(item.cardIssuer) || "N/A" }}</a>
+                                    {{ (item.cardIssuer.length>6)? (item.cardIssuer | slice:0:6)+'...':(item.cardIssuer)
+                                    || "N/A" }}</a>
                             </td>
                             <td [ngClass]="{
                                 'pos' : item.channel == 'POS',
