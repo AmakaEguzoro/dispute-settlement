@@ -78,8 +78,9 @@ import { DataPlansComponent } from "./settings/Data-config/data-plans/data-plans
 import { WalletLimitsComponent } from "./settings/Wallet-config/wallet-limits/wallet-limits.component";
 import { InconclusiveTransactionComponent } from './Transaction/inconclusive-transaction/inconclusive-transaction.component';
 import { NqrComponent } from './nqr/nqr.component';
+import { NqrBulkComponent } from './nqr/nqr-bulk/nqr-bulk.component';
 import { NqrHistoryComponent } from './nqr/nqr-history/nqr-history.component';
-
+import { AnQrcodeModule } from 'an-qrcode';
 @NgModule({
   imports: [
     CommonModule,
@@ -92,6 +93,7 @@ import { NqrHistoryComponent } from './nqr/nqr-history/nqr-history.component';
     PaginationModule.forRoot(),
     DirectiveModule,
     MDBBootstrapModulesPro.forRoot(),
+     AnQrcodeModule
   ],
   declarations: [
     // Itex Copmponent
@@ -151,7 +153,8 @@ import { NqrHistoryComponent } from './nqr/nqr-history/nqr-history.component';
     DataPlansComponent,
     InconclusiveTransactionComponent,
     NqrComponent,
-    NqrHistoryComponent,
+    NqrBulkComponent,
+    NqrHistoryComponent
   ],
   exports: [
     MDBBootstrapModulesPro,

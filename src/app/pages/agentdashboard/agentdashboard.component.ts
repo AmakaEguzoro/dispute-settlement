@@ -138,21 +138,6 @@ export class AgentdashboardComponent implements OnInit {
         this.total = Math.ceil(data.totalcount / this.limit);
         this.serial = 1 + (this.page - 1) * this.perPage;
 
-        // this.firstname = this.summaryData.firstname;
-        // this.lastname = this.summaryData.lastname;
-        // this.email = this.summaryData.email;
-        // this.mobile = this.summaryData.mobile;
-        // this.usertid = this.summaryData.userTID;
-        // this.createdat = this.summaryData.createdAt;
-        // this.updatedat = this.summaryData.updatedAt;
-        // this.rolename = this.summaryData[0].Roles[0].role_name;
-        // this.permission = this.summaryData.permission;
-        // this.validated = this.summaryData.agentStatus.validated;
-        // this.document = this.summaryData.uploadedDocument;
-        // this.updatedbio = this.summaryData.updatedBio;
-
-        console.log(this.summaryData, "summaryData");
-        console.log(this.total, "total");
       },
       (error) => {
         this.isData = false;

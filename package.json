@@ -19,7 +19,7 @@
   },
   "private": true,
   "dependencies": {
-     "@agm/core": "~1.0.0-beta.3",
+    "@agm/core": "~1.0.0-beta.3",
     "@angular/animations": "^8.1.1",
     "@angular/cdk": "^7.3.7",
     "@angular/common": "^6.0.0",
@@ -71,6 +71,7 @@
     "node-quickbooks": "^2.0.31",
     "node-sass": "^4.14.1",
     "rxjs": "^6.0.0",
+    "an-qrcode": "^1.0.7",
     "rxjs-compat": "^6.2.2",
     "screenfull": "3.3.x",
     "smoothscroll-polyfill": "0.3.x",

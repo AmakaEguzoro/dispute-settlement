@@ -54,7 +54,7 @@ password:any;
     });
   }
 detailsData:any
-  
+  //Nectar#000pp%
   reCreditTransaction() {
     if(!this.password){
       this.toastService.error("Please Input Valid Password")
@@ -71,15 +71,7 @@ password:this.password
       (data) => {
         this.loading = false;
         console.log(data,"data")
-        if(data.status==200){
-          this.toastService.success(data.message || "Successful")
-        }
-       else if(data.status==400){
-          this.toastService.error( "Please re-check Password ")
-        }
-        
-
-        
+          this.toastService.success(data.message || "Successful")  
       },
       (error) => {
         this.isData = false;
