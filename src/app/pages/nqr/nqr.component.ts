@@ -4,6 +4,7 @@ import {
  
   ToastService,
 } from "ng-uikit-pro-standard";
+
 @Component({
   selector: 'app-nqr',
   templateUrl: './nqr.component.html',
@@ -124,4 +125,5 @@ this.amountField=true
 }
     
   }
+   
 }

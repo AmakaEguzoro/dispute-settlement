@@ -36,6 +36,7 @@ import { WalletLimitsComponent } from "./pages/settings/Wallet-config/wallet-lim
 import { B2bConfigComponent } from "./pages/settings/B2B-CONFIGURATION/b2b-config/b2b-config.component";
 import { InconclusiveTransactionComponent } from "./pages/Transaction/inconclusive-transaction/inconclusive-transaction.component";
 import { NqrComponent } from './pages/nqr/nqr.component';
+import { NqrBulkComponent } from './pages/nqr/nqr-bulk/nqr-bulk.component';
 import { NqrHistoryComponent } from './pages/nqr/nqr-history/nqr-history.component';
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
@@ -123,6 +124,12 @@ const routes: Route[] = [
        {
         path: "nqr/onboard",
         component: NqrComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] },
+      },
+       {
+        path: "nqr/onboard-bulk",
+        component: NqrBulkComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5] },
       },
