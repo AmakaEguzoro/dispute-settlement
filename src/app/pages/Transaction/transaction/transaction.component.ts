@@ -351,7 +351,7 @@ export class TransactionComponent implements OnInit {
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
-  methods = ["Card", "Cash", "Mcash", "Cgate","NQR"];
+  methods = ["card", "cash", "mcash", "cgate","NQR"];
   stat = ["Approved", "Declined", "Pending", "successful|nocredit"];
   vendTypes = ["B2B", "ITEX"];
   types = ["Postpaid", "Prepaid", "Smartcard"];
@@ -453,7 +453,7 @@ export class TransactionComponent implements OnInit {
       terminalId: this.terminalId ? this.terminalId : "",
       walletId: this.walletId ? this.walletId : "",
       accountNumber: this.accountNumber ? this.accountNumber : "",
-      paymentMethod: this.paymentMethod ? this.paymentMethod.toLowerCase() : "",
+      paymentMethod: this.paymentMethod ? this.paymentMethod : "",
       cardRRN: this.cardRRN ? this.cardRRN : "",
       transactionReference: this.transactionReference
         ? this.transactionReference
