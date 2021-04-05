@@ -1,0 +1,19 @@
+<div class="modal-dialog-scrollable " id="modalReceipt" >
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-12">
+          <h6>View Receipt</h6>
+        </div>
+      </div>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+   <app-purchase-receipt  [receiptData]= receiptRowData > 
+  </app-purchase-receipt>
+    </div>
+    
+  </div>
+</div>
