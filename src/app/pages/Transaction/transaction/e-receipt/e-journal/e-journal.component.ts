@@ -7,13 +7,11 @@ import { BsModalRef } from 'ngx-bootstrap';
   styleUrls: ['./e-journal.component.scss']
 })
 export class EJournalComponent implements OnInit {
-  receiptRowData : any;
   @Input() data: any;
 
   constructor(public bsModal: BsModalRef,) { }
 
   ngOnInit() {
-this.receiptRowData = this.data;
   }
  
 

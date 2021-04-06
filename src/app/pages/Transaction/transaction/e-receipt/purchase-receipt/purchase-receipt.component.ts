@@ -7,7 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap';
   styleUrls: ['./purchase-receipt.component.scss']
 })
 export class PurchaseReceiptComponent implements OnInit {
-  @Input() receiptData: any[];
+  @Input() receiptData;
 
   constructor(public bsModalRef: BsModalRef,) { }
 
