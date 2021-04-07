@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { TransactionService } from 'app/_service/transaction.service';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { MDBBootstrapModulesPro } from "ng-uikit-pro-standard";
+import { EJournalComponent } from '../e-receipt/e-journal/e-journal.component';
 
 @Component({
   selector: 'app-model',
@@ -21,7 +22,8 @@ password:any;
    isLoading: boolean;
    loading: boolean;
 
-  constructor(public bsModalRef: BsModalRef, private transactionService: TransactionService, private toastService: ToastService) { }
+  constructor(public bsModalRef: BsModalRef,
+    private modalService: BsModalService, private transactionService: TransactionService, private toastService: ToastService) { }
 
   ngOnInit() {
    
@@ -30,6 +32,15 @@ password:any;
      this.username=localStorage.getItem('loggedUsername');
       console.log(this.role,this.user,this.username,"tim")
   }
+
+  openJournal(modal){
+    const initialState = {
+      data: modal,
+      ignoreBackdropClick: true,
+    };
+    this.bsModalRef = this.modalService.show(EJournalComponent, { initialState, });
+    
+      }
 
   requeryInitializedTransaction(reference){
     this.isData = true;

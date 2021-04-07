@@ -81,6 +81,8 @@ import { NqrComponent } from './nqr/nqr.component';
 import { NqrBulkComponent } from './nqr/nqr-bulk/nqr-bulk.component';
 import { NqrHistoryComponent } from './nqr/nqr-history/nqr-history.component';
 import { AnQrcodeModule } from 'an-qrcode';
+import { PurchaseReceiptComponent } from "./Transaction/transaction/e-receipt/purchase-receipt/purchase-receipt.component";
+import { EJournalComponent } from "./Transaction/transaction/e-receipt/e-journal/e-journal.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -154,7 +156,9 @@ import { AnQrcodeModule } from 'an-qrcode';
     InconclusiveTransactionComponent,
     NqrComponent,
     NqrBulkComponent,
-    NqrHistoryComponent
+    NqrHistoryComponent,
+    PurchaseReceiptComponent,
+    EJournalComponent
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -196,7 +200,8 @@ import { AnQrcodeModule } from 'an-qrcode';
     WalletLimitsComponent,
     DataPlansComponent,
     InconclusiveTransactionComponent,
-
+    PurchaseReceiptComponent,
+    EJournalComponent
   ],
   providers: [
     // itex

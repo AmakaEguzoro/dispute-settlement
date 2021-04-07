@@ -1,4 +1,4 @@
-<div class="modal-dialog-scrollable">
+<div class="modal-dialog-scrollable" id="model-show">
   <div class="modal-content">
     <div class="modal-header">
       <div class="row">
@@ -172,9 +172,11 @@
     <div class="modal-footer">
 
       <div>
-        <button type="button" class="btn btn-primary" mdbWavesEffect
+        <button type="button" mdbBtn class=" btn btn-primary print-receipt waves-light" aria-label="Close"
+          mdbWavesEffect (click)="openJournal(data)" mdbWavesEffect> Print Receipt</button>
+        <!-- <button type="button" class="btn btn-primary" mdbWavesEffect
           style="background-color: #fff !important;color:#4285F4 !important; border-style: 1px solid #4285f4 ;"
-          (click)="bsModalRef.hide()">Close</button>
+          (click)="bsModalRef.hide()">Close</button> -->
       </div>
 
     </div>
