@@ -1,3 +1,5 @@
+import { NqrMerchantOnboardComponent } from './pages/nqr/nqr-merchant-onboard/nqr-merchant-onboard.component';
+import { NqrMerchantHistoryComponent } from './pages/nqr/nqr-merchant-history/nqr-merchant-history.component';
 import { TransactionsComponent } from "./pages/sanef/transactions/transactions.component";
 import { AccountComponent } from "./pages/sanef/account/account.component";
 import { AdminDashboardComponent } from "./pages/admin/admin-dashboard/admin-dashboard.component";
@@ -38,6 +40,7 @@ import { InconclusiveTransactionComponent } from "./pages/Transaction/inconclusi
 import { NqrComponent } from './pages/nqr/nqr.component';
 import { NqrBulkComponent } from './pages/nqr/nqr-bulk/nqr-bulk.component';
 import { NqrHistoryComponent } from './pages/nqr/nqr-history/nqr-history.component';
+
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
   { path: "not-found", component: NotFoundComponent },
@@ -136,6 +139,18 @@ const routes: Route[] = [
        {
         path: "nqr/onboard-history",
         component: NqrHistoryComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] },
+      },
+      {
+        path: "nqr/merchant-onboard-history",
+        component: NqrMerchantHistoryComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5] },
+      },
+       {
+        path: "nqr/merchant-onboard",
+        component: NqrMerchantOnboardComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5] },
       },

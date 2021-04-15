@@ -1,0 +1,156 @@
+// *{
+// 	padding: 0;
+// 	margin: 0;
+// 	border: 0;
+// }
+
+// body, html {
+// 	color: #373C40;
+// 	font-family: Verdana, Arial, Helvetica, sans-serif;
+// 	height: 100%;
+// 	background-color: #f0f0f0;
+// 	margin: 10px;
+// }
+
+// body {
+// 	font-size: 70%;
+// }
+
+label {
+  padding: 7px 0 7px 0;
+  font-weight: 500;
+  font-size: 10pt;
+}
+
+h1 {
+  font-weight: 200;
+  color: #888888;
+  font-size: 17pt;
+  text-align: center;
+}
+
+form.register {
+  margin: 20px auto 0px auto;
+  background-color: #fff;
+  padding: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+}
+
+.form-group {
+  font-size: 8pt;
+  margin: 0;
+  color: gray;
+  padding: 7px 0 7px 0;
+  font-weight: 500;
+  font-size: 10pt;
+}
+
+form.register legend {
+  color: #abda0f;
+  padding: 2px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  font-weight: 100;
+  margin-bottom: 5px;
+}
+
+form.register input {
+  border: 1px solid #e1e1e1;
+}
+
+form.register input[type="radio"] {
+  margin-left: 7px;
+}
+
+form.register select {
+  border: 1px solid #e1e1e1;
+  width: 130px;
+  margin-bottom: 3px;
+  color: #505050;
+  margin-right: 5px;
+}
+
+form.register select.date {
+  width: 40px;
+}
+
+input:focus,
+select:focus {
+  background-color: #efffe0;
+}
+
+div.agreement {
+  margin-left: 15px;
+}
+div.agreement label {
+  text-align: left;
+  margin-top: 3px;
+}
+
+#registerButton {
+  padding: 8px 10px 8px;
+  color: #fff;
+  text-decoration: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+
+  // font-size: 18px;
+}
+
+#updatedProfile {
+  display: none;
+  margin: 20px auto 0px auto;
+  background-color: #fff;
+  padding: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+}
+
+#updatedProfile h2 {
+  color: #abda0f;
+  padding: 2px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  font-weight: 100;
+  margin-bottom: 5px;
+}
+
+#updatedProfile h3 {
+  color: #abda0f;
+  padding: 2px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 12px;
+  font-weight: 100;
+  margin-bottom: 5px;
+}
+.custom-select {
+  border: 1px solid #022e64 !important;
+  font-size: 12px !important;
+
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='black'><polygon points='0,0 100,0 50,50'/></svg>")
+    no-repeat;
+  background-size: 8px;
+  background-position: calc(100% - 15px) center;
+  background-repeat: no-repeat;
+  background-color: #efefef;
+}
+.scroll-to-top {
+  position: fixed;
+  bottom: 45px;
+  right: 45px;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+.show-scrollTop {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+// end
