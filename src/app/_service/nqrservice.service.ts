@@ -10,11 +10,11 @@ export class NqrserviceService {
 
   constructor(private httpClient: HttpClient) {}
   nqrOnboardUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/onboard/create";
-    nqrHistoryUrl = "http://197.253.19.76:8018/api/v1/vas/nqr/agent/list";
+    nqrHistoryUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/agent/list";
 nqrVerifyUrl ="http://197.253.19.76:8019/api/v1/vas/nqr/onboard/validate/"
-bulknqrOnboardUrl = "http://197.253.19.76:8018/api/v1/vas/nqr/onboard/create/bulk";
-merchantnqrOnboardUrl = "http://197.253.19.76:8018/api/v1/vas/nqr/ptsp/onboard";
-merchantnqrHistoryUrl = "http://197.253.19.76:8018/api/v1/vas/nqr/ptsp/list";
+bulknqrOnboardUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/onboard/create/bulk";
+merchantnqrOnboardUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/ptsp/onboard";
+merchantnqrHistoryUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/ptsp/list";
 
   VerifyAccount(id){
      return this.httpClient.get(`${this.nqrVerifyUrl}${id}`);
