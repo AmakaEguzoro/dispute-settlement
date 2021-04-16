@@ -26,14 +26,16 @@ filelist:any
 fileArray:any
 fileArr:any
 show:boolean=false
-amountField:boolean=false
+merchantField:boolean=false
 fixed:any;
-amount:any;
+merchantNo:any;
 loading:boolean=false
+errors: any = {};
+  error: boolean=true;
 options = [
     
-   {label:"No", value:"no"} ,
-    {label:"Yes",value:"yes"}
+   {label:"ITEX", value:""} ,
+    {label:"PTSP",value:"yes"}
    ];
     headElements = [
     "S/N",
@@ -48,24 +50,43 @@ options = [
  showAmount($event){
 this.fixed=$event.target.value
 if($event.target.value=='yes'){
-this.amountField=true
+this.merchantField=true
 }else{
-  this.amountField=false
+  this.merchantField=false
 }
     
   }
 
   addfile(event)     
   {    
-  this.filess= event.target.files[0];  
-  console.log(this.filess,"file")  
+  this.filess= event.target.files[0];
+  console.log(this.filess)
+  if(this.filess){
+    this.show=true;
+  }else{
+    this.show=false
+  }
+ 
  
 }
 displayfiles(){
+  this.error = false;
+    this.errors = {
+
+    
+    merchantNo:!this.merchantNo? "Merchant No is required":"",
+    
+    };
+   
+     if(this.merchantField){
+       if(!this.merchantNo) this.error=true;
+     };
+
   if(!this.filess){
     this.toast.error("Please Insert File")
   }
 
+  if(!this.error){
  let fileReader = new FileReader();    
   fileReader.readAsArrayBuffer(this.filess);     
   fileReader.onload = (e) => {    
@@ -78,13 +99,17 @@ displayfiles(){
       var first_sheet_name = workbook.SheetNames[0];    
       var worksheet = workbook.Sheets[first_sheet_name];      
         this.fileArr = XLSX.utils.sheet_to_json(worksheet,{raw:true}); 
-     this.fileArray=this.toStrings(this.fileArr)    
-            
+     this.fileArray=this.toStrings(this.fileArr) 
+     console.log(this.fileArr,"filearray")           
     
-  }    
+  }} else{
+this.toast.error("Please Input required value")
+  }  
+
 }
 clear(){
   this.fileArray=""
+  this.show=false
 }
 
 toStrings(o) {
@@ -99,8 +124,10 @@ toStrings(o) {
 
 
 confirm(){
+
   const obj={
- agents:this.fileArray
+ agents:this.fileArray,
+ merchantNo:this.merchantNo
   }
   this.loading = true;
     this.nqrService.bulkcreateSubMerchant(obj).subscribe(
@@ -109,10 +136,16 @@ confirm(){
        this.toast.success(data.message || "Agents Created")
     
     this.fileArray=""
+    this.show=false
+    this.merchantNo=""
+    this.merchantField=false
 
       },
       (error) => {
-     
+      this.fileArray=""
+    this.show=false
+    this.merchantNo=""
+    this.merchantField=false
         this.loading = false;
         this.toast.error(error.error.data[0] || "Cant Create Agent")
         console.log("cant register agent", error);
