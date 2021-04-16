@@ -83,6 +83,7 @@ import { NqrHistoryComponent } from './nqr/nqr-history/nqr-history.component';
 import { AnQrcodeModule } from 'an-qrcode';
 import { PurchaseReceiptComponent } from "./Transaction/transaction/e-receipt/purchase-receipt/purchase-receipt.component";
 import { EJournalComponent } from "./Transaction/transaction/e-receipt/e-journal/e-journal.component";
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -158,7 +159,8 @@ import { EJournalComponent } from "./Transaction/transaction/e-receipt/e-journal
     NqrBulkComponent,
     NqrHistoryComponent,
     PurchaseReceiptComponent,
-    EJournalComponent
+    EJournalComponent,
+    DashboardComponent
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -201,7 +203,9 @@ import { EJournalComponent } from "./Transaction/transaction/e-receipt/e-journal
     DataPlansComponent,
     InconclusiveTransactionComponent,
     PurchaseReceiptComponent,
-    EJournalComponent
+    EJournalComponent,
+    DashboardComponent
+
   ],
   providers: [
     // itex

@@ -38,6 +38,7 @@ import { InconclusiveTransactionComponent } from "./pages/Transaction/inconclusi
 import { NqrComponent } from './pages/nqr/nqr.component';
 import { NqrBulkComponent } from './pages/nqr/nqr-bulk/nqr-bulk.component';
 import { NqrHistoryComponent } from './pages/nqr/nqr-history/nqr-history.component';
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
   { path: "not-found", component: NotFoundComponent },
@@ -52,7 +53,7 @@ const routes: Route[] = [
 
       {
         path: "admin-dashboard/day",
-        component: DayCardComponent,
+        component: DashboardComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5] },
       },
