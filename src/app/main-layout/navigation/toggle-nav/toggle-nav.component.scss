@@ -24,13 +24,13 @@
   // line-height: 14px;
   }
     
-    nav .main-menu ul li:active>a{
-      background-color: red !important;
-color: darkred;
-    }
+//     nav .main-menu ul li:active>a{
+//       background-color: red !important;
+// color: darkred;
+//     }
     
     .main-menu:hover,nav.main-menu.expanded {
-    width:121px;
+    width:145px;
     overflow:visible;
     background: #E2EBFF;
     }
@@ -38,7 +38,7 @@ color: darkred;
     .main-menu {
     background:#FFFFFF;
     border-right:1px solid #F7F7F7;
-    position:absolute;
+    position:fixed;
     top:0;
     bottom:0;
     height:100%;
@@ -49,6 +49,7 @@ color: darkred;
     transition:width .05s linear;
     -webkit-transform:translateZ(0) scale(1,1);
     z-index:1000;
+    margin-top: 2rem;
     }
     
     .main-menu>ul {
