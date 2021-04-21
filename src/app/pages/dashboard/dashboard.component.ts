@@ -72,6 +72,11 @@ console.log(this.elements,'ytre')
           //     // mode: 'index',
           //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
           // },
+        //   layout: {
+        //     padding : {
+        //       left: 8
+        //     }
+        // },
           tooltips: {
             callbacks: {
               label: function (tooltipItem, data) {
@@ -84,13 +89,33 @@ console.log(this.elements,'ytre')
           legend: {
             display: true,
             position: 'bottom',
-            // maxHeight: 44px
-            // textAlign: 'left',
+            labels: {
+              fontColor: '#808080',
+              fontSize: 8,
+              boxWidth: 5,
+            }
+           
           },
           scales: {
             xAxes: [{
               display: true,
               stacked: true,
+              ticks: {
+                
+                callback: function (input: any, args?: any) {
+                  var exp, rounded,
+                    suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+                  if (Number.isNaN(input)) {
+                    return null;
+                  }
+                  if (input < 1000) {
+                    return input;
+                  }
+                  exp = Math.floor(Math.log(input) / Math.log(1000));
+                  return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+                }
+               
+              },
               gridLines: {
                 display: false
               },
@@ -99,20 +124,7 @@ console.log(this.elements,'ytre')
               display: true,
               barThickness: 10,
               stacked: true,
-              // ticks: {
-              //   callback: function (input: any, args?: any) {
-              //     var exp, rounded,
-              //       suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
-              //     if (Number.isNaN(input)) {
-              //       return null;
-              //     }
-              //     if (input < 1000) {
-              //       return input;
-              //     }
-              //     exp = Math.floor(Math.log(input) / Math.log(1000));
-              //     return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
-              //   }
-              // },
+              
               gridLines: {
                 display: false,
               },

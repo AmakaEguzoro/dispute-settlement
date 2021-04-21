@@ -9,6 +9,7 @@ import { HasRoleDirective } from './directives/has-role.directive';
 import { FooterComponent } from '../footer/footer.component';
 import { DirectiveModule } from 'app/directive.module';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { ToggleNavComponent } from './toggle-nav/toggle-nav.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     NavbarComponent,
     FooterComponent,
     SideNavComponent,
+    ToggleNavComponent,
     // HasRoleDirective
   ],
   exports: [
@@ -30,6 +32,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     FooterComponent,
     NavbarComponent,
     SideNavComponent,
+    ToggleNavComponent,
 
     // HasRoleDirective
   ],

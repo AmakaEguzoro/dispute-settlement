@@ -1,9 +1,11 @@
 .card{
-    box-shadow: 0px 3px 20px #0000001F;
-    border: 0.30000001192092896px solid #5478A35F;
+    border: 0.30000001192092896px solid #EDE9F4;
 border-radius: 8px;
 background: #FFFFFF 0% 0% no-repeat padding-box;
 opacity: 1;
+}
+.dash-card{
+    box-shadow: 0px 3px 20px #0000001F !important;
 }
 .day-label{
     // text-align: left;

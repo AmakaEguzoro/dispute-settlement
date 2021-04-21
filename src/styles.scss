@@ -40,6 +40,62 @@ body {
   position: absolute;
   left: 41%;
 }
+.card{
+  box-shadow: none !important;
+}
+.pills-indigo{
+  float: right !important;
+  border: 1px solid #AFC0D5 !important;
+  border-radius: 8px !important;
+  width: 244px;
+  height: 42px;
+}
+.pills-indigo .nav-item.active{
+  background: #E2EBFF  !important;
+  color: #183879 !important;
+
+}
+.tab-pil .nav-link.active {
+  // background: linear-gradient(0deg, #2d9cdb, #2d9cdb), #ffffff !important;
+  // // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+  // border-radius: 5px !important;
+  // width: 7rem !important;
+  // color: #ffff !important;
+  // padding-left: 2rem;
+
+  background: #E2EBFF !important;
+  // width: 5rem !important;
+  // color: #183879 !important;
+}
+.tab-pil a.waves-light {
+  background-image: url('../src/assets/Line.svg');
+  background-position: -0.7px 10px;
+  height: 32px;
+  background-repeat: no-repeat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: 0.05em;
+  color: #9F9F9F;
+  margin-right: 8px;
+}
+.navbar {
+  border-bottom: 1px solid #ECECEC !important;
+  height: 36px !important;
+  box-shadow: none !important;
+  color: #183879;
+  opacity: 1;
+  letter-spacing: 0px;
+  font-size: 12px;
+}
+.breadcrumbs{
+  padding-left: 50px !important;
+    width: max-content !important;
+    color: #183879;
+}
+// end new view
+
 .sn-bg-1 {
   background-image: none !important;
   background-color: white !important;
@@ -70,24 +126,8 @@ md-form input[type="text"] {
 //   Login page end
 
 // Tabset Begin
-.tab-pil .nav-link.active {
-  background: linear-gradient(0deg, #2d9cdb, #2d9cdb), #ffffff !important;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
-  border-radius: 5px !important;
-  width: 7rem !important;
-  color: #ffff !important;
-  padding-left: 2rem;
-}
-.tab-pil a.waves-light {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 0.05em;
-  color: #4f4f4f;
-  margin-left: 1rem;
-  margin-right: 6rem;
-}
+
+
 
 /* 
   ##Device = Low Resolution Tablets, Mobiles (Landscape)
@@ -97,7 +137,7 @@ md-form input[type="text"] {
 @media (min-width: 481px) and (max-width: 767px) {
   .tab-pil .nav-link.active {
     background: linear-gradient(0deg, #2d9cdb, #2d9cdb), #ffffff !important;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+    // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
     border-radius: 5px !important;
     width: 7rem !important;
     color: #ffff !important;
@@ -125,7 +165,7 @@ md-form input[type="text"] {
 @media (min-width: 320px) and (max-width: 480px) {
   .tab-pil .nav-link.active {
     background: linear-gradient(0deg, #2d9cdb, #2d9cdb), #ffffff !important;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+    // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
     border-radius: 5px !important;
     width: 7rem !important;
     color: #ffff !important;
@@ -250,7 +290,7 @@ md-form input[type="text"] {
   margin-bottom: 0;
   padding: 0.9rem;
   border: 1px solid #e0e0e0;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
+  // box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
 }
 .classic-admin-card .card-body p {
@@ -297,9 +337,9 @@ md-form input[type="text"] {
 }
 
 .cascading-admin-card .admin-up .fa {
-  -webkit-box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2),
-    0 2px 13px 0 rgba(0, 0, 0, 0.19);
-  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
+  // -webkit-box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2),
+  //   0 2px 13px 0 rgba(0, 0, 0, 0.19);
+  // box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
 }
 
 // Summary End

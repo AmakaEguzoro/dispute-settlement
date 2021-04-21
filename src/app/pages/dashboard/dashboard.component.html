@@ -1,13 +1,28 @@
 <div class="container">
-  <!-- <mdb-tabs style="float: right;">
+  <!-- <mdb-tabs >
     <mdb-tab title="Tab 1">Day</mdb-tab>
     <mdb-tab title="Tab 2">Week</mdb-tab>
     <mdb-tab title="Tab 3">Month</mdb-tab>
   </mdb-tabs> -->
+  <mdb-tabset class="tab-pil" [buttonClass]="'pills-indigo'" [contentClass]="'mdb-tabse'">
+
+    <mdb-tab heading="Day">
+    </mdb-tab>
+  
+  
+    <mdb-tab heading="Week"  [routerLink]="['/admin-dashboard/month']" >
+  
+    </mdb-tab>
+  
+  
+    <mdb-tab heading="Month">
+  
+    </mdb-tab>
+  </mdb-tabset>
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 <label class="day-label"> Today</label> &nbsp; <label class="date-label"> April 18 2021</label>
-      <div class="card">
+      <div class="card dash-card">
         <div class="card-body">
           <div style="text-align: center;">
             <div class="day-label"> Total Transaction</div>
@@ -73,10 +88,11 @@ Total Count: 642
   </div>
   <div class="col-4" style="text-align: center">
      <!-- <i *ngIf="percentChange < 0">
-      <div class="previous-label" style="color: #EC5757;">
+      <div class="previous-label" style="color: #909090;">
         Dropped By
             </div>
-            <i class="previous-date">
+            <i class="previous-date" style="color: #EC5757">
+                 <img src="../assets/drop-icon.svg" style="height: 10px;">
               {{ percentChange  | percent }}  </i>
      </i>
      <i *ngIf="percentChange < 0">
@@ -84,12 +100,15 @@ Total Count: 642
         Increased By
             </div>
              <i class="previous-date" style="color: #229654;">
+                  <img src="../assets/rise-icon.svg" style="height: 10px;">
               {{ percentChange  | percent }} </i>
      </i> -->
     <div class="previous-label" style="color: #909090;">
 Dropped By
     </div>
-    <i class="previous-date">44% </i>
+    <i class="previous-date" style="color: #EC5757;">
+      <img src="../../../assets/drop-icon.svg" style="height: 10px;">
+      44% </i>
   </div>
 </div>
         </div>
