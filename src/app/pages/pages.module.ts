@@ -84,6 +84,9 @@ import { AnQrcodeModule } from 'an-qrcode';
 import { PurchaseReceiptComponent } from "./Transaction/transaction/e-receipt/purchase-receipt/purchase-receipt.component";
 import { EJournalComponent } from "./Transaction/transaction/e-receipt/e-journal/e-journal.component";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DayDashboardComponent } from './dashboard/day-dashboard/day-dashboard.component';
+import { WeekDashboardComponent } from './dashboard/week-dashboard/week-dashboard.component';
+import { MonthDashboardComponent } from './dashboard/month-dashboard/month-dashboard.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -160,7 +163,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NqrHistoryComponent,
     PurchaseReceiptComponent,
     EJournalComponent,
-    DashboardComponent
+    DashboardComponent,
+    DayDashboardComponent,
+    WeekDashboardComponent,
+    MonthDashboardComponent
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -204,7 +210,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     InconclusiveTransactionComponent,
     PurchaseReceiptComponent,
     EJournalComponent,
-    DashboardComponent
+    DashboardComponent,
+    DayDashboardComponent,
+     WeekDashboardComponent,
+    MonthDashboardComponent
 
   ],
   providers: [
