@@ -6,6 +6,7 @@ import { Chart } from 'chart.js';
 import { PaymentMethodService } from 'app/_service/payment-method.service';
 import { ChannelService } from 'app/_service/channels.service';
 import { formatDate } from '@angular/common';
+import { ProductsService } from 'app/_service/products.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { formatDate } from '@angular/common';
 export class DayDashboardComponent implements OnInit, OnDestroy {
 
   constructor(private paymentMethodService: PaymentMethodService, private summaryService: SummaryService,
-    private channelService: ChannelService) { }
+    private channelService: ChannelService, private productsService: ProductsService) { }
 
 
   loading = false;
@@ -61,14 +62,17 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
 
   totalCountPrevious: any;
 
-  outputPayment: any;
-
-
   // channels
   outputChannel: any;
-  elements: any; channelName: any;
-  channelSucess: any; channelFailed: any; channeltotal: any;
+  channelElements: any; 
 
+  // products
+  outputProduct: any;
+  productElements: any; 
+
+  // payment
+  outputPayment: any;
+  paymentElements: any; 
 
   chartOptions: any; chartColors: Array<any>;
   chartType: string; chartDatasets: Array<any>;
@@ -80,7 +84,8 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
     this.yesterdayDate = preDate.setDate(preDate.getDate() - 1);
     await this.getTodayTransaction();
     await this.getTodayChannel();
-    // await this.getTodayPayment();
+    await this.getTodayPayment();
+    await this.getTodayProduct();
     this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
       this.getTodayTransaction();
     })
@@ -127,7 +132,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
         this.previousPercentSuccess = this.responsePrevious.data.successfulPercent;
 
         this.percentChange = ((this.totalAmountCurrent - this.previousTotal) / this.previousTotal);
-        console.log(this.percentChange);
+        // console.log(this.percentChange);
 
 
       }, error => {
@@ -147,110 +152,398 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
         this.outputChannel = this.outputChannel.sort((a, b) => (a.total > b.total) ? -1 : 1);
         //splice the array and pick the top five
         let sortArray = this.outputChannel;
-        this.elements = sortArray.splice(0, 5);
-        for (let entry of this.elements) {
-          this.channelName = entry.name
-          console.log(entry.name); // 1, "string", false
-        }
-        for (let entrysuccess of this.elements) {
-          this.channelSucess = entrysuccess.success
-        }
-        for (let entryFailed of this.elements) {
-          this.channelFailed = entryFailed.failed
-        }
-        for (let entryTotal of this.elements) {
-          this.channeltotal = entryTotal.total
-        }
+        this.channelElements = sortArray.splice(0, 5);
+        let firstChannel = this.channelElements[0];
+        let channelName1 = firstChannel.name;
+        let channelSucess1 = firstChannel.success;
+        let channelFailed1 = firstChannel.failed;
+        let channelTotal1 = firstChannel.total;
+
+        let secondChannel = this.channelElements[1];
+        let channelName2 = secondChannel.name;
+        let channelSucess2 = secondChannel.success;
+        let channelFailed2 = secondChannel.failed;
+        let channelTotal2 = secondChannel.total;
+
+        let thirdChannel = this.channelElements[2];
+        let channelName3 = thirdChannel.name;
+        let channelSucess3 = thirdChannel.success;
+        let channelFailed3 = thirdChannel.failed;
+        let channelTotal3 = thirdChannel.total;
+
+        let fourthChannel = this.channelElements[3];
+        let channelName4 = fourthChannel.name;
+        let channelSucess4 = fourthChannel.success;
+        let channelFailed4 = fourthChannel.failed;
+        let channelTotal4 = fourthChannel.total;
+
+        let fiveChannel = this.channelElements[4];
+        let channelName5 = fiveChannel.name;
+        let channelSucess5 = fiveChannel.success;
+        let channelFailed5 = fiveChannel.failed;
+        let channelTotal5 = fiveChannel.total;
+
         this.chart = new Chart('cans', {
-                  type: 'horizontalBar',
-                  data: {
-                    // labels: this.channelName,
-                    datasets: [
-                      {
-                        label: "Successful Transaction",
-                        backgroundColor: "#3986D9",
-                        borderWidth: 0,
-                       data: this.channelSucess
-                      }, {
-                        label: "Failed Transaction",
-                        backgroundColor: "#093664",
-                        borderWidth: 0,
-                       data: this.channelFailed
-                      },
-                      {
-                        label: "Total Transaction",
-                        backgroundColor: "#B4B4B4",
-                        borderWidth: 0,
-                        data: this.channeltotal
-                      },
-                    ],
-                  },
-                  options: {
-                    //   tooltips: {
-                    //     // mode: 'index',
-                    //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
-                    // },
-                  //   layout: {
-                  //     padding : {
-                  //       left: 8
-                  //     }
-                  // },
-                    tooltips: {
-                      callbacks: {
-                        label: function (tooltipItem, data) {
-                          var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
-                          return parseInt(tooltipValue).toLocaleString();
-                        }
-                      }
-                    },
-                    responsive: true,
-                    legend: {
-                      display: true,
-                      position: 'bottom',
-                      labels: {
-                        fontColor: '#808080',
-                        fontSize: 8,
-                        boxWidth: 5,
-                      }
-                     
-                    },
-                    scales: {
-                      xAxes: [{
-                        display: true,
-                        stacked: true,
-                        ticks: {
-                          
-                          callback: function (input: any, args?: any) {
-                            var exp, rounded,
-                              suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
-                            if (Number.isNaN(input)) {
-                              return null;
-                            }
-                            if (input < 1000) {
-                              return input;
-                            }
-                            exp = Math.floor(Math.log(input) / Math.log(1000));
-                            return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
-                          }
-                         
-                        },
-                        gridLines: {
-                          display: false
-                        },
-                      }],
-                      yAxes: [{
-                        display: true,
-                        barThickness: 10,
-                        stacked: true,
-                        
-                        gridLines: {
-                          display: false,
-                        },
-                       
-                      }]
+
+          type: 'horizontalBar',
+          data: {
+            labels: [channelName1, channelName2, channelName3, channelName4, channelName5],
+            datasets: [
+              {
+                label: "Successful Transaction",
+                backgroundColor: "#3986D9",
+                borderWidth: 0,
+                data: [channelSucess1, channelSucess2, channelSucess3, channelSucess4, channelSucess5],
+              }, {
+                label: "Failed Transaction",
+                backgroundColor: "#093664",
+                borderWidth: 0,
+                data: [channelFailed1, channelFailed2, channelFailed3, channelFailed4, channelFailed5],
+              },
+              {
+                label: "Total Transaction",
+                backgroundColor: "#B4B4B4",
+                borderWidth: 0,
+                data: [channelTotal1, channelTotal2, channelTotal3, channelTotal4, channelTotal5],
+              },
+            ],
+          },
+          options: {
+            //   tooltips: {
+            //     // mode: 'index',
+            //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
+            // },
+            //   layout: {
+            //     padding : {
+            //       left: 8
+            //     }
+            // },
+            tooltips: {
+              callbacks: {
+                label: function (tooltipItem, data) {
+                  var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
+                  return parseInt(tooltipValue).toLocaleString();
+                }
+              }
+            },
+            responsive: true,
+            legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                fontColor: '#808080',
+                fontSize: 8,
+                boxWidth: 5,
+              }
+
+            },
+            scales: {
+              xAxes: [{
+                display: true,
+                stacked: true,
+                ticks: {
+
+                  callback: function (input: any, args?: any) {
+                    var exp, rounded,
+                      suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+                    if (Number.isNaN(input)) {
+                      return null;
                     }
+                    if (input < 1000) {
+                      return input;
+                    }
+                    exp = Math.floor(Math.log(input) / Math.log(1000));
+                    return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
                   }
-                });
+
+                },
+                gridLines: {
+                  display: false
+                },
+              }],
+              yAxes: [{
+                display: true,
+                barThickness: 10,
+                stacked: true,
+
+                gridLines: {
+                  display: false,
+                },
+
+              }]
+            }
+          }
+        });
+
+
+
+      }, error => {
+        this.isData = false;
+        this.loading = false;
+        console.log('cant get today response', error);
+      });
+  }
+
+  getTodayPayment() {
+    this.isData = true;
+    this.loading = true,
+    this.paymentMethodService.getPaymentMethod('day').subscribe(responseData => {
+        this.loading = false;
+        this.outputPayment = responseData.data.response;
+
+        this.outputPayment = this.outputPayment.sort((a, b) => (a.total > b.total) ? -1 : 1);
+        //splice the array and pick the top five
+        let sortArray = this.outputPayment;
+        this.paymentElements = sortArray.splice(0, 5);
+
+        let firstPayment = this.paymentElements[0];
+        let paymentName1 = firstPayment.name;
+        let paymentSucess1 = firstPayment.success;
+        let paymentFailed1 = firstPayment.failed;
+        let paymentTotal1 = firstPayment.total;
+
+        let secondPayment = this.paymentElements[1];
+        let paymentName2 = secondPayment.name;
+        let paymentSucess2 = secondPayment.success;
+        let paymentFailed2 = secondPayment.failed;
+        let paymentTotal2 = secondPayment.total;
+
+        this.chart = new Chart('ca', {
+
+          type: 'horizontalBar',
+          data: {
+            labels: [paymentName1, paymentName2,],
+            datasets: [
+              {
+                label: "Successful Transaction",
+                backgroundColor: "#3986D9",
+                borderWidth: 0,
+                data: [paymentSucess1, paymentSucess2,],
+              }, {
+                label: "Failed Transaction",
+                backgroundColor: "#093664",
+                borderWidth: 0,
+                data: [paymentFailed1, paymentFailed2,],
+              },
+              {
+                label: "Total Transaction",
+                backgroundColor: "#B4B4B4",
+                borderWidth: 0,
+                data: [paymentTotal1, paymentTotal2,],
+              },
+            ],
+          },
+          options: {
+            //   tooltips: {
+            //     // mode: 'index',
+            //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
+            // },
+            //   layout: {
+            //     padding : {
+            //       left: 8
+            //     }
+            // },
+            tooltips: {
+              callbacks: {
+                label: function (tooltipItem, data) {
+                  var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
+                  return parseInt(tooltipValue).toLocaleString();
+                }
+              }
+            },
+            responsive: true,
+            legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                fontColor: '#808080',
+                fontSize: 8,
+                boxWidth: 5,
+              }
+
+            },
+            scales: {
+              xAxes: [{
+                display: true,
+                stacked: true,
+                ticks: {
+
+                  callback: function (input: any, args?: any) {
+                    var exp, rounded,
+                      suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+                    if (Number.isNaN(input)) {
+                      return null;
+                    }
+                    if (input < 1000) {
+                      return input;
+                    }
+                    exp = Math.floor(Math.log(input) / Math.log(1000));
+                    return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+                  }
+
+                },
+                gridLines: {
+                  display: false
+                },
+              }],
+              yAxes: [{
+                display: true,
+                barThickness: 10,
+                stacked: true,
+
+                gridLines: {
+                  display: false,
+                },
+
+              }]
+            }
+          }
+        });
+
+
+
+      }, error => {
+        this.isData = false;
+        this.loading = false;
+        console.log('cant get today response', error);
+      });
+  }
+
+  getTodayProduct() {
+    this.isData = true;
+    this.loading = true,
+    this.loading = true, this.productsService.getProducts('day').subscribe(resposeData => {
+      this.loading = false;
+
+      // console.log('This is my Response List', resposeData);
+      this.outputProduct = resposeData.data.response;
+      this.outputProduct = this.outputProduct.sort((a, b) => (a.total > b.total) ? -1 : 1);
+
+      //splice the array and pick the top five
+      let sortArray = this.outputProduct;
+      this.productElements = sortArray.splice(0, 5);
+
+        let firstProduct = this.productElements[0];
+        let productName1 = firstProduct.name;
+        let productSucess1 = firstProduct.success;
+        let productFailed1 = firstProduct.failed;
+        let productTotal1 = firstProduct.total;
+
+        let secondProduct = this.productElements[1];
+        let productName2 = secondProduct.name;
+        let productSucess2 = secondProduct.success;
+        let productFailed2 = secondProduct.failed;
+        let productTotal2 = secondProduct.total;
+
+        let thirdProduct = this.productElements[2];
+        let productName3 = thirdProduct.name;
+        let productSucess3 = thirdProduct.success;
+        let productFailed3 = thirdProduct.failed;
+        let productTotal3 = thirdProduct.total;
+
+        let fourthProduct = this.productElements[3];
+        let productName4 = fourthProduct.name;
+        let productSucess4 = fourthProduct.success;
+        let productFailed4 = fourthProduct.failed;
+        let productTotal4 = fourthProduct.total;
+
+        let fiveProduct = this.productElements[4];
+        let productName5 = fiveProduct.name;
+        let productSucess5 = fiveProduct.success;
+        let productFailed5 = fiveProduct.failed;
+        let productTotal5 = fiveProduct.total;
+
+        this.chart = new Chart('ca', {
+
+          type: 'horizontalBar',
+          data: {
+            labels: [productName1, productName2, productName3, productName4, productName5],
+            datasets: [
+              {
+                label: "Successful Transaction",
+                backgroundColor: "#3986D9",
+                borderWidth: 0,
+                data: [productSucess1, productSucess2, productSucess3, productSucess4, productSucess5],
+              }, {
+                label: "Failed Transaction",
+                backgroundColor: "#093664",
+                borderWidth: 0,
+                data: [productFailed1, productFailed2, productFailed3, productFailed4, productFailed5],
+              },
+              {
+                label: "Total Transaction",
+                backgroundColor: "#B4B4B4",
+                borderWidth: 0,
+                data: [productTotal1, productTotal2, productTotal3, productTotal4, productTotal5],
+              },
+            ],
+          },
+          options: {
+            //   tooltips: {
+            //     // mode: 'index',
+            //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
+            // },
+            //   layout: {
+            //     padding : {
+            //       left: 8
+            //     }
+            // },
+            tooltips: {
+              callbacks: {
+                label: function (tooltipItem, data) {
+                  var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
+                  return parseInt(tooltipValue).toLocaleString();
+                }
+              }
+            },
+            responsive: true,
+            legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                fontColor: '#808080',
+                fontSize: 8,
+                boxWidth: 5,
+              }
+
+            },
+            scales: {
+              xAxes: [{
+                display: true,
+                stacked: true,
+                ticks: {
+
+                  callback: function (input: any, args?: any) {
+                    var exp, rounded,
+                      suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+                    if (Number.isNaN(input)) {
+                      return null;
+                    }
+                    if (input < 1000) {
+                      return input;
+                    }
+                    exp = Math.floor(Math.log(input) / Math.log(1000));
+                    return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+                  }
+
+                },
+                gridLines: {
+                  display: false
+                },
+              }],
+              yAxes: [{
+                display: true,
+                barThickness: 10,
+                stacked: true,
+
+                gridLines: {
+                  display: false,
+                },
+
+              }]
+            }
+          }
+        });
 
 
 
