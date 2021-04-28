@@ -308,7 +308,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
         let paymentFailed2 = secondPayment.failed;
         let paymentTotal2 = secondPayment.total;
 
-        this.chart = new Chart('ca', {
+        this.chart = new Chart('can', {
 
           type: 'horizontalBar',
           data: {
