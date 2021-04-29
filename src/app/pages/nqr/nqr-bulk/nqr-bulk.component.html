@@ -60,11 +60,14 @@
         <div class="card mb-3" style="border-color: teal;" *ngIf="fileArray">
           <div class="mt-2" style="display: flex;justify-content: flex-end;">
 
-            <button type="button" class="waves-light btn" mdbWavesEffect (click)="clear()">Clear</button>
+            <button type="button" class="btn" style="text-transform: none; border: 1px solid; border-radius: 8px;
+            padding: 8px 10px;
+            color: black;" (click)="clear()">Clear</button>
             <br>
 
 
-            <button type="button" class="btn btn-primary" mdbWavesEffect (click)="confirm()">{{loading ?
+            <button type="button" class="btn btn-primary" mdbWavesEffect style="text-transform: none;border-radius: 8px;
+            padding: 8px 10px;" (click)="confirm()">{{loading ?
               'Creating' : 'Create' }} &nbsp;<i class="fa "
                 [ngClass]="{'spinner-border spinner-border-sm':loading==true}"></i></button>
 

@@ -122,15 +122,22 @@ toStrings(o) {
   return o;
 }
 
-
+obj:any
 confirm(){
-
-  const obj={
- agents:this.fileArray,
- merchantNo:this.merchantNo
-  }
+if(this.merchantField){
+  this.obj={
+    agents:this.fileArray,
+    merchantNo:this.merchantNo
+     }
+}else{
+  this.obj={
+    agents:this.fileArray
+ 
+     }
+}
+ 
   this.loading = true;
-    this.nqrService.bulkcreateSubMerchant(obj).subscribe(
+    this.nqrService.bulkcreateSubMerchant(this.obj).subscribe(
       (data) => {
         this.loading = false;
        this.toast.success(data.message || "Agents Created")

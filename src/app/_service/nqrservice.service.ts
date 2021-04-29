@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { map } from 'rxjs/operators';
-import { Observable, BehaviorSubject } from "rxjs";
+import * as cryptojs from "crypto-js";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +15,36 @@ nqrVerifyUrl ="http://197.253.19.76:8019/api/v1/vas/nqr/onboard/validate/"
 bulknqrOnboardUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/onboard/create/bulk";
 merchantnqrOnboardUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/ptsp/onboard";
 merchantnqrHistoryUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/ptsp/list";
+test_key = 'NGU1ODY3NTZjYmM3M2ViNGU5Nzk3ZjgzYTA4MWNiMWE0Y2JlNTg1OTY0MTFmM2Y1OTIyM2Q5NWRiNzQxNDNiMQ==';
+live_key = 'ZmU1NzQ4MDdlNmM5YmU4ZDIyMWE1M2Y0MDc4MGU2MDg1N2I4Y2FjNmFkNTliNWUxMmI1OWQ1ZTJjZjAzMTA3MA=='
+
+
+
 
   VerifyAccount(id){
+    let headers = new HttpHeaders();
+    function sha1Hmac(value, key) {
+      return cryptojs
+        .HmacSHA256(value, key) 
+    }
+   let encrypt=btoa(`${this.nqrVerifyUrl}${id}`)
+  
+    headers = headers.set("X-VAS-KEY",sha1Hmac(encrypt,this.live_key).toString());
      return this.httpClient.get(`${this.nqrVerifyUrl}${id}`);
   }
 
   createSubMerchant(data) {
+    let headers = new HttpHeaders();
+    function sha1Hmac(value, key) {
+      return cryptojs
+        .HmacSHA256(value, key)
+     
+    }
+  
+   
+   let encrypt=btoa(this.nqrOnboardUrl)
+  
+    headers = headers.set("X-VAS-KEY",sha1Hmac(encrypt,this.live_key).toString());
         return this.httpClient.post(this.nqrOnboardUrl,data).pipe(
             map((response: any) => {
                 const res = response;
@@ -29,15 +53,43 @@ merchantnqrHistoryUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/ptsp/list";
             ));
     }
     bulkcreateSubMerchant(data) {
-        return this.httpClient.post(this.bulknqrOnboardUrl,data).pipe(
+      let headers = new HttpHeaders();
+    function sha1Hmac(value, key) {
+      return cryptojs
+        .HmacSHA256(value, key)
+     
+    }
+  
+   
+   let encrypt=btoa(this.bulknqrOnboardUrl)
+   console.log(encrypt,"encrypt")
+    headers = headers.set("X-VAS-KEY",sha1Hmac(encrypt,this.live_key).toString());
+
+   
+        return this.httpClient.post(this.bulknqrOnboardUrl,data,
+          { headers }).pipe(
             map((response: any) => {
                 const res = response;
                 return res;
             }
             ));
     }
+
+
    bulkcreateMerchant(data) {
-        return this.httpClient.post(this.merchantnqrOnboardUrl,data).pipe(
+    let headers = new HttpHeaders();
+    function sha1Hmac(value, key) {
+      return cryptojs
+        .HmacSHA256(value, key)
+     
+    }
+  
+   
+   let encrypt=btoa(this.merchantnqrOnboardUrl)
+  
+    headers = headers.set("X-VAS-KEY",sha1Hmac(encrypt,this.live_key).toString());
+
+        return this.httpClient.post(this.merchantnqrOnboardUrl,data, { headers }).pipe(
             map((response: any) => {
                 const res = response;
                 return res;
@@ -46,13 +98,38 @@ merchantnqrHistoryUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/ptsp/list";
     }
    
   getHistory(perPage= 50, page) {
+    let headers = new HttpHeaders();
+    function sha1Hmac(value, key) {
+      return cryptojs
+        .HmacSHA256(value, key)
+        
+    }
+  
+    let encrypt=btoa(`${this.nqrHistoryUrl}?page=${page}&perPage=${perPage}`)
+
+   console.log(encrypt,"encrypt")
+    headers = headers.set("X-VAS-KEY",sha1Hmac(encrypt,this.live_key).toString());
     return this.httpClient.get(
-      `${this.nqrHistoryUrl}?perPage=${perPage}&page=${page}`
+      `${this.nqrHistoryUrl}?perPage=${perPage}&page=${page}`,{headers}
     );
   }
+
+
     getMerchantHistory(perPage= 50, page) {
+     
+      let headers = new HttpHeaders();
+      function sha1Hmac(value, key) {
+        return cryptojs
+          .HmacSHA256(value, key)
+          
+      }
+    
+      let encrypt=btoa(`${this.merchantnqrHistoryUrl}?page=${page}&perPage=${perPage}`)
+  
+      headers = headers.set("X-VAS-KEY",sha1Hmac(encrypt,this.live_key).toString());
     return this.httpClient.get(
-      `${this.merchantnqrHistoryUrl}?perPage=${perPage}&page=${page}`
+      `${this.merchantnqrHistoryUrl}?perPage=${perPage}&page=${page}`,
+      { headers }
     );
   }
 }

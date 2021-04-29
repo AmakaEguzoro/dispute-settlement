@@ -54,7 +54,9 @@
     color: black;" mdbWavesEffect (click)="prev()" [disabled]="prev_disable" size="sm">Prev</button>
               <br>
               <div class="btn-text" style="margin-top: 14px;">
-                Page {{this.page}} of {{this.lastPage}}</div>
+                Page 
+                <input min="1" max=lastPage  type="number" [(ngModel)]="page" style="width: 40px;" (blur)="AgentSummary(page)"/>
+                of {{lastPage}}</div>
               <button type="button" class=" btn btn-primary waves-light" mdbWavesEffect (click)="next()" size="sm"
                 style="border-radius: 8px;
     padding: 8px 10px;
