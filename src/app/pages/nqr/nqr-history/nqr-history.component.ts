@@ -39,17 +39,17 @@ currentPage = 1;
   
   ];
   ngOnInit() {
-    this.AgentSummary()
+    this.AgentSummary(this.page=1)
   }
 
 loading:boolean=false
 
     
 
-  AgentSummary() {
+  AgentSummary(page) {
     this.isData = true;
     this.loading = true;
-    this.nqrService.getHistory(this.perPage, this.page).subscribe(
+    this.nqrService.getHistory(this.perPage, page).subscribe(
       (data: any) => {
         this.loading = false;
         this.summaryData = data.data.list.data;
@@ -72,7 +72,7 @@ loading:boolean=false
       this.next_disable = true;
     }
     this.prev_disable = false;
-    this.AgentSummary();
+    this.AgentSummary(this.page);
   }
 
   prev() {
@@ -81,7 +81,7 @@ loading:boolean=false
       this.prev_disable = true;
     }
     this.next_disable = false;
-    this.AgentSummary();
+    this.AgentSummary(this.page);
   }
    pageChanged(event: any): void {
     // this.loading = true;
@@ -92,14 +92,7 @@ loading:boolean=false
       queryParams: { page: this.page },
     });
   }
-  // onWindowScroll() {
-  //       if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
-  //           this.windowScrolled = true;
-  //       } 
-  //      else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
-  //           this.windowScrolled = false;
-  //       }
-  //   }
+ 
     scrollToTop() {
         (function smoothscroll() {
             var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;

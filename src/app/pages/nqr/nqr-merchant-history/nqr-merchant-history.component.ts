@@ -65,17 +65,17 @@ currentPage = 1;
   
   ];
   ngOnInit() {
-    this.AgentSummary()
+    this.AgentSummary(this.page=1)
   }
 
 loading:boolean=false
 
     
 
-  AgentSummary() {
+  AgentSummary(page) {
     this.isData = true;
     this.loading = true;
-    this.nqrService.getMerchantHistory(this.perPage, this.page).subscribe(
+    this.nqrService.getMerchantHistory(this.perPage, page).subscribe(
       (data: any) => {
         this.loading = false;
         console.log(data,"merchantdata")
@@ -99,7 +99,7 @@ loading:boolean=false
       this.next_disable = true;
     }
     this.prev_disable = false;
-    this.AgentSummary();
+    this.AgentSummary(this.page);
   }
 
   prev() {
@@ -108,7 +108,7 @@ loading:boolean=false
       this.prev_disable = true;
     }
     this.next_disable = false;
-    this.AgentSummary();
+    this.AgentSummary(this.page);
   }
    pageChanged(event: any): void {
     // this.loading = true;
