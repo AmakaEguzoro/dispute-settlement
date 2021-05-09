@@ -7,6 +7,7 @@ import {
 } from "ng-uikit-pro-standard";
 import { DOCUMENT } from "@angular/platform-browser";
 import { NqrserviceService } from '../../../_service/nqrservice.service';
+import { forEach } from 'mathjs';
 @Component({
   selector: 'app-nqr-merchant-onboard',
   templateUrl: './nqr-merchant-onboard.component.html',
@@ -81,7 +82,7 @@ displayfiles(){
       var worksheet = workbook.Sheets[first_sheet_name];      
         this.fileArr = XLSX.utils.sheet_to_json(worksheet,{raw:true}); 
      this.fileArray=this.toStrings(this.fileArr)    
-     console.log(this.fileArray,"filearray")
+    
             
     
   }    
@@ -109,7 +110,13 @@ confirm(){
     this.nqrService.bulkcreateMerchant(obj).subscribe(
       (data) => {
         this.loading = false;
-       this.toast.success(data.message || "Agents Created")
+        if (data.data.failed){
+          let failed = data.data.failed
+          failed.forEach(record => this.toast.error(record.merchantName +"  "+  "has failed! Please recheck details"));
+        }else{
+          this.toast.success(data.message || "Agents Created")
+        }
+     
     
     this.fileArray=""
 

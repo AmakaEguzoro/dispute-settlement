@@ -4,17 +4,19 @@ import {
   ToastService,
 } from "ng-uikit-pro-standard";
 import { Router } from "@angular/router";
+import { MDBBootstrapModulesPro } from "ng-uikit-pro-standard";
 import { NqrserviceService } from '../../../_service/nqrservice.service';
 import { DOCUMENT } from "@angular/platform-browser";
-
+import { ExcelService } from "app/_service/excel.service";
 @Component({
   selector: 'app-nqr-merchant-history',
   templateUrl: './nqr-merchant-history.component.html',
   styleUrls: ['./nqr-merchant-history.component.scss']
 })
 export class NqrMerchantHistoryComponent implements OnInit {
+  exportData: any;
 
-   constructor( private nqrService:NqrserviceService,private toast:ToastService,@Inject(DOCUMENT) private document:Document,private router:Router) { }
+   constructor( private nqrService:NqrserviceService,private toast:ToastService,@Inject(DOCUMENT) private document:Document,private router:Router,private excelService: ExcelService) { }
 
  serial:number;
 fileArray:any;
@@ -92,7 +94,29 @@ loading:boolean=false
       }
     );
   }
-
+  exportTable(){
+    this.loading=true
+    this.nqrService.exportMerchantHistory().subscribe(
+      (data: any) => {
+        this.loading = false;
+        this.exportData = data.data.list
+      
+        this.excelService.exportAsExcelFile(
+          this.exportData,
+          "ITEX-Merchant-Nqr-Report" 
+        );
+        
+       
+  
+      },
+      (error) => {
+        this.isData = false;
+        this.loading = false;
+        this.toast.error(error.error.message?error.error.message:"Can't Download, Please Try Again")
+        console.log("cant get agent summary details", error);
+      }
+    );
+  }
  next() {
     this.page += 1;
     if (this.page >= this.lastPage) {

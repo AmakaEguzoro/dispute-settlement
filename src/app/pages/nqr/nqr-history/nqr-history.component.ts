@@ -3,19 +3,22 @@ import {
  
   ToastService,
 } from "ng-uikit-pro-standard";
+import { ExcelService } from "app/_service/excel.service";
 import { Router } from "@angular/router";
 import { NqrserviceService } from '../../../_service/nqrservice.service';
 import { DOCUMENT } from "@angular/platform-browser";
 import { document } from './../../../../lib/ng-uikit-pro-standard/free/utils/facade/browser';
+import { MDBBootstrapModulesPro } from "ng-uikit-pro-standard";
 @Component({
   selector: 'app-nqr-history',
   templateUrl: './nqr-history.component.html',
   styleUrls: ['./nqr-history.component.scss']
 })
 export class NqrHistoryComponent implements OnInit {
+  exportData: any;
   
 
-   constructor( private nqrService:NqrserviceService,private toast:ToastService,@Inject(DOCUMENT) private document:Document,private router:Router) { }
+   constructor( private nqrService:NqrserviceService,private toast:ToastService,@Inject(DOCUMENT) private document:Document,private router:Router,private excelService: ExcelService) { }
 // @HostListener("window:scroll", [])
 // windowScrolled: boolean;
 serial:number;
@@ -65,6 +68,29 @@ loading:boolean=false
       }
     );
   }
+exportTable(){
+  this.loading=true
+  this.nqrService.exportHistory().subscribe(
+    (data: any) => {
+      this.loading = false;
+      this.exportData = data.data.list
+      console.log(this.exportData)
+      this.excelService.exportAsExcelFile(
+        this.exportData,
+        "ITEX-Agent-Nqr-Report" 
+      );
+      
+     
+
+    },
+    (error) => {
+      this.isData = false;
+      this.loading = false;
+      this.toast.error(error.error.message?error.error.message:"Can't Download, Please Try Again")
+      console.log("cant get agent summary details", error);
+    }
+  );
+}
 
  next() {
     this.page += 1;
