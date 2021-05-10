@@ -62,7 +62,7 @@ live_key = 'ZmU1NzQ4MDdlNmM5YmU4ZDIyMWE1M2Y0MDc4MGU2MDg1N2I4Y2FjNmFkNTliNWUxMmI1
   
    
    let encrypt=btoa(this.bulknqrOnboardUrl)
-   console.log(encrypt,"encrypt")
+  
     headers = headers.set("X-VAS-KEY",sha1Hmac(encrypt,this.live_key).toString());
 
    
@@ -107,13 +107,28 @@ live_key = 'ZmU1NzQ4MDdlNmM5YmU4ZDIyMWE1M2Y0MDc4MGU2MDg1N2I4Y2FjNmFkNTliNWUxMmI1
   
     let encrypt=btoa(`${this.nqrHistoryUrl}?page=${page}&perPage=${perPage}`)
 
-   console.log(encrypt,"encrypt")
+
     headers = headers.set("X-VAS-KEY",sha1Hmac(encrypt,this.live_key).toString());
     return this.httpClient.get(
       `${this.nqrHistoryUrl}?perPage=${perPage}&page=${page}`,{headers}
     );
   }
+exportHistory(){
+  let headers = new HttpHeaders();
+  function sha1Hmac(value, key) {
+    return cryptojs
+      .HmacSHA256(value, key)
+      
+  }
 
+  let encrypt=btoa(`${this.nqrHistoryUrl}?action=export`)
+
+
+  headers = headers.set("X-VAS-KEY",sha1Hmac(encrypt,this.live_key).toString());
+  return this.httpClient.get(
+    `${this.nqrHistoryUrl}?action=export`,{headers}
+  );
+}
 
     getMerchantHistory(perPage= 50, page) {
      
@@ -131,5 +146,22 @@ live_key = 'ZmU1NzQ4MDdlNmM5YmU4ZDIyMWE1M2Y0MDc4MGU2MDg1N2I4Y2FjNmFkNTliNWUxMmI1
       `${this.merchantnqrHistoryUrl}?perPage=${perPage}&page=${page}`,
       { headers }
     );
+  }
+
+  exportMerchantHistory(){
+    let headers = new HttpHeaders();
+    function sha1Hmac(value, key) {
+      return cryptojs
+        .HmacSHA256(value, key)
+        
+    }
+  
+    let encrypt=btoa(`${this.merchantnqrHistoryUrl}?action=export`)
+
+    headers = headers.set("X-VAS-KEY",sha1Hmac(encrypt,this.live_key).toString());
+  return this.httpClient.get(
+    `${this.merchantnqrHistoryUrl}?action=export`,
+    { headers }
+  );
   }
 }
