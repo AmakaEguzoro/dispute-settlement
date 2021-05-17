@@ -87,6 +87,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DayDashboardComponent } from './dashboard/day-dashboard/day-dashboard.component';
 import { WeekDashboardComponent } from './dashboard/week-dashboard/week-dashboard.component';
 import { MonthDashboardComponent } from './dashboard/month-dashboard/month-dashboard.component';
+import { NqrMerchantOnboardComponent } from './nqr/nqr-merchant-onboard/nqr-merchant-onboard.component';
+import { NqrMerchantHistoryComponent } from './nqr/nqr-merchant-history/nqr-merchant-history.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -166,7 +168,9 @@ import { MonthDashboardComponent } from './dashboard/month-dashboard/month-dashb
     DashboardComponent,
     DayDashboardComponent,
     WeekDashboardComponent,
-    MonthDashboardComponent
+    MonthDashboardComponent,
+    NqrMerchantOnboardComponent,
+    NqrMerchantHistoryComponent
   ],
   exports: [
     MDBBootstrapModulesPro,

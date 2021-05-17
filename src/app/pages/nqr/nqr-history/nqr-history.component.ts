@@ -3,19 +3,22 @@ import {
  
   ToastService,
 } from "ng-uikit-pro-standard";
+import { ExcelService } from "app/_service/excel.service";
 import { Router } from "@angular/router";
 import { NqrserviceService } from '../../../_service/nqrservice.service';
 import { DOCUMENT } from "@angular/platform-browser";
 import { document } from './../../../../lib/ng-uikit-pro-standard/free/utils/facade/browser';
+import { MDBBootstrapModulesPro } from "ng-uikit-pro-standard";
 @Component({
   selector: 'app-nqr-history',
   templateUrl: './nqr-history.component.html',
   styleUrls: ['./nqr-history.component.scss']
 })
 export class NqrHistoryComponent implements OnInit {
+  exportData: any;
   
 
-   constructor( private nqrService:NqrserviceService,private toast:ToastService,@Inject(DOCUMENT) private document:Document,private router:Router) { }
+   constructor( private nqrService:NqrserviceService,private toast:ToastService,@Inject(DOCUMENT) private document:Document,private router:Router,private excelService: ExcelService) { }
 // @HostListener("window:scroll", [])
 // windowScrolled: boolean;
 serial:number;
@@ -39,17 +42,17 @@ currentPage = 1;
   
   ];
   ngOnInit() {
-    this.AgentSummary()
+    this.AgentSummary(this.page=1)
   }
 
 loading:boolean=false
 
     
 
-  AgentSummary() {
+  AgentSummary(page) {
     this.isData = true;
     this.loading = true;
-    this.nqrService.getHistory(this.perPage, this.page).subscribe(
+    this.nqrService.getHistory(this.perPage, page).subscribe(
       (data: any) => {
         this.loading = false;
         this.summaryData = data.data.list.data;
@@ -65,6 +68,29 @@ loading:boolean=false
       }
     );
   }
+exportTable(){
+  this.loading=true
+  this.nqrService.exportHistory().subscribe(
+    (data: any) => {
+      this.loading = false;
+      this.exportData = data.data.list
+      console.log(this.exportData)
+      this.excelService.exportAsExcelFile(
+        this.exportData,
+        "ITEX-Agent-Nqr-Report" 
+      );
+      
+     
+
+    },
+    (error) => {
+      this.isData = false;
+      this.loading = false;
+      this.toast.error(error.error.message?error.error.message:"Can't Download, Please Try Again")
+      console.log("cant get agent summary details", error);
+    }
+  );
+}
 
  next() {
     this.page += 1;
@@ -72,7 +98,7 @@ loading:boolean=false
       this.next_disable = true;
     }
     this.prev_disable = false;
-    this.AgentSummary();
+    this.AgentSummary(this.page);
   }
 
   prev() {
@@ -81,7 +107,7 @@ loading:boolean=false
       this.prev_disable = true;
     }
     this.next_disable = false;
-    this.AgentSummary();
+    this.AgentSummary(this.page);
   }
    pageChanged(event: any): void {
     // this.loading = true;
@@ -92,14 +118,7 @@ loading:boolean=false
       queryParams: { page: this.page },
     });
   }
-  // onWindowScroll() {
-  //       if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
-  //           this.windowScrolled = true;
-  //       } 
-  //      else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
-  //           this.windowScrolled = false;
-  //       }
-  //   }
+ 
     scrollToTop() {
         (function smoothscroll() {
             var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;

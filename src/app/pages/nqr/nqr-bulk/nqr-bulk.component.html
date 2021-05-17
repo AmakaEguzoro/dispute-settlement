@@ -14,41 +14,60 @@
       </div>
       <div class="container">
         <div class="col-md-12 mt-2">
-          <h3 style="font-size: 1.2rem;">Upload Merchant File</h3>
+          <h3 style="font-size: 1.2rem;">Upload Sub-Merchant File</h3>
         </div>
 
         <form #form=ngForm *ngIf="!fileArray">
-          <div class="col-lg-3 col-sm-3 p-0 file-path-wrapper">
-            <input type="file" (change)="addfile($event)" style="border: none;"
-              accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
-            <!-- <input type="file" class="form-control" (change)="addfile($event)" placeholder="Upload file"
-          > -->
-            <br> <br>
+          <div class="col-lg-12  p-0 file-path-wrapper">
+            <div class="col-lg-6">
+              <input type="file" (change)="addfile($event)" style="border: none;"
+                accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+            </div>
+
+
+
+            <div class="col-lg-6" *ngIf="show" style="margin: 10px;">
+
+              <select (change)="showAmount($event)" class="browser-default col-lg-7 custom-select d-block"
+                style="background-color:white">
+
+                <option *ngFor="let option of options" [value]="option.value">{{option.label}}</option>
+              </select>
+              <div *ngIf="merchantField">
+                <label>Merchant No</label>
+                <input type="text" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="merchant No"
+                  [(ngModel)]="merchantNo" name="merchantNo">
+
+              </div>
+            </div>
           </div>
 
 
           <div class="pb-4">
 
-            <button type="button" download class="btn" style="text-transform: none; border: 1px solid; border-radius: 8px;
+            <a type="button" download class="btn" style="text-transform: none; border: 1px solid; border-radius: 8px;
     padding: 8px 10px;
-    color: black;"
-              href="../../../../assets/bulk_agents_upload_nqr.xlsx">Download
-              Sample</button>
-            <button (click)="displayfiles()" type="button" class="btn btn-primary" mdbWavesEffect
-              style="text-transform: none;border-radius: 8px;
+    color: black;" href="../../../../assets/bulk_agents_upload_nqr.xlsx">Download
+              Sample</a>
+            <button (click)="displayfiles()" type="button" class="btn btn-primary" mdbWavesEffect style="text-transform: none;border-radius: 8px;
     padding: 8px 10px;
-    ">Upload</button>
+    " [disabled]="!show">Upload</button>
+
+
 
           </div>
         </form>
         <div class="card mb-3" style="border-color: teal;" *ngIf="fileArray">
           <div class="mt-2" style="display: flex;justify-content: flex-end;">
 
-            <button type="button" class="waves-light btn" mdbWavesEffect (click)="clear()">Clear</button>
+            <button type="button" class="btn" style="text-transform: none; border: 1px solid; border-radius: 8px;
+            padding: 8px 10px;
+            color: black;" (click)="clear()">Clear</button>
             <br>
 
 
-            <button type="button" class="btn btn-primary" mdbWavesEffect (click)="confirm()">{{loading ?
+            <button type="button" class="btn btn-primary" mdbWavesEffect style="text-transform: none;border-radius: 8px;
+            padding: 8px 10px;" (click)="confirm()">{{loading ?
               'Creating' : 'Create' }} &nbsp;<i class="fa "
                 [ngClass]="{'spinner-border spinner-border-sm':loading==true}"></i></button>
 

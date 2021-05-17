@@ -33,11 +33,13 @@
         <div class="row mt-5">
           <div>
             <input type="text" class="form-control" name="searchString" placeholder="Search Agent TID..."
-              [(ngModel)]="searchString" (keyup)="searchAgentID()"></div>
+              [(ngModel)]="searchString" (keyup)="searchAgentID()">
+          </div>
           <div style="margin-top: -4px;">
             <button mdbBtn color="teal" (click)="exportAgent()" size="sm">
               <mdb-icon fas icon="download"></mdb-icon>&nbsp;Export
-            </button></div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -45,7 +47,7 @@
 
   <div class="card mb-3" style="border-color: teal;">
     <div class="card-body">
-      <div class="table-responsive">
+      <div class="table-responsive" style="overflow-x: auto !important;">
 
         <table class="table table-hover" small="true">
           <thead class="trans-head">

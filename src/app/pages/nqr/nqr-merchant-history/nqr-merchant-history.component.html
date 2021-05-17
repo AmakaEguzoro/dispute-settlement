@@ -1,0 +1,141 @@
+<div class="container-fluid" style="display: flex; justify-content: center; align-items: center;">
+  <div id="newUser" class="col-md-12 ">
+    <div class="container">
+      <div class="card mb-3" style="border-color: teal;">
+        <div class="row mt-3" style="justify-content: center;align-items: center;">
+          <div>
+            <h1>NQR ONBOARDING HISTORY</h1>
+          </div>
+          <br>
+          <div class="ml-2" style="text-align: center;">
+            <img class="img-fluid" src="../../../assets/qr-code (1).svg" style="width: 20%;" />
+          </div>
+          <div class="export">
+            <button (click)="exportTable()" type="button" class="btn btn-primary" mdbWavesEffect style="text-transform: none;border-radius: 8px;
+            padding: 8px 10px;border: 1px solid;
+    background-color: #fff !important;
+    color: black !important;">
+              <i class="fas fa-file-download"></i> Export
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive" style="overflow-x: auto !important;">
+
+            <table class="table table-hover" small="true">
+              <thead class="trans-head">
+                <tr>
+                  <th class="head" *ngFor="let head of headElements" scope="col"
+                    style="color: rgb(64, 107, 153); text-align: center;white-space: nowrap;">
+                    {{head}}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <mdb-spinner class="overlay" *ngIf="loading" spinnerType="big" spinnerColor="blue">
+                </mdb-spinner>
+                <tr *ngFor="let row of summaryData; let index = index">
+                  <th style="text-align: center;" scope="row">{{serial + index}}</th>
+                  <td style="text-align: center;">{{row.accountName}}
+                  </td>
+                  <td style="text-align: center;">{{row.accountNumber}}
+                  </td>
+                  <td style="text-align: center;">{{row.contactPerson}}
+                  </td>
+                  <td style="text-align: center;">{{row.email}}
+                  </td>
+                  <td style="text-align: center;">{{row.merchantName}}
+                  </td>
+                  <td style="text-align: center;">{{row.merchantNo}}
+                  </td>
+                  <td style="text-align: center;">{{row.nipBankNo}}
+                  </td>
+                  <td style="text-align: center;">{{row.phone}}
+                  </td>
+                  <td style="text-align: center;">{{row.subMerchantName}}
+                  </td>
+                  <td style="text-align: center;">{{row.subMerchantNo}}
+                  </td>
+                  <td style="text-align: center;">{{row.tin}}
+                  </td>
+                  <td style="text-align: center;">{{row.tid}}
+                  </td>
+                  <td style="text-align: center;">{{row.created_at |date:'medium'}}
+                  </td>
+
+
+
+                  <td style="text-align: center; display: contents;">
+
+                    <a style="color: rgb(64, 107, 153); text-align: center" (click)="showModal(row,basicModal)">View
+                      Code</a>
+                  </td>
+
+
+                </tr>
+                <!-- <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong> -->
+              </tbody>
+            </table>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+              <button type="button" class=" btn waves-light" style="border: 1px solid;border-radius: 8px;
+    padding: 8px 10px;
+    color: black;" mdbWavesEffect (click)="prev()" [disabled]="prev_disable" size="sm">Prev</button>
+              <br>
+              <div class="btn-text" style="margin-top: 14px;">
+                Page 
+                <input min="1" max=lastPage  type="number" [(ngModel)]="page" style="width: 40px;" (blur)="AgentSummary(page)"/>
+                of {{lastPage}}</div>
+              <button type="button" class=" btn btn-primary waves-light" mdbWavesEffect (click)="next()" size="sm"
+                style="border-radius: 8px;
+    padding: 8px 10px;
+    " [disabled]="next_disable">Next</button>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document" *ngIf="qrCode">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel"> {{subMerchantName | uppercase}} QR Code</h4>
+      </div>
+      <div class="modal-body row" style="display: flex; justify-content: space-evenly; align-items: center;">
+
+
+
+        <qrcode [level]="1" [qrvalue]="qrCode" [size]="300"></qrcode>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn class=" btn btn-primary waves-light" aria-label="Close" mdbWavesEffect
+          style="background-color: #fff !important;color:#4285F4 !important;  border-style: 1px solid #4285f4 ;"
+          (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+        <a [href]="href" type="button" [download]="subMerchantName" color="primary" class="btn btn-primary waves-light"
+          mdbWavesEffect (click)="downloadImage()">{{loading ?
+          'Downloading' : 'Download' }} &nbsp;<i class="fa "
+            [ngClass]="{'spinner-border spinner-border-sm':loading==true}"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="scroll-to-top">
+  <button class="btn-primary" (click)="scrollToTop()">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+</div>
