@@ -215,17 +215,24 @@ Total Count:  {{ last2DaysTotalCount | number }}
 
 <div class="col-12 mt-5">
 
-<div class="card" *ngIf="AMChart == true;" >
+<div class="card" >
   <div class="card-body">
-    <div  style="float: right;">
-      <select class="browser-default custom-select" >
-    <option value=""> Day</option>
-    <option value=""> Week </option>
-    <option value=""> Month</option>
-</select>
+    <div class="row">
+<div class="col-2" style="">
+  <mdb-date-picker id="endDate" placeholder="Date"
+                [options]="myDatePickerOptions"></mdb-date-picker>
+               
 </div>
+<div class="col-2"> 
+  <mdb-badge class="save" (click)="exportAsXLSX()">
+    <i class="fas fa-search"></i>
+    &nbsp;Search
+</mdb-badge>
+</div>
+    </div>
+    
 
-<div style="display: block; padding: 5rem;">
+<div style="display: block; padding: 5rem; margin-top: -4rem;">
   <label class="day-label"> Performance Chart</label> 
 
   <canvas mdbChart [chartType]="chartType" [datasets]="datasets" [labels]="chartLabels" [colors]="chartColors"
@@ -241,14 +248,14 @@ Total Count:  {{ last2DaysTotalCount | number }}
     <img src="../assets/line-logo.svg" (click)="switchLineData()"> &nbsp;
     <img src="../assets/bar-logo.svg" (click)="switchBarData()">
   </div>
-<div style="float: right; margin-top: -2rem;" >
+<!-- <div style="float: right; margin-top: -2rem;" >
   <button type="button" class="next-btn">&#8249;</button>&nbsp;
   <i class="next-title" *ngIf="AMChart == true;">
 AM
   </i>
   &nbsp;<button type="button" class="next-btn" (click)="nextChart()">&#8250;</button>
  
- </div>
+ </div> -->
   <div>
     
    
@@ -261,51 +268,7 @@ AM
 
 </div>
 
-<div class="card" *ngIf="AMChart == false;" >
-  <div class="card-body">
-    <div  style="float: right;">
-      <select class="browser-default custom-select" >
-    <option value=""> Day</option>
-    <option value=""> Week </option>
-    <option value=""> Month</option>
-</select>
-</div>
 
-<div style="display: block; padding: 5rem;">
-  <label class="day-label"> Performance Chart</label> 
-
-  <canvas mdbChart [chartType]="chartType" [datasets]="datasets" [labels]="chartLabels" [colors]="chartColors"
-  
-  [options]="chartOptions" [legend]="true" >
-  
-  </canvas>
- 
- 
-  </div>
-
-  <div style="margin-top: -7rem;">
-    <img src="../assets/line-logo.svg" (click)="switchLineData()"> &nbsp;
-    <img src="../assets/bar-logo.svg" (click)="switchBarData()">
-  </div>
-<div style="float: right; margin-top: -2rem;" >
-  <button type="button" class="next-btn" (click)="getTodayTimeChart()">&#8249;</button>&nbsp;
-  <i class="next-title" *ngIf="AMChart == false;">
-PM
-  </i>
-  &nbsp;<button type="button" class="next-btn">&#8250;</button>
- 
- </div>
-  <div>
-    
-   
-</div>
-  
-
-
-</div>
-
-
-</div>
 
 
 </div>

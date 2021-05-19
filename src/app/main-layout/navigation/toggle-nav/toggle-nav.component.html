@@ -55,9 +55,9 @@
   
   <div class="area"></div><nav class="main-menu">
     <ul>
-        <li>
-            <a href="/admin-dashboard/day">
-              <img src="../../../../assets/nav-assets/noun_dashboard.svg"> &nbsp; &nbsp;
+        <li routerLinkActive="active">
+            <a [routerLink]="['/admin-dashboard/day']">
+              <img src="../assets/nav-assets/noun_dashboard.svg"> &nbsp; &nbsp;
               <!-- <div class="nav-text">Dashboard</div> -->
                 <span class="nav-text">
                     Dashboard
@@ -65,29 +65,53 @@
             </a>
           
         </li>
-        <li class="has-subnav mt-3">
-            <a href="transaction/details">
-              <img src="../../../../assets/nav-assets/noun_transaction.svg"> &nbsp; &nbsp;
-              <br>
-                <span class="nav-text">
-                    Transactions
-                </span>
-            </a>
-            
+        <li *appHasRole="['5']" class="nav-item dropdown btn-group mt-3" dropdown routerLinkActive="active">
+          <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown" mdbWavesEffect>
+            <img src="../assets/nav-assets/noun_transaction.svg"> &nbsp; &nbsp;
+            <br>
+            <span class="nav-text">
+                Transactions
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+
+            <li><a *appHasRole="['1','2', '3', '4', '5']" 
+              routerLink="transaction/details" routerLinkActive="active" mdbWavesEffect> Transactions </a></li>
+          <li style="margin-top: 4px;"><a  routerLink="inconclusive/transaction" routerLinkActive="active"
+              mdbWavesEffect> Inconclusive Transactions </a></li>
+          <li style="margin-top: 4px;"><a *appHasRole="['3', '4', '5']"  routerLink="transaction/locks"
+              routerLinkActive="active" mdbWavesEffect> Transactions on-Hold </a></li>
+          <li style="margin-top: 4px;"><a *appHasRole="['3', '4', '5']"  routerLink="transaction/global"
+              routerLinkActive="active" mdbWavesEffect> Global Transactions </a></li>
+          <li style="margin-top: 4px;"><a *appHasRole="['3', '4', '5']" 
+              routerLink="transaction/iepostpaid" routerLinkActive="active" mdbWavesEffect> IE Stored/Forwarded
+              Postpaids </a></li>
+          </div>
         </li>
-        <!-- <li class="has-subnav mt-3">
-            <a href="/admin-dashboard/day">
-               <i class="fa fa-list fa-2x"></i>
-               
-                <span class="nav-text">
-                  Status
-                </span>
-            </a>
-            
-        </li> -->
+
+        <li *appHasRole="['5']" class="nav-item dropdown btn-group mt-3" dropdown routerLinkActive="active">
+          <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown" mdbWavesEffect>
+            <img src="../assets/nav-assets/noun_ Status.svg"> &nbsp; &nbsp;
+            <br>
+            <span class="nav-text">
+                Status
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+
+            <li><a *appHasRole="['4', '5']" #statusLink1="routerLinkActive" routerLink="service-status"
+              routerLinkActive="active" mdbWavesEffect> Services Status </a></li>
+          <li style="margin-top: 4px;"><a *appHasRole="['4', '5']" #statusLink2="routerLinkActive" routerLink="bvn-status"
+              routerLinkActive="active" mdbWavesEffect>
+              BVN Status</a></li>
+          </div>
+        </li>
+
+        
+      
         <li class="has-subnav mt-3">
-            <a href="agency/banking">
-              <img src="../../../../assets/nav-assets/noun_banking.svg"> &nbsp; &nbsp; &nbsp;
+            <a [routerLink]="['agency/banking']">
+              <img src="../assets/nav-assets/noun_banking.svg"> &nbsp; &nbsp; &nbsp;
                 <span class="nav-text">
                   Agency Banking
                 </span>
@@ -95,56 +119,86 @@
            
         </li>
         <li class="has-subnav mt-3">
-            <a href="error/analysis">
-              <img src="../../../../assets/nav-assets/noun_Risk analysis.svg"> &nbsp; &nbsp;
+            <a [routerLink]="['error/analysis']">
+              <img src="../assets/nav-assets/noun_Risk analysis.svg"> &nbsp; &nbsp;
                 <span class="nav-text">
                   Error Analysis
                 </span>
             </a>
         </li>
-        <li class="has-subnav mt-3">
-            <a href="#">
-              <img src="../../../../assets/nav-assets/noun_Online Payment.svg"> &nbsp; &nbsp;
-                <span class="nav-text">
-                  MCASH (USSD)
-                </span>
-            </a>
+
+        <li *appHasRole="['5']" class="nav-item dropdown btn-group mt-3" dropdown routerLinkActive="active">
+          <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown" mdbWavesEffect>
+            <img src="../assets/nav-assets/noun_Online Payment.svg"> &nbsp; &nbsp;
+            <br>
+            <span class="nav-text">
+                MCASH (USSD)
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+
+            <li><a *appHasRole="['3','4', '5']" #mcashLink1="routerLinkActive" routerLink="mcash/transactions"
+              routerLinkActive="active" mdbWavesEffect>MCASH Transactions </a></li>
+          <li style="margin-top: 4px;"><a *appHasRole="['3','4', '5']" #mcashLink2="routerLinkActive" routerLink="mcash/map-terminals"
+              routerLinkActive="active" mdbWavesEffect>
+              Map Terminals</a></li>
+          </div>
         </li>
-        <!-- <li class="has-subnav mt-3">
-           <a href="#">
-               <i class="fa fa-table fa-2x"></i>
-                <span class="nav-text">
-                  CGATE
-                </span>
-            </a>
-        </li> -->
-        <li class="has-subnav mt-3">
-           <a href="#">
-            <img src="../../../../assets/nav-assets/noun_Nip.svg"> &nbsp; &nbsp;
-                <span class="nav-text">
-                  NIP
-                </span>
-            </a>
+
+        <li *appHasRole="['5']" class="nav-item dropdown btn-group mt-3" dropdown routerLinkActive="active">
+          <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown" mdbWavesEffect>
+            <img src="../assets/nav-assets/noun_gate.svg"> &nbsp; &nbsp;
+            <br>
+            <span class="nav-text">
+                CGATE
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+
+            <li><a *appHasRole="['3','4', '5']" #cgateLink1="routerLinkActive" routerLink="cgate/transactions"
+              routerLinkActive="active" mdbWavesEffect>CGATE Transactions </a></li>
+          </div>
         </li>
+
+        <li *appHasRole="['5']" class="nav-item dropdown btn-group mt-3" dropdown routerLinkActive="active">
+          <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light nav-body-dropdown" mdbWavesEffect>
+            <img src="../assets/nav-assets/noun_Nip.svg"> &nbsp; &nbsp;
+            <br>
+            <span class="nav-text">
+                NIP
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+
+            <li><a *appHasRole="['3','4', '5']" #nipLink1="routerLinkActive" routerLink="transaction/nip"
+              routerLinkActive="active" mdbWavesEffect>Transaction Reports </a></li>
+          <li style="margin-top: 4px;"><a *appHasRole="['3','4', '5']" #nipLink1="routerLinkActive"
+              routerLink="transaction-settlement/nip" routerLinkActive="active" mdbWavesEffect>Settlement
+              Reports </a></li>
+          </div>
+        </li>
+
+      
+        
         <li class="has-subnav mt-3">
-            <a href="#">
-            <img src="../../../../assets/nav-assets/noun_turnover.svg"> &nbsp; &nbsp;
+            <a [routerLink]="['']">
+            <img src="../assets/nav-assets/noun_turnover.svg"> &nbsp; &nbsp;
                 <span class="nav-text">
                   Onboarding
                 </span>
             </a>
         </li>
         <li class="has-subnav mt-3">
-          <a href="#">
-          <img src="../../../../assets/nav-assets/noun_qr.svg"> &nbsp; &nbsp;
+          <a [routerLink]="['']">
+          <img src="../assets/nav-assets/noun_qr.svg"> &nbsp; &nbsp;
               <span class="nav-text">
                 NQR
               </span>
           </a>
       </li>
       <li class="has-subnav mt-3">
-        <a href="#">
-        <img src="../../../../assets/nav-assets/noun_Settings.svg"> &nbsp; &nbsp;
+        <a [routerLink]="['']">
+        <img src="../assets/nav-assets/noun_Settings.svg"> &nbsp; &nbsp;
             <span class="nav-text">
               Settings
             </span>

@@ -7,6 +7,7 @@ import { PaymentMethodService } from 'app/_service/payment-method.service';
 import { ChannelService } from 'app/_service/channels.service';
 import { formatDate } from '@angular/common';
 import { ProductsService } from 'app/_service/products.service';
+import { IMyOptions } from 'lib/ng-uikit-pro-standard';
 
 
 @Component({
@@ -91,12 +92,12 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
   chartDatasets: Array<any>; selectedType: any;
   chartLabels: Array<any>; performanceLabels: any;
   chart: any; 
-   AMChart = true;
-  // PMChart:boolean;
+  dateRange: any;
+  
   typeChart: Array<any> = [{ type: "bar" }, { type: "line" }];
   async ngOnInit() {
     this.chartType = this.typeChart[0].type;
-    this.AMChart = true;
+  
     this.todayDate = new Date();
     let preDate = new Date();
     this.yesterdayDate = preDate.setDate(preDate.getDate() - 1);
@@ -113,17 +114,22 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
     })
   }
 
+  public myDatePickerOptions: IMyOptions = {
+    dateFormat: "yyyy/mm/dd",
+    // startDate: this.todayDate,
+    ariaLabelOpenCalendar: "Open Calendar",
+    closeAfterSelect: true,
+    minYear: 1900,
+    // disableUntil:
+    //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
+  };
 
   getTodayTimeChart() {
-    this.AMChart = true;
     this.isData = true;
     this.loading = true,
       this.summaryService.getTodayTimeChart().subscribe(responseData => {
         this.loading = false;
-        this.todayTime = responseData.data;
-
-        console.log('date', this.todayTime)
-      
+        this.todayTime = responseData.data;      
 
         let time12amFail = this.todayTime.P12AMFailed; let time12amSucess = this.todayTime.P12AMSuccessful; let time12amTotal = this.todayTime.P12AMTotalAmount;
         let time1amFail = this.todayTime.P1AMFailed; let time1amSucess = this.todayTime.P1AMSuccessful; let time1amTotal = this.todayTime.P2AMTotalAmount;
@@ -152,12 +158,13 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
         let time11pmFail = this.todayTime.P11PMFailed; let time11pmSucess = this.todayTime.P11PMSuccessful; let time11pmTotal = this.todayTime.P11PMTotalAmount;
 
 
+
         this.datasets = [{
           data: [
             time12amSucess, time1amSucess, time2amSucess, time3amSucess, time4amSucess, time5amSucess,
             time6amSucess, time7amSucess, time8amSucess, time9amSucess, time10amSucess, time11amSucess,
-            // time12pmSucess, time1pmSucess, time2pmSucess, time3pmSucess, time4pmSucess, time5pmSucess,
-            // time6pmSucess, time7pmSucess, time8pmSucess, time9pmSucess, time10pmSucess, time11pmSucess,
+            time12pmSucess, time1pmSucess, time2pmSucess, time3pmSucess, time4pmSucess, time5pmSucess,
+            time6pmSucess, time7pmSucess, time8pmSucess, time9pmSucess, time10pmSucess, time11pmSucess,
           ], fill: false, label: 'Sucessful Transactions'
         },
 
@@ -165,40 +172,39 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
           data: [
             time12amFail, time1amFail, time2amFail, time3amFail, time4amFail, time5amFail,
             time6amFail, time7amFail, time8amFail, time9amFail, time10amFail, time11amFail,
-            // time12pmFail, time1pmFail, time2pmFail, time3pmFail, time4pmFail, time5pmFail,
-            // time6pmFail, time7pmFail, time8pmFail, time9pmFail, time10pmFail, time11pmFail,
+            time12pmFail, time1pmFail, time2pmFail, time3pmFail, time4pmFail, time5pmFail,
+            time6pmFail, time7pmFail, time8pmFail, time9pmFail, time10pmFail, time11pmFail,
           ], fill: false, label: 'Failed Transactions'
         },
         {
           data: [
             time12amTotal, time1amTotal, time2amTotal, time3amTotal, time4amTotal, time5amTotal,
             time6amTotal, time7amTotal, time8amTotal, time9amTotal, time10amTotal, time11amTotal,
-            // time12pmTotal, time1pmTotal, time2pmTotal, time3pmTotal, time4pmTotal, time5pmTotal,
-            // time6pmTotal, time7pmTotal, time8pmTotal, time9pmTotal, time10pmTotal, time11pmTotal,
+            time12pmTotal, time1pmTotal, time2pmTotal, time3pmTotal, time4pmTotal, time5pmTotal,
+            time6pmTotal, time7pmTotal, time8pmTotal, time9pmTotal, time10pmTotal, time11pmTotal,
           ], fill: false, label: 'Total Transactions'
         },
         ];
 
 
         this.chartLabels = ['12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM',
-        //  '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM'
+         '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM'
         ];
-
         this.chartColors = [
 
           {
 
-            backgroundColor: "#3986D9",
+            backgroundColor: "#01C6B7",
             borderWidth: 0,
 
           },
 
           {
-            backgroundColor: "#093664",
+            backgroundColor: "#FF7070",
             borderWidth: 0,
           },
           {
-            backgroundColor: "#B4B4B4",
+            backgroundColor: "#626262",
             borderWidth: 0,
           }
 
@@ -278,164 +284,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
   switchLineData() {
     this.chartType = this.typeChart[1].type;
   }
-nextChart(){
-  this.AMChart = false;
-    this.isData = true;
-    this.loading = true,
-      this.summaryService.getTodayTimeChart().subscribe(responseData => {
-        this.loading = false;
-        this.todayTime = responseData.data;
 
-        console.log('date', this.todayTime)
-      
-
-        let time12amFail = this.todayTime.P12AMFailed; let time12amSucess = this.todayTime.P12AMSuccessful; let time12amTotal = this.todayTime.P12AMTotalAmount;
-        let time1amFail = this.todayTime.P1AMFailed; let time1amSucess = this.todayTime.P1AMSuccessful; let time1amTotal = this.todayTime.P2AMTotalAmount;
-        let time2amFail = this.todayTime.P2AMFailed; let time2amSucess = this.todayTime.P2AMSuccessful; let time2amTotal = this.todayTime.P2AMTotalAmount;
-        let time3amFail = this.todayTime.P3AMFailed; let time3amSucess = this.todayTime.P3AMSuccessful; let time3amTotal = this.todayTime.P3AMTotalAmount;
-        let time4amFail = this.todayTime.P4AMFailed; let time4amSucess = this.todayTime.P4AMSuccessful; let time4amTotal = this.todayTime.P4AMTotalAmount;
-        let time5amFail = this.todayTime.P5AMFailed; let time5amSucess = this.todayTime.P5AMSuccessful; let time5amTotal = this.todayTime.P5AMTotalAmount;
-        let time6amFail = this.todayTime.P6AMFailed; let time6amSucess = this.todayTime.P6AMSuccessful; let time6amTotal = this.todayTime.P6AMTotalAmount;
-        let time7amFail = this.todayTime.P7AMFailed; let time7amSucess = this.todayTime.P7AMSuccessful; let time7amTotal = this.todayTime.P7AMTotalAmount;
-        let time8amFail = this.todayTime.P8AMFailed; let time8amSucess = this.todayTime.P8AMSuccessful; let time8amTotal = this.todayTime.P8AMTotalAmount;
-        let time9amFail = this.todayTime.P9AMFailed; let time9amSucess = this.todayTime.P9AMSuccessful; let time9amTotal = this.todayTime.P9AMTotalAmount;
-        let time10amFail = this.todayTime.P10AMFailed; let time10amSucess = this.todayTime.P10AMSuccessful; let time10amTotal = this.todayTime.P10AMTotalAmount;
-        let time11amFail = this.todayTime.P11AMFailed; let time11amSucess = this.todayTime.P11AMSuccessful; let time11amTotal = this.todayTime.P11AMTotalAmount;
-
-        let time12pmFail = this.todayTime.P12PMFailed; let time12pmSucess = this.todayTime.P12PMSuccessful; let time12pmTotal = this.todayTime.P12PMTotalAmount;
-        let time1pmFail = this.todayTime.P1PMFailed; let time1pmSucess = this.todayTime.P1PMSuccessful; let time1pmTotal = this.todayTime.P1PMTotalAmount;
-        let time2pmFail = this.todayTime.P2PMFailed; let time2pmSucess = this.todayTime.P2PMSuccessful; let time2pmTotal = this.todayTime.P2PMTotalAmount
-        let time3pmFail = this.todayTime.P3PMFailed; let time3pmSucess = this.todayTime.P3PMSuccessful; let time3pmTotal = this.todayTime.P3PMTotalAmount;
-        let time4pmFail = this.todayTime.P4PMFailed; let time4pmSucess = this.todayTime.P4PMSuccessful; let time4pmTotal = this.todayTime.P4PMTotalAmount;
-        let time5pmFail = this.todayTime.P5PMFailed; let time5pmSucess = this.todayTime.P5PMSuccessful; let time5pmTotal = this.todayTime.P5PMTotalAmount;
-        let time6pmFail = this.todayTime.P6PMFailed; let time6pmSucess = this.todayTime.P6PMSuccessful; let time6pmTotal = this.todayTime.P6PMTotalAmount;
-        let time7pmFail = this.todayTime.P7PMFailed; let time7pmSucess = this.todayTime.P7PMSuccessful; let time7pmTotal = this.todayTime.P7PMTotalAmount;
-        let time8pmFail = this.todayTime.P8PMFailed; let time8pmSucess = this.todayTime.P8PMSuccessful; let time8pmTotal = this.todayTime.P8PMTotalAmount;
-        let time9pmFail = this.todayTime.P9PMFailed; let time9pmSucess = this.todayTime.P9PMSuccessful; let time9pmTotal = this.todayTime.P9PMTotalAmount;
-        let time10pmFail = this.todayTime.P10PMFailed; let time10pmSucess = this.todayTime.P10PMSuccessful; let time10pmTotal = this.todayTime.P10PMTotalAmount;
-        let time11pmFail = this.todayTime.P11PMFailed; let time11pmSucess = this.todayTime.P11PMSuccessful; let time11pmTotal = this.todayTime.P11PMTotalAmount;
-
-
-        this.datasets = [{
-          data: [
-            // time12amSucess, time1amSucess, time2amSucess, time3amSucess, time4amSucess, time5amSucess,
-            // time6amSucess, time7amSucess, time8amSucess, time9amSucess, time10amSucess, time11amSucess,
-            time12pmSucess, time1pmSucess, time2pmSucess, time3pmSucess, time4pmSucess, time5pmSucess,
-            time6pmSucess, time7pmSucess, time8pmSucess, time9pmSucess, time10pmSucess, time11pmSucess,
-          ], fill: false, label: 'Sucessful Transactions'
-        },
-
-        {
-          data: [
-            // time12amFail, time1amFail, time2amFail, time3amFail, time4amFail, time5amFail,
-            // time6amFail, time7amFail, time8amFail, time9amFail, time10amFail, time11amFail,
-            time12pmFail, time1pmFail, time2pmFail, time3pmFail, time4pmFail, time5pmFail,
-            time6pmFail, time7pmFail, time8pmFail, time9pmFail, time10pmFail, time11pmFail,
-          ], fill: false, label: 'Failed Transactions'
-        },
-        {
-          data: [
-            // time12amTotal, time1amTotal, time2amTotal, time3amTotal, time4amTotal, time5amTotal,
-            // time6amTotal, time7amTotal, time8amTotal, time9amTotal, time10amTotal, time11amTotal,
-            time12pmTotal, time1pmTotal, time2pmTotal, time3pmTotal, time4pmTotal, time5pmTotal,
-            time6pmTotal, time7pmTotal, time8pmTotal, time9pmTotal, time10pmTotal, time11pmTotal,
-          ], fill: false, label: 'Total Transactions'
-        },
-        ];
-
-
-        this.chartLabels = [
-          // '12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM',
-         '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM'];
-
-        this.chartColors = [
-
-          {
-
-            backgroundColor: "#3986D9",
-            borderWidth: 0,
-
-          },
-
-          {
-            backgroundColor: "#093664",
-            borderWidth: 0,
-          },
-          {
-            backgroundColor: "#B4B4B4",
-            borderWidth: 0,
-          }
-
-        ];
-
-        this.chartOptions = {
-          responsive: true,
-          // fill: false,
-          legend: {
-            display: true,
-            position: 'bottom',
-            labels: {
-              fontColor: '#808080',
-              fontSize: 13,
-              boxWidth: 7,
-            },
-          },
-          tooltips: {
-            callbacks: {
-              label: function (tooltipItem, data) {
-                var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
-                return parseInt(tooltipValue).toLocaleString();
-              }
-            }
-          },
-          scales: {
-            yAxes: [{
-              display: true,
-              stacked: true, grid: {
-
-              },
-              ticks: {
-                callback: function (input: any, args?: any) {
-                  var exp, rounded,
-                    suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
-                  if (Number.isNaN(input)) {
-                    return null;
-                  }
-                  if (input < 1000) {
-                    return input;
-                  }
-                  exp = Math.floor(Math.log(input) / Math.log(1000));
-                  return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
-                }
-
-              },
-              gridLines: {
-                display: false
-              },
-            }],
-            xAxes: [{
-              display: true,
-              barThickness: 10,
-              stacked: true,
-              ticks: {
-                fontColor: '#69A8FF',
-              },
-              gridLines: {
-                display: true,
-              },
-
-            }]
-          }
-
-        };
-
-      }, error => {
-        this.isData = false;
-        this.loading = false;
-        console.log('cant get today response', error);
-      }
-      );
-}
 
 
   getTodayTransaction() {
@@ -666,7 +515,7 @@ nextChart(){
 
           type: 'horizontalBar',
           data: {
-            labels: [paymentName1, paymentName2,],
+            labels: ['CASH', 'CARD',],
             datasets: [
               {
                 label: "Successful Transaction",
@@ -810,7 +659,7 @@ nextChart(){
 
         this.chart = new Chart('ca', {
 
-          // type: 'horizontalBar',
+          type: 'horizontalBar',
           data: {
             labels: [productName1, productName2, productName3, productName4, productName5],
             datasets: [
@@ -912,103 +761,6 @@ nextChart(){
   ngOnDestroy() {
     this.refresh.unsubscribe();
   }
-
-
-  //   this.chart = new Chart('ca', {
-
-  //     type: 'horizontalBar',
-  //     data: {
-  //       labels: [productName1, productName2, productName3, productName4, productName5],
-  //       datasets: [
-  //         {
-  //           label: "Successful Transaction",
-  //           backgroundColor: "#3986D9",
-  //           borderWidth: 0,
-  //           data: [productSucess1, productSucess2, productSucess3, productSucess4, productSucess5],
-  //         }, {
-  //           label: "Failed Transaction",
-  //           backgroundColor: "#093664",
-  //           borderWidth: 0,
-  //           data: [productFailed1, productFailed2, productFailed3, productFailed4, productFailed5],
-  //         },
-  //         {
-  //           label: "Total Transaction",
-  //           backgroundColor: "#B4B4B4",
-  //           borderWidth: 0,
-  //           data: [productTotal1, productTotal2, productTotal3, productTotal4, productTotal5],
-  //         },
-  //       ],
-  //     },
-  //     options: {
-  //       //   tooltips: {
-  //       //     // mode: 'index',
-  //       //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
-  //       // },
-  //       //   layout: {
-  //       //     padding : {
-  //       //       left: 8
-  //       //     }
-  //       // },
-  //       tooltips: {
-  //         callbacks: {
-  //           label: function (tooltipItem, data) {
-  //             var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
-  //             return parseInt(tooltipValue).toLocaleString();
-  //           }
-  //         }
-  //       },
-  //       responsive: true,
-  //       legend: {
-  //         display: true,
-  //         position: 'bottom',
-  //         labels: {
-  //           fontColor: '#808080',
-  //           fontSize: 13,
-  //           boxWidth: 7,
-  //         }
-
-  //       },
-  //       scales: {
-  //         xAxes: [{
-  //           display: true,
-  //           stacked: true,
-  //           ticks: {
-
-  //             callback: function (input: any, args?: any) {
-  //               var exp, rounded,
-  //                 suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
-  //               if (Number.isNaN(input)) {
-  //                 return null;
-  //               }
-  //               if (input < 1000) {
-  //                 return input;
-  //               }
-  //               exp = Math.floor(Math.log(input) / Math.log(1000));
-  //               return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
-  //             }
-
-  //           },
-  //           gridLines: {
-  //             display: false
-  //           },
-  //         }],
-  //         yAxes: [{
-  //           display: true,
-  //           barThickness: 10,
-  //           stacked: true,
-  //           ticks: {
-  // fontColor: '#69A8FF',
-  //           },
-
-  //           gridLines: {
-  //             display: true,
-  //           },
-
-  //         }]
-  //       }
-  //     }
-  //   });
-
 
 }
 
