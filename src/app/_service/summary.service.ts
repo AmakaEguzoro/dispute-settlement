@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +12,7 @@ import { forkJoin } from 'rxjs';
 
 export class SummaryService {
     baseUrl = environment.api.baseUrl + '/summary/';
+    baseUrl3 = environment.api.baseUrl;
 
     baseUrlV2 = environment.api.baseUrl + '/transaction/dashboard/';
 
@@ -19,7 +22,8 @@ export class SummaryService {
     getToday(): Observable<any[]> {
         let getTodaySuccess = this.httpClient.get(this.baseUrlV2 + `day`);
         let getTodayFailed = this.httpClient.get(this.baseUrlV2 + `yesterday`);
-        return forkJoin([getTodaySuccess, getTodayFailed]);
+        let getTwoDays = this.httpClient.get(this.baseUrlV2 + `last_two_days`)
+        return forkJoin([getTodaySuccess, getTodayFailed,getTwoDays]);
     }
 
 
@@ -27,14 +31,28 @@ export class SummaryService {
     getThisWeek(): Observable<any[]> {
         let getThisWeekSuccess = this.httpClient.get(this.baseUrlV2 + `week`);
         let getThisWeekFailed = this.httpClient.get(this.baseUrlV2 + `last_week`);
-        return forkJoin([getThisWeekSuccess, getThisWeekFailed]);
+        let getTwoWeeks = this.httpClient.get(this.baseUrlV2 + `last_two_weeks`)
+
+        return forkJoin([getThisWeekSuccess, getThisWeekFailed,getTwoWeeks]);
     }
 
     // this month
     getThisMonth(): Observable<any[]> {
         let getThisMonthSuccess = this.httpClient.get(this.baseUrlV2 + `month`);
         let getThisMonthFailed = this.httpClient.get(this.baseUrlV2 + `last_month`);
-        return forkJoin([getThisMonthSuccess, getThisMonthFailed]);
+        let getTwoMonths = this.httpClient.get(this.baseUrlV2 + `last_two_months`)
+
+        return forkJoin([getThisMonthSuccess, getThisMonthFailed,getTwoMonths]);
     }
+
+    getTodayTimeChart() {
+        return this.httpClient.get(`${this.baseUrl3}/transaction/performance/today`).pipe(
+            map((response: any) => {
+                const transaction = response;
+                return transaction;
+            }
+            ));
+    }
+
 
 }

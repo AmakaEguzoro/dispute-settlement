@@ -145,34 +145,34 @@ Total Count:  {{ totalCountPrevious | number }}
     </div>
     
     <i class="previous-date">
-      {{yesterdayDate | date :'MMMM d, y' }}
+      {{last2Days | date :'MMMM d, y' }}
     </i>
   </div>
   <div class="col-4" style="text-align: center">
     <div class="previous-label" style="font-weight: 600;">
-      &#x20A6;  {{previousTotal | number }}
+      &#x20A6;  {{last2DaysTotalAmount | number }}
     </div>
     
     <i class="previous-date" style="color: #80A5D0;">
-Total Count:  {{ totalCountPrevious | number }}
+Total Count:  {{ last2DaysTotalCount | number }}
     </i>
   </div>
   <div class="col-4" style="text-align: center">
-     <i *ngIf="percentChange < 0">
+     <i *ngIf="last2DaysPercentChange < 0">
       <div class="previous-label" style="color: #909090;">
         Dropped By
             </div>
             <i class="previous-date" style="color: #EC5757">
                  <img src="../assets/drop-icon.svg" style="height: 10px;">
-              {{ percentChange  | percent }}  </i>
+              {{ last2DaysPercentChange  | percent }}  </i>
      </i>
-     <i *ngIf="percentChange > 0">
+     <i *ngIf="last2DaysPercentChange > 0">
       <div class="previous-label" style="color: #909090;">
         Increased By
             </div>
              <i class="previous-date" style="color: #229654;">
                   <img src="../assets/rise-icon.svg" style="height: 10px;">
-              {{ percentChange  | percent }} </i>
+              {{ last2DaysPercentChange  | percent }} </i>
      </i>
   </div>
 </div>
@@ -211,5 +211,102 @@ Total Count:  {{ totalCountPrevious | number }}
     </mdb-card-body>
   </mdb-card>
 </div>
+</div>
+
+<div class="col-12 mt-5">
+
+<div class="card" *ngIf="AMChart == true;" >
+  <div class="card-body">
+    <div  style="float: right;">
+      <select class="browser-default custom-select" >
+    <option value=""> Day</option>
+    <option value=""> Week </option>
+    <option value=""> Month</option>
+</select>
+</div>
+
+<div style="display: block; padding: 5rem;">
+  <label class="day-label"> Performance Chart</label> 
+
+  <canvas mdbChart [chartType]="chartType" [datasets]="datasets" [labels]="chartLabels" [colors]="chartColors"
+  
+  [options]="chartOptions" [legend]="true" >
+  
+  </canvas>
+ 
+ 
+  </div>
+
+  <div style="margin-top: -7rem;">
+    <img src="../assets/line-logo.svg" (click)="switchLineData()"> &nbsp;
+    <img src="../assets/bar-logo.svg" (click)="switchBarData()">
+  </div>
+<div style="float: right; margin-top: -2rem;" >
+  <button type="button" class="next-btn">&#8249;</button>&nbsp;
+  <i class="next-title" *ngIf="AMChart == true;">
+AM
+  </i>
+  &nbsp;<button type="button" class="next-btn" (click)="nextChart()">&#8250;</button>
+ 
+ </div>
+  <div>
+    
+   
+</div>
+  
+
+
+</div>
+
+
+</div>
+
+<div class="card" *ngIf="AMChart == false;" >
+  <div class="card-body">
+    <div  style="float: right;">
+      <select class="browser-default custom-select" >
+    <option value=""> Day</option>
+    <option value=""> Week </option>
+    <option value=""> Month</option>
+</select>
+</div>
+
+<div style="display: block; padding: 5rem;">
+  <label class="day-label"> Performance Chart</label> 
+
+  <canvas mdbChart [chartType]="chartType" [datasets]="datasets" [labels]="chartLabels" [colors]="chartColors"
+  
+  [options]="chartOptions" [legend]="true" >
+  
+  </canvas>
+ 
+ 
+  </div>
+
+  <div style="margin-top: -7rem;">
+    <img src="../assets/line-logo.svg" (click)="switchLineData()"> &nbsp;
+    <img src="../assets/bar-logo.svg" (click)="switchBarData()">
+  </div>
+<div style="float: right; margin-top: -2rem;" >
+  <button type="button" class="next-btn" (click)="getTodayTimeChart()">&#8249;</button>&nbsp;
+  <i class="next-title" *ngIf="AMChart == false;">
+PM
+  </i>
+  &nbsp;<button type="button" class="next-btn">&#8250;</button>
+ 
+ </div>
+  <div>
+    
+   
+</div>
+  
+
+
+</div>
+
+
+</div>
+
+
 </div>
 </div>
