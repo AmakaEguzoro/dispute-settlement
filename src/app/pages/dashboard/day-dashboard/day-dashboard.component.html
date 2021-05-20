@@ -235,7 +235,8 @@ Total Count:  {{ last2DaysTotalCount | number }}
 
 <div style="display: block; padding: 5rem; margin-top: -4rem;">
   <label class="day-label"> Performance Chart</label> 
-
+  <mdb-spinner class="loading-screen-icon" *ngIf="isloading" spinnerType="big" spinnerColor="blue">
+  </mdb-spinner>
   <canvas mdbChart [chartType]="chartType" [datasets]="datasets" [labels]="chartLabels" [colors]="chartColors"
   
   [options]="chartOptions" [legend]="true" >

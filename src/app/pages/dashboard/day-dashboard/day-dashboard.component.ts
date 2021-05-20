@@ -42,6 +42,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
   last2DaysPercentChange: any;
 
   loading = false;
+  isloading = false;
   isData: boolean;
   refresh: Subscription;
   todayDate: any; yesterdayDate: any; last2Days: any;
@@ -136,9 +137,9 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
 
   getTodayTimeChart(date) {
     this.isData = true;
-    this.loading = true,
+    this.isloading = true,
       this.summaryService.getTodayTimeChart(this.start).subscribe(responseData => {
-        this.loading = false;
+        this.isloading = false;
         this.todayTime = responseData.data;
 
         let time12amFail = this.todayTime.P12AMFailed; let time12amSucess = this.todayTime.P12AMSuccessful; let time12amTotal = this.todayTime.P12AMTotalAmount;
@@ -283,7 +284,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
 
       }, error => {
         this.isData = false;
-        this.loading = false;
+        this.isloading = false;
         console.log('cant get today response', error);
       }
       );
