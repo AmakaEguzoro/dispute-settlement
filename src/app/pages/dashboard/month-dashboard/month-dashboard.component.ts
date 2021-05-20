@@ -124,7 +124,6 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
       this.summaryService.getThisMonthTimeChart().subscribe(responseData => {
         this.loading = false;
         this.todayTime = responseData.data;
-        console.log('month',this.todayTime)
 
         let timeJanuaryFail = this.todayTime.JanuaryFailed; let timeJanuarySucess = this.todayTime.JanuarySuccessful; let timeJanuaryTotal = this.todayTime.JanuaryTotalAmount;
         let timeFebuaryFail = this.todayTime.FebuaryFailed; let timeFebuarySucess = this.todayTime.FebuarySuccessful; let timeFebuaryTotal = this.todayTime.FebuaryTotalAmount;

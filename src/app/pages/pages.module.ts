@@ -15,9 +15,6 @@ import { PaymentMethodService } from "app/_service/payment-method.service";
 import { TransactionService } from "app/_service/transaction.service";
 import { LoginComponent } from "app/_auth/login/login.component";
 import { AdminDashboardComponent } from "./admin/admin-dashboard/admin-dashboard.component";
-import { TodayCardComponent } from "./admin/dashboard-cards/daily-cards/today-card/today-card.component";
-import { ThisMonthCardComponent } from "./admin/dashboard-cards/monthly-cards/this-month-card/this-month-card.component";
-import { ThisWeekCardComponent } from "./admin/dashboard-cards/weekly-cards/this-week-card/this-week-card.component";
 import { TransactionComponent } from "./Transaction/transaction/transaction.component";
 import { ModelComponent } from "./Transaction/transaction/model/model.component";
 import { TodayChannelsComponent } from "./admin/admin-top-5/channel/today-channels/today-channels.component";
@@ -43,9 +40,6 @@ import { NavigationComponent } from "../main-layout/navigation/navigation.compon
 import { FooterComponent } from "../main-layout/footer/footer.component";
 import { NavbarComponent } from "../main-layout/navigation/navbar/navbar.component";
 import { DirectiveModule } from "app/directive.module";
-import { DayCardComponent } from "./admin/dashboard-cards/daily-cards/day-card/day-card.component";
-import { MonthCardComponent } from "./admin/dashboard-cards/monthly-cards/month-card/month-card.component";
-import { WeekCardComponent } from "./admin/dashboard-cards/weekly-cards/week-card/week-card.component";
 import { RouterModule } from "@angular/router";
 import { AppRoutes } from "app/app.routes.service";
 import { ExcelService } from "app/_service/excel.service";
@@ -105,9 +99,6 @@ import { NqrMerchantHistoryComponent } from './nqr/nqr-merchant-history/nqr-merc
   ],
   declarations: [
     // Itex Copmponent
-    TodayCardComponent,
-    ThisMonthCardComponent,
-    ThisWeekCardComponent,
     SanefModelComponent,
     ServiceStatusComponent,
     BvnStatusComponent,
@@ -132,9 +123,6 @@ import { NqrMerchantHistoryComponent } from './nqr/nqr-merchant-history/nqr-merc
     TransactionLocksComponent,
     RoleManagementComponent,
     UserModalComponent,
-    DayCardComponent,
-    MonthCardComponent,
-    WeekCardComponent,
     
     McashTransactionComponent,
     McashComponent,
@@ -175,9 +163,6 @@ import { NqrMerchantHistoryComponent } from './nqr/nqr-merchant-history/nqr-merc
   exports: [
     MDBBootstrapModulesPro,
 
-    TodayCardComponent,
-    ThisMonthCardComponent,
-    ThisWeekCardComponent,
     SanefModelComponent,
     TodayChannelsComponent,
     ThisWeekChannelsComponent,
@@ -200,9 +185,6 @@ import { NqrMerchantHistoryComponent } from './nqr/nqr-merchant-history/nqr-merc
     ReversalModelComponent,
     TransactionLocksComponent,
     RoleManagementComponent,
-    DayCardComponent,
-    MonthCardComponent,
-    WeekCardComponent,
 
     McashTransactionComponent,
     McashComponent,

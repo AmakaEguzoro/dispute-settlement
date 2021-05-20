@@ -22,9 +22,6 @@ import { TransactionLocksComponent } from "./pages/Transaction/transaction-locks
 import { RegisterComponent } from "./_auth/register/register.component";
 import { RoleManagementComponent } from "./pages/admin/role-management/role-management.component";
 import { RoleGuard } from "./_auth/role-guard.service";
-import { DayCardComponent } from "./pages/admin/dashboard-cards/daily-cards/day-card/day-card.component";
-import { WeekCardComponent } from "./pages/admin/dashboard-cards/weekly-cards/week-card/week-card.component";
-import { MonthCardComponent } from "./pages/admin/dashboard-cards/monthly-cards/month-card/month-card.component";
 import { AgencyBankingComponent } from "./AgencyBanking/agency-banking/agency-banking.component";
 import { McashTransactionComponent } from "./pages/Mcash/transaction/mcash-transaction.component";
 import { McashComponent } from "./pages/Mcash/terminals/mcash.component";
@@ -61,19 +58,6 @@ const routes: Route[] = [
         data: { expectedRole: [3, 4, 5] },
       },
 
-      {
-        path: "admin-dashboard/week",
-        component: WeekCardComponent,
-        canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
-      },
-
-      {
-        path: "admin-dashboard/month",
-        component: MonthCardComponent,
-        canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
-      },
 
       { path: "transaction/details", component: TransactionComponent },
       { path: "inconclusive/transaction", component: InconclusiveTransactionComponent },
