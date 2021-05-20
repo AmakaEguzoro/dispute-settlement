@@ -52,6 +52,14 @@ export class SummaryService {
                 return transaction;
             }
             ));
+    } 
+     getThisMonthTimeChart() {
+        return this.httpClient.get(`${this.baseUrl3}/transaction/performance/this_year`).pipe(
+            map((response: any) => {
+                const transaction = response;
+                return transaction;
+            }
+            ));
     }
 
 

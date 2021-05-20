@@ -132,7 +132,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
         this.todayTime = responseData.data;      
 
         let time12amFail = this.todayTime.P12AMFailed; let time12amSucess = this.todayTime.P12AMSuccessful; let time12amTotal = this.todayTime.P12AMTotalAmount;
-        let time1amFail = this.todayTime.P1AMFailed; let time1amSucess = this.todayTime.P1AMSuccessful; let time1amTotal = this.todayTime.P2AMTotalAmount;
+        let time1amFail = this.todayTime.P1AMFailed; let time1amSucess = this.todayTime.P1AMSuccessful; let time1amTotal = this.todayTime.P1AMTotalAmount;
         let time2amFail = this.todayTime.P2AMFailed; let time2amSucess = this.todayTime.P2AMSuccessful; let time2amTotal = this.todayTime.P2AMTotalAmount;
         let time3amFail = this.todayTime.P3AMFailed; let time3amSucess = this.todayTime.P3AMSuccessful; let time3amTotal = this.todayTime.P3AMTotalAmount;
         let time4amFail = this.todayTime.P4AMFailed; let time4amSucess = this.todayTime.P4AMSuccessful; let time4amTotal = this.todayTime.P4AMTotalAmount;
