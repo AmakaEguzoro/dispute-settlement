@@ -8,6 +8,8 @@ import { ChannelService } from 'app/_service/channels.service';
 import { formatDate } from '@angular/common';
 import { ProductsService } from 'app/_service/products.service';
 import { IMyOptions } from 'lib/ng-uikit-pro-standard';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 
 
 @Component({
@@ -19,11 +21,19 @@ import { IMyOptions } from 'lib/ng-uikit-pro-standard';
 export class DayDashboardComponent implements OnInit, OnDestroy {
 
   constructor(private paymentMethodService: PaymentMethodService, private summaryService: SummaryService,
-    private channelService: ChannelService, private productsService: ProductsService) { }
+    private fb: FormBuilder, private channelService: ChannelService, private productsService: ProductsService,) {
+    this.searchForm = this.fb.group({
+      startDate: ["", Validators.min],
+    });
+  }
 
   todayTime: any;
   todayFail: any;
- 
+
+  // search
+  filterData: any;
+  start: any;
+  searchForm: FormGroup;
 
   response2Days: any;
   // summary of the data for last2days success and fail
@@ -91,45 +101,45 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
   chartDataArray: Array<any>;
   chartDatasets: Array<any>; selectedType: any;
   chartLabels: Array<any>; performanceLabels: any;
-  chart: any; 
-  dateRange: any;
-  
+  chart: any;preDate:any;
+
   typeChart: Array<any> = [{ type: "bar" }, { type: "line" }];
   async ngOnInit() {
     this.chartType = this.typeChart[0].type;
-  
-    this.todayDate = new Date();
-    let preDate = new Date();
-    this.yesterdayDate = preDate.setDate(preDate.getDate() - 1);
-    this.last2Days = preDate.setDate(preDate.getDate() - 1);
+    let dayDate = moment(); this.start = moment(dayDate).format('YYYY-MM-DD');
+    
+    this.preDate = new Date();
+    this.yesterdayDate = this.preDate.setDate(this.preDate.getDate() - 1);
+    this.last2Days = this.preDate.setDate(this.preDate.getDate() - 1);
 
     await this.getTodayTransaction();
     await this.getTodayChannel();
     await this.getTodayPayment();
     await this.getTodayProduct();
-    await this.getTodayTimeChart();
-    // await this.nextChart();
+    await this.getTodayTimeChart(this.start);
     this.refresh = Observable.interval(15 * 60 * 1000).subscribe(() => {
       this.getTodayTransaction();
     })
   }
 
   public myDatePickerOptions: IMyOptions = {
-    dateFormat: "yyyy/mm/dd",
-    // startDate: this.todayDate,
+    dateFormat: "yyyy-mm-dd",
+    startDate: moment().format('YYYY-MM-DD'),
     ariaLabelOpenCalendar: "Open Calendar",
     closeAfterSelect: true,
     minYear: 1900,
-    // disableUntil:
-    //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
+  searchTrans() {
+    this.start = this.searchForm.value.startDate;
+      this.getTodayTimeChart(this.start);
+  }
 
-  getTodayTimeChart() {
+  getTodayTimeChart(date) {
     this.isData = true;
     this.loading = true,
-      this.summaryService.getTodayTimeChart().subscribe(responseData => {
+      this.summaryService.getTodayTimeChart(this.start).subscribe(responseData => {
         this.loading = false;
-        this.todayTime = responseData.data;      
+        this.todayTime = responseData.data;
 
         let time12amFail = this.todayTime.P12AMFailed; let time12amSucess = this.todayTime.P12AMSuccessful; let time12amTotal = this.todayTime.P12AMTotalAmount;
         let time1amFail = this.todayTime.P1AMFailed; let time1amSucess = this.todayTime.P1AMSuccessful; let time1amTotal = this.todayTime.P1AMTotalAmount;
@@ -188,7 +198,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
 
 
         this.chartLabels = ['12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM',
-         '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM'
+          '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM'
         ];
         this.chartColors = [
 
@@ -284,8 +294,6 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
   switchLineData() {
     this.chartType = this.typeChart[1].type;
   }
-
-
 
   getTodayTransaction() {
     this.isData = true;
@@ -757,6 +765,8 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
         console.log('cant get today response', error);
       });
   }
+
+  
 
   ngOnDestroy() {
     this.refresh.unsubscribe();

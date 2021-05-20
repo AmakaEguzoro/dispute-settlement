@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-<label class="day-label"> Today</label> &nbsp; <label class="date-label"> {{todayDate | date :'MMMM d, y' }}</label>
+<label class="day-label"> Today</label> &nbsp; <label class="date-label"> {{preDate | date :'MMMM-d-y'  }}</label>
       <div class="card dash-card">
         <div class="card-body">
           <div style="text-align: center;">
@@ -55,7 +55,7 @@
     </div>
     
     <i class="previous-date">
-      {{yesterdayDate | date :'MMMM d, y' }}
+      {{yesterdayDate | date :'MMMM-d-y' }}
     </i>
   </div>
   <div class="col-4" style="text-align: center">
@@ -91,7 +91,7 @@ Total Count:  {{ totalCountPrevious | number }}
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-<label class="day-label"> Yesterday</label> &nbsp; <label class="date-label"> {{yesterdayDate | date :'MMMM d, y' }}</label>
+<label class="day-label"> Yesterday</label> &nbsp; <label class="date-label"> {{yesterdayDate | date :'MMMM-d-y' }}</label>
 
       <div class="card dash-card">
         <div class="card-body">
@@ -145,7 +145,7 @@ Total Count:  {{ totalCountPrevious | number }}
     </div>
     
     <i class="previous-date">
-      {{last2Days | date :'MMMM d, y' }}
+      {{last2Days | date :'MMMM-d-y' }}
     </i>
   </div>
   <div class="col-4" style="text-align: center">
@@ -218,13 +218,14 @@ Total Count:  {{ last2DaysTotalCount | number }}
 <div class="card" >
   <div class="card-body">
     <div class="row">
-<div class="col-2" style="">
-  <mdb-date-picker id="endDate" placeholder="Date"
+<div class="col-2">
+  <form [formGroup]="searchForm">
+  <mdb-date-picker formControlName="startDate" id="endDate" placeholder="Date"
                 [options]="myDatePickerOptions"></mdb-date-picker>
-               
+  </form>
 </div>
 <div class="col-2"> 
-  <mdb-badge class="save" (click)="exportAsXLSX()">
+  <mdb-badge class="save" (click)="searchTrans()">
     <i class="fas fa-search"></i>
     &nbsp;Search
 </mdb-badge>

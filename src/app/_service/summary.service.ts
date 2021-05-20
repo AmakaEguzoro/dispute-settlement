@@ -45,8 +45,8 @@ export class SummaryService {
         return forkJoin([getThisMonthSuccess, getThisMonthFailed,getTwoMonths]);
     }
 
-    getTodayTimeChart() {
-        return this.httpClient.get(`${this.baseUrl3}/transaction/performance/today`).pipe(
+    getTodayTimeChart(date) {
+        return this.httpClient.get(`${this.baseUrl3}/transaction/performance/${date}`).pipe(
             map((response: any) => {
                 const transaction = response;
                 return transaction;
