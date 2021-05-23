@@ -17,15 +17,6 @@ import { LoginComponent } from "app/_auth/login/login.component";
 import { AdminDashboardComponent } from "./admin/admin-dashboard/admin-dashboard.component";
 import { TransactionComponent } from "./Transaction/transaction/transaction.component";
 import { ModelComponent } from "./Transaction/transaction/model/model.component";
-import { TodayChannelsComponent } from "./admin/admin-top-5/channel/today-channels/today-channels.component";
-import { ThisWeekChannelsComponent } from "./admin/admin-top-5/channel/this-week-channels/this-week-channels.component";
-import { ThisMonthChannelsComponent } from "./admin/admin-top-5/channel/this-month-channels/this-month-channels.component";
-import { TodayProductComponent } from "./admin/admin-top-5/product/today-product/today-product.component";
-import { ThisWeekProductComponent } from "./admin/admin-top-5/product/this-week-product/this-week-product.component";
-import { ThisMonthProductComponent } from "./admin/admin-top-5/product/this-month-product/this-month-product.component";
-import { TodayPaymentMethodComponent } from "./admin/admin-top-5/payment-methods/today-payment-method/today-payment-method.component";
-import { ThisWeekPaymentMethodComponent } from "./admin/admin-top-5/payment-methods/this-week-payment-method/this-week-payment-method.component";
-import { ThisMonthPaymentMethodComponent } from "./admin/admin-top-5/payment-methods/this-month-payment-method/this-month-payment-method.component";
 import { SharedModule } from "app/shared/shared.module";
 import { OrderModule } from "ngx-order-pipe";
 import { PaginationModule } from "ngx-bootstrap";
@@ -103,15 +94,6 @@ import { NqrMerchantHistoryComponent } from './nqr/nqr-merchant-history/nqr-merc
     ServiceStatusComponent,
     BvnStatusComponent,
 
-    TodayChannelsComponent,
-    ThisWeekChannelsComponent,
-    ThisMonthChannelsComponent,
-    TodayProductComponent,
-    ThisWeekProductComponent,
-    ThisMonthProductComponent,
-    TodayPaymentMethodComponent,
-    ThisWeekPaymentMethodComponent,
-    ThisMonthPaymentMethodComponent,
     LoginComponent,
     RegisterComponent,
     AdminDashboardComponent,
@@ -164,15 +146,6 @@ import { NqrMerchantHistoryComponent } from './nqr/nqr-merchant-history/nqr-merc
     MDBBootstrapModulesPro,
 
     SanefModelComponent,
-    TodayChannelsComponent,
-    ThisWeekChannelsComponent,
-    ThisMonthChannelsComponent,
-    TodayProductComponent,
-    ThisWeekProductComponent,
-    ThisMonthProductComponent,
-    TodayPaymentMethodComponent,
-    ThisWeekPaymentMethodComponent,
-    ThisMonthPaymentMethodComponent,
 
     ServiceStatusComponent,
     BvnStatusComponent,

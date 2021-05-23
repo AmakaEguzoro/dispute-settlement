@@ -166,20 +166,25 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
 
           {
 
-            backgroundColor: "#01C6B7",
-            borderWidth: 0,
-
+            backgroundColor: "#229654",
+            borderColor: '#229654',
+            borderWidth: 3,
+            pointBackgroundColor: '#229654',
           },
 
           {
             backgroundColor: "#FF7070",
-            borderWidth: 0,
+            borderColor: '#FF7070',
+            borderWidth: 3,
+            pointBackgroundColor: '#FF7070',
           },
           {
-            backgroundColor: "#626262",
-            borderWidth: 0,
-          }
+            backgroundColor: "#B4B4B4",
+            borderColor: '#B4B4B4',
+            borderWidth: 3,
+            pointBackgroundColor: '#B4B4B4',
 
+          }
         ];
 
         this.chartOptions = {
