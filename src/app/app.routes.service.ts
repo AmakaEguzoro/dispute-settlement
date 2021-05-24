@@ -22,9 +22,6 @@ import { TransactionLocksComponent } from "./pages/Transaction/transaction-locks
 import { RegisterComponent } from "./_auth/register/register.component";
 import { RoleManagementComponent } from "./pages/admin/role-management/role-management.component";
 import { RoleGuard } from "./_auth/role-guard.service";
-import { DayCardComponent } from "./pages/admin/dashboard-cards/daily-cards/day-card/day-card.component";
-import { WeekCardComponent } from "./pages/admin/dashboard-cards/weekly-cards/week-card/week-card.component";
-import { MonthCardComponent } from "./pages/admin/dashboard-cards/monthly-cards/month-card/month-card.component";
 import { AgencyBankingComponent } from "./AgencyBanking/agency-banking/agency-banking.component";
 import { McashTransactionComponent } from "./pages/Mcash/transaction/mcash-transaction.component";
 import { McashComponent } from "./pages/Mcash/terminals/mcash.component";
@@ -40,6 +37,7 @@ import { InconclusiveTransactionComponent } from "./pages/Transaction/inconclusi
 import { NqrComponent } from './pages/nqr/nqr.component';
 import { NqrBulkComponent } from './pages/nqr/nqr-bulk/nqr-bulk.component';
 import { NqrHistoryComponent } from './pages/nqr/nqr-history/nqr-history.component';
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
@@ -50,215 +48,203 @@ const routes: Route[] = [
     // runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      // { path: 'admin-dashboard', component: AdminDashboardComponent,
-      // canActivate: [RoleGuard],data: { expectedRole: [3, 4, 5]} },
 
       {
         path: "admin-dashboard/day",
-        component: DayCardComponent,
+        component: DashboardComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Dashboard | Summary View' },
+        
       },
 
-      {
-        path: "admin-dashboard/week",
-        component: WeekCardComponent,
-        canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
-      },
 
-      {
-        path: "admin-dashboard/month",
-        component: MonthCardComponent,
-        canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
-      },
+      { path: "transaction/details", component: TransactionComponent, data:{ breadcrumb: 'Transactions'}  },
 
-      { path: "transaction/details", component: TransactionComponent },
-      { path: "inconclusive/transaction", component: InconclusiveTransactionComponent },
+      { path: "inconclusive/transaction", component: InconclusiveTransactionComponent,
+       data:{ breadcrumb: 'Inconclusive Transactions'}  },
 
 
       {
         path: "agency/banking",
         component: AgencyBankingComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Agency Banking' },
       },
 
       {
         path: "error/analysis",
         component: ErrorAnalysisComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Error Analysis' },
       },
 
       {
         path: "mcash/transactions",
         component: McashTransactionComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5] , breadcrumb: 'Mcash Transactions'},
       },
 
       {
         path: "mcash/map-terminals",
         component: McashComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Mcash | Map Terminals' },
       },
 
       {
         path: "cgate/transactions",
         component: CgateComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Cgate Transactions' },
       },
       {
         path: "transaction/global",
         component: TransactionGlobalComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5],breadcrumb: 'Global Transactions' },
       },
       {
         path: "onboarding/dashboard",
         component: AgentdashboardComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Onboarding Dashboard' },
       },
        {
         path: "nqr/onboard",
         component: NqrComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nqr Onboarding' },
       },
        {
         path: "nqr/onboard-bulk",
         component: NqrBulkComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nqr | Bulk-Upload' },
       },
        {
         path: "nqr/onboard-history",
         component: NqrHistoryComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nqr | Onboard History' },
       },
       {
         path: "nqr/merchant-onboard-history",
         component: NqrMerchantHistoryComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nqr | Merchant Onboard History' },
       },
        {
         path: "nqr/merchant-onboard",
         component: NqrMerchantOnboardComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nqr | Merchant Bulk-Upload'},
       },
       {
         path: "sanef/account",
         component: AccountComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Sanef | Account' },
       },
       {
         path: "sanef/transactions",
         component: TransactionsComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Sanef | Transactions'  },
       },
       {
         path: "transaction/nip",
         component: TransactionNipComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nip | Transactions Session Report' },
       },
 
       {
         path: "transaction-settlement/nip",
         component: TransactionNipSetlComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nip | Settlement Cycle Report' },
       },
 
       {
         path: "service-status",
         component: ServiceStatusComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [4, 5] },
+        data: { expectedRole: [4, 5],  breadcrumb: 'Service Status' },
       },
 
       {
         path: "bvn-status",
         component: BvnStatusComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [4, 5] },
+        data: { expectedRole: [4, 5],  breadcrumb: 'Bvn Status'},
       },
 
       {
         path: "transaction/reversal",
         component: TransactionReversalComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Transaction Reversal' },
       },
 
       {
         path: "transaction/iepostpaid",
         component: TransactionIepostpaidComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'IE Stored/Forwarded Transaction Report'},
       },
 
       {
         path: "transaction/locks",
         component: TransactionLocksComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5] ,breadcrumb: 'Transactions On-Hold'},
       },
 
       {
         path: "register",
         component: RegisterComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5] },
+        data: { expectedRole: [5], breadcrumb: ' Create User'},
       },
 
       {
         path: "users",
         component: RoleManagementComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5] ,breadcrumb: 'Users' },
       },
       {
         path: "transaction/limits",
         component: TransactionLimitsComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] },
+        data: { expectedRole: [3, 4, 5], breadcrumb: 'Transaction Limits' },
       },
 
       {
         path: "app/configurations",
         component: AppConfigComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5] },
+        data: { expectedRole: [5], breadcrumb: 'Live App Configurations'},
       },
 
       {
         path: "b2b/configurations",
         component: B2bConfigComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5] },
+        data: { expectedRole: [5], breadcrumb: 'Live B2B Configurations'},
       },
       {
         path: "wallet/configurations",
         component: WalletLimitsComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5] },
+        data: { expectedRole: [5], breadcrumb: 'Live Wallet Limits' },
       },
       {
         path: "data/configurations",
         component: DataPlansComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5] },
+        data: { expectedRole: [5], breadcrumb: 'Live Data Configurations'},
       },
     ],
   },
