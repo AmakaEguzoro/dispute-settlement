@@ -414,6 +414,12 @@ export class TransactionComponent implements OnInit {
     "OLHS",
     "SMILE",
     "LCC",
+    "JAMBDE",
+    "JAMBUTME",
+    "WAECRESULT",
+    "WAECREG",
+   
+    
   ];
 
   getPaymentMethod(event) {
