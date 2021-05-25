@@ -102,13 +102,14 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
   chartDataArray: Array<any>;
   chartDatasets: Array<any>; selectedType: any;
   chartLabels: Array<any>; performanceLabels: any;
-  chart: any;preDate:any;
+  chart: any;currentDate : any;
+  preDate:any;
 
   typeChart: Array<any> = [{ type: "bar" }, { type: "line" }];
   async ngOnInit() {
     this.chartType = this.typeChart[0].type;
     let dayDate = moment(); this.start = moment(dayDate).format('YYYY-MM-DD');
-    
+    this.currentDate = moment(dayDate).format('MMM-DD-YYYY');
     this.preDate = new Date();
     this.yesterdayDate = this.preDate.setDate(this.preDate.getDate() - 1);
     this.last2Days = this.preDate.setDate(this.preDate.getDate() - 1);
