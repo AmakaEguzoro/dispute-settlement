@@ -102,8 +102,8 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
     this.chartType = this.typeChart[0].type;
 
     this.todayDate = new Date();
-    let month2 = moment().subtract(2, 'weeks'); this.last2Months = moment(month2).format('MM-YYYY');
-    let month1 = moment().subtract(1, 'weeks'); this.lastMonthDate = moment(month1).format('MM-YYYY');
+    let month2 = moment().subtract(2, 'months'); this.last2Months = moment(month2).format('MM-YYYY');
+    let month1 = moment().subtract(1, 'months'); this.lastMonthDate = moment(month1).format('MM-YYYY');
 
 
     await this.getThisMonthTransaction();
