@@ -32,7 +32,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
   last2MonthsTotalAmount: any;
   last2MonthsTotalCount: any;
   last2MontthsPercentChange: any;
-
+  isProductload = false;  isPaymentload = false; isChannelload = false; 
   loading = false;
   isData: boolean;
   refresh: Subscription;
@@ -126,7 +126,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
         this.todayTime = responseData.data;
 
         let timeJanuaryFail = this.todayTime.JanuaryFailed; let timeJanuarySucess = this.todayTime.JanuarySuccessful; let timeJanuaryTotal = this.todayTime.JanuaryTotalAmount;
-        let timeFebuaryFail = this.todayTime.FebuaryFailed; let timeFebuarySucess = this.todayTime.FebuarySuccessful; let timeFebuaryTotal = this.todayTime.FebuaryTotalAmount;
+        let timeFebuaryFail = this.todayTime.FebruaryFailed; let timeFebuarySucess = this.todayTime.FebruarySuccessful; let timeFebuaryTotal = this.todayTime.FebruaryTotalAmount;
         let timeMarchFail = this.todayTime.MarchFailed; let timeMarchSucess = this.todayTime.MarchSuccessful; let timeMarchTotal = this.todayTime.MarchTotalAmount;
         let timeAprilFail = this.todayTime.AprilFailed; let timeAprilSucess = this.todayTime.AprilSuccessful; let timeAprilTotal = this.todayTime.AprilTotalAmount;
         let timeMayFail = this.todayTime.MayFailed; let timeMaySucess = this.todayTime.MaySuccessful; let timeMayTotal = this.todayTime.MayTotalAmount;
@@ -323,9 +323,9 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
 
   getThisMonthChannel() {
     this.isData = true;
-    this.loading = true,
+    this.isChannelload = true,
       this.channelService.getChannel('month').subscribe(responseData => {
-        this.loading = false;
+        this.isChannelload = false;
         this.outputChannel = responseData.data.response;
         this.outputChannel = this.outputChannel.sort((a, b) => (a.total > b.total) ? -1 : 1);
         //splice the array and pick the top five
@@ -449,16 +449,16 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
 
       }, error => {
         this.isData = false;
-        this.loading = false;
+        this.isChannelload = false;
         console.log('cant get today response', error);
       });
   }
 
   getThisMonthPayment() {
     this.isData = true;
-    this.loading = true,
+    this.isPaymentload = true,
       this.paymentMethodService.getPaymentMethod('month').subscribe(responseData => {
-        this.loading = false;
+        this.isPaymentload = false;
         this.outputPayment = responseData.data.response;
 
         this.outputPayment = this.outputPayment.sort((a, b) => (a.total > b.total) ? -1 : 1);
@@ -566,16 +566,16 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
 
       }, error => {
         this.isData = false;
-        this.loading = false;
+        this.isPaymentload = false;
         console.log('cant get today response', error);
       });
   }
 
   getThisMonthProduct() {
     this.isData = true;
-    this.loading = true,
+    this.isProductload = true,
       this.loading = true, this.productsService.getProducts('month').subscribe(resposeData => {
-        this.loading = false;
+        this.isProductload = false;
 
         // console.log('This is my Response List', resposeData);
         this.outputProduct = resposeData.data.response;
@@ -704,7 +704,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
 
       }, error => {
         this.isData = false;
-        this.loading = false;
+        this.isProductload = false;
         console.log('cant get today response', error);
       });
   }

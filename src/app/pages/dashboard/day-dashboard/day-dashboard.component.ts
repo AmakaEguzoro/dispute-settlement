@@ -43,6 +43,8 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
 
   loading = false;
   isloading = false;
+  isProductload = false;  isPaymentload = false; isChannelload = false; 
+
   isData: boolean;
   refresh: Subscription;
   todayDate: any; yesterdayDate: any; last2Days: any;
@@ -364,9 +366,9 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
 
   getTodayChannel() {
     this.isData = true;
-    this.loading = true,
+    this.isChannelload = true,
       this.channelService.getChannel('day').subscribe(responseData => {
-        this.loading = false;
+        this.isChannelload = false;
         this.outputChannel = responseData.data.response;
         this.outputChannel = this.outputChannel.sort((a, b) => (a.total > b.total) ? -1 : 1);
         //splice the array and pick the top five
@@ -498,16 +500,16 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
 
       }, error => {
         this.isData = false;
-        this.loading = false;
+        this.isChannelload = false;
         console.log('cant get today response', error);
       });
   }
 
   getTodayPayment() {
     this.isData = true;
-    this.loading = true,
+    this.isPaymentload = true,
       this.paymentMethodService.getPaymentMethod('day').subscribe(responseData => {
-        this.loading = false;
+        this.isPaymentload = false;
         this.outputPayment = responseData.data.response;
 
         this.outputPayment = this.outputPayment.sort((a, b) => (a.total > b.total) ? -1 : 1);
@@ -623,16 +625,16 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
 
       }, error => {
         this.isData = false;
-        this.loading = false;
+        this.isPaymentload = false;
         console.log('cant get today response', error);
       });
   }
 
   getTodayProduct() {
     this.isData = true;
-    this.loading = true,
-      this.loading = true, this.productsService.getProducts('day').subscribe(resposeData => {
-        this.loading = false;
+    this.isProductload = true,
+      this.productsService.getProducts('day').subscribe(resposeData => {
+        this.isProductload = false;
 
         // console.log('This is my Response List', resposeData);
         this.outputProduct = resposeData.data.response;
@@ -769,7 +771,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
 
       }, error => {
         this.isData = false;
-        this.loading = false;
+        this.isProductload = false;
         console.log('cant get today response', error);
       });
   }
