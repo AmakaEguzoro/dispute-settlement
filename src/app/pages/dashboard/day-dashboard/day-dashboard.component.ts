@@ -106,7 +106,8 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
   chartLabels: Array<any>; performanceLabels: any;
   chart: any;currentDate : any;
   preDate:any;
-
+  typeOptions: any;
+  chartOptio: any;
   typeChart: Array<any> = [{ type: "bar" }, { type: "line" }];
   async ngOnInit() {
     this.chartType = this.typeChart[0].type;
@@ -173,15 +174,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
 
 
 
-        this.datasets = [{
-          data: [
-            time12amSucess, time1amSucess, time2amSucess, time3amSucess, time4amSucess, time5amSucess,
-            time6amSucess, time7amSucess, time8amSucess, time9amSucess, time10amSucess, time11amSucess,
-            time12pmSucess, time1pmSucess, time2pmSucess, time3pmSucess, time4pmSucess, time5pmSucess,
-            time6pmSucess, time7pmSucess, time8pmSucess, time9pmSucess, time10pmSucess, time11pmSucess,
-          ], fill: false, label: 'Sucessful Transactions'
-        },
-
+        this.datasets = [
         {
           data: [
             time12amFail, time1amFail, time2amFail, time3amFail, time4amFail, time5amFail,
@@ -189,6 +182,14 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
             time12pmFail, time1pmFail, time2pmFail, time3pmFail, time4pmFail, time5pmFail,
             time6pmFail, time7pmFail, time8pmFail, time9pmFail, time10pmFail, time11pmFail,
           ], fill: false, label: 'Failed Transactions'
+        },
+        {
+          data: [
+            time12amSucess, time1amSucess, time2amSucess, time3amSucess, time4amSucess, time5amSucess,
+            time6amSucess, time7amSucess, time8amSucess, time9amSucess, time10amSucess, time11amSucess,
+            time12pmSucess, time1pmSucess, time2pmSucess, time3pmSucess, time4pmSucess, time5pmSucess,
+            time6pmSucess, time7pmSucess, time8pmSucess, time9pmSucess, time10pmSucess, time11pmSucess,
+          ], fill: false, label: 'Sucessful Transactions'
         },
         {
           data: [
@@ -205,7 +206,12 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
           '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM'
         ];
         this.chartColors = [
-
+          {
+            backgroundColor: "#FF7070",
+            borderColor: '#FF7070',
+            borderWidth: 3,
+            pointBackgroundColor: '#FF7070',
+          },
           {
 
             backgroundColor: "#229654",
@@ -214,12 +220,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
             pointBackgroundColor: '#229654',
           },
 
-          {
-            backgroundColor: "#FF7070",
-            borderColor: '#FF7070',
-            borderWidth: 3,
-            pointBackgroundColor: '#FF7070',
-          },
+        
           {
             backgroundColor: "#B4B4B4",
             borderColor: '#B4B4B4',
@@ -254,7 +255,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
             yAxes: [{
               display: true,
               stacked: true, grid: {
-
+    
               },
               ticks: {
                 callback: function (input: any, args?: any) {
@@ -269,7 +270,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
                   exp = Math.floor(Math.log(input) / Math.log(1000));
                   return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
                 }
-
+    
               },
               gridLines: {
                 display: false
@@ -285,10 +286,10 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
               gridLines: {
                 display: true,
               },
-
+    
             }]
           }
-
+    
         };
 
       }, error => {
@@ -300,9 +301,132 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
   }
   switchBarData() {
     this.chartType = this.typeChart[0].type;
+    this.chartOptio = {
+      responsive: true,
+      // fill: false,
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: {
+          fontColor: '#808080',
+          fontSize: 13,
+          boxWidth: 7,
+        },
+      },
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
+            return parseInt(tooltipValue).toLocaleString();
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          display: true,
+          stacked: true, grid: {
+
+          },
+          ticks: {
+            callback: function (input: any, args?: any) {
+              var exp, rounded,
+                suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+              if (Number.isNaN(input)) {
+                return null;
+              }
+              if (input < 1000) {
+                return input;
+              }
+              exp = Math.floor(Math.log(input) / Math.log(1000));
+              return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+            }
+
+          },
+          gridLines: {
+            display: false
+          },
+        }],
+        xAxes: [{
+          display: true,
+          barThickness: 10,
+          stacked: true,
+          ticks: {
+            fontColor: '#69A8FF',
+          },
+          gridLines: {
+            display: true,
+          },
+
+        }]
+      }
+
+    };
+    this.chartOptions = this.chartOptio;
+
   }
   switchLineData() {
     this.chartType = this.typeChart[1].type;
+    this.typeOptions = {
+      responsive: true,
+      // fill: false,
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: {
+          fontColor: '#808080',
+          fontSize: 13,
+          boxWidth: 7,
+        },
+      },
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
+            return parseInt(tooltipValue).toLocaleString();
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          display: true,
+          stacked: false, grid: {
+
+          },
+          ticks: {
+            callback: function (input: any, args?: any) {
+              var exp, rounded,
+                suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+              if (Number.isNaN(input)) {
+                return null;
+              }
+              if (input < 1000) {
+                return input;
+              }
+              exp = Math.floor(Math.log(input) / Math.log(1000));
+              return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+            }
+
+          },
+          gridLines: {
+            display: false
+          },
+        }],
+        xAxes: [{
+          display: true,
+          barThickness: 10,
+          stacked: false,
+          ticks: {
+            fontColor: '#69A8FF',
+          },
+          gridLines: {
+            display: true,
+          },
+
+        }]
+      }
+
+    };
+    this.chartOptions = this.typeOptions;
   }
 
   getTodayTransaction() {

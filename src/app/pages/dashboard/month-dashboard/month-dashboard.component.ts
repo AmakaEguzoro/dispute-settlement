@@ -34,6 +34,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
   last2MontthsPercentChange: any;
   isProductload = false;  isPaymentload = false; isChannelload = false; 
   loading = false;
+  isLoad = false;
   isData: boolean;
   refresh: Subscription;
   todayDate: any; lastMonthDate: any; last2Months: any;
@@ -98,6 +99,8 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
   dateRange: any;
 
   typeChart: Array<any> = [{ type: "bar" }, { type: "line" }];
+  typeOptions: any;
+  chartOptio: any;
   async ngOnInit() {
     this.chartType = this.typeChart[0].type;
 
@@ -120,9 +123,9 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
 
   getThisMonthTimeChart() {
     this.isData = true;
-    this.loading = true,
+    this.isLoad = true,
       this.summaryService.getThisMonthTimeChart().subscribe(responseData => {
-        this.loading = false;
+        this.isLoad = false;
         this.todayTime = responseData.data;
 
         let timeJanuaryFail = this.todayTime.JanuaryFailed; let timeJanuarySucess = this.todayTime.JanuarySuccessful; let timeJanuaryTotal = this.todayTime.JanuaryTotalAmount;
@@ -137,21 +140,22 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
         let timeOctoberFail = this.todayTime.OctoberFailed; let timeOctoberSucess = this.todayTime.OctoberSuccessful; let timeOctoberTotal = this.todayTime.OctoberTotalAmount;
         let timeNovemberFail = this.todayTime.NovemberFailed; let timeNovemberSucess = this.todayTime.NovemberSuccessful; let timeNovemberTotal = this.todayTime.NovemberTotalAmount;
         let timeDecemberFail = this.todayTime.DecemberFailed; let timeDecemberSucess = this.todayTime.DecemberSuccessful; let timeDecemberTotal = this.todayTime.DecemberTotalAmount;
-
        
-        this.datasets = [{
+        this.datasets = [
+          {
+            data: [
+              timeJanuaryFail, timeFebuaryFail, timeMarchFail, timeAprilFail, timeMayFail, timeJuneFail,
+              timeJulyFail, timeAugustFail, timeSeptemberFail, timeOctoberFail, timeNovemberFail, timeDecemberFail,
+            ], fill: false, label: 'Failed Transactions'
+          },
+          {
           data: [
             timeJanuarySucess, timeFebuarySucess, timeMarchSucess, timeAprilSucess, timeMaySucess, timeJuneSucess,
             timeJulySucess, timeAugustSucess, timeSeptemberSucess, timeOctoberSucess, timeNovemberSucess, timeDecemberSucess  ],
              fill: false, label: 'Sucessful Transactions'
         },
 
-        {
-          data: [
-            timeJanuaryFail, timeFebuaryFail, timeMarchFail, timeAprilFail, timeMayFail, timeJuneFail,
-            timeJulyFail, timeAugustFail, timeSeptemberFail, timeOctoberFail, timeNovemberFail, timeDecemberFail,
-          ], fill: false, label: 'Failed Transactions'
-        },
+      
         {
           data: [
             timeJanuaryTotal, timeFebuaryTotal, timeMarchTotal, timeAprilTotal, timeMayTotal, timeJuneTotal,
@@ -163,7 +167,12 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
 
         this.chartLabels = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
         this.chartColors = [
-
+          {
+            backgroundColor: "#FF7070",
+            borderColor: '#FF7070',
+            borderWidth: 3,
+            pointBackgroundColor: '#FF7070',
+          },
           {
 
             backgroundColor: "#229654",
@@ -172,12 +181,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             pointBackgroundColor: '#229654',
           },
 
-          {
-            backgroundColor: "#FF7070",
-            borderColor: '#FF7070',
-            borderWidth: 3,
-            pointBackgroundColor: '#FF7070',
-          },
+        
           {
             backgroundColor: "#B4B4B4",
             borderColor: '#B4B4B4',
@@ -187,6 +191,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
           }
         ];
 
+     
         this.chartOptions = {
           responsive: true,
           // fill: false,
@@ -211,7 +216,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             yAxes: [{
               display: true,
               stacked: true, grid: {
-
+    
               },
               ticks: {
                 callback: function (input: any, args?: any) {
@@ -226,7 +231,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
                   exp = Math.floor(Math.log(input) / Math.log(1000));
                   return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
                 }
-
+    
               },
               gridLines: {
                 display: false
@@ -242,24 +247,149 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
               gridLines: {
                 display: true,
               },
-
+    
             }]
           }
-
+    
         };
+       
 
       }, error => {
         this.isData = false;
-        this.loading = false;
+        this.isLoad = false;
         console.log('cant get today response', error);
       }
       );
   }
   switchBarData() {
     this.chartType = this.typeChart[0].type;
+    this.chartOptio = {
+      responsive: true,
+      // fill: false,
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: {
+          fontColor: '#808080',
+          fontSize: 13,
+          boxWidth: 7,
+        },
+      },
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
+            return parseInt(tooltipValue).toLocaleString();
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          display: true,
+          stacked: true, grid: {
+
+          },
+          ticks: {
+            callback: function (input: any, args?: any) {
+              var exp, rounded,
+                suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+              if (Number.isNaN(input)) {
+                return null;
+              }
+              if (input < 1000) {
+                return input;
+              }
+              exp = Math.floor(Math.log(input) / Math.log(1000));
+              return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+            }
+
+          },
+          gridLines: {
+            display: false
+          },
+        }],
+        xAxes: [{
+          display: true,
+          barThickness: 10,
+          stacked: true,
+          ticks: {
+            fontColor: '#69A8FF',
+          },
+          gridLines: {
+            display: true,
+          },
+
+        }]
+      }
+
+    };
+    this.chartOptions = this.chartOptio;
+
   }
   switchLineData() {
     this.chartType = this.typeChart[1].type;
+    this.typeOptions = {
+      responsive: true,
+      // fill: false,
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: {
+          fontColor: '#808080',
+          fontSize: 13,
+          boxWidth: 7,
+        },
+      },
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
+            return parseInt(tooltipValue).toLocaleString();
+          }
+        }
+      },
+      scales: {
+        yAxes: [{
+          display: true,
+          stacked: false, grid: {
+
+          },
+          ticks: {
+            callback: function (input: any, args?: any) {
+              var exp, rounded,
+                suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+              if (Number.isNaN(input)) {
+                return null;
+              }
+              if (input < 1000) {
+                return input;
+              }
+              exp = Math.floor(Math.log(input) / Math.log(1000));
+              return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+            }
+
+          },
+          gridLines: {
+            display: false
+          },
+        }],
+        xAxes: [{
+          display: true,
+          barThickness: 10,
+          stacked: false,
+          ticks: {
+            fontColor: '#69A8FF',
+          },
+          gridLines: {
+            display: true,
+          },
+
+        }]
+      }
+
+    };
+    this.chartOptions = this.typeOptions;
+
   }
 
 
