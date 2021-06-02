@@ -9897,14 +9897,7 @@ var DayDashboardComponent = /** @class */ (function () {
                 var time11pmFail = _this.todayTime.P11PMFailed;
                 var time11pmSucess = _this.todayTime.P11PMSuccessful;
                 var time11pmTotal = _this.todayTime.P11PMTotalAmount;
-                _this.datasets = [{
-                        data: [
-                            time12amSucess, time1amSucess, time2amSucess, time3amSucess, time4amSucess, time5amSucess,
-                            time6amSucess, time7amSucess, time8amSucess, time9amSucess, time10amSucess, time11amSucess,
-                            time12pmSucess, time1pmSucess, time2pmSucess, time3pmSucess, time4pmSucess, time5pmSucess,
-                            time6pmSucess, time7pmSucess, time8pmSucess, time9pmSucess, time10pmSucess, time11pmSucess,
-                        ], fill: false, label: 'Sucessful Transactions'
-                    },
+                _this.datasets = [
                     {
                         data: [
                             time12amFail, time1amFail, time2amFail, time3amFail, time4amFail, time5amFail,
@@ -9912,6 +9905,14 @@ var DayDashboardComponent = /** @class */ (function () {
                             time12pmFail, time1pmFail, time2pmFail, time3pmFail, time4pmFail, time5pmFail,
                             time6pmFail, time7pmFail, time8pmFail, time9pmFail, time10pmFail, time11pmFail,
                         ], fill: false, label: 'Failed Transactions'
+                    },
+                    {
+                        data: [
+                            time12amSucess, time1amSucess, time2amSucess, time3amSucess, time4amSucess, time5amSucess,
+                            time6amSucess, time7amSucess, time8amSucess, time9amSucess, time10amSucess, time11amSucess,
+                            time12pmSucess, time1pmSucess, time2pmSucess, time3pmSucess, time4pmSucess, time5pmSucess,
+                            time6pmSucess, time7pmSucess, time8pmSucess, time9pmSucess, time10pmSucess, time11pmSucess,
+                        ], fill: false, label: 'Sucessful Transactions'
                     },
                     {
                         data: [
@@ -9927,16 +9928,16 @@ var DayDashboardComponent = /** @class */ (function () {
                 ];
                 _this.chartColors = [
                     {
-                        backgroundColor: "#229654",
-                        borderColor: '#229654',
-                        borderWidth: 3,
-                        pointBackgroundColor: '#229654',
-                    },
-                    {
                         backgroundColor: "#FF7070",
                         borderColor: '#FF7070',
                         borderWidth: 3,
                         pointBackgroundColor: '#FF7070',
+                    },
+                    {
+                        backgroundColor: "#229654",
+                        borderColor: '#229654',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#229654',
                     },
                     {
                         backgroundColor: "#B4B4B4",
@@ -10007,9 +10008,119 @@ var DayDashboardComponent = /** @class */ (function () {
     };
     DayDashboardComponent.prototype.switchBarData = function () {
         this.chartType = this.typeChart[0].type;
+        this.chartOptio = {
+            responsive: true,
+            // fill: false,
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    fontColor: '#808080',
+                    fontSize: 13,
+                    boxWidth: 7,
+                },
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        return parseInt(tooltipValue).toLocaleString();
+                    }
+                }
+            },
+            scales: {
+                yAxes: [{
+                        display: true,
+                        stacked: true, grid: {},
+                        ticks: {
+                            callback: function (input, args) {
+                                var exp, rounded, suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+                                if (Number.isNaN(input)) {
+                                    return null;
+                                }
+                                if (input < 1000) {
+                                    return input;
+                                }
+                                exp = Math.floor(Math.log(input) / Math.log(1000));
+                                return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+                            }
+                        },
+                        gridLines: {
+                            display: false
+                        },
+                    }],
+                xAxes: [{
+                        display: true,
+                        barThickness: 10,
+                        stacked: true,
+                        ticks: {
+                            fontColor: '#69A8FF',
+                        },
+                        gridLines: {
+                            display: true,
+                        },
+                    }]
+            }
+        };
+        this.chartOptions = this.chartOptio;
     };
     DayDashboardComponent.prototype.switchLineData = function () {
         this.chartType = this.typeChart[1].type;
+        this.typeOptions = {
+            responsive: true,
+            // fill: false,
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    fontColor: '#808080',
+                    fontSize: 13,
+                    boxWidth: 7,
+                },
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        return parseInt(tooltipValue).toLocaleString();
+                    }
+                }
+            },
+            scales: {
+                yAxes: [{
+                        display: true,
+                        stacked: false, grid: {},
+                        ticks: {
+                            callback: function (input, args) {
+                                var exp, rounded, suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+                                if (Number.isNaN(input)) {
+                                    return null;
+                                }
+                                if (input < 1000) {
+                                    return input;
+                                }
+                                exp = Math.floor(Math.log(input) / Math.log(1000));
+                                return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+                            }
+                        },
+                        gridLines: {
+                            display: false
+                        },
+                    }],
+                xAxes: [{
+                        display: true,
+                        barThickness: 10,
+                        stacked: false,
+                        ticks: {
+                            fontColor: '#69A8FF',
+                        },
+                        gridLines: {
+                            display: true,
+                        },
+                    }]
+            }
+        };
+        this.chartOptions = this.typeOptions;
     };
     DayDashboardComponent.prototype.getTodayTransaction = function () {
         var _this = this;
@@ -10443,7 +10554,7 @@ var DayDashboardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n\n<label class=\"day-label\"> This Month</label> &nbsp; <label class=\"date-label\"> {{todayDate | date :'MM-y' }}</label>\n      <div class=\"card dash-card\">\n        <div class=\"card-body\">\n          <div style=\"text-align: center;\">\n            <div class=\"day-label\"> Total Transaction</div>\n            <div class=\"total-amt\">&#x20A6;  {{totalAmountCurrent | number}}  </div>\n            <div class=\"total-count\">Total Count: {{ totalCountCurrent | number }}  </div>\n          </div>\n         \n<div class=\"row mt-4\">\n  <div class=\"col-5\" style=\"text-align: center;\">\n<div class=\"fail-label\">\n  Successful Transactions\n</div>\n<div class=\"fail-amt\">\n  &#x20A6; {{successAmountCurrent | number}}\n</div>\n<div class=\"total-count\">\n  Count: {{successCountCurrent | number}}\n</div>\n<div class=\"summary-successful mt-1\">\n  {{successPercentCurrent  }}% \n</div>\n\n  </div>\n  <div class=\"col-2\" style=\"text-align: center;\">\n    <div class=\"vl\"></div><br><br><br>\n    <div class=\"vs-label mt-3\">\n      Vs.\n    </div>\n  </div>\n  <div class=\"col-5\" style=\"text-align: center;\">\n    <div class=\"fail-label\">\n      Failed Transactions\n    </div>\n    <div class=\"fail-amt\" style=\"color: #EC5757;\">\n      &#x20A6;  {{failAmountCurrent | number }}\n    </div>\n    <div class=\"total-count\">\n      Count: {{failCountCurrent | number }}\n    </div>\n    <div class=\"summary-failed mt-1\">\n      {{failPercentCurrent }}% \n    </div>\n  </div>\n</div>\n<div class=\"row mt-3\">\n  <div class=\"col-4\" style=\"text-align: center\">\n    <div class=\"previous-label\">\n      Previous Month\n    </div>\n    \n    <i class=\"previous-date\">\n      {{lastMonthDate}}\n    </i>\n  </div>\n  <div class=\"col-4\" style=\"text-align: center\">\n    <div class=\"previous-label\" style=\"font-weight: 600;\">\n      &#x20A6;  {{previousTotal | number }}\n    </div>\n    \n    <i class=\"previous-date\" style=\"color: #80A5D0;\">\nTotal Count:  {{ totalCountPrevious | number }}\n    </i>\n  </div>\n  <div class=\"col-4\" style=\"text-align: center\">\n     <i *ngIf=\"percentChange < 0\">\n      <div class=\"previous-label\" style=\"color: #909090;\">\n        Dropped By\n            </div>\n            <i class=\"previous-date\" style=\"color: #EC5757\">\n                 <img src=\"../assets/drop-icon.svg\" style=\"height: 10px;\">\n              {{ percentChange  | percent }}  </i>\n     </i>\n     <i *ngIf=\"percentChange > 0\">\n      <div class=\"previous-label\" style=\"color: #909090;\">\n        Increased By\n            </div>\n             <i class=\"previous-date\" style=\"color: #229654;\">\n                  <img src=\"../assets/rise-icon.svg\" style=\"height: 10px;\">\n              {{ percentChange  | percent }} </i>\n     </i>\n  </div>\n</div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n<label class=\"day-label\"> Last Month</label> &nbsp; <label class=\"date-label\"> {{lastMonthDate}}</label>\n\n      <div class=\"card dash-card\">\n        <div class=\"card-body\">\n          <div style=\"text-align: center;\">\n            <div class=\"day-label\"> Total Transaction</div>\n            <div class=\"total-amt\">&#x20A6;  {{previousTotal | number}}  </div>\n            <div class=\"total-count\">Total Count: {{ totalCountPrevious | number }}  </div>\n          </div>\n         \n<div class=\"row mt-4\">\n  <div class=\"col-5\" style=\"text-align: center;\">\n<div class=\"fail-label\">\n  Successful Transactions\n</div>\n<div class=\"fail-amt\">\n  &#x20A6; {{previousAmountSuccess | number}}\n</div>\n<div class=\"total-count\">\n  Count: {{previousCountSuccess | number}}\n</div>\n<div class=\"summary-successful mt-1\">\n  {{previousPercentSuccess  }}% \n</div>\n\n  </div>\n  <div class=\"col-2\" style=\"text-align: center;\">\n    <div class=\"vl\"></div><br><br><br>\n    <div class=\"vs-label mt-3\">\n      Vs.\n    </div>\n  </div>\n  <div class=\"col-5\" style=\"text-align: center;\">\n    <div class=\"fail-label\">\n      Failed Transactions\n    </div>\n    <div class=\"fail-amt\" style=\"color: #EC5757;\">\n      &#x20A6;  {{previousAmountFailed | number }}\n    </div>\n    <div class=\"total-count\">\n      Count: {{previousCountFailed | number }}\n    </div>\n    <div class=\"summary-failed mt-1\">\n      {{previousPercentFailed }}% \n    </div>\n  </div>\n</div>\n<div class=\"row mt-3\">\n  <div class=\"col-4\" style=\"text-align: center\">\n    <div class=\"previous-label\">\n      Previous Month\n    </div>\n    \n    <i class=\"previous-date\">\n      {{last2Months}}\n    </i>\n  </div>\n  <div class=\"col-4\" style=\"text-align: center\">\n    <div class=\"previous-label\" style=\"font-weight: 600;\">\n      &#x20A6;  {{last2MonthsTotalAmount | number }}\n    </div>\n    \n    <i class=\"previous-date\" style=\"color: #80A5D0;\">\nTotal Count:  {{ last2MonthsTotalCount | number }}\n    </i>\n  </div>\n  <div class=\"col-4\" style=\"text-align: center\">\n     <i *ngIf=\"last2MonthsPercentChange < 0\">\n      <div class=\"previous-label\" style=\"color: #909090;\">\n        Dropped By\n            </div>\n            <i class=\"previous-date\" style=\"color: #EC5757\">\n                 <img src=\"../assets/drop-icon.svg\" style=\"height: 10px;\">\n              {{ last2MonthsPercentChange  | percent }}  </i>\n     </i>\n     <i *ngIf=\"last2MonthsPercentChange > 0\">\n      <div class=\"previous-label\" style=\"color: #909090;\">\n        Increased By\n            </div>\n             <i class=\"previous-date\" style=\"color: #229654;\">\n                  <img src=\"../assets/rise-icon.svg\" style=\"height: 10px;\">\n              {{ last2MonthsPercentChange  | percent }} </i>\n     </i>\n  </div>\n</div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n\n<div class=\"row mt-5\">\n<div class=\"col-md-4 col-sm-12 col-xs-12\">\n  <label class=\"top-label\"> Top 5 Channels</label>\n  <mdb-card>\n    <mdb-card-body [style.height.em]=\"'12'\">\n      <mdb-spinner *ngIf=\"isChannelload\" spinnerType=\"small\" spinnerColor=\"blue\"></mdb-spinner>\n      <canvas id=\"monthChannel\"></canvas>\n\n    </mdb-card-body>\n  </mdb-card>\n</div>\n<div class=\"col-md-4 col-sm-12 col-xs-12\">\n  <label class=\"top-label\"> Top 5 Products</label>\n  <mdb-card>\n    <mdb-card-body [style.height.em]=\"'12'\">\n      <mdb-spinner *ngIf=\"isProductload\" spinnerType=\"small\" spinnerColor=\"blue\"></mdb-spinner>\n      <canvas id=\"monthProduct\"></canvas>\n\n    </mdb-card-body>\n  </mdb-card>\n</div>\n<div class=\"col-md-4 col-sm-12 col-xs-12\">\n  <label class=\"top-label\"> Top Payment Methods</label>\n  <mdb-card>\n    <mdb-card-body [style.height.em]=\"'12'\">\n      <mdb-spinner *ngIf=\"isPaymentload\" spinnerType=\"small\" spinnerColor=\"blue\"></mdb-spinner>\n      <canvas id=\"monthPayment\"></canvas>\n\n    </mdb-card-body>\n  </mdb-card>\n</div>\n</div>\n\n<div class=\"col-12 mt-5\">\n\n<div class=\"card\" >\n  <div class=\"card-body\">\n<div style=\"display: block; padding: 5rem;\">\n  <label class=\"day-label\"> Performance Chart</label> \n\n  <canvas mdbChart [chartType]=\"chartType\" [datasets]=\"datasets\" [labels]=\"chartLabels\" [colors]=\"chartColors\"\n  \n  [options]=\"chartOptions\" [legend]=\"true\" >\n  \n  </canvas>\n \n \n  </div>\n\n  <div style=\"margin-top: -7rem;\">\n    <img src=\"../assets/line-logo.svg\" (click)=\"switchLineData()\"> &nbsp;\n    <img src=\"../assets/bar-logo.svg\" (click)=\"switchBarData()\">\n  </div>\n  <div>\n    \n   \n</div>\n  \n\n\n</div>\n\n\n</div>\n\n\n\n\n</div>\n</div>"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n\n<label class=\"day-label\"> This Month</label> &nbsp; <label class=\"date-label\"> {{todayDate | date :'MM-y' }}</label>\n      <div class=\"card dash-card\">\n        <div class=\"card-body\">\n          <div style=\"text-align: center;\">\n            <div class=\"day-label\"> Total Transaction</div>\n            <div class=\"total-amt\">&#x20A6;  {{totalAmountCurrent | number}}  </div>\n            <div class=\"total-count\">Total Count: {{ totalCountCurrent | number }}  </div>\n          </div>\n         \n<div class=\"row mt-4\">\n  <div class=\"col-5\" style=\"text-align: center;\">\n<div class=\"fail-label\">\n  Successful Transactions\n</div>\n<div class=\"fail-amt\">\n  &#x20A6; {{successAmountCurrent | number}}\n</div>\n<div class=\"total-count\">\n  Count: {{successCountCurrent | number}}\n</div>\n<div class=\"summary-successful mt-1\">\n  {{successPercentCurrent  }}% \n</div>\n\n  </div>\n  <div class=\"col-2\" style=\"text-align: center;\">\n    <div class=\"vl\"></div><br><br><br>\n    <div class=\"vs-label mt-3\">\n      Vs.\n    </div>\n  </div>\n  <div class=\"col-5\" style=\"text-align: center;\">\n    <div class=\"fail-label\">\n      Failed Transactions\n    </div>\n    <div class=\"fail-amt\" style=\"color: #EC5757;\">\n      &#x20A6;  {{failAmountCurrent | number }}\n    </div>\n    <div class=\"total-count\">\n      Count: {{failCountCurrent | number }}\n    </div>\n    <div class=\"summary-failed mt-1\">\n      {{failPercentCurrent }}% \n    </div>\n  </div>\n</div>\n<div class=\"row mt-3\">\n  <div class=\"col-4\" style=\"text-align: center\">\n    <div class=\"previous-label\">\n      Previous Month\n    </div>\n    \n    <i class=\"previous-date\">\n      {{lastMonthDate}}\n    </i>\n  </div>\n  <div class=\"col-4\" style=\"text-align: center\">\n    <div class=\"previous-label\" style=\"font-weight: 600;\">\n      &#x20A6;  {{previousTotal | number }}\n    </div>\n    \n    <i class=\"previous-date\" style=\"color: #80A5D0;\">\nTotal Count:  {{ totalCountPrevious | number }}\n    </i>\n  </div>\n  <div class=\"col-4\" style=\"text-align: center\">\n     <i *ngIf=\"percentChange < 0\">\n      <div class=\"previous-label\" style=\"color: #909090;\">\n        Dropped By\n            </div>\n            <i class=\"previous-date\" style=\"color: #EC5757\">\n                 <img src=\"../assets/drop-icon.svg\" style=\"height: 10px;\">\n              {{ percentChange  | percent }}  </i>\n     </i>\n     <i *ngIf=\"percentChange > 0\">\n      <div class=\"previous-label\" style=\"color: #909090;\">\n        Increased By\n            </div>\n             <i class=\"previous-date\" style=\"color: #229654;\">\n                  <img src=\"../assets/rise-icon.svg\" style=\"height: 10px;\">\n              {{ percentChange  | percent }} </i>\n     </i>\n  </div>\n</div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n<label class=\"day-label\"> Last Month</label> &nbsp; <label class=\"date-label\"> {{lastMonthDate}}</label>\n\n      <div class=\"card dash-card\">\n        <div class=\"card-body\">\n          <div style=\"text-align: center;\">\n            <div class=\"day-label\"> Total Transaction</div>\n            <div class=\"total-amt\">&#x20A6;  {{previousTotal | number}}  </div>\n            <div class=\"total-count\">Total Count: {{ totalCountPrevious | number }}  </div>\n          </div>\n         \n<div class=\"row mt-4\">\n  <div class=\"col-5\" style=\"text-align: center;\">\n<div class=\"fail-label\">\n  Successful Transactions\n</div>\n<div class=\"fail-amt\">\n  &#x20A6; {{previousAmountSuccess | number}}\n</div>\n<div class=\"total-count\">\n  Count: {{previousCountSuccess | number}}\n</div>\n<div class=\"summary-successful mt-1\">\n  {{previousPercentSuccess  }}% \n</div>\n\n  </div>\n  <div class=\"col-2\" style=\"text-align: center;\">\n    <div class=\"vl\"></div><br><br><br>\n    <div class=\"vs-label mt-3\">\n      Vs.\n    </div>\n  </div>\n  <div class=\"col-5\" style=\"text-align: center;\">\n    <div class=\"fail-label\">\n      Failed Transactions\n    </div>\n    <div class=\"fail-amt\" style=\"color: #EC5757;\">\n      &#x20A6;  {{previousAmountFailed | number }}\n    </div>\n    <div class=\"total-count\">\n      Count: {{previousCountFailed | number }}\n    </div>\n    <div class=\"summary-failed mt-1\">\n      {{previousPercentFailed }}% \n    </div>\n  </div>\n</div>\n<div class=\"row mt-3\">\n  <div class=\"col-4\" style=\"text-align: center\">\n    <div class=\"previous-label\">\n      Previous Month\n    </div>\n    \n    <i class=\"previous-date\">\n      {{last2Months}}\n    </i>\n  </div>\n  <div class=\"col-4\" style=\"text-align: center\">\n    <div class=\"previous-label\" style=\"font-weight: 600;\">\n      &#x20A6;  {{last2MonthsTotalAmount | number }}\n    </div>\n    \n    <i class=\"previous-date\" style=\"color: #80A5D0;\">\nTotal Count:  {{ last2MonthsTotalCount | number }}\n    </i>\n  </div>\n  <div class=\"col-4\" style=\"text-align: center\">\n     <i *ngIf=\"last2MonthsPercentChange < 0\">\n      <div class=\"previous-label\" style=\"color: #909090;\">\n        Dropped By\n            </div>\n            <i class=\"previous-date\" style=\"color: #EC5757\">\n                 <img src=\"../assets/drop-icon.svg\" style=\"height: 10px;\">\n              {{ last2MonthsPercentChange  | percent }}  </i>\n     </i>\n     <i *ngIf=\"last2MonthsPercentChange > 0\">\n      <div class=\"previous-label\" style=\"color: #909090;\">\n        Increased By\n            </div>\n             <i class=\"previous-date\" style=\"color: #229654;\">\n                  <img src=\"../assets/rise-icon.svg\" style=\"height: 10px;\">\n              {{ last2MonthsPercentChange  | percent }} </i>\n     </i>\n  </div>\n</div>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n\n<div class=\"row mt-5\">\n<div class=\"col-md-4 col-sm-12 col-xs-12\">\n  <label class=\"top-label\"> Top 5 Channels</label>\n  <mdb-card>\n    <mdb-card-body [style.height.em]=\"'12'\">\n      <mdb-spinner *ngIf=\"isChannelload\" spinnerType=\"small\" spinnerColor=\"blue\"></mdb-spinner>\n      <canvas id=\"monthChannel\"></canvas>\n\n    </mdb-card-body>\n  </mdb-card>\n</div>\n<div class=\"col-md-4 col-sm-12 col-xs-12\">\n  <label class=\"top-label\"> Top 5 Products</label>\n  <mdb-card>\n    <mdb-card-body [style.height.em]=\"'12'\">\n      <mdb-spinner *ngIf=\"isProductload\" spinnerType=\"small\" spinnerColor=\"blue\"></mdb-spinner>\n      <canvas id=\"monthProduct\"></canvas>\n\n    </mdb-card-body>\n  </mdb-card>\n</div>\n<div class=\"col-md-4 col-sm-12 col-xs-12\">\n  <label class=\"top-label\"> Top Payment Methods</label>\n  <mdb-card>\n    <mdb-card-body [style.height.em]=\"'12'\">\n      <mdb-spinner *ngIf=\"isPaymentload\" spinnerType=\"small\" spinnerColor=\"blue\"></mdb-spinner>\n      <canvas id=\"monthPayment\"></canvas>\n\n    </mdb-card-body>\n  </mdb-card>\n</div>\n</div>\n\n<div class=\"col-12 mt-5\">\n\n<div class=\"card\" >\n  <div class=\"card-body\">\n<div style=\"display: block; padding: 5rem;\">\n  <label class=\"day-label\"> Performance Chart</label> \n  <mdb-spinner class=\"loading-screen-icon\" *ngIf=\"isLoad\" spinnerType=\"big\" spinnerColor=\"blue\">\n  </mdb-spinner>\n  <canvas mdbChart [chartType]=\"chartType\" [datasets]=\"datasets\" [labels]=\"chartLabels\" [colors]=\"chartColors\"\n  \n  [options]=\"chartOptions\" [legend]=\"true\" >\n  \n  </canvas>\n \n \n  </div>\n\n  <div style=\"margin-top: -7rem;\">\n    <img src=\"../assets/line-logo.svg\" (click)=\"switchLineData()\"> &nbsp;\n    <img src=\"../assets/bar-logo.svg\" (click)=\"switchBarData()\">\n  </div>\n  <div>\n    \n   \n</div>\n  \n\n\n</div>\n\n\n</div>\n\n\n\n\n</div>\n</div>"
 
 /***/ }),
 
@@ -10540,6 +10651,7 @@ var MonthDashboardComponent = /** @class */ (function () {
         this.isPaymentload = false;
         this.isChannelload = false;
         this.loading = false;
+        this.isLoad = false;
         this.previousTotal = null;
         //response holder for success and  fail  amount
         this.successAmountCurrent = null;
@@ -10587,9 +10699,9 @@ var MonthDashboardComponent = /** @class */ (function () {
     MonthDashboardComponent.prototype.getThisMonthTimeChart = function () {
         var _this = this;
         this.isData = true;
-        this.loading = true,
+        this.isLoad = true,
             this.summaryService.getThisMonthTimeChart().subscribe(function (responseData) {
-                _this.loading = false;
+                _this.isLoad = false;
                 _this.todayTime = responseData.data;
                 var timeJanuaryFail = _this.todayTime.JanuaryFailed;
                 var timeJanuarySucess = _this.todayTime.JanuarySuccessful;
@@ -10627,18 +10739,19 @@ var MonthDashboardComponent = /** @class */ (function () {
                 var timeDecemberFail = _this.todayTime.DecemberFailed;
                 var timeDecemberSucess = _this.todayTime.DecemberSuccessful;
                 var timeDecemberTotal = _this.todayTime.DecemberTotalAmount;
-                _this.datasets = [{
-                        data: [
-                            timeJanuarySucess, timeFebuarySucess, timeMarchSucess, timeAprilSucess, timeMaySucess, timeJuneSucess,
-                            timeJulySucess, timeAugustSucess, timeSeptemberSucess, timeOctoberSucess, timeNovemberSucess, timeDecemberSucess
-                        ],
-                        fill: false, label: 'Sucessful Transactions'
-                    },
+                _this.datasets = [
                     {
                         data: [
                             timeJanuaryFail, timeFebuaryFail, timeMarchFail, timeAprilFail, timeMayFail, timeJuneFail,
                             timeJulyFail, timeAugustFail, timeSeptemberFail, timeOctoberFail, timeNovemberFail, timeDecemberFail,
                         ], fill: false, label: 'Failed Transactions'
+                    },
+                    {
+                        data: [
+                            timeJanuarySucess, timeFebuarySucess, timeMarchSucess, timeAprilSucess, timeMaySucess, timeJuneSucess,
+                            timeJulySucess, timeAugustSucess, timeSeptemberSucess, timeOctoberSucess, timeNovemberSucess, timeDecemberSucess
+                        ],
+                        fill: false, label: 'Sucessful Transactions'
                     },
                     {
                         data: [
@@ -10650,16 +10763,16 @@ var MonthDashboardComponent = /** @class */ (function () {
                 _this.chartLabels = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
                 _this.chartColors = [
                     {
-                        backgroundColor: "#229654",
-                        borderColor: '#229654',
-                        borderWidth: 3,
-                        pointBackgroundColor: '#229654',
-                    },
-                    {
                         backgroundColor: "#FF7070",
                         borderColor: '#FF7070',
                         borderWidth: 3,
                         pointBackgroundColor: '#FF7070',
+                    },
+                    {
+                        backgroundColor: "#229654",
+                        borderColor: '#229654',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#229654',
                     },
                     {
                         backgroundColor: "#B4B4B4",
@@ -10724,15 +10837,125 @@ var MonthDashboardComponent = /** @class */ (function () {
                 };
             }, function (error) {
                 _this.isData = false;
-                _this.loading = false;
+                _this.isLoad = false;
                 console.log('cant get today response', error);
             });
     };
     MonthDashboardComponent.prototype.switchBarData = function () {
         this.chartType = this.typeChart[0].type;
+        this.chartOptio = {
+            responsive: true,
+            // fill: false,
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    fontColor: '#808080',
+                    fontSize: 13,
+                    boxWidth: 7,
+                },
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        return parseInt(tooltipValue).toLocaleString();
+                    }
+                }
+            },
+            scales: {
+                yAxes: [{
+                        display: true,
+                        stacked: true, grid: {},
+                        ticks: {
+                            callback: function (input, args) {
+                                var exp, rounded, suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+                                if (Number.isNaN(input)) {
+                                    return null;
+                                }
+                                if (input < 1000) {
+                                    return input;
+                                }
+                                exp = Math.floor(Math.log(input) / Math.log(1000));
+                                return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+                            }
+                        },
+                        gridLines: {
+                            display: false
+                        },
+                    }],
+                xAxes: [{
+                        display: true,
+                        barThickness: 10,
+                        stacked: true,
+                        ticks: {
+                            fontColor: '#69A8FF',
+                        },
+                        gridLines: {
+                            display: true,
+                        },
+                    }]
+            }
+        };
+        this.chartOptions = this.chartOptio;
     };
     MonthDashboardComponent.prototype.switchLineData = function () {
         this.chartType = this.typeChart[1].type;
+        this.typeOptions = {
+            responsive: true,
+            // fill: false,
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    fontColor: '#808080',
+                    fontSize: 13,
+                    boxWidth: 7,
+                },
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        return parseInt(tooltipValue).toLocaleString();
+                    }
+                }
+            },
+            scales: {
+                yAxes: [{
+                        display: true,
+                        stacked: false, grid: {},
+                        ticks: {
+                            callback: function (input, args) {
+                                var exp, rounded, suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
+                                if (Number.isNaN(input)) {
+                                    return null;
+                                }
+                                if (input < 1000) {
+                                    return input;
+                                }
+                                exp = Math.floor(Math.log(input) / Math.log(1000));
+                                return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
+                            }
+                        },
+                        gridLines: {
+                            display: false
+                        },
+                    }],
+                xAxes: [{
+                        display: true,
+                        barThickness: 10,
+                        stacked: false,
+                        ticks: {
+                            fontColor: '#69A8FF',
+                        },
+                        gridLines: {
+                            display: true,
+                        },
+                    }]
+            }
+        };
+        this.chartOptions = this.typeOptions;
     };
     MonthDashboardComponent.prototype.getThisMonthTransaction = function () {
         var _this = this;
