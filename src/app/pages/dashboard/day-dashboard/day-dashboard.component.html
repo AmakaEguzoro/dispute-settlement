@@ -1,0 +1,280 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+<label class="day-label"> Today</label> &nbsp; <label class="date-label"> {{currentDate }}</label>
+      <div class="card dash-card">
+        <div class="card-body">
+          <div style="text-align: center;">
+            <div class="day-label"> Total Transaction</div>
+            <div class="total-amt">&#x20A6;  {{totalAmountCurrent | number}}  </div>
+            <div class="total-count">Total Count: {{ totalCountCurrent | number }}  </div>
+          </div>
+         
+<div class="row mt-4">
+  <div class="col-5" style="text-align: center;">
+<div class="fail-label">
+  Successful Transactions
+</div>
+<div class="fail-amt">
+  &#x20A6; {{successAmountCurrent | number}}
+</div>
+<div class="total-count">
+  Count: {{successCountCurrent | number}}
+</div>
+<div class="summary-successful mt-1">
+  {{successPercentCurrent  }}% 
+</div>
+
+  </div>
+  <div class="col-2" style="text-align: center;">
+    <div class="vl"></div><br><br><br>
+    <div class="vs-label mt-3">
+      Vs.
+    </div>
+  </div>
+  <div class="col-5" style="text-align: center;">
+    <div class="fail-label">
+      Failed Transactions
+    </div>
+    <div class="fail-amt" style="color: #EC5757;">
+      &#x20A6;  {{failAmountCurrent | number }}
+    </div>
+    <div class="total-count">
+      Count: {{failCountCurrent | number }}
+    </div>
+    <div class="summary-failed mt-1">
+      {{failPercentCurrent }}% 
+    </div>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-4" style="text-align: center">
+    <div class="previous-label">
+      Previous Day
+    </div>
+    
+    <i class="previous-date">
+      {{yesterdayDate | date :'MMMM-d-y' }}
+    </i>
+  </div>
+  <div class="col-4" style="text-align: center">
+    <div class="previous-label" style="font-weight: 600;">
+      &#x20A6;  {{previousTotal | number }}
+    </div>
+    
+    <i class="previous-date" style="color: #80A5D0;">
+Total Count:  {{ totalCountPrevious | number }}
+    </i>
+  </div>
+  <div class="col-4" style="text-align: center">
+     <i *ngIf="percentChange < 0">
+      <div class="previous-label" style="color: #909090;">
+        Dropped By
+            </div>
+            <i class="previous-date" style="color: #EC5757">
+                 <img src="../assets/drop-icon.svg" style="height: 10px;">
+              {{ percentChange  | percent }}  </i>
+     </i>
+     <i *ngIf="percentChange > 0">
+      <div class="previous-label" style="color: #909090;">
+        Increased By
+            </div>
+             <i class="previous-date" style="color: #229654;">
+                  <img src="../assets/rise-icon.svg" style="height: 10px;">
+              {{ percentChange  | percent }} </i>
+     </i>
+  </div>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+<label class="day-label"> Yesterday</label> &nbsp; <label class="date-label"> {{yesterdayDate | date :'MMMM-d-y' }}</label>
+
+      <div class="card dash-card">
+        <div class="card-body">
+          <div style="text-align: center;">
+            <div class="day-label"> Total Transaction</div>
+            <div class="total-amt">&#x20A6;  {{previousTotal | number}}  </div>
+            <div class="total-count">Total Count: {{ totalCountPrevious | number }}  </div>
+          </div>
+         
+<div class="row mt-4">
+  <div class="col-5" style="text-align: center;">
+<div class="fail-label">
+  Successful Transactions
+</div>
+<div class="fail-amt">
+  &#x20A6; {{previousAmountSuccess | number}}
+</div>
+<div class="total-count">
+  Count: {{previousCountSuccess | number}}
+</div>
+<div class="summary-successful mt-1">
+  {{previousPercentSuccess  }}% 
+</div>
+
+  </div>
+  <div class="col-2" style="text-align: center;">
+    <div class="vl"></div><br><br><br>
+    <div class="vs-label mt-3">
+      Vs.
+    </div>
+  </div>
+  <div class="col-5" style="text-align: center;">
+    <div class="fail-label">
+      Failed Transactions
+    </div>
+    <div class="fail-amt" style="color: #EC5757;">
+      &#x20A6;  {{previousAmountFailed | number }}
+    </div>
+    <div class="total-count">
+      Count: {{previousCountFailed | number }}
+    </div>
+    <div class="summary-failed mt-1">
+      {{previousPercentFailed }}% 
+    </div>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-4" style="text-align: center">
+    <div class="previous-label">
+      Previous Day
+    </div>
+    
+    <i class="previous-date">
+      {{last2Days | date :'MMMM-d-y' }}
+    </i>
+  </div>
+  <div class="col-4" style="text-align: center">
+    <div class="previous-label" style="font-weight: 600;">
+      &#x20A6;  {{last2DaysTotalAmount | number }}
+    </div>
+    
+    <i class="previous-date" style="color: #80A5D0;">
+Total Count:  {{ last2DaysTotalCount | number }}
+    </i>
+  </div>
+  <div class="col-4" style="text-align: center">
+     <i *ngIf="last2DaysPercentChange < 0">
+      <div class="previous-label" style="color: #909090;">
+        Dropped By
+            </div>
+            <i class="previous-date" style="color: #EC5757">
+                 <img src="../assets/drop-icon.svg" style="height: 10px;">
+              {{ last2DaysPercentChange  | percent }}  </i>
+     </i>
+     <i *ngIf="last2DaysPercentChange > 0">
+      <div class="previous-label" style="color: #909090;">
+        Increased By
+            </div>
+             <i class="previous-date" style="color: #229654;">
+                  <img src="../assets/rise-icon.svg" style="height: 10px;">
+              {{ last2DaysPercentChange  | percent }} </i>
+     </i>
+  </div>
+</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+<div class="row mt-5">
+<div class="col-md-4 col-sm-12 col-xs-12">
+  <label class="top-label"> Top 5 Channels</label>
+  <mdb-card>
+    <mdb-card-body [style.height.em]="'12'">
+      <mdb-spinner *ngIf="isChannelload" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+      <canvas id="cans"></canvas>
+
+    </mdb-card-body>
+  </mdb-card>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+  <label class="top-label"> Top 5 Products</label>
+  <mdb-card>
+    <mdb-card-body [style.height.em]="'12'">
+      <mdb-spinner *ngIf="isProductload" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+      <canvas id="ca"></canvas>
+
+    </mdb-card-body>
+  </mdb-card>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+  <label class="top-label"> Top Payment Methods</label>
+  <mdb-card>
+    <mdb-card-body [style.height.em]="'12'">
+      <mdb-spinner *ngIf="isPaymentload" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+      <canvas id="can"></canvas>
+
+    </mdb-card-body>
+  </mdb-card>
+</div>
+</div>
+
+<div class="col-12 mt-5">
+
+<div class="card" >
+  <div class="card-body">
+    <div class="row">
+<div class="col-2">
+  <form [formGroup]="searchForm">
+  <mdb-date-picker formControlName="startDate" id="endDate" placeholder="Date"
+                [options]="myDatePickerOptions"></mdb-date-picker>
+  </form>
+</div>
+<div class="col-2"> 
+  <mdb-badge class="save" (click)="searchTrans()">
+    <i class="fas fa-search"></i>
+    &nbsp;Search
+</mdb-badge>
+</div>
+    </div>
+    
+
+<div style="display: block; padding: 5rem; margin-top: -4rem;">
+  <label class="day-label"> Performance Chart</label> 
+  <mdb-spinner class="loading-screen-icon" *ngIf="isloading" spinnerType="big" spinnerColor="blue">
+  </mdb-spinner>
+  <canvas mdbChart [chartType]="chartType" [datasets]="datasets" [labels]="chartLabels" [colors]="chartColors"
+  
+  [options]="chartOptions" [legend]="true" >
+  
+  </canvas>
+ 
+ 
+  </div>
+
+  <div style="margin-top: -7rem;">
+    <img src="../assets/line-logo.svg" (click)="switchLineData()"> &nbsp;
+    <img src="../assets/bar-logo.svg" (click)="switchBarData()">
+  </div>
+<!-- <div style="float: right; margin-top: -2rem;" >
+  <button type="button" class="next-btn">&#8249;</button>&nbsp;
+  <i class="next-title" *ngIf="AMChart == true;">
+AM
+  </i>
+  &nbsp;<button type="button" class="next-btn" (click)="nextChart()">&#8250;</button>
+ 
+ </div> -->
+  <div>
+    
+   
+</div>
+  
+
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+</div>

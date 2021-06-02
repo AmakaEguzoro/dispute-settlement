@@ -13,7 +13,7 @@
     (displayhome)="handleChange('home')"></app-vascash>
 </div>
 
-<div class="container-fluid" *ngIf="showing=='home'">
+<div class="container" *ngIf="showing=='home'">
   <div class="col-md-12 parent">
     <div id="report">
       <span>NIP Transaction Session Report</span>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="col-6">
                       <div (click)="exportToExcel('all')" class="mt-1"
-                        style="cursor: pointer; font-size: 17px; text-align: right;" *ngIf="isData==true">
+                        style="cursor: pointer; font-size: 14px;" *ngIf="isData==true">
                         <mdb-icon fas icon="download"></mdb-icon> Export
                       </div>
                     </div>
@@ -172,7 +172,7 @@
                     </div>
                     <div class="col-6">
                       <div (click)="exportToExcel('1')" class="mt-1"
-                        style="cursor: pointer; font-size: 17px; text-align: right;" *ngIf="isData==true">
+                        style="cursor: pointer; font-size: 14px;" *ngIf="isData==true">
                         <mdb-icon fas icon="download"></mdb-icon> Export
                       </div>
                     </div>
@@ -219,7 +219,7 @@
                     </div>
                     <div class="col-6">
                       <div (click)="exportToExcel('2')" class="mt-1"
-                        style="cursor: pointer; font-size: 17px; text-align: right;" *ngIf="isData==true">
+                        style="cursor: pointer; font-size: 14px;" *ngIf="isData==true">
                         <mdb-icon fas icon="download"></mdb-icon> Export
                       </div>
                     </div>
@@ -267,7 +267,7 @@
                     </div>
                     <div class="col-6">
                       <div (click)="exportToExcel('3')" class="mt-1"
-                        style="cursor: pointer; font-size: 17px; text-align: right;" *ngIf="isData==true">
+                        style="cursor: pointer; font-size: 14px;" *ngIf="isData==true">
                         <mdb-icon fas icon="download"></mdb-icon> Export
                       </div>
                     </div>
@@ -316,7 +316,7 @@
                     </div>
                     <div class="col-6">
                       <div (click)="exportToExcel('4')" class="mt-1"
-                        style="cursor: pointer; font-size: 17px; text-align: right;" *ngIf="isData==true">
+                        style="cursor: pointer; font-size: 14px;" *ngIf="isData==true">
                         <mdb-icon fas icon="download"></mdb-icon> Export
                       </div>
                     </div>

@@ -303,13 +303,13 @@ export class TransactionComponent implements OnInit {
     "AGENT ID",
     "TERMINAL",
     "V-TID",
-    "PROCESSOR",
-    "ISSUER",
     "CHANNEL",
     "AMOUNT",
     "STATUS",
     "RESPONSE TIME",
     "DATE",
+    "ISSUER",
+
   ];
 
   TransactionSummary(payload) {

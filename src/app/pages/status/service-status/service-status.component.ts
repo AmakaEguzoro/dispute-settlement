@@ -51,6 +51,15 @@ export class ServiceStatusComponent implements OnInit,OnDestroy {
     this.refresh.unsubscribe();
   }
 
+  headElements = [
+    "S/N",
+    "Services",
+    "Balance",
+    "Status",
+    "Last Deposit",
+    "Action",
+  ];
+
   public getElements() {
     this.isData = true;
     this.isLoading = true;

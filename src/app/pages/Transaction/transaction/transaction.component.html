@@ -1,5 +1,4 @@
 <div class="container">
-    <label>Transactions</label>
     <div class="wallet col-lg-12"><b>Current Transacting Users: &nbsp; {{usersCount}}</b></div>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -186,7 +185,7 @@
 
                         <!-- </div> -->
                         <!--  -->
-                        <tr (click)="openModal(item)" *ngFor="let item of detailsData let i = index">
+                        <tr (click)="openModal(item)" *ngFor="let item of detailsData let i = index" style="font-size: small;">
                             <th scope="row">{{serial + i}}</th>
                             <td>{{item.name}}
                                 <p class="trans-category">
@@ -197,11 +196,6 @@
                             <td>{{item.wallet}}</td>
                             <td>{{item.terminal}}</td>
                             <td>{{item.virtualTID}}</td>
-                            <td>{{item.processor || "N/A"}}</td>
-                            <td><a mdbTooltip="{{item.cardIssuer}}" placement="top">
-                                    {{ (item.cardIssuer.length>6)? (item.cardIssuer | slice:0:6)+'...':(item.cardIssuer)
-                                    || "N/A" }}</a>
-                            </td>
                             <td [ngClass]="{
                                 'pos' : item.channel == 'POS',
                                 'android' : item.channel == 'ANDROID',
@@ -240,6 +234,10 @@
                                                       }"> {{item.processTime}}s</mdb-badge>
                             </td>
                             <td style="color: #828282;">{{item.date}}</td>
+                            <td><a mdbTooltip="{{item.cardIssuer}}" placement="top">
+                                {{ (item.cardIssuer.length>6)? (item.cardIssuer | slice:0:6)+'...':(item.cardIssuer)
+                                || "N/A" }}</a>
+                        </td>
                         </tr>
                         <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
                     </tbody>

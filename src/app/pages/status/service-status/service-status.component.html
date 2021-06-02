@@ -3,7 +3,7 @@
 
     <div class="col-2"></div>
     <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
-      <div class="card" [style.height.em]="'64'">
+      <div class="card">
         <div class="card-header">
           <img src="../../../../assets/ItexLogo.png" class="img-fluid mx-auto d-block">
         </div>
@@ -13,12 +13,7 @@
             <table class="table table-hover table-bordered table-striped border-top" small="true">
               <thead *ngIf="responseData1">
                 <tr>
-                  <th>S/N</th>
-                  <th>Services</th>
-                  <th>Balance</th>
-                  <th>Status</th>
-                  <th>Last Deposit</th>
-                  <th>Action</th>
+                  <th class="head" *ngFor="let head of headElements" scope="col">{{head}} </th>
                 </tr>
               </thead>
               <tbody>
@@ -122,3 +117,6 @@
   </div>
   <br>
 </div>
+
+
+
