@@ -254,10 +254,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
           scales: {
             yAxes: [{
               display: true,
-              stacked: true, grid: {
-    
-              },
-              ticks: {
+                         ticks: {
                 callback: function (input: any, args?: any) {
                   var exp, rounded,
                     suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
@@ -279,7 +276,6 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
             xAxes: [{
               display: true,
               barThickness: 10,
-              stacked: true,
               ticks: {
                 fontColor: '#69A8FF',
               },
@@ -301,132 +297,9 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
   }
   switchBarData() {
     this.chartType = this.typeChart[0].type;
-    this.chartOptio = {
-      responsive: true,
-      // fill: false,
-      legend: {
-        display: true,
-        position: 'bottom',
-        labels: {
-          fontColor: '#808080',
-          fontSize: 13,
-          boxWidth: 7,
-        },
-      },
-      tooltips: {
-        callbacks: {
-          label: function (tooltipItem, data) {
-            var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
-            return parseInt(tooltipValue).toLocaleString();
-          }
-        }
-      },
-      scales: {
-        yAxes: [{
-          display: true,
-          stacked: true, grid: {
-
-          },
-          ticks: {
-            callback: function (input: any, args?: any) {
-              var exp, rounded,
-                suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
-              if (Number.isNaN(input)) {
-                return null;
-              }
-              if (input < 1000) {
-                return input;
-              }
-              exp = Math.floor(Math.log(input) / Math.log(1000));
-              return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
-            }
-
-          },
-          gridLines: {
-            display: false
-          },
-        }],
-        xAxes: [{
-          display: true,
-          barThickness: 10,
-          stacked: true,
-          ticks: {
-            fontColor: '#69A8FF',
-          },
-          gridLines: {
-            display: true,
-          },
-
-        }]
-      }
-
-    };
-    this.chartOptions = this.chartOptio;
-
   }
   switchLineData() {
     this.chartType = this.typeChart[1].type;
-    this.typeOptions = {
-      responsive: true,
-      // fill: false,
-      legend: {
-        display: true,
-        position: 'bottom',
-        labels: {
-          fontColor: '#808080',
-          fontSize: 13,
-          boxWidth: 7,
-        },
-      },
-      tooltips: {
-        callbacks: {
-          label: function (tooltipItem, data) {
-            var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
-            return parseInt(tooltipValue).toLocaleString();
-          }
-        }
-      },
-      scales: {
-        yAxes: [{
-          display: true,
-          stacked: false, grid: {
-
-          },
-          ticks: {
-            callback: function (input: any, args?: any) {
-              var exp, rounded,
-                suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
-              if (Number.isNaN(input)) {
-                return null;
-              }
-              if (input < 1000) {
-                return input;
-              }
-              exp = Math.floor(Math.log(input) / Math.log(1000));
-              return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
-            }
-
-          },
-          gridLines: {
-            display: false
-          },
-        }],
-        xAxes: [{
-          display: true,
-          barThickness: 10,
-          stacked: false,
-          ticks: {
-            fontColor: '#69A8FF',
-          },
-          gridLines: {
-            display: true,
-          },
-
-        }]
-      }
-
-    };
-    this.chartOptions = this.typeOptions;
   }
 
   getTodayTransaction() {
@@ -585,7 +458,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
+           
                 ticks: {
 
                   callback: function (input: any, args?: any) {
@@ -608,9 +481,10 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
               }],
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
@@ -679,15 +553,8 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
-            //   tooltips: {
-            //     // mode: 'index',
-            //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
-            // },
-            //   layout: {
-            //     padding : {
-            //       left: 8
-            //     }
-            // },
+            responsive: true,
+            maintainAspectRatio: false,
             tooltips: {
               callbacks: {
                 label: function (tooltipItem, data) {
@@ -696,7 +563,6 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -710,7 +576,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
+               
                 ticks: {
 
                   callback: function (input: any, args?: any) {
@@ -733,9 +599,10 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
               }],
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
@@ -825,15 +692,8 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
-            //   tooltips: {
-            //     // mode: 'index',
-            //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
-            // },
-            //   layout: {
-            //     padding : {
-            //       left: 8
-            //     }
-            // },
+            responsive: true,
+            maintainAspectRatio: false,
             tooltips: {
               callbacks: {
                 label: function (tooltipItem, data) {
@@ -842,7 +702,6 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -856,7 +715,7 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
+           
                 ticks: {
 
                   callback: function (input: any, args?: any) {
@@ -879,9 +738,10 @@ export class DayDashboardComponent implements OnInit, OnDestroy {
               }],
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
