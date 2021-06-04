@@ -153,5 +153,11 @@ div.agreement label {
   opacity: 1;
   transition: all 0.2s ease-in-out;
 }
+@media (min-width: 768px) {
+  .modal-xl {
+    width: 90%;
+    max-width: 1200px;
+  }
+}
 
 // end

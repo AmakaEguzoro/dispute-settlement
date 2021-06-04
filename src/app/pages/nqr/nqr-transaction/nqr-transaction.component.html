@@ -1,0 +1,202 @@
+<div
+  class="container-fluid"
+  style="display: flex; justify-content: center; align-items: center"
+>
+  <div id="newUser" class="col-md-12">
+    <div class="container">
+      <div class="card mb-3" style="border-color: teal">
+        <div
+          class="row mt-3 col-lg-12"
+          style="justify-content: center; align-items: center"
+        >
+          <div>
+            <h1>NQR TRANSACTION HISTORY</h1>
+          </div>
+          <br />
+          <div class="ml-2" style="text-align: center">
+            <img
+              class="img-fluid"
+              src="../../../assets/qr-code (1).svg"
+              style="width: 20%"
+            />
+          </div>
+        </div>
+
+        <form style="padding: 30px">
+          <!-- Second row -->
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+              <p>From:</p>
+              <input
+                type="date"
+                [(ngModel)]="from"
+                name="from"
+                [placeholder]="'yyyy-mm-dd'"
+                id="input"
+                class="form-control my-0 py-0"
+                ngDefaultControl
+              />
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+              <p>To:</p>
+              <input
+                type="date"
+                [(ngModel)]="to"
+                name="to"
+                [placeholder]="'yyyy-mm-dd'"
+                id="input"
+                class="form-control my-0 py-0"
+                ngDefaultControl
+              />
+            </div>
+
+            <div class="col-lg-6 col-md-4 col-sm-6 col-xs-6">
+              <div class="" style="margin-top: 23px !important">
+                <input
+                  [(ngModel)]="query"
+                  placeholder="Merchant Name or TID"
+                  class="col-lg-7 mt-3"
+                  type="text"
+                  name="query"
+                />
+
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  mdbWavesEffect
+                  style="
+                    text-transform: none;
+                    border-radius: 8px;
+                    padding: 8px 10px;
+                    border: 1px solid;
+                    background-color: #fff !important;
+                    color: black !important;
+                  "
+                  (click)="searchTrans()"
+                >
+                  <i class="fa fa-search"></i> &nbsp;Search
+                </button>
+                <button
+                  (click)="exportTable()"
+                  type="button"
+                  class="btn btn-primary"
+                  mdbWavesEffect
+                  style="
+                    text-transform: none;
+                    border-radius: 8px;
+                    padding: 8px 10px;
+                    border: 1px solid;
+                    background-color: #fff !important;
+                    color: black !important;
+                  "
+                >
+                  <i class="fas fa-file-download"></i> &nbsp; Export
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="card-body">
+          <div class="table-responsive" style="overflow-x: auto !important">
+            <table class="table table-hover" small="true">
+              <thead class="trans-head">
+                <tr>
+                  <th
+                    class="head"
+                    *ngFor="let head of headElements"
+                    scope="col"
+                    style="text-align: center; white-space: nowrap"
+                  >
+                    {{ head }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <mdb-spinner
+                  class="overlay"
+                  *ngIf="loading"
+                  spinnerType="big"
+                  spinnerColor="blue"
+                >
+                </mdb-spinner>
+
+                <tr *ngFor="let item of detailsData; let i = index">
+                  <th scope="row">{{ serial + i }}</th>
+                  <td style="font-weight: 800">
+                    {{ item.clientReference }}
+                  </td>
+                  <td s>{{ item.tid }}</td>
+                  <td>{{ item.subMerchantNo }}</td>
+                  <td>{{ item.merchantNo }}</td>
+                  <td>{{ item.codeType }}</td>
+                  <td>{{ item.service }}</td>
+                  <td>{{ item.orderNo }}</td>
+                  <td>{{ item.orderSn }}</td>
+
+                  <td>{{ item.totalAmount }}</td>
+
+                  <td>{{ item.nqrCharge }}</td>
+                  <td>{{ item.amount }}</td>
+                  <td>
+                    {{ item.status }}
+                  </td>
+
+                  <td style="color: #828282">{{ item.nqr_callback_at }}</td>
+                </tr>
+                <!-- <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong> -->
+              </tbody>
+            </table>
+            <div
+              class="btn-toolbar"
+              role="toolbar"
+              aria-label="Toolbar with button groups"
+              *ngIf="page"
+            >
+              <button
+                type="button"
+                class="btn waves-light"
+                style="
+                  border: 1px solid;
+                  border-radius: 8px;
+                  padding: 8px 10px;
+                  color: black;
+                "
+                mdbWavesEffect
+                (click)="prev()"
+                [disabled]="page <= 1"
+                size="sm"
+              >
+                Prev
+              </button>
+              <br />
+              <div class="btn-text">
+                Page
+                <input
+                  min="1"
+                  [max]="lastPage"
+                  type="number"
+                  [(ngModel)]="page"
+                  style="width: 60px"
+                  (blur)="AgentSummary(page)"
+                />
+                of {{ lastPage }}
+              </div>
+              <button
+                type="button"
+                class="btn btn-primary waves-light"
+                mdbWavesEffect
+                (click)="next()"
+                size="sm"
+                style="border-radius: 8px; padding: 8px 10px"
+                [disabled]="next_disable"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

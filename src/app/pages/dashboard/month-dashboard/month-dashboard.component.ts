@@ -170,14 +170,14 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
           {
             backgroundColor: "#FF7070",
             borderColor: '#FF7070',
-            borderWidth: 3,
+            borderWidth: 0,
             pointBackgroundColor: '#FF7070',
           },
           {
 
             backgroundColor: "#229654",
             borderColor: '#229654',
-            borderWidth: 3,
+            borderWidth: 0,
             pointBackgroundColor: '#229654',
           },
 
@@ -185,7 +185,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
           {
             backgroundColor: "#B4B4B4",
             borderColor: '#B4B4B4',
-            borderWidth: 3,
+            borderWidth: 0,
             pointBackgroundColor: '#B4B4B4',
 
           }
@@ -215,9 +215,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
           scales: {
             yAxes: [{
               display: true,
-              stacked: true, grid: {
-    
-              },
+            
               ticks: {
                 callback: function (input: any, args?: any) {
                   var exp, rounded,
@@ -239,8 +237,8 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             }],
             xAxes: [{
               display: true,
-              barThickness: 10,
-              stacked: true,
+              barThickness: 15,
+             
               ticks: {
                 fontColor: '#69A8FF',
               },
@@ -263,134 +261,10 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
   }
   switchBarData() {
     this.chartType = this.typeChart[0].type;
-    this.chartOptio = {
-      responsive: true,
-      // fill: false,
-      legend: {
-        display: true,
-        position: 'bottom',
-        labels: {
-          fontColor: '#808080',
-          fontSize: 13,
-          boxWidth: 7,
-        },
-      },
-      tooltips: {
-        callbacks: {
-          label: function (tooltipItem, data) {
-            var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
-            return parseInt(tooltipValue).toLocaleString();
-          }
-        }
-      },
-      scales: {
-        yAxes: [{
-          display: true,
-          stacked: true, grid: {
-
-          },
-          ticks: {
-            callback: function (input: any, args?: any) {
-              var exp, rounded,
-                suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
-              if (Number.isNaN(input)) {
-                return null;
-              }
-              if (input < 1000) {
-                return input;
-              }
-              exp = Math.floor(Math.log(input) / Math.log(1000));
-              return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
-            }
-
-          },
-          gridLines: {
-            display: false
-          },
-        }],
-        xAxes: [{
-          display: true,
-          barThickness: 10,
-          stacked: true,
-          ticks: {
-            fontColor: '#69A8FF',
-          },
-          gridLines: {
-            display: true,
-          },
-
-        }]
-      }
-
-    };
-    this.chartOptions = this.chartOptio;
-
   }
   switchLineData() {
     this.chartType = this.typeChart[1].type;
-    this.typeOptions = {
-      responsive: true,
-      // fill: false,
-      legend: {
-        display: true,
-        position: 'bottom',
-        labels: {
-          fontColor: '#808080',
-          fontSize: 13,
-          boxWidth: 7,
-        },
-      },
-      tooltips: {
-        callbacks: {
-          label: function (tooltipItem, data) {
-            var tooltipValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] as any;
-            return parseInt(tooltipValue).toLocaleString();
-          }
-        }
-      },
-      scales: {
-        yAxes: [{
-          display: true,
-          stacked: false, grid: {
-
-          },
-          ticks: {
-            callback: function (input: any, args?: any) {
-              var exp, rounded,
-                suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
-              if (Number.isNaN(input)) {
-                return null;
-              }
-              if (input < 1000) {
-                return input;
-              }
-              exp = Math.floor(Math.log(input) / Math.log(1000));
-              return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
-            }
-
-          },
-          gridLines: {
-            display: false
-          },
-        }],
-        xAxes: [{
-          display: true,
-          barThickness: 10,
-          stacked: false,
-          ticks: {
-            fontColor: '#69A8FF',
-          },
-          gridLines: {
-            display: true,
-          },
-
-        }]
-      }
-
-    };
-    this.chartOptions = this.typeOptions;
-
-  }
+    }
 
 
 
@@ -517,7 +391,8 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
-           
+            responsive: false,
+            maintainAspectRatio: false,
             tooltips: {
               callbacks: {
                 label: function (tooltipItem, data) {
@@ -526,7 +401,6 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -540,7 +414,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
+               
                 ticks: {
 
                   callback: function (input: any, args?: any) {
@@ -561,11 +435,13 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
                   display: false
                 },
               }],
+                      
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
@@ -634,7 +510,8 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
-          
+            responsive: true,
+            maintainAspectRatio: false,
             tooltips: {
               callbacks: {
                 label: function (tooltipItem, data) {
@@ -643,7 +520,6 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -657,7 +533,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
+               
                 ticks: {
 
                   callback: function (input: any, args?: any) {
@@ -680,9 +556,10 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
               }],
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
@@ -749,6 +626,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
         this.chart = new Chart('monthProduct', {
 
           type: 'horizontalBar',
+          
           data: {
             labels: [productName1, productName2, productName3, productName4, productName5],
             datasets: [
@@ -772,7 +650,8 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
-           
+            responsive: false,
+            maintainAspectRatio: false,
             tooltips: {
               callbacks: {
                 label: function (tooltipItem, data) {
@@ -781,7 +660,6 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -795,9 +673,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
                 ticks: {
-
                   callback: function (input: any, args?: any) {
                     var exp, rounded,
                       suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
@@ -818,9 +694,10 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
               }],
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
