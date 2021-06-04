@@ -220,6 +220,8 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
+            responsive: false,
+            maintainAspectRatio: false,
             //   tooltips: {
             //     // mode: 'index',
             //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
@@ -237,7 +239,6 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -251,7 +252,7 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
+           
                 ticks: {
 
                   callback: function (input: any, args?: any) {
@@ -274,9 +275,10 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
               }],
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
@@ -344,15 +346,8 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
-            //   tooltips: {
-            //     // mode: 'index',
-            //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
-            // },
-            //   layout: {
-            //     padding : {
-            //       left: 8
-            //     }
-            // },
+            responsive: true,
+            maintainAspectRatio: false,
             tooltips: {
               callbacks: {
                 label: function (tooltipItem, data) {
@@ -361,7 +356,6 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -375,7 +369,7 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
+           
                 ticks: {
 
                   callback: function (input: any, args?: any) {
@@ -398,9 +392,10 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
               }],
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
@@ -490,6 +485,8 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
+            responsive: false,
+            maintainAspectRatio: false,
             //   tooltips: {
             //     // mode: 'index',
             //     mode: 'x'  // will show the amount. just add it to the label and convert it to "k", "t"
@@ -507,7 +504,6 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -521,7 +517,7 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
+           
                 ticks: {
 
                   callback: function (input: any, args?: any) {
@@ -544,9 +540,10 @@ export class WeekDashboardComponent implements OnInit, OnDestroy {
               }],
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },

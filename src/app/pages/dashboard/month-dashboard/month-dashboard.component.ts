@@ -34,6 +34,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
   last2MontthsPercentChange: any;
   isProductload = false;  isPaymentload = false; isChannelload = false; 
   loading = false;
+  isLoad = false;
   isData: boolean;
   refresh: Subscription;
   todayDate: any; lastMonthDate: any; last2Months: any;
@@ -98,6 +99,8 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
   dateRange: any;
 
   typeChart: Array<any> = [{ type: "bar" }, { type: "line" }];
+  typeOptions: any;
+  chartOptio: any;
   async ngOnInit() {
     this.chartType = this.typeChart[0].type;
 
@@ -120,9 +123,9 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
 
   getThisMonthTimeChart() {
     this.isData = true;
-    this.loading = true,
+    this.isLoad = true,
       this.summaryService.getThisMonthTimeChart().subscribe(responseData => {
-        this.loading = false;
+        this.isLoad = false;
         this.todayTime = responseData.data;
 
         let timeJanuaryFail = this.todayTime.JanuaryFailed; let timeJanuarySucess = this.todayTime.JanuarySuccessful; let timeJanuaryTotal = this.todayTime.JanuaryTotalAmount;
@@ -137,21 +140,22 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
         let timeOctoberFail = this.todayTime.OctoberFailed; let timeOctoberSucess = this.todayTime.OctoberSuccessful; let timeOctoberTotal = this.todayTime.OctoberTotalAmount;
         let timeNovemberFail = this.todayTime.NovemberFailed; let timeNovemberSucess = this.todayTime.NovemberSuccessful; let timeNovemberTotal = this.todayTime.NovemberTotalAmount;
         let timeDecemberFail = this.todayTime.DecemberFailed; let timeDecemberSucess = this.todayTime.DecemberSuccessful; let timeDecemberTotal = this.todayTime.DecemberTotalAmount;
-
        
-        this.datasets = [{
+        this.datasets = [
+          {
+            data: [
+              timeJanuaryFail, timeFebuaryFail, timeMarchFail, timeAprilFail, timeMayFail, timeJuneFail,
+              timeJulyFail, timeAugustFail, timeSeptemberFail, timeOctoberFail, timeNovemberFail, timeDecemberFail,
+            ], fill: false, label: 'Failed Transactions'
+          },
+          {
           data: [
             timeJanuarySucess, timeFebuarySucess, timeMarchSucess, timeAprilSucess, timeMaySucess, timeJuneSucess,
             timeJulySucess, timeAugustSucess, timeSeptemberSucess, timeOctoberSucess, timeNovemberSucess, timeDecemberSucess  ],
              fill: false, label: 'Sucessful Transactions'
         },
 
-        {
-          data: [
-            timeJanuaryFail, timeFebuaryFail, timeMarchFail, timeAprilFail, timeMayFail, timeJuneFail,
-            timeJulyFail, timeAugustFail, timeSeptemberFail, timeOctoberFail, timeNovemberFail, timeDecemberFail,
-          ], fill: false, label: 'Failed Transactions'
-        },
+      
         {
           data: [
             timeJanuaryTotal, timeFebuaryTotal, timeMarchTotal, timeAprilTotal, timeMayTotal, timeJuneTotal,
@@ -163,30 +167,31 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
 
         this.chartLabels = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
         this.chartColors = [
-
+          {
+            backgroundColor: "#FF7070",
+            borderColor: '#FF7070',
+            borderWidth: 0,
+            pointBackgroundColor: '#FF7070',
+          },
           {
 
             backgroundColor: "#229654",
             borderColor: '#229654',
-            borderWidth: 3,
+            borderWidth: 0,
             pointBackgroundColor: '#229654',
           },
 
-          {
-            backgroundColor: "#FF7070",
-            borderColor: '#FF7070',
-            borderWidth: 3,
-            pointBackgroundColor: '#FF7070',
-          },
+        
           {
             backgroundColor: "#B4B4B4",
             borderColor: '#B4B4B4',
-            borderWidth: 3,
+            borderWidth: 0,
             pointBackgroundColor: '#B4B4B4',
 
           }
         ];
 
+     
         this.chartOptions = {
           responsive: true,
           // fill: false,
@@ -210,9 +215,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
           scales: {
             yAxes: [{
               display: true,
-              stacked: true, grid: {
-
-              },
+            
               ticks: {
                 callback: function (input: any, args?: any) {
                   var exp, rounded,
@@ -226,7 +229,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
                   exp = Math.floor(Math.log(input) / Math.log(1000));
                   return (input / Math.pow(1000, exp)) + suffixes[exp - 1];
                 }
-
+    
               },
               gridLines: {
                 display: false
@@ -234,23 +237,24 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             }],
             xAxes: [{
               display: true,
-              barThickness: 10,
-              stacked: true,
+              barThickness: 15,
+             
               ticks: {
                 fontColor: '#69A8FF',
               },
               gridLines: {
                 display: true,
               },
-
+    
             }]
           }
-
+    
         };
+       
 
       }, error => {
         this.isData = false;
-        this.loading = false;
+        this.isLoad = false;
         console.log('cant get today response', error);
       }
       );
@@ -260,7 +264,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
   }
   switchLineData() {
     this.chartType = this.typeChart[1].type;
-  }
+    }
 
 
 
@@ -387,7 +391,8 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
-           
+            responsive: false,
+            maintainAspectRatio: false,
             tooltips: {
               callbacks: {
                 label: function (tooltipItem, data) {
@@ -396,7 +401,6 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -410,7 +414,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
+               
                 ticks: {
 
                   callback: function (input: any, args?: any) {
@@ -431,11 +435,13 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
                   display: false
                 },
               }],
+                      
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
@@ -504,7 +510,8 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
-          
+            responsive: true,
+            maintainAspectRatio: false,
             tooltips: {
               callbacks: {
                 label: function (tooltipItem, data) {
@@ -513,7 +520,6 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -527,7 +533,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
+               
                 ticks: {
 
                   callback: function (input: any, args?: any) {
@@ -550,9 +556,10 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
               }],
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
@@ -619,6 +626,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
         this.chart = new Chart('monthProduct', {
 
           type: 'horizontalBar',
+          
           data: {
             labels: [productName1, productName2, productName3, productName4, productName5],
             datasets: [
@@ -642,7 +650,8 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             ],
           },
           options: {
-           
+            responsive: false,
+            maintainAspectRatio: false,
             tooltips: {
               callbacks: {
                 label: function (tooltipItem, data) {
@@ -651,7 +660,6 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
                 }
               }
             },
-            responsive: true,
             legend: {
               display: true,
               position: 'bottom',
@@ -665,9 +673,7 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 display: true,
-                stacked: true,
                 ticks: {
-
                   callback: function (input: any, args?: any) {
                     var exp, rounded,
                       suffixes = ['k', 'M', 'B', 'T', 'P', 'E'];
@@ -688,9 +694,10 @@ export class MonthDashboardComponent implements OnInit, OnDestroy {
               }],
               yAxes: [{
                 display: true,
-                barThickness: 10,
-                stacked: true,
-
+                barThickness: 7,
+                ticks: {
+                  fontSize: 9,
+                },
                 gridLines: {
                   display: false,
                 },
