@@ -94,6 +94,10 @@ export class NqrMerchantHistoryComponent implements OnInit {
         this.summaryData = data.data.list.data;
         this.lastPage = data.data.list.last_page;
 
+        if (this.page == this.lastPage) {
+          this.next_disable = true;
+        }
+
         this.serial = 1 + (this.page - 1) * this.perPage;
       },
       (error) => {

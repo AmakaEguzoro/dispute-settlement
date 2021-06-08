@@ -33,12 +33,12 @@ export class NqrTransactionComponent implements OnInit {
   loading = true;
   data: any;
   transaction: any;
-  detailsData: any;
+  detailsData: any[] = [];
   page = 1;
   // pagination
   perPage = 50;
   currentPage = 1;
-  lastPage: number;
+  lastPage: any;
   serial: number;
   maxSize = 10;
   prev_disable: boolean = true;
@@ -81,6 +81,11 @@ export class NqrTransactionComponent implements OnInit {
       "-" +
       ("0" + this.DateObj.getDate()).slice(-2)
   );
+  failedCount: any;
+  successCount: any;
+  successAmount: any;
+  totalAmount: any;
+  totalCount: any;
 
   // private EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
   // private EXCEL_EXTENSION = 'xlsx';
@@ -103,25 +108,36 @@ export class NqrTransactionComponent implements OnInit {
     // this.date = formatDate(new Date(), "yyyy-MM-dd", "en");
     this.from = this.dateRange;
     this.to = this.dateRange;
-    console.log(this.from, this.to, "data");
-    // setTimeout(() => {
-    //   this.getSocketData();
-    // }, 0.05 * 60 * 1000);
   }
 
   Transaction(page, from = this.dateRange, to = this.dateRange, query = "") {
-    this.isData = true;
+    this.isData = undefined;
     this.loading = true;
+    this.detailsData = [];
     this.nqrService
       .getTransaction(page, this.perPage, from, to, query)
       .subscribe(
         (data: any) => {
           this.loading = false;
-          console.log(data);
+          this.isData = true;
           this.detailsData = data.data.list.data;
           this.lastPage = data.data.list.last_page;
-
           this.serial = 1 + (this.page - 1) * this.perPage;
+
+          this.failedAmount = data.data.failed.sum;
+          this.failedCount = data.data.failed.count;
+
+          this.successAmount = data.data.success.sum;
+          this.successCount = data.data.success.count;
+
+          this.pendingAmount = data.data.pending.sum;
+          this.pendingCount = data.data.pending.count;
+
+          this.totalAmount = data.data.total.sum;
+          this.totalCount = data.data.total.count;
+          if (this.page == this.lastPage) {
+            this.next_disable = true;
+          }
         },
         (error) => {
           this.isData = false;
@@ -135,17 +151,20 @@ export class NqrTransactionComponent implements OnInit {
     "S/N",
     "REFRENCE",
     "TERMINAL ID",
-    "SUBMERCHANT NO",
+
     "MERCHANT NO",
-    "TYPE",
-    "SERVICE",
-    "ORDER NO",
-    "ORDER SN",
     "INITIAL AMOUNT",
     "CHARGE",
     " TOTAL AMOUNT",
     "STATUS",
-    "DATE",
+    "SUBMERCHANT NO",
+    "TYPE",
+    "SERVICE",
+    "ORDER NO",
+    "ORDER SN",
+
+    "NQR Callback",
+    "CreatedAt",
   ];
 
   // filters
@@ -159,11 +178,11 @@ export class NqrTransactionComponent implements OnInit {
 
   exportTable() {
     this.loading = true;
-    this.nqrService.exportTransaction().subscribe(
+    this.nqrService.exportTransaction(this.from, this.to).subscribe(
       (data: any) => {
         this.loading = false;
         this.exportData = data.data.transactions;
-
+        this.isData = true;
         this.excelService.exportAsExcelFile(
           this.exportData,
           "ITEX-Merchant-Nqr-Transaction-Report"
