@@ -196,20 +196,27 @@ export class NqrserviceService {
       { headers }
     );
   }
-  exportTransaction() {
+  exportTransaction(startDate, endDate) {
     let headers = new HttpHeaders();
     function sha1Hmac(value, key) {
       return cryptojs.HmacSHA256(value, key);
     }
 
-    let encrypt = btoa(`${this.transUrl}?action=export`);
+    let encrypt = btoa(
+      encodeURI(
+        `${this.transUrl}?action=export&daterange=${startDate} - ${endDate}`
+      )
+    );
 
     headers = headers.set(
       "X-VAS-KEY",
       sha1Hmac(encrypt, this.live_key).toString()
     );
-    return this.httpClient.get(`${this.transUrl}?action=export`, {
-      headers,
-    });
+    return this.httpClient.get(
+      `${this.transUrl}?action=export&daterange=${startDate}+-+${endDate}`,
+      {
+        headers,
+      }
+    );
   }
 }
