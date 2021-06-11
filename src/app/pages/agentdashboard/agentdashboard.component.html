@@ -3,6 +3,7 @@
   [showing]="showing"
   (displayhome)="handleChange('home')"
   [agentData]="agentData"
+  (reload)="AgentSummary()"
 ></app-agentdetail>
 <div class="container" *ngIf="showing == 'home'" style="margin-top: -30px">
   <div class="row col-12" style="display: flex; justify-content: space-between">
@@ -326,14 +327,26 @@
             class="waves-light"
             mdbWavesEffect
             (click)="prev()"
-            [disabled]="prev_disable"
+            [disabled]="page <= 1"
             size="sm"
           >
             Prev
           </button>
           <br />
-          <div class="btn-text" style="margin-top: 14px">
+          <!-- <div class="btn-text" style="margin-top: 14px">
             Page {{ this.page }} of {{ this.total }}
+          </div> -->
+          <div class="btn-text">
+            Page
+            <input
+              min="1"
+              [max]="lastPage"
+              type="number"
+              [(ngModel)]="page"
+              style="width: 60px"
+              (blur)="AgentSummary()"
+            />
+            of {{ total }}
           </div>
           <button
             mdbBtn
