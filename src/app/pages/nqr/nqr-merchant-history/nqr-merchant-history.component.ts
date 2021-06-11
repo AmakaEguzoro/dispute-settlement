@@ -182,8 +182,8 @@ export class NqrMerchantHistoryComponent implements OnInit {
     this.href = document.getElementsByTagName("img")[3].src;
   }
   printScreen(modal) {
-    modal.hide();
     window.print();
+    modal.hide();
   }
   showModal(row, modal) {
     this.qrCode = row.code;

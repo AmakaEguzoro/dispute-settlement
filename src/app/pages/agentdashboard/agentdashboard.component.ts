@@ -137,7 +137,9 @@ export class AgentdashboardComponent implements OnInit {
         this.summaryData = data.data;
         this.total = Math.ceil(data.totalcount / this.limit);
         this.serial = 1 + (this.page - 1) * this.perPage;
-
+        if (this.page == this.total) {
+          this.next_disable = true;
+        }
       },
       (error) => {
         this.isData = false;
@@ -158,7 +160,7 @@ export class AgentdashboardComponent implements OnInit {
   }
   next() {
     this.page += 1;
-    console.log(this.total);
+
     if (this.page >= this.total) {
       this.next_disable = true;
     }
@@ -202,7 +204,7 @@ export class AgentdashboardComponent implements OnInit {
         this.loading = false;
         this.basicModal.hide();
         this.validate = data;
-        this.toastService.success("Agent Validated", "Success");
+        this.toastService.success(data.message || "Agent Validated");
         this.AgentSummary();
       },
       (error) => {
