@@ -1,411 +1,593 @@
-<div class="container-fluid" style="background-color: white; margin-top: -14px;" *ngIf="showing=='cashin'">
+<div
+  class="container-fluid"
+  style="background-color: white; margin-top: -14px"
+  *ngIf="showing == 'cashin'"
+>
   <div class="col-12">
-    <img class="img-fluid" width="10%" src="..//..//../../assets/payvice.png" style="    margin-left: 40px;
-    position: relative;" id="topsection"></div>
+    <img
+      class="img-fluid"
+      width="10%"
+      src="..//..//../../assets/payvice.png"
+      style="margin-left: 40px; position: relative"
+      id="topsection"
+    />
+  </div>
   <div class="container-fluid">
     <div class="card">
       <div class="card-body">
         <form>
           <div class="form-group mb-1">
             <div class="gradients"></div>
-            <span class="blueheading">
-              Merchant Onboarding Form
-            </span>
-            <hr>
+            <span class="blueheading"> Merchant Onboarding Form </span>
+            <hr />
             <span class="fadedtext">Personal And Business Information</span>
           </div>
-          <br>
+          <br />
 
           <div class="form-row rowform">
-            <div class="col-md-6 row" style="display: flex;
-    justify-content: flex-end;">
+            <div
+              class="col-md-6 row"
+              style="display: flex; justify-content: flex-end"
+            >
               <div class="col-md-3">
-
-                <span class="bluetext"> Full Name</span></div>
+                <span class="bluetext"> Full Name</span>
+              </div>
               <div class="col-md-5">
-                <span class="inputs">{{(agentData.firstname)?agentData.firstname:null |uppercase}}
-                  {{(agentData.lastname)?agentData.lastname:null |uppercase}}</span></div>
-            </div>
-            <br />
-            <div class="col-md-6 row" style="display: flex;
-    justify-content: flex-start;">
-              <div class="col-md-3">
-                <span class="bluetext">Profession</span></div>
-              <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.profession)?agentData.agentUpgrade.bio.profession:null}}
-                </span></div>
-            </div>
-          </div>
-          <br>
-
-          <div class="form-row rowform">
-            <div class="col-md-6 row tired" style="display: flex;
-              justify-content: flex-end;">
-              <div class="col-md-3">
-                <span class="bluetext">Office Addresss</span></div>
-              <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.office_address)?agentData.agentUpgrade.bio.office_address:null}}</span>
+                <span class="inputs"
+                  >{{ agentData.firstname ? agentData.firstname : "null" }}
+                  {{ agentData.lastname ? agentData.lastname : "null" }}</span
+                >
               </div>
             </div>
             <br />
-            <div class="col-md-6 row tired" style="display: flex;
-              justify-content: flex-start;">
+            <div
+              class="col-md-6 row"
+              style="display: flex; justify-content: flex-start"
+            >
+              <div class="col-md-3">
+                <span class="bluetext">Profession</span>
+              </div>
+              <div class="col-md-5">
+                <span class="inputs"
+                  >{{
+                    agentData.agentUpgrade.bio.profession
+                      ? agentData.agentUpgrade.bio.profession
+                      : null
+                  }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <br />
+
+          <div class="form-row rowform">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-end"
+            >
+              <div class="col-md-3">
+                <span class="bluetext">Office Addresss</span>
+              </div>
+              <div class="col-md-5">
+                <span class="inputs">{{
+                  agentData.agentUpgrade.bio.office_address
+                    ? agentData.agentUpgrade.bio.office_address
+                    : null
+                }}</span>
+              </div>
+            </div>
+            <br />
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-start"
+            >
               <div class="col-md-3">
                 <span class="bluetext">Date of Birth</span>
               </div>
               <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.date_of_birth)?agentData.agentUpgrade.bio.date_of_birth:null}}
-                </span></div>
+                <span class="inputs"
+                  >{{
+                    agentData.agentUpgrade.bio.date_of_birth
+                      ? agentData.agentUpgrade.bio.date_of_birth
+                      : null
+                  }}
+                </span>
+              </div>
             </div>
           </div>
 
-          <br>
+          <br />
           <div class="form-row rowform">
-            <div class="col-md-6 row tired" style="display: flex;
-              justify-content: flex-end;">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-end"
+            >
               <div class="col-md-3">
-                <span class="bluetext">Business Name</span></div>
+                <span class="bluetext">Business Name</span>
+              </div>
               <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.business_name)?agentData.agentUpgrade.bio.business_name:null}}</span>
+                <span class="inputs">{{
+                  agentData.agentUpgrade.bio.business_name
+                    ? agentData.agentUpgrade.bio.business_name
+                    : null
+                }}</span>
               </div>
             </div>
             <br />
-            <div class="col-md-6 row tired" style="display: flex;
-              justify-content: flex-start; ">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-start"
+            >
               <div class="col-md-3">
                 <span class="bluetext">Residential Address</span>
               </div>
               <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.residential_address)?agentData.agentUpgrade.bio.residential_address:null}}</span>
+                <span class="inputs">{{
+                  agentData.agentUpgrade.bio.residential_address
+                    ? agentData.agentUpgrade.bio.residential_address
+                    : null
+                }}</span>
               </div>
             </div>
           </div>
 
-          <br>
+          <br />
           <div class="form-row rowform">
-            <div class="col-md-6 row tired" style="display: flex;
-              justify-content: flex-end;">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-end"
+            >
               <div class="col-md-3">
-                <span class="bluetext">Trade Partner</span></div>
+                <span class="bluetext">Trade Partner</span>
+              </div>
               <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.trade_partners)?agentData.agentUpgrade.bio.trade_partners:null}}</span>
+                <span class="inputs">{{
+                  agentData.agentUpgrade.bio.trade_partners
+                    ? agentData.agentUpgrade.bio.trade_partners
+                    : null
+                }}</span>
               </div>
             </div>
-            <div class="col-md-6 row tired" style="display: flex;
-                justify-content: flex-start; ">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-start"
+            >
               <div class="col-md-3">
-                <span class="bluetext">Position/Status</span></div>
+                <span class="bluetext">Position/Status</span>
+              </div>
               <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.position)?agentData.agentUpgrade.bio.position:null}}</span>
+                <span class="inputs">{{
+                  agentData.agentUpgrade.bio.position
+                    ? agentData.agentUpgrade.bio.position
+                    : null
+                }}</span>
               </div>
             </div>
           </div>
-          <br>
+          <br />
           <div class="form-row rowform">
-            <div class="col-md-6 row tired" style="display: flex;
-                        justify-content: flex-end;">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-end"
+            >
               <div class="col-md-3">
-                <span class="bluetext">Outlets</span></div>
+                <span class="bluetext">Outlets</span>
+              </div>
               <div class="col-md-5">
                 <span class="inputs">
-                  {{(agentData.agentUpgrade.bio.outlet)?agentData.agentUpgrade.bio.outlet:null}}</span></div>
+                  {{
+                    agentData.agentUpgrade.bio.outlet
+                      ? agentData.agentUpgrade.bio.outlet
+                      : null
+                  }}</span
+                >
+              </div>
             </div>
-            <div class="col-md-6 row tired" style="display: flex;
-                          justify-content: flex-start; ">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-start"
+            >
               <div class="col-md-3">
-                <span class="bluetext">Agent TID</span></div>
+                <span class="bluetext">Agent TID</span>
+              </div>
               <div class="col-md-5">
-                <span class="inputs">{{(agentData.userTID)?agentData.userTID:null}}</span></div>
+                <span class="inputs">{{
+                  agentData.userTID ? agentData.userTID : null
+                }}</span>
+              </div>
             </div>
           </div>
-          <br>
+          <br />
           <div class="form-row rowform">
-            <div class="col-md-6 row tired" style="display: flex;
-                        justify-content: flex-end;">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-end"
+            >
               <div class="col-md-3">
-                <span class="bluetext">Gender</span></div>
+                <span class="bluetext">Gender</span>
+              </div>
               <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.gender)?agentData.agentUpgrade.bio.gender:null}}</span>
+                <span class="inputs">{{
+                  agentData.agentUpgrade.bio.gender
+                    ? agentData.agentUpgrade.bio.gender
+                    : null
+                }}</span>
               </div>
             </div>
             <br />
-            <div class="col-md-6 row tired" style="display: flex;
-                        justify-content: flex-start; ">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-start"
+            >
               <div class="col-md-3">
                 <span class="bluetext">Ward</span>
               </div>
               <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.office_ward)?agentData.agentUpgrade.bio.office_ward:null}}</span>
+                <span class="inputs">{{
+                  agentData.agentUpgrade.bio.office_ward
+                    ? agentData.agentUpgrade.bio.office_ward
+                    : null
+                }}</span>
               </div>
             </div>
           </div>
-          <br>
+          <br />
           <div class="form-row rowform">
-            <div class="col-md-6 row tired" style="display: flex;
-                                  justify-content: flex-end;">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-end"
+            >
               <div class="col-md-3">
-                <span class="bluetext">LGA</span></div>
+                <span class="bluetext">LGA</span>
+              </div>
               <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.office_lga)?agentData.agentUpgrade.bio.office_lga:null}}</span>
+                <span class="inputs">{{
+                  agentData.agentUpgrade.bio.office_lga
+                    ? agentData.agentUpgrade.bio.office_lga
+                    : null
+                }}</span>
               </div>
             </div>
             <br />
-            <div class="col-md-6 row tired" style="display: flex;
-                                  justify-content: flex-start; ">
+            <div
+              class="col-md-6 row tired"
+              style="display: flex; justify-content: flex-start"
+            >
               <div class="col-md-3">
                 <span class="bluetext">State</span>
               </div>
               <div class="col-md-5">
-                <span
-                  class="inputs">{{(agentData.agentUpgrade.bio.office_state)?agentData.agentUpgrade.bio.office_state:null}}</span>
+                <span class="inputs">{{
+                  agentData.agentUpgrade.bio.office_state
+                    ? agentData.agentUpgrade.bio.office_state
+                    : null
+                }}</span>
               </div>
             </div>
           </div>
 
-
-          <hr>
+          <hr />
           <div *ngIf="agentData.agentUpgrade.bio">
             <span class="fadedtext">Next Of Kin</span>
-            <br>
-            <br>
+            <br />
+            <br />
             <div class="form-row rowform">
-              <div class="col-md-6 row tired" style="display: flex;
-                justify-content: flex-end;">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-end"
+              >
                 <div class="col-md-3">
-
-                  <span class="bluetext">Full Name</span></div>
+                  <span class="bluetext">Full Name</span>
+                </div>
                 <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.bio.nokfullname)?agentData.agentUpgrade.bio.nokfullname:null}}</span>
+                  <span class="inputs">{{
+                    agentData.agentUpgrade.bio.nokfullname
+                      ? agentData.agentUpgrade.bio.nokfullname
+                      : null
+                  }}</span>
                 </div>
               </div>
               <br />
-              <div class="col-md-6 row tired" style="display: flex;
-                justify-content: flex-start;  ">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-start"
+              >
                 <div class="col-md-3">
-                  <span class="bluetext">Email</span></div>
+                  <span class="bluetext">Email</span>
+                </div>
                 <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.bio.nokemail)?agentData.agentUpgrade.bio.nokemail:null}}</span>
+                  <span class="inputs">{{
+                    agentData.agentUpgrade.bio.nokemail
+                      ? agentData.agentUpgrade.bio.nokemail
+                      : null
+                  }}</span>
                 </div>
               </div>
             </div>
 
-            <br>
+            <br />
             <div class="form-row rowform">
-              <div class="col-md-6 row tired" style="display: flex;
-                          justify-content: flex-end;">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-end"
+              >
                 <div class="col-md-3">
-                  <span class="bluetext">Phone No</span></div>
+                  <span class="bluetext">Phone No</span>
+                </div>
                 <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.bio.nokphone)?agentData.agentUpgrade.bio.nokphone:null}}</span>
+                  <span class="inputs">{{
+                    agentData.agentUpgrade.bio.nokphone
+                      ? agentData.agentUpgrade.bio.nokphone
+                      : null
+                  }}</span>
                 </div>
               </div>
               <br />
             </div>
           </div>
 
-          <hr>
+          <hr />
           <div *ngIf="agentData.agentUpgrade.guarantor">
             <span class="fadedtext">Guarantor</span>
 
-            <br>
+            <br />
             <div class="form-row rowform">
-              <div class="col-md-6 row tired" style="display: flex;
-                          justify-content: flex-end;">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-end"
+              >
                 <div class="col-md-3">
-
-                  <span class="bluetext">Full Name</span></div>
+                  <span class="bluetext">Full Name</span>
+                </div>
                 <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.guarantor.firstname)?agentData.agentUpgrade.guarantor.firstname:null|uppercase}}
-                    {{(agentData.agentUpgrade.guarantor.lastname)?agentData.agentUpgrade.guarantor.lastname:null|uppercase}}</span>
+                  <span class="inputs"
+                    >{{
+                      agentData.agentUpgrade.guarantor.firstname
+                        ? agentData.agentUpgrade.guarantor.firstname
+                        : (null | uppercase)
+                    }}
+                    {{
+                      agentData.agentUpgrade.guarantor.lastname
+                        ? agentData.agentUpgrade.guarantor.lastname
+                        : (null | uppercase)
+                    }}</span
+                  >
                 </div>
               </div>
               <br />
-              <div class="col-md-6 row tired" style="display: flex;
-                          justify-content: flex-start; ">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-start"
+              >
                 <div class="col-md-3">
-                  <span class="bluetext">Residential Address</span></div>
-                <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.guarantor.residential_address)?agentData.agentUpgrade.guarantor.residential_address:null}}
-                  </span></div>
-              </div>
-            </div>
-
-            <br>
-            <div class="form-row rowform">
-              <div class="col-md-6 row tired" style="display: flex;
-                                    justify-content: flex-end;">
-                <div class="col-md-3">
-                  <span class="bluetext">Profession</span></div>
-                <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.guarantor.profession)?agentData.agentUpgrade.guarantor.profession:null}}</span>
+                  <span class="bluetext">Residential Address</span>
                 </div>
-              </div>
-
-
-              <div class="col-md-6 row tired" style="display: flex;
-                                                justify-content: flex-start; ">
-                <div class="col-md-3">
-                  <span class="bluetext">Relationship</span></div>
                 <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.guarantor.relationship)?agentData.agentUpgrade.guarantor.relationship:null|uppercase}}</span>
+                  <span class="inputs"
+                    >{{
+                      agentData.agentUpgrade.guarantor.residential_address
+                        ? agentData.agentUpgrade.guarantor.residential_address
+                        : null
+                    }}
+                  </span>
                 </div>
               </div>
             </div>
-            <br>
+
+            <br />
             <div class="form-row rowform">
-              <div class="col-md-6 row tired" style="display: flex;
-                      justify-content: flex-end;             ">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-end"
+              >
                 <div class="col-md-3">
-                  <span class="bluetext">Email</span></div>
+                  <span class="bluetext">Profession</span>
+                </div>
                 <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.guarantor.email)?agentData.agentUpgrade.guarantor.email:null}}</span>
+                  <span class="inputs">{{
+                    agentData.agentUpgrade.guarantor.profession
+                      ? agentData.agentUpgrade.guarantor.profession
+                      : null
+                  }}</span>
                 </div>
               </div>
-              <br>
-              <br>
-              <div class="col-md-6 row tired" style="display: flex;
-                                    justify-content: flex-start;">
+
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-start"
+              >
+                <div class="col-md-3">
+                  <span class="bluetext">Relationship</span>
+                </div>
+                <div class="col-md-5">
+                  <span class="inputs">{{
+                    agentData.agentUpgrade.guarantor.relationship
+                      ? agentData.agentUpgrade.guarantor.relationship
+                      : (null | uppercase)
+                  }}</span>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="form-row rowform">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-end"
+              >
+                <div class="col-md-3">
+                  <span class="bluetext">Email</span>
+                </div>
+                <div class="col-md-5">
+                  <span class="inputs">{{
+                    agentData.agentUpgrade.guarantor.email
+                      ? agentData.agentUpgrade.guarantor.email
+                      : null
+                  }}</span>
+                </div>
+              </div>
+              <br />
+              <br />
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-start"
+              >
                 <div class="col-md-3">
                   <span class="bluetext">Business Address</span>
                 </div>
                 <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.guarantor.office_address)?agentData.agentUpgrade.guarantor.office_address:null}}</span>
+                  <span class="inputs">{{
+                    agentData.agentUpgrade.guarantor.office_address
+                      ? agentData.agentUpgrade.guarantor.office_address
+                      : null
+                  }}</span>
                 </div>
               </div>
             </div>
 
-
-            <hr>
+            <hr />
           </div>
-
 
           <div *ngIf="agentData.agentUpgrade.bankInfo">
             <span class="fadedtext">Bank Details</span>
-            <br>
-            <br>
+            <br />
+            <br />
             <div class="form-row rowform">
-              <div class="col-md-6 row tired" style="display: flex;
-                                      justify-content: flex-end;">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-end"
+              >
                 <div class="col-md-3">
-
-                  <span class="bluetext">First Name</span></div>
+                  <span class="bluetext">First Name</span>
+                </div>
                 <div class="col-md-5">
-                  <span class="inputs">{{(agentData.firstname)?agentData.firstname:null|uppercase}}
-                  </span></div>
+                  <span class="inputs"
+                    >{{
+                      agentData.firstname
+                        ? agentData.firstname
+                        : (null | uppercase)
+                    }}
+                  </span>
+                </div>
               </div>
               <br />
-              <div class="col-md-6 row tired" style="display: flex;
-                                      justify-content: flex-start;">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-start"
+              >
                 <div class="col-md-3">
-                  <span class="bluetext">Bank Name</span></div>
+                  <span class="bluetext">Bank Name</span>
+                </div>
                 <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.bankInfo.bank_name)?agentData.agentUpgrade.bankInfo.bank_name:null}}</span>
+                  <span class="inputs">{{
+                    agentData.agentUpgrade.bankInfo.bank_name
+                      ? agentData.agentUpgrade.bankInfo.bank_name
+                      : null
+                  }}</span>
                 </div>
               </div>
             </div>
 
-            <br>
+            <br />
             <div class="form-row rowform">
-              <div class="col-md-6 row tired" style="display: flex;
-                                                justify-content: flex-end;">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-end"
+              >
                 <div class="col-md-3">
-                  <span class="bluetext">Last Name</span></div>
+                  <span class="bluetext">Last Name</span>
+                </div>
                 <div class="col-md-5">
                   <span class="inputs">
-                    {{(agentData.lastname)?agentData.lastname:null|uppercase}}</span></div>
+                    {{
+                      agentData.lastname
+                        ? agentData.lastname
+                        : (null | uppercase)
+                    }}</span
+                  >
+                </div>
               </div>
               <br />
-              <div class="col-md-6 row tired" style="display: flex;
-                                                justify-content: flex-start; ">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-start"
+              >
                 <div class="col-md-3">
                   <span class="bluetext">Account Number</span>
                 </div>
                 <div class="col-md-5">
-                  <span
-                    class="inputs">{{(agentData.agentUpgrade.bankInfo.account_number)?agentData.agentUpgrade.bankInfo.account_number:null}}</span>
+                  <span class="inputs">{{
+                    agentData.agentUpgrade.bankInfo.account_number
+                      ? agentData.agentUpgrade.bankInfo.account_number
+                      : null
+                  }}</span>
                 </div>
               </div>
             </div>
 
-            <br>
+            <br />
             <div class="form-row rowform">
-              <div class="col-md-6 row tired" style="display: flex;
-                                                          justify-content: flex-end;">
+              <div
+                class="col-md-6 row tired"
+                style="display: flex; justify-content: flex-end"
+              >
                 <div class="col-md-3">
-                  <span class="bluetext">BVN</span></div>
+                  <span class="bluetext">BVN</span>
+                </div>
                 <div class="col-md-5">
-                  <span>{{(agentData.agentUpgrade.bankInfo.bvn)?agentData.agentUpgrade.bankInfo.bvn:null}}</span></div>
+                  <span>{{
+                    agentData.agentUpgrade.bankInfo.bvn
+                      ? agentData.agentUpgrade.bankInfo.bvn
+                      : null
+                  }}</span>
+                </div>
               </div>
             </div>
-            <hr>
+            <hr />
           </div>
 
-          <br>
+          <br />
           <div *ngIf="agentData.agentUpgrade.kyc[0]">
             <span class="fadedtext">Uploaded File</span>
-            <br>
-            <br>
-            <div class="form-row" style="
-    justify-content: space-around;">
+            <br />
+            <br />
+            <div class="form-row" style="justify-content: space-around">
               <div class="col-md-2">
                 <!--Card-->
                 <mdb-card wider="true">
                   <!--Card image-->
-                  <div style="text-align: center;"> <a id="save" download target="_blank"
-                      href="{{(agentData.agentUpgrade.kyc[0])?agentData.agentUpgrade.kyc[0].path:null}}"> <img
-                        class=" z-depth-1"
-                        src="{{(agentData.agentUpgrade.kyc[0])?agentData.agentUpgrade.kyc[0].path:null}}"
-                        alt="national id" width="100px" height="50px"></a>
-                  </div>
-                  <!--/Card image-->
-                  <mdb-card-body class="text-center">
-                    <!--Card content-->
-                    <!--Title-->
-                    <span class="card-title">
-                      {{(agentData.agentUpgrade.kyc[0])?agentData.agentUpgrade.kyc[0].filename:null}}
-                    </span>
-                    <h5 class="indigo-text">
-                      <span></span>
-                    </h5>
-                  </mdb-card-body>
-                </mdb-card>
-              </div>
-              <div class="col-md-2">
-                <!--Card-->
-                <mdb-card wider="true">
-                  <!--Card image-->
-                  <div style="text-align: center;"> <a id="save" download target="_blank"
-                      href="{{(agentData.agentUpgrade.kyc[1])?agentData.agentUpgrade.kyc[1].path:null}}"><img
+                  <div style="text-align: center">
+                    <a
+                      id="save"
+                      download
+                      target="_blank"
+                      href="{{
+                        agentData.agentUpgrade.kyc[0]
+                          ? agentData.agentUpgrade.kyc[0].path
+                          : null
+                      }}"
+                    >
+                      <img
                         class="z-depth-1"
-                        src="{{(agentData.agentUpgrade.kyc[1])?agentData.agentUpgrade.kyc[1].path:null}}"
-                        alt="national id" width="100px" height="50px"></a>
+                        src="{{
+                          agentData.agentUpgrade.kyc[0]
+                            ? agentData.agentUpgrade.kyc[0].path
+                            : null
+                        }}"
+                        alt="national id"
+                        width="100px"
+                        height="50px"
+                    /></a>
                   </div>
                   <!--/Card image-->
                   <mdb-card-body class="text-center">
                     <!--Card content-->
                     <!--Title-->
                     <span class="card-title">
-                      {{(agentData.agentUpgrade.kyc[1])?agentData.agentUpgrade.kyc[1].filename:null}}
+                      {{
+                        agentData.agentUpgrade.kyc[0]
+                          ? agentData.agentUpgrade.kyc[0].filename
+                          : null
+                      }}
                     </span>
                     <h5 class="indigo-text">
                       <span></span>
@@ -417,18 +599,82 @@
                 <!--Card-->
                 <mdb-card wider="true">
                   <!--Card image-->
-                  <div style="text-align: center;"><a id="save" download target="_blank"
-                      href="{{(agentData.agentUpgrade.kyc[2])?agentData.agentUpgrade.kyc[2].path:null}}"> <img
-                        class=" z-depth-1"
-                        src="{{(agentData.agentUpgrade.kyc[2])?agentData.agentUpgrade.kyc[2].path:null}}"
-                        alt="national id" width="100px" height="50px"></a>
+                  <div style="text-align: center">
+                    <a
+                      id="save"
+                      download
+                      target="_blank"
+                      href="{{
+                        agentData.agentUpgrade.kyc[1]
+                          ? agentData.agentUpgrade.kyc[1].path
+                          : null
+                      }}"
+                      ><img
+                        class="z-depth-1"
+                        src="{{
+                          agentData.agentUpgrade.kyc[1]
+                            ? agentData.agentUpgrade.kyc[1].path
+                            : null
+                        }}"
+                        alt="national id"
+                        width="100px"
+                        height="50px"
+                    /></a>
                   </div>
                   <!--/Card image-->
                   <mdb-card-body class="text-center">
                     <!--Card content-->
                     <!--Title-->
                     <span class="card-title">
-                      {{(agentData.agentUpgrade.kyc[2])?agentData.agentUpgrade.kyc[2].filename:null}}
+                      {{
+                        agentData.agentUpgrade.kyc[1]
+                          ? agentData.agentUpgrade.kyc[1].filename
+                          : null
+                      }}
+                    </span>
+                    <h5 class="indigo-text">
+                      <span></span>
+                    </h5>
+                  </mdb-card-body>
+                </mdb-card>
+              </div>
+              <div class="col-md-2">
+                <!--Card-->
+                <mdb-card wider="true">
+                  <!--Card image-->
+                  <div style="text-align: center">
+                    <a
+                      id="save"
+                      download
+                      target="_blank"
+                      href="{{
+                        agentData.agentUpgrade.kyc[2]
+                          ? agentData.agentUpgrade.kyc[2].path
+                          : null
+                      }}"
+                    >
+                      <img
+                        class="z-depth-1"
+                        src="{{
+                          agentData.agentUpgrade.kyc[2]
+                            ? agentData.agentUpgrade.kyc[2].path
+                            : null
+                        }}"
+                        alt="national id"
+                        width="100px"
+                        height="50px"
+                    /></a>
+                  </div>
+                  <!--/Card image-->
+                  <mdb-card-body class="text-center">
+                    <!--Card content-->
+                    <!--Title-->
+                    <span class="card-title">
+                      {{
+                        agentData.agentUpgrade.kyc[2]
+                          ? agentData.agentUpgrade.kyc[2].filename
+                          : null
+                      }}
                     </span>
                     <h5 class="indigo-text">
                       <span></span>
@@ -437,49 +683,46 @@
                 </mdb-card>
               </div>
             </div>
-            <br>
+            <br />
             <div *ngIf="agentData.agentUpgrade.kyc[3]">
-              <div class="form-row" style="
-                justify-content: space-around;">
+              <div class="form-row" style="justify-content: space-around">
                 <div class="col-md-2">
                   <!--Card-->
                   <mdb-card wider="true">
                     <!--Card image-->
-                    <div style="text-align: center;"> <a id="save" download target="_blank"
-                        href="{{(agentData.agentUpgrade.kyc[3])?agentData.agentUpgrade.kyc[3].path:null}}"> <img
-                          class=" z-depth-1"
-                          src="{{(agentData.agentUpgrade.kyc[3])?agentData.agentUpgrade.kyc[3].path:null}}"
-                          alt="guarantors passport" width="100px" height="50px"></a>
-                    </div>
-                    <!--/Card image-->
-                    <mdb-card-body class="text-center">
-                      <!--Card content-->
-                      <!--Title-->
-                      <span class="card-title">
-                        {{(agentData.agentUpgrade.kyc[3])?agentData.agentUpgrade.kyc[3].filename:null}}
-                      </span>
-                      <h5 class="indigo-text">
-                        <span></span>
-                      </h5>
-                    </mdb-card-body>
-                  </mdb-card>
-                </div>
-                <div class="col-md-2">
-                  <!--Card-->
-                  <mdb-card wider="true">
-                    <!--Card image-->
-                    <div style="text-align: center;"> <a id="save" download target="_blank"
-                        href="{{(agentData.agentUpgrade.kyc[4])?agentData.agentUpgrade.kyc[4].path:null}}"><img
+                    <div style="text-align: center">
+                      <a
+                        id="save"
+                        download
+                        target="_blank"
+                        href="{{
+                          agentData.agentUpgrade.kyc[3]
+                            ? agentData.agentUpgrade.kyc[3].path
+                            : null
+                        }}"
+                      >
+                        <img
                           class="z-depth-1"
-                          src="{{(agentData.agentUpgrade.kyc[4])?agentData.agentUpgrade.kyc[4].path:null}}"
-                          alt="national id" width="100px" height="50px"></a>
+                          src="{{
+                            agentData.agentUpgrade.kyc[3]
+                              ? agentData.agentUpgrade.kyc[3].path
+                              : null
+                          }}"
+                          alt="guarantors passport"
+                          width="100px"
+                          height="50px"
+                      /></a>
                     </div>
                     <!--/Card image-->
                     <mdb-card-body class="text-center">
                       <!--Card content-->
                       <!--Title-->
                       <span class="card-title">
-                        {{(agentData.agentUpgrade.kyc[4])?agentData.agentUpgrade.kyc[4].filename:null}}
+                        {{
+                          agentData.agentUpgrade.kyc[3]
+                            ? agentData.agentUpgrade.kyc[3].filename
+                            : null
+                        }}
                       </span>
                       <h5 class="indigo-text">
                         <span></span>
@@ -491,18 +734,81 @@
                   <!--Card-->
                   <mdb-card wider="true">
                     <!--Card image-->
-                    <div style="text-align: center;"><a id="save" download target="_blank"
-                        href="{{(agentData.agentUpgrade.kyc[5])?agentData.agentUpgrade.kyc[5].path:null}}"><img
-                          class=" z-depth-1"
-                          src="{{(agentData.agentUpgrade.kyc[5])?agentData.agentUpgrade.kyc[5].path:null}}"
-                          alt="national id" width="100px" height="50px"></a>
+                    <div style="text-align: center">
+                      <a
+                        id="save"
+                        download
+                        target="_blank"
+                        href="{{
+                          agentData.agentUpgrade.kyc[4]
+                            ? agentData.agentUpgrade.kyc[4].path
+                            : null
+                        }}"
+                        ><img
+                          class="z-depth-1"
+                          src="{{
+                            agentData.agentUpgrade.kyc[4]
+                              ? agentData.agentUpgrade.kyc[4].path
+                              : null
+                          }}"
+                          alt="national id"
+                          width="100px"
+                          height="50px"
+                      /></a>
                     </div>
                     <!--/Card image-->
                     <mdb-card-body class="text-center">
                       <!--Card content-->
                       <!--Title-->
                       <span class="card-title">
-                        {{(agentData.agentUpgrade.kyc[5])?agentData.agentUpgrade.kyc[5].filename:null}}
+                        {{
+                          agentData.agentUpgrade.kyc[4]
+                            ? agentData.agentUpgrade.kyc[4].filename
+                            : null
+                        }}
+                      </span>
+                      <h5 class="indigo-text">
+                        <span></span>
+                      </h5>
+                    </mdb-card-body>
+                  </mdb-card>
+                </div>
+                <div class="col-md-2">
+                  <!--Card-->
+                  <mdb-card wider="true">
+                    <!--Card image-->
+                    <div style="text-align: center">
+                      <a
+                        id="save"
+                        download
+                        target="_blank"
+                        href="{{
+                          agentData.agentUpgrade.kyc[5]
+                            ? agentData.agentUpgrade.kyc[5].path
+                            : null
+                        }}"
+                        ><img
+                          class="z-depth-1"
+                          src="{{
+                            agentData.agentUpgrade.kyc[5]
+                              ? agentData.agentUpgrade.kyc[5].path
+                              : null
+                          }}"
+                          alt="national id"
+                          width="100px"
+                          height="50px"
+                      /></a>
+                    </div>
+                    <!--/Card image-->
+                    <mdb-card-body class="text-center">
+                      <!--Card content-->
+                      <!--Title-->
+                      <span class="card-title">
+                        {{
+                          agentData.agentUpgrade.kyc[5]
+                            ? agentData.agentUpgrade.kyc[5].filename
+                            : null
+                        }}
                       </span>
                       <h5 class="indigo-text">
                         <span></span>
@@ -513,126 +819,363 @@
               </div>
             </div>
 
-            <hr>
+            <hr />
           </div>
-          <br>
-          <br>
-          <div class="row col-12" style="display: flex; justify-content: center; text-align: center; margin: auto;">
-            <div class="col-md-1" style="margin: 10px;">
-              <button type="button" mdbBtn class="btn-close" size=sm mdbWavesEffect (click)="displayhome.emit('home')">
+          <br />
+          <br />
+          <div
+            class="row col-12"
+            style="
+              display: flex;
+              justify-content: center;
+              text-align: center;
+              margin: auto;
+            "
+          >
+            <div class="col-md-1" style="margin: 10px">
+              <button
+                type="button"
+                mdbBtn
+                class="btn-close"
+                size="sm"
+                mdbWavesEffect
+                (click)="displayhome.emit('home')"
+              >
                 Close
               </button>
             </div>
-            <div class="col-md-1" style="margin: 10px;">
-              <button type="button" class="btn-approve" mdbBtn mdbWavesEffect size=sm aria-pressed="true"
-                [ngClass]="{'disabled':this.agentData.agentStatus.validated ||!this.agentData.agentStatus.uploadedDocuments ||!this.agentData.agentStatus.updatedBio }"
-                (click)="validate.show()">Approve</button>
+            <div class="col-md-1" style="margin: 10px" *ngIf="!disableApprove">
+              <button
+                type="button"
+                class="btn-approve"
+                mdbBtn
+                mdbWavesEffect
+                size="sm"
+                [disabled]="disableApprove"
+                aria-pressed="true"
+                [ngClass]="{
+                  disabled:
+                    this.agentData.agentStatus.validated ||
+                    !this.agentData.agentStatus.uploadedDocuments ||
+                    !this.agentData.agentStatus.updatedBio
+                }"
+                (click)="validate.show()"
+              >
+                Approve
+              </button>
             </div>
-
           </div>
-          <div class="col-md-6" style="position: relative; display: flex; justify-content: end;">
-            <button mdbBtn floating="true" color="teal" class="waves-light" mdbPageScroll href="#topsection"
-              mdbWavesEffect style="right:35px; bottom:35px; border-radius: 50%;" [pageScrollDuration]="750">
+          <div
+            class="col-md-6"
+            style="position: relative; display: flex; justify-content: end"
+          >
+            <button
+              mdbBtn
+              floating="true"
+              color="teal"
+              class="waves-light"
+              mdbPageScroll
+              href="#topsection"
+              mdbWavesEffect
+              style="right: 35px; bottom: 35px; border-radius: 50%"
+              [pageScrollDuration]="750"
+            >
               <mdb-icon fas icon="arrow-up" class=""></mdb-icon>
-            </button></div>
+            </button>
+          </div>
         </form>
-
       </div>
     </div>
   </div>
 
-  <div mdbModal #image1="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
-    aria-hidden="true">
+  <div
+    mdbModal
+    #image1="mdbModal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myBasicModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close" (click)="image1.hide()">
+          <button
+            type="button"
+            class="close pull-right"
+            aria-label="Close"
+            (click)="image1.hide()"
+          >
             <span aria-hidden="true">×</span>
           </button>
           <h4 class="modal-title w-100" id="myModalLabel">
-            {{(agentData.agentUpgrade.kyc[0])?agentData.agentUpgrade.kyc[0].filename:null}}</h4>
+            {{
+              agentData.agentUpgrade.kyc[0]
+                ? agentData.agentUpgrade.kyc[0].filename
+                : null
+            }}
+          </h4>
         </div>
         <div class="modal-body">
-          <img class="img-fluid" src="{{(agentData.agentUpgrade.kyc[0])?agentData.agentUpgrade.kyc[0].path:null}}">
+          <img
+            class="img-fluid"
+            src="{{
+              agentData.agentUpgrade.kyc[0]
+                ? agentData.agentUpgrade.kyc[0].path
+                : null
+            }}"
+          />
         </div>
         <div class="modal-footer">
-          <button type="button" mdbBtn color="secondary" class="waves-light btn-close" aria-label="Close"
-            (click)="image1.hide()" mdbWavesEffect>Close</button>
+          <button
+            type="button"
+            mdbBtn
+            color="secondary"
+            class="waves-light btn-close"
+            aria-label="Close"
+            (click)="image1.hide()"
+            mdbWavesEffect
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
   </div>
 
-  <div mdbModal #image2="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
-    aria-hidden="true">
+  <div
+    mdbModal
+    #image2="mdbModal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myBasicModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close" (click)="image2.hide()">
+          <button
+            type="button"
+            class="close pull-right"
+            aria-label="Close"
+            (click)="image2.hide()"
+          >
             <span aria-hidden="true">×</span>
           </button>
           <h4 class="modal-title w-100" id="myModalLabel">
-            {{(agentData.agentUpgrade.kyc[1])?agentData.agentUpgrade.kyc[1].filename:null}}</h4>
+            {{
+              agentData.agentUpgrade.kyc[1]
+                ? agentData.agentUpgrade.kyc[1].filename
+                : null
+            }}
+          </h4>
         </div>
         <div class="modal-body">
-          <img class="img-fluid" src="{{(agentData.agentUpgrade.kyc[1])?agentData.agentUpgrade.kyc[1].path:null}}">
+          <img
+            class="img-fluid"
+            src="{{
+              agentData.agentUpgrade.kyc[1]
+                ? agentData.agentUpgrade.kyc[1].path
+                : null
+            }}"
+          />
         </div>
         <div class="modal-footer">
-          <button type="button" mdbBtn color="secondary" class="waves-light btn-close" aria-label="Close"
-            (click)="image2.hide()" mdbWavesEffect>Close</button>
+          <button
+            type="button"
+            mdbBtn
+            color="secondary"
+            class="waves-light btn-close"
+            aria-label="Close"
+            (click)="image2.hide()"
+            mdbWavesEffect
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
   </div>
 
-  <div mdbModal #image3="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
-    aria-hidden="true">
+  <div
+    mdbModal
+    #image3="mdbModal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myBasicModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close" (click)="image3.hide()">
+          <button
+            type="button"
+            class="close pull-right"
+            aria-label="Close"
+            (click)="image3.hide()"
+          >
             <span aria-hidden="true">×</span>
           </button>
           <h4 class="modal-title w-100" id="myModalLabel">
-            {{(agentData.agentUpgrade.kyc[2])?agentData.agentUpgrade.kyc[2].filename:null}}</h4>
+            {{
+              agentData.agentUpgrade.kyc[2]
+                ? agentData.agentUpgrade.kyc[2].filename
+                : null
+            }}
+          </h4>
         </div>
         <div class="modal-body">
-          <img class="img-fluid" src="{{(agentData.agentUpgrade.kyc[2])?agentData.agentUpgrade.kyc[2].path:null}}">
+          <img
+            class="img-fluid"
+            src="{{
+              agentData.agentUpgrade.kyc[2]
+                ? agentData.agentUpgrade.kyc[2].path
+                : null
+            }}"
+          />
         </div>
         <div class="modal-footer">
-          <button type="button" mdbBtn color="secondary" class="waves-light btn-close" aria-label="Close"
-            (click)="image3.hide()" mdbWavesEffect>Close</button>
+          <button
+            type="button"
+            mdbBtn
+            color="secondary"
+            class="waves-light btn-close"
+            aria-label="Close"
+            (click)="image3.hide()"
+            mdbWavesEffect
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
   </div>
 
-  <div mdbModal #validate="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
-    aria-hidden="true">
+  <div
+    mdbModal
+    #validate="mdbModal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myBasicModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close" (click)="validate.hide()">
+          <button
+            type="button"
+            class="close pull-right"
+            aria-label="Close"
+            (click)="validate.hide()"
+          >
             <span aria-hidden="true">×</span>
           </button>
           <span>
-            <span style="font-size: 15pt;">Validate Agent?</span>
+            <span style="font-size: 15pt">Validate Agent?</span>
           </span>
         </div>
-        <div class="modal-body row" style="display: flex;
-      justify-content: space-around;
-  ">
-          <span style="font-size: 15pt;">{{(agentData.firstname)?agentData.firstname:null |uppercase}}
-            {{(agentData.lastname)?agentData.lastname:null |uppercase}}</span>
-          <span style="font-size: 15pt; color: teal;">{{(agentData.userTID)?agentData.userTID:null |uppercase}}</span>
+        <div
+          class="modal-body row"
+          style="display: flex; justify-content: space-around"
+        >
+          <span style="font-size: 15pt"
+            >{{
+              agentData.firstname ? agentData.firstname : (null | uppercase)
+            }}
+            {{
+              agentData.lastname ? agentData.lastname : (null | uppercase)
+            }}</span
+          >
+          <span style="font-size: 15pt; color: teal">{{
+            agentData.userTID ? agentData.userTID : (null | uppercase)
+          }}</span>
         </div>
         <div class="modal-footer">
-          <button type="button" mdbBtn color="teal" class="waves-light" aria-label="Close" (click)="validateagent()"
-            mdbWavesEffect>Approve</button>
-          <button type="button" mdbBtn color="secondary" class="waves-light btn-close" aria-label="Close"
-            (click)="validate.hide()" mdbWavesEffect>Close</button>
+          <button
+            type="button"
+            mdbBtn
+            color="teal"
+            class="waves-light"
+            aria-label="Close"
+            (click)="validateagent()"
+            mdbWavesEffect
+          >
+            Approve <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+          </button>
+          <button
+            type="button"
+            mdbBtn
+            color="secondary"
+            class="waves-light btn-close"
+            aria-label="Close"
+            (click)="validate.hide()"
+            mdbWavesEffect
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
-
   </div>
+
+  <div
+    id="success_tic"
+    mdbModal
+    #success="mdbModal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myBasicModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close pull-right"
+            aria-label="Close"
+            (click)="success.hide()"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title w-100" id="myModalLabel">
+            {{ agentData.firstname ? agentData.firstname : "null" }}
+            {{ agentData.lastname ? agentData.lastname : "null" }} -
+            {{ agentData.userTID ? agentData.userTID : "null" }}
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="page-body">
+            <div class="head">
+              <h3 style="margin-top: 5px">Validated Sucessfully</h3>
+            </div>
+
+            <h1 style="text-align: center">
+              <div class="checkmark-circle">
+                <div class="background"></div>
+                <div class="checkmark draw"></div>
+              </div>
+            </h1>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            mdbBtn
+            color="secondary"
+            class="waves-light btn-close"
+            aria-label="Close"
+            (click)="success.hide()"
+            mdbWavesEffect
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

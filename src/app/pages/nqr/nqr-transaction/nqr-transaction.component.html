@@ -1,0 +1,459 @@
+<div class="container">
+  <div
+    class="row mt-3 col-lg-12"
+    style="justify-content: center; align-items: center"
+  >
+    <div>
+      <h1>NQR MERCHANT TRANSACTION HISTORY</h1>
+    </div>
+    <br />
+    <div class="ml-2" style="text-align: center">
+      <img
+        class="img-fluid"
+        src="../../../assets/qr-code (1).svg"
+        style="width: 20%"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+      <div class="card classic-admin-card">
+        <div class="card-body" [style.height.em]="'6'">
+          <p class="total-trans">Total Transactions</p>
+          <div class="total-users">
+            <mdb-icon class="users" fab icon="gg"></mdb-icon>
+          </div>
+          <br />
+          <mdb-spinner
+            *ngIf="loading"
+            spinnerType="small"
+            spinnerColor="blue"
+          ></mdb-spinner>
+          <h4 *ngIf="loading == false">
+            <p *ngIf="isData == true" class="summary-card-text mt-1">
+              {{ totalCount }}
+              <br />
+              Transactions
+            </p>
+            <div *ngIf="isData == true" class="trans-amount">
+              &#x20A6;{{ totalAmount }}
+            </div>
+          </h4>
+          <strong class="summary-noData" *ngIf="isData == false"
+            >No Data Available</strong
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+      <div class="card classic-admin-card">
+        <div class="card-body" [style.height.em]="'6'">
+          <p class="total-trans">Pending Transactions</p>
+          <div class="total-users">
+            <mdb-icon class="" fab icon="gg"></mdb-icon>
+          </div>
+          <br />
+          <mdb-spinner
+            *ngIf="loading"
+            spinnerType="small"
+            spinnerColor="blue"
+          ></mdb-spinner>
+          <h4 *ngIf="loading == false">
+            <p *ngIf="isData == true" class="summary-card-text mt-1">
+              {{ pendingCount }}
+              <br />
+              Transactions
+            </p>
+            <div
+              *ngIf="isData == true"
+              class="trans-amount"
+              style="color: #e9bb66"
+            >
+              &#x20A6;{{ pendingAmount }}
+            </div>
+          </h4>
+          <strong class="summary-noData" *ngIf="isData == false"
+            >No Data Available</strong
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+      <div class="card classic-admin-card">
+        <div class="card-body" [style.height.em]="'6'">
+          <p class="total-trans">Successful Transactions</p>
+          <div class="total-users">
+            <mdb-icon class="total" fas icon="check"></mdb-icon>
+          </div>
+          <br />
+          <mdb-spinner
+            *ngIf="loading"
+            spinnerType="small"
+            spinnerColor="blue"
+          ></mdb-spinner>
+          <h4 *ngIf="loading == false">
+            <p *ngIf="isData == true" class="summary-card-text mt-1">
+              {{ successCount }}
+              <br />
+              Transactions
+            </p>
+            <div
+              *ngIf="isData == true"
+              class="trans-amount"
+              style="color: #219653"
+            >
+              &#x20A6;{{ successAmount }}
+            </div>
+          </h4>
+          <strong class="summary-noData" *ngIf="isData == false"
+            >No Data Available</strong
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+      <div class="card classic-admin-card">
+        <div class="card-body" [style.height.em]="'6'">
+          <p class="total-trans">Failed Transactions</p>
+          <div class="total-users">
+            <mdb-icon class="fail" fas icon="times"></mdb-icon>
+          </div>
+          <br />
+          <mdb-spinner
+            *ngIf="loading"
+            spinnerType="small"
+            spinnerColor="blue"
+          ></mdb-spinner>
+          <h4 *ngIf="loading == false">
+            <p *ngIf="isData == true" class="summary-card-text mt-1">
+              {{ failedCount }}
+              <br />Transactions
+            </p>
+            <div
+              *ngIf="isData == true"
+              class="trans-amount"
+              style="color: #eb5757"
+            >
+              &#x20A6;{{ failedAmount }}
+            </div>
+          </h4>
+          <strong class="summary-noData" *ngIf="isData == false"
+            >No Data Available</strong
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <!-- Filters -->
+  <form>
+    <div class="row" style="justify-content: center">
+      <!-- <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+        <select
+          class="browser-default custom-select stat"
+          (change)="getStatus($event)"
+          formControlName="method"
+        >
+          <option value="">Status</option>
+          <option *ngFor="let status of stat" [value]="status">
+            {{ status }}
+          </option>
+        </select>
+      </div> -->
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 mt-3">
+        <input
+          type="date"
+          [(ngModel)]="from"
+          name="from"
+          [placeholder]="'yyyy-mm-dd'"
+          id="input"
+          class="form-control my-0 py-0"
+          ngDefaultControl
+        />
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 mt-3">
+        <input
+          type="date"
+          [(ngModel)]="to"
+          name="to"
+          [placeholder]="'yyyy-mm-dd'"
+          id="input"
+          class="form-control my-0 py-0"
+          ngDefaultControl
+        />
+      </div>
+
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+        <input
+          ngDefaultControl
+          [(ngModel)]="query"
+          placeholder="TID"
+          type="search"
+          name="query"
+        />
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+        <mdb-badge class="search" (click)="searchTrans()">
+          <mdb-icon fas icon="search"></mdb-icon>
+          &nbsp;Search
+        </mdb-badge>
+
+        <button
+          [disabled]="!detailsData.length"
+          class="save"
+          (click)="exportTable()"
+        >
+          <mdb-icon fas icon="download"></mdb-icon>
+          &nbsp;Save
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Transaction Details -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover" small="true">
+          <thead class="trans-head">
+            <tr>
+              <th class="head" *ngFor="let head of headElements" scope="col">
+                {{ head }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <mdb-spinner
+              class="loading-screen-icon"
+              *ngIf="loading"
+              spinnerType="big"
+              spinnerColor="blue"
+            >
+            </mdb-spinner>
+            <!-- <div class="progress-loader" [hidden]="!loading"> -->
+
+            <!-- <mat-progress-spinner [mode]="'indeterminate'">
+                                </mat-progress-spinner> -->
+
+            <!-- </div> -->
+            <!--  -->
+
+            <tr *ngFor="let item of detailsData; let i = index">
+              <th scope="row">{{ serial + i }}</th>
+              <td style="font-weight: 800">
+                {{ item.clientReference }}
+              </td>
+              <td s>{{ item.tid }}</td>
+              
+              <td>{{ item.merchantNo }}</td>
+
+              <td>&#x20A6;{{ item.totalAmount | number: "1.2-2" }}</td>
+
+              <td>&#x20A6;{{ item.nqrCharge | number: "1.2-2" }}</td>
+
+              <td>&#x20A6;{{ item.amount | number: "1.2-2" }}</td>
+              <td>
+                <mdb-badge
+                  class="status"
+                  [ngClass]="{
+                    failed: item.status == 'failed',
+                    success: item.status == 'processed',
+                    pending: item.status == 'pending'
+                  }"
+                >
+                  {{
+                    item.status == "processed"
+                      ? "successful"
+                      : item.status == "failed"
+                      ? "failed"
+                      : "pending"
+                  }}</mdb-badge
+                >
+              </td>
+              <td>{{ item.subMerchantNo }}</td>
+              <td>{{ item.codeType }}</td>
+              <td>{{ item.service }}</td>
+              <td>{{ item.orderNo }}</td>
+              <td>{{ item.orderSn }}</td>
+
+              <td style="color: #828282">
+                {{ item.nqr_callback_at ? item.nqr_callback_at : "null" }}
+              </td>
+              <td>{{ item.created_at }}</td>
+            </tr>
+            <strong class="summary-noData" *ngIf="isData == false"
+              >No Data Available</strong
+            >
+          </tbody>
+        </table>
+        <div
+          class="btn-toolbar"
+          role="toolbar"
+          aria-label="Toolbar with button groups"
+          *ngIf="lastPage"
+        >
+          <button
+            type="button"
+            class="btn waves-light"
+            style="
+              border: 1px solid;
+              border-radius: 8px;
+              padding: 8px 10px;
+              color: black;
+            "
+            mdbWavesEffect
+            (click)="prev()"
+            [disabled]="page <= 1"
+            size="sm"
+          >
+            Prev
+          </button>
+          <br />
+          <div class="btn-text">
+            Page
+            <input
+              min="1"
+              [max]="lastPage"
+              type="number"
+              [(ngModel)]="page"
+              style="width: 60px"
+              (blur)="AgentSummary(page)"
+            />
+            of {{ lastPage }}
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary waves-light"
+            mdbWavesEffect
+            (click)="next()"
+            size="sm"
+            style="border-radius: 8px; padding: 8px 10px"
+            [disabled]="next_disable"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+      <br />
+      <!-- <div *ngIf="loading == true" style="cursor: wait;"> </div> -->
+    </div>
+  </div>
+</div>
+<!-- 
+<div
+  class="container-fluid"
+  style="display: flex; justify-content: center; align-items: center"
+>
+  <div id="newUser" class="col-md-12">
+    <div class="container">
+      <div class="card mb-3" style="border-color: teal">
+        <form style="padding: 30px">
+          <! Second row 
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+              <p>From:</p>
+              <input
+                type="date"
+                [(ngModel)]="from"
+                name="from"
+                [placeholder]="'yyyy-mm-dd'"
+                id="input"
+                class="form-control my-0 py-0"
+                ngDefaultControl
+              />
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+              <p>To:</p>
+              <input
+                type="date"
+                [(ngModel)]="to"
+                name="to"
+                [placeholder]="'yyyy-mm-dd'"
+                id="input"
+                class="form-control my-0 py-0"
+                ngDefaultControl
+              />
+            </div>
+
+            <div class="col-lg-6 col-md-4 col-sm-6 col-xs-6">
+              <div class="" style="margin-top: 23px !important">
+                <input
+                  [(ngModel)]="query"
+                  placeholder="Merchant Name or TID"
+                  class="col-lg-7 mt-3"
+                  type="search"
+                  name="query"
+                />
+
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  mdbWavesEffect
+                  style="
+                    text-transform: none;
+                    border-radius: 8px;
+                    padding: 8px 10px;
+                    border: 1px solid;
+                    background-color: #fff !important;
+                    color: black !important;
+                  "
+                 
+                >
+                  <i class="fa fa-search"></i> &nbsp;Search
+                </button>
+                <button
+                 
+                  type="button"
+                  class="btn btn-primary"
+                  mdbWavesEffect
+                  style="
+                    text-transform: none;
+                    border-radius: 8px;
+                    padding: 8px 10px;
+                    border: 1px solid;
+                    background-color: #fff !important;
+                    color: black !important;
+                  "
+                >
+                  <i class="fas fa-file-download"></i> &nbsp; Export
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="card-body">
+          <div class="table-responsive" style="overflow-x: auto !important">
+            <table class="table table-hover" small="true">
+              <thead class="trans-head">
+                <tr>
+                  <th
+                    class="head"
+                    *ngFor="let head of headElements"
+                    scope="col"
+                    style="text-align: center; white-space: nowrap"
+                  >
+                    {{ head }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <mdb-spinner
+                  class="overlay"
+                  *ngIf="loading"
+                  spinnerType="big"
+                  spinnerColor="blue"
+                >
+                </mdb-spinner>
+
+                <!-- <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong> 
+              </tbody>
+            </table>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -1,5 +1,5 @@
-import { NqrMerchantOnboardComponent } from './pages/nqr/nqr-merchant-onboard/nqr-merchant-onboard.component';
-import { NqrMerchantHistoryComponent } from './pages/nqr/nqr-merchant-history/nqr-merchant-history.component';
+import { NqrMerchantOnboardComponent } from "./pages/nqr/nqr-merchant-onboard/nqr-merchant-onboard.component";
+import { NqrMerchantHistoryComponent } from "./pages/nqr/nqr-merchant-history/nqr-merchant-history.component";
 import { TransactionsComponent } from "./pages/sanef/transactions/transactions.component";
 import { AccountComponent } from "./pages/sanef/account/account.component";
 import { RouterModule, Route } from "@angular/router";
@@ -38,6 +38,7 @@ import { NqrBulkComponent } from './pages/nqr/nqr-bulk/nqr-bulk.component';
 import { NqrHistoryComponent } from './pages/nqr/nqr-history/nqr-history.component';
 import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboard-view.component';
 import { AutoPostTransactionComponent } from './pages/Transaction/auto-post-transaction/auto-post-transaction.component';
+import { NqrTransactionComponent } from "./pages/nqr/nqr-transaction/nqr-transaction.component";
 
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
@@ -55,149 +56,180 @@ const routes: Route[] = [
         path: "admin-dashboard/day",
         component: DashboardViewComponent,
         canActivate: [RoleGuard],
-          data: { expectedRole: [3, 4, 5], breadcrumb: 'Dashboard | Summary View' },
+        data: {
+          expectedRole: [3, 4, 5],
+          breadcrumb: "Dashboard | Summary View",
+        },
       },
 
-      { path: "transaction/details", component: TransactionComponent, data:{ breadcrumb: 'Transactions'}  },
+      {
+        path: "transaction/details",
+        component: TransactionComponent,
+        data: { breadcrumb: "Transactions" },
+      },
 
-      { path: "inconclusive/transaction", component: InconclusiveTransactionComponent,  data:{ breadcrumb: 'Inconclusive Transactions'} },
-
+      {
+        path: "inconclusive/transaction",
+        component: InconclusiveTransactionComponent,
+        data: { breadcrumb: "Inconclusive Transactions" },
+      },
 
       {
         path: "agency/banking",
         component: AgencyBankingComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Agency Banking' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Agency Banking" },
       },
 
       {
         path: "error/analysis",
         component: ErrorAnalysisComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Error Analysis' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Error Analysis" },
       },
 
       {
         path: "mcash/transactions",
         component: McashTransactionComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] , breadcrumb: 'Mcash Transactions'},
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Mcash Transactions" },
       },
 
       {
         path: "mcash/map-terminals",
         component: McashComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Mcash | Map Terminals' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Mcash | Map Terminals" },
       },
 
       {
         path: "cgate/transactions",
         component: CgateComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Cgate Transactions' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Cgate Transactions" },
       },
       {
         path: "transaction/global",
         component: TransactionGlobalComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5],breadcrumb: 'Global Transactions' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Global Transactions" },
       },
       {
         path: "onboarding/dashboard",
         component: AgentdashboardComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Onboarding Dashboard' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Onboarding Dashboard" },
       },
-       {
+      {
         path: "nqr/onboard",
         component: NqrComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nqr Onboarding' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Nqr Onboarding" },
       },
-       {
+      {
         path: "nqr/onboard-bulk",
         component: NqrBulkComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nqr | Bulk-Upload' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Nqr | Bulk-Upload" },
       },
-       {
+      {
         path: "nqr/onboard-history",
         component: NqrHistoryComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nqr | Onboard History' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Nqr | Onboard History" },
+      },
+      {
+        path: "nqr/transaction",
+        component: NqrTransactionComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Nqr | Transaction" },
       },
       {
         path: "nqr/merchant-onboard-history",
         component: NqrMerchantHistoryComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nqr | Merchant Onboard History'},
+        data: {
+          expectedRole: [3, 4, 5],
+          breadcrumb: "Nqr | Merchant Onboard History",
+        },
       },
-       {
+      {
         path: "nqr/merchant-onboard",
         component: NqrMerchantOnboardComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nqr | Merchant Bulk-Upload'},
+        data: {
+          expectedRole: [3, 4, 5],
+          breadcrumb: "Nqr | Merchant Bulk-Upload",
+        },
       },
       {
         path: "sanef/account",
         component: AccountComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Sanef | Account' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Sanef | Account" },
       },
       {
         path: "sanef/transactions",
         component: TransactionsComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Sanef | Transactions'  },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Sanef | Transactions" },
       },
       {
         path: "transaction/nip",
         component: TransactionNipComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nip | Transactions Session Report' },
+        data: {
+          expectedRole: [3, 4, 5],
+          breadcrumb: "Nip | Transactions Session Report",
+        },
       },
 
       {
         path: "transaction-settlement/nip",
         component: TransactionNipSetlComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Nip | Settlement Cycle Report' },
+        data: {
+          expectedRole: [3, 4, 5],
+          breadcrumb: "Nip | Settlement Cycle Report",
+        },
       },
 
       {
         path: "service-status",
         component: ServiceStatusComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [4, 5],  breadcrumb: 'Service Status' },
+        data: { expectedRole: [4, 5], breadcrumb: "Service Status" },
       },
 
       {
         path: "bvn-status",
         component: BvnStatusComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [4, 5],  breadcrumb: 'Bvn Status'},
+        data: { expectedRole: [4, 5], breadcrumb: "Bvn Status" },
       },
 
       {
         path: "transaction/reversal",
         component: TransactionReversalComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Transaction Reversal' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Transaction Reversal" },
       },
 
       {
         path: "transaction/iepostpaid",
         component: TransactionIepostpaidComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'IE Stored/Forwarded Transaction Report'},
+        data: {
+          expectedRole: [3, 4, 5],
+          breadcrumb: "IE Stored/Forwarded Transaction Report",
+        },
       },
 
       {
         path: "transaction/locks",
         component: TransactionLocksComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] ,breadcrumb: 'Transactions On-Hold'},
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Transactions On-Hold" },
       },
       {
         path: "transaction/autopost",
@@ -210,47 +242,46 @@ const routes: Route[] = [
         path: "register",
         component: RegisterComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5], breadcrumb: ' Create User'},
+        data: { expectedRole: [5], breadcrumb: " Create User" },
       },
 
       {
         path: "users",
         component: RoleManagementComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5] ,breadcrumb: 'Users' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Users" },
       },
       {
         path: "transaction/limits",
         component: TransactionLimitsComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [3, 4, 5], breadcrumb: 'Transaction Limits' },
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Transaction Limits" },
       },
 
       {
         path: "app/configurations",
         component: AppConfigComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5], breadcrumb: 'Live App Configurations'},
-        
+        data: { expectedRole: [5], breadcrumb: "Live App Configurations" },
       },
 
       {
         path: "b2b/configurations",
         component: B2bConfigComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5], breadcrumb: 'Live B2B Configurations'},
+        data: { expectedRole: [5], breadcrumb: "Live B2B Configurations" },
       },
       {
         path: "wallet/configurations",
         component: WalletLimitsComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5], breadcrumb: 'Live Wallet Limits' },
+        data: { expectedRole: [5], breadcrumb: "Live Wallet Limits" },
       },
       {
         path: "data/configurations",
         component: DataPlansComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5], breadcrumb: 'Live Data Configurations'},
+        data: { expectedRole: [5], breadcrumb: "Live Data Configurations" },
       },
     ],
   },
