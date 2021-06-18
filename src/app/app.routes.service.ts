@@ -37,6 +37,7 @@ import { NqrComponent } from './pages/nqr/nqr.component';
 import { NqrBulkComponent } from './pages/nqr/nqr-bulk/nqr-bulk.component';
 import { NqrHistoryComponent } from './pages/nqr/nqr-history/nqr-history.component';
 import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboard-view.component';
+import { AutoPostTransactionComponent } from './pages/Transaction/auto-post-transaction/auto-post-transaction.component';
 
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
@@ -197,6 +198,12 @@ const routes: Route[] = [
         component: TransactionLocksComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5] ,breadcrumb: 'Transactions On-Hold'},
+      },
+      {
+        path: "transaction/autopost",
+        component: AutoPostTransactionComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [5], breadcrumb: 'Auto-Post Transactions' },
       },
 
       {

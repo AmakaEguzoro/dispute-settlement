@@ -73,6 +73,7 @@ import { DayDashboardComponent } from './dashboard/day-dashboard/day-dashboard.c
 import { WeekDashboardComponent } from './dashboard/week-dashboard/week-dashboard.component';
 import { MonthDashboardComponent } from './dashboard/month-dashboard/month-dashboard.component';
 import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
+import { AutoPostTransactionComponent } from './Transaction/auto-post-transaction/auto-post-transaction.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -138,7 +139,8 @@ import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-vie
     DayDashboardComponent,
     WeekDashboardComponent,
     MonthDashboardComponent,
-    DashboardViewComponent
+    DashboardViewComponent,
+    AutoPostTransactionComponent
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -166,7 +168,8 @@ import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-vie
     DayDashboardComponent,
     WeekDashboardComponent,
     MonthDashboardComponent,
-    DashboardViewComponent
+    DashboardViewComponent,
+    AutoPostTransactionComponent
 
   ],
   providers: [

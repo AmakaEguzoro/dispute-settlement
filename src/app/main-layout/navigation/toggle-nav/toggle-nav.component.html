@@ -77,6 +77,8 @@
 
       <li><a *appHasRole="['1','2', '3', '4', '5']" routerLink="transaction/details" routerLinkActive="active"
           mdbWavesEffect> Transactions </a></li>
+          <li style="margin-top: 4px;"><a *appHasRole="['5']" routerLink="transaction/autopost" routerLinkActive="active" mdbWavesEffect>
+            Auto-Post Transactions </a></li>
       <li style="margin-top: 4px;"><a routerLink="inconclusive/transaction" routerLinkActive="active" mdbWavesEffect>
           Inconclusive Transactions </a></li>
       <li style="margin-top: 4px;"><a *appHasRole="['3', '4', '5']" routerLink="transaction/locks"
