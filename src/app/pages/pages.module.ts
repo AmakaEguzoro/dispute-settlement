@@ -74,6 +74,7 @@ import { WeekDashboardComponent } from './dashboard/week-dashboard/week-dashboar
 import { MonthDashboardComponent } from './dashboard/month-dashboard/month-dashboard.component';
 import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
 import { NqrTransactionComponent } from './nqr/nqr-transaction/nqr-transaction.component';
+import { AutoPostTransactionComponent } from "./Transaction/auto-post-transaction/auto-post-transaction.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -140,6 +141,7 @@ import { NqrTransactionComponent } from './nqr/nqr-transaction/nqr-transaction.c
     WeekDashboardComponent,
     MonthDashboardComponent,
     DashboardViewComponent,
+    AutoPostTransactionComponent,
     NqrTransactionComponent
   ],
   exports: [
@@ -168,7 +170,8 @@ import { NqrTransactionComponent } from './nqr/nqr-transaction/nqr-transaction.c
     DayDashboardComponent,
     WeekDashboardComponent,
     MonthDashboardComponent,
-    DashboardViewComponent
+    DashboardViewComponent,
+    AutoPostTransactionComponent
 
   ],
   providers: [
