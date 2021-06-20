@@ -1,104 +1,356 @@
-<div class="container-fluid" style="display: flex; justify-content: center; align-items: center;">
-  <div id="newUser" class="col-md-12 ">
-
+<div
+  class="container-fluid"
+  style="display: flex; justify-content: center; align-items: center"
+>
+  <div id="newUser" class="col-md-12">
     <form name="newUser" class="register">
-      <div class="row" style="justify-content: center;">
+      <div class="row" style="justify-content: center">
         <div>
           <h1>NQR ONBOARDING FORM</h1>
         </div>
-        <br>
-        <div class="ml-2" style="text-align: center;">
-          <img class="img-fluid" src="../../../assets/qr-code (1).svg" style="width: 20%;" />
+        <br />
+        <div class="ml-2" style="text-align: center">
+          <img
+            class="img-fluid"
+            src="../../../assets/qr-code (1).svg"
+            style="width: 20%"
+          />
         </div>
-        <br>
+        <br />
       </div>
       <div class="container">
         <div class="col-md-12 mt-2">
-          <h3 style="font-size: 1.2rem;">Upload Merchant File</h3>
+          <h3 style="font-size: 1.2rem">Upload Merchant File</h3>
         </div>
 
-        <form #form=ngForm *ngIf="!fileArray">
+        <form #form="ngForm" *ngIf="!fileArray">
           <div class="col-lg-3 col-sm-3 p-0 file-path-wrapper">
-            <input type="file" (change)="addfile($event)" style="border: none;"
-              accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+            <input
+              type="file"
+              (change)="addfile($event)"
+              style="border: none"
+              accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+            />
             <!-- <input type="file" class="form-control" (change)="addfile($event)" placeholder="Upload file"
           > -->
-            <br> <br>
+            <br />
+            <br />
           </div>
-
 
           <div class="pb-4">
-
-            <a type="button" download class="btn" style="text-transform: none; border: 1px solid; border-radius: 8px;
-    padding: 8px 10px;
-    color: black;" href="../../../../assets/PTSPMerchantImportTemplate.xlsx">Download
-              Sample</a>
-            <button (click)="displayfiles()" type="button" class="btn btn-primary" mdbWavesEffect style="text-transform: none;border-radius: 8px;
-    padding: 8px 10px;
-    ">Upload</button>
-
+            <a
+              type="button"
+              download
+              class="btn"
+              style="
+                text-transform: none;
+                border: 1px solid;
+                border-radius: 8px;
+                padding: 8px 10px;
+                color: black;
+              "
+              href="../../../../assets/PTSPMerchantImportTemplate.xlsx"
+              >Download Sample</a
+            >
+            <button
+              (click)="displayfiles()"
+              type="button"
+              class="btn btn-primary"
+              mdbWavesEffect
+              style="
+                text-transform: none;
+                border-radius: 8px;
+                padding: 8px 10px;
+              "
+            >
+              Upload
+            </button>
           </div>
         </form>
-        <div class="card mb-3" style="border-color: teal;" *ngIf="fileArray">
-          <div class="mt-2" style="display: flex;justify-content: flex-end;">
+        <div class="card mb-3" style="border-color: teal" *ngIf="fileArray">
+          <div class="mt-2" style="display: flex; justify-content: flex-end">
+            <button
+              type="button"
+              class="btn"
+              style="
+                text-transform: none;
+                border: 1px solid;
+                border-radius: 8px;
+                padding: 8px 10px;
+                color: black;
+              "
+              (click)="clear()"
+            >
+              Clear
+            </button>
+            <br />
 
-            <button type="button"  class="btn" style="text-transform: none; border: 1px solid; border-radius: 8px;
-            padding: 8px 10px;
-            color: black;" (click)="clear()">Clear</button>
-            <br>
-
-
-            <button type="button" class="btn btn-primary" mdbWavesEffect style="text-transform: none;border-radius: 8px;
-            padding: 8px 10px;" (click)="confirm()">{{loading ?
-              'Creating' : 'Create' }} &nbsp;<i class="fa "
-                [ngClass]="{'spinner-border spinner-border-sm':loading==true}"></i></button>
-
+            <button
+              type="button"
+              class="btn btn-primary"
+              mdbWavesEffect
+              style="
+                text-transform: none;
+                border-radius: 8px;
+                padding: 8px 10px;
+              "
+              (click)="confirm()"
+            >
+              {{ loading ? "Creating" : "Create" }} &nbsp;<i
+                class="fa"
+                [ngClass]="{
+                  'spinner-border spinner-border-sm': loading == true
+                }"
+              ></i>
+            </button>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-
               <table class="table table-hover" small="true">
                 <thead class="trans-head">
                   <tr>
-                    <th class="head" *ngFor="let head of headElements" scope="col"
-                      style="color: rgb(64, 107, 153); text-align: center;white-space: nowrap;">
-                      {{head}}
+                    <th
+                      class="head"
+                      *ngFor="let head of headElements"
+                      scope="col"
+                      style="
+                        color: rgb(64, 107, 153);
+                        text-align: center;
+                        white-space: nowrap;
+                      "
+                    >
+                      {{ head }}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-
-
-                  <tr *ngFor="let row of fileArray let index = index">
-                    <th style="text-align: center;" scope="row">{{serial + index}}</th>
-                    <td style="text-align: center;">{{row.accountName}}
-                    </td>
-                    <td style="text-align: center; ">{{row.contactPerson}}</td>
-                    <td style="text-align: center;">{{row.email}}</td>
-                    <td style="text-align: center;">{{row.merchantName}}</td>
-                    <td style="text-align: center;">{{row.phone}}</td>
-                    <td style="text-align: center;">{{row.nipBankNo}}</td>
-                    <td style="text-align: center;">{{row.tin}}</td>
-                    <td style="text-align: center;">{{row.tid}}</td>
-
-
-
+                  <tr *ngFor="let row of fileArray; let index = index">
+                    <th style="text-align: center" scope="row">
+                      {{ serial + index }}
+                    </th>
+                    <td style="text-align: center">{{ row.accountName }}</td>
+                    <td style="text-align: center">{{ row.accountNumber }}</td>
+                    <td style="text-align: center">{{ row.contactPerson }}</td>
+                    <td style="text-align: center">{{ row.email }}</td>
+                    <td style="text-align: center">{{ row.merchantName }}</td>
+                    <td style="text-align: center">{{ row.phone }}</td>
+                    <td style="text-align: center">{{ row.nipBankNo }}</td>
+                    <td style="text-align: center">{{ row.tin }}</td>
+                    <td style="text-align: center">{{ row.tid }}</td>
                   </tr>
-
                 </tbody>
               </table>
-
             </div>
           </div>
         </div>
-
       </div>
     </form>
   </div>
-
 </div>
 <div class="scroll-to-top">
   <button class="btn-primary" (click)="scrollToTop()">
     <i class="fa fa-chevron-up"></i>
   </button>
+</div>
+
+<div
+  mdbModal
+  #failureModal="mdbModal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myBasicModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document" *ngIf="failed">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close pull-right"
+          aria-label="Close"
+          (click)="failureModal.hide()"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="page-body">
+          <div class="head">
+            <h3 style="margin-top: 5px">Failure Reasons</h3>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover" small="true">
+                <thead class="trans-head">
+                  <tr>
+                    <th
+                      class="head"
+                      *ngFor="let head of failedHead"
+                      scope="col"
+                      style="
+                        color: rgb(64, 107, 153);
+                        text-align: center;
+                        white-space: nowrap;
+                      "
+                    >
+                      {{ head }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of failedArray; let index = index">
+                    <th style="text-align: center" scope="row">
+                      {{ serial + index }}
+                    </th>
+                    <td style="text-align: center">{{ row.reason }}</td>
+                    <td style="text-align: center">{{ row.accountName }}</td>
+                    <td style="text-align: center">{{ row.accountNumber }}</td>
+                    <td style="text-align: center">{{ row.contactPerson }}</td>
+                    <td style="text-align: center">{{ row.email }}</td>
+                    <td style="text-align: center">{{ row.merchantName }}</td>
+                    <td style="text-align: center">{{ row.phone }}</td>
+                    <td style="text-align: center">{{ row.nipBankNo }}</td>
+                    <td style="text-align: center">{{ row.tin }}</td>
+                    <td style="text-align: center">{{ row.tid }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          style="
+            text-transform: none;
+            border: 1px solid;
+            border-radius: 8px;
+            padding: 8px 10px;
+            color: black;
+          "
+          class="waves-light btn"
+          aria-label="Close"
+          (click)="failureModal.hide()"
+          mdbWavesEffect
+        >
+          Close
+        </button>
+        <button
+          (click)="exportFailed()"
+          type="button"
+          class="waves-light btn btn-primary"
+          mdbWavesEffect
+          style="text-transform: none; border-radius: 8px; padding: 8px 10px"
+        >
+          Export
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-dialog modal-lg" *ngIf="wrongInput">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close pull-right"
+          aria-label="Close"
+          (click)="failureModal.hide()"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="page-body">
+          <div class="head">
+            <h3 style="margin-top: 5px">Failure Reasons</h3>
+          </div>
+          <div class="card-body">
+            <ul *ngFor="let item of wrongInputs">
+              <li>{{ item }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          style="
+            text-transform: none;
+            border: 1px solid;
+            border-radius: 8px;
+            padding: 8px 10px;
+            color: black;
+          "
+          class="waves-light btn"
+          aria-label="Close"
+          (click)="failureModal.hide()"
+          mdbWavesEffect
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  id="success_tic"
+  mdbModal
+  #successModal="mdbModal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myBasicModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document" *ngIf="success">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close pull-right"
+          aria-label="Close"
+          (click)="successModal.hide()"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="page-body">
+          <div class="head">
+            <h3 style="margin-top: 5px">Onboarded Sucessfully</h3>
+          </div>
+
+          <h1 style="text-align: center">
+            <div class="checkmark-circle">
+              <div class="background"></div>
+              <div class="checkmark draw"></div>
+            </div>
+          </h1>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          mdbBtn
+          color="secondary"
+          class="waves-light btn-close"
+          aria-label="Close"
+          (click)="successModal.hide()"
+          mdbWavesEffect
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="toast">
+  <div id="img"><i class="fas fa-exclamation"></i></div>
+  <div id="desc">{{ toastMessage }}</div>
 </div>
