@@ -47,7 +47,8 @@
                     <p class="total-trans">Successful Transactions</p>
                     <div class="total-users">
                         <mdb-icon class="total" fas icon="check"></mdb-icon>
-                    </div><br>
+                    </div>
+                    <div class="successPer">{{sucessPercent}}%</div>
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
@@ -67,7 +68,9 @@
                     <p class="total-trans">Failed Transactions</p>
                     <div class="total-users">
                         <mdb-icon class="fail" fas icon="times"></mdb-icon>
-                    </div><br>
+                    </div>
+                    
+                    <div class="failedPer">{{failedPercent}}%</div>
                     <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                     <h4 *ngIf="isLoading == false">
                         <p *ngIf="isData == true" class="summary-card-text mt-1">
