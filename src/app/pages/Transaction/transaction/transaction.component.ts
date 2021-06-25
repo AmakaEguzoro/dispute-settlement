@@ -55,7 +55,8 @@ export class TransactionComponent implements OnInit {
   totalAmount: any;
   totalCount: any;
   isLoading = true;
-  usersCount: any;
+  usersCount: any; 
+  failedPercent: any; sucessPercent:any;
   // filters
   searchForm: FormGroup;
   paymentMethod: any;
@@ -319,6 +320,8 @@ export class TransactionComponent implements OnInit {
       (data) => {
         this.isLoading = false;
         this.summaryData = data.data;
+        console.log('su,',this.summaryData)
+
         this.failedAmount = this.summaryData.failedAmount;
         this.failedCount = this.summaryData.failedCount;
 
@@ -331,6 +334,9 @@ export class TransactionComponent implements OnInit {
         this.totalAmount = this.summaryData.totalAmount;
         this.totalCount = this.summaryData.transactionCount;
         this.usersCount = this.summaryData.usersCount;
+
+        this.sucessPercent = this.summaryData.successfulPercent
+        this.failedPercent = this.summaryData.failedPercent
       },
       (error) => {
         this.isData = false;
