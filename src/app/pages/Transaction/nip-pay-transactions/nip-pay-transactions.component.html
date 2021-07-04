@@ -46,7 +46,7 @@
                   <p class="total-trans">Successful Transactions</p>
                   <div class="total-users">
                       <mdb-icon class="total" fas icon="check"></mdb-icon>
-                  </div>
+                  </div> <br>
                   <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                   <h4 *ngIf="loading == false">
                       <p *ngIf="isData == true" class="summary-card-text mt-1">
@@ -67,7 +67,7 @@
                   <div class="total-users">
                       <mdb-icon class="fail" fas icon="times"></mdb-icon>
                   </div>
-                  
+                  <br>
                   <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
                   <h4 *ngIf="loading == false">
                       <p *ngIf="isData == true" class="summary-card-text mt-1">
