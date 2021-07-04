@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { forkJoin } from 'rxjs';
-import { Transaction, TransactionLimit } from 'app/_models/transaction';
+import { NipPay, Transaction, TransactionLimit } from 'app/_models/transaction';
 import { map } from 'rxjs/operators';
 import { RemoveLock } from 'app/_models/removeLocks';
 import { WalletBalance } from 'app/_models/user';
@@ -51,6 +51,15 @@ pendingCreditUrl='http://197.253.19.76:8018/api/v1/vas/vicebanking/withdrawal/po
             map((response: any) => {
                 const transactionIEpostpaid = response;
                 return transactionIEpostpaid;
+            }
+            ));
+    };
+
+    getNipPay(nipPay: NipPay) {
+        return this.httpClient.post(this.baseUrl + `itex-pay-nip`, nipPay).pipe(
+            map((response: any) => {
+                const nipPay = response;
+                return nipPay;
             }
             ));
     };

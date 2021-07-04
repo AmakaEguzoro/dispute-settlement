@@ -75,6 +75,7 @@ import { MonthDashboardComponent } from './dashboard/month-dashboard/month-dashb
 import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
 import { NqrTransactionComponent } from './nqr/nqr-transaction/nqr-transaction.component';
 import { AutoPostTransactionComponent } from "./Transaction/auto-post-transaction/auto-post-transaction.component";
+import { NipPayTransactionsComponent } from './Transaction/nip-pay-transactions/nip-pay-transactions.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -142,7 +143,8 @@ import { AutoPostTransactionComponent } from "./Transaction/auto-post-transactio
     MonthDashboardComponent,
     DashboardViewComponent,
     AutoPostTransactionComponent,
-    NqrTransactionComponent
+    NqrTransactionComponent,
+    NipPayTransactionsComponent
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -171,7 +173,9 @@ import { AutoPostTransactionComponent } from "./Transaction/auto-post-transactio
     WeekDashboardComponent,
     MonthDashboardComponent,
     DashboardViewComponent,
-    AutoPostTransactionComponent
+    AutoPostTransactionComponent,
+    NipPayTransactionsComponent
+
 
   ],
   providers: [

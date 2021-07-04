@@ -1,0 +1,255 @@
+<div style="padding-inline: 5rem;">
+  <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div class="card classic-admin-card">
+              <div class="card-body" [style.height.em]="'6'">
+                  <p class="total-trans">Total Transactions</p>
+                  <div class="total-users">
+                      <mdb-icon class="users" fab icon="gg"></mdb-icon>
+                  </div> <br>
+                  <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                  <h4 *ngIf="loading == false">
+                      <p *ngIf="isData == true" class="summary-card-text mt-1">
+                          {{ totalCount | number }}
+                          <br> Tnxs
+                      </p>
+                      <div *ngIf="isData == true" class="trans-amount">
+                          &#x20A6;{{totalAmount / 100 | number}}</div>
+                  </h4>
+                  <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div class="card classic-admin-card">
+              <div class="card-body" [style.height.em]="'6'">
+                  <p class="total-trans">Pending Transactions</p>
+                  <div class="total-users">
+                      <mdb-icon class="pending" fab icon="exclamation-circle"></mdb-icon>
+                  </div> <br>
+                  <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                  <h4 *ngIf="loading == false">
+                      <p *ngIf="isData == true" class="summary-card-text mt-1">
+                          {{ pendingCount | number }}
+                          <br> Tnxs
+                      </p>
+                      <div *ngIf="isData == true" class="trans-amount">
+                          &#x20A6;{{pendingAmount / 100 | number}}</div>
+                  </h4>
+                  <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div class="card classic-admin-card">
+              <div class="card-body" [style.height.em]="'6'">
+                  <p class="total-trans">Successful Transactions</p>
+                  <div class="total-users">
+                      <mdb-icon class="total" fas icon="check"></mdb-icon>
+                  </div>
+                  <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                  <h4 *ngIf="loading == false">
+                      <p *ngIf="isData == true" class="summary-card-text mt-1">
+                          {{ successCount | number }}
+                          <br> Tnxs
+                      </p>
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #219653">
+                          &#x20A6;{{successAmount / 100 | number}}</div>
+                  </h4>
+                  <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div class="card classic-admin-card">
+              <div class="card-body" [style.height.em]="'6'">
+                  <p class="total-trans">Failed Transactions</p>
+                  <div class="total-users">
+                      <mdb-icon class="fail" fas icon="times"></mdb-icon>
+                  </div>
+                  
+                  <mdb-spinner *ngIf="loading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+                  <h4 *ngIf="loading == false">
+                      <p *ngIf="isData == true" class="summary-card-text mt-1">
+                          {{failedCount | number }}
+                          <br>Tnxs
+                      </p>
+                      <div *ngIf="isData == true" class="trans-amount" style="color: #EB5757">
+                          &#x20A6;{{failedAmount / 100 | number }}</div>
+                  </h4>
+                  <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+              </div>
+          </div>
+      </div>
+  </div>
+  <br>
+
+  <!-- Filters -->
+  <form [formGroup]="searchForm">
+      <div class="row">
+          <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+              <select class="browser-default custom-select" (change)="getChannel($event)" formControlName="method">
+                  <option value="">Channel</option>
+                  <!-- <option value="" disabled>ALL</option> -->
+                  <option *ngFor="let channel of channels" [value]="channel">{{channel}}</option>
+              </select>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+              <select class="browser-default custom-select" (change)="getType($event)" formControlName="method">
+                  <option value="">Account Type</option>
+                  <option *ngFor="let type of types" [value]="type">{{type}}</option>
+              </select>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+              <select class="browser-default custom-select" (change)="getProduct($event)" formControlName="method">
+                  <option value="">Product</option>
+                  <option *ngFor="let product of products" [value]="product">{{product}}</option>
+              </select>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+              <select class="browser-default custom-select" (change)="getPaymentMethod($event)"
+                  formControlName="method">
+                  <option value="">Method</option>
+                  <option *ngFor="let method of methods" [value]="method">{{method}}</option>
+              </select>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+              <select class="browser-default custom-select" (change)="getProvider($event)" formControlName="method">
+                  <option value="">NIP Providers</option>
+                  <option *ngFor="let service of cashinService" [value]="service">{{service}}</option>
+              </select>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+              <select class="browser-default custom-select" (change)="getVendorType($event)" formControlName="method">
+                  <option value="">Vend-Type</option>
+                  <option *ngFor="let vendType of vendTypes" [value]="vendType">{{vendType}}</option>
+              </select>
+          </div>
+      </div>
+      <!-- Second row -->
+      <div class="row">
+          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+              <select class="browser-default custom-select stat" (change)="getStatus($event)"
+                  formControlName="method">
+                  <option value="">Status</option>
+                  <option *ngFor="let status of stat" [value]="status">{{status}}</option>
+              </select>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -9px;">
+              <mdb-date-picker formControlName="startDate" id="startDate" placeholder="Start Date"
+                  [options]="myDatePickerOptions"></mdb-date-picker>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" style="margin-top: -9px;">
+              <mdb-date-picker formControlName="endDate" id="endDate" placeholder="End Date"
+                  [options]="myDatePickerOptions"></mdb-date-picker>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+              <select class="browser-default custom-select ref" (change)="getRef($event)">
+                  <option value="">Select</option>
+                  <option *ngFor="let Ref of Refs" [value]="Ref">{{Ref}}</option>
+              </select>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+              <input type="text" formControlName="filterValue" ngDefaultControl [(ngModel)]="filterValue">
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+              <mdb-badge class="search" (click)="searchTrans()">
+                  <mdb-icon fas icon="search"></mdb-icon>
+                  &nbsp;Search
+              </mdb-badge>
+              <mdb-badge class="save" (click)="exportAsXLSX()">
+                  <mdb-icon fas icon="download"></mdb-icon>
+                  &nbsp;Save
+              </mdb-badge>
+          </div>
+      </div>
+  </form>
+
+  <!-- Transaction Details -->
+  <div class="card">
+      <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-hover" small="true">
+                  <thead class="trans-head">
+                      <tr>
+                          <th class="head" *ngFor="let head of headElements" scope="col">{{head}} </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <mdb-spinner class="loading-screen-icon" *ngIf="loading" spinnerType="big" spinnerColor="blue">
+                      </mdb-spinner>
+                      <!-- <div class="progress-loader" [hidden]="!loading"> -->
+
+                      <!-- <mat-progress-spinner [mode]="'indeterminate'">
+                              </mat-progress-spinner> -->
+
+                      <!-- </div> -->
+                      <!--  -->
+                      <tr (click)="openModal(item)" *ngFor="let item of detailsData let i = index" style="font-size: small;">
+                          <th scope="row">{{serial + i}}</th>
+                          <td>{{item.name}}
+                              <p class="trans-category">
+                                  {{item.VASAccountType}} {{item.category}}
+                              </p>
+                          </td>
+                          <td>{{item.sequence}}</td>
+                          <td>{{item.wallet}}</td>
+                          <td>{{item.terminal}}</td>
+                          <td>{{item.virtualTID}}</td>
+                          <td [ngClass]="{
+                              'pos' : item.channel == 'POS',
+                              'android' : item.channel == 'ANDROID',
+                               'androidPOS' : item.channel == 'ANDROIDPOS',
+                               'web' : item.channel == 'WEB',
+                               'default' : item.channel == 'DEFAULT',
+                               'others' : item.channel == 'OTHER',
+                               'mtn' : item.channel == 'MTN'
+                            }">
+                              {{item.channel}}
+                          </td>
+                          <td> &#x20A6;{{item.nairaAmount | number: "1.2-2" }}
+                              <p [ngClass]="{
+                                  'cash' : item.paymentMethod == 'cash',
+                                  'cards' : item.paymentMethod == 'card'
+                                }">
+                                  {{item.paymentMethod}}
+                              </p>
+                          </td>
+                          <td>
+                              <mdb-badge class="status" [ngClass]="{
+                                                  'failed' : item.status == 'failed',
+                                                  'success' : item.status == 'successful',
+                                                   'initialized' : item.status == 'initialized',
+                                                  'declined' : item.status == 'declined',
+                                                  'debited' : item.status == 'debited'
+                                                }"> {{item.status}}</mdb-badge><br>
+
+                          </td>
+                          <td>
+                              <mdb-badge class="time" [ngClass]="{
+                                                      'warning' : item.processTime > 11,
+                                                      'success' : item.processTime <= 10,
+                                                      'initialized' : item.processTime == 11,
+                                                      'danger' : item.processTime == 0
+                                                    }"> {{item.processTime}}s</mdb-badge>
+                          </td>
+                          <td style="color: #828282;">{{item.date}}</td>
+                          <td><a mdbTooltip="{{item.cardIssuer}}" placement="top">
+                              {{ (item.cardIssuer.length>6)? (item.cardIssuer | slice:0:6)+'...':(item.cardIssuer)
+                              || "N/A" }}</a>
+                      </td>
+                      </tr>
+                      <strong class="summary-noData" *ngIf="isData == false">No Data Available</strong>
+                  </tbody>
+              </table>
+              <pagination [boundaryLinks]="true" [totalItems]="lastPage" [itemsPerPage]="perPage"
+                  [(ngModel)]="currentPage" [maxSize]="maxSize" (pageChanged)="pageChanged($event)"
+                  firstText="&laquo;" lastText="&raquo;"></pagination>
+          </div>
+          <br>
+          <!-- <div *ngIf="loading == true" style="cursor: wait;"> </div> -->
+
+      </div>
+  </div>
+
+</div>

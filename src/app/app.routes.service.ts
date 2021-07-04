@@ -39,6 +39,7 @@ import { NqrHistoryComponent } from './pages/nqr/nqr-history/nqr-history.compone
 import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboard-view.component';
 import { AutoPostTransactionComponent } from './pages/Transaction/auto-post-transaction/auto-post-transaction.component';
 import { NqrTransactionComponent } from "./pages/nqr/nqr-transaction/nqr-transaction.component";
+import { NipPayTransactionsComponent } from "./pages/Transaction/nip-pay-transactions/nip-pay-transactions.component";
 
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
@@ -72,6 +73,11 @@ const routes: Route[] = [
         path: "inconclusive/transaction",
         component: InconclusiveTransactionComponent,
         data: { breadcrumb: "Inconclusive Transactions" },
+      },
+       {
+        path: "nip/pay/transaction",
+        component: NipPayTransactionsComponent,
+        data: { breadcrumb: "Nip-Pay Transactions" },
       },
 
       {
