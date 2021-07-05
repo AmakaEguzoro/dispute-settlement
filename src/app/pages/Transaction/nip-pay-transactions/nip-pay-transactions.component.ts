@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { TransactionService } from "app/_service/transaction.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { SubSink } from "subsink/dist/subsink";
@@ -13,7 +13,6 @@ import {
 import { IMyOptions } from "ng-uikit-pro-standard";
 import { ExcelService } from "app/_service/excel.service";
 import { AuthService } from "app/_auth/auth.service";
-import { WebworkerService } from "app/web-worker/webworker.service";
 import { ModelComponent } from "../transaction/model/model.component";
 
 @Component({
@@ -22,441 +21,322 @@ import { ModelComponent } from "../transaction/model/model.component";
   styleUrls: ['./nip-pay-transactions.component.scss']
 })
 export class NipPayTransactionsComponent implements OnInit {
- // Details
- isData: boolean;
- loading = true;
- data: any;
- transaction: any;
- detailsData: any;
+  // Details
+  isData: boolean;
+  loading = true;
+  data: any;
+  transaction: any;
+  detailsData: any;
 
- // pagination
- perPage = 50;
- currentPage = 1;
- lastPage: number;
- serial: number;
- maxSize = 10;
+  // pagination
+  perPage = 50;
+  currentPage = 1;
+  lastPage: number;
+  serial: number;
+  maxSize = 10;
 
- // modal
- bsModalRef: BsModalRef;
- private subs = new SubSink();
- socketData: any;
- disabled: true;
+  // modal
+  bsModalRef: BsModalRef;
+  private subs = new SubSink();
+  socketData: any;
+  disabled: true;
 
- // Summary
- summaryData: any;
- transactionSummary: any;
- failedAmount: any;
- failedCount: any;
- successCount: any;
- successAmount: any;
- totalAmount: any;
- totalCount: any;
- isLoading = true;
- usersCount: any; 
- failedPercent: any; sucessPercent:any;
- // filters
- searchForm: FormGroup;
- paymentMethod: any;
- vendor: any;
- provider: any;
- virtualTID: any;
- clientReference: any;
- vendorType: any;
- vendType: any;
- transactionStatus: any;
- filter: any;
- filterValue: any;
- transactionReference: any;
- sequenceNumber: any;
- debitReference: any;
- accountNumber: any;
- phoneNumber: any;
- terminalId: any;
- walletId: any;
- cardRRN: any;
- product: any;
- transactionChannel: any;
- transactionType: any;
- filterData: any;
- start: any;
- end: any;
- range: any;
- userBalance: any;
- exportData: any;
- DateObj: any = new Date();
- pendingCount: any;
- pendingAmount: any;
- amount: any;
- cardPAN: any;
- dateRange = String(
-   this.DateObj.getFullYear() +
-     "/" +
-     (this.DateObj.getMonth() + 1) +
-     "/" +
-     this.DateObj.getDate()
- );
- newRange = `${this.dateRange} - ${this.dateRange}`;
- payload = {
-  dateRange: this.newRange,
+  // Summary
+  summaryData: any;
+  transactionSummary: any;
+  failedAmount: any;
+  failedCount: any;
+  successCount: any;
+  successAmount: any;
+  totalAmount: any;
+  totalCount: any;
+  isLoading = true;
+  usersCount: any;
+  failedPercent: any; sucessPercent: any;
+  // filters
+  searchForm: FormGroup;
+  paymentMethod: any;
+  vendor: any;
+  provider: any;
+  virtualTID: any;
+  clientReference: any;
+  vendorType: any;
+  vendType: any;
+  transactionStatus: any;
+  filter: any;
+  filterValue: any;
+  transactionReference: any;
+  sequenceNumber: any;
+  debitReference: any;
+  accountNumber: any;
+  phoneNumber: any;
+  terminalId: any;
+  walletId: any;
+  cardRRN: any;
+  product: any;
+  transactionChannel: any;
+  transactionType: any;
+  filterData: any;
+  start: any;
+  end: any;
+  range: any;
+  userBalance: any;
+  exportData: any;
+  DateObj: any = new Date();
+  pendingCount: any;
+  pendingAmount: any;
+  amount: any;
+  cardPAN: any;
+  dateRange = String(
+    this.DateObj.getFullYear() +
+    "/" +
+    (this.DateObj.getMonth() + 1) +
+    "/" +
+    this.DateObj.getDate()
+  );
+  newRange = `${this.dateRange} - ${this.dateRange}`;
+  payload = {
+    dateRange: this.newRange,
     accountNumber: "",
     clientReference: "",
     transactionReference: "",
     transactionStatus: "",
     viewPage: "",
     download: false,
-  
- };
 
- constructor(
-   private transactionService: TransactionService,
-   private router: Router,
-   private modalService: BsModalService,
-   private socket: SocketService,
-   private fb: FormBuilder,
-   private excelService: ExcelService,
-   private authService: AuthService,
- ) {
-   this.searchForm = this.fb.group({
-     method: ["", Validators.min],
-     startDate: ["", Validators.min],
-     endDate: ["", Validators.min],
-     filterValue: [""],
-   });
- }
+  };
+  modaldata: any;
+  constructor(
+    private transactionService: TransactionService,
+    private router: Router,
+    private modalService: BsModalService,
+    private socket: SocketService,
+    private fb: FormBuilder,
+    private excelService: ExcelService,
+    private authService: AuthService,
+  ) {
+    this.searchForm = this.fb.group({
+      method: ["", Validators.min],
+      startDate: ["", Validators.min],
+      endDate: ["", Validators.min],
+      filterValue: [""],
+    });
+  }
 
- ngOnInit() {
-   this.Transaction(this.payload);
-   this.walletBalance();
-   setTimeout(() => {
-     this.getSocketData();
-   }, 0.05 * 60 * 1000);
- }
+  ngOnInit() {
+    this.Transaction(this.payload);
+    this.walletBalance();
+    setTimeout(() => {
+      this.getSocketData();
+    }, 0.05 * 60 * 1000);
+  }
 
- getSocketData() {
-   this.socket.getMessage().subscribe((Socketdata: any) => {
-     let currentRole = this.userRole();
-     if (currentRole >= 2) {
-       this.detailsData.pop();
-       this.detailsData.unshift(Socketdata.data);
-       if (
-         Socketdata.data.status == "failed" ||
-         Socketdata.data.status == "declined"
-       ) {
-         this.failedAmount += parseInt(Socketdata.data.nairaAmount);
-         this.failedCount = parseInt(this.failedCount) + 1;
-         this.totalAmount += parseInt(Socketdata.data.nairaAmount);
-         this.totalCount += 1;
-       } else if (Socketdata.data.status == "successful") {
-         this.successCount += 1;
-         this.successAmount += parseInt(Socketdata.data.nairaAmount);
-         this.totalAmount += parseInt(Socketdata.data.nairaAmount);
-         this.totalCount += 1;
-       }
-     }
-   });
- }
+  getSocketData() {
+    this.socket.getMessage().subscribe((Socketdata: any) => {
+      let currentRole = this.userRole();
+      if (currentRole >= 2) {
+        this.detailsData.pop();
+        this.detailsData.unshift(Socketdata.data);
+        if (
+          Socketdata.data.status == "failed" ||
+          Socketdata.data.status == "declined"
+        ) {
+          this.failedAmount += parseInt(Socketdata.data.nairaAmount);
+          this.failedCount = parseInt(this.failedCount) + 1;
+          this.totalAmount += parseInt(Socketdata.data.nairaAmount);
+          this.totalCount += 1;
+        } else if (Socketdata.data.status == "successful") {
+          this.successCount += 1;
+          this.successAmount += parseInt(Socketdata.data.nairaAmount);
+          this.totalAmount += parseInt(Socketdata.data.nairaAmount);
+          this.totalCount += 1;
+        }
+      }
+    });
+  }
 
- userWallet() {
-   return this.authService.currentUserWallet();
- }
+  userWallet() {
+    return this.authService.currentUserWallet();
+  }
 
- userRole(){
-   return this.authService.currentUserRole();
- }
+  userRole() {
+    return this.authService.currentUserRole();
+  }
 
- userName() {
-   const username = localStorage.getItem("loggedUser");
-   return username;
- }
+  userName() {
+    const username = localStorage.getItem("loggedUser");
+    return username;
+  }
 
- walletBalance() {
-   const username = localStorage.getItem("loggedEmail");
-   const wallet = this.userWallet();
-   let balance = {
-     username: username,
-     wallet: wallet,
-   };
-   this.transactionService.getWalletBalance(balance).subscribe(
-     (data) => {
-       this.userBalance = data;
-     },
-     (error) => {
-       this.userBalance = null;
-     }
-   );
- }
- exportAsXLSX(): void {
-   this.socket.disconnectSocket();
-   this.start = this.searchForm.value.startDate;
-   this.end = this.searchForm.value.endDate;
-   this.range = `${this.start} - ${this.end}`;
-   this.filterData = {
-     dateRange: this.range,
-     accountNumber: this.accountNumber ? this.accountNumber : "",
-     clientReference: this.clientReference ? this.clientReference : "",
-     transactionReference: this.transactionReference ? this.transactionReference : "",
-     transactionStatus: this.transactionStatus ? this.transactionStatus : "",
-     viewPage: "",
-     download: true,
-  
-   };
+  walletBalance() {
+    const username = localStorage.getItem("loggedEmail");
+    const wallet = this.userWallet();
+    let balance = {
+      username: username,
+      wallet: wallet,
+    };
+    this.transactionService.getWalletBalance(balance).subscribe(
+      (data) => {
+        this.userBalance = data;
+      },
+      (error) => {
+        this.userBalance = null;
+      }
+    );
+  }
+  exportAsXLSX(): void {
+    this.socket.disconnectSocket();
+    this.start = this.searchForm.value.startDate;
+    this.end = this.searchForm.value.endDate;
+    this.range = `${this.start} - ${this.end}`;
+    this.filterData = {
+      dateRange: this.range,
+      accountNumber: this.accountNumber ? this.accountNumber : "",
+      clientReference: this.clientReference ? this.clientReference : "",
+      transactionReference: this.transactionReference ? this.transactionReference : "",
+      transactionStatus: this.transactionStatus ? this.transactionStatus : "",
+      viewPage: "",
+      download: true,
 
-   if (this.userName() != "Providus") {
-     this.isData = true;
-     this.loading = true;
-     this.transactionService.getTransaction(this.filterData).subscribe(
-       (data) => {
-         this.loading = false;
-         this.exportData = data.transactions;
-         this.excelService.exportAsExcelFile(
-           this.exportData,
-           "ITEX-TranReport" + this.range
-         );
-       },
-       (error) => {
-         this.isData = false;
-         this.loading = false;
-         console.log("cant get transaction details", error);
-       }
-     );
-   }
- }
+    };
 
- Transaction(payload) {
-   this.isData = true;
-   this.loading = true;
-   this.transactionService.getNipPay(payload).subscribe(
-     (data) => {
-       this.loading = false;
-       this.detailsData = data.transactions;
-       
-       this.failedAmount = data.failedAmount;
-       this.failedCount = data.failedCount;
+    if (this.userName() != "Providus") {
+      this.isData = true;
+      this.loading = true;
+      this.transactionService.getTransaction(this.filterData).subscribe(
+        (data) => {
+          this.loading = false;
+          this.exportData = data.transactions;
+          this.excelService.exportAsExcelFile(
+            this.exportData,
+            "ITEX-TranReport" + this.range
+          );
+        },
+        (error) => {
+          this.isData = false;
+          this.loading = false;
+          console.log("cant get transaction details", error);
+        }
+      );
+    }
+  }
 
-       this.successCount = data.successfulCount;
-       this.successAmount = data.successfulAmount;
+  Transaction(payload) {
+    this.isData = true;
+    this.loading = true;
+    this.transactionService.getNipPay(payload).subscribe(
+      (data) => {
+        this.loading = false;
+        this.detailsData = data.transactions;
 
-       this.pendingCount = data.pendingCount;
-       this.pendingAmount = data.pendingAmount;
+        this.failedAmount = data.failedAmount;
+        this.failedCount = data.failedCount;
 
-       this.totalAmount = data.successfulAmount + data.failedAmount + data.pendingAmount;
-       this.totalCount = data.successfulCount + data.failedCount + data.pendingCount;
+        this.successCount = data.successfulCount;
+        this.successAmount = data.successfulAmount;
 
-      
-       console.log('nip',data);
+        this.pendingCount = data.pendingCount;
+        this.pendingAmount = data.pendingAmount;
 
-       this.serial = 1 + (this.currentPage - 1) * data.perPage;
-       this.lastPage = data.lastPage * data.perPage;
-     },
-     (error) => {
-       this.isData = false;
-       this.loading = false;
-       console.log("cant get transaction details", error);
-     }
-   );
- }
+        this.totalAmount = data.successfulAmount + data.failedAmount + data.pendingAmount;
+        this.totalCount = data.successfulCount + data.failedCount + data.pendingCount;
 
- openModal(modal) {
-   this.detailsData.response = modal;
-   const initialState = {
-     data: this.detailsData.response,
-     ignoreBackdropClick: true,
-   };
-   this.bsModalRef = this.modalService.show(ModelComponent, {
-     initialState,
-     class: "modal-lg",
-   });
-   //
- }
+        this.serial = 1 + (this.currentPage - 1) * data.perPage;
+        this.lastPage = data.lastPage * data.perPage;
+      },
+      (error) => {
+        this.isData = false;
+        this.loading = false;
+        console.log("cant get transaction details", error);
+      }
+    );
+  }
 
- headElements = [
-   "S/N",
-   "PRODUCT",
-   "SEQUENCE",
-   "AGENT ID",
-   "TERMINAL",
-   "V-TID",
-   "CHANNEL",
-   "AMOUNT",
-   "STATUS",
-   "RESPONSE TIME",
-   "DATE",
-   "ISSUER",
+  openModal(modal) {
+       this.detailsData.response = modal;
+    const initialState = {
+      data: this.detailsData.response,
+      ignoreBackdropClick: true,
+    };
+    this.bsModalRef = this.modalService.show(ModelComponent, {
+      initialState,
+      class: "modal-lg",
+    });
+  }
 
- ];
+  headElements = [
+    "S/N",
+    "NAME",
+    "ACCOUNT",
+    "AMOUNT",
+    "REFERENCE",
+    "PRODUCT",
+    "STATUS",
+    "DATE",
+  ];
 
- 
 
- // filters
- public myDatePickerOptions: IMyOptions = {
-   dateFormat: "yyyy/mm/dd",
-   startDate: this.dateRange,
-   ariaLabelOpenCalendar: "Open Calendar",
-   closeAfterSelect: true,
-   minYear: 1900,
-   // disableUntil:
-   //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
- };
 
- methods = ["card", "cash", "mcash", "cgate","NQR"];
- stat = ["Approved", "Declined", "Pending", "successful|nocredit"];
- vendTypes = ["B2B", "ITEX"];
- types = ["Postpaid", "Prepaid", "Smartcard"];
- channels = ["LINUXPOS", "MOBILE", "WEB", "ANDROIDPOS", "B2B", "USSD", "MPOS"];
- Refs = [
-   "Amount",
-   "Terminal ID",
-   "Agent ID",
-   "Sequence Number",
-   "Transaction Ref",
-   "Client Reference",
-   "Account/Meter Number",
-   "Phone Number",
-   "cardRRN",
-   "Virtual TID",
-   "Card PAN"
- ];
- vendors = [
-   "Itex",
-   "Gecharl Resources",
-   "PhilTech Solutions",
-   "Vella",
-   "GI Solutions",
-   "Karosealliance",
-   "Payant",
-   "Now Now",
-   "Mars Konnect",
-   "FCube",
-   "Zenith Vas",
-   "XchangeBox",
-   "Daphty",
-   "GreyStone",
-   "Call Phone",
- ];
- cashinService = ["ITEX_NIP", "GTB_NIP", "FIDELITY", "GTB-GAPS", "ETRANZACT"];
- products = [
-   "IKEDC",
-   "IBEDC",
-   "EKEDC",
-   "EEDC",
-   "PHEDC",
-   "AEDC",
-   "KEDCO",
-   "TRANSFER",
-   "WITHDRAWAL",
-   "MULTICHOICE",
-   "MTNVTU",
-   "MTNDATA",
-   "MTNVTUSONITE",
-   "MTNDATASONITE",
-   "AIRTELDATA",
-   "AIRTELVTU",
-   "GLOVTU",
-   "GLODATA",
-   "ETISALATVTU",
-   "ETISALATDATA",
-   "RCN_FUND",
-   "STARTIMES",
-   "GEHS",
-   "OLHS",
-   "SMILE",
-   "LCC",
-   "JAMBDE",
-   "JAMBUTME",
-   "WAECRESULT",
-   "WAECREG",
-  
-   
- ];
+  // filters
+  public myDatePickerOptions: IMyOptions = {
+    dateFormat: "yyyy/mm/dd",
+    startDate: this.dateRange,
+    ariaLabelOpenCalendar: "Open Calendar",
+    closeAfterSelect: true,
+    minYear: 1900,
+  };
 
- getPaymentMethod(event) {
-   this.paymentMethod = event.target.value;
- }
- getChannel(event) {
-   this.transactionChannel = event.target.value;
- }
- getProduct(event) {
-   this.product = event.target.value;
- }
- getType(event) {
-   this.transactionType = event.target.value;
- }
- getVendor(event) {
-   this.vendor = event.target.value;
- }
- getProvider(event) {
-   this.provider = event.target.value;
- }
- getVendorType(event) {
-   this.vendorType = event.target.value;
- }
- getStatus(event) {
-   this.transactionStatus = event.target.value;
- }
- getRef(event) {
-   this.filter = event.target.value;
- }
- searchTrans() {
-   this.start = this.searchForm.value.startDate;
-   this.end = this.searchForm.value.endDate;
-   this.range = `${this.start} - ${this.end}`;
-   this.getFilter();
-   this.filterData = {
-    dateRange: this.range,
-    accountNumber: this.accountNumber ? this.accountNumber : "",
-    clientReference: this.clientReference ? this.clientReference : "",
-    transactionReference: this.transactionReference ? this.transactionReference : "",
-    transactionStatus: this.transactionStatus ? this.transactionStatus : "",
-    viewPage: "",
-    // download: true,
-   };
+  stat = ["Approved", "Declined", "Pending", "successful|nocredit"];
+  Refs = [
+    "Account",
+    "Reference",
+    "Status",
+  ];
 
-   this.Transaction(this.filterData);
-   // console.log('filter',this.filterData);
 
-   this.socket.disconnectSocket();
- }
+  getStatus(event) {
+    this.transactionStatus = event.target.value;
+  }
+  getRef(event) {
+    this.filter = event.target.value;
+  }
+  searchTrans() {
+    this.start = this.searchForm.value.startDate;
+    this.end = this.searchForm.value.endDate;
+    this.range = `${this.start} - ${this.end}`;
+    this.getFilter();
+    this.filterData = {
+      dateRange: this.range,
+      accountNumber: this.accountNumber ? this.accountNumber : "",
+      clientReference: this.clientReference ? this.clientReference : "",
+      transactionReference: this.transactionReference ? this.transactionReference : "",
+      transactionStatus: this.transactionStatus ? this.transactionStatus : "",
+      viewPage: "",
+      // download: true,
+    };
 
- getFilter() {
-   this.filterValue = this.searchForm.value.filterValue;
-   if (this.filter == "Sequence Number") {
-     this.sequenceNumber = this.filterValue;
-   } else if (this.filter == "Transaction Ref") {
-     this.transactionReference = this.filterValue;
-   } else if (this.filter == "Debit Reference") {
-     this.debitReference = this.filterValue;
-   } else if (this.filter == "Terminal ID") {
-     this.terminalId = this.filterValue;
-   } else if (this.filter == "Agent ID") {
-     this.walletId = this.filterValue;
-   } else if (this.filter == "Account/Meter Number") {
-     this.accountNumber = this.filterValue;
-   } else if (this.filter == "Phone Number") {
-     this.phoneNumber = this.filterValue;
-   } else if (this.filter == "cardRRN") {
-     this.cardRRN = this.filterValue;
-   } else if (this.filter == "Virtual TID") {
-     this.virtualTID = this.filterValue;
-   } else if (this.filter == "Client Reference") {
-     this.clientReference = this.filterValue;
-   } else if (this.filter == "Amount") {
-     this.amount = this.filterValue;
-   } else if (this.filter == "Card PAN") {
-     this.cardPAN = this.filterValue;
-   }
- }
+    this.Transaction(this.filterData);
+    // console.log('filter',this.filterData);
 
- pageChanged(event: any): void {
-   // this.loading = true;
-   this.currentPage = event.page;
-   console.log("current page", this.currentPage);
+    this.socket.disconnectSocket();
+  }
 
-   this.searchTrans();
-   // this.Transaction(this.payload);
-   // this.Transaction(this.filterData);
+  getFilter() {
+    this.filterValue = this.searchForm.value.filterValue;
+    if (this.filter == "Reference") {
+      this.transactionReference = this.filterValue;
+    } else if (this.filter == "Account") {
+      this.accountNumber = this.filterValue;
+    } else if (this.filter == "Status") {
+      this.transactionStatus = this.filterValue;
+    }
+}
 
-   this.router.navigateByUrl("/transaction/details", {
-     queryParams: { page: this.currentPage },
-   });
- }
+pageChanged(event: any): void {
+  this.currentPage = event.page;
+  this.searchTrans();
+  this.router.navigateByUrl("/transaction/details", {
+    queryParams: { page: this.currentPage },
+  });
+}
 }
