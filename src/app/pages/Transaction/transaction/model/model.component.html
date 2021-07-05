@@ -3,7 +3,8 @@
     <div class="modal-header">
       <div class="row">
         <div class="col-12">
-          <h4>{{data.name}}</h4>
+          <h4 *ngIf="data.name">{{data.name}}</h4>
+          <h4 *ngIf="data.VASCustomerName">{{data.VASCustomerName}}</h4>
           <br>
           <div class="trans-catergory" style="margin-top: -2em;">
             {{data.category}} <br>
@@ -11,11 +12,6 @@
               class="requery" (click)="requeryInitializedTransaction(data.reference)"><i class="fa fa-refresh"></i>
               RE-QUERY</mdb-badge>
             <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
-
-
-
-
-
           </div>
 
         </div>
@@ -24,7 +20,18 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-
+    <!-- 
+    
+    narration: "Direct NIP Transfer Test"
+    product: "TRANSFER"
+    reference: "ITEXPAY-NIP20210705092500s9B80315"
+    response:
+    PaymentReference: "ITEXPAY-NIP20210705092500s9B80315"
+    SessionID: "090211210705092501322251514511"
+    pending: false
+    reference: "ITEXPAY-NIP20210705092500s9B80315"
+    requeries: 0
+    status: "successful" -->
     <div class="modal-body">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -35,11 +42,11 @@
             Terminal ID:
             <span class="details" style="float: right">{{data.terminal}}</span>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.wallet">
             Agent ID:
             <span class="details" style="float: right;">{{data.wallet}}</span>
           </div> 
-           <div class="details mt-2">
+           <div class="details mt-2" *ngIf="data.agentName">
             Agent Name:
             <span class="details" style="float: right;">{{data.agentName || "N/A" }}</span>
           </div>
@@ -59,11 +66,23 @@
             Address:
             <span class="details" class="vas-address">{{data.VASCustomerAddress}}</span>
           </div>
+            <div class="details mt-2" *ngIf="data.BVN">
+            BVN:
+            <span class="details" style="float: right">{{data.BVN}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.bankCode">
+            Bank Code:
+            <span class="details" style="float: right">{{data.bankCode}}</span>
+          </div>
           <br><br>
           <div class="modal-tit">
             <i>Transaction Details</i>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.amount">
+            Amount:
+            <span class="details" style="float: right"> &#x20A6; {{data.amount}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.nairaAmount">
             Amount:
             <span class="details" style="float: right"> &#x20A6; {{data.nairaAmount}}</span>
           </div>
@@ -74,6 +93,10 @@
           <div class="details mt-2" *ngIf="data.bankName">
             Bank Name:
             <span class="details" style="float: right">{{data.bankName}}</span>
+          </div>
+           <div class="details mt-2" *ngIf="data.date">
+            Date:
+            <b class="details" style="float: right;">{{data.date}}</b>
           </div>
           <div class="details mt-2" *ngIf="data.provider && data.name == 'Vice Banking Transfer'">
             Provider:
@@ -95,17 +118,17 @@
             Card-PAN:
             <span class="details" style="float: right">{{data.cardPAN}}</span>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.cardIssuer">
             Card Issuer:
-            <span class="details" style="float: right">{{data.cardIssuer || "N/A"}}</span>
+            <span class="details" style="float: right">{{data.cardIssuer}}</span>
           </div>
-          <div class="details mt-2">
+          <div class="details mt-2" *ngIf="data.processor">
             Processor:
-            <span class="details" style="float: right">{{data.processor || "N/A"}}</span>
+            <span class="details" style="float: right">{{data.processor}}</span>
           </div>  
-           <div class="details mt-2">
+           <div class="details mt-2" *ngIf="data.autoPost">
             Auto Requery:
-            <span class="details" style="float: right">{{data.autoPost || "N/A"}}</span>
+            <span class="details" style="float: right">{{data.autoPost}}</span>
           </div> 
            
 

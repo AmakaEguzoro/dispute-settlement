@@ -1,5 +1,5 @@
 export class Transaction {
-    dateRange: Date ;
+    dateRange: Date;
     terminalId: string;
     walletId: string;
     accountNumber: string;
@@ -20,4 +20,15 @@ export class Transaction {
 export class TransactionLimit {
     wallet: string;
     password: string;
+}
+
+export class NipPay {
+    dateRange: Date;
+    accountNumber: string;
+    clientReference: string;
+    transactionReference: string;
+    transactionStatus: string;
+    viewPage: number;
+    download: boolean;
+
 }
