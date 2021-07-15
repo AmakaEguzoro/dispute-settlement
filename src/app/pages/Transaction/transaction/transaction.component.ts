@@ -55,8 +55,9 @@ export class TransactionComponent implements OnInit {
   totalAmount: any;
   totalCount: any;
   isLoading = true;
-  usersCount: any; 
-  failedPercent: any; sucessPercent:any;
+  usersCount: any;
+  failedPercent: any;
+  sucessPercent: any;
   // filters
   searchForm: FormGroup;
   paymentMethod: any;
@@ -183,7 +184,7 @@ export class TransactionComponent implements OnInit {
     return this.authService.currentUserWallet();
   }
 
-  userRole(){
+  userRole() {
     return this.authService.currentUserRole();
   }
 
@@ -301,6 +302,7 @@ export class TransactionComponent implements OnInit {
     "S/N",
     "PRODUCT",
     "SEQUENCE",
+    "AGENT NAME",
     "AGENT ID",
     "TERMINAL",
     "V-TID",
@@ -310,7 +312,6 @@ export class TransactionComponent implements OnInit {
     "RESPONSE TIME",
     "DATE",
     "ISSUER",
-
   ];
 
   TransactionSummary(payload) {
@@ -320,7 +321,7 @@ export class TransactionComponent implements OnInit {
       (data) => {
         this.isLoading = false;
         this.summaryData = data.data;
-        console.log('su,',this.summaryData)
+        console.log("su,", this.summaryData);
 
         this.failedAmount = this.summaryData.failedAmount;
         this.failedCount = this.summaryData.failedCount;
@@ -335,8 +336,8 @@ export class TransactionComponent implements OnInit {
         this.totalCount = this.summaryData.transactionCount;
         this.usersCount = this.summaryData.usersCount;
 
-        this.sucessPercent = this.summaryData.successfulPercent
-        this.failedPercent = this.summaryData.failedPercent
+        this.sucessPercent = this.summaryData.successfulPercent;
+        this.failedPercent = this.summaryData.failedPercent;
       },
       (error) => {
         this.isData = false;
@@ -357,7 +358,7 @@ export class TransactionComponent implements OnInit {
     //   { year: this.DateObj.getFullYear(), month: this.DateObj.getMonth(), day: this.DateObj.getDate() }
   };
 
-  methods = ["card", "cash", "mcash", "cgate","NQR"];
+  methods = ["card", "cash", "mcash", "cgate", "NQR"];
   stat = ["Approved", "Declined", "Pending", "successful|nocredit"];
   vendTypes = ["B2B", "ITEX"];
   types = ["Postpaid", "Prepaid", "Smartcard"];
@@ -373,7 +374,7 @@ export class TransactionComponent implements OnInit {
     "Phone Number",
     "cardRRN",
     "Virtual TID",
-    "Card PAN"
+    "Card PAN",
   ];
   vendors = [
     "Itex",
@@ -424,8 +425,6 @@ export class TransactionComponent implements OnInit {
     "JAMBUTME",
     "WAECRESULT",
     "WAECREG",
-   
-    
   ];
 
   getPaymentMethod(event) {
@@ -474,7 +473,9 @@ export class TransactionComponent implements OnInit {
       sequenceNumber: this.sequenceNumber ? this.sequenceNumber : "",
       debitReference: this.debitReference ? this.debitReference : "",
       product: this.product ? this.product : "",
-      transactionType: this.transactionType ? this.transactionType.toLowerCase() : "",
+      transactionType: this.transactionType
+        ? this.transactionType.toLowerCase()
+        : "",
       transactionStatus: this.transactionStatus ? this.transactionStatus : "",
       transactionChannel: this.transactionChannel
         ? this.transactionChannel

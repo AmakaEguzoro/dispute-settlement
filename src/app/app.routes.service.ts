@@ -33,11 +33,11 @@ import { DataPlansComponent } from "./pages/settings/Data-config/data-plans/data
 import { WalletLimitsComponent } from "./pages/settings/Wallet-config/wallet-limits/wallet-limits.component";
 import { B2bConfigComponent } from "./pages/settings/B2B-CONFIGURATION/b2b-config/b2b-config.component";
 import { InconclusiveTransactionComponent } from "./pages/Transaction/inconclusive-transaction/inconclusive-transaction.component";
-import { NqrComponent } from './pages/nqr/nqr.component';
-import { NqrBulkComponent } from './pages/nqr/nqr-bulk/nqr-bulk.component';
-import { NqrHistoryComponent } from './pages/nqr/nqr-history/nqr-history.component';
-import { DashboardViewComponent } from './pages/dashboard/dashboard-view/dashboard-view.component';
-import { AutoPostTransactionComponent } from './pages/Transaction/auto-post-transaction/auto-post-transaction.component';
+import { NqrComponent } from "./pages/nqr/nqr.component";
+import { NqrBulkComponent } from "./pages/nqr/nqr-bulk/nqr-bulk.component";
+import { NqrHistoryComponent } from "./pages/nqr/nqr-history/nqr-history.component";
+import { DashboardViewComponent } from "./pages/dashboard/dashboard-view/dashboard-view.component";
+import { AutoPostTransactionComponent } from "./pages/Transaction/auto-post-transaction/auto-post-transaction.component";
 import { NqrTransactionComponent } from "./pages/nqr/nqr-transaction/nqr-transaction.component";
 import { NipPayTransactionsComponent } from "./pages/Transaction/nip-pay-transactions/nip-pay-transactions.component";
 
@@ -74,7 +74,7 @@ const routes: Route[] = [
         component: InconclusiveTransactionComponent,
         data: { breadcrumb: "Inconclusive Transactions" },
       },
-       {
+      {
         path: "nip/pay/transaction",
         component: NipPayTransactionsComponent,
         data: { breadcrumb: "Nip-Pay Transactions" },
@@ -241,7 +241,7 @@ const routes: Route[] = [
         path: "transaction/autopost",
         component: AutoPostTransactionComponent,
         canActivate: [RoleGuard],
-        data: { expectedRole: [5], breadcrumb: 'Auto-Post Transactions' },
+        data: { expectedRole: [5], breadcrumb: "Auto-Post Transactions" },
       },
 
       {
