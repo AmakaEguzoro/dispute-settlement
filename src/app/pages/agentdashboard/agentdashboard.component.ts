@@ -227,10 +227,13 @@ export class AgentdashboardComponent implements OnInit {
   }
 
   exportAgent() {
+    this.startDate = this.searchForm.value.startDate;
+    this.endDate = this.searchForm.value.endDate;
     this.isData = true;
     this.loading = true;
-    this.agentService.exportAgent().subscribe(
+    this.agentService.exportAgent(this.startDate, this.endDate).subscribe(
       (data: any) => {
+        console.log(data, "data");
         this.loading = false;
         this.exportjson = data.data.map((item) => {
           item.mobile = item.mobile[0];

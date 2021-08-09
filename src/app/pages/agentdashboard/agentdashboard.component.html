@@ -128,15 +128,15 @@
               <td style="text-align: center">
                 {{ item.lastname | uppercase }}
               </td>
-              <td style="text-align: center; line-break: anywhere">
+              <td style="text-align: center">
                 {{ item.email || "N/A" }}
               </td>
-              <td style="white-space: nowrap">{{ item.mobile || "N/A" }}</td>
+              <td>{{ item.mobile || "N/A" }}</td>
               <td style="font-weight: 600">{{ item.userTID || "N/A" }}</td>
-              <td style="text-align: center; white-space: break-spaces">
+              <td style="text-align: center">
                 {{ item.createdAt | date: "medium" }}
               </td>
-              <td style="text-align: center; white-space: break-spaces">
+              <td style="text-align: center">
                 {{ item.updatedAt | date: "medium" }}
               </td>
 
@@ -145,14 +145,14 @@
                   *ngIf="item.agentStatus.validated"
                   fas
                   icon="check"
-                  style="color: green; position: relative; top: 3px; left: 15px"
+                  style="color: green"
                 >
                 </mdb-icon>
                 <mdb-icon
                   *ngIf="!item.agentStatus.validated"
                   fas
                   icon="times"
-                  style="color: red; position: relative; top: 3px; left: 15px"
+                  style="color: red"
                 ></mdb-icon>
               </td>
               <td style="text-align: center" *ngIf="item.agentStatus">

@@ -52,7 +52,9 @@ export class AgentserviceService {
     );
   }
 
-  exportAgent() {
-    return this.httpClient.get(`${this.agentsummaryUrl}?download=true`);
+  exportAgent(startDate, endDate) {
+    return this.httpClient.get(
+      `${this.agentsummaryUrl}?download=true&startdate=${startDate}&enddate=${endDate}`
+    );
   }
 }
