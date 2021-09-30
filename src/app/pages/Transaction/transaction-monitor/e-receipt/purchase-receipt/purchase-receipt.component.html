@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="invoice-box" id='hello'><br>
+    <div style="text-align: center;font-size: 13px; font-weight:600">
+     <p>{{receiptData.VASBillerName}}</p>
+    </div>
+    
+    <div style="text-align: center;">
+      <p> {{receiptData.VASCustomerName | uppercase}}</p>
+    </div>
+    <div style="text-align: center;">
+      <p> {{receiptData.VASCustomerAddress | uppercase}}</p>
+    </div>
+  
+   
+    <hr style="border: 1px dotted">
+    <div style="text-align: center;">
+      <p *ngIf="receiptData.status == 'successful'" style="font-size: 13px; font-weight:600">
+        **APPROVED**</p>
+      <p *ngIf="receiptData.status !== 'successful'" style="font-size: 13px; font-weight:600">
+        **DECLINED**</p>
+      <p> ***CUSTOMER COPY***</p>
+
+    </div>
+
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.terminal">
+      TID
+      <span class="details" style="float: right">
+        {{receiptData.terminal }}</span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.wallet">
+      WID
+      <span class="details" style="float: right">
+        {{receiptData.wallet}}</span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.sequence">
+      SEQUENCE
+      <span class="details" style="float: right">
+        {{receiptData.sequence}}</span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.paymentMethod">
+      PAYMENT METHOD
+      <span class="details" style="float: right">
+        {{receiptData.paymentMethod | uppercase }}</span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.VASCustomerAccount">
+      ACCOUNT NUMBER
+      <span class="details" style="float: right">
+        {{receiptData.VASCustomerAccount }}</span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.VASCustomerPhone">
+      PHONE NUMBER
+      <span class="details" style="float: right">
+        {{receiptData.VASCustomerPhone }}</span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.response.unit">
+      UNIT
+      <span class="details" style="float: right">
+        {{receiptData.response.unit }}</span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.response.units">
+      UNIT
+      <span class="details" style="float: right">
+        {{receiptData.response.units }}</span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.response.unit_value">
+      UNIT VALUE
+      <span class="details" style="float: right">
+        {{receiptData.response.unit_value }}</span>
+    </div> 
+ <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.response.type">
+      TYPE
+      <span class="details" style="float: right">
+        {{receiptData.response.type | uppercase}}</span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.response.response_code">
+      RESPONSE CODE
+      <span class="details" style="float: right">
+        {{receiptData.response.response_code }}</span>
+    </div>  
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.response.vat">
+      VAT
+      <span class="details" style="float: right">
+        {{receiptData.response.vat }}</span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.token">
+      TOKEN
+      <span class="details" style="float: right">
+        {{receiptData.token }}</span>
+    </div>
+   
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.date">
+      DATE
+      <span class="details" style="float: right">
+        {{receiptData.date | date :'d/M/yy: H:mm:s'}}
+      </span>
+    </div>
+    <div class="details mt-2" style="margin-inline: 3px;" *ngIf="receiptData.reference">
+      REF
+      <span class="details" style="float: right">
+        {{receiptData.reference }}</span>
+    </div>
+    <br><br>
+    <div style="text-align: center;">
+     
+      ****************
+      <br>
+      N {{receiptData.amount / 100 | number : '1.2-2'}}
+      <br>
+      ****************
+      <p *ngIf="receiptData.message ">
+        {{receiptData.message}}</p>
+    </div>
+    <div style="text-align: center;">
+      <p>POWERED BY ITEX</p>
+      <p>www.iisysgroup.com</p>
+      <p>0700-2255-4839</p>
+    </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" id="grip" (click)="printTicket($event)">Print</button>
+</div>

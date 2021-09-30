@@ -1,0 +1,248 @@
+<div class="modal-dialog-scrollable" id="model-show">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-12">
+          <h4 *ngIf="data.name">{{data.name}}</h4>
+          <h4 *ngIf="data.VASCustomerName">{{data.VASCustomerName}}</h4>
+          <br>
+          <div class="trans-catergory" style="margin-top: -2em;">
+            {{data.category}} <br>
+            <mdb-badge type="button" *ngIf="data.VASBillerName == 'IKEDC' && data.status == 'initialized'"
+              class="requery" (click)="requeryInitializedTransaction(data.reference)"><i class="fa fa-refresh"></i>
+              RE-QUERY</mdb-badge>
+            <mdb-spinner *ngIf="isLoading" spinnerType="small" spinnerColor="blue"></mdb-spinner>
+          </div>
+
+        </div>
+      </div>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- 
+    
+    narration: "Direct NIP Transfer Test"
+    product: "TRANSFER"
+    reference: "ITEXPAY-NIP20210705092500s9B80315"
+    response:
+    PaymentReference: "ITEXPAY-NIP20210705092500s9B80315"
+    SessionID: "090211210705092501322251514511"
+    pending: false
+    reference: "ITEXPAY-NIP20210705092500s9B80315"
+    requeries: 0
+    status: "successful" -->
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="modal-tit">
+            <i> Wallet details</i>
+          </div>
+          <div class="details mt-2" *ngIf="data.terminal">
+            Terminal ID:
+            <span class="details" style="float: right">{{data.terminal}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.wallet">
+            Agent ID:
+            <span class="details" style="float: right;">{{data.wallet}}</span>
+          </div> 
+           <div class="details mt-2" *ngIf="data.agentName">
+            Agent Name:
+            <span class="details" style="float: right;">{{data.agentName || "N/A" }}</span>
+          </div>
+          <br>
+          <div class="modal-tit">
+            <i>Customer Details</i>
+          </div>
+          <div class="details mt-2" *ngIf="data.VASCustomerName">
+            Customer Name:
+            <span class="details" style="float: right">{{data.VASCustomerName}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.VASCustomerPhone">
+            Phone Number:
+            <span class="details" style="float: right">{{data.VASCustomerPhone}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.VASCustomerAddress">
+            Address:
+            <span class="details" class="vas-address">{{data.VASCustomerAddress}}</span>
+          </div>
+            <div class="details mt-2" *ngIf="data.BVN">
+            BVN:
+            <span class="details" style="float: right">{{data.BVN}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.bankCode">
+            Bank Code:
+            <span class="details" style="float: right">{{data.bankCode}}</span>
+          </div>
+          <br><br>
+          <div class="modal-tit">
+            <i>Transaction Details</i>
+          </div>
+          <div class="details mt-2" *ngIf="data.amount">
+            Amount:
+            <span class="details" style="float: right"> &#x20A6; {{data.amount}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.nairaAmount">
+            Amount:
+            <span class="details" style="float: right"> &#x20A6; {{data.nairaAmount}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.VASCustomerAccount">
+            Account Number:
+            <span class="details" style="float: right">{{data.VASCustomerAccount}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.bankName">
+            Bank Name:
+            <span class="details" style="float: right">{{data.bankName}}</span>
+          </div>
+           <div class="details mt-2" *ngIf="data.date">
+            Date:
+            <b class="details" style="float: right;">{{data.date}}</b>
+          </div>
+          <div class="details mt-2" *ngIf="data.provider && data.name == 'Vice Banking Transfer'">
+            Provider:
+            <b class="details" style="float: right;">{{data.provider}}</b>
+          </div>
+          <div class="details mt-2" *ngIf="data.transactionAuthCode">
+            AuthCode:
+            <span class="details" style="float: right">{{data.transactionAuthCode}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.transactionSTAN">
+            STAN:
+            <span class="details" style="float: right">{{data.transactionSTAN}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.transactionRRN">
+            RRN:
+            <span class="details" style="float: right">{{data.transactionRRN}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.cardPAN">
+            Card-PAN:
+            <span class="details" style="float: right">{{data.cardPAN}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.cardIssuer">
+            Card Issuer:
+            <span class="details" style="float: right">{{data.cardIssuer}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.processor">
+            Processor:
+            <span class="details" style="float: right">{{data.processor}}</span>
+          </div>  
+           <div class="details mt-2" *ngIf="data.autoPost">
+            Auto Requery:
+            <span class="details" style="float: right">{{data.autoPost}}</span>
+          </div> 
+           
+
+
+        </div>
+
+
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="modal-tit">
+            <i>Service Details</i>
+          </div>
+          <div class="details mt-2" *ngIf="data.category == 'Electricity'">
+            Token:
+            <span class="details" style="float: right">{{data.token}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.VASDepositorName">
+            Depositor Name:
+            <span class="details" style="float: right">{{data.VASDepositorName}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.type && data.category == 'Electricity'">
+            Type:
+            <span class="details" style="float: right">{{data.type}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.channel">
+            Channel:
+            <span class="details" style="float: right">{{data.channel}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.message">
+            Message:
+            <span class="details" style="float: right">{{data.message}}</span>
+          </div>
+          <!-- <div class="details mt-2" *ngIf="data.commission">
+            Commission:
+            <span class="details" style="float: right"> &#x20A6; {{data.commission}}</span>
+          </div> -->
+
+          <br><br>
+          <div class="modal-tit">
+            <i>Transaction References</i>
+          </div>
+
+          <div class="details mt-2" *ngIf="data.sequence">
+            Sequence:
+            <span class="details" style="float: right">{{data.sequence}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.reference">
+            Ref:
+            <span class="details" style="float: right">{{data.reference}}</span>
+          </div>
+          <div class="details mt-2" *ngIf="data.clientReference">
+            Client Reference:
+            <span class="details" style="float: right" *ngIf="data.clientReference">
+              {{ data.clientReference | slice:0:20}}</span>
+          </div>
+          <br>
+          <div *appHasRole="[5]" class="details mt-2">
+            Response:
+            <span class="details" style="float: right">
+              <textarea>
+                    {{data.response | json}}
+                </textarea></span>
+          </div>
+        </div>
+      </div>
+      <mdb-badge *ngIf="data.status=='successful|nocredit' && role=='5'" type="button" class="credit-wallet"
+        (click)="basicModal.show()">
+        <mdb-icon fas icon="credit-card"></mdb-icon> &nbsp; Credit Wallet
+      </mdb-badge>
+    </div>
+
+
+    <div class="modal-footer">
+
+      <div>
+        <button type="button" mdbBtn class=" btn btn-primary print-receipt waves-light" aria-label="Close"
+          mdbWavesEffect (click)="openJournal(data)" mdbWavesEffect> Print Receipt</button>
+        <!-- <button type="button" class="btn btn-primary" mdbWavesEffect
+          style="background-color: #fff !important;color:#4285F4 !important; border-style: 1px solid #4285f4 ;"
+          (click)="bsModalRef.hide()">Close</button> -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Password</h4>
+      </div>
+      <div class="modal-body row" style="display: flex; justify-content: space-evenly; align-items: center;">
+
+        <div class="form-outline">
+          <label class="form-label" for="form1">Enter Password</label>&nbsp;
+          <mdb-icon fas icon="lock"></mdb-icon>
+          <input [(ngModel)]="password" name="password" type="password" id="form1"
+            class="form-control form-icon-trailing" />
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn class=" btn btn-primary waves-light" aria-label="Close" mdbWavesEffect
+          style="background-color: #fff !important;color:#4285F4 !important;  border-style: 1px solid #4285f4 ;"
+          (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="btn btn-primary waves-light" mdbWavesEffect
+          (click)="reCreditTransaction()">{{loading ?
+          'Submitting' : 'Submit' }} &nbsp;<i class="fa "
+            [ngClass]="{'spinner-border spinner-border-sm':loading==true}"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

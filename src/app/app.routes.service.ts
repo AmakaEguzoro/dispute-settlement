@@ -10,6 +10,7 @@ import { ServiceStatusComponent } from "./pages/status/service-status/service-st
 import { BvnStatusComponent } from "./pages/status/bvn-status/bvn-status.component";
 import { NotFoundComponent } from "./shared/not-found/not-found.component";
 import { TransactionComponent } from "./pages/Transaction/transaction/transaction.component";
+import { TransactionMonitorComponent } from "./pages/Transaction/transaction-monitor/transaction-monitor.component";
 import { TransactionReversalComponent } from "./pages/Transaction/transaction-reversal/transaction-reversal.component";
 import { TransactionIepostpaidComponent } from "./pages/Transaction/transaction-iepostpaid/transaction-iepostpaid.component";
 
@@ -67,6 +68,11 @@ const routes: Route[] = [
         path: "transaction/details",
         component: TransactionComponent,
         data: { breadcrumb: "Transactions" },
+      },
+       {
+        path: "transaction/monitor",
+        component: TransactionMonitorComponent,
+        data: { breadcrumb: "Transactions Monitoring" },
       },
 
       {

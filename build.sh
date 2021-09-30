@@ -1,5 +1,5 @@
 # Run Build Command with production flag
-ng build --prod
+npm run prod
 ###
 cp htaccess dist/asdev-admin
 cd dist/asdev-admin
