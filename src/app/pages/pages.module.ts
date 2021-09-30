@@ -15,7 +15,9 @@ import { PaymentMethodService } from "app/_service/payment-method.service";
 import { TransactionService } from "app/_service/transaction.service";
 import { LoginComponent } from "app/_auth/login/login.component";
 import { TransactionComponent } from "./Transaction/transaction/transaction.component";
+import { TransactionMonitorComponent } from "./Transaction/transaction-monitor/transaction-monitor.component";
 import { ModelComponent } from "./Transaction/transaction/model/model.component";
+import { ModelComponent1 } from "./Transaction/transaction-monitor/model/model.component";
 import { SharedModule } from "app/shared/shared.module";
 import { OrderModule } from "ngx-order-pipe";
 import { PaginationModule } from "ngx-bootstrap";
@@ -66,7 +68,10 @@ import { NqrBulkComponent } from './nqr/nqr-bulk/nqr-bulk.component';
 import { NqrHistoryComponent } from './nqr/nqr-history/nqr-history.component';
 import { AnQrcodeModule } from 'an-qrcode';
 import { PurchaseReceiptComponent } from "./Transaction/transaction/e-receipt/purchase-receipt/purchase-receipt.component";
+import { PurchaseReceiptComponent1 } from "./Transaction/transaction-monitor/e-receipt/purchase-receipt/purchase-receipt.component";
 import { EJournalComponent } from "./Transaction/transaction/e-receipt/e-journal/e-journal.component";
+import { EJournalComponent1 } from "./Transaction/transaction-monitor/e-receipt/e-journal/e-journal.component";
+
 import { NqrMerchantOnboardComponent } from './nqr/nqr-merchant-onboard/nqr-merchant-onboard.component';
 import { NqrMerchantHistoryComponent } from './nqr/nqr-merchant-history/nqr-merchant-history.component';
 import { DayDashboardComponent } from './dashboard/day-dashboard/day-dashboard.component';
@@ -99,6 +104,7 @@ import { NipPayTransactionsComponent } from './Transaction/nip-pay-transactions/
     LoginComponent,
     RegisterComponent,
     TransactionComponent,
+    TransactionMonitorComponent,
     ModelComponent,
     TransactionReversalComponent,
     TransactionIepostpaidComponent,
@@ -135,7 +141,10 @@ import { NipPayTransactionsComponent } from './Transaction/nip-pay-transactions/
     NqrBulkComponent,
     NqrHistoryComponent,
     PurchaseReceiptComponent,
+    PurchaseReceiptComponent1,
     EJournalComponent,
+    EJournalComponent1,
+    ModelComponent1,
     NqrMerchantOnboardComponent,
     NqrMerchantHistoryComponent,
     DayDashboardComponent,
