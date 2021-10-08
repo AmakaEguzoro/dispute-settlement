@@ -68,6 +68,7 @@ export class TransactionComponent implements OnInit {
   vendorType: any;
   vendType: any;
   transactionStatus: any;
+  mdBill:any;
   filter: any;
   filterValue: any;
   transactionReference: any;
@@ -123,6 +124,7 @@ export class TransactionComponent implements OnInit {
     virtualTID: "",
     clientReference: "",
     download: false,
+    mdBill: ""
   };
 
   // private EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
@@ -230,6 +232,7 @@ export class TransactionComponent implements OnInit {
       product: this.product ? this.product : "",
       transactionType: this.transactionType ? this.transactionType : "",
       transactionStatus: this.transactionStatus ? this.transactionStatus : "",
+      mdBill: this.mdBill ? this.mdBill : "",
       transactionChannel: this.transactionChannel
         ? this.transactionChannel
         : "",
@@ -363,6 +366,8 @@ export class TransactionComponent implements OnInit {
   vendTypes = ["B2B", "ITEX"];
   types = ["Postpaid", "Prepaid", "Smartcard"];
   channels = ["LINUXPOS", "MOBILE", "WEB", "ANDROIDPOS", "B2B", "USSD", "MPOS"];
+  mdBills = [{name:"MDBill", value: 1},{name:"None MDBill", value: 0}];
+
   Refs = [
     "Amount",
     "Terminal ID",
@@ -451,6 +456,9 @@ export class TransactionComponent implements OnInit {
   getStatus(event) {
     this.transactionStatus = event.target.value;
   }
+  getmdBill(event) {
+    this.mdBill = event.target.value;
+  }
   getRef(event) {
     this.filter = event.target.value;
   }
@@ -477,6 +485,7 @@ export class TransactionComponent implements OnInit {
         ? this.transactionType.toLowerCase()
         : "",
       transactionStatus: this.transactionStatus ? this.transactionStatus : "",
+      mdBill: this.mdBill ? this.mdBill : "",
       transactionChannel: this.transactionChannel
         ? this.transactionChannel
         : "",

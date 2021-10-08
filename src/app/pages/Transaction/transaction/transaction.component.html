@@ -263,10 +263,27 @@
         </mdb-badge>
       </div>
     </div>
+    <!-- third row -->
+    <div class="row">
+      <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12" style="margin-top: -7px;">
+        <select
+          class="browser-default custom-select"
+          (change)="getmdBill($event)"
+          formControlName="method"
+        >
+          <option value="">MdBill</option>
+          <option *ngFor="let mdBill of mdBills" [value]="mdBill.value">
+            {{ mdBill.name }}
+          </option>
+        </select>
+      </div>
+     
+    </div>
   </form>
 
   <!-- Transaction Details -->
-  <div class="card">
+
+  <div class="card mt-3">
     <div class="card-body">
       <div class="table-responsive">
         <table class="table table-hover" small="true">
