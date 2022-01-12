@@ -1756,7 +1756,7 @@ var NqrserviceService = /** @class */ (function () {
         this.nqrVerifyUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/onboard/validate/";
         this.bulknqrOnboardUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/onboard/create/bulk";
         this.merchantnqrOnboardUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/ptsp/onboard";
-        this.merchantnqrHistoryUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/ptsp/list";
+        this.merchantnqrHistoryUrl = "http://197.253.19.76:8019//v1/vas/nqr/ptsp/list";
         this.transUrl = "http://197.253.19.76:8019/api/v1/vas/nqr/ptsp/transactions";
         this.test_key = "NGU1ODY3NTZjYmM3M2ViNGU5Nzk3ZjgzYTA4MWNiMWE0Y2JlNTg1OTY0MTFmM2Y1OTIyM2Q5NWRiNzQxNDNiMQ==";
         this.live_key = "ZmU1NzQ4MDdlNmM5YmU4ZDIyMWE1M2Y0MDc4MGU2MDg1N2I4Y2FjNmFkNTliNWUxMmI1OWQ1ZTJjZjAzMTA3MA==";
@@ -2014,12 +2014,17 @@ var SanefService = /** @class */ (function () {
         this.httpClient = httpClient;
         this.accountUrl = "http://197.253.19.78:5013/accounts";
         this.transUrl = "http://197.253.19.78:5013/transactions";
+        this.disputeUrl = "http://197.253.19.78:9913/disputes/GetDisputeTrans";
+
     }
     SanefService.prototype.getAccounts = function (startDate, endDate, status, walletId, accountNumber, phoneNumber, viewPage) {
         return this.httpClient.get(this.accountUrl + "?startDate=" + startDate + "&endDate=" + endDate + "&status=" + status + "&walletId=" + walletId + "&accountNumber=" + accountNumber + "&phoneNumber=" + phoneNumber + "&viewPage=" + viewPage);
     };
     SanefService.prototype.getTransactions = function (startDate, endDate, agentPayviceId, accountNumber, phoneNumber, status, product, transactionReference, transactionType, cashCode, viewPage) {
         return this.httpClient.get(this.transUrl + "?startDate=" + startDate + "&endDate=" + endDate + "&walletId=" + agentPayviceId + "&accountNumber=" + accountNumber + "&phoneNumber=" + phoneNumber + "&status=" + status + "&product=" + product + "&transactionReference=" + transactionReference + "&transactionType=" + transactionType + "&cashCode=" + cashCode + "&viewPage=" + viewPage);
+    };
+    SanefService.prototype.getDisputeTrans = function (referenceNo, amount, status, terminalId, bank, authId, stan, startDate) {
+        return this.httpClient.get(this.disputeUrl + "?startDate=" + startDate  + "&referenceNo=" + referenceNo + "&bank=" + bank + "&status=" + status + "&terminalId=" + terminalId + "&authId=" + authId + "&stan=" + stan);
     };
     SanefService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({

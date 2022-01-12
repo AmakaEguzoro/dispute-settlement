@@ -1,0 +1,164 @@
+<div style="padding-inline: 5rem">
+  <div class="container-fluid">
+    <div class="row" style="display: flex; justify-content: space-between">
+      <div>
+        <form [formGroup]="searchForm">
+          <div class="row">
+            <div
+              class="col-lg-2 col-md-4 col-sm-6 col-xs-6"
+              style="margin-top: -9px"
+            >
+              <mdb-date-picker
+                formControlName="startDate"
+                id="startDate"
+                placeholder="Start Date"
+                [options]="myDatePickerOptions"
+              ></mdb-date-picker>
+            </div>
+            <div
+              class="col-lg-2 col-md-4 col-sm-6 col-xs-6"
+              style="margin-top: -9px"
+            >
+              <mdb-date-picker
+                formControlName="endDate"
+                id="endDate"
+                placeholder="End Date"
+                [options]="myDatePickerOptions"
+              >
+              </mdb-date-picker>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+              <select
+                class="browser-default custom-select ref"
+                (change)="getRef($event)"
+              >
+                <option value="">Filter By</option>
+
+                <option *ngFor="let Ref of Refs" [value]="Ref">
+                  {{ Ref }}
+                </option>
+              </select>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+              <input
+                type="text"
+                formControlName="filterValue"
+                ngDefaultControl
+                [(ngModel)]="filterValue"
+              />
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 mt-2">
+              <button mdbBtn color="teal" size="sm" (click)="searchTrans()">
+                <mdb-icon fas icon="search"></mdb-icon>
+                &nbsp;Search
+              </button>
+              <button mdbBtn color="teal" size="sm" (click)="exportAsXLSX()">
+                <mdb-icon fas icon="download"></mdb-icon>
+                &nbsp;Download
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- transaction table  -->
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover" small="true">
+            <thead class="trans-head">
+              <tr>
+                <th class="head" *ngFor="let head of headElements" scope="col">
+                  {{ head }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <mdb-spinner
+                class="loading-screen-icon"
+                *ngIf="loading"
+                spinnerType="big"
+                spinnerColor="blue"
+              >
+              </mdb-spinner>
+              <!-- <div class="progress-loader" [hidden]="!loading"> -->
+
+              <!-- <mat-progress-spinner [mode]="'indeterminate'">
+                                </mat-progress-spinner> -->
+
+              <!-- </div> -->
+              <!--  -->
+
+              <!-- referenceNo,
+    amount,
+    status,
+    terminalId,
+    bank,
+    authId,
+    stan,
+    startDate, -->
+              <tr
+                (click)="openModal(item)"
+                *ngFor="let item of detailsData; let i = index"
+                style="font-size: small"
+              >
+                <th scope="row">{{ serial + i }}</th>
+
+                <td>{{ item.referenceNo }}</td>
+
+                <td>{{ item.amount }}</td>
+                <td>
+                  <mdb-badge
+                    class="status"
+                    [ngClass]="{
+                      failed: item.status == 'failed',
+                      success: item.status == 'successful',
+                      initialized: item.status == 'initialized',
+                      declined: item.status == 'declined',
+                      debited: item.status == 'debited'
+                    }"
+                  >
+                    {{ item.status }}</mdb-badge
+                  ><br />
+                </td>
+                <td>{{ item.terminalId }}</td>
+                <td>{{ item.bank }}</td>
+                <td>{{ item.authId }}</td>
+                <td>{{ item.stan }}</td>
+
+                <!-- <td>
+                  &#x20A6;{{ item.amount | number: "1.2-2" }}
+                  <p
+                    [ngClass]="{
+                      cash: item.paymentMethod == 'cash',
+                      cards: item.paymentMethod == 'card'
+                    }"
+                  >
+                    {{ item.paymentMethod }}
+                  </p>
+                </td> -->
+
+                <td style="color: #828282">{{ item.startDate }}</td>
+              </tr>
+              <strong class="summary-noData" *ngIf="isData == false"
+                >No Data Available</strong
+              >
+            </tbody>
+          </table>
+          <pagination
+            [boundaryLinks]="true"
+            [totalItems]="lastPage"
+            [itemsPerPage]="perPage"
+            [(ngModel)]="currentPage"
+            [maxSize]="maxSize"
+            (pageChanged)="pageChanged($event)"
+            firstText="&laquo;"
+            lastText="&raquo;"
+          ></pagination>
+        </div>
+        <br />
+        <!-- <div *ngIf="loading == true" style="cursor: wait;"> </div> -->
+      </div>
+    </div>
+  </div>
+</div>

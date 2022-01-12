@@ -81,6 +81,7 @@ import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-vie
 import { NqrTransactionComponent } from './nqr/nqr-transaction/nqr-transaction.component';
 import { AutoPostTransactionComponent } from "./Transaction/auto-post-transaction/auto-post-transaction.component";
 import { NipPayTransactionsComponent } from './Transaction/nip-pay-transactions/nip-pay-transactions.component';
+import { SettlementComponent } from './sanef/settlement/settlement.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -153,7 +154,8 @@ import { NipPayTransactionsComponent } from './Transaction/nip-pay-transactions/
     DashboardViewComponent,
     AutoPostTransactionComponent,
     NqrTransactionComponent,
-    NipPayTransactionsComponent
+    NipPayTransactionsComponent,
+    SettlementComponent
   ],
   exports: [
     MDBBootstrapModulesPro,

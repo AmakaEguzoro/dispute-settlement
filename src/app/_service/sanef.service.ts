@@ -14,6 +14,7 @@ import { WalletBalance } from "app/_models/user";
 export class SanefService {
   accountUrl = "http://197.253.19.78:5013/accounts";
   transUrl = "http://197.253.19.78:5013/transactions";
+  disputeUrl = "http://197.253.19.78:9913/disputes/GetDisputeTrans";
   constructor(private httpClient: HttpClient) {}
 
   getAccounts(
@@ -44,6 +45,21 @@ export class SanefService {
   ) {
     return this.httpClient.get(
       `${this.transUrl}?startDate=${startDate}&endDate=${endDate}&walletId=${agentPayviceId}&accountNumber=${accountNumber}&phoneNumber=${phoneNumber}&status=${status}&product=${product}&transactionReference=${transactionReference}&transactionType=${transactionType}&cashCode=${cashCode}&viewPage=${viewPage}`
+    );
+  }
+
+  getDisputeTrans(
+    referenceNo,
+    amount,
+    status,
+    terminalId,
+    bank,
+    authId,
+    stan,
+    startDate
+  ) {
+    return this.httpClient.get(
+      `${this.disputeUrl}?startDate=${startDate}&referenceNo=${referenceNo}&amount=${amount}&terminalId=${terminalId}&status=${status}&bank=${bank}&authId=${authId}&stan=${stan}`
     );
   }
 }

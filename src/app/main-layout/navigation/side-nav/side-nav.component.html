@@ -418,7 +418,6 @@
                     >
                   </li>
                 </ul>
-              
               </mdb-accordion-item-body>
             </mdb-accordion-item>
 
@@ -479,6 +478,86 @@
                       mdbWavesEffect
                       >Data Plans
                     </a>
+                  </li>
+                </ul>
+              </mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+
+            <!-- sanef  -->
+            <mdb-accordion-item *appHasRole="['3', '4', '5']">
+              <mdb-accordion-item-head
+                mdbWavesEffect
+                [ngClass]="{
+                  active:
+                    (boardingLink || {}).isActive ||
+                    (boardingLink1 || {}).isActive
+                }"
+                #boardingLink="routerLinkActive"
+                routerLinkActive="active"
+              >
+                <mdb-icon far icon="hand-pointer"></mdb-icon>SANEF
+              </mdb-accordion-item-head>
+              <mdb-accordion-item-body>
+                <ul>
+                  <span style="display: flex; justify-content: center"
+                    >Sub-Merchant</span
+                  >
+                  <li>
+                    <a
+                      *appHasRole="['3', '4', '5']"
+                      #cgateLink1="routerLinkActive"
+                      routerLink="nqr/onboard"
+                      routerLinkActive="active"
+                      mdbWavesEffect
+                      >Onboarding</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      *appHasRole="['3', '4', '5']"
+                      #cgateLink1="routerLinkActive"
+                      routerLink="nqr/onboard-bulk"
+                      routerLinkActive="active"
+                      mdbWavesEffect
+                      >Bulk Upload</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      *appHasRole="['3', '4', '5']"
+                      #cgateLink1="routerLinkActive"
+                      routerLink="nqr/onboard-history"
+                      routerLinkActive="active"
+                      mdbWavesEffect
+                      >Onboard History</a
+                    >
+                  </li>
+                </ul>
+                <ul>
+                  <span style="display: flex; justify-content: center"
+                    >Merchant</span
+                  >
+
+                  <li>
+                    <a
+                      *appHasRole="['3', '4', '5']"
+                      #cgateLink1="routerLinkActive"
+                      routerLink="nqr/merchant-onboard"
+                      routerLinkActive="active"
+                      mdbWavesEffect
+                      >Bulk Upload</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      *appHasRole="['3', '4', '5']"
+                      #cgateLink1="routerLinkActive"
+                      routerLink="nqr/merchant-onboard-history"
+                      routerLinkActive="active"
+                      mdbWavesEffect
+                      >Onboard History</a
+                    >
                   </li>
                 </ul>
               </mdb-accordion-item-body>

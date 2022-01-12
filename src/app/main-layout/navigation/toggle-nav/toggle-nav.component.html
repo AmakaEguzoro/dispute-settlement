@@ -86,7 +86,7 @@
   </mdb-navbar>
 
   <div class="area"></div>
-  <nav class="main-menu">
+  <nab class="main-menu">
     <ul>
       <li *appHasRole="['2', '3', '4', '5']">
         <a routerLinkActive="active" [routerLink]="['/admin-dashboard/day']">
@@ -179,8 +179,8 @@
             >
               Auto-Post Transactions
             </a>
-          </li>  
-           <li style="margin-top: 4px">
+          </li>
+          <li style="margin-top: 4px">
             <a
               routerLink="transaction/monitor"
               routerLinkActive="active"
@@ -566,6 +566,51 @@
           </li>
         </div>
       </li>
+
+      <!-- sanef  -->
+
+      <li
+        *appHasRole="['3', '4', '5']"
+        class="nav-item dropdown btn-group mt-3"
+        dropdown
+        routerLinkActive="active"
+      >
+        <a
+          dropdownToggle
+          type="button"
+          class="nav-link dropdown-toggle waves-light nav-body-dropdown"
+          mdbWavesEffect
+        >
+          <img src="../assets/nav-assets/noun_Nip.svg" /> &nbsp; &nbsp;
+          <br />
+          <span class="nav-text"> SANEF </span>
+        </a>
+        <div
+          class="dropdown-menu dropdown-primary dropdown-menu-right"
+          role="menu"
+        >
+          <li>
+            <a
+              *appHasRole="['3', '4', '5']"
+              #nipLink1="routerLinkActive"
+              routerLink="sanef/transactions"
+              routerLinkActive="active"
+              mdbWavesEffect
+              >Transaction
+            </a>
+          </li>
+          <li style="margin-top: 4px">
+            <a
+              *appHasRole="['3', '4', '5']"
+              #nipLink1="routerLinkActive"
+              routerLink="sanef/settlement"
+              routerLinkActive="active"
+              mdbWavesEffect
+              >Dispute Settlement
+            </a>
+          </li>
+        </div>
+      </li>
     </ul>
-  </nav>
+  </nab>
 </div>

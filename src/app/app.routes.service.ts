@@ -41,6 +41,7 @@ import { DashboardViewComponent } from "./pages/dashboard/dashboard-view/dashboa
 import { AutoPostTransactionComponent } from "./pages/Transaction/auto-post-transaction/auto-post-transaction.component";
 import { NqrTransactionComponent } from "./pages/nqr/nqr-transaction/nqr-transaction.component";
 import { NipPayTransactionsComponent } from "./pages/Transaction/nip-pay-transactions/nip-pay-transactions.component";
+import { SettlementComponent } from "./pages/sanef/settlement/settlement.component";
 
 const routes: Route[] = [
   { path: "login", component: LoginComponent },
@@ -69,7 +70,7 @@ const routes: Route[] = [
         component: TransactionComponent,
         data: { breadcrumb: "Transactions" },
       },
-       {
+      {
         path: "transaction/monitor",
         component: TransactionMonitorComponent,
         data: { breadcrumb: "Transactions Monitoring" },
@@ -185,6 +186,12 @@ const routes: Route[] = [
         component: TransactionsComponent,
         canActivate: [RoleGuard],
         data: { expectedRole: [3, 4, 5], breadcrumb: "Sanef | Transactions" },
+      },
+      {
+        path: "sanef/settlement",
+        component: SettlementComponent,
+        canActivate: [RoleGuard],
+        data: { expectedRole: [3, 4, 5], breadcrumb: "Sanef | Settlement" },
       },
       {
         path: "transaction/nip",
