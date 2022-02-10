@@ -14,25 +14,6 @@
   color: #002035;
   margin-top: -16px;
 }
-.failedPer {
-  color: red;
-  font-size: small;
-  margin-top: 7px;
-  margin-bottom: -4px;
-}
-.successPer {
-  color: green;
-  font-size: small;
-  margin-top: 7px;
-  margin-bottom: -4px;
-}
-.trans-card-text {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 0px;
-  color: black;
-}
 
 .trans-head {
   background: gainsboro;
@@ -60,18 +41,10 @@
   color: #eb5757;
   font-size: 24px;
 }
-.pending {
-  color: #e9ad2d;
-  font-size: 24px;
-}
-.total {
-  color: #219653;
-  font-size: 24px;
-}
-.total-users {
-  float: right;
-  margin-top: -22px;
-}
+// .pending {
+//   color: #e9ad2d;
+//   font-size: 24px;
+// }
 
 table td {
   font-size: 14px;
@@ -95,7 +68,7 @@ table.table td {
   height: 23px;
   border-radius: 10px;
   width: 100%;
-  background: #2f80ed;
+  // background: #2f80ed;
   font-style: normal;
   font-weight: 500;
   font-size: 9px;
@@ -105,16 +78,25 @@ table.table td {
   margin-top: 5px;
 }
 
-.debited {
+.pending {
   background: #2f80ed;
 }
 .failed {
   background: #eb5757;
 }
-.declined {
+.rejected {
   background: #eb5757;
 }
-.initialized {
+.sentToBank {
+  background: #f2c94c;
+}
+.resolved {
+  background: #219653;
+}
+.approved {
+  background: #219653;
+}
+.review {
   background: #f2c94c;
 }
 

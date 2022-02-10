@@ -1,0 +1,99 @@
+.trans-category {
+  font-size: 11px;
+  color: darkgray;
+}
+
+.modal-tit {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.details {
+  font: Graphik;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.detss {
+  font-size: 12px;
+  background-color: #c4c4c426;
+  height: 50px;
+  padding: 15px;
+  border-radius: 6px;
+}
+.response-box {
+  width: 750px;
+  height: 120px;
+  border-radius: 6px;
+  border: 0.4px solid #0b7fb2;
+}
+.action-buttons {
+  display: flex;
+}
+.send-sanef {
+  margin-top: 32px;
+  font-size: 12px;
+  border: 0.4px solid #0b7fb2;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.vas-address {
+  float: right;
+  margin-left: 7rem;
+  margin-top: -23px;
+  margin-bottom: 9px;
+}
+
+.credit-wallet {
+  align-self: center;
+  height: 30px;
+  border-radius: 10px;
+  width: 18%;
+  background: #4ea11e;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea {
+  height: 11rem;
+  width: 17rem;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  textarea {
+    height: 8rem;
+    width: 9rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1366px) {
+  textarea {
+    height: 11rem;
+    width: 17rem;
+  }
+}
+.print-receipt {
+  background: #2f80ed !important;
+  height: 26px !important;
+  width: 97px !important;
+  line-height: 15px !important;
+  font-size: 10px;
+}
+.close-print {
+  background: #eb5757 !important;
+  height: 26px !important;
+  width: 97px !important;
+  line-height: 15px !important;
+  font-size: 10px !important;
+  border: 1px solid #eb5757 !important;
+}

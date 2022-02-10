@@ -17,6 +17,7 @@ import { LoginComponent } from "app/_auth/login/login.component";
 import { TransactionComponent } from "./Transaction/transaction/transaction.component";
 import { TransactionMonitorComponent } from "./Transaction/transaction-monitor/transaction-monitor.component";
 import { ModelComponent } from "./Transaction/transaction/model/model.component";
+import { SettlementModalComponent } from "./sanef/settlement/settlement-modal/settlement-modal.component";
 import { ModelComponent1 } from "./Transaction/transaction-monitor/model/model.component";
 import { SharedModule } from "app/shared/shared.module";
 import { OrderModule } from "ngx-order-pipe";
@@ -57,31 +58,31 @@ import { AgentdetailComponent } from "./agentdashboard/agentdetail/agentdetail.c
 import { AccountComponent } from "./sanef/account/account.component";
 import { TransactionsComponent } from "./sanef/transactions/transactions.component";
 import { SanefModelComponent } from "./sanef/transactions/model/model.component";
-import { AppConfigComponent } from './settings/app-configuration/app-config/app-config.component';
+import { AppConfigComponent } from "./settings/app-configuration/app-config/app-config.component";
 import { TransactionLimitsComponent } from "./Transaction/transaction-limits/transaction-limits.component";
 import { B2bConfigComponent } from "./settings/B2B-CONFIGURATION/b2b-config/b2b-config.component";
 import { DataPlansComponent } from "./settings/Data-config/data-plans/data-plans.component";
 import { WalletLimitsComponent } from "./settings/Wallet-config/wallet-limits/wallet-limits.component";
-import { InconclusiveTransactionComponent } from './Transaction/inconclusive-transaction/inconclusive-transaction.component';
-import { NqrComponent } from './nqr/nqr.component';
-import { NqrBulkComponent } from './nqr/nqr-bulk/nqr-bulk.component';
-import { NqrHistoryComponent } from './nqr/nqr-history/nqr-history.component';
-import { AnQrcodeModule } from 'an-qrcode';
+import { InconclusiveTransactionComponent } from "./Transaction/inconclusive-transaction/inconclusive-transaction.component";
+import { NqrComponent } from "./nqr/nqr.component";
+import { NqrBulkComponent } from "./nqr/nqr-bulk/nqr-bulk.component";
+import { NqrHistoryComponent } from "./nqr/nqr-history/nqr-history.component";
+import { AnQrcodeModule } from "an-qrcode";
 import { PurchaseReceiptComponent } from "./Transaction/transaction/e-receipt/purchase-receipt/purchase-receipt.component";
 import { PurchaseReceiptComponent1 } from "./Transaction/transaction-monitor/e-receipt/purchase-receipt/purchase-receipt.component";
 import { EJournalComponent } from "./Transaction/transaction/e-receipt/e-journal/e-journal.component";
 import { EJournalComponent1 } from "./Transaction/transaction-monitor/e-receipt/e-journal/e-journal.component";
 
-import { NqrMerchantOnboardComponent } from './nqr/nqr-merchant-onboard/nqr-merchant-onboard.component';
-import { NqrMerchantHistoryComponent } from './nqr/nqr-merchant-history/nqr-merchant-history.component';
-import { DayDashboardComponent } from './dashboard/day-dashboard/day-dashboard.component';
-import { WeekDashboardComponent } from './dashboard/week-dashboard/week-dashboard.component';
-import { MonthDashboardComponent } from './dashboard/month-dashboard/month-dashboard.component';
-import { DashboardViewComponent } from './dashboard/dashboard-view/dashboard-view.component';
-import { NqrTransactionComponent } from './nqr/nqr-transaction/nqr-transaction.component';
+import { NqrMerchantOnboardComponent } from "./nqr/nqr-merchant-onboard/nqr-merchant-onboard.component";
+import { NqrMerchantHistoryComponent } from "./nqr/nqr-merchant-history/nqr-merchant-history.component";
+import { DayDashboardComponent } from "./dashboard/day-dashboard/day-dashboard.component";
+import { WeekDashboardComponent } from "./dashboard/week-dashboard/week-dashboard.component";
+import { MonthDashboardComponent } from "./dashboard/month-dashboard/month-dashboard.component";
+import { DashboardViewComponent } from "./dashboard/dashboard-view/dashboard-view.component";
+import { NqrTransactionComponent } from "./nqr/nqr-transaction/nqr-transaction.component";
 import { AutoPostTransactionComponent } from "./Transaction/auto-post-transaction/auto-post-transaction.component";
-import { NipPayTransactionsComponent } from './Transaction/nip-pay-transactions/nip-pay-transactions.component';
-import { SettlementComponent } from './sanef/settlement/settlement.component';
+import { NipPayTransactionsComponent } from "./Transaction/nip-pay-transactions/nip-pay-transactions.component";
+import { SettlementComponent } from "./sanef/settlement/settlement.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -94,7 +95,7 @@ import { SettlementComponent } from './sanef/settlement/settlement.component';
     PaginationModule.forRoot(),
     DirectiveModule,
     MDBBootstrapModulesPro.forRoot(),
-     AnQrcodeModule
+    AnQrcodeModule,
   ],
   declarations: [
     // Itex Copmponent
@@ -113,7 +114,7 @@ import { SettlementComponent } from './sanef/settlement/settlement.component';
     TransactionLocksComponent,
     RoleManagementComponent,
     UserModalComponent,
-    
+
     McashTransactionComponent,
     McashComponent,
     ErrorAnalysisComponent,
@@ -155,7 +156,8 @@ import { SettlementComponent } from './sanef/settlement/settlement.component';
     AutoPostTransactionComponent,
     NqrTransactionComponent,
     NipPayTransactionsComponent,
-    SettlementComponent
+    SettlementComponent,
+    SettlementModalComponent,
   ],
   exports: [
     MDBBootstrapModulesPro,
@@ -166,6 +168,7 @@ import { SettlementComponent } from './sanef/settlement/settlement.component';
     RegisterComponent,
     TransactionComponent,
     ModelComponent,
+    SettlementModalComponent,
     TransactionReversalComponent,
     ReversalModelComponent,
     TransactionLocksComponent,
@@ -185,9 +188,7 @@ import { SettlementComponent } from './sanef/settlement/settlement.component';
     MonthDashboardComponent,
     DashboardViewComponent,
     AutoPostTransactionComponent,
-    NipPayTransactionsComponent
-
-
+    NipPayTransactionsComponent,
   ],
   providers: [
     // itex

@@ -1,0 +1,147 @@
+<div class="modal-dialog-scrollable" id="model-show">
+  <div class="modal-content">
+    <!-- <div class="modal-header">
+      <button
+        type="button"
+        class="close pull-right"
+        aria-label="Close"
+        (click)="bsModalRef.hide()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> -->
+
+    <div class="modal-body">
+      <!-- first row  -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="details" *ngIf="data.requestId">
+            Reference NO
+            <br />
+          </div>
+          <div class="detss">
+            <span> {{ data.requestId }}</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="details" *ngIf="data.amount">
+            Amount
+            <br />
+          </div>
+          <div class="detss">
+            <span> {{ data.amount }}</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="details" *ngIf="data.terminal_ID">
+            Terminal ID
+            <br />
+          </div>
+          <div class="detss">
+            <span> {{ data.terminal_ID }}</span>
+          </div>
+        </div>
+      </div>
+      <br />
+      <!-- second row  -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="details" *ngIf="data.bank">
+            Bank
+            <br />
+          </div>
+          <div class="detss">
+            <span> {{ data.bank }}</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="details" *ngIf="data.agentCode">
+            Agent Code
+            <br />
+          </div>
+          <div class="detss">
+            <span> {{ data.agentCode }}</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="details" *ngIf="data.transactionDate">
+            Date & Time
+            <br />
+          </div>
+          <div class="detss">
+            <span> {{ data.transactionDate }}</span>
+          </div>
+        </div>
+      </div>
+      <br />
+      <!-- third row  -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="details" *ngIf="data.agentPayviceId">
+            Payvice ID
+            <br />
+          </div>
+          <div class="detss">
+            <span> {{ data.agentPayviceId }}</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="details" *ngIf="data.customerAccountNumber">
+            Account NO
+            <br />
+          </div>
+          <div class="detss">
+            <span> {{ data.customerAccountNumber }}</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="details" *ngIf="data.trackingId">
+            Tracking ID
+            <br />
+          </div>
+          <div class="detss">
+            <span> {{ data.trackingId }}</span>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+
+      <form>
+        <div class="form-group">
+          <label class="details">Enter Response</label>
+          <br />
+          <input class="response-box form-control" />
+        </div>
+      </form>
+
+      <div class="action-buttons">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label class="details">Change Status</label>
+          <select
+            class="browser-default custom-select"
+            formControlName="method"
+          >
+            <option>Unresolved</option>
+            <option>Pending</option>
+            <option>Approved</option>
+            <option>Resolved</option>
+            <option>Rejected</option>
+          </select>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <button
+            type="button"
+            mdbBtn
+            class="btn btn-info send-sanef waves-light"
+            mdbWavesEffect
+            (click)="sentToSanef()"
+          >
+            Send to Sanef
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

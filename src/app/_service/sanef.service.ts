@@ -49,17 +49,20 @@ export class SanefService {
   }
 
   getDisputeTrans(
-    referenceNo,
+    customerName,
+    customerAccountNumber,
+    trackingId,
     amount,
-    status,
-    terminalId,
+    disputeStatus,
+    agentCode,
     bank,
-    authId,
-    stan,
-    startDate
+    agentPayviceId,
+    transactionReference,
+    requestId,
+    transactionDate
   ) {
     return this.httpClient.get(
-      `${this.disputeUrl}?startDate=${startDate}&referenceNo=${referenceNo}&amount=${amount}&terminalId=${terminalId}&status=${status}&bank=${bank}&authId=${authId}&stan=${stan}`
+      `${this.disputeUrl}?customerName=${customerName}&customerAccountNumber=${customerAccountNumber}&amount=${amount}&trackingId=${trackingId}&disputeStatus=${disputeStatus}&bank=${bank}&agentCode=${agentCode}&agentPayviceId=${agentPayviceId}&transactionReference=${transactionReference}&requestId=${requestId}&transactionDate=${transactionDate}`
     );
   }
 }

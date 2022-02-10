@@ -30,6 +30,7 @@ import {
   FormControl,
 } from "@angular/forms";
 import { IMyOptions } from "ng-uikit-pro-standard";
+import { SettlementModalComponent } from "./settlement-modal/settlement-modal.component";
 @Component({
   selector: "app-settlement",
   templateUrl: "./settlement.component.html",
@@ -48,7 +49,7 @@ export class SettlementComponent implements OnInit {
   maxSize = 10;
   reload: any;
   isInterval: boolean;
-  summarytrans: any;
+  summaryTrans: any;
   start: any;
   end: any;
   // modal
@@ -56,10 +57,15 @@ export class SettlementComponent implements OnInit {
   private subs = new SubSink();
   socketData: any;
   disabled: true;
-  terminalId: any;
+  customerName: any;
+  customerAccountNumber: any;
+  trackingId: any;
+  disputeStatus: any;
+  agentCode: any;
   bank: any;
-  authId: any;
-  stan: any;
+  agentPayviceId: any;
+  requestId: any;
+  transactionDate: any;
   // amount: any;
   datservice: any;
   viewPage = 1;
@@ -100,8 +106,6 @@ export class SettlementComponent implements OnInit {
     stan: "",
     startDate: "",
     download: false,
-
-   
   };
   next_disable: boolean = false;
   summaryaccount: any;
@@ -140,48 +144,44 @@ export class SettlementComponent implements OnInit {
 
   headElements = [
     "S/N",
-    "REFRENCE NO",
+    "CUSTOMER NAME",
+    "CUSTOMER ACCOUNT NO",
+    "TRACKING ID",
     "AMOUNT",
-    "STATUS",
-    "TERMINAL ID",
+    "DISPUTE STATUS",
+    "AGENT CODE",
     "BANK",
-    "AUTH ID",
-    "STAN",
-    "DATE & TIME",
+    "PAYVICE ID",
+    "TRANSACTION REFERENCE",
+    "REQUEST ID",
+    "TRANSACTION DATE",
   ];
-  Refs = [
-    "TERMINAL ID",
-    "REFRENCE NO",
-    "BANK",
-    "STATUS",
-    "AUTH ID",
-    "STAN",
-    "AMOUNT",
-  ];
+  Refs = ["Account Number", "Customer Name", "Bank"];
 
   TableSummary() {
     this.isData = true;
     this.isLoading = true;
-    console.log(this.endDate);
-    this.isData = true;
-    this.isLoading = true;
+    console.log(this.endDate, "endDate");
+
     this.sanefService
       .getDisputeTrans(
-        this.referenceNo,
+        this.customerName,
+        this.customerAccountNumber,
+        this.trackingId,
         this.amount,
-        this.status,
-        this.terminalId,
-
-        this.authId,
+        this.disputeStatus,
+        this.agentCode,
         this.bank,
-        this.stan,
-        this.startDate
+        this.agentPayviceId,
+        this.transactionReference,
+        this.requestId,
+        this.transactionDate
       )
       .subscribe(
         (data: any) => {
           this.isLoading = false;
-          this.summarytrans = data.data;
-          console.log(this.summarytrans, "summarytrans");
+          this.summaryTrans = data;
+          console.log(this.summaryTrans, "summarytrans");
           this.total = Math.ceil(data.totalItems / this.limit);
           this.serial = 1 + (this.viewPage - 1) * this.perPage;
         },
@@ -197,6 +197,8 @@ export class SettlementComponent implements OnInit {
     // this.loading = true;
     this.page = event.page;
     console.log("current page", this.currentPage);
+
+    this.searchDispute();
 
     this.router.navigateByUrl(
       "http://197.253.19.78:9913/disputes/GetDisputeTrans",
@@ -242,14 +244,15 @@ export class SettlementComponent implements OnInit {
     this.endDate = this.searchForm.value.endDate;
     this.range = `${this.start} - ${this.end}`;
     this.getFilter();
-    this.walletId = this.walletId ? this.walletId : "";
-    this.accountNumber = this.accountNumber ? this.accountNumber : "";
-    this.transactionReference = this.transactionReference
-      ? this.transactionReference
+    this.customerName = this.customerName ? this.customerName : "";
+    this.customerAccountNumber = this.customerAccountNumber
+      ? this.customerAccountNumber
       : "";
-    this.transactionType = this.transactionType ? this.transactionType : "";
-    this.status = this.status ? this.status : "";
+    this.agentPayviceId = this.agentPayviceId ? this.agentPayviceId : "";
+    this.agentCode = this.agentCode ? this.agentCode : "";
+    this.disputeStatus = this.disputeStatus ? this.disputeStatus : "";
     this.amount = this.amount ? this.amount : "";
+    this.bank = this.bank ? this.bank : "";
     this.viewPage = this.viewPage;
     this.TableSummary();
   }
@@ -257,63 +260,65 @@ export class SettlementComponent implements OnInit {
   getFilter() {
     this.filterValue = this.searchForm.value.filterValue;
     if (this.filter == "Account Number") {
-      this.accountNumber = this.filterValue;
-    } else if (this.filter == "Wallet ID") {
-      this.walletId = this.filterValue;
+      this.customerAccountNumber = this.filterValue;
+    } else if (this.filter == "Payvice ID") {
+      this.agentPayviceId = this.filterValue;
+    } else if (this.filter == "Customer Name") {
+      this.customerName = this.filterValue;
     } else if (this.filter == "TransactionReference") {
       this.transactionReference = this.filterValue;
-    } else if (this.filter == "Type") {
-      this.type = this.filterValue;
-    } else if (this.filter == "Status") {
-      this.status = this.filterValue;
+    } else if (this.filter == "Bank") {
+      this.bank = this.filterValue;
+    } else if (this.filter == "Dispute Status") {
+      this.disputeStatus = this.filterValue;
     } else if (this.filter == "amount") {
       this.amount = this.filterValue;
     }
   }
 
-  exportAsXLSX(): void {
-    // this.start = this.searchForm.value.startDate;
-    // this.end = this.searchForm.value.endDate;
-    // this.range = `${this.start} - ${this.end}`;
-    // this.filterData = {
-    //   dateRange: this.range,
-    //   walletId: this.walletId ? this.walletId : "",
-    //   accountNumber: this.accountNumber ? this.accountNumber : "",
-    //   phoneNumber: this.phoneNumber ? this.phoneNumber : "",
-    //   searchField: "",
-    //   viewPage: "",
-    //   download: true,
-    // };
-    // if (this.userName() != "Providus") {
-    //   this.isData = true;
-    //   this.isLoading = true;
-    //   this.sanefService.getTransactions().subscribe(
-    //     (data:any) => {
-    //       this.isLoading = false;
-    //       this.exportData = data;
-    //       this.excelService.exportAsExcelFile(
-    //         this.exportData,
-    //         "ITEX-SanefTrans" + this.range
-    //       );
-    //     },
-    //     (error) => {
-    //       this.isData = false;
-    //       this.isLoading = false;
-    //       console.log("cant get transaction details", error);
-    //     }
-    //   );
-    // }
-  }
-  // openModal(modal) {
-  //   this.summarytrans.response = modal;
-  //   const initialState = {
-  //     data: this.summarytrans.response,
-  //     ignoreBackdropClick: true,
+  // exportAsXLSX(): void {
+  //   this.start = this.searchForm.value.startDate;
+  //   this.end = this.searchForm.value.endDate;
+  //   this.range = `${this.start} - ${this.end}`;
+  //   this.filterData = {
+  //     dateRange: this.range,
+  //     walletId: this.walletId ? this.walletId : "",
+  //     accountNumber: this.accountNumber ? this.accountNumber : "",
+  //     phoneNumber: this.phoneNumber ? this.phoneNumber : "",
+  //     searchField: "",
+  //     viewPage: "",
+  //     download: true,
   //   };
-  //   this.bsModalRef = this.modalService.show(SanefModelComponent, {
-  //     initialState,
-  //     class: "modal-lg",
-  //   });
-
+  //   if (this.userName() != "Providus") {
+  //     this.isData = true;
+  //     this.isLoading = true;
+  //     this.sanefService.getTransactions().subscribe(
+  //       (data:any) => {
+  //         this.isLoading = false;
+  //         this.exportData = data;
+  //         this.excelService.exportAsExcelFile(
+  //           this.exportData,
+  //           "ITEX-SanefTrans" + this.range
+  //         );
+  //       },
+  //       (error) => {
+  //         this.isData = false;
+  //         this.isLoading = false;
+  //         console.log("cant get transaction details", error);
+  //       }
+  //     );
+  //   }
   // }
+
+  openModal(modal) {
+    this.summaryTrans.response = modal;
+    const initialState = {
+      data: this.summaryTrans.response,
+      ignoreBackdropClick: true,
+    };
+    this.bsModalRef = this.modalService.show(SettlementModalComponent, {
+      initialState,
+      class: "modal-lg",
+    });
+  }
 }
