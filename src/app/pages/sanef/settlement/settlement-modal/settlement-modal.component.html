@@ -14,7 +14,7 @@
     <div class="modal-body">
       <!-- first row  -->
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-lg-4">
           <div class="details" *ngIf="data.requestId">
             Reference NO
             <br />
@@ -23,7 +23,7 @@
             <span> {{ data.requestId }}</span>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4">
           <div class="details" *ngIf="data.amount">
             Amount
             <br />
@@ -32,7 +32,7 @@
             <span> {{ data.amount }}</span>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4">
           <div class="details" *ngIf="data.terminal_ID">
             Terminal ID
             <br />
@@ -107,39 +107,41 @@
       <br />
       <br />
 
-      <form>
-        <div class="form-group">
-          <label class="details">Enter Response</label>
-          <br />
-          <input class="response-box form-control" />
-        </div>
+      <form [formGroup]="searchForm">
+        <label for="responseBox" class="details"> Enter Response</label>
+        <input
+          class="response-box"
+          type="text"
+          formControlName="filterValue"
+          ngDefaultControl
+          [(ngModel)]="filterValue"
+        />
       </form>
 
       <div class="action-buttons">
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          <label class="details">Change Status</label>
-          <select
-            class="browser-default custom-select"
-            formControlName="method"
-          >
-            <option>Unresolved</option>
-            <option>Pending</option>
-            <option>Approved</option>
-            <option>Resolved</option>
-            <option>Rejected</option>
-          </select>
-        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <label class="details">Change Status</label>
+            <select class="browser-default custom-select">
+              <option>Unresolved</option>
+              <option>Pending</option>
+              <option>Approved</option>
+              <option>Resolved</option>
+              <option>Rejected</option>
+            </select>
+          </div>
 
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          <button
-            type="button"
-            mdbBtn
-            class="btn btn-info send-sanef waves-light"
-            mdbWavesEffect
-            (click)="sentToSanef()"
-          >
-            Send to Sanef
-          </button>
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <button
+              type="button"
+              mdbBtn
+              class="btn btn-info send-sanef waves-light"
+              mdbWavesEffect
+              (click)="sentToSanef()"
+            >
+              Send to Sanef
+            </button>
+          </div>
         </div>
       </div>
     </div>

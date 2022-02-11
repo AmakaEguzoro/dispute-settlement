@@ -57,15 +57,15 @@ export class SettlementComponent implements OnInit {
   private subs = new SubSink();
   socketData: any;
   disabled: true;
-  customerName: any;
-  customerAccountNumber: any;
-  trackingId: any;
-  disputeStatus: any;
-  agentCode: any;
-  bank: any;
-  agentPayviceId: any;
-  requestId: any;
-  transactionDate: any;
+  customerName: string = "";
+  customerAccountNumber: string = "";
+  trackingId: string = "";
+  disputeStatus: string = "";
+  agentCode: string = "";
+  bank: string = "";
+  agentPayviceId: string = "";
+  requestId: string = "";
+  transactionDate: string = "";
   // amount: any;
   datservice: any;
   viewPage = 1;
@@ -96,17 +96,20 @@ export class SettlementComponent implements OnInit {
   newRange = `${this.dateRange} - ${this.dateRange}`;
 
   payload = {
-    dateRange: "",
-    referenceNo: "",
+    dateRange: this.newRange,
+    customerName: "",
+    customerAccountNumber: "",
+    trackingId: "",
     amount: "",
-    status: "",
-    terminalId: "",
+    disputeStatus: "",
+    agentCode: "",
     bank: "",
-    authId: "",
-    stan: "",
-    startDate: "",
-    download: false,
+    agentPayviceId: "",
+    transactionReference: "",
+    requestId: "",
+    transactionDate: "",
   };
+
   next_disable: boolean = false;
   summaryaccount: any;
   searchForm: FormGroup;
@@ -156,7 +159,15 @@ export class SettlementComponent implements OnInit {
     "REQUEST ID",
     "TRANSACTION DATE",
   ];
-  Refs = ["Account Number", "Customer Name", "Bank"];
+  Refs = [
+    "Account Number",
+    "Customer Name",
+    "Bank",
+    "Payvice Id",
+    "Agent Code",
+    "Dispute Status",
+    "Amount",
+  ];
 
   TableSummary() {
     this.isData = true;
